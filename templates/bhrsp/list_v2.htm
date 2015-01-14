@@ -1,0 +1,108 @@
+<script type="text/javascript" src="/hrd/Framework/little2.function.js"></script>
+
+<body id="body_{gridId}">
+	<input type="hidden" name="empId" value="F39BA5B7-0F25-492B-AB6B-7FFC132EB351" />
+	<div id="tab1">
+		
+		<table id="{gridId}"></table>
+		<div id="{pager}"></div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	$(function() {
+		
+		jzsoft.grid("{gridId}", {
+			url : '{url}',
+			postData : {
+				<!-- BEGIN postDataList -->
+				'{postDataList.index}' : '{postDataList.val}',
+				<!-- END postDataList -->
+			},
+			colNames : [ 
+			            <!-- BEGIN COL -->
+			             '{COL.title}', 
+			             <!-- END COL -->
+			            ],
+			colModel : [
+			            <!-- BEGIN COLM -->
+			            {
+			            <!-- BEGIN COLM_DETAIL -->
+			             {COLM.COLM_DETAIL.title}:{COLM.COLM_DETAIL.value} , 
+			             <!-- END COLM_DETAIL -->			            
+			            },
+			            <!-- END COLM -->
+			],
+			autowidth : true,
+			height : {height},
+			multiselect : true,
+			toolbar : [ true, "top" ],
+			pager : '#{pager}'
+		});
+		
+		
+		jzsoft.grid.inlineMenu({
+			grid : "{inline_gridId}",
+			paper : "{pager}",
+			baseUrl : '{baseUrl}',
+			saveService : 'saveOrUpdate.html',
+			delService : '{deleUrl}',
+		});
+		
+		
+		jzsoft.grid.barMenu({
+			gridId : '{bar_gridId}',
+			baseUrl : '{baseUrl}',
+			queryCode : '{queryCode}',
+			queryUrl : '{queryUrl}',
+			queryTitle : '{queryTitle}',
+			addUrl : '{addUrl}',
+			addTitle : '{addTitle}',
+			deleUrl : '{deleUrl}',
+			editUrl : '{editUrl}',
+			editTitle : '{editTitle}',
+			//addWidth: 600,
+			buttons : [
+			           <!-- BEGIN BUTTONS -->
+			           {
+			        	   name:"{BUTTONS.name}",
+			        	   bclass:'{BUTTONS.bclass}',
+			        	   onpress:function()
+			        	   {			        		
+			        		   var o = new button_obj();
+			        		   o.gridId="{gridId}";			
+			        		   o.body= "{BUTTONS.body}";
+			        		   o.title="{BUTTONS.title}";
+			        		   o.data={{BUTTONS.data}};
+			        		   o.height={BUTTONS.height};
+			        		   o.width={BUTTONS.width};
+			        		   
+			        		   if(o.body)
+			        		   {					  
+			        			
+			        			   call_func(this,o);			 
+			        			  
+			        		   }
+			        		   else
+			        		   {	        		
+			        				 {BUTTONS.func}(this,"{gridId}",o);
+			        		   }
+			        		  
+			        		}
+			           },
+			           <!-- END BUTTONS -->
+			           ]
+		});
+		
+	});
+	
+function button_obj()
+{
+	this.title = "Default";
+
+
+	
+}
+	
+
+</script>

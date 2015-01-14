@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+
+<script type="text/javascript">
+function func_cancel() 
+{
+//	alert($("#bt_cancel").val());
+	closeDialog("g3_dialog");
+};				
+
+function func_finish() {
+	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
+	var form = $('form').serialize();
+	var params = "";
+	var temp = form.split('&');
+	for ( var i = 0; i < temp.length; i++) {
+		var obj = temp[i].split('=');
+		if (obj[1].Trim() != '') {
+			params += '&entity' + '.' + temp[i];
+		}
+	}
+	params = params.substring(1);
+	sendPostJQueryAjax(url, params, function(data) {
+		if (data.msg) {
+			$().message(data.msg);
+		}
+		$('input[name="key"]').val(data.entity.key);
+		$("#list").jqGrid('setGridParam', {
+			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
+		//postData : {}
+		}).trigger("reloadGrid");
+
+	});
+}
+
+	 
+</script>
+</head>
+ 
+<body style="width:100%">
+<div  id="container_{elementID}"  >
+		<div class="uc1" style="width:95%;">								
+			<table class="tableStyle1"   style="width:550px"><tr><td >{container_basisevaluationtable_reporteeadd}</td></tr></table>		
+		</div>
+		<div class="uc2"  style="width:95%;margin-left: 10px;">
+			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="加入新受評人"  onClick='func_finish();' />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />			
+		</div>		
+</div>	
+</body>
+</html>

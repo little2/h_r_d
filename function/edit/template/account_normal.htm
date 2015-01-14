@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/hrd/Framework/Plugins/orgchart/jquery.orgchart.css"/>
+<script type="text/javascript">
+function func_cancel() 
+{
+//	alert($("#bt_cancel").val());
+	closeDialog("g3_dialog");
+};				
+
+function func_finish() {
+	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
+	var form = $('form').serialize();
+	var params = "";
+	var temp = form.split('&');
+	for ( var i = 0; i < temp.length; i++) {
+		var obj = temp[i].split('=');
+		if (obj[1].Trim() != '') {
+			params += '&entity' + '.' + temp[i];
+		}
+	}
+	params = params.substring(1);
+	sendPostJQueryAjax(url, params, function(data) {
+		if (data.msg) {
+			$().message(data.msg);
+		}
+		$('input[name="key"]').val(data.entity.key);
+		$("#list").jqGrid('setGridParam', {
+			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
+		//postData : {}
+		}).trigger("reloadGrid");
+
+	});
+}
+
+function show_member_list(is_show)
+{
+	if(!is_show) return false;
+	var div_width=$('#lab1').width()-50;
+	 var div_height=$('#lab1').height()-270;
+	
+
+	jzsoft.grid("list1", {
+		url : '/hrd/performance/perfEvaluationStandardContent/pageList.html',
+		postData : {
+			'entity.perfEvaluationStandardC.key' : $('input[name="key"]').val()
+		},
+		serializeRowData : function(postdata) {
+			var data = '';
+			$.each(postdata, function(name) {
+				if (name == 'oper' || name == 'id' || postdata[name] == '') {
+					return true;
+				}
+				data += "&entity." + name + "=" + postdata[name];
+			});
+			data += "&entity.perfEvaluationStandardC.key=" + $('input[name="key"]').val();
+			return data;
+		},
+		colNames : [ 'ID', '評分說明', '分值' ],
+		colModel : [ {
+			name : 'key',
+			index : 'key',
+			width : 55,
+			hidden : true
+		}, {
+			name : 'markNote',
+			index : 'markNote',
+			editable : true,
+			width : 80
+		}, {
+			name : 'mark',
+			index : 'mark',
+			width : 80,
+			editable : true
+		} ],
+		width : div_width,
+		height : div_height,
+		rownumbers : true,
+		pager : '#pager1'
+	});
+
+	jzsoft.grid.inlineMenu({
+		grid : "list1",
+		paper : "pager1",
+		baseUrl : '/hrd/performance/perfEvaluationStandardContent/',
+		saveService : 'saveOrUpdate.html',
+		delService : 'delete.html',
+	});
+	 $("#organisation").orgChart({container: $("#lab3"), interactive: true, fade: true, speed: 'slow'});
+}
+
+	$(function() {		
+		$(".lable").each(function() {
+			$(this).click(function() {
+				var divn = $(this).attr("dis");
+				$(".lable").each(function() {
+					$(this).css("background-color", "#F0F0F0");
+				});
+				$(".labDiv").each(function() {
+					$(this).hide();
+				});
+				$(this).css("background-color", "yellow");
+				$("#" + divn).show();
+			});
+		});
+		show_member_list({is_show_member});
+	});
+
+	
+	
+	 
+</script>
+</head>
+
+<body>
+	<div class="labMenu">
+		<div class="lable" dis="lab1" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_label_lab2}" dis="lab2"  id='lable_lab2'>{$lang.Position}</div>
+	</div>
+	
+	<div id="lab1" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="customForm" action="">
+			
+				
+				<table class="tableStyle1"  >
+					<tr>
+						<td height="30">{$lang.Account}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30">{$lang.userPassword}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30">{$lang.userEmail}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					
+					<tr>
+						<td height="30">{$lang.userName}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td height="30"  class="right">{$lang.TradChinese}：</td>
+						<td><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30"  class="right">{$lang.SimChinese}：</td>
+						<td><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30"  class="right">{$lang.English}：</td>
+						<td><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					
+					<tr>
+						<td height="30">{$lang.loginCount}：</td>
+						<td>3214</td>
+					</tr>
+					<tr>
+						<td height="30">{$lang.lastLogintime}：</td>
+						<td>2014/11/21 19:22:17</td>
+					</tr>				
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">
+			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />			
+		</div>
+	</div>
+	
+	
+	<div id="lab2" class="labDiv"   >
+	
+		<div class="uc1">
+			<form method="post" id="customForm" action="">
+			
+				
+				<table class="tableStyle1"  >
+					<tr>
+						<td height="30">{$lang.Company}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30">{$lang.Department}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="工程事業群 / 工程處 / 博愛工務所" /></td>
+					</tr>
+					<tr>
+						<td height="30">{$lang.PositionSystem}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>								
+					
+					<tr>
+						<td height="30">{$lang.PositionLevel}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30">{$lang.PositionTitle}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>			
+					<tr>
+						<td height="30">{$lang.PositionType}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>				
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">
+			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />
+			
+		</div>
+	</div>
+	
+	
+</body>
+</html>

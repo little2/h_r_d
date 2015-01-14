@@ -1,0 +1,39 @@
+/*---------------------------------
+	HTML ELEMENTS
+-----------------------------------*/
+
+.hide {display:none;}
+.show {display:block;}
+
+/*---------------------------------
+	UTILITY
+-----------------------------------*/
+.center{text-align:center;}
+.left{text-align:left;}
+.right{text-align:right;}
+
+.wid{width:90% ;}
+
+
+
+
+
+ table.tableStyle1 
+{	
+	margin-left: 20px;
+	margin-top: 20px;
+	
+}
+
+ td.label 
+{
+	color: #1C7EFC;
+	font-weight: bold;
+}
+
+td.item
+{
+	text-align:right;
+}
+
+

@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+.jquery-message {
+	position: absolute;
+	top: 10%;
+	left: 45%;
+	background: #217eb9;
+	border: 1px solid #ff9;
+	padding: 3px 12px 3px 12px;
+	z-index: 9001;
+	color: #fff;
+}

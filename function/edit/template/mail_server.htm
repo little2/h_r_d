@@ -1,0 +1,161 @@
+﻿
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Mail</title>
+<style type="text/css">
+.t1 {
+	text-align: right;
+}
+
+.b1 {
+	text-align: right;
+}
+
+.i1 {
+	text-align: left;
+}
+td{
+color:#1C7EFC;
+font-size:12px;
+font-weight:bold;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Core/jquery-ui-1.9.2.custom.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Themes/page.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Themes/layout.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/FlexiGrid/flexigrid_gray_default.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/Validation/validationEngine.jquery.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/ymprompt-4.0-11/skin/qq/ymPrompt.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/plupload/jquery.ui.plupload/css/jquery.ui.plupload.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/JqGrid/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Themes/buttons.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/message/message.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/tzCheckbox/jquery.tzCheckbox.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/zTree/zTreeStyle/zTreeStyle.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/SmartWizard/smart_wizard_vertical.css"  />
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-ext.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-ui-ext.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/FlexiGrid/flexigrid.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.dialog.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/Validation/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/Validation/jquery.validationEngine-zh_TW.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/plupload/plupload.full.js"></script> 
+<script type="text/javascript" src="/hrd/Framework/Plugins/plupload/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/plupload/i18n/cn.js"></script> 
+<script type="text/javascript" src="/hrd/Framework/Plugins/message/jquery.message.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/JqGrid/grid.locale-cn.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/JqGrid/jquery.jqGrid.src.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/tzCheckbox/jquery.tzCheckbox.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/ymprompt-4.0-11/ymPrompt.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/zTree/jquery.ztree.core-3.4.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/zTree/jquery.ztree.excheck-3.4.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/zTree/jquery.ztree.exedit-3.4.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/SmartWizard/jquery.smartWizard-2.0.js"></script>
+<script type="text/javascript" src="/hrd/Framework/global.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.grid.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jqgrid.ext.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.grid.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.newRow.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.newCondition.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.lov.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.lov.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.ymPrompt.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.buttons.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.loadData.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$("input[type='checkbox']").each(function() {
+			var obj = this;
+			$(this).click(function() {
+				if ($(obj).attr("checked") == undefined) {
+					$(obj).attr("checked", true);//打勾//不打勾
+					$(obj).attr("value", false);//未选中
+				} else {
+					$(obj).attr("checked", true);//打勾
+					$(obj).attr("value", true);//选中
+				}
+			});
+		});
+
+		$("#save").click(function() {
+			var url = "/hrd/sys/sysMailC/saveOrUpdate.html";
+			var form = $('form').serialize();
+			var params = "";
+			var temp = form.split('&');
+			for ( var i = 0; i < temp.length; i++) {
+				var obj = temp[i].split('=');
+				if (obj[1].Trim() != '') {
+					params += '&sysMailvco' + '.' + temp[i];
+				}
+			}
+			params = params.substring(1);
+			sendPostJQueryAjax(url, params, function(data) {
+				$().message("成功保存"); //提示資訊 ;
+			});
+		});
+
+		$("#validate").click(function() {
+			var url = "/hrd/sys/sysMailC/test.html";
+			sendPostJQueryAjax(url, null, function(data) {
+				$().message("测试成功"); //提示資訊 ;
+			});
+		});
+	});
+</script>
+</head>
+
+<body>
+	<form method="post" id="customForm" action="">
+		<table>
+			<tr>
+				<td colspan="2"><div class="t1">郵件賬號：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="text" name="username" id="username" value="262235331@qq.com" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="t1">密碼：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="password" name="password" id="password" value="ben870425!" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="t1">SMTP服務器：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="text" name="host" id="host" value="smtp.qq.com" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="t1">SSL：</div></td>
+				<td><div class="i1">
+						<input type="checkbox" name="starttls" id="starttls" checked="checked"  value="true" />
+					</div></td>
+				<td></td>
+				<td><div style="float:right;"><span>端口：</span>
+						<input type="text" name="port" id="port" value="465" size="6" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4"><div class="b1">
+						<input type="button" id="save" class="labButton" value="保存" /><input type="button" class="labButton" id="validate" value="驗證" />
+					</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

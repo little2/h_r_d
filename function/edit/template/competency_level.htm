@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/hrd/Framework/Plugins/orgchart/jquery.orgchart.css"/>
+<script type="text/javascript">
+function func_cancel() 
+{
+//	alert($("#bt_cancel").val());
+	closeDialog("g3_dialog");
+};				
+
+function func_finish() {
+	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
+	var form = $('form').serialize();
+	var params = "";
+	var temp = form.split('&');
+	for ( var i = 0; i < temp.length; i++) {
+		var obj = temp[i].split('=');
+		if (obj[1].Trim() != '') {
+			params += '&entity' + '.' + temp[i];
+		}
+	}
+	params = params.substring(1);
+	sendPostJQueryAjax(url, params, function(data) {
+		if (data.msg) {
+			$().message(data.msg);
+		}
+		$('input[name="key"]').val(data.entity.key);
+		$("#list").jqGrid('setGridParam', {
+			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
+		//postData : {}
+		}).trigger("reloadGrid");
+
+	});
+}
+
+
+	$(function() {		
+		var container=$('#container_{elementID}');
+		$(".lable",container).each(function() {
+			$(this).click(function() {
+				var divn = $(this).attr("dis");
+				$(".lable",container).each(function() {
+					$(this).css("background-color", "#F0F0F0");
+				});
+				$(".labDiv",container).each(function() {
+					$(this).hide();
+				});
+				$(this).css("background-color", "yellow");
+				$("#" + divn).show();
+			});
+		});
+	
+	});
+
+	
+	
+	 
+</script>
+</head>
+
+<body>
+<div  id="container_{elementID}">
+	<div class="labMenu">
+		<div class="lable {display_label_ability}"  dis="ability_list"  style="background-color: yellow;">{$lang.Ability}</div>
+		<div class="lable {display_label_information}"  dis="cllab1" >{$lang.Evaluation}</div>		
+		<div class="lable"  dis="dis_training_method_l" >{$lang.TrainingMethod}</div>
+		<div class="lable"  dis="dis_training_teacher_l" >{$lang.TrainingTeacher}</div>
+		<div class="lable"  dis="dis_training_course_l" >{$lang.Course}</div>
+		<div class="lable"  dis="dis_training_material_l" >{$lang.TrainingMaterial}</div>		
+	</div>
+		
+	<div id="ability_list" class="labDiv"   style="display: block;">
+		<table class="tableStyle1"  width="100%"><tr><td>{container_ability_list}</td></tr></table>			
+	</div>
+	
+	<div id="dis_training_method_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_method}</td></tr></table>		
+	</div>	
+	<div id="dis_training_teacher_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_teacher}</td></tr></table>		
+	</div>	
+	<div id="dis_training_course_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_competency_course}</td></tr></table>		
+	</div>	
+	<div id="dis_training_material_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_material}</td></tr></table>		
+	</div>	
+	
+	
+	<div id="cllab1" class="labDiv" >
+		<div class="uc1">
+			<form method="post" id="customForm" action="">
+			
+				
+				<table class="tableStyle1"  >
+					<tr>
+						<td height="30"  class="label">{$lang.EvaluationMethod}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.TradChinese}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.SimChinese}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.English}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>	
+
+					<tr>
+						<td height="30" class="label">{$lang.Evaluator}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.TradChinese}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.SimChinese}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.English}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>			
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">
+			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />
+			
+		</div>
+
+	</div>
+	
+
+	
+
+
+	
+</div>	
+</body>
+</html>

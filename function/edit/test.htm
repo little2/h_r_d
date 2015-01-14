@@ -1,0 +1,281 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.new {
+	width: 18px;
+	height: 18px;
+	padding-right: 5px;
+	float: right;
+	background:
+		url("/hrd/Framework/Themes/icons/3699.png")
+		no-repeat scroll 0 0 transparent;
+	cursor: pointer;
+	background:
+		url("/hrd/Framework/Themes/icons/3699.png")
+		no-repeat scroll 0 0 transparent;
+}
+
+.save {
+	width: 18px;
+	height: 18px;
+	padding-right: 5px;
+	float: right;
+	background:
+		url("/hrd/Framework/Themes/icons/1619.png")
+		no-repeat scroll 0 0 transparent;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+	function newEdit() {
+		openDialog({
+			id : 'edit_new',
+			width : 500,
+			height : 400,
+			modal : true,
+			type : 'url',
+			show : "",
+			hide : "",
+			title : "目標設定精靈",
+			body : "/hrd/system/performance/perf_annual_enterprise_target_c/new.jsp",
+			buttons : {}
+		});
+	}
+
+	$(document).ready(function() {
+		jzsoft.grid("list", {
+			url : '/hrd/performance/perfDepartOfAnnualEnterpriseTarget/pageList.html',
+			postData : {
+				'entity.perfAnnualEnterpriseTargetC.key' : $('input[name="key"]').val()
+			},
+			serializeRowData : function(postdata) {
+				var data = '';
+				$.each(postdata, function(name) {
+					if (name == 'oper' || name == 'id' || postdata[name] == '') {
+						return true;
+					}
+					data += "&entity." + name + "=" + postdata[name];
+				});
+				data += "&entity.perfAnnualEnterpriseTargetC.key=" + $('input[name="key"]').val();
+				return data;
+			},
+			colNames : [ 'ID', '', '部門', '', '主管姓名', '指派資訊' ],
+			colModel : [ {
+				name : 'key',
+				index : 'key',
+				width : 55,
+				hidden : true,
+				editable : true
+			}, {
+				name : 'orgDepart.key',
+				index : 'orgDepart.key',
+				width : 80,
+				hidden : true,
+				editable : true
+			}, {
+				name : 'orgDepart.departName',
+				index : 'orgDepart.departName',
+				width : 80,
+				formatter : 'lovFmatter',
+				editrules : {
+					required : false
+				},
+				formatoptions : {
+					lovCode : 'DEPT',
+					type : '1',
+					fields : [ 'orgDepart.key', '', 'orgDepart.departName' ]
+				}
+			}, {
+				name : 'hrEmployee.key',
+				index : 'hrEmployee.key',
+				width : 80,
+				hidden : true,
+				editable : true
+			}, {
+				name : 'hrEmployee.empName',
+				index : 'hrEmployee.empName',
+				width : 80,
+				formatter : 'lovFmatter',
+				editrules : {
+					required : false
+				},
+				formatoptions : {
+					lovCode : 'EMP',
+					type : '1',
+					fields : [ 'hrEmployee.key', '', 'hrEmployee.empName' ]
+				}
+			}, {
+				name : 'note',
+				index : 'note',
+				width : 80,
+				editable : true
+			} ],
+			width : '750',
+			height : '100',
+			pager : '#pager',
+			rownumbers : true,
+			multiselect : true,
+		});
+
+		jzsoft.grid.inlineMenu({
+			grid : "list",
+			paper : "pager",
+			baseUrl : '/hrd/performance/perfDepartOfAnnualEnterpriseTarget/',
+			saveService : 'saveOrUpdate.html',
+			delService : 'delete.html',
+		});
+
+		$("input[name='deptNames']").jzlov({
+			code : 'DEPT',
+			type : '2',
+			key : {
+				id : 'deptIds',
+				name : 'deptIds',
+				value : '4028a1813f889d19013f88dea5550002'
+			},
+			fields : [ "deptIds", "", "deptNames" ],
+		});
+
+		$("#button1").click(function() {
+			var url = "/hrd/performance/perfAnnualEnterpriseTargetC/saveOrUpdate.html";
+			var form = $('form').serialize();
+			var params = "";
+			var temp = form.split('&');
+			for ( var i = 0; i < temp.length; i++) {
+				var obj = temp[i].split('=');
+				if (obj[1].Trim() != '') {
+					params += '&entity' + '.' + temp[i];
+				}
+			}
+			params = params.substring(1);
+			sendPostJQueryAjax(url, params, function(data) {
+				if (data.msg) { //如果成功提交 
+					$().message(data.msg);
+				} else {
+					$().message("成功添加"); //提示資訊 ;
+					setTimeout(function() {
+						$('input[name="key"]').val(data['entity']['key']);
+					}, 1000);
+				}
+			});
+
+		});
+
+		$(".addRow").click(function() {
+			newEdit();
+		});
+
+		$(".delRow").click(function() {
+			$('#assessmentItem').val("");
+			$('#annualTarget').val("");
+			$('#expectedCompletionDate').val("");
+			$('#expectedDescription').val("");
+
+		});
+
+		$("#button2").click(function() {
+			closeDialog("g3_dialog");
+		});
+	});
+</script>
+</head>
+<body>
+
+	<div id="edit_new"></div>
+	<div class="nec1" style="height:500px;overflow: auto;">
+		<div style="width:97%;margin-left: 20px; ">
+			<form method="post" id="customForm" action="">
+				<div>
+					<div style="width: 98%;display: inline-table;">
+						<div style="border-bottom: 1px #cecece solid;margin-top: 5px;">
+							<div style="font-size:16px;font-weight: bold; ">基本資料</div>
+						</div>
+
+						<input type="hidden" name="key" class="contxt" value="160D6174-56A3-4308-9E62-37C220211886" />
+						<table class="tblinegray" width="99%" border="0" cellspacing="1" cellpadding="2">
+
+							<tr>
+								<td width="15%" class="tbggray">制定年度：</td>
+								<td width="80%" class="tbgwhite"><input type="text" name="year" class="contxt" value="2013" /></td>
+							</tr>
+							<tr>
+								<td height="25" class="tbggray">目標分類：</td>
+								<td class="tbgwhite"><select name="bscType" id="bscType" class="contxt">
+<option value="1" selected="selected">財務</option>
+<option value="2">客戶滿意度</option>
+<option value="3">內部流程</option>
+<option value="4">學習與成長</option>
+</select></td>
+							</tr>
+							<tr>
+								<td height="25" class="tbggray">企業目標：</td>
+								<td class="tbgwhite"><textarea rows="2" cols="60" name="name" class="contxt">增加UV用途客戶3家</textarea></td>
+							</tr>
+							<tr>
+								<td height="25" class="tbggray">資料歸屬：</td>
+								<td class="tbgwhite"><input type="text" name="deptNames" class="lov" style="width: 300px;" value="台灣波律" /></td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+				<div style="padding-top: 3px;">
+					<div style="width: 98%;display: inline-table;">
+						<div style="border-bottom: 1px #cecece solid;margin-top: 5px;">
+							<div style="font-size:16px;font-weight: bold;display:inline-block;">年度企業目標</div>
+							<div style="float: right;padding-right: 10px;">
+								<div class="addRow"></div>
+								<div class="delRow"></div>
+							</div>
+						</div>
+						<table class="tblinegray" width="99%" border="0" cellspacing="1" cellpadding="2">
+
+							<tr>
+								<td width="15%" class="tbggray">考核項目：</td>
+								<td width="80%" class="tbgwhite"><input type="text" id="assessmentItem" name="assessmentItem" style="width:200px;" readonly="readonly" value="" /></td>
+							</tr>
+							<tr>
+								<td height="25" class="tbggray">年度目標：</td>
+								<td class="tbgwhite"><input type="text" id="annualTarget" name="annualTarget" style="width:200px;" readonly="readonly" value="" /></td>
+							</tr>
+							<tr>
+								<td height="25" class="tbggray">預期完成日：</td>
+								<td class="tbgwhite"><input type="text" id="expectedCompletionDate" name="expectedCompletionDate" style="width:100px;" readonly="readonly" value="" /></td>
+							</tr>
+							<tr>
+								<td height="25" class="tbggray">期望描述：</td>
+								<td class="tbgwhite"><textarea rows="2" cols="60" id="expectedDescription" name="expectedDescription" class="contxt"></textarea></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+			<div style="padding-top: 3px;">
+				<div style="width: 98%;display: inline-table;">
+					<div style="border-bottom: 1px #cecece solid;margin-top: 5px;">
+						<div style="font-size:16px;font-weight: bold; ">指派部門</div>
+					</div>
+					<div style="margin:5px;">
+						<table id="list"></table>
+						<div id="pager"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="nec2">
+		<button id="button2" class="labButton" style="float: right;">取消</button>
+		<button id="button1" class="labButton" style="float: right;">保存</button>
+	</div>
+
+</body>
+</html>

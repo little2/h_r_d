@@ -1,0 +1,46 @@
+<!-- 输出查询页面 conditionList-->
+<table id="queryTbl" class="contb">
+	<tr>
+		<td align="right">
+			<input type="hidden" name="conditionList[0].targetColumn" value="code" id="conditionList_0__targetColumn"/>
+			<input type="hidden" name="conditionList[0].columnSub2" value="" id="conditionList_0__columnSub2"/>
+			<input type="hidden" name="conditionList[0].columnSub1" value="" id="conditionList_0__columnSub1"/>
+			<input type="hidden" name="conditionList[0].subTbl" value="" id="conditionList_0__subTbl"/>
+			<input type="hidden" name="conditionList[0].subTblSql" value="" id="conditionList_0__subTblSql"/>
+			<input type="hidden" name="conditionList[0].columnType" value="STRING" id="conditionList_0__columnType"/>
+			代碼:
+		</td>
+		<td align="right">			
+				<select name="conditionList[0].conditionType" class="context">
+					<option value="EQ" selected="selected">等於</option>
+					<option value="IN">批量等於</option>
+					<option value="LIKE">包含</option>
+				</select>
+		</td>
+		<td align="left">
+					<input type="text" name="conditionList[0].values" value="" id="conditionList_0__values"/>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="right">
+			<input type="hidden" name="conditionList[1].targetColumn" value="name" id="conditionList_1__targetColumn"/>
+			<input type="hidden" name="conditionList[1].columnSub2" value="" id="conditionList_1__columnSub2"/>
+			<input type="hidden" name="conditionList[1].columnSub1" value="" id="conditionList_1__columnSub1"/>
+			<input type="hidden" name="conditionList[1].subTbl" value="" id="conditionList_1__subTbl"/>
+			<input type="hidden" name="conditionList[1].subTblSql" value="" id="conditionList_1__subTblSql"/>
+			<input type="hidden" name="conditionList[1].columnType" value="STRING" id="conditionList_1__columnType"/>
+			名稱:
+		</td>
+		<td align="right">			
+				<select name="conditionList[1].conditionType" class="context">
+					<option value="EQ" selected="selected">等於</option>
+					<option value="IN">批量等於</option>
+					<option value="LIKE">包含</option>
+				</select>
+		</td>
+		<td align="left">
+			<input type="text" name="conditionList[1].values" value="" id="conditionList_1__values"/>
+		</td>
+	</tr>
+</table>
