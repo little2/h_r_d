@@ -10,8 +10,8 @@
 </body>
 
 <script type="text/javascript">
-	$(function() {
-		
+	$(function() {		
+		//function(id, options, menup)
 		jzsoft.grid("{gridId}", {
 			url : '{url}',
 			postData : {
@@ -40,6 +40,7 @@
 			pager : '#{pager}'
 		});
 		
+	
 		
 		jzsoft.grid.inlineMenu({
 			grid : "{inline_gridId}",
@@ -50,48 +51,20 @@
 		});
 		
 		
-		jzsoft.grid.barMenu({
+		jzsoft.grid.newBarMenu({
 			gridId : '{bar_gridId}',
 			baseUrl : '{baseUrl}',
-			queryCode : '{queryCode}',
-			queryUrl : '{queryUrl}',
-			queryTitle : '{queryTitle}',
-			addUrl : '{addUrl}',
-			addTitle : '{addTitle}',
-			deleUrl : '{deleUrl}',
-			editUrl : '{editUrl}',
-			editTitle : '{editTitle}',
-			//addWidth: 600,
-			buttons : [
-			           <!-- BEGIN BUTTONS -->
-			           {
-			        	   name:"{BUTTONS.name}",
-			        	   bclass:'{BUTTONS.bclass}',
-			        	   onpress:function()
-			        	   {			        		
-			        		   var o = new button_obj();
-			        		   o.gridId="{gridId}";			
-			        		   o.body= "{BUTTONS.body}";
-			        		   o.title="{BUTTONS.title}";
-			        		   o.data={{BUTTONS.data}};
-			        		   o.height={BUTTONS.height};
-			        		   o.width={BUTTONS.width};
-			        		   
-			        		   if(o.body)
-			        		   {					  
-			        			
-			        			   call_func(this,o);			 
-			        			  
-			        		   }
-			        		   else
-			        		   {	        		
-			        				 {BUTTONS.func}(this,"{gridId}",o);
-			        		   }
-			        		  
-			        		}
-			           },
-			           <!-- END BUTTONS -->
-			           ]
+			 <!-- BEGIN BUTTONS -->
+			{BUTTONS.bclass}:{
+				name:"{BUTTONS.name}",
+				title:"{BUTTONS.title}",
+				bclass:"{BUTTONS.bclass}",				
+				body:"{BUTTONS.body}",
+ 		   		data:{{BUTTONS.data}},
+ 		   		height:parseInt({BUTTONS.height}),
+ 		   		width:parseInt({BUTTONS.width})
+			},
+			<!-- END BUTTONS -->	
 		});
 		
 	});
