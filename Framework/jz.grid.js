@@ -682,7 +682,7 @@ jzsoft.grid.newBarMenu = function(p) {
 
 				case "edit":
 					buttons.push({
-						name : '編輯',
+						name : p.edit.name,
 						bclass : 'edit',
 						onpress : function() {
 							jzsoft.grid.newformEdit(p);
@@ -691,8 +691,20 @@ jzsoft.grid.newBarMenu = function(p) {
 					buttons.push({
 						separator : true
 					});
-					break;			
-
+					break;		
+					
+				case "view":
+					buttons.push({
+						name : p.view.name,
+						bclass : 'view',
+						onpress : function() {
+							jzsoft.grid.newformView(p);
+						}
+					});
+					buttons.push({
+						separator : true
+					});
+					break;		
 
 				case "import":
 					buttons.push({
@@ -822,6 +834,59 @@ jzsoft.grid.newformEdit = function(p) {
 	}
 };
 
+
+/**
+ * 新的BarMenu 編輯功能
+ *  * @param
+ */
+jzsoft.grid.newformView = function(p) {
+
+	//p.gridId, p.baseUrl + p.editUrl, p.addParam, p.formKeys, p.editTitle, p.titleCustom, p.editWidth, p.editHeight
+	//id, url, addParam, formKeys, title, titleCustom, width, height, divId
+	var sels = $("#" + p.gridId).jqGrid('getGridParam', 'selrow');
+	
+	if (sels) {
+		var url=p.view.body;		
+			
+		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);
+		
+		
+		if (url.indexOf('?') > -1) {
+			url += '&';
+		} else {
+			url += '?';
+		}		
+		
+		url += "entity.key=" + rowdata.key;		
+		if (p.addParam) {
+			for ( var i = 0; i < p.addParam.length; i++) {
+				url += "&" + p.addParam[i] + "=" + eval('rowdata.' + p.addParam[i]);
+			}
+		}
+		
+		if (p.view.titleCustom) {
+			var custom = '';
+			p.view.title += "(";
+			for ( var i in p.view.titleCustom) {
+				custom += '/' + rowdata[p.view.titleCustom[i]];
+			}
+			p.view.title += custom.substring(1) + ")";
+		}
+		
+	
+		
+	    var setting = new Object();		    
+	    var setting = $.extend({}, p.view); //物件複製		
+	    
+		setting.body=url;	
+		
+		jzsoft.grid.openDialog(setting)
+
+		
+	} else {
+		$("#" + p.gridId).message("請選擇要修改的項目！");
+	}
+};
 
 jzsoft.grid.openDialog = function(setting) {
 	

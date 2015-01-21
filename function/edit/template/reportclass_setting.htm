@@ -12,15 +12,15 @@
 <div  id="body_{elementID}">
 	<div class="labMenu">
 		<div class="lable "  dis="dis_report_info" style="background-color: yellow;">{$lang.Information}</div>
-		<div class="lable "  dis="dis_mail_tpl">通知訊息</div>	
 		<div class="lable "  dis="dis_setting" >參數設定</div>
-		<div class="lable "  dis="dis_group" >團體報表</div>
+		<div class="lable "  dis="dis_company" >公司別報表</div>
+		<div class="lable "  dis="dis_department" >部門別報表</div>
 		<div class="lable "  dis="dis_person" >個人報表</div>
 		<div class="lable "  dis="dis_reportee" >評鑑關係</div>
 		<div class="lable "  dis="dis_export" >產生報表</div>		
 	</div>
-
-	<!-- 個人報表 -->
+	
+<!-- 個人報表 -->
 	<div id="dis_person" class="labDiv"   >
 		<div class="uc1">	
 				<table class="tableStyle1"   >
@@ -44,15 +44,11 @@
 					</tr>				
 					<tr>
 						<td class="left"  colspan="2">
-							<input type="checkbox" name="code1" >全選（全體回饋明細除外 ）<p>
-							<input type="checkbox" name="code2" >個人總覽
-							<input type="checkbox" name="code3" >群體比較<p>
-							<input type="checkbox" name="code4" >職能缺口強化訓練計劃
-							<input type="checkbox" name="code5" >個人比較分析<p>
-							<input type="checkbox" name="code6" >個人雷達圖
-							<input type="checkbox" name="code6" >開放式建議<p>
-							<input type="checkbox" name="code6" >360度雷達圖
-							<input type="checkbox" name="code6" >全體回饋明細<p>							
+							<input type="checkbox" name="code1" >全選<p>
+							<input type="checkbox" name="code2" >個人各職能鑑定紀錄表<P>
+							<input type="checkbox" name="code3" >個人各職能雷達圖<p>
+							<input type="checkbox" name="code4" >個人各職能勝任率分析<P>
+							<input type="checkbox" name="code5" >職能缺口強化訓練計劃<p>
 						</td>
 							
 					</tr>		
@@ -64,7 +60,117 @@
 			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
 			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
 		</div>
+	</div>		
+	
+	
+<!--職等職稱別報表 -->
+	<div id="dis_department" class="labDiv"   >
+		<div class="uc1">	
+				<table class="tableStyle1"   >
+					<tr>
+						<td class="label" >範圍設定：</td>
+						<td >								
+						</td>					
+					</tr>				
+					<tr>
+						<td class="left"  colspan="2"> 							
+							<input type="radio" name="code2" >所有職稱 <input type="radio" name="code2" >特定職等職稱組合<input type="button" value="設定"><p>
+						</td>
+							
+					</tr>							
+					<tr>
+						<td class="label" >報表選擇：</td>
+						<td >								
+						</td>					
+					</tr>				
+					<tr>
+						<td class="left"  colspan="2"> 	
+							<input type="checkbox" name="code1" >全選<p>
+							<input type="checkbox" name="code2" >全公司各部門各職能落差分析表<p>
+							<input type="checkbox" name="code2" >全公司各部門各職能勝任率分析表<p>
+							<input type="checkbox" name="code2" >全公司各部門各職能平均級數分析表（專業除外）<p>
+
+						</td>							
+					</tr>		
+				</table>
+		</div>
+		<div class="uc2">
+			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
+		</div>
+	</div>		
+	
+	
+	<!-- 部門別報表 -->
+	<div id="dis_department" class="labDiv"   >
+		<div class="uc1">	
+				<table class="tableStyle1"   >
+					<tr>
+						<td class="label" >範圍設定：</td>
+						<td >								
+						</td>					
+					</tr>				
+					<tr>
+						<td class="left"  colspan="2"> 	
+							<input type="radio" name="code1" >所有部門   <input type="radio" name="code1" >指定部門<input type="button" value="挑選"><p>
+							<input type="radio" name="code2" >所有職稱 <input type="radio" name="code2" >特定職等職稱組合<input type="button" value="設定"><p>
+						</td>
+							
+					</tr>							
+					<tr>
+						<td class="label" >報表選擇：</td>
+						<td >								
+						</td>					
+					</tr>				
+					<tr>
+						<td class="left"  colspan="2"> 	
+							<input type="checkbox" name="code1" >全選<p>
+							<input type="checkbox" name="code2" >部門人員各職能鑑定紀錄表<p>
+							<input type="checkbox" name="code2" >部門人員各項職能落差分析表<p>
+							<input type="checkbox" name="code2" >部門人員各項職能平均級數<p>
+							<input type="checkbox" name="code2" >部門人員各項職能勝任率分析表與部門平均勝任率分析表<p>
+							<input type="checkbox" name="code2" >各部門各職能落差分析表<p>
+							<input type="checkbox" name="code2" >各部門各職能平均級數分析表<p>
+
+						</td>							
+					</tr>		
+				</table>
+		</div>
+		<div class="uc2">
+			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
+		</div>
 	</div>	
+
+
+<!-- 公司別報表 -->
+	<div id="dis_company" class="labDiv"   >
+		<div class="uc1">	
+				<table class="tableStyle1"   >
+					<tr>
+						<td class="label" >報表選擇：</td>
+						<td >								
+						</td>					
+					</tr>				
+					<tr>
+						<td class="left"  colspan="2"> 	
+							<input type="checkbox" name="code1" >全選<p>
+							<input type="checkbox" name="code2" >全公司各部門各職能落差分析表<p>
+							<input type="checkbox" name="code2" >全公司各部門各職能勝任率分析表<p>
+							<input type="checkbox" name="code2" >全公司各部門各職能平均級數分析表（專業除外）<p>
+							<input type="checkbox" name="code2" >全公司各部門各職能落差分析表（專業除外）<p>
+							<input type="checkbox" name="code2" >全公司各部門各單項職能平均級數分析表（專業除外）<p>
+						</td>							
+					</tr>							
+											
+				</table>
+		</div>
+		<div class="uc2">
+			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
+		</div>
+	</div>	
+	
 
 	<!-- 團體報表 -->
 	<div id="dis_group" class="labDiv"   >
@@ -147,58 +253,16 @@
 						<td></td>					
 					</tr>				
 					<tr>
-						<td class="right">基準值：</td>
-						<td><input type="text" name="code" class="contxt" value="5.0" /></td>					
+						<td class="right">評鑑期間：</td>
+						<td>本次鑑定結果匯總表，評鑑期間<input type="text" name="code"  value="2014-12-05" size="8"/>~<input type="text" name="code"  value="2014-12-15"  size="8"/></td>					
 					</tr>				
+						
 					<tr>
-						<td class="right">平均匯出格式：</td>
-						<td>
-							<input type="radio"  name="o"  checked/>所有人平均   <input type="radio"  name="o" />所有評鑑維度平均
-						</td>				
-					</tr>							
-					<tr>
-						<td class="right">剔除無效評鑑表：</td>
-						<td>同一選項達<input type="text" name="code"   value="100"  size="5"/>%(含)以上相同則剔除。(填0代表不易除)
+						<td class="right">異常評鑑表：</td>
+						<td>不同評鑑者評鑑結果相差<input type="text" name="code"   value="0.5"  size="3"/>級數(含)以上列為異常。
 						<input type="button" value="列出名單">
-						</td>
-								
-					</tr>				
-							
-							
-							
-					<tr>
-						<td class="label">團體報表參數：</td>
-						<td></td>					
-					</tr>											
-					<tr>
-						<td class="right">優勢/待發展臨界值：</td>
-						<td><input type="text" name="code" class="contxt" value="0.5"></td>					
-					</tr>													
-					<tr>
-						<td class="right">區間大小：</td>
-						<td><input type="text" name="code" class="contxt" value="0.25" /></td>					
-					</tr>															
-					<tr>
-						<td class="right">迭代次數：</td>
-						<td><input type="text" name="code" class="contxt" value="2" /></td>					
-					</tr>				
-
-					<tr>
-						<td class="label">個人報表維度權重設定：</td>
-						<td></td>					
-					</tr>	
-					<tr>
-						<td class="right">直屬主管：</td>
-						<td><input type="text" name="code" class="contxt" value="1.0" /></td>					
-					</tr>		
-					<tr>
-						<td class="right">同事：</td>
-						<td><input type="text" name="code" class="contxt" value="1.0" /></td>					
-					</tr>				
-					<tr>
-						<td class="right">部屬：</td>
-						<td><input type="text" name="code" class="contxt" value="1.0" /></td>					
-					</tr>											
+						</td>								
+					</tr>																
 				</table>
 				
 			
@@ -230,12 +294,7 @@
 						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
 				
 					</tr>				
-								
-					<tr>
-						<td class="right">匯出的職能模型：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					
-					</tr>				
+		
 
 				
 				</table>
