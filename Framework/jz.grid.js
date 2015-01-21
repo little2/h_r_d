@@ -5,6 +5,7 @@ var jzsoft = {
 };
 
 jzsoft.grid = function(id, options, menup) {
+	
 	$("#" + id).jqGrid($.extend({
 		ajaxGridOptions : {
 			type : "POST"
@@ -16,8 +17,8 @@ jzsoft.grid = function(id, options, menup) {
 		datatype : "json",
 		colNames : [],
 		colModel : [],
-		rowNum : 25,
-		rowList : [ 25, 50, 100 ],
+		rowNum : 10,
+		rowList : [ 10, 25, 50, 100 ],
 		jsonReader : {
 			root : "page.list", // 數據行（預設為：rows）
 			page : "page.curPage", // 當前頁
@@ -127,7 +128,9 @@ jzsoft.grid.formKey = function(array) {
 	return querystr;
 };
 
-jzsoft.grid.formAdd = function(url, formKeys, title, width, height, divId) {
+
+
+jzsoft.grid.formAdd = function(url, formKeys, title, width, height, divId ) {
 	if (formKeys) {
 		if (url.indexOf('?') > -1) {
 			url += '&';
@@ -152,6 +155,7 @@ jzsoft.grid.formAdd = function(url, formKeys, title, width, height, divId) {
 };
 
 jzsoft.grid.formEdit = function(id, url, addParam, formKeys, title, titleCustom, width, height, divId) {
+
 	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
 	if (sels) {
 		var rowdata = $("#" + id).jqGrid("getRowData", sels);
@@ -208,16 +212,29 @@ jzsoft.grid.dele = function(id, url) {
 
 jzsoft.grid.multiDele = function(id, url) {
 	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');
+	
+	
 	if (sels == "") {
-		jzsoft.grid.dele(id, url);
+		//jzsoft.grid.dele(id, url);
 	} else {
 		if (confirm("您是否確認刪除？")) {
 			var len = sels.length;
 			var ids = "";
 			for ( var i = 0; i < len; i++) {
 				var rowdata = $("#" + id).jqGrid("getRowData", sels[i]);
-				ids += '&keys=' + rowdata.key;
+				
+
+				if(ids.length>0)
+				{
+					ids +="&";
+				}
+				
+				ids += 'keys['+rowdata.key+']=' + rowdata.key;
 			}
+			
+			console.log(ids);
+			
+			
 			$.ajax({
 				type : "POST",
 				url : url,
@@ -312,6 +329,7 @@ jzsoft.grid.barMenu = function(p) {
 		});
 	}
 };
+
 jzsoft.grid.selectRow = function(gridId, rowid) {
 	var sels = $("#" + gridId).jqGrid('getGridParam', 'selarrrow');
 	var len = sels.length;
@@ -601,4 +619,227 @@ jzsoft.grid.rtnLovValue = function(id, t, gid, rowId, p) {
 		if (p.onload)
 			p.onload(rowdatas);
 	}
+};
+
+
+
+
+/**
+ * 新的BarMenu 
+ *  * @param
+ */
+jzsoft.grid.newBarMenu = function(p) {
+
+	if (p) {
+		var buttons = [];
+
+		for(var index in p){ 
+			//console.log(index);
+			switch(index)
+			{
+		
+				case "add":
+					buttons.push({
+						name : p.add.name,
+						bclass : p.add.bclass,						
+						onpress : function() {					
+							jzsoft.grid.newformAdd(p);
+						}
+					});
+					buttons.push({
+						separator : true
+					});
+					break;
+			
+				case "search":
+					buttons.push({
+						name : '查詢',
+						bclass : 'search',
+						onpress : function() {
+							jzsoft.grid.formQuery(p.gridId, p.queryCode, p.queryUrl, p.queryWidth, p.queryHeight);
+						}
+					});
+					buttons.push({
+						separator : true
+					});					
+					break;
+					
+				case "delete":
+					buttons.push({
+						name : p.delete.name,
+						bclass : 'delete',
+						onpress : function() {
+							console.log(p.delete.body);
+							console.log(p.gridId);
+							jzsoft.grid.multiDele(p.gridId, p.delete.body);
+						}
+					});
+					buttons.push({
+						separator : true
+					});
+					break;
+					
+
+				case "edit":
+					buttons.push({
+						name : '編輯',
+						bclass : 'edit',
+						onpress : function() {
+							jzsoft.grid.newformEdit(p);
+						}
+					});
+					buttons.push({
+						separator : true
+					});
+					break;			
+
+
+				case "import":
+					buttons.push({
+						name : '匯入',
+						bclass : 'import',
+						onpress : function() {
+							p.import.width=400;
+							p.import.height=400;
+						//	console.log(p.import);
+							jzsoft.grid.openDialog(p.import);
+						}
+					});
+					buttons.push({
+						separator : true
+					});
+					break;								
+					/*
+				default:
+					for (key in index) {
+						buttons.push(p.index[key]);
+						  // call_func(this,o);	
+						buttons.push({
+							separator : true
+						});
+					}										
+				break;
+				*/
+				
+			}
+		       
+		}
+		
+		
+		
+		$('#t_' + p.gridId).newButtons(buttons);
+		$("#" + p.gridId).jqGrid("setGridParam", {
+			ondblClickRow : function(rowid, iRow, iCol, e) {
+				jzsoft.grid.selectRow(p.gridId, rowid);
+				jzsoft.grid.newformEdit(p);
+
+			}
+		});
+	}
+	
+};
+
+
+
+/**
+ * 新的BarMenu 
+ *  * @param
+ */
+jzsoft.grid.newformAdd = function(p) {
+
+	var url=p.add.body;
+	//url, formKeys, title, width, height, divId ,data
+	
+	console.log('add:'+url);
+	if (p.formKeys) {
+		
+		if (p.url.indexOf('?') > -1) {
+			url += '&';
+		} else {
+			url += '?';
+		}
+		url += jzsoft.grid.formKey(p.formKeys);
+	}
+	
+	
+	setting=p.add;
+	
+	console.log(setting);
+	jzsoft.grid.openDialog(setting)
+
+};
+
+/**
+ * 新的BarMenu 編輯功能
+ *  * @param
+ */
+jzsoft.grid.newformEdit = function(p) {
+
+	//p.gridId, p.baseUrl + p.editUrl, p.addParam, p.formKeys, p.editTitle, p.titleCustom, p.editWidth, p.editHeight
+	//id, url, addParam, formKeys, title, titleCustom, width, height, divId
+	var sels = $("#" + p.gridId).jqGrid('getGridParam', 'selrow');
+	
+	if (sels) {
+		var url=p.edit.body;		
+			
+		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);
+		
+		
+		if (url.indexOf('?') > -1) {
+			url += '&';
+		} else {
+			url += '?';
+		}		
+		
+		url += "entity.key=" + rowdata.key;		
+		if (p.addParam) {
+			for ( var i = 0; i < p.addParam.length; i++) {
+				url += "&" + p.addParam[i] + "=" + eval('rowdata.' + p.addParam[i]);
+			}
+		}
+		
+		if (p.edit.titleCustom) {
+			var custom = '';
+			p.edit.title += "(";
+			for ( var i in p.edit.titleCustom) {
+				custom += '/' + rowdata[p.edit.titleCustom[i]];
+			}
+			p.edit.title += custom.substring(1) + ")";
+		}
+		
+	
+		
+	    var setting = new Object();		    
+	    var setting = $.extend({}, p.edit); //物件複製		
+	    
+		setting.body=url;	
+		
+		jzsoft.grid.openDialog(setting)
+
+		
+	} else {
+		$("#" + p.gridId).message("請選擇要修改的項目！");
+	}
+};
+
+
+jzsoft.grid.openDialog = function(setting) {
+	
+	id=openDialog({	
+		width : setting.width ? setting.width : 1020,
+		height : setting.height ? setting.height : 620,
+		modal : true,
+		refreshitem : false,
+		type : 'url',
+		show : "",
+		hide : "",
+		title : setting.title ? setting.title : "詳細內容",
+		body : setting.body,
+		data : setting.data,
+		buttons : null
+	});
+
+	
+	
+	
 };

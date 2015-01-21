@@ -1,3 +1,26 @@
+function init_tab(container_id)
+{
+
+	var container =$('#'+container_id);
+	console.log(container);
+	
+	$(".lable",container).each(function() {
+		$(this).click(function() {
+			var divn = $(this).attr("dis");
+			$(".lable",container).each(function() {
+				$(this).css("background-color", "#F0F0F0");
+			});
+			$(".labDiv",container).each(function() {
+				$(this).hide();
+			});
+			$(this).css("background-color", "yellow");
+			$("#" + divn).show();
+		});
+	});		
+}
+
+
+
 function test123()
 {
 	alert('test');
@@ -45,6 +68,8 @@ function call_func(obj,nobj)
 function mypost(o)
 {
 //	$.Dialog.close()
+
+	$(this).message("Wait");
 //	$.blockUI({ message: '<h2><img src="./images/busy.gif" /> 處理中, 請稍侯...</h2>' });        		
 	var data = (o.data)?o.data:$("#formPost").serialize();	
 	$.ajax({

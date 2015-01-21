@@ -90,6 +90,5 @@ var openWindow = function(options) {
 
 var closeWindow = function(id) {
 	$("#" + id).html("");
-	alert(id);
 	$("#" + id).dialog("close");
 };

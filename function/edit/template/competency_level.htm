@@ -64,39 +64,26 @@ function func_finish() {
 </head>
 
 <body>
+<form method="post" id="formPost" action="">
 <div  id="container_{elementID}">
 	<div class="labMenu">
-		<div class="lable {display_label_ability}"  dis="ability_list"  style="background-color: yellow;">{$lang.Ability}</div>
-		<div class="lable {display_label_information}"  dis="cllab1" >{$lang.Evaluation}</div>		
+	
+			
+	    <div class="lable {display_label_ability}"  dis="ability_list"  style="background-color: yellow;">{$lang.CompetencyGradingScale}</div>
+	    <div class="lable {display_label_information}"  dis="dis_evaluation"  >{$lang.Evaluation}</div>
 		<div class="lable"  dis="dis_training_method_l" >{$lang.TrainingMethod}</div>
 		<div class="lable"  dis="dis_training_teacher_l" >{$lang.TrainingTeacher}</div>
 		<div class="lable"  dis="dis_training_course_l" >{$lang.Course}</div>
 		<div class="lable"  dis="dis_training_material_l" >{$lang.TrainingMaterial}</div>		
 	</div>
+
 		
 	<div id="ability_list" class="labDiv"   style="display: block;">
-		<table class="tableStyle1"  width="100%"><tr><td>{container_ability_list}</td></tr></table>			
+		<table class="tableStyle1"  width="98%"><tr><td>{container_ability_list}</td></tr></table>			
 	</div>
-	
-	<div id="dis_training_method_l" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{container_training_method}</td></tr></table>		
-	</div>	
-	<div id="dis_training_teacher_l" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{container_training_teacher}</td></tr></table>		
-	</div>	
-	<div id="dis_training_course_l" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{container_competency_course}</td></tr></table>		
-	</div>	
-	<div id="dis_training_material_l" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{container_training_material}</td></tr></table>		
-	</div>	
-	
-	
-	<div id="cllab1" class="labDiv" >
+
+	<div id="dis_evaluation" class="labDiv"  >
 		<div class="uc1">
-			<form method="post" id="customForm" action="">
-			
-				
 				<table class="tableStyle1"  >
 					<tr>
 						<td height="30"  class="label">{$lang.EvaluationMethod}：</td>
@@ -133,21 +120,28 @@ function func_finish() {
 					</tr>			
 				</table>
 				
-			</form>
+			
 		</div>
 		<div class="uc2">
 			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />
-			
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />			
 		</div>
-
-	</div>
-	
-
-	
-
-
+	</div>		
+	<div id="dis_training_method_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_method}</td></tr></table>		
+	</div>	
+	<div id="dis_training_teacher_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_teacher}</td></tr></table>		
+	</div>	
+	<div id="dis_training_course_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_competency_course}</td></tr></table>		
+	</div>	
+	<div id="dis_training_material_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_material}</td></tr></table>		
+	</div>	
+		
 	
 </div>	
+</form>
 </body>
 </html>

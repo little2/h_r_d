@@ -4,144 +4,51 @@
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
-<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
-<script type="text/javascript">
 
-function save_competency_info()
-{
-	var o = {
-			url:'/hrd/function/saveOrUpdate/save_competency_info.php',
-			onSuccess:function(data){	
-					//	location.reload();			
-					alert('ok');
-				}					
-	}	
-	var msg=mypost(o);
-}
-
-function closeDialog2() 
-{
-	closeDialog("g3_dialog");
-};				
-
-function func_finish() {
-	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
-	var form = $('form').serialize();
-	var params = "";
-	var temp = form.split('&');
-	for ( var i = 0; i < temp.length; i++) {
-		var obj = temp[i].split('=');
-		if (obj[1].Trim() != '') {
-			params += '&entity' + '.' + temp[i];
-		}
-	}
-	params = params.substring(1);
-	sendPostJQueryAjax(url, params, function(data) {
-		if (data.msg) {
-			$().message(data.msg);
-		}
-		$('input[name="key"]').val(data.entity.key);
-		$("#list").jqGrid('setGridParam', {
-			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
-		//postData : {}
-		}).trigger("reloadGrid");
-
-	});
-}
-
-
-	$(function() {		
-		var container=$('#competency_setting');
-		$(".lable",container).each(function() {
-			$(this).click(function() {
-				var divn = $(this).attr("dis");
-				$(".lable",container).each(function() {
-					$(this).css("background-color", "#F0F0F0");
-				});
-				$(".labDiv",container).each(function() {
-					$(this).hide();
-				});
-				$(this).css("background-color", "yellow");
-				$("#" + divn).show();
-			});
-		});
-	
-	});
-
-	
-	
-	 
-</script>
 </head>
 
 <body>
-<div  id="competency_setting">
+<div  id="body_{elementID}">
 	<div class="labMenu">
-		<div class="lable {display_label_information}"  dis="cslab1" style="background-color: yellow;">{$lang.Information}</div>
-		<div class="lable {display_label_competencyclass}"  dis="cslab4">{$lang.CompetencyClass}</div>
-	
-		<div class="lable {display_label_behavior}"  dis="cslab2"  id='lable_lab2'>{$lang.Behavior}</div>
-		
-	
-		<div class="lable {display_label_method}"  dis="dis_training_method" >{$lang.TrainingMethod}</div>
+		<div class="lable {display_label_information}"  dis="dis_competency_info" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_label_competencyclass}"  dis="dis_competency_class">{$lang.CompetencyClass}</div>	
+		<div class="lable {display_label_behavior}"  dis="dis_behavior_list" >{$lang.Behavior}</div>
+			<div class="lable {display_label_method}"  dis="dis_training_method" >{$lang.TrainingMethod}</div>
 		<div class="lable {display_label_teacher}"  dis="dis_training_teacher" >{$lang.TrainingTeacher}</div>
-		<div class="lable {display_label_course}"  dis="dis_training_course" >{$lang.LearningResource}</div>
+		<div class="lable {display_label_course}"  dis="dis_training_course" >{$lang.Course}</div>
 		<div class="lable {display_label_material}"  dis="dis_training_material" >{$lang.TrainingMaterial}</div>		
 	</div>
 	
-	<div id="cslab1" class="labDiv" style="display: block;">
+	
+	<!-- 頁面(開始) -->
+	<div id="dis_competency_info" class="labDiv" style="display: block;">
 		<div class="uc1">
-			<form method="post" id="customForm" action="">
-			
-				
+			<form method="post" id="formPost" action="">			
+				<input type="hidden"  id="competency_type"  name="competency_type"  value="{competency_type}"/>
+				<input type="hidden"  id="competency_method"  name="competency_method"  value="{competency_method}"/>							
+				<input type="hidden"  id="competency_id"  name="competency_id"  value="{competency_id}"/>
 				<table class="tableStyle1"  >
 					<tr>
-						<td height="30" class="label">{$lang.CompetencyTitle}：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.TradChinese}：</td>
-						<td><input type="text" name="competency_title['tw']" class="contxt" value="{CompetencyTitle_TradChinese}" /></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.SimChinese}：</td>
-						<td><input type="text" name="competency_title['cn']" class="contxt" value="{CompetencyTitle_SimChinese}" /></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.English}：</td>
-						<td><input type="text" name="competency_title['en']" class="contxt" value="{CompetencyTitle_English}" /></td>
-					</tr>
-
-					<tr>
-						<td height="30" class="label">{$lang.CompetencyDefinition}：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5">{CompetencyDefinition_TradChinese}</textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.SimChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5">{CompetencyDefinition_SimChinese}</textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.English}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5">{CompetencyDefinition_English}</textarea></td>
-					</tr>			
+						<td class="label">{$lang.CompetencyType}：</td>
+						<td>{competency_type_title}
+							
+						</td>
+					</tr>				
+					{field_competency_title}								
+					{field_competency_definition}
+				
 				</table>
 				
 			</form>
 		</div>
 		<div class="uc2">
-			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='save_competency_info();' />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='closeDialog2();' />
-			
+			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
 		</div>
-
 	</div>
 	
 	
-	<div id="cslab2" class="labDiv"   >	
+	<div id="dis_behavior_list" class="labDiv"   >	
 	<table class="tableStyle1" ><tr><td>{container_behavior_list}</td></tr></table>		
 	</div>
 	
@@ -161,10 +68,32 @@ function func_finish() {
 	<table class="tableStyle1" ><tr><td>{container_training_material}</td></tr></table>		
 	</div>
 	
-	<div id="cslab4" class="labDiv"   >
+	<div id="dis_competency_class" class="labDiv"   >
 	<table class="tableStyle1" ><tr><td>{container_competency_class}</td></tr></table>		
 	</div>
 	
 </div>	
 </body>
+
+
+<script type="text/javascript">
+	$(function() {				
+		$('#dis_competency_info').dashpanel({
+			save:function(e){			
+				var o = {
+						url:'/hrd/function/saveOrUpdate/save_competency_info.php',
+						onSuccess:function(data){	
+								var dialogID=$(e.target).parentsUntil('div.ui-dialog').last().attr('id');
+								closeDialog(dialogID);
+								$("#tabPanel").refreshitem();								
+							}					
+				}				
+				var msg=mypost(o);				
+			}
+		});		
+		init_tab('body_{elementID}');
+	}); 
+</script>
+
+
 </html>

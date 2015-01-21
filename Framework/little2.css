@@ -15,7 +15,11 @@
 .wid{width:90% ;}
 
 
-
+.contxt 
+{
+	width:	98% ;
+	
+}
 
 
  table.tableStyle1 
@@ -29,11 +33,15 @@
 {
 	color: #1C7EFC;
 	font-weight: bold;
+	padding-bottom: 8px ;
+	padding-top: 6px ;
 }
 
 td.item
 {
 	text-align:right;
+
+
 }
 
 
