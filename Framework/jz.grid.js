@@ -633,8 +633,8 @@ jzsoft.grid.newBarMenu = function(p) {
 	if (p) {
 		var buttons = [];
 
-		for(var index in p){ 
-			//console.log(index);
+		for(var index in p)
+		{			
 			switch(index)
 			{
 		
@@ -733,11 +733,8 @@ jzsoft.grid.newBarMenu = function(p) {
 				break;
 				*/
 				
-			}
-		       
-		}
-		
-		
+			}		       
+		}		
 		
 		$('#t_' + p.gridId).newButtons(buttons);
 		$("#" + p.gridId).jqGrid("setGridParam", {
@@ -762,7 +759,7 @@ jzsoft.grid.newformAdd = function(p) {
 	var url=p.add.body;
 	//url, formKeys, title, width, height, divId ,data
 	
-	console.log('add:'+url);
+	//console.log('add:'+url);
 	if (p.formKeys) {
 		
 		if (p.url.indexOf('?') > -1) {
@@ -771,12 +768,15 @@ jzsoft.grid.newformAdd = function(p) {
 			url += '?';
 		}
 		url += jzsoft.grid.formKey(p.formKeys);
+		console.log(url);
 	}
+		
 	
-	
-	setting=p.add;
-	
-	console.log(setting);
+	 var setting = new Object();		    
+	 var setting = $.extend({}, p.add); //物件複製		
+	 setting.body+= ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
+	 	
+//	console.log(setting);
 	jzsoft.grid.openDialog(setting)
 
 };
@@ -819,13 +819,10 @@ jzsoft.grid.newformEdit = function(p) {
 			p.edit.title += custom.substring(1) + ")";
 		}
 		
-	
-		
-	    var setting = new Object();		    
-	    var setting = $.extend({}, p.edit); //物件複製		
-	    
-		setting.body=url;	
-		
+
+		 var setting = new Object();		    
+		 var setting = $.extend({}, p.edit); //物件複製		
+		 setting.body=url+ ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
 		jzsoft.grid.openDialog(setting)
 
 		
@@ -873,14 +870,12 @@ jzsoft.grid.newformView = function(p) {
 			p.view.title += custom.substring(1) + ")";
 		}
 		
-	
-		
-	    var setting = new Object();		    
-	    var setting = $.extend({}, p.view); //物件複製		
-	    
-		setting.body=url;	
-		
+		 var setting = new Object();		    
+		 var setting = $.extend({}, p.edit); //物件複製		
+		 setting.body=url+ ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
 		jzsoft.grid.openDialog(setting)
+		
+	  
 
 		
 	} else {
@@ -890,11 +885,12 @@ jzsoft.grid.newformView = function(p) {
 
 jzsoft.grid.openDialog = function(setting) {
 	
+
+	
 	id=openDialog({	
 		width : setting.width ? setting.width : 1020,
 		height : setting.height ? setting.height : 620,
-		modal : true,
-		refreshitem : false,
+		modal : true,		
 		type : 'url',
 		show : "",
 		hide : "",

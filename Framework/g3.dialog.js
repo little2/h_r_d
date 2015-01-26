@@ -1,5 +1,5 @@
 var openWindow = function(options) {
-	var divId = "dialog" + Math.round(Math.random() * 100);
+	var divId = "dialog" + Math.round(Math.random() * 10000);
 	var settings = {
 		id : divId,
 		width : 600,
@@ -48,8 +48,8 @@ var openWindow = function(options) {
 		buttons : settings.buttons,
 		resizable : settings.resizable,
 		close : settings.close,
-		open : function() {
-			if (settings.iframe) {
+		open : function() {			
+			if (settings.iframe) {				
 				if (settings.body == '') {
 					$("#dialog_iframe_" + settings.id).attr("src", settings.errorPage);
 				}
@@ -59,13 +59,14 @@ var openWindow = function(options) {
 				if (settings.type == 'html' && settings.body != '') {
 					$("#dialog_iframe_" + settings.id).html(settings.body);
 				}
-			} else {
+			} else {			
 				if (settings.body == '') {
 					$("#" + settings.id).load(settings.errorPage);
 				}
 				if (settings.type == 'url' && settings.body != '') {
-					$("#" + settings.id).load(settings.body, settings.data, function() {
-						if (settings.init) {
+					
+					$("#" + settings.id).load(settings.body, settings.data, function() {						
+						if (settings.init) {							
 							settings.init(settings.id);
 						}
 					});

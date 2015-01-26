@@ -4,7 +4,24 @@
     	dialogID:null,
         version: "1.0.0",
         options: {
-        	save:function(event){}
+        	save:function(event){
+        		var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        		
+				var o = {
+						data: $("#formPost",formContainer).serialize(),
+						url:this.save_url,
+						element_id:this.element_id,
+						onSuccess:function(data){		
+								var container =$('#container_'+this.element_id);
+								var datafrom=container.attr('data-from')	
+								$("#"+datafrom).jqGrid().trigger("reloadGrid");				
+								var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');		
+								closeDialog(dialogID);							
+							}					
+				}				
+				var msg=mypost(o);			
+        	},
+        	save_url:'',
+        	element_id:''
         },
        
         
@@ -13,17 +30,42 @@
         	this.container = this.element; // 加入這行，並將以下表示 div#mytab 的 this 改為 container
         	var that = this;
         	
-        	//$('.bt_cancel', container).bind('click', this, this.bt_cancel);    	
-    		
-        	this._on( $('#bt_cancel', this.container), {
-  			  "click": this.bt_cancel
-  			});
- 
+        	
+        	if ($("#bt_save",this.container).length <= 0) 
+        	{
+        		//不存在則新增
+        		$('div.uc2',this.container).append('<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />');
+        	}
+       
+
+        	
         	this._on( $('#bt_save', this.container), {
     			  "click": this.save
     			});        	
         	
+        	if ($("#bt_cancel",this.container).length <= 0) 
+        	{
+        		//不存在則新增
+        		$('div.uc2',this.container).append('<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />		');
+        	}
+        	
+        	this._on( $('#bt_cancel', this.container), {
+  			  "click": this.bt_cancel
+  			});
+ 
+        	
         	this.dialogID=$(this.container).parentsUntil('div.ui-dialog').last().attr('id');    
+        	
+
+        	
+        	
+        	//新增按鈕
+        	/*
+        	 * 			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"/>
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉"/>	
+        	 */
+        	
+        	
         },     
      
 

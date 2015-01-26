@@ -165,6 +165,8 @@ function errorCallback(XMLHttpRequest) {
 
 function openDialog(options) {
 	return window.parent.openWindow(options);
+	
+	//refer to /Framework/g3.dialog.js
 }
 
 function closeDialog(id) {

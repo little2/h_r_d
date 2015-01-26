@@ -1,10 +1,14 @@
 function init_tab(container_id)
 {
-
 	var container =$('#'+container_id);
-	console.log(container);
+	
+	
+	//console.log(container.attr('data-from'));
+	//console.log(container.attr('id'));
+
 	
 	$(".lable",container).each(function() {
+	
 		$(this).click(function() {
 			var divn = $(this).attr("dis");
 			$(".lable",container).each(function() {
@@ -18,6 +22,10 @@ function init_tab(container_id)
 		});
 	});		
 }
+
+
+
+
 
 
 
