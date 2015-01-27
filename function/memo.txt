@@ -1,0 +1,8 @@
+(1) 新增 db
+(2) list
+(3) pageList (同edit)
+(4) edit html
+(5) edit php
+(6) save    (URL:edit.html)
+(7) delete (list.php)
+

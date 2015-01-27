@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Jan 21, 2015, 06:51 PM
+-- 建立日期: Jan 26, 2015, 09:35 PM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -27,6 +27,19 @@ CREATE TABLE IF NOT EXISTS `account` (
 -- --------------------------------------------------------
 
 --
+-- 資料表格式： `behavior`
+--
+
+CREATE TABLE IF NOT EXISTS `behavior` (
+  `behavior_id` int(11) NOT NULL AUTO_INCREMENT,
+  `competency_id` int(11) NOT NULL,
+  `weight` decimal(10,1) NOT NULL,
+  PRIMARY KEY (`behavior_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+-- --------------------------------------------------------
+
+--
 -- 資料表格式： `competency`
 --
 
@@ -34,8 +47,10 @@ CREATE TABLE IF NOT EXISTS `competency` (
   `competency_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `competency_type` varchar(10) NOT NULL,
   `competency_method` varchar(30) NOT NULL,
+  `competency_model_id` int(10) NOT NULL,
+  `competency_weight` decimal(10,1) NOT NULL DEFAULT '1.0',
   PRIMARY KEY (`competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 -- --------------------------------------------------------
 
@@ -49,7 +64,21 @@ CREATE TABLE IF NOT EXISTS `competency_model` (
   `competency_model_type` varchar(10) NOT NULL,
   `competency_model_method` varchar(10) NOT NULL COMMENT '分級制或基準制',
   PRIMARY KEY (`competency_model_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `course_property`
+--
+
+CREATE TABLE IF NOT EXISTS `course_property` (
+  `course_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `course_code` varchar(20) NOT NULL,
+  `catalog_id` int(11) NOT NULL,
+  `competency_id` int(11) NOT NULL,
+  PRIMARY KEY (`course_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 -- --------------------------------------------------------
 
@@ -64,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `term` (
   `term_language` varchar(10) NOT NULL,
   `term_content` varchar(100) NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=145 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=205 ;
 
 -- --------------------------------------------------------
 
@@ -79,4 +108,40 @@ CREATE TABLE IF NOT EXISTS `text` (
   `term_language` varchar(10) NOT NULL,
   `text_content` text NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=172 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=379 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `training_material`
+--
+
+CREATE TABLE IF NOT EXISTS `training_material` (
+  `training_material_id` int(11) NOT NULL AUTO_INCREMENT,
+  `competency_id` int(11) NOT NULL,
+  PRIMARY KEY (`training_material_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `training_method`
+--
+
+CREATE TABLE IF NOT EXISTS `training_method` (
+  `training_method_id` int(11) NOT NULL AUTO_INCREMENT,
+  `competency_id` int(11) NOT NULL,
+  PRIMARY KEY (`training_method_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `training_teacher`
+--
+
+CREATE TABLE IF NOT EXISTS `training_teacher` (
+  `training_teacher_id` int(11) NOT NULL AUTO_INCREMENT,
+  `competency_id` int(11) NOT NULL,
+  PRIMARY KEY (`training_teacher_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;

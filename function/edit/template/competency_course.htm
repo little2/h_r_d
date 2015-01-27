@@ -1,131 +1,61 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+﻿<html>
 <head>
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
-<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/hrd/Framework/Plugins/orgchart/jquery.orgchart.css"/>
-<script type="text/javascript">
-function func_cancel() 
-{
-//	alert($("#bt_cancel").val());
-	closeDialog("g3_dialog");
-};				
-
-function func_finish() {
-	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
-	var form = $('form').serialize();
-	var params = "";
-	var temp = form.split('&');
-	for ( var i = 0; i < temp.length; i++) {
-		var obj = temp[i].split('=');
-		if (obj[1].Trim() != '') {
-			params += '&entity' + '.' + temp[i];
-		}
-	}
-	params = params.substring(1);
-	sendPostJQueryAjax(url, params, function(data) {
-		if (data.msg) {
-			$().message(data.msg);
-		}
-		$('input[name="key"]').val(data.entity.key);
-		$("#list").jqGrid('setGridParam', {
-			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
-		//postData : {}
-		}).trigger("reloadGrid");
-
-	});
-}
-
-
-	$(function() {		
-		var container=$('#competency_setting');
-		$(".lable",container).each(function() {
-			$(this).click(function() {
-				var divn = $(this).attr("dis");
-				$(".lable",container).each(function() {
-					$(this).css("background-color", "#F0F0F0");
-				});
-				$(".labDiv",container).each(function() {
-					$(this).hide();
-				});
-				$(this).css("background-color", "yellow");
-				$("#" + divn).show();
-			});
-		});
-	
-	});
-
-	
-	
-	 
-</script>
 </head>
 
 <body>
-<div  id="competency_setting">
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
-		<div class="lable {display_label_information}"  dis="cslab1" style="background-color: yellow;">{$lang.Information}</div>
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable"  dis="dis_competency_course" style="background-color: yellow;">{$lang.Course}{$lang.Information}</div>
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
 	
-	<div id="cslab1" class="labDiv" style="display: block;">
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	<div id="dis_competency_course" class="labDiv" style="display: block;">
 		<div class="uc1">
-			<form method="post" id="formPost" action="">
-			
+			<form method="post" id="formPost" >
+				
+				
+				<div class="hide">
+					<input id="competency_id" name="competency_id" value="{competency_id}" />
+					<input id="course_id" name="course_id" value="{course_id}" />
+				</div>				
 				
 				<table class="tableStyle1"  >				
-					<tr>
-						<td height="30"  width="80"  class="label">{$lang.CourseCode}：</td>
-						<td ><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>
-				
-					<tr>
-						<td height="30" class="label">{$lang.CourseTitle}：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.TradChinese}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.SimChinese}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.English}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>
-
-					<tr>
-						<td height="30" class="label">{$lang.CourseDesc}：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.SimChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.English}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>			
+					<tr >
+						<td class="label">{$lang.CourseCode}：</td>
+						<td><input type="text" id="course_code" name="course_code" value="{course_code}" />					
+						</td>
+					</tr>					
+					{field_course_title}	
+					{field_course_desc}	
 				</table>
 				
 			</form>
 		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />
-			
+		<div class="uc2">			
 		</div>
-
 	</div>
-	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
 	
 </div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_competency_course').dashpanel({		
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_course_info.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
 </body>
 </html>

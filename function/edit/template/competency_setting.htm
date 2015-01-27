@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+﻿<html>
 <head>
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -7,13 +6,14 @@
 
 </head>
 
-<body>
-<div  id="body_{elementID}">
+<body><div  id="container_{elementID}"  data-from="{From_elementID}" >
+
+
 	<div class="labMenu">
 		<div class="lable {display_label_information}"  dis="dis_competency_info" style="background-color: yellow;">{$lang.Information}</div>
 		<div class="lable {display_label_competencyclass}"  dis="dis_competency_class">{$lang.CompetencyClass}</div>	
 		<div class="lable {display_label_behavior}"  dis="dis_behavior_list" >{$lang.Behavior}</div>
-			<div class="lable {display_label_method}"  dis="dis_training_method" >{$lang.TrainingMethod}</div>
+		<div class="lable {display_label_method}"  dis="dis_training_method" >{$lang.TrainingMethod}</div>
 		<div class="lable {display_label_teacher}"  dis="dis_training_teacher" >{$lang.TrainingTeacher}</div>
 		<div class="lable {display_label_course}"  dis="dis_training_course" >{$lang.Course}</div>
 		<div class="lable {display_label_material}"  dis="dis_training_material" >{$lang.TrainingMaterial}</div>		
@@ -24,14 +24,22 @@
 	<div id="dis_competency_info" class="labDiv" style="display: block;">
 		<div class="uc1">
 			<form method="post" id="formPost" action="">			
-				<input type="hidden"  id="competency_type"  name="competency_type"  value="{competency_type}"/>
-				<input type="hidden"  id="competency_method"  name="competency_method"  value="{competency_method}"/>							
-				<input type="hidden"  id="competency_id"  name="competency_id"  value="{competency_id}"/>
+				<div class="">
+				competency_type:<input type="text"  id="competency_type"  name="competency_type"  value="{competency_type}"/>
+				competency_method:<input type="text"  id="competency_method"  name="competency_method"  value="{competency_method}"/>							
+				competency_id:<input type="text"  id="competency_id"  name="competency_id"  value="{competency_id}"/>					
+				competency_model_id:<input type="text"  id="competency_model_id"  name="competency_model_id"  value="{competency_model_id}"/>
+				</div>
 				<table class="tableStyle1"  >
 					<tr>
 						<td class="label">{$lang.CompetencyType}：</td>
-						<td>{competency_type_title}
-							
+						<td>{competency_type_title}							
+						</td>
+					</tr>				
+					
+					<tr class="{display_weight}">
+						<td class="label">{$lang.Weight}：</td>
+						<td><input type="text" id="competency_weight" name="competency_weight" value="{competency_weight}" />					
 						</td>
 					</tr>				
 					{field_competency_title}								
@@ -41,10 +49,7 @@
 				
 			</form>
 		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
-		</div>
+		<div class="uc2"></div>
 	</div>
 	
 	
@@ -72,26 +77,19 @@
 	<table class="tableStyle1" ><tr><td>{container_competency_class}</td></tr></table>		
 	</div>
 	
-</div>	
-</body>
+
+
+
+</div></body>
 
 
 <script type="text/javascript">
 	$(function() {				
-		$('#dis_competency_info').dashpanel({
-			save:function(e){			
-				var o = {
-						url:'/hrd/function/saveOrUpdate/save_competency_info.php',
-						onSuccess:function(data){	
-								var dialogID=$(e.target).parentsUntil('div.ui-dialog').last().attr('id');
-								closeDialog(dialogID);
-								$("#tabPanel").refreshitem();								
-							}					
-				}				
-				var msg=mypost(o);				
-			}
-		});		
-		init_tab('body_{elementID}');
+		init_tab('container_{elementID}');		
+		$('#dis_competency_info').dashpanel({		
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_competency_info.php'			
+		});	
 	}); 
 </script>
 

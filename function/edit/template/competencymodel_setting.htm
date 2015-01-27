@@ -19,13 +19,13 @@
 				var msg=mypost(o);				
 			}
 		});		
-		init_tab("body_{elementID}");
+		init_tab("container_{elementID}");
 	}); 
 </script>
 </head>
 
-<body>
-	<div  id="body_{elementID}"> 
+<body><div  id="container_{elementID}"  data-from="{From_elementID}" >
+	
 	<div class="labMenu">
 		<div class="lable" dis="dis_competencymodel_info"  style="background-color: yellow;">{$lang.Information}</div>
 		<div class="lable {display_label_surveylist}" dis="dis_survey_list"  >{$lang.SurveyList}</div>
@@ -60,15 +60,17 @@
 	
 	
 	<div id="dis_competency_list" class="labDiv"   >	
-	<table class="tableStyle1" ><tr><td>{container_competency_body}</td></tr></table>		
+	<table class="tableStyle1" ><tr><td>{container_competency_body}
+
+	</td></tr></table>		
 	</div>
 
 	<div id="dis_competencymodel_tree" class="labDiv"   >	
 	<table class="tableStyle1" ><tr><td></td></tr></table>		
 	</div>	
 	
-</div>	
-</body>
+
+</div></body>
 
 
 

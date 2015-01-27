@@ -7,9 +7,9 @@
 
 </head>
 
-<body>
+<body><div  id="container_{elementID}"  data-from="{From_elementID}" >
 <form method="post" id="formPost" action="">			
-<div  id="body_{elementID}">
+
 	<div class="labMenu">
 		<div class="lable "  dis="dis_report_info" style="background-color: yellow;">{$lang.Information}</div>
 		<div class="lable "  dis="dis_mail_tpl">通知訊息</div>	
@@ -257,9 +257,9 @@
 	<table class="tableStyle1" ><tr><td>{container_basisevalutiontable_reportee}</td></tr></table>		
 	</div>
 	
-</div>	
+	
 </form>
-</body>
+</div></body>
 
 
 <script type="text/javascript">
@@ -277,7 +277,7 @@
 				var msg=mypost(o);				
 			}
 		});		
-		init_tab('body_{elementID}');
+		init_tab('container_{elementID}');
 	}); 
 </script>
 

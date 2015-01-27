@@ -1,153 +1,45 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+﻿<html>
 <head>
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
-<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/hrd/Framework/Plugins/orgchart/jquery.orgchart.css"/>
 <script type="text/javascript">
-function func_cancel() 
-{
-//	alert($("#bt_cancel").val());
-	closeDialog("g3_dialog");
-};				
-
-function func_finish() {
-	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
-	var form = $('form').serialize();
-	var params = "";
-	var temp = form.split('&');
-	for ( var i = 0; i < temp.length; i++) {
-		var obj = temp[i].split('=');
-		if (obj[1].Trim() != '') {
-			params += '&entity' + '.' + temp[i];
-		}
-	}
-	params = params.substring(1);
-	sendPostJQueryAjax(url, params, function(data) {
-		if (data.msg) {
-			$().message(data.msg);
-		}
-		$('input[name="key"]').val(data.entity.key);
-		$("#list").jqGrid('setGridParam', {
-			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
-		//postData : {}
-		}).trigger("reloadGrid");
-
-	});
-}
-
-
-	$(function() {		
-		var container=$('#div_{FUNCTION_CODE}');
-		$(".lable",container).each(function() {
-			$(this).click(function() {
-				var divn = $(this).attr("dis");
-				$(".lable",container).each(function() {
-					$(this).css("background-color", "#F0F0F0");
-				});
-				$(".labDiv",container).each(function() {
-					$(this).hide();
-				});
-				$(this).css("background-color", "yellow");
-				$("#" + divn).show();
-			});
-		});
-	
-	});
-
-	
-	
-	 
+	$(function() {				
+		init_tab('container_{elementID}');		
+		$('#dis_behavior_info').dashpanel({		
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_behavior_info.php'			
+		});	
+	}); 
 </script>
 </head>
 
 <body>
-<div  id="div_{FUNCTION_CODE}">
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
-		<div class="lable"  dis="{FUNCTION_CODE}lab1" style="background-color: yellow;">{$lang.Behavior}{$lang.Information}</div>
-
-
-	</div>
+		<div class="lable"  dis="dis_behavior_info"  style="background-color: yellow;">{$lang.Behavior}{$lang.Information}</div>
+	</div>	
 	
-	<div id="{FUNCTION_CODE}lab1" class="labDiv" style="display: block;">
+	<div id="dis_behavior_info" class="labDiv" style="display: block;">
 		<div class="uc1">
-			<form method="post" id="formPost" action="">
-			
+			<form method="post" id="formPost" >			
+				<input id="competency_id" name="competency_id" value="{competency_id}" />
+				<input id="behavior_id" name="behavior_id" value="{behavior_id}" />
 				
 				<table class="tableStyle1"  >
 				<tr>
 						<td height="30" class="label">{$lang.Weight}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
+						<td><input type="text" name="weight" class="contxt" value="{weight}" /></td>
 					</tr>				
-					<tr>
-						<td height="30" class="label">{$lang.BehaviorTitle}：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.TradChinese}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.SimChinese}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.English}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>
-
-					<tr>
-						<td height="30"  class="label">{$lang.BehaviorDefinition}：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.SimChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="right">{$lang.English}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>			
+									
+					{field_behavior_definition}	
 				</table>
 				
 			</form>
 		</div>
 		<div class="uc2">
-			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />
-			
-		</div>
 
-	</div>
-	
-	
-	<div id="{FUNCTION_CODE}lab2" class="labDiv"   >	
-	<div class="uc1">
-			<form method="post" id="formPost" action="">	
-				<table class="tableStyle1"  >
-
-					<tr>
-						<td height="30"  class="right">{$lang.Weight}：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
-					</tr>					
-				</table>
-				
-			</form>
-		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />
-			
 		</div>
 	</div>
-	
-	
-</div>	
-</body>
+</div></body>
 </html>

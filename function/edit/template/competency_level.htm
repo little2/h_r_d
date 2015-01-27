@@ -65,7 +65,7 @@ function func_finish() {
 
 <body>
 <form method="post" id="formPost" action="">
-<div  id="container_{elementID}">
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
 	
 			
@@ -86,12 +86,39 @@ function func_finish() {
 		<div class="uc1">
 				<table class="tableStyle1"  >
 					<tr>
+						<td height="30"  class="label">評鑑內容：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.TradChinese}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5">1.熟悉企業組織及業務流程
+2.檢定或經驗具下列至少一項
+   a.參與模組導入經驗
+   b.顧問認證合格
+   c.內訓通過檢定
+						</textarea></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.SimChinese}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>
+					<tr>
+						<td height="30"  class="item">{$lang.English}：</td>
+						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+					</tr>	
+				
+				
+				
+					<tr>
 						<td height="30"  class="label">{$lang.EvaluationMethod}：</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td height="30"  class="item">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+						<td><textarea name="entity.note"  cols="60" rows="5">1.簡報審查
+2.a.參與專案證明
+    b.外部證照
+    c.案例實作</textarea></td>
 					</tr>
 					<tr>
 						<td height="30"  class="item">{$lang.SimChinese}：</td>
@@ -106,9 +133,14 @@ function func_finish() {
 						<td height="30" class="label">{$lang.Evaluator}：</td>
 						<td></td>
 					</tr>
+					
+					
 					<tr>
 						<td height="30"  class="item">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+						<td><textarea name="entity.note"  cols="60" rows="5">1.處主管
+2.具有第2級能力者
+3.廠商
+						</textarea></td>
 					</tr>
 					<tr>
 						<td height="30"  class="item">{$lang.SimChinese}：</td>
@@ -127,6 +159,8 @@ function func_finish() {
 			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />			
 		</div>
 	</div>		
+	
+	
 	<div id="dis_training_method_l" class="labDiv"   >
 		<table class="tableStyle1" ><tr><td>{container_training_method}</td></tr></table>		
 	</div>	
