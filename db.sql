@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Jan 26, 2015, 09:35 PM
+-- 建立日期: Jan 27, 2015, 06:22 PM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -12,6 +12,18 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- 資料庫: `inetar0_hrd`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `ability`
+--
+
+CREATE TABLE IF NOT EXISTS `ability` (
+  `ability_id` int(11) NOT NULL AUTO_INCREMENT,
+  `competency_level_id` int(11) NOT NULL,
+  PRIMARY KEY (`ability_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -35,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `behavior` (
   `competency_id` int(11) NOT NULL,
   `weight` decimal(10,1) NOT NULL,
   PRIMARY KEY (`behavior_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -50,7 +62,32 @@ CREATE TABLE IF NOT EXISTS `competency` (
   `competency_model_id` int(10) NOT NULL,
   `competency_weight` decimal(10,1) NOT NULL DEFAULT '1.0',
   PRIMARY KEY (`competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `competency_evalation`
+--
+
+CREATE TABLE IF NOT EXISTS `competency_evalation` (
+  `competency_evalation_id` int(11) NOT NULL AUTO_INCREMENT,
+  `competency_level_id` int(11) NOT NULL,
+  PRIMARY KEY (`competency_evalation_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `competency_level`
+--
+
+CREATE TABLE IF NOT EXISTS `competency_level` (
+  `competency_level_id` int(11) NOT NULL AUTO_INCREMENT,
+  `competency_id` int(11) NOT NULL,
+  `competency_level` int(11) NOT NULL,
+  PRIMARY KEY (`competency_level_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -64,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `competency_model` (
   `competency_model_type` varchar(10) NOT NULL,
   `competency_model_method` varchar(10) NOT NULL COMMENT '分級制或基準制',
   PRIMARY KEY (`competency_model_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
@@ -76,9 +113,9 @@ CREATE TABLE IF NOT EXISTS `course_property` (
   `course_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `course_code` varchar(20) NOT NULL,
   `catalog_id` int(11) NOT NULL,
-  `competency_id` int(11) NOT NULL,
+  `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`course_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 -- --------------------------------------------------------
 
@@ -93,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `term` (
   `term_language` varchar(10) NOT NULL,
   `term_content` varchar(100) NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=205 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=271 ;
 
 -- --------------------------------------------------------
 
@@ -108,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `text` (
   `term_language` varchar(10) NOT NULL,
   `text_content` text NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=379 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=487 ;
 
 -- --------------------------------------------------------
 
@@ -118,9 +155,9 @@ CREATE TABLE IF NOT EXISTS `text` (
 
 CREATE TABLE IF NOT EXISTS `training_material` (
   `training_material_id` int(11) NOT NULL AUTO_INCREMENT,
-  `competency_id` int(11) NOT NULL,
+  `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_material_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -130,9 +167,9 @@ CREATE TABLE IF NOT EXISTS `training_material` (
 
 CREATE TABLE IF NOT EXISTS `training_method` (
   `training_method_id` int(11) NOT NULL AUTO_INCREMENT,
-  `competency_id` int(11) NOT NULL,
+  `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_method_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -142,6 +179,6 @@ CREATE TABLE IF NOT EXISTS `training_method` (
 
 CREATE TABLE IF NOT EXISTS `training_teacher` (
   `training_teacher_id` int(11) NOT NULL AUTO_INCREMENT,
-  `competency_id` int(11) NOT NULL,
+  `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_teacher_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;

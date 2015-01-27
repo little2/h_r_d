@@ -757,6 +757,7 @@ jzsoft.grid.newBarMenu = function(p) {
 jzsoft.grid.newformAdd = function(p) {
 
 	var url=p.add.body;
+	console.log('url:'+url);
 	//url, formKeys, title, width, height, divId ,data
 	
 	//console.log('add:'+url);
@@ -768,7 +769,7 @@ jzsoft.grid.newformAdd = function(p) {
 			url += '?';
 		}
 		url += jzsoft.grid.formKey(p.formKeys);
-		console.log(url);
+		
 	}
 		
 	

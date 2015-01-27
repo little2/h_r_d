@@ -1,164 +1,50 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+﻿<html>
 <head>
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
-<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/hrd/Framework/Plugins/orgchart/jquery.orgchart.css"/>
-<script type="text/javascript">
-function func_cancel() 
-{
-//	alert($("#bt_cancel").val());
-	closeDialog("g3_dialog");
-};				
-
-function func_finish() {
-	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
-	var form = $('form').serialize();
-	var params = "";
-	var temp = form.split('&');
-	for ( var i = 0; i < temp.length; i++) {
-		var obj = temp[i].split('=');
-		if (obj[1].Trim() != '') {
-			params += '&entity' + '.' + temp[i];
-		}
-	}
-	params = params.substring(1);
-	sendPostJQueryAjax(url, params, function(data) {
-		if (data.msg) {
-			$().message(data.msg);
-		}
-		$('input[name="key"]').val(data.entity.key);
-		$("#list").jqGrid('setGridParam', {
-			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
-		//postData : {}
-		}).trigger("reloadGrid");
-
-	});
-}
-
-
-	$(function() {		
-		var container=$('#container_{elementID}');
-		$(".lable",container).each(function() {
-			$(this).click(function() {
-				var divn = $(this).attr("dis");
-				$(".lable",container).each(function() {
-					$(this).css("background-color", "#F0F0F0");
-				});
-				$(".labDiv",container).each(function() {
-					$(this).hide();
-				});
-				$(this).css("background-color", "yellow");
-				$("#" + divn).show();
-			});
-		});
-	
-	});
-
-	
-	
-	 
-</script>
 </head>
 
 <body>
-<form method="post" id="formPost" action="">
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
-	
-			
-	    <div class="lable {display_label_ability}"  dis="ability_list"  style="background-color: yellow;">{$lang.CompetencyGradingScale}</div>
-	    <div class="lable {display_label_information}"  dis="dis_evaluation"  >{$lang.Evaluation}</div>
-		<div class="lable"  dis="dis_training_method_l" >{$lang.TrainingMethod}</div>
-		<div class="lable"  dis="dis_training_teacher_l" >{$lang.TrainingTeacher}</div>
-		<div class="lable"  dis="dis_training_course_l" >{$lang.Course}</div>
-		<div class="lable"  dis="dis_training_material_l" >{$lang.TrainingMaterial}</div>		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	    <div class="lable"  dis="dis_competency_level"  style="background-color: yellow;">{$lang.Information}</div>
+	    <div class="lable {display_ability}"  dis="dis_ability_list" >{$lang.CompetencyGradingScale}</div>
+	    <div class="lable {display_evaluation}"  dis="dis_evaluation"  >{$lang.Evaluation}</div>
+		<div class="lable {display_method}"  dis="dis_training_method_l" >{$lang.TrainingMethod}</div>
+		<div class="lable {display_teacher}"  dis="dis_training_teacher_l" >{$lang.TrainingTeacher}</div>
+		<div class="lable {display_course}"  dis="dis_training_course_l" >{$lang.Course}</div>
+		<div class="lable {display_material}"  dis="dis_training_material_l" >{$lang.TrainingMaterial}</div>		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
-
-		
-	<div id="ability_list" class="labDiv"   style="display: block;">
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+	<div id="dis_ability_list" class="labDiv"  >
 		<table class="tableStyle1"  width="98%"><tr><td>{container_ability_list}</td></tr></table>			
 	</div>
 
 	<div id="dis_evaluation" class="labDiv"  >
 		<div class="uc1">
+		<form method="post" id="formPost" >
+				<div class="hide">
+					<input id="competency_level_id" name="competency_level_id" value="{competency_level_id}" />
+					<input id="competency_evalation_id" name="competency_evalation_id" value="{competency_evalation_id}" />
+				</div>		
+		
 				<table class="tableStyle1"  >
-					<tr>
-						<td height="30"  class="label">評鑑內容：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5">1.熟悉企業組織及業務流程
-2.檢定或經驗具下列至少一項
-   a.參與模組導入經驗
-   b.顧問認證合格
-   c.內訓通過檢定
-						</textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.SimChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.English}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>	
-				
-				
-				
-					<tr>
-						<td height="30"  class="label">{$lang.EvaluationMethod}：</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5">1.簡報審查
-2.a.參與專案證明
-    b.外部證照
-    c.案例實作</textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.SimChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.English}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>	
-
-					<tr>
-						<td height="30" class="label">{$lang.Evaluator}：</td>
-						<td></td>
-					</tr>
-					
-					
-					<tr>
-						<td height="30"  class="item">{$lang.TradChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5">1.處主管
-2.具有第2級能力者
-3.廠商
-						</textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.SimChinese}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>
-					<tr>
-						<td height="30"  class="item">{$lang.English}：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-					</tr>			
+					{field_competency_evalation_content}	
+					{field_competency_evalation_method}
 				</table>
 				
-			
+		</form>	
 		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />			
+		<div class="uc2">			
 		</div>
 	</div>		
+	
+	
 	
 	
 	<div id="dis_training_method_l" class="labDiv"   >
@@ -173,9 +59,55 @@ function func_finish() {
 	<div id="dis_training_material_l" class="labDiv"   >
 		<table class="tableStyle1" ><tr><td>{container_training_material}</td></tr></table>		
 	</div>	
-		
+	
+	
+	
+		<div id="dis_competency_level" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" >
+			
+				<div class="hide">
+					<input id="competency_id" name="competency_id" value="{competency_id}" />
+					<input id="competency_level_id" name="competency_level_id" value="{competency_level_id}" />
+				</div>
+				
+				
+				<table class="tableStyle1"  >	
+					<tr>
+						<td height="30"  class="label">{$lang.CompetencyLevel}：</td>
+						<td><input type="text" name="competency_level" id="competency_level"  value="{competency_level}" class="contxt" /></td>
+					</tr>				
+					{field_competency_level_title}	
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">			
+		</div>
+	</div>
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
 	
 </div>	
-</form>
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_competency_level').dashpanel({		
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_competency_level.php'			
+		});	
+		
+		$('#dis_evaluation').dashpanel({		
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_competency_evaluation.php'			
+		});	
+		
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
 </body>
 </html>
