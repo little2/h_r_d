@@ -32,7 +32,7 @@ jzsoft.grid = function(id, options, menup) {
 		height : GRIDHEIGHT,
 		sortname : 'key',
 		viewrecords : true,
-		sortorder : "desc",
+		sortorder : "asc",
 		// rownumbers: true, 序號
 		prmNames : {
 			page : "page.curPage",
