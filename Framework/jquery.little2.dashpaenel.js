@@ -13,7 +13,18 @@
 						onSuccess:function(data){		
 								var container =$('#container_'+this.element_id);
 								var datafrom=container.attr('data-from')	
-								$("#"+datafrom).jqGrid().trigger("reloadGrid");				
+								
+								if ($("#"+datafrom).length > 0) {
+									$("#"+datafrom).jqGrid().trigger("reloadGrid");
+								}
+								else
+								{
+									$("#tabPanel").refreshitem();	
+								}
+								
+								
+								
+								
 								var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');		
 								closeDialog(dialogID);							
 							}					

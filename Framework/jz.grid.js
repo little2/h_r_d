@@ -232,8 +232,7 @@ jzsoft.grid.multiDele = function(id, url) {
 				ids += 'keys['+rowdata.key+']=' + rowdata.key;
 			}
 			
-			console.log(ids);
-			
+		
 			
 			$.ajax({
 				type : "POST",
@@ -669,8 +668,7 @@ jzsoft.grid.newBarMenu = function(p) {
 						name : p.delete.name,
 						bclass : 'delete',
 						onpress : function() {
-							console.log(p.delete.body);
-							console.log(p.gridId);
+							
 							jzsoft.grid.multiDele(p.gridId, p.delete.body);
 						}
 					});
@@ -713,7 +711,7 @@ jzsoft.grid.newBarMenu = function(p) {
 						onpress : function() {
 							p.import.width=400;
 							p.import.height=400;
-						//	console.log(p.import);
+					
 							jzsoft.grid.openDialog(p.import);
 						}
 					});
@@ -757,7 +755,7 @@ jzsoft.grid.newBarMenu = function(p) {
 jzsoft.grid.newformAdd = function(p) {
 
 	var url=p.add.body;
-	console.log('url:'+url);
+
 	//url, formKeys, title, width, height, divId ,data
 	
 	//console.log('add:'+url);

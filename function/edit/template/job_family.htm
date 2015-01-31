@@ -9,14 +9,38 @@
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
-	    <div class="lable {display_label_information}"  dis="dis_positioncompetencystandard"  style="background-color: yellow;">{$lang.PositionCompetencyStandard}</div>
+		<div class="lable" dis="dis_job_family" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_label_lab2}"  dis="dis_job_list" >{$lang.Job}</div>
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
 	
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->
-	<div id="dis_positioncompetencystandard" class="labDiv"  style="display: block;" >
-		<table class="tableStyle1"  style="width:90%"><tr><td>{container_job_level}</td></tr></table>		
+	
+	<div id="dis_job_family" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" >
+				<div class="hide">
+					<input type="text" name="company_id"  id="company_id"  value="1">
+					<input type="text" name="job_family_id"  id="job_family_id"  value="{job_family_id}">
+				</div>
+				
+				<table class="tableStyle1"  >
+						{field_job_family_title}
+						{field_job_family_dsec}					
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">			
+		</div>
+
 	</div>
+	
+	
+	<div id="dis_job_list" class="labDiv" >	
+		<table class="tableStyle1" ><tr><td>{container_job_level}</td></tr></table>		
+	</div>
+	
 	
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->
 	
@@ -27,11 +51,10 @@
 		init_tab('container_{elementID}');		
 		
 		//##### 需客制化修改 ##############################################
-		/*
-		$('#dis_training_material').dashpanel({		
+		$('#dis_job_family').dashpanel({		
 			element_id:'{elementID}',
-			save_url:'/hrd/function/saveOrUpdate/save_training_material.php'			
-		});*/	
+			save_url:'/hrd/function/saveOrUpdate/save_job_family.php'			
+		});	
 		//##### 需客制化修改 ##############################################
 	}); 
 </script>
