@@ -12,27 +12,61 @@
 						element_id:this.element_id,
 						onSuccess:function(data){		
 								var container =$('#container_'+this.element_id);
-								var datafrom=container.attr('data-from')	
-								
-								if ($("#"+datafrom).length > 0) {
-									$("#"+datafrom).jqGrid().trigger("reloadGrid");
+								if(data.errmsg)
+								{
+									$(container).message(data.errmsg);
 								}
 								else
 								{
-									$("#tabPanel").refreshitem();	
-								}
-								
-								
-								
-								
-								var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');		
-								closeDialog(dialogID);							
+									
+									var datafrom=container.attr('data-from');	
+									
+									if ($("#"+datafrom).length > 0) {
+										$("#"+datafrom).jqGrid().trigger("reloadGrid");
+									}
+									else
+									{
+										$("#tabPanel").refreshitem();	
+									}
+									
+									
+									var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');		
+									closeDialog(dialogID);						
+								}	
+									
+							
+									
 							}					
 				}				
 				var msg=mypost(o);			
         	},
-        	save_url:'',
-        	element_id:''
+        	pick:function(event){
+        		var url=this.pick_url;
+        		var sels = $("#" +  this.pick_list_id).jqGrid('getGridParam', 'selrow');        		
+        		if (sels) {        		
+	        		var rowdata = $("#" +  this.pick_list_id).jqGrid("getRowData", sels);	
+	        		if (url.indexOf('?') > -1) {
+	        			url += '&';
+	        		} else {
+	        			url += '?';
+	        		}	
+	        		url += "entity.key=" + rowdata.key;
+        		}
+        		this.save_url=url;
+        		return this.save(event);
+        	},
+        	search:function(event){
+        		var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        	        	
+        		$("#" + this.pick_list_id).jqGrid('setGridParam', {				
+        					postData : $("#formPost",formContainer).serialize(),
+        					page : 1
+        				}).trigger("reloadGrid");	
+        	},
+        	save_url:'undefined',
+        	pick_url:'undefined',
+        	pick_list_id:'',
+        	element_id:'',
+        	dialog_title:'',
         },
        
         
@@ -42,16 +76,29 @@
         	var that = this;
         	
         	
-        	if ($("#bt_save",this.container).length <= 0) 
-        	{
+        	if ($("#bt_save",this.container).length <= 0  && this.options.save_url !='undefined') 
+        	{        		
         		//不存在則新增
         		$('div.uc2',this.container).append('<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />');
         	}
        
-
+        	if ($("#bt_pick",this.container).length <= 0  && this.options.pick_url !='undefined') 
+        	{        	
+        		//不存在則新增
+        		$('div.uc2',this.container).append('<input class="labButton" name="bt_pick" id="bt_pick" type="button"  value="挑選"   />');
+        	}
         	
         	this._on( $('#bt_save', this.container), {
     			  "click": this.save
+    			});        	
+        	
+        	this._on( $('#bt_pick', this.container), {
+  			  "click": this.pick
+  			});        	
+        	
+
+        	this._on( $('#bt_inner_search', this.container), {
+    			  "click": this.search
     			});        	
         	
         	if ($("#bt_cancel",this.container).length <= 0) 
@@ -67,14 +114,7 @@
         	
         	this.dialogID=$(this.container).parentsUntil('div.ui-dialog').last().attr('id');    
         	
-
-        	
-        	
-        	//新增按鈕
-        	/*
-        	 * 			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"/>
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉"/>	
-        	 */
+        	this.modify_dialog_title();
         	
         	
         },     
@@ -89,6 +129,21 @@
 
   	  
   	  //--- Public Function ---//    	 
+        modify_dialog_title:function()
+        {
+        	this.labelledby=$(this.container).parentsUntil('div.ui-dialog').parent().attr('aria-labelledby');
+        	if(this.options.dialog_title.length>0)
+        	{
+        		$('#'+this.labelledby).append(' > '+this.options.dialog_title);            	
+        	}
+        	else if( typeof($('#DialogTitle',$(this.container)).val())!="undefined" && $('#DialogTitle',$(this.container)).val()!="" )
+        	{
+        		$('#'+this.labelledby).append(' > '+$('#DialogTitle',$(this.container)).val());            	
+        	}
+        	
+        },
+        
+        
         bt_cancel:function(event)
         { 
         	//var did=$(this.container).parentsUntil('div.ui-dialog').last().attr('id');    
@@ -99,7 +154,18 @@
         {
         	this.options.save(event);
         	//alert('ori');
-        }
+        },
+        
+        pick:function(event)
+        {
+        	this.options.pick(event);
+        	//alert('ori');
+        },
+        
+        search:function(event)
+        {
+        	this.options.search(event);
+        },
         
     })
 })( jQuery );

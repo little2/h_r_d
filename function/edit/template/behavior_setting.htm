@@ -6,7 +6,8 @@
 <script type="text/javascript">
 	$(function() {				
 		init_tab('container_{elementID}');		
-		$('#dis_behavior_info').dashpanel({		
+		$('#dis_behavior_info').dashpanel({
+			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_behavior_info.php'			
 		});	

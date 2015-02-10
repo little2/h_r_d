@@ -1,82 +1,60 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<style type="text/css">
-</style>
-
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
 </head>
-<body><div  id="container_{elementID}"  data-from="{From_elementID}" >
-	<div>
-		<form id="validate">
-			<div class="nec1" style="overflow:hidden;">
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable "  dis="dis_organization_groups" style="background-color: yellow;">集團信息</div>
+	
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_organization_groups" class="labDiv" style="display: block;">
+		<form method="post" id="formPost" >
+		<div class="uc1" style="margin-left: 20px; ">		
+			
+			<div class="hide1">
+				<input type="text" id="groups_id" name="groups_id" value="{groups_id}">
+			</div>					
 				<table class="tableStyle1">
 					<tr>
 						<!--<td align="right" style="color:#1C7EFC"><b>群組代號：</b></td> -->
 						<td style="color:#1C7EFC"><b> 集團代碼： </b></td>
-						<td><input name="entity.code" class="validate[required]" type="text" value=""></td>
+						<td><input name="groups_code"  id="groups_code"  type="text" value="{groups_code}"></td>
 					</tr>
-					<tr>
-						<td style="color:#1C7EFC"><b> 集團名稱： </b></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-							
-								<table>
-									<tr>
-										<td>繁體中文</td>
-										<td><input name="entity.code" class="validate[required]" type="text" value=""></td>
-									</tr>
-									<tr>
-										<td>简体中文</td>
-										<td><input name="entity.code" class="validate[required]" type="text" value=""></td>
-									</tr>
-									<tr>
-										<td>English</td>
-										<td><input name="entity.code" class="validate[required]" type="text" value=""></td>
-									</tr>
-								</table>
-						
-						</td>
-					</tr>
-					
-					<tr>
-						<td style="color:#1C7EFC"><b> 描述說明： </b></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-							<div id="condition">
-								<table>
-									<tr>
-										<td>繁體中文</td>
-										<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-									</tr>
-									<tr>
-										<td>简体中文</td>
-										<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-									</tr>
-									<tr>
-										<td>English</td>
-										<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
-									</tr>
-								</table>
-							</div>
-						</td>
-					</tr>					
-					
-					
-
+					{field_groups_title}
+					{field_groups_desc}		
 				</table>
-			</div>
-			<div class="nec2">
-				<input class="labButton" name="save" id="save" type="button" value="保存"> <input class="labButton" name="cancel" id="cancel" type="button" value="關閉">
-			</div>
+		</div>
+		<div class="uc2"  style=“width:70%;”></div>
 		</form>
 	</div>
-</div></body>
+
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_organization_groups').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_groups.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
 </html>

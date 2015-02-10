@@ -92,7 +92,7 @@
 	</div>
 
 	
-	<div id="dis_basis_evalutiontable_suggest"  style="width:100%" class="labDiv"   >
+	<div id="dis_basis_evalutiontable_suggest"   class="labDiv"   >
 		<table class="tableStyle1" ><tr><td>{container_basisevalutiontable_suggest}</td></tr></table>		
 	</div>
 	
@@ -124,8 +124,8 @@
 		<div class="uc2"  style=“width:70%;”></div>
 	</div>	
 
-	<div id="dis_basis_evalutiontable_reportee"  style="width:100%" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td >{container_basisevalutiontable_reportee}</td></tr></table>		
+	<div id="dis_basis_evalutiontable_reportee"   class="labDiv"   >
+		<table class="tableStyle1" ><tr><td >{container_basisevalutiontable_appraisee}</td></tr></table>		
 	</div>
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->
 	</form>
@@ -136,11 +136,13 @@
 		init_tab('container_{elementID}');		
 		
 		//##### 需客制化修改 ##############################################
-		$('#dis_basis_evalutiontable_properties').dashpanel({		
+		$('#dis_basis_evalutiontable_properties').dashpanel({	
+			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_table.php'			
 		});	
-		$('#dis_basis_evalutiontable_content').dashpanel({		
+		$('#dis_basis_evalutiontable_content').dashpanel({
+			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_table.php'			
 		});	

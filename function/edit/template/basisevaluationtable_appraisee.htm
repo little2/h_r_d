@@ -1,0 +1,72 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable {display_label_information}"  dis="dis_basis_evalutiontable_appraisee_content" style="background-color: yellow;">受評者訊息</div>
+		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_evalutor" >評鑑人列表</div>
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_basis_evalutiontable_appraisee_content" class="labDiv" style="display: block;">
+		<form method="post" id="formPost" >
+		<div class="uc1" style="width:90%;margin-left: 20px; ">		
+			
+			<div class="hide1">
+				<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
+				<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">
+				
+			</div>					
+			<table class="tableStyle1" >
+					<tr>
+						<td class="label">受評者：</td>
+						<td ><input name="appraisee_uid" class="appraisee_uid" type="text" value="{appraisee_uid}"></td>
+					</tr>
+					
+					<tr>
+						<td class="label">進度：</td>
+							
+						<td >{basis_evaluation_progress}</td>
+					</tr>
+					
+			
+					
+				</table>	
+		</div>
+		<div class="uc2"  style=“width:70%;”></div>
+		</form>
+	</div>
+	
+	<div id="dis_basis_evalutiontable_evalutor"  style="width:100%" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td >{container_basisevaluationtable_evaluator}</td></tr></table>		
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_basis_evalutiontable_appraisee_content').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_basisevalutiontable_appraisee.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

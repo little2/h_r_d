@@ -1,115 +1,89 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+﻿<html>
 <head>
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
-<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/hrd/Framework/Plugins/orgchart/jquery.orgchart.css"/>
-<script type="text/javascript">
-function func_cancel() 
-{
-//	alert($("#bt_cancel").val());
-	closeDialog("g3_dialog");
-};				
-
-function func_finish() {
-	var url = '/hrd/performance/perfEvaluationStandardC/saveOrUpdate.html';
-	var form = $('form').serialize();
-	var params = "";
-	var temp = form.split('&');
-	for ( var i = 0; i < temp.length; i++) {
-		var obj = temp[i].split('=');
-		if (obj[1].Trim() != '') {
-			params += '&entity' + '.' + temp[i];
-		}
-	}
-	params = params.substring(1);
-	sendPostJQueryAjax(url, params, function(data) {
-		if (data.msg) {
-			$().message(data.msg);
-		}
-		$('input[name="key"]').val(data.entity.key);
-		$("#list").jqGrid('setGridParam', {
-			url : "/hrd/performance/perfEvaluationStandardContent/pageList.html"
-		//postData : {}
-		}).trigger("reloadGrid");
-
-	});
-}
-
-
-	$(function() {		
-		var container=$('#container_{elementID}');
-		$(".lable",container).each(function() {
-			$(this).click(function() {
-				var divn = $(this).attr("dis");
-				$(".lable",container).each(function() {
-					$(this).css("background-color", "#F0F0F0");
-				});
-				$(".labDiv",container).each(function() {
-					$(this).hide();
-				});
-				$(this).css("background-color", "yellow");
-				$("#" + divn).show();
-			});
-		});
-	
-	});
-
-	
-	
-	 
-</script>
 </head>
 
 <body>
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
-		<div class="lable {display_label_information}"  dis="dis_basis_evalutiontable_reportee_content" style="background-color: yellow;">評鑑人設定</div>
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable {display_label_information}"  dis="dis_basis_evalutiontable_evaluator_content" style="background-color: yellow;">評鑑人設定</div>
 		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
 	
-	<div id="dis_basis_evalutiontable_reportee_content" class="labDiv" style="display: block;">
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_basis_evalutiontable_evaluator_content" class="labDiv" style="display: block;">
+		<form method="post" id="formPost" >
 		<div class="uc1">
+			
+			<div class="hide1">
+			<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">
+				<input type="text" id="basis_evaluation_evaluator_id" name="basis_evaluation_evaluator_id" value="{basis_evaluation_evaluator_id}">
+				
+				
+			</div>			
 			
 				<table class="tableStyle1"  >
 					<tr>
-						<td height="30" class="right">No：</td>
-						<td width="400">1</td>
-					</tr>
+						<td height="30" class="label">基本信息</td>						
+						<td></td>
+					</tr>			
+					
 					<tr>
-						<td height="30" class="right">工號：</td>
-						<td width="400"><input type="text" name="code" class="contxt" value="3939889" /></td>
+						<td height="30" class="right">工號：</td>						
+						<td ><input type="basis_evaluation_evaluator_uid" name="basis_evaluation_evaluator_uid" class="contxt" value="{basis_evaluation_evaluator_uid}" />
+						<input type="text" name="code" class="contxt" value="{user_code}" /></td>
 					</tr>			
 					
 				
 					<tr>
 						<td height="30"  class="right">姓名：</td>
-						<td><input type="text" name="code" class="contxt" value="歐巴馬" /></td>
+						<td><input type="text" name="code" class="contxt" value="{user_name}" /></td>
 					</tr>				
 					
 					
 					<tr>
 						<td height="30"  class="right">任職部門：</td>
-						<td><input type="text" name="code" class="contxt" value="白宮老大" /></td>
+						<td><input type="text" name="code" class="contxt" value="{department}" /></td>
 					</tr>									
 					
 					<tr>
 						<td height="30"  class="right">評鑑關係：</td>
-						<td><input type="text" name="code" class="contxt" value="不正常關係" /></td>
+						<td><input type="text" name="code" class="contxt" value="{user_relation}" /></td>
 					</tr>			
 									
 				</table>	
 		</div>
 		<div class="uc2"  style=“width:70%;”>
-			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />			
+		
 		</div>
+		</form>
 	</div>
+	
 	
 
 	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
 </div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_basis_evalutiontable_evaluator_content').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_basis_evaluation_table_evaluator.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
 </body>
 </html>

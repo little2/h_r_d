@@ -1,0 +1,96 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable" dis="dis_member_info" style="background-color: yellow;">{$lang.MemberInfo}</div>
+	
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_member_info" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" action="">
+				<div>
+					<input type="text" name="group_id"  id="{group_id}"  value="{group_id}" />
+					<input type="text" name="group_member_id"  id="{group_member_id}"  value="{group_member_id}" />
+				</div>
+				
+				<table class="tableStyle1"  >
+					<tr>
+						<td class="label">{$lang.DepartmentTitle}：</td>
+						<td>{group_title}</td>
+					</tr>
+					<tr>
+						<td class="label">{$lang.User}：</td>
+						<td><input type="text" name="user_id"  value="{user_id}" /></td>
+					</tr>
+					<tr>
+						<td class="label">{$lang.Role}：</td>
+						<td>
+							<select id="role" name="role">
+								<option value="mem" {role_selected_mem}>{$lang.Member}</option>
+								<option value="man" {role_selected_mam}>{$lang.Manager}</option>
+								<option value="vic" {role_selected_vic}>{$lang.ViceManager}</option>								
+							</select>							
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">{$lang.Keyword}：</td>
+						<td>
+							<input type="text" name="keyword"  value="" />
+							<input class="labButton" name="bt_inner_search" id="bt_inner_search" type="button"  value="搜尋"   onClick='search()'/>
+						</td>
+					</tr>
+				</table>
+				<table class="tableStyle1"  style="width:90%"><tr><td>{container_pick_user}</td></tr></table>		
+			</form>
+		</div>
+		<div class="uc2"></div>
+
+	</div>
+	
+	
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_member_info').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_member.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+	
+	function search()
+	{
+		var gridDivId="pick_user_list";
+		//$("#pick_user_list").jqGrid().trigger("reloadGrid");
+		var formContainer=$('#dis_member_info');
+		$("#" + gridDivId).jqGrid('setGridParam', {				
+					postData : $("#formPost",formContainer).serialize(),
+					page : 1
+				}).trigger("reloadGrid");		
+		
+	}
+</script>
+
+
+</body>
+</html>

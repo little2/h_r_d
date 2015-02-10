@@ -35,11 +35,13 @@
 	font-weight: bold;
 	padding-bottom: 8px ;
 	padding-top: 6px ;
+	height:40px;
 }
 
 td.item
 {
 	text-align:right;
+	height:30px;
 
 
 }
