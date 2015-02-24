@@ -18,8 +18,8 @@
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
 	<div id="dis_pick_user_info" class="labDiv" style="display:{display_dis_pick_user_info};">
 		<div class="uc1">
-			<form method="post" id="formPost" action="">
-				<div>
+			<form method="post" id="formPost">
+				<div class="hide">
 					<input type="text" name="class_evaluation_evaluator_id"  id="{class_evaluation_evaluator_id}"  value="{class_evaluation_evaluator_id}" />
 					class_evaluation_competency_id:<input type="text" name="class_evaluation_competency_id"  id="{class_evaluation_competency_id}"  value="{class_evaluation_competency_id}" />
 				</div>
@@ -47,10 +47,12 @@
 
 	</div>
 
+
 	<div id="dis_evaluator_info"  class="labDiv" style="display:{display_dis_evaluator_info};">
 		<div class="uc1">
-			<form method="post" id="formPost" action="">
-				<div>
+			<form method="post" id="formPost">
+				
+				<div class="hide">
 					<input type="text" name="class_evaluation_evaluator_id"  id="{class_evaluation_evaluator_id}"  value="{class_evaluation_evaluator_id}" />
 					class_evaluation_competency_id:<input type="text" name="class_evaluation_competency_id"  id="{class_evaluation_competency_id}"  value="{class_evaluation_competency_id}" />
 				</div>
@@ -65,7 +67,7 @@
 					<tr>
 						<td class="item">權重：</td>
 						<td>
-							<input type="text" name="weight"  value="" />
+							<input type="text" name="weight"  value="{weight}" />
 						
 						</td>
 					</tr>

@@ -667,8 +667,7 @@ jzsoft.grid.newBarMenu = function(p) {
 					buttons.push({
 						name : p.delete.name,
 						bclass : 'delete',
-						onpress : function() {
-							
+						onpress : function() {							
 							jzsoft.grid.multiDele(p.gridId, p.delete.body);
 						}
 					});
@@ -710,8 +709,7 @@ jzsoft.grid.newBarMenu = function(p) {
 						bclass : 'import',
 						onpress : function() {
 							p.import.width=400;
-							p.import.height=400;
-					
+							p.import.height=400;					
 							jzsoft.grid.openDialog(p.import);
 						}
 					});
@@ -719,17 +717,33 @@ jzsoft.grid.newBarMenu = function(p) {
 						separator : true
 					});
 					break;								
-					/*
+				
 				default:
+					if(typeof(p[index]["bclass"])=='string')
+					{
+						buttons.push({
+							name : p[index]["name"],
+							bclass : p[index]["bclass"],
+							onpress : p[index]["onpress"]
+						});
+						buttons.push({
+							separator : true
+						});
+					}
+				
+
+					
+					/*
 					for (key in index) {
 						buttons.push(p.index[key]);
 						  // call_func(this,o);	
 						buttons.push({
 							separator : true
 						});
-					}										
+					}	
+					*/									
 				break;
-				*/
+				
 				
 			}		       
 		}		
@@ -883,9 +897,6 @@ jzsoft.grid.newformView = function(p) {
 };
 
 jzsoft.grid.openDialog = function(setting) {
-	
-
-	
 	id=openDialog({	
 		width : setting.width ? setting.width : 1020,
 		height : setting.height ? setting.height : 620,
@@ -898,8 +909,47 @@ jzsoft.grid.openDialog = function(setting) {
 		data : setting.data,
 		buttons : null
 	});
+};
 
-	
-	
+
+jzsoft.grid.sendPost = function(id, url) {
+
+
+	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');	
+	if (sels == "") {
+		//jzsoft.grid.dele(id, url);
+	} else {
+		if (confirm("您是否確認？")) {
+			var len = sels.length;
+			var ids = "";
+			for ( var i = 0; i < len; i++) {
+				var rowdata = $("#" + id).jqGrid("getRowData", sels[i]);
+				if(ids.length>0)
+				{
+					ids +="&";
+				}				
+				ids += 'keys['+rowdata.key+']=' + rowdata.key;
+			}			
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : ids,
+				beforeSend : function() {
+					$("#" + id).message("正在請求...");
+				},
+				error : function() {
+					$("#" + id).message("請求失敗...");
+				},
+				success : function(data) {
+					if (data.msg) {
+						$("#" + id).message("操作失敗！");
+					} else {
+						$("#" + id).trigger("reloadGrid");
+						$("#" + id).message("已成功!");
+					}
+				}
+			});
+		}
+	}
 	
 };

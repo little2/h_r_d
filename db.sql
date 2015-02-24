@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Feb 10, 2015, 08:16 AM
+-- 建立日期: Feb 24, 2015, 08:30 AM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   `ability_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`ability_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- 列出以下資料庫的數據： `ability`
@@ -37,7 +37,10 @@ CREATE TABLE IF NOT EXISTS `ability` (
 
 INSERT INTO `ability` (`ability_id`, `competency_level_id`) VALUES
 (5, 14),
-(6, 14);
+(6, 14),
+(7, 20),
+(8, 20),
+(9, 24);
 
 -- --------------------------------------------------------
 
@@ -164,13 +167,17 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_appraisee` (
   `manage_competency_model_id` int(10) unsigned NOT NULL,
   `general_competency_model_id` int(10) unsigned NOT NULL,
   `professional_competency_model_id` int(10) unsigned NOT NULL,
+  `class_evaluation_appraisee_stauts` varchar(3) NOT NULL DEFAULT 'EDT',
   PRIMARY KEY (`class_evaluation_appraisee_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 列出以下資料庫的數據： `class_evaluation_appraisee`
 --
 
+INSERT INTO `class_evaluation_appraisee` (`class_evaluation_appraisee_id`, `appraisee_uid`, `core_competency_model_id`, `manage_competency_model_id`, `general_competency_model_id`, `professional_competency_model_id`, `class_evaluation_appraisee_stauts`) VALUES
+(1, 3, 0, 0, 0, 0, 'PUB'),
+(2, 8, 0, 0, 0, 0, 'EDT');
 
 -- --------------------------------------------------------
 
@@ -183,13 +190,18 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_competency` (
   `class_evaluation_appraisee_id` int(11) NOT NULL,
   `competency_id` int(11) NOT NULL,
   `competency_level` int(11) NOT NULL,
+  `class_evaluation_competency_status` varchar(3) NOT NULL DEFAULT 'EDT',
+  `due_date` date NOT NULL,
   PRIMARY KEY (`class_evaluation_competency_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- 列出以下資料庫的數據： `class_evaluation_competency`
 --
 
+INSERT INTO `class_evaluation_competency` (`class_evaluation_competency_id`, `class_evaluation_appraisee_id`, `competency_id`, `competency_level`, `class_evaluation_competency_status`, `due_date`) VALUES
+(4, 2, 56, 5, 'REV', '0000-00-00'),
+(5, 1, 63, 3, 'REV', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -202,13 +214,19 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_evaluator` (
   `class_evaluation_competency_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `weight` int(10) NOT NULL DEFAULT '0',
+  `class_evaluation_evaluator_status` varchar(3) CHARACTER SET utf8 NOT NULL DEFAULT 'EDT' COMMENT 'EDT/REW/PAS',
   PRIMARY KEY (`class_evaluation_evaluator_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- 列出以下資料庫的數據： `class_evaluation_evaluator`
 --
 
+INSERT INTO `class_evaluation_evaluator` (`class_evaluation_evaluator_id`, `class_evaluation_competency_id`, `user_id`, `weight`, `class_evaluation_evaluator_status`) VALUES
+(4, 4, 10, 20, 'EDT'),
+(2, 4, 11, 70, 'PAS'),
+(6, 4, 7, 10, 'EDT'),
+(7, 5, 10, 100, 'EDT');
 
 -- --------------------------------------------------------
 
@@ -223,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `competency` (
   `competency_model_id` int(10) NOT NULL,
   `competency_weight` decimal(10,1) NOT NULL DEFAULT '1.0',
   PRIMARY KEY (`competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
 --
 -- 列出以下資料庫的數據： `competency`
@@ -239,7 +257,9 @@ INSERT INTO `competency` (`competency_id`, `competency_type`, `competency_method
 (59, 'P', 'C', 34, 0.0),
 (60, 'P', 'C', 34, 0.0),
 (61, 'P', 'C', 34, 0.0),
-(62, 'P', 'C', 34, 0.0);
+(62, 'P', 'C', 34, 0.0),
+(63, 'M', 'C', 35, 0.0),
+(64, 'M', 'C', 35, 0.0);
 
 -- --------------------------------------------------------
 
@@ -251,14 +271,18 @@ CREATE TABLE IF NOT EXISTS `competency_evaluation` (
   `competency_evaluation_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`competency_evaluation_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 列出以下資料庫的數據： `competency_evaluation`
 --
 
 INSERT INTO `competency_evaluation` (`competency_evaluation_id`, `competency_level_id`) VALUES
-(7, 14);
+(7, 14),
+(8, 20),
+(9, 21),
+(10, 22),
+(11, 24);
 
 -- --------------------------------------------------------
 
@@ -271,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `competency_level` (
   `competency_id` int(11) NOT NULL,
   `competency_level` int(11) NOT NULL,
   PRIMARY KEY (`competency_level_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- 列出以下資料庫的數據： `competency_level`
@@ -281,7 +305,17 @@ INSERT INTO `competency_level` (`competency_level_id`, `competency_id`, `compete
 (14, 0, 1),
 (18, 0, 3),
 (17, 0, 2),
-(19, 0, 4);
+(19, 0, 4),
+(20, 56, 1),
+(21, 56, 2),
+(22, 56, 3),
+(23, 56, 4),
+(24, 56, 5),
+(25, 63, 1),
+(26, 63, 2),
+(27, 63, 3),
+(28, 63, 4),
+(29, 63, 5);
 
 -- --------------------------------------------------------
 
@@ -295,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `competency_model` (
   `competency_model_type` varchar(10) NOT NULL,
   `competency_model_method` varchar(10) NOT NULL COMMENT '���Ũ�ΰ�Ǩ�',
   PRIMARY KEY (`competency_model_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- 列出以下資料庫的數據： `competency_model`
@@ -303,7 +337,8 @@ CREATE TABLE IF NOT EXISTS `competency_model` (
 
 INSERT INTO `competency_model` (`competency_model_id`, `competency_model_count`, `competency_model_type`, `competency_model_method`) VALUES
 (33, 3, 'M', 'B'),
-(34, 7, 'P', 'C');
+(34, 7, 'P', 'C'),
+(35, 2, 'M', 'C');
 
 -- --------------------------------------------------------
 
@@ -456,12 +491,15 @@ CREATE TABLE IF NOT EXISTS `group_property` (
   `group_level` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 列出以下資料庫的數據： `group_property`
 --
 
+INSERT INTO `group_property` (`group_id`, `group_type`, `group_title`, `group_parent_id`, `group_code`, `group_level`, `company_id`) VALUES
+(1, 'dep', '', 0, '', 0, 1),
+(2, 'dep', '', 1, '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -486,18 +524,14 @@ CREATE TABLE IF NOT EXISTS `job` (
 --
 
 INSERT INTO `job` (`job_id`, `job_family_id`, `job_level`, `job_type_id`, `core_competency_model_id`, `manage_competency_model_id`, `general_competency_model_id`, `professional_competency_model_id`) VALUES
-(13, 6, 3, 0, NULL, NULL, NULL, 0),
-(14, 6, 3, 0, NULL, NULL, NULL, 0),
+(13, 6, 3, 5, NULL, 35, NULL, 0),
+(14, 6, 3, 5, NULL, 33, NULL, 0),
 (15, 6, 4, 0, NULL, NULL, NULL, 0),
 (16, 6, 5, 0, NULL, NULL, NULL, 0),
 (17, 6, 6, 0, NULL, NULL, NULL, 0),
 (18, 6, 7, 0, NULL, NULL, NULL, 0),
 (19, 7, 3, 0, NULL, NULL, NULL, 0),
 (20, 7, 3, 0, NULL, NULL, NULL, 0),
-(21, 7, 4, 0, NULL, NULL, NULL, 0),
-(22, 7, 4, 0, NULL, NULL, NULL, 0),
-(23, 7, 5, 0, NULL, NULL, NULL, 0),
-(24, 7, 5, 0, NULL, NULL, NULL, 0),
 (25, 7, 6, 0, NULL, NULL, NULL, 0),
 (26, 8, 2, 0, NULL, NULL, NULL, 0),
 (27, 8, 3, 0, NULL, NULL, NULL, 0),
@@ -511,7 +545,7 @@ INSERT INTO `job` (`job_id`, `job_family_id`, `job_level`, `job_type_id`, `core_
 (35, 7, 4, 0, NULL, NULL, NULL, 34),
 (36, 7, 4, 0, NULL, NULL, NULL, 34),
 (37, 7, 5, 0, NULL, NULL, NULL, 34),
-(38, 7, 5, 0, NULL, NULL, NULL, 34);
+(38, 7, 5, 7, NULL, NULL, NULL, 34);
 
 -- --------------------------------------------------------
 
@@ -525,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `job_competency` (
   `competency_id` int(11) NOT NULL,
   `level` int(11) NOT NULL,
   PRIMARY KEY (`job_competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- 列出以下資料庫的數據： `job_competency`
@@ -545,7 +579,23 @@ INSERT INTO `job_competency` (`job_competency_id`, `job_id`, `competency_id`, `l
 (20, 36, 59, 3),
 (21, 36, 60, 2),
 (22, 36, 61, 3),
-(23, 36, 62, 3);
+(23, 36, 62, 3),
+(24, 37, 56, 1),
+(25, 37, 57, 1),
+(26, 37, 58, 1),
+(27, 37, 59, 1),
+(28, 37, 60, 1),
+(29, 37, 61, 2),
+(30, 37, 62, 2),
+(31, 38, 56, 5),
+(32, 38, 57, 5),
+(33, 38, 58, 1),
+(34, 38, 59, 2),
+(35, 38, 60, 3),
+(36, 38, 61, 5),
+(37, 38, 62, 5),
+(38, 13, 63, 3),
+(39, 13, 64, 2);
 
 -- --------------------------------------------------------
 
@@ -557,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `job_family` (
   `job_family_id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`job_family_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- 列出以下資料庫的數據： `job_family`
@@ -569,7 +619,9 @@ INSERT INTO `job_family` (`job_family_id`, `company_id`) VALUES
 (8, 1),
 (9, 1),
 (10, 1),
-(11, 1);
+(11, 1),
+(12, 1),
+(13, 1);
 
 -- --------------------------------------------------------
 
@@ -642,7 +694,7 @@ CREATE TABLE IF NOT EXISTS `term` (
   `term_language` varchar(10) NOT NULL,
   `term_content` varchar(100) NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=673 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=763 ;
 
 --
 -- 列出以下資料庫的數據： `term`
@@ -825,7 +877,97 @@ INSERT INTO `term` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (669, 'job_title', 38, 'en', ''),
 (670, 'b_evalu_table_title', 3, 'tw', '中層管理職能評鑑表'),
 (671, 'b_evalu_table_title', 3, 'cn', ''),
-(672, 'b_evalu_table_title', 3, 'en', '');
+(672, 'b_evalu_table_title', 3, 'en', ''),
+(673, 'group_title', 0, 'tw', '業務部'),
+(674, 'group_title', 0, 'cn', ''),
+(675, 'group_title', 0, 'en', ''),
+(676, 'group_title', 0, 'tw', '研發部門'),
+(677, 'group_title', 0, 'cn', ''),
+(678, 'group_title', 0, 'en', ''),
+(679, 'group_title', 0, 'tw', '言'),
+(680, 'group_title', 0, 'cn', ''),
+(681, 'group_title', 0, 'en', ''),
+(682, 'group_title', 0, 'tw', '1'),
+(683, 'group_title', 0, 'cn', ''),
+(684, 'group_title', 0, 'en', ''),
+(685, 'group_title', 1, 'tw', '董事會'),
+(686, 'group_title', 1, 'cn', ''),
+(687, 'group_title', 1, 'en', ''),
+(688, 'group_title', 2, 'tw', '研發部'),
+(689, 'group_title', 2, 'cn', ''),
+(690, 'group_title', 2, 'en', ''),
+(691, 'job_family_title', 12, 'tw', '約聘人員'),
+(692, 'job_family_title', 12, 'cn', ''),
+(693, 'job_family_title', 12, 'en', ''),
+(694, 'job_family_title', 13, 'tw', '臨時工'),
+(695, 'job_family_title', 13, 'cn', ''),
+(696, 'job_family_title', 13, 'en', ''),
+(697, 'competency_level_title', 20, 'tw', '1.熟悉企業組織及業務流程 2.檢定或經驗具下列至少一項    a.參與模組導入經驗    b.顧問認證合格    c.內訓通過檢定'),
+(698, 'competency_level_title', 20, 'cn', ''),
+(699, 'competency_level_title', 20, 'en', ''),
+(700, 'competency_level_title', 21, 'tw', '1.維護能力具下列至少一項   a.模組維護滿12個月以上經驗   b.顧問認證合格且模組維護滿      6個月以上'),
+(701, 'competency_level_title', 21, 'cn', ''),
+(702, 'competency_level_title', 21, 'en', ''),
+(703, 'competency_level_title', 22, 'tw', '需求規劃能力    (ERP或BPM/BI/BPC)'),
+(704, 'competency_level_title', 22, 'cn', ''),
+(705, 'competency_level_title', 22, 'en', ''),
+(706, 'competency_level_title', 23, 'tw', '第四級'),
+(707, 'competency_level_title', 23, 'cn', ''),
+(708, 'competency_level_title', 23, 'en', ''),
+(709, 'competency_level_title', 24, 'tw', '第五級'),
+(710, 'competency_level_title', 24, 'cn', ''),
+(711, 'competency_level_title', 24, 'en', ''),
+(712, 'ability_title', 7, 'tw', ''),
+(713, 'ability_title', 7, 'cn', ''),
+(714, 'ability_title', 7, 'en', ''),
+(715, 'ability_title', 8, 'tw', ''),
+(716, 'ability_title', 8, 'cn', ''),
+(717, 'ability_title', 8, 'en', ''),
+(718, 'training_teacher', 20, 'tw', '具有第2級能力者'),
+(719, 'training_teacher', 20, 'cn', ''),
+(720, 'training_teacher', 20, 'en', ''),
+(721, 'training_teacher', 21, 'tw', '廠商'),
+(722, 'training_teacher', 21, 'cn', ''),
+(723, 'training_teacher', 21, 'en', ''),
+(724, 'training_teacher', 22, 'tw', '1.具有第2級能力者 2.廠商'),
+(725, 'training_teacher', 22, 'cn', ''),
+(726, 'training_teacher', 22, 'en', ''),
+(727, 'training_teacher', 23, 'tw', '1.廠商 2.專案經理'),
+(728, 'training_teacher', 23, 'cn', ''),
+(729, 'training_teacher', 23, 'en', ''),
+(730, 'ability_title', 9, 'tw', 'ERP管理師：具備兩個以上    模組第三級能力'),
+(731, 'ability_title', 9, 'cn', ''),
+(732, 'ability_title', 9, 'en', ''),
+(733, 'training_teacher', 24, 'tw', '廠商'),
+(734, 'training_teacher', 24, 'cn', ''),
+(735, 'training_teacher', 24, 'en', ''),
+(736, 'training_teacher', 25, 'tw', '顧問'),
+(737, 'training_teacher', 25, 'cn', ''),
+(738, 'training_teacher', 25, 'en', ''),
+(739, 'competency_model_title', 35, 'tw', '業務職能模型'),
+(740, 'competency_model_title', 35, 'cn', ''),
+(741, 'competency_model_title', 35, 'en', ''),
+(742, 'competency_title', 63, 'tw', '業務職能A'),
+(743, 'competency_title', 63, 'cn', ''),
+(744, 'competency_title', 63, 'en', ''),
+(745, 'competency_title', 64, 'tw', '業務職能B'),
+(746, 'competency_title', 64, 'cn', ''),
+(747, 'competency_title', 64, 'en', ''),
+(748, 'competency_level_title', 25, 'tw', '業務職能A-1'),
+(749, 'competency_level_title', 25, 'cn', ''),
+(750, 'competency_level_title', 25, 'en', ''),
+(751, 'competency_level_title', 26, 'tw', '業務職能A-2'),
+(752, 'competency_level_title', 26, 'cn', ''),
+(753, 'competency_level_title', 26, 'en', ''),
+(754, 'competency_level_title', 27, 'tw', '業務職能A-3'),
+(755, 'competency_level_title', 27, 'cn', ''),
+(756, 'competency_level_title', 27, 'en', ''),
+(757, 'competency_level_title', 28, 'tw', '業務職能A-4'),
+(758, 'competency_level_title', 28, 'cn', ''),
+(759, 'competency_level_title', 28, 'en', ''),
+(760, 'competency_level_title', 29, 'tw', '業務職能A-5'),
+(761, 'competency_level_title', 29, 'cn', ''),
+(762, 'competency_level_title', 29, 'en', '');
 
 -- --------------------------------------------------------
 
@@ -840,7 +982,7 @@ CREATE TABLE IF NOT EXISTS `text` (
   `term_language` varchar(10) NOT NULL,
   `text_content` text NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=787 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=922 ;
 
 --
 -- 列出以下資料庫的數據： `text`
@@ -1005,7 +1147,142 @@ INSERT INTO `text` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (783, 'job_family_dsec', 11, 'en', ''),
 (784, 'b_evalu_table_desc', 3, 'tw', ''),
 (785, 'b_evalu_table_desc', 3, 'cn', ''),
-(786, 'b_evalu_table_desc', 3, 'en', '');
+(786, 'b_evalu_table_desc', 3, 'en', ''),
+(787, 'group_desc', 0, 'tw', ''),
+(788, 'group_desc', 0, 'cn', ''),
+(789, 'group_desc', 0, 'en', ''),
+(790, 'group_desc', 0, 'tw', '研發部門'),
+(791, 'group_desc', 0, 'cn', ''),
+(792, 'group_desc', 0, 'en', ''),
+(793, 'group_desc', 0, 'tw', '12'),
+(794, 'group_desc', 0, 'cn', ''),
+(795, 'group_desc', 0, 'en', ''),
+(796, 'group_desc', 0, 'tw', '2'),
+(797, 'group_desc', 0, 'cn', ''),
+(798, 'group_desc', 0, 'en', ''),
+(799, 'group_desc', 1, 'tw', '董事會'),
+(800, 'group_desc', 1, 'cn', ''),
+(801, 'group_desc', 1, 'en', ''),
+(802, 'group_desc', 2, 'tw', '研發部'),
+(803, 'group_desc', 2, 'cn', ''),
+(804, 'group_desc', 2, 'en', ''),
+(805, 'job_family_dsec', 12, 'tw', '約聘人員'),
+(806, 'job_family_dsec', 12, 'cn', ''),
+(807, 'job_family_dsec', 12, 'en', ''),
+(808, 'job_family_dsec', 13, 'tw', ''),
+(809, 'job_family_dsec', 13, 'cn', ''),
+(810, 'job_family_dsec', 13, 'en', ''),
+(811, 'ability_def', 7, 'tw', '1.熟悉企業組\r\n  織及業務流\r\n  程\r\n'),
+(812, 'ability_def', 7, 'cn', ''),
+(813, 'ability_def', 7, 'en', ''),
+(814, 'ability_def', 8, 'tw', '2.檢定或經驗\r\n  具下列至少\r\n  一項\r\n  a.參與模組\r\n     導入經驗\r\n  b.顧問認證\r\n     合格\r\n  c.內訓通過\r\n     檢定\r\n'),
+(815, 'ability_def', 8, 'cn', ''),
+(816, 'ability_def', 8, 'en', ''),
+(817, 'competency_evaluator', 8, 'tw', '1.處主管\r\n2.具有第2級能力者\r\n3.廠商\r\n'),
+(818, 'competency_evaluator', 8, 'cn', ''),
+(819, 'competency_evaluator', 8, 'en', ''),
+(820, 'competency_evaluation_method', 8, 'tw', '1.簡報審查\r\n2.a.參與專案證明\r\n    b.外部證照\r\n    c.案例實作\r\n'),
+(821, 'competency_evaluation_method', 8, 'cn', ''),
+(822, 'competency_evaluation_method', 8, 'en', ''),
+(823, 'training_method', 16, 'tw', '內訓'),
+(824, 'training_method', 16, 'cn', ''),
+(825, 'training_method', 16, 'en', ''),
+(826, 'training_method', 17, 'tw', 'a.參與專案 b.外訓 c.內訓\r\n'),
+(827, 'training_method', 17, 'cn', ''),
+(828, 'training_method', 17, 'en', ''),
+(829, 'training_material', 14, 'tw', '業務流程與組織文件'),
+(830, 'training_material', 14, 'cn', ''),
+(831, 'training_material', 14, 'en', ''),
+(832, 'training_material', 15, 'tw', 'a.工作說明書\r\n     b.外部教材\r\n     c.專案文件\r\n'),
+(833, 'training_material', 15, 'cn', ''),
+(834, 'training_material', 15, 'en', ''),
+(835, 'competency_evaluator', 9, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第3級能力者\r\n'),
+(836, 'competency_evaluator', 9, 'cn', ''),
+(837, 'competency_evaluator', 9, 'en', ''),
+(838, 'competency_evaluation_method', 9, 'tw', '審查維護紀錄及證書\r\n'),
+(839, 'competency_evaluation_method', 9, 'cn', ''),
+(840, 'competency_evaluation_method', 9, 'en', ''),
+(841, 'training_method', 18, 'tw', '1.內訓\r\n2. a.參與專案\r\n     b.外訓\r\n     c.內訓\r\n'),
+(842, 'training_method', 18, 'cn', ''),
+(843, 'training_method', 18, 'en', ''),
+(844, 'training_material', 16, 'tw', '1.業務流程與組織文件\r\n2. a.工作說明書\r\n     b.外部教材\r\n     c.專案文件\r\n'),
+(845, 'training_material', 16, 'cn', ''),
+(846, 'training_material', 16, 'en', ''),
+(847, 'training_method', 19, 'tw', '成果審查\r\n(三件以上)\r\n'),
+(848, 'training_method', 19, 'cn', ''),
+(849, 'training_method', 19, 'en', ''),
+(850, 'competency_evaluator', 10, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第4級能力者\r\n'),
+(851, 'competency_evaluator', 10, 'cn', ''),
+(852, 'competency_evaluator', 10, 'en', ''),
+(853, 'competency_evaluation_method', 10, 'tw', '成果審查\r\n(三件以上)\r\n'),
+(854, 'competency_evaluation_method', 10, 'cn', ''),
+(855, 'competency_evaluation_method', 10, 'en', ''),
+(856, 'training_material', 17, 'tw', '1.外部教材\r\n2.網路教材\r\n3.實際案例\r\n'),
+(857, 'training_material', 17, 'cn', ''),
+(858, 'training_material', 17, 'en', ''),
+(859, 'training_method', 20, 'tw', '1.外訓\r\n2.自我學習\r\n3.專案工作\r\n'),
+(860, 'training_method', 20, 'cn', ''),
+(861, 'training_method', 20, 'en', ''),
+(862, 'competency_evaluator', 11, 'tw', '1.部主管\r\n2.處主管\r\n3.外部顧問\r\n'),
+(863, 'competency_evaluator', 11, 'cn', ''),
+(864, 'competency_evaluator', 11, 'en', ''),
+(865, 'competency_evaluation_method', 11, 'tw', '推甄文件審查\r\n'),
+(866, 'competency_evaluation_method', 11, 'cn', ''),
+(867, 'competency_evaluation_method', 11, 'en', ''),
+(868, 'ability_def', 9, 'tw', 'ERP管理師：具備兩個以上\r\n   模組第三級能力\r\n'),
+(869, 'ability_def', 9, 'cn', ''),
+(870, 'ability_def', 9, 'en', ''),
+(871, 'training_method', 21, 'tw', '輪調\r\n'),
+(872, 'training_method', 21, 'cn', ''),
+(873, 'training_method', 21, 'en', ''),
+(874, 'training_method', 22, 'tw', '自我學習\r\n'),
+(875, 'training_method', 22, 'cn', ''),
+(876, 'training_method', 22, 'en', ''),
+(877, 'training_material', 18, 'tw', '實際案例\r\n'),
+(878, 'training_material', 18, 'cn', ''),
+(879, 'training_material', 18, 'en', ''),
+(880, 'training_material', 19, 'tw', '維護紀錄\r\n'),
+(881, 'training_material', 19, 'cn', ''),
+(882, 'training_material', 19, 'en', ''),
+(883, 'competency_evaluator', 20, 'tw', '1.處主管\r\n2.具有第2級能力者\r\n3.廠商\r\n'),
+(884, 'competency_evaluator', 20, 'cn', ''),
+(885, 'competency_evaluator', 20, 'en', ''),
+(886, 'competency_evaluation_method', 20, 'tw', '1.簡報審查\r\n2.a.參與專案證明\r\n    b.外部證照\r\n    c.案例實作\r\n'),
+(887, 'competency_evaluation_method', 20, 'cn', ''),
+(888, 'competency_evaluation_method', 20, 'en', ''),
+(889, 'competency_evaluator', 21, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第3級能力者\r\n'),
+(890, 'competency_evaluator', 21, 'cn', ''),
+(891, 'competency_evaluator', 21, 'en', ''),
+(892, 'competency_evaluation_method', 21, 'tw', '審查維護紀錄及證書\r\n'),
+(893, 'competency_evaluation_method', 21, 'cn', ''),
+(894, 'competency_evaluation_method', 21, 'en', ''),
+(895, 'competency_evaluator', 22, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第4級能力者\r\n'),
+(896, 'competency_evaluator', 22, 'cn', ''),
+(897, 'competency_evaluator', 22, 'en', ''),
+(898, 'competency_evaluation_method', 22, 'tw', '成果審查\r\n(三件以上)\r\n'),
+(899, 'competency_evaluation_method', 22, 'cn', ''),
+(900, 'competency_evaluation_method', 22, 'en', ''),
+(901, 'competency_evaluator', 24, 'tw', '1.部主管\r\n2.處主管\r\n3.外部顧問（五級)\r\n'),
+(902, 'competency_evaluator', 24, 'cn', ''),
+(903, 'competency_evaluator', 24, 'en', ''),
+(904, 'competency_evaluation_method', 24, 'tw', '推甄文件審查（五級)\r\n'),
+(905, 'competency_evaluation_method', 24, 'cn', ''),
+(906, 'competency_evaluation_method', 24, 'en', ''),
+(907, 'competency_evaluator', 23, 'tw', '1.部主管\r\n2.處主管\r\n3.外部顧問\r\n'),
+(908, 'competency_evaluator', 23, 'cn', ''),
+(909, 'competency_evaluator', 23, 'en', ''),
+(910, 'competency_evaluation_method', 23, 'tw', '推甄文件審查\r\n'),
+(911, 'competency_evaluation_method', 23, 'cn', ''),
+(912, 'competency_evaluation_method', 23, 'en', ''),
+(913, 'competency_model_definition', 35, 'tw', '業務職能模型'),
+(914, 'competency_model_definition', 35, 'cn', ''),
+(915, 'competency_model_definition', 35, 'en', ''),
+(916, 'competency_definition', 63, 'tw', ''),
+(917, 'competency_definition', 63, 'cn', ''),
+(918, 'competency_definition', 63, 'en', ''),
+(919, 'competency_definition', 64, 'tw', ''),
+(920, 'competency_definition', 64, 'cn', ''),
+(921, 'competency_definition', 64, 'en', '');
 
 -- --------------------------------------------------------
 
@@ -1017,7 +1294,7 @@ CREATE TABLE IF NOT EXISTS `training_material` (
   `training_material_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_material_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- 列出以下資料庫的數據： `training_material`
@@ -1025,7 +1302,13 @@ CREATE TABLE IF NOT EXISTS `training_material` (
 
 INSERT INTO `training_material` (`training_material_id`, `competency_level_id`) VALUES
 (12, 14),
-(13, 14);
+(13, 14),
+(14, 20),
+(15, 20),
+(16, 21),
+(17, 22),
+(18, 24),
+(19, 24);
 
 -- --------------------------------------------------------
 
@@ -1037,7 +1320,7 @@ CREATE TABLE IF NOT EXISTS `training_method` (
   `training_method_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_method_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- 列出以下資料庫的數據： `training_method`
@@ -1049,7 +1332,13 @@ INSERT INTO `training_method` (`training_method_id`, `competency_level_id`) VALU
 (12, 14),
 (13, 14),
 (14, 14),
-(15, 14);
+(15, 14),
+(16, 20),
+(17, 20),
+(18, 21),
+(20, 22),
+(21, 24),
+(22, 24);
 
 -- --------------------------------------------------------
 
@@ -1061,14 +1350,20 @@ CREATE TABLE IF NOT EXISTS `training_teacher` (
   `training_teacher_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_teacher_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- 列出以下資料庫的數據： `training_teacher`
 --
 
 INSERT INTO `training_teacher` (`training_teacher_id`, `competency_level_id`) VALUES
-(19, 14);
+(19, 14),
+(20, 20),
+(21, 20),
+(22, 21),
+(23, 22),
+(24, 24),
+(25, 24);
 
 -- --------------------------------------------------------
 
@@ -1122,12 +1417,19 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `job_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 列出以下資料庫的數據： `user_profile`
 --
 
+INSERT INTO `user_profile` (`user_id`, `fullName`, `user_name_chs`, `user_name_eng`, `user_mps`, `name`, `first_name`, `last_name`, `birth_day`, `birth_month`, `birth_year`, `gender`, `job_title`, `company_id`, `notes`, `city_code`, `address`, `url`, `office_phone`, `home_phone`, `mobile`, `image`, `power_type`, `account_status`, `job_id`, `department_id`) VALUES
+(3, '李瑤政', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', '', 13, 2),
+(7, '林靜秀', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', '', 14, 2),
+(8, '廖瑜瑄', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', '', 38, 2),
+(9, '張胤育', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', '', 14, 1),
+(10, '羅冠志', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', '', 25, 2),
+(11, '鄧名丹', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', '', 27, 1);
 
 -- --------------------------------------------------------
 
@@ -1143,11 +1445,17 @@ CREATE TABLE IF NOT EXISTS `user_sso` (
   `user_id` int(11) NOT NULL,
   `user_account` varchar(10) NOT NULL,
   `password` varchar(15) NOT NULL,
-  PRIMARY KEY (`user_email_id`),
-  UNIQUE KEY `user_email` (`user_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`user_email_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- 列出以下資料庫的數據： `user_sso`
 --
 
+INSERT INTO `user_sso` (`user_email_id`, `user_email`, `user_live_id`, `user_fb_id`, `user_id`, `user_account`, `password`) VALUES
+(3, '', '', '', 3, '李瑤政', ''),
+(8, '', '', '', 7, '林靜秀', ''),
+(9, '', '', '', 8, '廖瑜瑄', ''),
+(10, '', '', '', 9, '張胤育', ''),
+(11, '', '', '', 10, '羅冠志', ''),
+(12, '', '', '', 11, '鄧名丹', '');
