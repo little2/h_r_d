@@ -1,0 +1,158 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+<form method="post" id="formPost" >
+		<div class="hide">
+			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
+		</div>
+
+
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable {display_label_information}"  dis="dis_basis_evalutiontable_properties" style="background-color: yellow;">評鑑表屬性</div>
+		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_content" >評鑑表內容</div>
+		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_suggest" >開放建議</div>
+		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_template" >通知訊息</div>
+		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_reportee" >受評人列表</div>
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_basis_evalutiontable_properties" class="labDiv" style="display: block;">		
+		<div class="uc1" style="width:90%;margin-left: 20px; ">
+			<table class="tableStyle1" >
+					<tr>
+						<td class="label"><b>評鑑表代碼： </b></td>
+						<td><input name="basis_evaluation_table_code" class="basis_evaluation_table_code" type="text" value="{basis_evaluation_table_code}"></td>
+					</tr>			
+			
+			
+					{field_evaluation_table_title}					
+					<tr>
+						<td class="label"><b>顯示職能： </b></td>
+						<td>
+							<input type="radio"  name="is_show_competency"  value="T"  {show_competency_checked_T}>是
+							<input type="radio"  name="is_show_competency"  value="F"  {show_competency_checked_F}>否
+						</td>
+					</tr>					
+					
+					<tr>
+						<td class="label"><b>完成期限： </b></td>
+						<td><input name="due_date"  type="text" value="{due_date}"></td>
+					</tr>							
+				</table>	
+		</div>
+		<div class="uc2"  style=“width:70%;”></div>
+	</div>
+	
+	
+	<!-- dis_basis_evalutiontable_content  -->
+		<div id="dis_basis_evalutiontable_content" class="labDiv" >
+		<div class="uc1" style="width:90%;margin-left: 20px; ">		
+									
+			<table class="tableStyle1" >
+					<tr>
+						<td class="label">職能模型： </td>
+						<td>
+							<select id="competency_model_id" name="competency_model_id">
+								<option ></option>	
+								<!-- BEGIN CM_LIST -->								
+								<option value="{CM_LIST.competency_model_id}"  {CM_LIST.selected}>{CM_LIST.competency_model_title}</option>	
+								<!-- END CM_LIST -->							
+							</select>
+						</td>
+					</tr>					
+					<tr>
+						<td class="label">評鑑量表： </td>
+						<td>
+							<select id="evaluation_scale_id" name="evaluation_scale_id">
+								<option ></option>	
+								<!-- BEGIN ES_LIST -->								
+								<option value="{ES_LIST.evaluation_scale_id}"  {ES_LIST.selected}>{ES_LIST.evaluation_scale_title}</option>	
+								<!-- END ES_LIST -->							
+							</select>
+						</td>
+					</tr>					
+					
+					{field_evaluation_table_desc}		
+					
+				
+				</table>
+		
+							
+		</div>
+		<div class="uc2"  style=“width:70%;”></div>
+	</div>
+
+	
+	<div id="dis_basis_evalutiontable_suggest"   class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_basisevalutiontable_suggest}</td></tr></table>		
+	</div>
+	
+	<!-- 訊息通知模板 -->
+	<div id="dis_basis_evalutiontable_template" class="labDiv" >
+		<div class="uc1" style="width:90%;margin-left: 20px; ">		
+									
+			<table class="tableStyle1" >
+					<tr>
+						<td class="label">邀請函：</td>
+						<td>
+							<select><option>邀請函1號模版</option></select>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">催收函：</td>
+						<td>
+							<select><option>催收函5號模版</option></select>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">感謝函：</td>
+						<td>
+							<select><option>感謝函1號模版</option></select>
+						</td>
+					</tr>					
+				</table>	
+		</div>
+		<div class="uc2"  style=“width:70%;”></div>
+	</div>	
+
+	<div id="dis_basis_evalutiontable_reportee"   class="labDiv"   >
+		<table class="tableStyle1" ><tr><td >{container_basisevalutiontable_appraisee}</td></tr></table>		
+	</div>
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	</form>
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_basis_evalutiontable_properties').dashpanel({	
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_table.php'			
+		});	
+		$('#dis_basis_evalutiontable_content').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_table.php'			
+		});	
+		
+		
+		
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

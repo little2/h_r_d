@@ -1,0 +1,49 @@
+/*---------------------------------
+	HTML ELEMENTS
+-----------------------------------*/
+
+.hide {display:none;}
+.show {display:block;}
+
+/*---------------------------------
+	UTILITY
+-----------------------------------*/
+.center{text-align:center;}
+.left{text-align:left;}
+.right{text-align:right;}
+
+.wid{width:90% ;}
+
+
+.contxt 
+{
+	width:	98% ;
+	
+}
+
+
+ table.tableStyle1 
+{	
+	margin-left: 20px;
+	margin-top: 20px;
+	
+}
+
+ td.label 
+{
+	color: #1C7EFC;
+	font-weight: bold;
+	padding-bottom: 8px ;
+	padding-top: 6px ;
+	height:40px;
+}
+
+td.item
+{
+	text-align:right;
+	height:30px;
+
+
+}
+
+

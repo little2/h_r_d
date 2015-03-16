@@ -1,0 +1,63 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable"  dis="dis_competency_course" style="background-color: yellow;">{$lang.Course}{$lang.Information}</div>
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	<div id="dis_competency_course" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" >
+				
+				
+				<div class="hide">
+					<input id="competency_dic_id" name="competency_dic_id" value="{competency_dic_id}" />
+
+					<input id="course_id" name="course_id" value="{course_id}" />
+				</div>				
+				
+				<table class="tableStyle1"  >				
+					<tr >
+						<td class="label">{$lang.CourseCode}：</td>
+						<td><input type="text" id="course_code" name="course_code" value="{course_code}" />					
+						</td>
+					</tr>					
+					{field_course_title}	
+					{field_course_desc}	
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">			
+		</div>
+	</div>
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_competency_course').dashpanel({	
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_dic_course_info.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

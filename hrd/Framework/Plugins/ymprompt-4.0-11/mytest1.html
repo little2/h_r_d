@@ -1,0 +1,39 @@
+<html>
+ <head>
+	<title>ymPrompt消息提示组件 TEST</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="ymPrompt.js"></script>
+	<link rel="stylesheet" id='skin' type="text/css" href="skin/vista/ymPrompt.css" />
+	<style type="text/css">
+		html{
+			height:100%;width:100%;
+		}
+		body{
+			margin:5px 10px;font-size:12px;
+		}
+	</style>
+	
+ 	<script>
+		function confirmI(tp){
+			alert(tp);
+		}
+		function info(){
+			alert("ok");
+			alert(document.getElementById('ym-window'));
+		}
+		
+		setCss(document.getElementById('ym-window'), 'display:none');
+	</script>
+ </head>
+ <body>
+ <input type="button" value="信息提示" onclick="ymPrompt.alert('用户名必填',null,null,'提示',null)" />
+ <input type="button" value="成功提示" onclick="ymPrompt.succeedInfo('<b>删除成功!</b>',400,260,'删除文档',info)"/>
+ <input type="button" value="失败提示" onclick="ymPrompt.errorInfo('用户删除失败',null,null,'失败',null)" />
+ <input type="button" value="普通弹窗" onclick="ymPrompt.win('<div style=\'font-size:20px;padding-top:30px;padding-left:40px;\'>普通弹出窗口</div>',400,300,'普通弹窗测试')" />
+ <input type="button" value="百度搜索" onclick="ymPrompt.win('http://www.baidu.com',600,400,'百度搜索',null,null,null,true);" />
+ <input type="button" value="询问信息" onclick="ymPrompt.confirmInfo('信息确认框功能测试',null,null,null,confirmI)" />
+ <input type="button" value="短消息" onclick="ymPrompt.alert({message:'悬浮右下角，模拟qq',fixPosition:true,winPos:'rb',showMask:false})" />
+ <input type="button" value="百度搜索2" onclick=" ymPrompt.win({message:'aaa.html',width:500,height:300,title:'腾讯QQ官方网站',iframe:true,dragOut:false})" />
+ 
+ </body>
+</html>

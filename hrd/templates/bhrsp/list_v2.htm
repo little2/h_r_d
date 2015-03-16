@@ -1,0 +1,116 @@
+<style type="text/css">
+    th.ui-th-column div{
+        white-space:normal !important;
+        height:auto !important;
+        padding:2px;
+    }
+</style>
+
+<script type="text/javascript" src="/hrd/Framework/little2.function.js"></script>
+
+
+<body id="body_{gridId}">
+	<input type="hidden" name="empId" value="F39BA5B7-0F25-492B-AB6B-7FFC132EB351" />
+	
+	<div id="tab1">
+		
+		<table id="{gridId}"></table>
+		<div id="{pager}"></div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	$(function() {		
+		//function(id, options, menup)
+		jzsoft.grid("{gridId}", {
+			url : '{url}',
+			postData : {
+				<!-- BEGIN postDataList -->
+				'{postDataList.index}' : '{postDataList.val}',
+				<!-- END postDataList -->
+			},
+			colNames : [ 
+			            <!-- BEGIN COL -->
+			             '{COL.title}', 
+			             <!-- END COL -->
+			            ],
+			colModel : [
+			            <!-- BEGIN COLM -->
+			            {
+			            <!-- BEGIN COLM_DETAIL -->
+			             {COLM.COLM_DETAIL.title}:{COLM.COLM_DETAIL.value} , 
+			             <!-- END COLM_DETAIL -->			            
+			            },
+			            <!-- END COLM -->
+			],		
+			autowidth : true,
+			footerrow: {footerrow},
+			userDataOnFooter: {userDataOnFooter}, // use the userData parameter of the JSON response to display data on footer
+			height : {height},
+			multiselect : {multiselect},
+			rowNum:25,
+			toolbar :{toolbar},
+			pager : '#{pager}',
+			scroll: {scroll},
+			//caption: "Products / Category Primary Grid View" // set caption to any string you wish and it will appear on top of the grid
+			grouping: true,
+            groupingView: {
+            	{groupingView}
+            }
+		});
+
+		/*
+        // get the header row which contains
+        headerRow = jzsoft.grid.closest("div.ui-jqgrid-view")
+            .find("table.ui-jqgrid-htable>thead>tr.ui-jqgrid-labels");
+    
+        // increase the height of the resizing span
+        resizeSpanHeight = 'height: ' + headerRow.height() + 'px !important; cursor: col-resize;';
+        headerRow.find("span.ui-jqgrid-resize").each(function () {
+            this.style.cssText = resizeSpanHeight;
+        });
+    
+        // set position of the dive with the column header text to the middle
+        rowHight = headerRow.height();
+        headerRow.find("div.ui-jqgrid-sortable").each(function () {
+            var ts = $(this);
+            ts.css('top', (rowHight - ts.outerHeight()) / 2 + 'px');
+        });
+		*/
+		
+	
+		
+		jzsoft.grid.inlineMenu({
+			grid : "{inline_gridId}",
+			paper : "{pager}",
+			baseUrl : '{baseUrl}',
+			saveService : 'saveOrUpdate.html',
+			delService : '{deleUrl}',
+		});
+		
+		
+		jzsoft.grid.newBarMenu({
+			gridId : '{bar_gridId}',
+			baseUrl : '{baseUrl}',
+			 <!-- BEGIN BUTTONS -->
+			{BUTTONS.bclass}:{
+				name:"{BUTTONS.name}",
+				title:"{BUTTONS.title}",
+				bclass:"{BUTTONS.bclass}",				
+				body:"{BUTTONS.body}",
+				returnUrl:"{BUTTONS.returnUrl}",
+ 		   		data:{{BUTTONS.data}},
+ 		   		height:parseInt({BUTTONS.height}),
+ 		   		width:parseInt({BUTTONS.width}),
+ 		   		onpress:{BUTTONS.onpress},
+ 		   		<!-- BEGIN BUTTONS_PAR -->
+ 		   		{BUTTONS.BUTTONS_PAR.title}:"{BUTTONS.BUTTONS_PAR.value}",
+ 		   		<!-- END BUTTONS_PAR -->
+ 		   		
+			},
+			<!-- END BUTTONS -->	
+		});
+		
+	});
+
+</script>

@@ -1,0 +1,119 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/hrd/Framework/g3.buttons.js"></script>
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+
+
+
+
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+
+	<div id="dis_mail_server"  >
+		<div class="uc1">
+			<form method="post" id="formPost" action="">
+			<DIV class="hide">
+				<input id="exist_data" name="exist_data" value="{exist_data}" />
+			</DIV>
+		<div style="border-bottom: 1px #cecece solid;margin-top: 15px;width:97%;margin-left: 20px;">
+				<div style="font-size:16px;font-weight: bold; ">{$lang.Setting}</div>
+				
+		</div>
+	
+		<table class="tableStyle1"  >
+			<tr>
+				<td colspan="2"><div class="t1">郵件賬號：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="text" name="smtp_account" id="smtp_account" value="{smtp_account}" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="t1">密碼：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="password" name="smtp_password" id="smtp_password" value="{smtp_password}" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="t1">SMTP服務器：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="text" name="smtp_server" id="smtp_server" value="{smtp_server}" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="t1">SSL：</div></td>
+				<td colspan="2"><div class="i1">
+					<select id="smtp_ssl" name="smtp_ssl">
+						<option value="T"  {selected_smtp_ssl_T}>是</option>
+						<option value="F"  {selected_smtp_ssl_F}>否</option>
+					</select>
+					
+					</div></td>
+				<td>
+			</tr>
+			
+			<tr>
+				<td colspan="2"><div class="t1">端口：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="text" name="smtp_port" id="smtp_port" value="465" size="6" class="contxt" />
+					</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</div>
+
+		<div class="uc2">
+			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
+			<input type="button" class="labButton" id="validate" value="驗證" />
+			<input class="labButton hide" name="bt_cancel" id="bt_cancel" type="button"  value="取消"   />
+			
+			
+		</div>	
+	
+	</div>
+	
+</div>
+</body>
+
+<script type="text/javascript">
+	$(function() {		
+		//##### 需客制化修改 ##############################################
+		$('#dis_mail_server').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save:function(event){
+        		var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        		
+				var o = {
+						data: $("#formPost",formContainer).serialize(),
+						url:this.save_url,
+						element_id:this.element_id,
+						onSuccess:function(data){		
+								var container =$('#container_'+this.element_id);
+								if(data.errmsg)
+								{
+									$(container).message(data.errmsg);
+								}
+								else
+								{
+										$('#exist_data').val('1');	
+								}	
+									
+							
+									
+							}					
+				}				
+				var msg=mypost(o);		},
+			save_url:'/hrd/function/saveOrUpdate/save_smtp.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+</html>

@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+	
+	var quiz_row=new Array();
+	quiz_row[1]={text:"若想了解教師如何引導學生產生自治幹部、運用小組合作學習進行工作分派、檢視燈光、座位安排是否合適、布置內容是否與學習內容相結合、學生專注於學習等表現情形，可以以哪ㄧ個評鑑規準做為討論的參考依據？",title:"發展專案章程"};
+	quiz_row[2]={text:"在國內學者研發的各個中小學教師專業發展評鑑規準版本中，可以歸納為幾個共通的向度？",title:"發展專案章程"};
+	quiz_row[3]={text:"我國第一次推動有關教師的專業評鑑，以下是四位教師討論時發表的看法，請判斷誰的發言內容有必要加以修正？成弘老師：有如身體檢查，找出自己應改善的缺點，對老師一定有幫助。欣宜老師：校內教師進行同儕互評，這樣的評鑑環境非常安全。大雄老師：很可能會影響我們的考績，我可能會被列入不適任教師。小真老師：大家不必急，我們先好好的討論，穩紮穩打目標正確最重要。？",title:"發展專案章程"};
+
+
+	$(function() {		
+		var container=$('#container_{elementID}');
+		$(".lable",container).each(function() {
+			$(this).click(function() {
+				var divn = $(this).attr("dis");
+				$(".lable",container).each(function() {
+					$(this).css("background-color", "#F0F0F0");
+				});
+				$(".labDiv",container).each(function() {
+					$(this).hide();
+				});
+				$(this).css("background-color", "yellow");
+				$("#" + divn).show();
+			});
+		});
+	
+	});
+
+
+
+</script>
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<div class="lable"  dis="dis_evaluation"  style="background-color: yellow;">評鑑表信息</div>
+		<div class="lable"  dis="dis_quiz" >評鑑題目</div>		
+		<div class="lable"  dis="dis_suggest" >開放建議</div>		
+
+	</div>
+
+	<div id="dis_evaluation" class="labDiv"   style="display: block;">
+			<table class="tableStyle1"  >
+					<tr>
+						<td height="30" class="label">被評鑑人：</td>
+						<td>柯文折</td>
+					</tr>
+					<tr>
+						<td height="30"  class="label">部門：</td>
+						<td>什麼部</td>
+					</tr>
+					<tr>
+						<td height="30"  class="label">職稱：</td>
+						<td>四長</td>
+					</tr>
+					
+					
+					<tr>
+						<td height="30"  class="label">職能項目：</td>
+						<td>職職能項目職能項目職能項目</td>
+					</tr>
+					<tr>
+						<td height="30"  class="label">職能定義：</td>
+						<td>定義定義定義職職能項目職能項目職能項目</td>
+					</tr>
+						
+				</table>
+		
+			
+	</div>
+		
+	
+	<div id="dis_quiz" class="labDiv"   >
+		<div class="uc1">		
+			
+			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:5px">
+				<tr>
+					<td width="90%">	
+						<h3>第一級</h3>
+						職能項目四的第一級的行為描述
+						<br>							
+					</td>
+					<td>
+						<input type="radio" id="a" name="a"  disabled>0.2<br>
+						<input type="radio" id="a" name="a"  disabled>0.4<br>
+						<input type="radio" id="a" name="a"  disabled>0.6<br>
+						<input type="radio" id="a" name="a"  disabled>0.8<br>
+						<input type="radio" id="a" name="a"  disabled>1.0<br>
+					</td>
+				</tr>					
+			</table>
+			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top:5px;padding:5px">
+				<tr>
+					<td width="90%">	
+						<h3>第二級</h3>
+						職能項目四的第一級的行為描述
+						<br>							
+					</td>
+					<td>
+						<input type="radio" id="a" name="a"  disabled>1.2<br>
+						<input type="radio" id="a" name="a"  disabled>2.4<br>
+						<input type="radio" id="a" name="a"  disabled>1.6<br>
+						<input type="radio" id="a" name="a"  disabled>1.8<br>
+						<input type="radio" id="a" name="a"  disabled>2.0<br>
+					</td>
+				</tr>					
+			</table>	
+
+			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top:5px;padding:5px;background: #F1FF55;">
+				<tr>
+					<td width="90%">	
+						<h3>第三級</h3>
+						職能項目四的第一級的行為描述
+						<br>							
+					</td>
+					<td>
+						<input type="radio" id="a" name="a">2.2<br>
+						<input type="radio" id="a" name="a">2.4<br>
+						<input type="radio" id="a" name="a">2.6<br>
+						<input type="radio" id="a" name="a">2.8<br>
+						<input type="radio" id="a" name="a">3.0<br>
+					</td>
+				</tr>					
+			</table>	
+
+			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top:5px;padding:5px">
+				<tr>
+					<td width="90%">	
+						<h3>第四級</h3>
+						職能項目四的第一級的行為描述
+						<br>							
+					</td>
+					<td>
+						<input type="radio" id="a" name="a"  disabled>3.2<br>
+						<input type="radio" id="a" name="a"  disabled>3.4<br>
+						<input type="radio" id="a" name="a"  disabled>3.6<br>
+						<input type="radio" id="a" name="a"  disabled>3.8<br>
+						<input type="radio" id="a" name="a"  disabled>4.0<br>
+					</td>
+				</tr>					
+			</table>									
+		</div>
+		<div class="uc2" style="width:94%;margin-left: 20px;">
+			<div   style="float:left;">
+				<input class="labButton"  name="bt_cancel"  id="bt_cancel" type="button"  value="上一題" onClick='exam_pre();'/>
+				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />
+			</div>
+			<div  style="float:right;">
+				<input class="labButton" name="bt_list" id="bt_list" type="button"  value="列表"  onClick='exam_list();' />
+				<input class="labButton hide" name="bt_quiz" id="bt_quiz" type="button"  value="題目"  onClick='exam_quiz();' />
+				
+				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='exam_save();' />
+				<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="下一題" onClick='exam_next();' align='right'  />
+			</div>
+		</div>
+	</div>	
+
+	<div id="dis_suggest" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>開放建議</td></tr></table>		
+	</div>	
+	
+	
+
+	
+
+
+	
+</div>	
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_labDiv_teacher').dashpanel({	
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_training_teacher.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<div class="lable"  dis="dis_labDiv_teacher" style="background-color: yellow;">{$lang.TrainingTeacher}{$lang.Information}</div>
+	</div>
+	
+	<div id="dis_labDiv_teacher" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" >
+				
+				<!-- #####隱藏欄位/需客制化修改 ##############################################-->
+				<div class="hide">
+					<input id="competency_id" name="competency_id" value="{competency_id}" />
+					<input id="competency_level_id" name="competency_level_id" value="{competency_level_id}" />
+					<input id="training_teacher_id" name="training_teacher_id" value="{training_teacher_id}" />
+				</div>             
+				<!-- #####隱藏欄位/需客制化修改 ##############################################-->
+				
+				<table class="tableStyle1"  >					
+					{field_training_teacher}	
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">			
+		</div>
+	</div>
+</div>	
+</body>
+</html>
