@@ -23,10 +23,55 @@ function init_tab(container_id)
 	});		
 }
 
+function mypost(o)
+{
+//	$.Dialog.close()
 
+	$(this).message("Wait");
+//	$.blockUI({ message: '<h2><img src="./images/busy.gif" /> 處理中, 請稍侯...</h2>' });        		
+	var data = (o.data)?o.data:$("#formPost").serialize();	
+	$.ajax({
+		type : 'POST', //GET or POST
+		url : o.url, 						//請求的頁面
+		cache : false,									//防止抓到快取的回應
+		data : data, //要傳送到頁面的參數
+		success :  function(data) {
+				//$.unblockUI();
+				o.onSuccess(data)
+			}, 			
+		error : function(data) {
+			//$.unblockUI();
+			alert("Error");
+		}, //當請求失敗後此事件會被呼叫
+		statusCode : { //狀態碼處理
+			404 : function() {
+				//$.unblockUI();
+				alert ("page not found");        				
+			}
+		}
+	});	 
+}
 
+/*
+function open_department(group_id)
+{
+	var setting = new Object();		    
+	//http://localhost/hrd/organization/department/edit.html?company_id=1&gridId=organization_department_list&entity.key=3
+	setting.body="./organization/department/edit.html?entity.key="+group_id+"&gridId=organization_department_list"
+	jzsoft.grid.openDialog(setting)	
+}
 
-
+function open_dialog(key,gridId)
+{
+	console.log(gridId);
+	grid_row=gridId.split('_');
+	
+	var setting = new Object();		    
+	//http://localhost/hrd/organization/department/edit.html?company_id=1&gridId=organization_department_list&entity.key=3
+	setting.body="./"+grid_row[0]+'/'+grid_row[1]+'/edit.html?entity.key='+key+"&gridId="+gridId	
+	console.log(setting.body);
+	jzsoft.grid.openDialog(setting)	
+}
 
 
 function test123()
@@ -70,37 +115,9 @@ function call_func(obj,nobj)
 	
 
 }
+*/
 
 
-
-function mypost(o)
-{
-//	$.Dialog.close()
-
-	$(this).message("Wait");
-//	$.blockUI({ message: '<h2><img src="./images/busy.gif" /> 處理中, 請稍侯...</h2>' });        		
-	var data = (o.data)?o.data:$("#formPost").serialize();	
-	$.ajax({
-		type : 'POST', //GET or POST
-		url : o.url, 						//請求的頁面
-		cache : false,									//防止抓到快取的回應
-		data : data, //要傳送到頁面的參數
-		success :  function(data) {
-				//$.unblockUI();
-				o.onSuccess(data)
-			}, 			
-		error : function(data) {
-			//$.unblockUI();
-			alert("Error");
-		}, //當請求失敗後此事件會被呼叫
-		statusCode : { //狀態碼處理
-			404 : function() {
-				//$.unblockUI();
-				alert ("page not found");        				
-			}
-		}
-	});	 
-}
 
 
 

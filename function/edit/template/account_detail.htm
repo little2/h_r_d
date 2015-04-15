@@ -47,6 +47,13 @@
 						<td class="label">用戶信息</td>
 						<td ></td>
 					</tr>
+					
+					
+					
+					<tr>
+						<td class="item">{$lang.userWorknumber}：</td>
+						<td ><input type="text" name="user_code" class="contxt" value="{user_code}" /></td>
+					</tr>
 					<tr>
 						<td class="item">{$lang.Account}：</td>
 						<td ><input type="text" name="user_account" class="contxt" value="{user_account}" /></td>
@@ -59,24 +66,39 @@
 						<td class="item">{$lang.userEmail}：</td>
 						<td ><input type="text" name="user_email" class="contxt" value="{user_email}" /></td>
 					</tr>
-					
+					</table>
 
 					
+					<div class="{display_div_loginInfo}" >
+					<table class="tableStyle1"  ><tr>
 					
 					<tr>						
 						<td class="label">安全訊息</td>
 						<td ></td>
 					</tr>
 					
+					
+					
+					<tr>
+						<td class="item">{$lang.AccountStatus}：</td>
+						<td>
+							<select id="account_status" name="account_status">
+								<option value="T" {account_status_selected_T}>啟用</option>
+								<option value="F" {account_status_selected_F}>失效</option>
+							</select>
+						</td>
+					</tr>
 					<tr>
 						<td class="item">{$lang.loginCount}：</td>
-						<td>3214</td>
+						<td>{login_count}</td>
 					</tr>
 					<tr>
 						<td class="item">{$lang.lastLogintime}：</td>
-						<td>2014/11/21 19:22:17</td>
-					</tr>				
-				</table>
+						<td>{login_date}</td>
+					</tr>	
+					</table>			
+					</div>
+				
 				
 			</form>
 		</div>
@@ -87,7 +109,7 @@
 	<div id="dis_position" class="labDiv"   >
 		<div class="uc1">
 			<form method="post" id="formPost" >
-				<div>
+				<div class="hide">
 					<input type="text" name="user_id" class="contxt" value="{user_id}" />
 					<input type="text" name="power_type" class="contxt" value="{power_type}" />
 				</div>

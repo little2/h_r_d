@@ -4,8 +4,7 @@ var jzsoft = {
 	dateFormat : 'yy-mm-dd'
 };
 
-jzsoft.grid = function(id, options, menup) {
-	
+jzsoft.grid = function(id, options, menup) {	
 	$("#" + id).jqGrid($.extend({
 		ajaxGridOptions : {
 			type : "POST"
@@ -97,7 +96,7 @@ jzsoft.grid.formQuery = function(id, tcode, url, title, width, height, divId) {
 		show : "",
 		hide : "",
 		title : title ? title : "查詢",
-		body : "query.html?tcode=" + tcode,
+		body : "function/query/query-evaluation-table-review-appraisee_list.php",
 		buttons : {
 			"查詢" : function() {
 				$("#" + id).jqGrid('setGridParam', {
@@ -629,11 +628,25 @@ jzsoft.grid.rtnLovValue = function(id, t, gid, rowId, p) {
  */
 jzsoft.grid.newBarMenu = function(p) {
 
+	
 	if (p) {
+		
+		var dialogID=$("#"+p.gridId).parentsUntil('div.ui-dialog').last().attr('id');    
+
+		
+		if(dialogID!="undefined")
+		{
+			p.fromDivId=dialogID+"";
+			$('#'+p.fromDivId).parent().find('.ui-dialog-title').attr('data-dialogID',p.fromDivId)			
+		}
+		
+		 var settings = new Object();		    
+		 var settings = $.extend({},p); //物件複製	
+		 
 		var buttons = [];
 
 		for(var index in p)
-		{			
+		{						
 			switch(index)
 			{
 		
@@ -662,13 +675,26 @@ jzsoft.grid.newBarMenu = function(p) {
 						separator : true
 					});					
 					break;
+
+				case "filter":
+					buttons.push({
+						name : '篩選',
+						bclass : 'filter',
+						onpress : function() {
+							jzsoft.grid.formFilter(p);
+						}
+					});
+					buttons.push({
+						separator : true
+					});					
+					break;					
 					
 				case "delete":
 					buttons.push({
 						name : p.delete.name,
 						bclass : 'delete',
 						onpress : function() {							
-							jzsoft.grid.multiDele(p.gridId, p.delete.body);
+							jzsoft.grid.newmultiDele(settings);
 						}
 					});
 					buttons.push({
@@ -682,6 +708,8 @@ jzsoft.grid.newBarMenu = function(p) {
 						name : p.edit.name,
 						bclass : 'edit',
 						onpress : function() {
+							
+							
 							jzsoft.grid.newformEdit(p);
 						}
 					});
@@ -708,8 +736,8 @@ jzsoft.grid.newBarMenu = function(p) {
 						name : '匯入',
 						bclass : 'import',
 						onpress : function() {
-							p.import.width=400;
-							p.import.height=400;					
+							p.import.width=840;
+							p.import.height=620;					
 							jzsoft.grid.openDialog(p.import);
 						}
 					});
@@ -767,28 +795,28 @@ jzsoft.grid.newBarMenu = function(p) {
  *  * @param
  */
 jzsoft.grid.newformAdd = function(p) {
-
 	var url=p.add.body;
 
 	//url, formKeys, title, width, height, divId ,data
 	
 	//console.log('add:'+url);
-	if (p.formKeys) {
-		
+	if (p.formKeys) {		
 		if (p.url.indexOf('?') > -1) {
 			url += '&';
 		} else {
 			url += '?';
 		}
-		url += jzsoft.grid.formKey(p.formKeys);
-		
+		url += jzsoft.grid.formKey(p.formKeys);		
 	}
 		
 	
 	 var setting = new Object();		    
 	 var setting = $.extend({}, p.add); //物件複製		
+	 setting.fromDivId = p.fromDivId;
 	 setting.body+= ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
-	 	
+	
+	 //this.labelledby=$(this.container).parentsUntil('div.ui-dialog').parent().attr('aria-labelledby');
+	 
 //	console.log(setting);
 	jzsoft.grid.openDialog(setting)
 
@@ -833,8 +861,9 @@ jzsoft.grid.newformEdit = function(p) {
 		}
 		
 
-		 var setting = new Object();		    
+		 var setting = new Object();		
 		 var setting = $.extend({}, p.edit); //物件複製		
+		 setting.fromDivId = p.fromDivId;		 
 		 setting.body=url+ ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
 		jzsoft.grid.openDialog(setting)
 
@@ -896,7 +925,70 @@ jzsoft.grid.newformView = function(p) {
 	}
 };
 
-jzsoft.grid.openDialog = function(setting) {
+
+/**
+ * 新的BarMenu 刪除功能
+ *  * @param
+ */
+jzsoft.grid.newmultiDele = function(setting) {
+	id=setting.gridId;
+	url=setting.delete.body;
+	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');
+	if (sels == "") {
+		//jzsoft.grid.dele(id, url);
+	} else {
+		var confirmMsg=null;
+		confirmMsg=(typeof(setting.delete.confirmMsg)!="undefined")?setting.delete.confirmMsg:'您是否確認刪除？';
+		if (confirm(confirmMsg)) {
+			var len = sels.length;
+			var ids = "";
+			for ( var i = 0; i < len; i++) {
+				var rowdata = $("#" + id).jqGrid("getRowData", sels[i]);
+				if(ids.length>0)
+				{
+					ids +="&";
+				}
+				
+				ids += 'keys['+rowdata.key+']=' + rowdata.key;
+			}
+						
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : ids,
+				beforeSend : function() {
+					$("#" + id).message("正在請求...");
+				},
+				error : function() {
+					$("#" + id).message("請求失敗...");
+				},
+				success : function(data) {
+					if (data.msg) {
+						$("#" + id).message("操作失敗！");
+					} else {
+						$("#" + id).trigger("reloadGrid");
+						$("#" + id).message("已成功刪除!");
+					}
+				}
+			});
+		}
+	}
+};
+
+
+jzsoft.grid.openDialog = function(setting) {	
+	
+
+	if(setting.fromDivId!="undefined")
+	{
+		setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+" > "+setting.title;
+		//console.log(setting.fromDivId)
+	//	console.log(jzsoft.grid.getParentTitle(setting.fromDivId));
+		//console.log($('#'+setting.fromDivId).parent().find('.ui-dialog-title').text());
+	}
+	
+	
+	
 	id=openDialog({	
 		width : setting.width ? setting.width : 1020,
 		height : setting.height ? setting.height : 620,
@@ -907,14 +999,72 @@ jzsoft.grid.openDialog = function(setting) {
 		title : setting.title ? setting.title : "詳細內容",
 		body : setting.body,
 		data : setting.data,
-		buttons : null
+		buttons : setting.buttons
 	});
+	
+
+	$('#'+id).parent().find('.ui-dialog-title').attr('data-dialogID',id).attr('data-fromDialogID',setting.fromDivId)	
+};
+
+jzsoft.grid.getParentTitle = function (fromDivId) {
+	var obj=$('#'+fromDivId).parent().find('.ui-dialog-title');
+	console.log(obj);
+	var title=obj.text();	
+	var fromDialogID=obj.attr('data-fromdialogid');	
+//
+//	if(typeof(fromDialogID)!="undefined" )
+//	{
+//		var parentTitle = jzsoft.grid.getParentTitle(fromDialogID);
+//		if(typeof(parentTitle)!="undefined")
+//		{
+//			console.log('parentTitle='+parentTitle);
+//			title=parentTitle + " > " + title;
+//		}
+//	}
+	
+	return title;
+}
+
+
+jzsoft.grid.formFilter = function(p) {
+	
+	var setting = new Object();		    
+	setting = $.extend({}, p.filter); //物件複製			 
+	setting.gridId = p.gridId;
+		
+	setting.width=400;
+	setting.height=300;
+	setting.title='篩選條件';
+	
+	/*
+	 	var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        	        	
+        $("#" + this.pick_list_id).jqGrid('setGridParam', {				
+        		postData : $("#formPost",formContainer).serialize(),
+        		page : 1
+        }).trigger("reloadGrid");
+	 */
+	
+	setting.buttons={
+			"選篩" : function(event) {				
+				var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	   
+				console.log(formContainer)
+				$("#" + setting.gridId).jqGrid('setGridParam', {				
+					postData :$("#formQueryPost",formContainer).serialize(),
+					page : 1
+				}).trigger("reloadGrid");
+				console.log($("#formQueryPost"));
+				closeDialog(this.id);
+				
+			},
+			"關閉" : function() {
+				closeDialog(this.id);
+			}
+		};
+	jzsoft.grid.openDialog(setting);
 };
 
 
 jzsoft.grid.sendPost = function(id, url) {
-
-
 	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');	
 	if (sels == "") {
 		//jzsoft.grid.dele(id, url);
@@ -950,6 +1100,5 @@ jzsoft.grid.sendPost = function(id, url) {
 				}
 			});
 		}
-	}
-	
+	}	
 };

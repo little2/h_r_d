@@ -97,7 +97,7 @@
 				<tr>
 					<td height="30"  class="right">{COMPETENCY_STANDARD.competency_title}：</td>
 					<td>
-						<input type="text"  id="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  name="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  value='{COMPETENCY_STANDARD.level}' />
+						<input class="tag_competency_level" type="text"  id="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  name="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  value='{COMPETENCY_STANDARD.level}' />
 					</td>
 				</tr>
 				<!-- END COMPETENCY_STANDARD -->
@@ -128,7 +128,14 @@
 		$('#dis_competencystandard_mng').dashpanel({		
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
-			save_url:'/hrd/function/saveOrUpdate/save_job_competency.php'
+			save_url:'/hrd/function/saveOrUpdate/save_job_competency.php',
+			check_before_save:function(){
+				$('.tag_competency_level').each(function(){
+					//console.log(this.value);
+					//？？？最大值需小於等於該模型的級數標準
+				})
+				return false;
+			}
 		});		
 		
 		//##### 需客制化修改 ##############################################

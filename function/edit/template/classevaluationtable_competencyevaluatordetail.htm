@@ -52,7 +52,7 @@
 		<div class="uc1">
 			<form method="post" id="formPost">
 				
-				<div class="hide">
+				<div class="text">
 					<input type="text" name="class_evaluation_evaluator_id"  id="{class_evaluation_evaluator_id}"  value="{class_evaluation_evaluator_id}" />
 					class_evaluation_competency_id:<input type="text" name="class_evaluation_competency_id"  id="{class_evaluation_competency_id}"  value="{class_evaluation_competency_id}" />
 				</div>
@@ -67,11 +67,17 @@
 					<tr>
 						<td class="item">權重：</td>
 						<td>
-							<input type="text" name="weight"  value="{weight}" />
-						
+							<input type="text" name="weight"  value="{weight}" />						
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input class="labButton" type="button"  value="預覽評鑑表"   onClick="evaluation_table_preview('{class_evaluation_evaluator_id}')"/>
 						</td>
 					</tr>
 				</table>
+				
+				
 				
 			</form>
 		</div>
@@ -106,9 +112,24 @@
 			save_url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_evaluator.php'		
 		});	
 		
+		
+
+		
 		//##### 需客制化修改 ##############################################
 	}); 
 	
+	function evaluation_table_preview(class_evaluation_evaluator_id)
+	{
+		 var setting = new Object();		   
+		 console.log(class_evaluation_evaluator_id);
+		 setting.title ='評鑑表';
+		 setting.body ='/hrd/class-competency-evaluation/detail/edit.html?entity_key='+class_evaluation_evaluator_id;
+		 setting.data={class_evaluation_evaluator_id:class_evaluation_evaluator_id}
+//		console.log(setting);
+		jzsoft.grid.openDialog(setting)
+	}
+	
+
 
 </script>
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Mar 16, 2015, 10:58 AM
+-- 建立日期: Mar 23, 2015, 09:10 AM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_table` (
 --
 
 INSERT INTO `basis_evaluation_table` (`basis_evaluation_table_id`, `basis_evaluation_table_code`, `is_show_competency`, `due_date`, `competency_model_id`, `evaluation_scale_id`, `basis_evaluation_table_status`) VALUES
-(3, '', 'F', '2015-01-25', 33, 0, '');
+(3, '', '0', '2015-01-25', 33, 1, '');
 
 -- --------------------------------------------------------
 
@@ -267,18 +267,15 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_appraisee` (
   `professional_competency_model_id` int(10) unsigned NOT NULL,
   `class_evaluation_appraisee_stauts` varchar(3) NOT NULL DEFAULT 'EDT',
   PRIMARY KEY (`class_evaluation_appraisee_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 列出以下資料庫的數據： `class_evaluation_appraisee`
 --
 
 INSERT INTO `class_evaluation_appraisee` (`class_evaluation_appraisee_id`, `appraisee_uid`, `core_competency_model_id`, `manage_competency_model_id`, `general_competency_model_id`, `professional_competency_model_id`, `class_evaluation_appraisee_stauts`) VALUES
-(1, 3, 0, 0, 0, 0, 'EDT'),
-(2, 8, 0, 0, 0, 0, 'EDT'),
-(3, 0, 0, 0, 0, 0, 'EDT'),
-(4, 109, 0, 0, 0, 0, 'PUB'),
-(5, 108, 0, 0, 0, 0, 'REV');
+(1, 1, 0, 0, 0, 0, 'EDT'),
+(2, 0, 0, 0, 0, 0, 'EDT');
 
 -- --------------------------------------------------------
 
@@ -298,19 +295,13 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_competency` (
   `evaluate_result` varchar(3) CHARACTER SET utf8 NOT NULL,
   `competency_adjusted_date` datetime NOT NULL,
   PRIMARY KEY (`class_evaluation_competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- 列出以下資料庫的數據： `class_evaluation_competency`
 --
 
 INSERT INTO `class_evaluation_competency` (`class_evaluation_competency_id`, `class_evaluation_appraisee_id`, `competency_id`, `competency_level`, `class_evaluation_competency_status`, `due_date`, `competency_score`, `competency_score_adjusted`, `evaluate_result`, `competency_adjusted_date`) VALUES
-(4, 2, 56, 5, 'REV', '0000-00-00', 4.34, 4.52, '', '2015-02-26 23:50:24'),
-(5, 1, 63, 3, 'REV', '0000-00-00', 3.80, 0.00, '', '0000-00-00 00:00:00'),
-(6, 2, 57, 5, 'EDT', '0000-00-00', 3.60, 0.00, '', '0000-00-00 00:00:00'),
-(7, 4, 63, 4, 'REV', '0000-00-00', 0.00, 0.00, '', '0000-00-00 00:00:00'),
-(8, 4, 56, 2, 'REV', '0000-00-00', 0.00, 0.00, '', '0000-00-00 00:00:00'),
-(9, 5, 56, 5, 'REV', '0000-00-00', 0.00, 3.12, '', '2015-03-11 16:33:53'),
 (1, 1, 56, 2, 'EDT', '0000-00-00', 0.00, 0.00, '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
@@ -330,20 +321,12 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_evaluator` (
   `weight_adjusted` int(11) NOT NULL,
   `adjusted_date` datetime NOT NULL,
   PRIMARY KEY (`class_evaluation_evaluator_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `class_evaluation_evaluator`
 --
 
-INSERT INTO `class_evaluation_evaluator` (`class_evaluation_evaluator_id`, `class_evaluation_competency_id`, `user_id`, `weight`, `evalutor_score`, `class_evaluation_evaluator_status`, `evalutor_score_adjusted`, `weight_adjusted`, `adjusted_date`) VALUES
-(4, 4, 10, 20, 4.80, 'EDT', 4.80, 20, '2015-02-26 23:50:24'),
-(2, 4, 11, 70, 4.20, 'PAS', 4.45, 70, '2015-02-26 23:50:24'),
-(6, 4, 7, 10, 4.40, 'EDT', 4.40, 10, '2015-02-26 23:50:24'),
-(7, 5, 10, 100, 3.80, 'EDT', 0.00, 0, '0000-00-00 00:00:00'),
-(13, 6, 7, 100, 3.60, 'EDT', 0.00, 0, '0000-00-00 00:00:00'),
-(14, 9, 109, 60, 0.00, 'PAS', 4.00, 60, '2015-03-11 16:33:53'),
-(15, 9, 107, 40, 0.00, 'PAS', 1.80, 40, '2015-03-11 16:33:53');
 
 -- --------------------------------------------------------
 
@@ -369,15 +352,13 @@ INSERT INTO `competency` (`competency_id`, `competency_type`, `competency_method
 (53, 'M', 'B', 33, 1.0, 0),
 (54, 'M', 'B', 33, 1.0, 0),
 (55, 'M', 'B', 33, 1.0, 0),
-(56, 'P', 'C', 34, 0.0, 7),
-(57, 'P', 'C', 34, 0.0, 6),
+(56, 'P', 'C', 34, 0.0, 0),
+(57, 'P', 'C', 34, 0.0, 0),
 (58, 'P', 'C', 34, 0.0, 0),
 (59, 'P', 'C', 34, 0.0, 0),
-(60, 'P', 'C', 34, 0.0, 6),
+(60, 'P', 'C', 34, 0.0, 0),
 (61, 'P', 'C', 34, 0.0, 0),
 (62, 'P', 'C', 34, 0.0, 0),
-(63, 'M', 'C', 35, 0.0, 0),
-(64, 'M', 'C', 35, 0.0, 0),
 (69, 'M', 'B', 38, 1.0, 0),
 (68, 'M', 'B', 38, 1.0, 0),
 (67, 'C', 'B', 0, 0.0, 0),
@@ -412,21 +393,12 @@ CREATE TABLE IF NOT EXISTS `competency_dic` (
   `competency_dic_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_type` varchar(5) NOT NULL,
   PRIMARY KEY (`competency_dic_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `competency_dic`
 --
 
-INSERT INTO `competency_dic` (`competency_dic_id`, `competency_type`) VALUES
-(1, 'C'),
-(2, 'C'),
-(3, 'M'),
-(4, 'M'),
-(5, 'C'),
-(6, 'C'),
-(7, 'C'),
-(8, 'C');
 
 -- --------------------------------------------------------
 
@@ -439,14 +411,12 @@ CREATE TABLE IF NOT EXISTS `competency_dic_course` (
   `competency_dic_id` int(10) unsigned NOT NULL,
   `course_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`competency_dic_course_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `competency_dic_course`
 --
 
-INSERT INTO `competency_dic_course` (`competency_dic_course_id`, `competency_dic_id`, `course_id`) VALUES
-(2, 2, 55);
 
 -- --------------------------------------------------------
 
@@ -458,18 +428,14 @@ CREATE TABLE IF NOT EXISTS `competency_evaluation` (
   `competency_evaluation_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`competency_evaluation_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- 列出以下資料庫的數據： `competency_evaluation`
 --
 
 INSERT INTO `competency_evaluation` (`competency_evaluation_id`, `competency_level_id`) VALUES
-(7, 14),
-(8, 20),
-(9, 21),
-(10, 22),
-(11, 24);
+(7, 14);
 
 -- --------------------------------------------------------
 
@@ -493,21 +459,21 @@ INSERT INTO `competency_level` (`competency_level_id`, `competency_id`, `compete
 (18, 0, 3),
 (17, 0, 2),
 (19, 0, 4),
-(20, 56, 1),
-(21, 56, 2),
-(22, 56, 3),
-(23, 56, 4),
-(24, 56, 5),
-(25, 63, 1),
-(26, 63, 2),
-(27, 63, 3),
-(28, 63, 4),
-(29, 63, 5),
-(30, 57, 1),
-(31, 57, 2),
-(32, 57, 3),
-(33, 57, 4),
-(34, 57, 5),
+(20, 63, 1),
+(21, 64, 1),
+(22, 56, 1),
+(23, 56, 2),
+(24, 56, 3),
+(25, 56, 4),
+(26, 65, 1),
+(27, 66, 1),
+(28, 67, 1),
+(29, 68, 1),
+(30, 69, 1),
+(31, 70, 1),
+(32, 71, 1),
+(33, 72, 1),
+(34, 73, 1),
 (35, 74, 1),
 (36, 75, 1),
 (37, 76, 1),
@@ -560,10 +526,9 @@ CREATE TABLE IF NOT EXISTS `competency_model` (
 --
 
 INSERT INTO `competency_model` (`competency_model_id`, `competency_model_count`, `competency_model_type`, `competency_model_method`, `competency_level_number`) VALUES
-(33, 3, 'M', 'B', 0),
-(34, 7, 'P', 'C', 0),
-(35, 2, 'M', 'C', 2147483647),
 (39, 6, 'M', 'B', 0),
+(34, 7, 'P', 'C', 0),
+(35, 1, 'C', 'B', 0),
 (38, 6, 'M', 'B', 0),
 (40, 5, 'M', 'B', 0),
 (42, 5, 'P', 'C', 0);
@@ -604,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `course_property` (
   `catalog_id` int(11) NOT NULL,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`course_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
 -- 列出以下資料庫的數據： `course_property`
@@ -613,7 +578,6 @@ CREATE TABLE IF NOT EXISTS `course_property` (
 INSERT INTO `course_property` (`course_id`, `course_code`, `catalog_id`, `competency_level_id`) VALUES
 (52, '', 0, 14),
 (53, '', 0, 14),
-(55, 'fdfsfd', 0, 0),
 (54, '', 0, 22);
 
 -- --------------------------------------------------------
@@ -657,7 +621,7 @@ CREATE TABLE IF NOT EXISTS `evaluation_scale` (
 --
 
 INSERT INTO `evaluation_scale` (`evaluation_scale_id`, `evaluation_scale_item_count`, `evaluation_scale_basis`, `evaluation_scale_status`) VALUES
-(1, 0, 0.00, NULL),
+(1, 0, 5.00, NULL),
 (2, 0, 3.00, NULL);
 
 -- --------------------------------------------------------
@@ -699,19 +663,12 @@ CREATE TABLE IF NOT EXISTS `favorite_url` (
   `favorite_title` varchar(50) CHARACTER SET utf8 NOT NULL,
   `favorite_url` varchar(200) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`favorite_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `favorite_url`
 --
 
-INSERT INTO `favorite_url` (`favorite_id`, `favorite_title`, `favorite_url`) VALUES
-(1, '1', 'A'),
-(2, '2', 'B'),
-(3, '3', 'http://lms.com'),
-(4, '4', 'D'),
-(5, '5', 'E'),
-(6, '6', 'F');
 
 -- --------------------------------------------------------
 
@@ -723,131 +680,12 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `groups_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `groups_code` varchar(20) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`groups_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=153 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `groups`
 --
 
-INSERT INTO `groups` (`groups_id`, `groups_code`) VALUES
-(1, '1'),
-(31, '5'),
-(32, '6'),
-(33, '4'),
-(34, '5'),
-(35, '6'),
-(36, '4'),
-(37, '5'),
-(38, '6'),
-(39, '3'),
-(40, '4'),
-(41, '5'),
-(42, '6'),
-(43, '4'),
-(44, '5'),
-(45, '6'),
-(46, '4'),
-(47, '5'),
-(48, '6'),
-(49, '4'),
-(50, '5'),
-(51, '6'),
-(52, '4'),
-(53, '5'),
-(54, '6'),
-(55, '3'),
-(56, '4'),
-(57, '5'),
-(58, '6'),
-(59, '4'),
-(60, '5'),
-(61, '6'),
-(62, '4'),
-(63, '5'),
-(64, '6'),
-(65, '4'),
-(66, '5'),
-(67, '6'),
-(68, '4'),
-(69, '5'),
-(70, '6'),
-(71, '3'),
-(72, '4'),
-(73, '5'),
-(74, '6'),
-(75, '4'),
-(76, '5'),
-(77, '6'),
-(78, '4'),
-(79, '5'),
-(80, '6'),
-(81, '4'),
-(82, '5'),
-(83, '6'),
-(84, '4'),
-(85, '5'),
-(86, '6'),
-(87, '3'),
-(88, '4'),
-(89, '5'),
-(90, '6'),
-(91, '4'),
-(92, '5'),
-(93, '6'),
-(94, '4'),
-(95, '5'),
-(96, '6'),
-(97, '4'),
-(98, '5'),
-(99, '6'),
-(100, '4'),
-(101, '5'),
-(102, '6'),
-(103, '3'),
-(104, '4'),
-(105, '5'),
-(106, '6'),
-(107, '4'),
-(108, '5'),
-(109, '6'),
-(110, '4'),
-(111, '5'),
-(112, '6'),
-(113, '4'),
-(114, '5'),
-(115, '6'),
-(116, '4'),
-(117, '5'),
-(118, '6'),
-(119, '3'),
-(120, '4'),
-(121, '5'),
-(122, '6'),
-(123, '4'),
-(124, '5'),
-(125, '6'),
-(126, '4'),
-(127, '5'),
-(128, '6'),
-(129, '4'),
-(130, '5'),
-(131, '6'),
-(132, '4'),
-(133, '5'),
-(134, '6'),
-(135, '3'),
-(136, '4'),
-(137, '5'),
-(138, '6'),
-(139, '4'),
-(140, '5'),
-(141, '6'),
-(142, '4'),
-(143, '5'),
-(144, '6'),
-(145, '4'),
-(146, '5'),
-(147, '6');
 
 -- --------------------------------------------------------
 
@@ -861,14 +699,12 @@ CREATE TABLE IF NOT EXISTS `group_member` (
   `user_id` int(10) unsigned NOT NULL,
   `role` varchar(3) NOT NULL,
   PRIMARY KEY (`group_member_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `group_member`
 --
 
-INSERT INTO `group_member` (`group_member_id`, `group_id`, `user_id`, `role`) VALUES
-(9, 3, 10, 'mem');
 
 -- --------------------------------------------------------
 
@@ -885,17 +721,12 @@ CREATE TABLE IF NOT EXISTS `group_property` (
   `group_level` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `group_property`
 --
 
-INSERT INTO `group_property` (`group_id`, `group_type`, `group_title`, `group_parent_id`, `group_code`, `group_level`, `company_id`) VALUES
-(1, 'dep', '', 0, '', 0, 1),
-(2, 'dep', '', 1, '', 0, 1),
-(3, 'dep', '', 1, '業務部', 0, 1),
-(5, 'dep', '', 3, '陌生拜訪組', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -920,32 +751,32 @@ CREATE TABLE IF NOT EXISTS `job` (
 --
 
 INSERT INTO `job` (`job_id`, `job_family_id`, `job_level`, `job_type_id`, `core_competency_model_id`, `manage_competency_model_id`, `general_competency_model_id`, `professional_competency_model_id`) VALUES
-(13, 6, 3, 5, NULL, 35, NULL, 0),
-(14, 6, 3, 5, NULL, 33, NULL, 0),
-(15, 6, 4, 0, NULL, NULL, NULL, 0),
+(13, 6, 3, 0, NULL, 33, NULL, 0),
+(14, 6, 3, 0, NULL, NULL, NULL, 0),
+(15, 6, 4, 0, NULL, 37, NULL, 0),
 (16, 6, 5, 0, NULL, NULL, NULL, 0),
 (17, 6, 6, 0, NULL, NULL, NULL, 0),
 (18, 6, 7, 0, NULL, NULL, NULL, 0),
 (19, 7, 3, 0, NULL, NULL, NULL, 0),
-(20, 7, 3, 0, NULL, NULL, NULL, 0),
-(24, 7, 5, 0, NULL, NULL, NULL, 0),
-(23, 7, 5, 0, NULL, NULL, NULL, 0),
-(22, 7, 4, 0, NULL, NULL, NULL, 0),
+(20, 7, 3, 0, NULL, NULL, NULL, 34),
 (21, 7, 4, 0, NULL, NULL, NULL, 34),
-(25, 7, 6, 0, NULL, 33, NULL, 0),
-(26, 8, 2, 5, NULL, NULL, NULL, 0),
+(22, 7, 4, 0, NULL, NULL, NULL, 0),
+(23, 7, 5, 0, NULL, NULL, NULL, 0),
+(24, 7, 5, 0, NULL, NULL, NULL, 0),
+(25, 7, 6, 0, NULL, NULL, NULL, 0),
+(26, 8, 2, 0, NULL, NULL, NULL, 0),
 (27, 8, 3, 0, NULL, NULL, NULL, 0),
 (28, 8, 3, 0, NULL, NULL, NULL, 0),
-(29, 8, 4, 0, NULL, NULL, NULL, 0),
+(29, 8, 4, 0, NULL, 33, NULL, 0),
 (30, 8, 4, 0, NULL, NULL, NULL, 0),
 (31, 8, 5, 0, NULL, NULL, NULL, 0),
-(32, 8, 5, 0, NULL, NULL, NULL, 34),
+(32, 8, 5, 0, NULL, NULL, NULL, 0),
 (33, 8, 6, 0, NULL, NULL, NULL, 0),
 (34, 0, 0, 0, NULL, NULL, NULL, 0),
-(35, 7, 4, 0, NULL, NULL, NULL, 34),
-(36, 7, 4, 0, NULL, NULL, NULL, 34),
+(35, 7, 4, 0, NULL, NULL, NULL, 0),
+(36, 7, 4, 0, NULL, 0, NULL, 0),
 (37, 7, 5, 0, NULL, NULL, NULL, 34),
-(38, 7, 5, 7, NULL, NULL, NULL, 34),
+(38, 7, 5, 0, NULL, NULL, NULL, 0),
 (39, 7, NULL, NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -974,29 +805,29 @@ INSERT INTO `job_competency` (`job_competency_id`, `job_id`, `competency_id`, `l
 (14, 35, 60, 2),
 (15, 35, 61, 2),
 (16, 35, 62, 3),
-(17, 36, 56, 3),
-(18, 36, 57, 4),
+(17, 36, 56, 1),
+(18, 36, 57, 1),
 (19, 36, 58, 3),
 (20, 36, 59, 3),
 (21, 36, 60, 2),
-(22, 36, 61, 3),
-(23, 36, 62, 3),
-(24, 37, 56, 1),
-(25, 37, 57, 1),
-(26, 37, 58, 1),
-(27, 37, 59, 1),
-(28, 37, 60, 1),
-(29, 37, 61, 2),
-(30, 37, 62, 2),
-(31, 38, 56, 5),
-(32, 38, 57, 5),
-(33, 38, 58, 1),
-(34, 38, 59, 2),
-(35, 38, 60, 3),
-(36, 38, 61, 5),
-(37, 38, 62, 5),
-(38, 13, 63, 3),
-(39, 13, 64, 2),
+(22, 36, 61, 2),
+(23, 36, 62, 2),
+(24, 13, 53, 2),
+(25, 13, 54, 1),
+(26, 13, 55, 1),
+(27, 13, 64, 1),
+(28, 29, 53, 2),
+(29, 29, 54, 2),
+(30, 29, 55, 2),
+(31, 29, 64, 2),
+(32, 21, 56, 1),
+(33, 21, 57, 1),
+(34, 21, 58, 3),
+(35, 21, 59, 3),
+(36, 21, 60, 2),
+(37, 21, 61, 2),
+(38, 21, 62, 2),
+(39, 20, 56, 0),
 (40, 20, 57, 2),
 (41, 20, 58, 2),
 (42, 20, 59, 1),
@@ -1022,7 +853,7 @@ CREATE TABLE IF NOT EXISTS `job_family` (
   `job_family_id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`job_family_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 列出以下資料庫的數據： `job_family`
@@ -1034,9 +865,7 @@ INSERT INTO `job_family` (`job_family_id`, `company_id`) VALUES
 (8, 1),
 (9, 1),
 (10, 1),
-(11, 1),
-(12, 1),
-(13, 1);
+(11, 1);
 
 -- --------------------------------------------------------
 
@@ -1071,14 +900,12 @@ CREATE TABLE IF NOT EXISTS `majoy_company` (
   `user_id` int(11) NOT NULL,
   `is_update` int(1) DEFAULT NULL,
   PRIMARY KEY (`majoy_company_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `majoy_company`
 --
 
-INSERT INTO `majoy_company` (`majoy_company_id`, `company_id`, `user_id`, `is_update`) VALUES
-(1, 2, 101, 1);
 
 -- --------------------------------------------------------
 
@@ -1091,15 +918,14 @@ CREATE TABLE IF NOT EXISTS `org_company` (
   `groups_id` int(11) NOT NULL,
   `company_code` varchar(20) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`company_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- 列出以下資料庫的數據： `org_company`
 --
 
 INSERT INTO `org_company` (`company_id`, `groups_id`, `company_code`) VALUES
-(1, 1, '公司代碼'),
-(2, 31, 'dsad');
+(1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1119,8 +945,6 @@ CREATE TABLE IF NOT EXISTS `smtp` (
 -- 列出以下資料庫的數據： `smtp`
 --
 
-INSERT INTO `smtp` (`smtp_account`, `smtp_password`, `smtp_server`, `smtp_ssl`, `smtp_port`) VALUES
-('gfd', 'gdf', 'gfdsf', 'F', 127);
 
 -- --------------------------------------------------------
 
@@ -1163,14 +987,15 @@ INSERT INTO `term` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (514, 'course_title', 53, 'tw', '目標設定實務研習'),
 (515, 'course_title', 53, 'cn', ''),
 (516, 'course_title', 53, 'en', ''),
-(830, 'competency_dic_title', 2, 'cn', 'A'),
-(829, 'competency_dic_title', 2, 'tw', 'A'),
+(517, 'competency_model_title', 0, 'tw', '資訊專業職能模型'),
+(518, 'competency_model_title', 0, 'cn', ''),
+(519, 'competency_model_title', 0, 'en', ''),
 (520, 'competency_model_title', 34, 'tw', '資訊專業職能模型'),
 (521, 'competency_model_title', 34, 'cn', ''),
 (522, 'competency_model_title', 34, 'en', ''),
-(828, 'competency_dic_title', 0, 'en', 'A'),
-(827, 'competency_dic_title', 0, 'cn', 'A'),
-(826, 'competency_dic_title', 0, 'tw', 'A'),
+(523, 'competency_model_title', 0, 'tw', '測試專業職能模型'),
+(524, 'competency_model_title', 0, 'cn', ''),
+(525, 'competency_model_title', 0, 'en', ''),
 (526, 'competency_title', 56, 'tw', '系統整合與導入'),
 (527, 'competency_title', 56, 'cn', ''),
 (528, 'competency_title', 56, 'en', ''),
@@ -1315,178 +1140,9 @@ INSERT INTO `term` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (667, 'job_title', 38, 'tw', '高級工程師'),
 (668, 'job_title', 38, 'cn', ''),
 (669, 'job_title', 38, 'en', ''),
-(670, 'b_evalu_table_title', 3, 'tw', '中層管理職能評鑑表'),
+(670, 'b_evalu_table_title', 3, 'tw', '基層管理職能評鑑表'),
 (671, 'b_evalu_table_title', 3, 'cn', ''),
 (672, 'b_evalu_table_title', 3, 'en', ''),
-(825, 'job_family_title', 15, 'en', '職務系列'),
-(824, 'job_family_title', 15, 'cn', '職務系列'),
-(823, 'job_family_title', 15, 'tw', '職務系列'),
-(822, 'job_family_title', 14, 'en', ''),
-(685, 'group_title', 1, 'tw', '董事會'),
-(686, 'group_title', 1, 'cn', ''),
-(687, 'group_title', 1, 'en', ''),
-(688, 'group_title', 2, 'tw', '研發部2'),
-(689, 'group_title', 2, 'cn', ''),
-(690, 'group_title', 2, 'en', ''),
-(691, 'job_family_title', 12, 'tw', '約聘人員'),
-(692, 'job_family_title', 12, 'cn', ''),
-(693, 'job_family_title', 12, 'en', ''),
-(694, 'job_family_title', 13, 'tw', '臨時工'),
-(695, 'job_family_title', 13, 'cn', ''),
-(696, 'job_family_title', 13, 'en', ''),
-(697, 'competency_level_title', 20, 'tw', '1.熟悉企業組織及業務流程 2.檢定或經驗具下列至少一項    a.參與模組導入經驗    b.顧問認證合格    c.內訓通過檢定'),
-(698, 'competency_level_title', 20, 'cn', ''),
-(699, 'competency_level_title', 20, 'en', ''),
-(700, 'competency_level_title', 21, 'tw', '1.維護能力具下列至少一項   a.模組維護滿12個月以上經驗   b.顧問認證合格且模組維護滿      6個月以上'),
-(701, 'competency_level_title', 21, 'cn', ''),
-(702, 'competency_level_title', 21, 'en', ''),
-(703, 'competency_level_title', 22, 'tw', '需求規劃能力    (ERP或BPM/BI/BPC)'),
-(704, 'competency_level_title', 22, 'cn', ''),
-(705, 'competency_level_title', 22, 'en', ''),
-(706, 'competency_level_title', 23, 'tw', '第四級'),
-(707, 'competency_level_title', 23, 'cn', ''),
-(708, 'competency_level_title', 23, 'en', ''),
-(709, 'competency_level_title', 24, 'tw', '第五級'),
-(710, 'competency_level_title', 24, 'cn', ''),
-(711, 'competency_level_title', 24, 'en', ''),
-(712, 'ability_title', 7, 'tw', ''),
-(713, 'ability_title', 7, 'cn', ''),
-(714, 'ability_title', 7, 'en', ''),
-(715, 'ability_title', 8, 'tw', ''),
-(716, 'ability_title', 8, 'cn', ''),
-(717, 'ability_title', 8, 'en', ''),
-(718, 'training_teacher', 20, 'tw', '具有第2級能力者'),
-(719, 'training_teacher', 20, 'cn', ''),
-(720, 'training_teacher', 20, 'en', ''),
-(721, 'training_teacher', 21, 'tw', '廠商'),
-(722, 'training_teacher', 21, 'cn', ''),
-(723, 'training_teacher', 21, 'en', ''),
-(724, 'training_teacher', 22, 'tw', '1.具有第2級能力者 2.廠商'),
-(725, 'training_teacher', 22, 'cn', ''),
-(726, 'training_teacher', 22, 'en', ''),
-(727, 'training_teacher', 23, 'tw', '1.廠商 2.專案經理'),
-(728, 'training_teacher', 23, 'cn', ''),
-(729, 'training_teacher', 23, 'en', ''),
-(730, 'ability_title', 9, 'tw', 'ERP管理師：具備兩個以上    模組第三級能力'),
-(731, 'ability_title', 9, 'cn', ''),
-(732, 'ability_title', 9, 'en', ''),
-(733, 'training_teacher', 24, 'tw', '廠商'),
-(734, 'training_teacher', 24, 'cn', ''),
-(735, 'training_teacher', 24, 'en', ''),
-(736, 'training_teacher', 25, 'tw', '顧問'),
-(737, 'training_teacher', 25, 'cn', ''),
-(738, 'training_teacher', 25, 'en', ''),
-(739, 'competency_model_title', 35, 'tw', '業務職能模型'),
-(740, 'competency_model_title', 35, 'cn', ''),
-(741, 'competency_model_title', 35, 'en', ''),
-(742, 'competency_title', 63, 'tw', '業務職能A'),
-(743, 'competency_title', 63, 'cn', ''),
-(744, 'competency_title', 63, 'en', ''),
-(745, 'competency_title', 64, 'tw', '業務職能B'),
-(746, 'competency_title', 64, 'cn', ''),
-(747, 'competency_title', 64, 'en', ''),
-(748, 'competency_level_title', 25, 'tw', '業務職能A-1'),
-(749, 'competency_level_title', 25, 'cn', ''),
-(750, 'competency_level_title', 25, 'en', ''),
-(751, 'competency_level_title', 26, 'tw', '業務職能A-2'),
-(752, 'competency_level_title', 26, 'cn', ''),
-(753, 'competency_level_title', 26, 'en', ''),
-(754, 'competency_level_title', 27, 'tw', '業務職能A-3'),
-(755, 'competency_level_title', 27, 'cn', ''),
-(756, 'competency_level_title', 27, 'en', ''),
-(757, 'competency_level_title', 28, 'tw', '業務職能A-4'),
-(758, 'competency_level_title', 28, 'cn', ''),
-(759, 'competency_level_title', 28, 'en', ''),
-(760, 'competency_level_title', 29, 'tw', '業務職能A-5'),
-(761, 'competency_level_title', 29, 'cn', ''),
-(762, 'competency_level_title', 29, 'en', ''),
-(763, 'competency_level_title', 30, 'tw', '1'),
-(764, 'competency_level_title', 30, 'cn', ''),
-(765, 'competency_level_title', 30, 'en', ''),
-(766, 'competency_level_title', 31, 'tw', '2'),
-(767, 'competency_level_title', 31, 'cn', ''),
-(768, 'competency_level_title', 31, 'en', ''),
-(769, 'competency_level_title', 32, 'tw', '3'),
-(770, 'competency_level_title', 32, 'cn', ''),
-(771, 'competency_level_title', 32, 'en', ''),
-(772, 'competency_level_title', 33, 'tw', '4'),
-(773, 'competency_level_title', 33, 'cn', ''),
-(774, 'competency_level_title', 33, 'en', ''),
-(775, 'competency_level_title', 34, 'tw', '5'),
-(776, 'competency_level_title', 34, 'cn', ''),
-(777, 'competency_level_title', 34, 'en', ''),
-(778, 'ability_title', 10, 'tw', '1A'),
-(779, 'ability_title', 10, 'cn', ''),
-(780, 'ability_title', 10, 'en', ''),
-(781, 'ability_title', 11, 'tw', '1B'),
-(782, 'ability_title', 11, 'cn', ''),
-(783, 'ability_title', 11, 'en', ''),
-(784, 'ability_title', 12, 'tw', '5A'),
-(785, 'ability_title', 12, 'cn', ''),
-(786, 'ability_title', 12, 'en', ''),
-(787, 'ability_title', 13, 'tw', '5B'),
-(788, 'ability_title', 13, 'cn', ''),
-(789, 'ability_title', 13, 'en', ''),
-(790, 'groups_title', 151, 'tw', '集團名稱'),
-(791, 'groups_title', 151, 'cn', '集团名称'),
-(792, 'groups_title', 151, 'en', 'Group Title'),
-(793, 'groups_title', 1, 'tw', '測試集團1'),
-(794, 'groups_title', 1, 'cn', '简体中文'),
-(795, 'groups_title', 1, 'en', 'English'),
-(796, 'company_title', 1, 'tw', '體中文：'),
-(797, 'company_title', 1, 'cn', '中文'),
-(798, 'company_title', 1, 'en', 'English'),
-(821, 'job_family_title', 14, 'cn', ''),
-(820, 'job_family_title', 14, 'tw', '繁體中文'),
-(802, 'company_title', 2, 'tw', 'dsa'),
-(803, 'company_title', 2, 'cn', 'dsa'),
-(804, 'company_title', 2, 'en', ''),
-(805, 'groups_title', 31, 'tw', '測試集團2'),
-(806, 'groups_title', 31, 'cn', ''),
-(807, 'groups_title', 31, 'en', ''),
-(808, 'company_title', 3, 'tw', '232'),
-(809, 'company_title', 3, 'cn', '3'),
-(810, 'company_title', 3, 'en', '312'),
-(811, 'group_title', 3, 'tw', '業務部'),
-(812, 'group_title', 3, 'cn', ''),
-(813, 'group_title', 3, 'en', ''),
-(814, 'group_title', 4, 'tw', '新部門牛'),
-(815, 'group_title', 4, 'cn', ''),
-(816, 'group_title', 4, 'en', ''),
-(817, 'group_title', 5, 'tw', '陌生拜訪組'),
-(818, 'group_title', 5, 'cn', ''),
-(819, 'group_title', 5, 'en', ''),
-(831, 'competency_dic_title', 2, 'en', 'A'),
-(832, 'competency_dic_title', 3, 'tw', 'M'),
-(833, 'competency_dic_title', 3, 'cn', 'M'),
-(834, 'competency_dic_title', 3, 'en', 'M'),
-(835, 'competency_dic_title', 4, 'tw', '繁體中文'),
-(836, 'competency_dic_title', 4, 'cn', '简体中文'),
-(837, 'competency_dic_title', 4, 'en', ''),
-(838, 'course_title', 54, 'tw', 'AAA'),
-(839, 'course_title', 54, 'cn', 'CC'),
-(840, 'course_title', 54, 'en', 'CC'),
-(841, 'course_title', 55, 'tw', 'fd'),
-(842, 'course_title', 55, 'cn', 'fdf'),
-(843, 'course_title', 55, 'en', 'dfcd'),
-(844, 'competency_dic_title', 7, 'tw', ''),
-(845, 'competency_dic_title', 7, 'cn', ''),
-(846, 'competency_dic_title', 7, 'en', ''),
-(847, 'competency_dic_title', 6, 'tw', ''),
-(848, 'competency_dic_title', 6, 'cn', ''),
-(849, 'competency_dic_title', 6, 'en', ''),
-(850, 'competency_dic_title', 8, 'tw', ''),
-(851, 'competency_dic_title', 8, 'cn', ''),
-(852, 'competency_dic_title', 8, 'en', ''),
-(853, 'groups_title', 152, 'tw', 'A'),
-(854, 'groups_title', 152, 'cn', ''),
-(855, 'groups_title', 152, 'en', ''),
-(517, 'competency_model_title', 0, 'tw', '資訊專業職能模型'),
-(518, 'competency_model_title', 0, 'cn', ''),
-(519, 'competency_model_title', 0, 'en', ''),
-(523, 'competency_model_title', 0, 'tw', '測試專業職能模型'),
-(524, 'competency_model_title', 0, 'cn', ''),
-(525, 'competency_model_title', 0, 'en', ''),
 (673, 'competency_model_title', 35, 'tw', '核心職能模型'),
 (674, 'competency_model_title', 35, 'cn', '核心职能模型'),
 (675, 'competency_model_title', 35, 'en', ''),
@@ -1499,9 +1155,177 @@ INSERT INTO `term` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (682, 'evaluation_relation_title', 1, 'tw', '自己'),
 (683, 'evaluation_relation_title', 1, 'cn', ''),
 (684, 'evaluation_relation_title', 1, 'en', ''),
+(685, 'evaluation_relation_title', 2, 'tw', '直屬主管'),
+(686, 'evaluation_relation_title', 2, 'cn', ''),
+(687, 'evaluation_relation_title', 2, 'en', ''),
+(688, 'evaluation_relation_title', 3, 'tw', '同事'),
+(689, 'evaluation_relation_title', 3, 'cn', ''),
+(690, 'evaluation_relation_title', 3, 'en', ''),
+(691, 'evaluation_relation_title', 4, 'tw', '部屬'),
+(692, 'evaluation_relation_title', 4, 'cn', ''),
+(693, 'evaluation_relation_title', 4, 'en', ''),
+(694, 'evaluation_scale_title', 1, 'tw', '七分量表'),
+(695, 'evaluation_scale_title', 1, 'cn', ''),
+(696, 'evaluation_scale_title', 1, 'en', ''),
+(697, 'evaluation_scale_title', 2, 'tw', '五分量表'),
+(698, 'evaluation_scale_title', 2, 'cn', ''),
+(699, 'evaluation_scale_title', 2, 'en', ''),
+(700, 'company_title', 1, 'tw', '緯任數位科技'),
+(701, 'company_title', 1, 'cn', ''),
+(702, 'company_title', 1, 'en', ''),
+(703, 'group_title', 0, 'tw', '諮詢部'),
+(704, 'group_title', 0, 'cn', ''),
+(705, 'group_title', 0, 'en', ''),
+(706, 'competency_level_title', 22, 'tw', '基礎'),
+(707, 'competency_level_title', 22, 'cn', ''),
+(708, 'competency_level_title', 22, 'en', ''),
+(709, 'competency_level_title', 23, 'tw', '精通'),
+(710, 'competency_level_title', 23, 'cn', ''),
+(711, 'competency_level_title', 23, 'en', ''),
+(712, 'competency_level_title', 24, 'tw', '精進'),
+(713, 'competency_level_title', 24, 'cn', ''),
+(714, 'competency_level_title', 24, 'en', ''),
+(715, 'competency_level_title', 25, 'tw', '專家'),
+(716, 'competency_level_title', 25, 'cn', ''),
+(717, 'competency_level_title', 25, 'en', ''),
+(718, 'ability_title', 7, 'tw', '基礎'),
+(719, 'ability_title', 7, 'cn', ''),
+(720, 'ability_title', 7, 'en', ''),
+(721, 'ability_title', 8, 'tw', '基礎'),
+(722, 'ability_title', 8, 'cn', ''),
+(723, 'ability_title', 8, 'en', ''),
+(724, 'training_teacher', 20, 'tw', '具有第2級能力者'),
+(725, 'training_teacher', 20, 'cn', ''),
+(726, 'training_teacher', 20, 'en', ''),
+(727, 'training_teacher', 21, 'tw', '廠商'),
+(728, 'training_teacher', 21, 'cn', ''),
+(729, 'training_teacher', 21, 'en', ''),
+(730, 'course_title', 54, 'tw', '系統整合與導入第一級課程'),
+(731, 'course_title', 54, 'cn', ''),
+(732, 'course_title', 54, 'en', ''),
+(733, 'evaluation_scale_item_title', 1, 'tw', '有認知，大多未做到'),
+(734, 'evaluation_scale_item_title', 1, 'cn', ''),
+(735, 'evaluation_scale_item_title', 1, 'en', ''),
+(736, 'evaluation_scale_item_title', 2, 'tw', '有認知，少部份能做到'),
+(737, 'evaluation_scale_item_title', 2, 'cn', ''),
+(738, 'evaluation_scale_item_title', 2, 'en', ''),
+(739, 'evaluation_scale_item_title', 3, 'tw', '有認知，部份能做到'),
+(740, 'evaluation_scale_item_title', 3, 'cn', ''),
+(741, 'evaluation_scale_item_title', 3, 'en', ''),
+(742, 'evaluation_scale_item_title', 4, 'tw', '有認知， 一般都能做到'),
+(743, 'evaluation_scale_item_title', 4, 'cn', ''),
+(744, 'evaluation_scale_item_title', 4, 'en', ''),
+(745, 'evaluation_scale_item_title', 5, 'tw', '大部份能做到'),
+(746, 'evaluation_scale_item_title', 5, 'cn', ''),
+(747, 'evaluation_scale_item_title', 5, 'en', ''),
+(748, 'evaluation_scale_item_title', 6, 'tw', '能做到且表現優秀'),
+(749, 'evaluation_scale_item_title', 6, 'cn', ''),
+(750, 'evaluation_scale_item_title', 6, 'en', ''),
+(751, 'evaluation_scale_item_title', 7, 'tw', '能做到且表現卓越'),
+(752, 'evaluation_scale_item_title', 7, 'cn', ''),
+(753, 'evaluation_scale_item_title', 7, 'en', ''),
+(754, 'competency_model_title', 36, 'tw', 'test'),
+(755, 'competency_model_title', 36, 'cn', ''),
+(756, 'competency_model_title', 36, 'en', ''),
+(757, 'competency_title', 65, 'tw', '溝通'),
+(758, 'competency_title', 65, 'cn', ''),
+(759, 'competency_title', 65, 'en', ''),
+(760, 'competency_model_title', 37, 'tw', '中層管理職能模型'),
+(761, 'competency_model_title', 37, 'cn', ''),
+(762, 'competency_model_title', 37, 'en', ''),
+(763, 'ability_title', 9, 'tw', '精通'),
+(764, 'ability_title', 9, 'cn', ''),
+(765, 'ability_title', 9, 'en', ''),
+(766, 'competency_title', 66, 'tw', 'SSSSSSS'),
+(767, 'competency_title', 66, 'cn', ''),
+(768, 'competency_title', 66, 'en', ''),
+(769, 'competency_title', 67, 'tw', '感動服務'),
+(770, 'competency_title', 67, 'cn', ''),
+(771, 'competency_title', 67, 'en', ''),
+(772, 'competency_model_title', 38, 'tw', '高層管理職能模型'),
+(773, 'competency_model_title', 38, 'cn', ''),
+(774, 'competency_model_title', 38, 'en', ''),
+(775, 'competency_model_title', 39, 'tw', '中層管理職能模型'),
+(776, 'competency_model_title', 39, 'cn', ''),
+(777, 'competency_model_title', 39, 'en', ''),
+(778, 'competency_model_title', 40, 'tw', '基層管理職能模型'),
+(779, 'competency_model_title', 40, 'cn', ''),
+(780, 'competency_model_title', 40, 'en', ''),
+(781, 'competency_title', 68, 'tw', '策略思考'),
+(782, 'competency_title', 68, 'cn', ''),
+(783, 'competency_title', 68, 'en', ''),
+(784, 'competency_title', 69, 'tw', '組織領導'),
+(785, 'competency_title', 69, 'cn', ''),
+(786, 'competency_title', 69, 'en', ''),
+(787, 'competency_title', 70, 'tw', '組織溝通與協調'),
+(788, 'competency_title', 70, 'cn', ''),
+(789, 'competency_title', 70, 'en', ''),
+(790, 'competency_title', 71, 'tw', '人際影響'),
+(791, 'competency_title', 71, 'cn', ''),
+(792, 'competency_title', 71, 'en', ''),
+(793, 'competency_title', 72, 'tw', '績效提升'),
+(794, 'competency_title', 72, 'cn', ''),
+(795, 'competency_title', 72, 'en', ''),
+(796, 'competency_title', 73, 'tw', '培養組織優秀人才'),
+(797, 'competency_title', 73, 'cn', ''),
+(798, 'competency_title', 73, 'en', ''),
 (799, 'competency_title', 74, 'tw', '目標設定'),
 (800, 'competency_title', 74, 'cn', ''),
 (801, 'competency_title', 74, 'en', ''),
+(802, 'competency_title', 75, 'tw', '計畫組織'),
+(803, 'competency_title', 75, 'cn', ''),
+(804, 'competency_title', 75, 'en', ''),
+(805, 'competency_title', 76, 'tw', '團隊建立'),
+(806, 'competency_title', 76, 'cn', ''),
+(807, 'competency_title', 76, 'en', ''),
+(808, 'competency_title', 77, 'tw', '談判協商'),
+(809, 'competency_title', 77, 'cn', ''),
+(810, 'competency_title', 77, 'en', ''),
+(811, 'competency_title', 78, 'tw', '效率意識'),
+(812, 'competency_title', 78, 'cn', ''),
+(813, 'competency_title', 78, 'en', ''),
+(814, 'competency_title', 79, 'tw', '決策能力'),
+(815, 'competency_title', 79, 'cn', ''),
+(816, 'competency_title', 79, 'en', ''),
+(817, 'competency_title', 80, 'tw', '計畫能力'),
+(818, 'competency_title', 80, 'cn', ''),
+(819, 'competency_title', 80, 'en', ''),
+(820, 'competency_title', 81, 'tw', '團隊合作'),
+(821, 'competency_title', 81, 'cn', ''),
+(822, 'competency_title', 81, 'en', ''),
+(823, 'competency_title', 82, 'tw', '溝通技巧'),
+(824, 'competency_title', 82, 'cn', ''),
+(825, 'competency_title', 82, 'en', ''),
+(826, 'competency_title', 83, 'tw', '工作管理'),
+(827, 'competency_title', 83, 'cn', ''),
+(828, 'competency_title', 83, 'en', ''),
+(829, 'competency_title', 84, 'tw', '問題解決能力'),
+(830, 'competency_title', 84, 'cn', ''),
+(831, 'competency_title', 84, 'en', ''),
+(832, 'competency_model_title', 41, 'tw', 'aaaaaa'),
+(833, 'competency_model_title', 41, 'cn', ''),
+(834, 'competency_model_title', 41, 'en', ''),
+(835, 'competency_model_title', 42, 'tw', '財務專業職能模型'),
+(836, 'competency_model_title', 42, 'cn', '财务专业职能模型'),
+(837, 'competency_model_title', 42, 'en', ''),
+(838, 'competency_title', 85, 'tw', '快速報表產出及經營分析能力'),
+(839, 'competency_title', 85, 'cn', ''),
+(840, 'competency_title', 85, 'en', ''),
+(841, 'competency_title', 86, 'tw', '快速報表產出及經營分析能力'),
+(842, 'competency_title', 86, 'cn', ''),
+(843, 'competency_title', 86, 'en', ''),
+(844, 'competency_title', 87, 'tw', '帳務問題解決能力'),
+(845, 'competency_title', 87, 'cn', ''),
+(846, 'competency_title', 87, 'en', ''),
+(847, 'competency_title', 88, 'tw', '內控內稽制度規劃執行管控能力'),
+(848, 'competency_title', 88, 'cn', ''),
+(849, 'competency_title', 88, 'en', ''),
+(850, 'competency_title', 89, 'tw', '預算與專案規劃管理能力'),
+(851, 'competency_title', 89, 'cn', ''),
+(852, 'competency_title', 89, 'en', ''),
+(853, 'competency_title', 90, 'tw', '投資理財及稅務規劃'),
+(854, 'competency_title', 90, 'cn', ''),
+(855, 'competency_title', 90, 'en', ''),
 (856, 'competency_level_title', 46, 'tw', '編製執行'),
 (857, 'competency_level_title', 46, 'cn', ''),
 (858, 'competency_level_title', 46, 'en', ''),
@@ -1874,7 +1698,7 @@ INSERT INTO `text` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (712, 'competency_model_definition', 0, 'tw', '資訊專業職能模型 for demo'),
 (713, 'competency_model_definition', 0, 'cn', ''),
 (714, 'competency_model_definition', 0, 'en', ''),
-(715, 'competency_model_definition', 34, 'tw', '資訊專業職能模型 for demo水'),
+(715, 'competency_model_definition', 34, 'tw', '資訊專業職能模型 for demo'),
 (716, 'competency_model_definition', 34, 'cn', ''),
 (717, 'competency_model_definition', 34, 'en', ''),
 (718, 'competency_model_definition', 0, 'tw', '測試專業職能模型'),
@@ -1943,222 +1767,222 @@ INSERT INTO `text` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (781, 'job_family_dsec', 11, 'tw', ''),
 (782, 'job_family_dsec', 11, 'cn', ''),
 (783, 'job_family_dsec', 11, 'en', ''),
-(784, 'b_evalu_table_desc', 3, 'tw', ''),
+(784, 'b_evalu_table_desc', 3, 'tw', '緯任數位科技的基層主管管理職能評鑑表'),
 (785, 'b_evalu_table_desc', 3, 'cn', ''),
 (786, 'b_evalu_table_desc', 3, 'en', ''),
-(787, 'group_desc', 0, 'tw', ''),
-(788, 'group_desc', 0, 'cn', ''),
-(789, 'group_desc', 0, 'en', ''),
-(790, 'group_desc', 0, 'tw', '研發部門'),
-(791, 'group_desc', 0, 'cn', ''),
-(792, 'group_desc', 0, 'en', ''),
-(793, 'group_desc', 0, 'tw', '12'),
-(794, 'group_desc', 0, 'cn', ''),
-(795, 'group_desc', 0, 'en', ''),
-(796, 'group_desc', 0, 'tw', '2'),
-(797, 'group_desc', 0, 'cn', ''),
-(798, 'group_desc', 0, 'en', ''),
-(799, 'group_desc', 1, 'tw', '董事會'),
-(800, 'group_desc', 1, 'cn', ''),
-(801, 'group_desc', 1, 'en', ''),
-(802, 'group_desc', 2, 'tw', '研發部'),
-(803, 'group_desc', 2, 'cn', ''),
-(804, 'group_desc', 2, 'en', ''),
-(805, 'job_family_dsec', 12, 'tw', '約聘人員'),
-(806, 'job_family_dsec', 12, 'cn', ''),
-(807, 'job_family_dsec', 12, 'en', ''),
-(808, 'job_family_dsec', 13, 'tw', ''),
-(809, 'job_family_dsec', 13, 'cn', ''),
-(810, 'job_family_dsec', 13, 'en', ''),
-(811, 'ability_def', 7, 'tw', '1.熟悉企業組\r\n  織及業務流\r\n  程\r\n'),
-(812, 'ability_def', 7, 'cn', ''),
-(813, 'ability_def', 7, 'en', ''),
-(814, 'ability_def', 8, 'tw', '2.檢定或經驗\r\n  具下列至少\r\n  一項\r\n  a.參與模組\r\n     導入經驗\r\n  b.顧問認證\r\n     合格\r\n  c.內訓通過\r\n     檢定\r\n'),
-(815, 'ability_def', 8, 'cn', ''),
-(816, 'ability_def', 8, 'en', ''),
-(817, 'competency_evaluator', 8, 'tw', '1.處主管\r\n2.具有第2級能力者\r\n3.廠商\r\n'),
-(818, 'competency_evaluator', 8, 'cn', ''),
-(819, 'competency_evaluator', 8, 'en', ''),
-(820, 'competency_evaluation_method', 8, 'tw', '1.簡報審查\r\n2.a.參與專案證明\r\n    b.外部證照\r\n    c.案例實作\r\n'),
-(821, 'competency_evaluation_method', 8, 'cn', ''),
-(822, 'competency_evaluation_method', 8, 'en', ''),
-(823, 'training_method', 16, 'tw', '內訓'),
-(824, 'training_method', 16, 'cn', ''),
-(825, 'training_method', 16, 'en', ''),
-(826, 'training_method', 17, 'tw', 'a.參與專案 b.外訓 c.內訓\r\n'),
-(827, 'training_method', 17, 'cn', ''),
-(828, 'training_method', 17, 'en', ''),
-(829, 'training_material', 14, 'tw', '業務流程與組織文件'),
-(830, 'training_material', 14, 'cn', ''),
-(831, 'training_material', 14, 'en', ''),
-(832, 'training_material', 15, 'tw', 'a.工作說明書\r\n     b.外部教材\r\n     c.專案文件\r\n'),
-(833, 'training_material', 15, 'cn', ''),
-(834, 'training_material', 15, 'en', ''),
-(835, 'competency_evaluator', 9, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第3級能力者\r\n'),
-(836, 'competency_evaluator', 9, 'cn', ''),
-(837, 'competency_evaluator', 9, 'en', ''),
-(838, 'competency_evaluation_method', 9, 'tw', '審查維護紀錄及證書\r\n'),
-(839, 'competency_evaluation_method', 9, 'cn', ''),
-(840, 'competency_evaluation_method', 9, 'en', ''),
-(841, 'training_method', 18, 'tw', '1.內訓\r\n2. a.參與專案\r\n     b.外訓\r\n     c.內訓\r\n'),
-(842, 'training_method', 18, 'cn', ''),
-(843, 'training_method', 18, 'en', ''),
-(844, 'training_material', 16, 'tw', '1.業務流程與組織文件\r\n2. a.工作說明書\r\n     b.外部教材\r\n     c.專案文件\r\n'),
-(845, 'training_material', 16, 'cn', ''),
-(846, 'training_material', 16, 'en', ''),
-(847, 'training_method', 19, 'tw', '成果審查\r\n(三件以上)\r\n'),
-(848, 'training_method', 19, 'cn', ''),
-(849, 'training_method', 19, 'en', ''),
-(850, 'competency_evaluator', 10, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第4級能力者\r\n'),
-(851, 'competency_evaluator', 10, 'cn', ''),
-(852, 'competency_evaluator', 10, 'en', ''),
-(853, 'competency_evaluation_method', 10, 'tw', '成果審查\r\n(三件以上)\r\n'),
-(854, 'competency_evaluation_method', 10, 'cn', ''),
-(855, 'competency_evaluation_method', 10, 'en', ''),
-(856, 'training_material', 17, 'tw', '1.外部教材\r\n2.網路教材\r\n3.實際案例\r\n'),
-(857, 'training_material', 17, 'cn', ''),
-(858, 'training_material', 17, 'en', ''),
-(859, 'training_method', 20, 'tw', '1.外訓\r\n2.自我學習\r\n3.專案工作\r\n'),
-(860, 'training_method', 20, 'cn', ''),
-(861, 'training_method', 20, 'en', ''),
-(862, 'competency_evaluator', 11, 'tw', '1.部主管\r\n2.處主管\r\n3.外部顧問\r\n'),
-(863, 'competency_evaluator', 11, 'cn', ''),
-(864, 'competency_evaluator', 11, 'en', ''),
-(865, 'competency_evaluation_method', 11, 'tw', '推甄文件審查\r\n'),
-(866, 'competency_evaluation_method', 11, 'cn', ''),
-(867, 'competency_evaluation_method', 11, 'en', ''),
-(868, 'ability_def', 9, 'tw', 'ERP管理師：具備兩個以上\r\n   模組第三級能力\r\n'),
-(869, 'ability_def', 9, 'cn', ''),
-(870, 'ability_def', 9, 'en', ''),
-(871, 'training_method', 21, 'tw', '輪調\r\n'),
-(872, 'training_method', 21, 'cn', ''),
-(873, 'training_method', 21, 'en', ''),
-(874, 'training_method', 22, 'tw', '自我學習\r\n'),
-(875, 'training_method', 22, 'cn', ''),
-(876, 'training_method', 22, 'en', ''),
-(877, 'training_material', 18, 'tw', '實際案例\r\n'),
-(878, 'training_material', 18, 'cn', ''),
-(879, 'training_material', 18, 'en', ''),
-(880, 'training_material', 19, 'tw', '維護紀錄\r\n'),
-(881, 'training_material', 19, 'cn', ''),
-(882, 'training_material', 19, 'en', ''),
-(883, 'competency_evaluator', 20, 'tw', '1.處主管\r\n2.具有第2級能力者\r\n3.廠商\r\n'),
-(884, 'competency_evaluator', 20, 'cn', ''),
-(885, 'competency_evaluator', 20, 'en', ''),
-(886, 'competency_evaluation_method', 20, 'tw', '1.簡報審查\r\n2.a.參與專案證明\r\n    b.外部證照\r\n    c.案例實作\r\n'),
-(887, 'competency_evaluation_method', 20, 'cn', ''),
-(888, 'competency_evaluation_method', 20, 'en', ''),
-(889, 'competency_evaluator', 21, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第3級能力者\r\n'),
-(890, 'competency_evaluator', 21, 'cn', ''),
-(891, 'competency_evaluator', 21, 'en', ''),
-(892, 'competency_evaluation_method', 21, 'tw', '審查維護紀錄及證書\r\n'),
-(893, 'competency_evaluation_method', 21, 'cn', ''),
-(894, 'competency_evaluation_method', 21, 'en', ''),
-(895, 'competency_evaluator', 22, 'tw', '1.部主管\r\n2.處主管\r\n3.具有第4級能力者\r\n'),
-(896, 'competency_evaluator', 22, 'cn', ''),
-(897, 'competency_evaluator', 22, 'en', ''),
-(898, 'competency_evaluation_method', 22, 'tw', '成果審查\r\n(三件以上)\r\n'),
-(899, 'competency_evaluation_method', 22, 'cn', ''),
-(900, 'competency_evaluation_method', 22, 'en', ''),
-(901, 'competency_evaluator', 24, 'tw', '1.部主管\r\n2.處主管\r\n3.外部顧問（五級)\r\n'),
-(902, 'competency_evaluator', 24, 'cn', ''),
-(903, 'competency_evaluator', 24, 'en', ''),
-(904, 'competency_evaluation_method', 24, 'tw', '推甄文件審查（五級)\r\n'),
-(905, 'competency_evaluation_method', 24, 'cn', ''),
-(906, 'competency_evaluation_method', 24, 'en', ''),
-(907, 'competency_evaluator', 23, 'tw', '1.部主管\r\n2.處主管\r\n3.外部顧問\r\n'),
-(908, 'competency_evaluator', 23, 'cn', ''),
-(909, 'competency_evaluator', 23, 'en', ''),
-(910, 'competency_evaluation_method', 23, 'tw', '推甄文件審查\r\n'),
-(911, 'competency_evaluation_method', 23, 'cn', ''),
-(912, 'competency_evaluation_method', 23, 'en', ''),
-(913, 'competency_model_definition', 35, 'tw', '業務職能模型'),
-(914, 'competency_model_definition', 35, 'cn', ''),
-(915, 'competency_model_definition', 35, 'en', ''),
-(916, 'competency_definition', 63, 'tw', ''),
-(917, 'competency_definition', 63, 'cn', ''),
-(918, 'competency_definition', 63, 'en', ''),
-(919, 'competency_definition', 64, 'tw', ''),
-(920, 'competency_definition', 64, 'cn', ''),
-(921, 'competency_definition', 64, 'en', ''),
-(922, 'ability_def', 10, 'tw', '1A'),
-(923, 'ability_def', 10, 'cn', ''),
-(924, 'ability_def', 10, 'en', ''),
-(925, 'ability_def', 11, 'tw', '1B'),
-(926, 'ability_def', 11, 'cn', ''),
-(927, 'ability_def', 11, 'en', ''),
-(928, 'ability_def', 12, 'tw', '5A'),
-(929, 'ability_def', 12, 'cn', ''),
-(930, 'ability_def', 12, 'en', ''),
-(931, 'ability_def', 13, 'tw', '5B'),
-(932, 'ability_def', 13, 'cn', ''),
-(933, 'ability_def', 13, 'en', ''),
-(934, 'groups_desc', 151, 'tw', '繁體中文'),
-(935, 'groups_desc', 151, 'cn', '简体中文'),
-(936, 'groups_desc', 151, 'en', 'English'),
-(937, 'groups_desc', 1, 'tw', '繁體中文繁體中文'),
-(938, 'groups_desc', 1, 'cn', '简体中文简体中文'),
-(939, 'groups_desc', 1, 'en', 'EnglishEnglish'),
-(940, 'company_desc', 1, 'tw', '繁體中文'),
-(941, 'company_desc', 1, 'cn', '简体中文'),
-(942, 'company_desc', 1, 'en', 'English'),
-(943, 'company_desc', 0, 'tw', '繁體中文'),
-(944, 'company_desc', 0, 'cn', ''),
-(945, 'company_desc', 0, 'en', ''),
-(946, 'company_desc', 2, 'tw', 'dsa'),
-(947, 'company_desc', 2, 'cn', ''),
-(948, 'company_desc', 2, 'en', ''),
-(949, 'groups_desc', 31, 'tw', ''),
-(950, 'groups_desc', 31, 'cn', ''),
-(951, 'groups_desc', 31, 'en', ''),
-(952, 'company_desc', 3, 'tw', '312'),
-(953, 'company_desc', 3, 'cn', ''),
-(954, 'company_desc', 3, 'en', ''),
-(955, 'group_desc', 3, 'tw', ''),
-(956, 'group_desc', 3, 'cn', ''),
-(957, 'group_desc', 3, 'en', ''),
-(958, 'group_desc', 4, 'tw', '新部門2'),
-(959, 'group_desc', 4, 'cn', ''),
-(960, 'group_desc', 4, 'en', ''),
-(961, 'group_desc', 5, 'tw', '陌生拜訪組'),
-(962, 'group_desc', 5, 'cn', ''),
-(963, 'group_desc', 5, 'en', ''),
-(964, 'job_family_dsec', 14, 'tw', '繁體中文'),
-(965, 'job_family_dsec', 14, 'cn', ''),
-(966, 'job_family_dsec', 14, 'en', ''),
-(967, 'job_family_dsec', 15, 'tw', '列說明'),
-(968, 'job_family_dsec', 15, 'cn', '列說明'),
-(969, 'job_family_dsec', 15, 'en', '列說明'),
-(970, 'competency_dic_definition', 0, 'tw', 'B'),
-(971, 'competency_dic_definition', 0, 'cn', 'BB'),
-(972, 'competency_dic_definition', 0, 'en', 'B'),
-(973, 'competency_dic_definition', 2, 'tw', 'B'),
-(974, 'competency_dic_definition', 2, 'cn', 'B'),
-(975, 'competency_dic_definition', 2, 'en', 'B'),
-(976, 'competency_dic_definition', 3, 'tw', 'MMM'),
-(977, 'competency_dic_definition', 3, 'cn', 'MM'),
-(978, 'competency_dic_definition', 3, 'en', ''),
-(979, 'competency_dic_definition', 4, 'tw', '繁體中文繁體中文'),
-(980, 'competency_dic_definition', 4, 'cn', ''),
-(981, 'competency_dic_definition', 4, 'en', ''),
-(982, 'course_desc', 54, 'tw', 'XX'),
-(983, 'course_desc', 54, 'cn', 'C'),
-(984, 'course_desc', 54, 'en', ''),
-(985, 'course_desc', 55, 'tw', 'sdsf'),
-(986, 'course_desc', 55, 'cn', 'gs'),
-(987, 'course_desc', 55, 'en', 'sfd'),
-(988, 'competency_dic_definition', 7, 'tw', ''),
-(989, 'competency_dic_definition', 7, 'cn', ''),
-(990, 'competency_dic_definition', 7, 'en', ''),
-(991, 'competency_dic_definition', 6, 'tw', ''),
-(992, 'competency_dic_definition', 6, 'cn', ''),
-(993, 'competency_dic_definition', 6, 'en', ''),
-(994, 'competency_dic_definition', 8, 'tw', ''),
-(995, 'competency_dic_definition', 8, 'cn', ''),
-(996, 'competency_dic_definition', 8, 'en', ''),
-(997, 'groups_desc', 152, 'tw', 'A'),
-(998, 'groups_desc', 152, 'cn', ''),
-(999, 'groups_desc', 152, 'en', ''),
+(787, 'competency_model_definition', 35, 'tw', '核心職能模型 for demo'),
+(788, 'competency_model_definition', 35, 'cn', '核心职能模型 for demo'),
+(789, 'competency_model_definition', 35, 'en', ''),
+(790, 'competency_definition', 63, 'tw', ''),
+(791, 'competency_definition', 63, 'cn', ''),
+(792, 'competency_definition', 63, 'en', ''),
+(793, 'competency_definition', 64, 'tw', ''),
+(794, 'competency_definition', 64, 'cn', ''),
+(795, 'competency_definition', 64, 'en', ''),
+(796, 'company_desc', 1, 'tw', '提供人才發展(HRD)整體解決方案'),
+(797, 'company_desc', 1, 'cn', ''),
+(798, 'company_desc', 1, 'en', ''),
+(799, 'group_desc', 0, 'tw', ''),
+(800, 'group_desc', 0, 'cn', ''),
+(801, 'group_desc', 0, 'en', ''),
+(802, 'ability_def', 7, 'tw', '熟悉企業組織及業務流程'),
+(803, 'ability_def', 7, 'cn', ''),
+(804, 'ability_def', 7, 'en', ''),
+(805, 'ability_def', 8, 'tw', '檢定或經驗具下列至少一項：a.參與模組導入經驗、b.顧問認證合格、c.內訓通過檢定\r\n'),
+(806, 'ability_def', 8, 'cn', ''),
+(807, 'ability_def', 8, 'en', ''),
+(808, 'training_method', 16, 'tw', '內訓\r\n'),
+(865, 'training_method', 17, 'tw', '參與專案'),
+(809, 'training_method', 16, 'cn', ''),
+(810, 'training_method', 16, 'en', ''),
+(811, 'competency_evaluator', 22, 'tw', '1.處主管、2.具有第2級能力者、3.廠商\r\n'),
+(812, 'competency_evaluator', 22, 'cn', ''),
+(813, 'competency_evaluator', 22, 'en', ''),
+(814, 'competency_evaluation_method', 22, 'tw', '1.簡報審查、2.參與專案證明、3.外部證照、4.案例實作\r\n'),
+(815, 'competency_evaluation_method', 22, 'cn', ''),
+(816, 'competency_evaluation_method', 22, 'en', ''),
+(817, 'training_material', 14, 'tw', '業務流程與組織文件'),
+(820, 'training_material', 15, 'tw', '工作說明書'),
+(818, 'training_material', 14, 'cn', ''),
+(819, 'training_material', 14, 'en', ''),
+(821, 'training_material', 15, 'cn', ''),
+(822, 'training_material', 15, 'en', ''),
+(823, 'training_material', 16, 'tw', '外部教材'),
+(824, 'training_material', 16, 'cn', ''),
+(825, 'training_material', 16, 'en', ''),
+(826, 'training_material', 17, 'tw', '專案文件'),
+(827, 'training_material', 17, 'cn', ''),
+(828, 'training_material', 17, 'en', ''),
+(829, 'course_desc', 54, 'tw', '系統整合與導入的第一級課程，由資訊部自行開發'),
+(830, 'course_desc', 54, 'cn', ''),
+(831, 'course_desc', 54, 'en', ''),
+(832, 'evaluation_scale_item_desc', 1, 'tw', '約有20%能觀察到此行為表現'),
+(833, 'evaluation_scale_item_desc', 1, 'cn', ''),
+(834, 'evaluation_scale_item_desc', 1, 'en', ''),
+(835, 'evaluation_scale_item_desc', 2, 'tw', '約有21%~40%能觀察到此行為表現'),
+(836, 'evaluation_scale_item_desc', 2, 'cn', ''),
+(837, 'evaluation_scale_item_desc', 2, 'en', ''),
+(838, 'evaluation_scale_item_desc', 3, 'tw', '約有41%~50%能觀察到此行為表現'),
+(839, 'evaluation_scale_item_desc', 3, 'cn', ''),
+(840, 'evaluation_scale_item_desc', 3, 'en', ''),
+(841, 'evaluation_scale_item_desc', 4, 'tw', '約有51%~60%能觀察到此行為表現'),
+(842, 'evaluation_scale_item_desc', 4, 'cn', ''),
+(843, 'evaluation_scale_item_desc', 4, 'en', ''),
+(844, 'evaluation_scale_item_desc', 5, 'tw', '約有61%~80%能觀察到此行為表現'),
+(845, 'evaluation_scale_item_desc', 5, 'cn', ''),
+(846, 'evaluation_scale_item_desc', 5, 'en', ''),
+(847, 'evaluation_scale_item_desc', 6, 'tw', '約有81%~90%能觀察到此行為表現'),
+(848, 'evaluation_scale_item_desc', 6, 'cn', ''),
+(849, 'evaluation_scale_item_desc', 6, 'en', ''),
+(850, 'evaluation_scale_item_desc', 7, 'tw', '約有91%以上能觀察到此行為表現'),
+(851, 'evaluation_scale_item_desc', 7, 'cn', ''),
+(852, 'evaluation_scale_item_desc', 7, 'en', ''),
+(853, 'competency_model_definition', 36, 'tw', 'test22222'),
+(854, 'competency_model_definition', 36, 'cn', ''),
+(855, 'competency_model_definition', 36, 'en', ''),
+(856, 'competency_definition', 65, 'tw', ''),
+(857, 'competency_definition', 65, 'cn', ''),
+(858, 'competency_definition', 65, 'en', ''),
+(859, 'competency_model_definition', 37, 'tw', '緯任數位科技中層管理 for demo'),
+(860, 'competency_model_definition', 37, 'cn', ''),
+(861, 'competency_model_definition', 37, 'en', ''),
+(862, 'ability_def', 9, 'tw', 'sssss'),
+(863, 'ability_def', 9, 'cn', ''),
+(864, 'ability_def', 9, 'en', ''),
+(866, 'training_method', 17, 'cn', ''),
+(867, 'training_method', 17, 'en', ''),
+(868, 'training_method', 18, 'tw', '外訓'),
+(869, 'training_method', 18, 'cn', ''),
+(870, 'training_method', 18, 'en', ''),
+(871, 'training_method', 19, 'tw', '內訓'),
+(872, 'training_method', 19, 'cn', ''),
+(873, 'training_method', 19, 'en', ''),
+(874, 'competency_definition', 66, 'tw', ''),
+(875, 'competency_definition', 66, 'cn', ''),
+(876, 'competency_definition', 66, 'en', ''),
+(877, 'competency_definition', 67, 'tw', ''),
+(878, 'competency_definition', 67, 'cn', ''),
+(879, 'competency_definition', 67, 'en', ''),
+(880, 'competency_model_definition', 38, 'tw', '高層管理職能模型 for Demo'),
+(881, 'competency_model_definition', 38, 'cn', ''),
+(882, 'competency_model_definition', 38, 'en', ''),
+(883, 'competency_model_definition', 39, 'tw', '中層管理職能模型 for Demo'),
+(884, 'competency_model_definition', 39, 'cn', ''),
+(885, 'competency_model_definition', 39, 'en', ''),
+(886, 'competency_model_definition', 40, 'tw', '基層管理職能模型 for Demo'),
+(887, 'competency_model_definition', 40, 'cn', ''),
+(888, 'competency_model_definition', 40, 'en', ''),
+(889, 'competency_definition', 68, 'tw', '能夠掌握產業趨勢，分析組織在產業競爭態勢中所具備的優、劣勢與所面對的機會與威脅，進而擬定公司的發展策略。'),
+(890, 'competency_definition', 68, 'cn', ''),
+(891, 'competency_definition', 68, 'en', ''),
+(892, 'competency_definition', 69, 'tw', '能建立組織的願景及目標、凝聚組織成員的向心力，促進組織內成員的合作以達成組織目標。'),
+(893, 'competency_definition', 69, 'cn', ''),
+(894, 'competency_definition', 69, 'en', ''),
+(895, 'competency_definition', 70, 'tw', '有同理心，瞭解他人的感受、需要和觀點，並能清楚表達自己的語意讓對方明瞭；具備對上、下與同儕間的工作說明與協調能力，以達成團隊協作的目標。'),
+(896, 'competency_definition', 70, 'cn', ''),
+(897, 'competency_definition', 70, 'en', ''),
+(898, 'competency_definition', 71, 'tw', '在跨組織或對外關係上，能運用對他人的理解，以不同的方法、技巧或形式，來達到說服、影響或感動他人，使他人接受自己的觀點或建議，以產生特定的影響。'),
+(899, 'competency_definition', 71, 'cn', ''),
+(900, 'competency_definition', 71, 'en', ''),
+(901, 'competency_definition', 72, 'tw', '能針對部屬的工作表現，給予客觀的評比和充分的回饋，與部屬共同討論擬定績效改善措施及未來績效發展計畫。'),
+(902, 'competency_definition', 72, 'cn', ''),
+(903, 'competency_definition', 72, 'en', ''),
+(904, 'competency_definition', 73, 'tw', '營造一個適合員工發揮能力的工作環境，發掘、培育發展、及儲備公司內優秀人才，以支持組織長期發展目標的達成。'),
+(905, 'competency_definition', 73, 'cn', ''),
+(906, 'competency_definition', 73, 'en', ''),
+(907, 'behavior_definition', 31, 'tw', '清楚掌握內部環境資訊，能瞭解公司未來發展方向及在產業中所具備的優、劣勢，但尚未能提出有效的策略規劃。'),
+(908, 'behavior_definition', 31, 'cn', ''),
+(909, 'behavior_definition', 31, 'en', ''),
+(910, 'behavior_definition', 32, 'tw', '清楚公司目前的策略定位及未來走向，制定明確的績效指標做為工作上的規劃及執行成效的考核依據。'),
+(911, 'behavior_definition', 32, 'cn', ''),
+(912, 'behavior_definition', 32, 'en', ''),
+(913, 'behavior_definition', 33, 'tw', '收集內外部環境的相關資訊並加以分析，能應對市場變化提出策略上的回應。'),
+(914, 'behavior_definition', 33, 'cn', ''),
+(915, 'behavior_definition', 33, 'en', ''),
+(916, 'behavior_definition', 34, 'tw', '能掌握產業趨勢及市場發展的機會點，提出下一步策略規劃，以發揮公司強處、維持競爭優勢。'),
+(917, 'behavior_definition', 34, 'cn', ''),
+(918, 'behavior_definition', 34, 'en', ''),
+(919, 'behavior_definition', 35, 'tw', '隨時留意產業的動態變化，做出明確的分析與判斷，擬訂公司中長期發展方針與策略規劃。'),
+(920, 'behavior_definition', 35, 'cn', ''),
+(921, 'behavior_definition', 35, 'en', ''),
+(922, 'behavior_definition', 36, 'tw', '與組織成員溝通；當決策與組織成員相關時，能將決策內容適時向成員們充分告知與說明。'),
+(923, 'behavior_definition', 36, 'cn', ''),
+(924, 'behavior_definition', 36, 'en', ''),
+(925, 'behavior_definition', 37, 'tw', '促進組織成員合作；確保組織成員瞭解並接受任務與計畫，使組織成員一起努力達成目標。'),
+(926, 'behavior_definition', 37, 'cn', ''),
+(927, 'behavior_definition', 37, 'en', ''),
+(928, 'behavior_definition', 38, 'tw', '提升組織效能；能運用有效的策略或方法提升組織的士氣和產值。'),
+(929, 'behavior_definition', 38, 'cn', ''),
+(930, 'behavior_definition', 38, 'en', ''),
+(931, 'behavior_definition', 39, 'tw', '增進組織成員忠誠度；付出心力，公平的使用職權對待組織成員。'),
+(932, 'behavior_definition', 39, 'cn', ''),
+(933, 'behavior_definition', 39, 'en', ''),
+(934, 'behavior_definition', 40, 'tw', '凝聚組織成員向心力；能設定具挑戰性的目標，並提出合理且足以激勵人心的獎勵措施。'),
+(935, 'behavior_definition', 40, 'cn', ''),
+(936, 'behavior_definition', 40, 'en', ''),
+(937, 'behavior_definition', 41, 'tw', '不先入為主、排除自我意識、能傾聽並接受別人所欲傳達的訊息。'),
+(938, 'behavior_definition', 41, 'cn', ''),
+(939, 'behavior_definition', 41, 'en', ''),
+(940, 'behavior_definition', 42, 'tw', '以同理心，站在對方立場與對方展開良性互動以排除問題或障礙。'),
+(941, 'behavior_definition', 42, 'cn', ''),
+(942, 'behavior_definition', 42, 'en', ''),
+(943, 'behavior_definition', 43, 'tw', '能運用各種不同的媒介，清楚的對上、對下或對同儕說明表達工作協作的相關訊息。'),
+(944, 'behavior_definition', 43, 'cn', ''),
+(945, 'behavior_definition', 43, 'en', ''),
+(946, 'behavior_definition', 44, 'tw', '處事圓融，能耐心處理，聆聽內、外部顧客抱怨，能控制情緒不使衝突發生。'),
+(947, 'behavior_definition', 44, 'cn', ''),
+(948, 'behavior_definition', 44, 'en', ''),
+(949, 'behavior_definition', 45, 'tw', '能視不同狀況調整溝通技巧，順利與組織內外部成員溝通。'),
+(950, 'behavior_definition', 45, 'cn', ''),
+(951, 'behavior_definition', 45, 'en', ''),
+(952, 'behavior_definition', 46, 'tw', '會嘗試找出多方面的例證或說法來支持自己的論點，或加以說服、影響別人。'),
+(953, 'behavior_definition', 46, 'cn', ''),
+(954, 'behavior_definition', 46, 'en', ''),
+(955, 'behavior_definition', 47, 'tw', '會採取適當的行動來印證自己的觀點，以說服或影響他人。'),
+(956, 'behavior_definition', 47, 'cn', ''),
+(957, 'behavior_definition', 47, 'en', ''),
+(958, 'behavior_definition', 48, 'tw', '能預期計劃中的行動會產生那些特定人、事、物的影響，並會利用群體影響效應來達成其目的。'),
+(959, 'behavior_definition', 48, 'cn', ''),
+(960, 'behavior_definition', 48, 'en', ''),
+(961, 'behavior_definition', 49, 'tw', '能訂出一些檢核指標，來檢視或評估因自己的溝通和行動結果而影響他人的程度。'),
+(962, 'behavior_definition', 49, 'cn', ''),
+(963, 'behavior_definition', 49, 'en', ''),
+(964, 'behavior_definition', 50, 'tw', '能針對特定情境設計不同的策略，運用外部人際關係力量來改變他人的決定，以達到影響他人、達成公司營運目標的效果。'),
+(965, 'behavior_definition', 50, 'cn', ''),
+(966, 'behavior_definition', 50, 'en', ''),
+(967, 'behavior_definition', 51, 'tw', '針對部屬的工作表現，依據設定目標及公司績效評核規則，進行客觀、公平的考核。'),
+(968, 'behavior_definition', 51, 'cn', ''),
+(969, 'behavior_definition', 51, 'en', ''),
+(970, 'behavior_definition', 52, 'tw', '協助部屬找出應發展的能力領域，共同討論擬訂績效改善措施及未來績效發展計畫。'),
+(971, 'behavior_definition', 52, 'cn', ''),
+(972, 'behavior_definition', 52, 'en', ''),
+(973, 'behavior_definition', 53, 'tw', '提供部屬足夠的資源與機會，來提升、發展個人的能力與績效。'),
+(974, 'behavior_definition', 53, 'cn', ''),
+(975, 'behavior_definition', 53, 'en', ''),
+(976, 'behavior_definition', 54, 'tw', '幫助部屬克服學習障礙，鼓勵「自我學習」強化自我提升改善的效能。'),
+(977, 'behavior_definition', 54, 'cn', ''),
+(978, 'behavior_definition', 54, 'en', ''),
+(979, 'behavior_definition', 55, 'tw', '利用指導、訓練及工作指派等方式，來加強部屬的知識與技能、提昇部屬的工作績效。'),
+(980, 'behavior_definition', 55, 'cn', ''),
+(981, 'behavior_definition', 55, 'en', ''),
+(982, 'behavior_definition', 56, 'tw', '針對公司現在及未來發展目標，能訂定出目前組織成員需要發展與尚待培養的能力。'),
+(983, 'behavior_definition', 56, 'cn', ''),
+(984, 'behavior_definition', 56, 'en', ''),
+(985, 'behavior_definition', 57, 'tw', '願意提供實質的、詳細的指導與諮詢，來幫助組織成員解決工作上的問題。'),
+(986, 'behavior_definition', 57, 'cn', ''),
+(987, 'behavior_definition', 57, 'en', ''),
+(988, 'behavior_definition', 58, 'tw', '對組織成員充分授權，以提升組織成員勇於面對問題與承擔責任的勇氣與能力。'),
+(989, 'behavior_definition', 58, 'cn', ''),
+(990, 'behavior_definition', 58, 'en', ''),
+(991, 'behavior_definition', 59, 'tw', '對於具發展潛力的人才，能給予具挑戰性的工作，並幫助其建立信心、做好未來職涯發展規劃。'),
+(992, 'behavior_definition', 59, 'cn', ''),
+(993, 'behavior_definition', 59, 'en', ''),
+(994, 'behavior_definition', 60, 'tw', '能將個人專業知識、工作和管理經驗，做有系統的整理與分享，提供部屬學習與參考。'),
+(995, 'behavior_definition', 60, 'cn', ''),
+(996, 'behavior_definition', 60, 'en', ''),
+(997, 'competency_definition', 74, 'tw', '依據公司策略發展需求，訂定部門/單位的短中長期目標，做為部門/單位努力的方向。'),
+(998, 'competency_definition', 74, 'cn', ''),
+(999, 'competency_definition', 74, 'en', ''),
 (1000, 'competency_definition', 75, 'tw', '能辨識任務的優先等級，擬訂縝密的行動計畫，有效安排所需的人力與資源，建立系統的工作方法與步驟，以確保有效達成既定目標。'),
 (1001, 'competency_definition', 75, 'cn', ''),
 (1002, 'competency_definition', 75, 'en', ''),
@@ -2430,16 +2254,12 @@ CREATE TABLE IF NOT EXISTS `tpl` (
   `tpl_sender` varchar(100) NOT NULL,
   `tpl_content` text NOT NULL,
   PRIMARY KEY (`tpl_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 列出以下資料庫的數據： `tpl`
 --
 
-INSERT INTO `tpl` (`tpl_id`, `tpl_title`, `tpl_sender`, `tpl_content`) VALUES
-(1, '360度管理職能評鑑邀請函', 'jennifer@bhrsp.com', '新愛的{}'),
-(2, '360度管理職能評鑑邀請函', 'jennifer@bhrsp.com', '新愛的{}'),
-(3, '催收函', '', '');
 
 -- --------------------------------------------------------
 
@@ -2451,7 +2271,7 @@ CREATE TABLE IF NOT EXISTS `training_material` (
   `training_material_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_material_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- 列出以下資料庫的數據： `training_material`
@@ -2460,12 +2280,10 @@ CREATE TABLE IF NOT EXISTS `training_material` (
 INSERT INTO `training_material` (`training_material_id`, `competency_level_id`) VALUES
 (12, 14),
 (13, 14),
-(14, 20),
-(15, 20),
-(16, 21),
-(17, 22),
-(18, 24),
-(19, 24);
+(14, 22),
+(15, 22),
+(16, 22),
+(17, 22);
 
 -- --------------------------------------------------------
 
@@ -2477,7 +2295,7 @@ CREATE TABLE IF NOT EXISTS `training_method` (
   `training_method_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_method_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- 列出以下資料庫的數據： `training_method`
@@ -2490,12 +2308,9 @@ INSERT INTO `training_method` (`training_method_id`, `competency_level_id`) VALU
 (13, 14),
 (14, 14),
 (15, 14),
-(16, 20),
-(17, 20),
-(18, 21),
-(20, 22),
-(21, 24),
-(22, 24),
+(16, 22),
+(17, 22),
+(18, 22),
 (19, 22);
 
 -- --------------------------------------------------------
@@ -2508,7 +2323,7 @@ CREATE TABLE IF NOT EXISTS `training_teacher` (
   `training_teacher_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`training_teacher_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- 列出以下資料庫的數據： `training_teacher`
@@ -2516,12 +2331,8 @@ CREATE TABLE IF NOT EXISTS `training_teacher` (
 
 INSERT INTO `training_teacher` (`training_teacher_id`, `competency_level_id`) VALUES
 (19, 14),
-(20, 20),
-(21, 20),
-(22, 21),
-(23, 22),
-(24, 24),
-(25, 24);
+(20, 22),
+(21, 22);
 
 -- --------------------------------------------------------
 
@@ -2578,22 +2389,14 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `login_count` int(10) unsigned NOT NULL,
   `login_date` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=112 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 列出以下資料庫的數據： `user_profile`
 --
 
 INSERT INTO `user_profile` (`user_id`, `fullName`, `user_name_chs`, `user_name_eng`, `user_mps`, `name`, `first_name`, `last_name`, `birth_day`, `birth_month`, `birth_year`, `gender`, `job_title`, `company_id`, `notes`, `city_code`, `address`, `url`, `office_phone`, `home_phone`, `mobile`, `image`, `power_type`, `account_status`, `job_id`, `department_id`, `user_code`, `login_count`, `login_date`) VALUES
-(1, '陳志維', '陈志维', 'James Chen', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'M', '', 0, 0, '', 0, '0000-00-00 00:00:00'),
-(100, '管理者', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'M', 'T', 0, 0, 'admin@bhrs', 0, '0000-00-00 00:00:00'),
-(101, '顧問', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'C', 'T', 0, 0, '', 0, '0000-00-00 00:00:00'),
-(103, '李瑤政', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', 'T', 13, 0, '', 0, '0000-00-00 00:00:00'),
-(107, '林靜秀', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', 'T', 14, 0, '', 0, '0000-00-00 00:00:00'),
-(108, '廖瑜瑄', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', 'T', 38, 0, '', 0, '0000-00-00 00:00:00'),
-(109, '張胤育', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', 'T', 14, 0, '', 0, '0000-00-00 00:00:00'),
-(110, '羅冠志', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', 'T', 25, 0, '', 0, '0000-00-00 00:00:00'),
-(111, '鄧名丹', '', '', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'N', 'T', 13, 0, '', 0, '0000-00-00 00:00:00');
+(1, '陳志維', '陈志维', 'James Chen', '', '', '', '', 0, 0, 0, '', '', 0, '', 0, '', '', '', '', '', '', 'M', '', 0, 0, '', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -2610,19 +2413,11 @@ CREATE TABLE IF NOT EXISTS `user_sso` (
   `user_account` varchar(10) NOT NULL,
   `password` varchar(15) NOT NULL,
   PRIMARY KEY (`user_email_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 列出以下資料庫的數據： `user_sso`
 --
 
 INSERT INTO `user_sso` (`user_email_id`, `user_email`, `user_live_id`, `user_fb_id`, `user_id`, `user_account`, `password`) VALUES
-(1, 'james@bhrsp.com', '', '', 1, 'james', '12345'),
-(3, '', '', '', 103, '李瑤政', ''),
-(8, '', '', '', 107, '林靜秀', ''),
-(9, '', '', '', 108, '廖瑜瑄', ''),
-(10, '', '', '', 109, '張胤育', ''),
-(11, '', '', '', 110, '羅冠志', ''),
-(12, '', '', '', 111, '鄧名丹', ''),
-(15, 'admin@bhrsp', '', '', 100, 'admin@bhrs', ''),
-(16, '', '', '', 101, '', '');
+(1, 'james@bhrsp.com', '', '', 1, 'james', '12345');

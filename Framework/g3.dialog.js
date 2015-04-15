@@ -23,18 +23,25 @@ var openWindow = function(options) {
 			}
 		}
 	};
+	
 	if (options) {
+		//Default Active
 		$.extend(settings, options);
 	}
 
-
 	if (settings.id == divId)
-		$("body").append('<div id="' + settings.id + '" title="Dialog Title"><p class="loading"></p></div>');
+	{
+		//Default Active
+		$("body").append('<div  id="' + settings.id + '" title="Dialog Title"><p class="loading"></p></div>');
+	}
+		
 
 	if (settings.iframe) {
+		//Default Non-Active
 		var iframe = $('<iframe id="dialog_iframe_' + settings.id + '" name="dialog_iframe_' + settings.id + '" width="100%" height="100%" src="" marginwidth="0" marginheight="0" frameBorder="0" />');
 		$('#' + settings.id).append(iframe);
 	}
+	
 	// Dialog
 	$("#" + settings.id).dialog({
 		autoOpen : false,
@@ -84,7 +91,7 @@ var openWindow = function(options) {
 			$("#dialogFrame").css("height", parseInt($(this).css("height")) - 5);
 		}
 	});
-
+	//Default Active
 	$("#" + settings.id).dialog("open");
 	return settings.id;
 };

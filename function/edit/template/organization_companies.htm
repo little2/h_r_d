@@ -14,8 +14,8 @@
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 		<div class="lable" dis="dis_company_info" style="background-color: yellow;">{$lang.CompanyInformation}</div>
-		<div class="lable {display_label_lab2}" dis="dis_department_info"  >{$lang.Department}</div>
-		<div class="lable {display_label_lab2}" dis="dis_department_tree"  >{$lang.DepartmentTree}</div>		
+		<div class="lable {display_label_lab2}" dis="dis_department_list"  >{$lang.Department}</div>
+		<div class="lable {display_label_lab2}" dis="dis_company_department_tree"  >{$lang.CompanyStructureTree}</div>		
 		
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
@@ -24,21 +24,28 @@
 	<div id="dis_company_info" class="labDiv" style="display: block;">
 		<div class="uc1">
 			<form method="post" id="formPost" action="">
-				<div>
-					<input type="text" name="groups_id"  value="{groups_id}" />
+				<div class="hide">
 					<input type="text" name="company_id"  value="{company_id}" />
 				</div>
 				
 				
 				<table class="tableStyle1" >
-					<tr>
-						<!--<td align="right" style="color:#1C7EFC"><b>群組代號：</b></td> -->
-						<td class="label"> 公司代碼： </td>
+					<tr>						
+						<td class="label">{$lang.CompanyCode}： </td>
 						<td><input name="company_code"  value="{company_code}"></td>
 					</tr>
-						{field_company_title}		
-						{field_company_desc}				
-
+					<tr>						
+						<td class="label">{$lang.Groups}： </td>
+						<td>
+							<select id="groups_id" name="groups_id">
+								<!-- BEGIN GROUPS -->
+								<option value="{GROUPS.groups_id}" {GROUPS.selected}>{GROUPS.groups_title}</option>
+								<!-- END GROUPS -->
+							</select>						
+						</td>
+					</tr>
+						{field_company_title}
+						{field_company_desc}
 				</table>
 				
 			</form>
@@ -48,34 +55,21 @@
 	</div>
 	
 	
-	<div id="dis_department_info" class="labDiv"   >	
+	<div id="dis_department_list" class="labDiv"   >	
 		<table class="tableStyle1" ><tr><td>{container_organization_department}</td></tr></table>
 	</div>
 	
-	<div id="dis_department_tree" class="labDiv"   >
+	<div id="dis_company_department_tree" class="labDiv"   >
 
+	
+	</div>
+	
 	<div id="information" class="hide">
-		<ul id="organisation">
-			<li><a href="">總經理室</a>
-				<ul>
-					<li><a href="">業務部</a>
-						<ul>
-							<li><a href="">國內組</a>
-								<ul>
-									<li><a href="">南區</a></li>
-									<li><a href="">北區</a></li>
-								</ul></li>
-						</ul></li>
-					<li><a href="">研發部</a>
-						<ul>
-							<li><a href="">硬體組</a></li>
-							<li><a href="">軟體組</a></li>
-						</ul></li>
-					<li><a href="">財務部</a></li>
-				</ul></li>
+		<ul id="company_organisation">
+				{department_tree_xml}
 		</ul>
-	</div>
-	</div>
+	</div>		
+	
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->
 	
 </div>	
@@ -91,7 +85,7 @@
 			save_url:'/hrd/function/saveOrUpdate/save_company.php'			
 		});	
 		
-		$("#organisation").orgChart({container: $("#dis_department_tree"), interactive: true, fade: true, speed: 'slow'});
+		$("#company_organisation").orgChart({container: $("#dis_company_department_tree"), interactive: true, fade: true, speed: 'slow'});
 		//##### 需客制化修改 ##############################################
 	}); 
 </script>

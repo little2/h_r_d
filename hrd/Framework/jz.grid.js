@@ -4,8 +4,7 @@ var jzsoft = {
 	dateFormat : 'yy-mm-dd'
 };
 
-jzsoft.grid = function(id, options, menup) {
-	
+jzsoft.grid = function(id, options, menup) {	
 	$("#" + id).jqGrid($.extend({
 		ajaxGridOptions : {
 			type : "POST"
@@ -629,16 +628,25 @@ jzsoft.grid.rtnLovValue = function(id, t, gid, rowId, p) {
  */
 jzsoft.grid.newBarMenu = function(p) {
 
+	
 	if (p) {
+		
+		var dialogID=$("#"+p.gridId).parentsUntil('div.ui-dialog').last().attr('id');    
+
+		
+		if(dialogID!="undefined")
+		{
+			p.fromDivId=dialogID+"";
+			$('#'+p.fromDivId).parent().find('.ui-dialog-title').attr('data-dialogID',p.fromDivId)			
+		}
+		
 		 var settings = new Object();		    
 		 var settings = $.extend({},p); //物件複製	
-	
+		 
 		var buttons = [];
 
 		for(var index in p)
-		{			
-			
-			
+		{						
 			switch(index)
 			{
 		
@@ -700,6 +708,8 @@ jzsoft.grid.newBarMenu = function(p) {
 						name : p.edit.name,
 						bclass : 'edit',
 						onpress : function() {
+							
+							
 							jzsoft.grid.newformEdit(p);
 						}
 					});
@@ -726,8 +736,8 @@ jzsoft.grid.newBarMenu = function(p) {
 						name : '匯入',
 						bclass : 'import',
 						onpress : function() {
-							p.import.width=400;
-							p.import.height=400;					
+							p.import.width=840;
+							p.import.height=620;					
 							jzsoft.grid.openDialog(p.import);
 						}
 					});
@@ -785,28 +795,28 @@ jzsoft.grid.newBarMenu = function(p) {
  *  * @param
  */
 jzsoft.grid.newformAdd = function(p) {
-
 	var url=p.add.body;
 
 	//url, formKeys, title, width, height, divId ,data
 	
 	//console.log('add:'+url);
-	if (p.formKeys) {
-		
+	if (p.formKeys) {		
 		if (p.url.indexOf('?') > -1) {
 			url += '&';
 		} else {
 			url += '?';
 		}
-		url += jzsoft.grid.formKey(p.formKeys);
-		
+		url += jzsoft.grid.formKey(p.formKeys);		
 	}
 		
 	
 	 var setting = new Object();		    
 	 var setting = $.extend({}, p.add); //物件複製		
+	 setting.fromDivId = p.fromDivId;
 	 setting.body+= ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
-	 	
+	
+	 //this.labelledby=$(this.container).parentsUntil('div.ui-dialog').parent().attr('aria-labelledby');
+	 
 //	console.log(setting);
 	jzsoft.grid.openDialog(setting)
 
@@ -851,8 +861,9 @@ jzsoft.grid.newformEdit = function(p) {
 		}
 		
 
-		 var setting = new Object();		    
+		 var setting = new Object();		
 		 var setting = $.extend({}, p.edit); //物件複製		
+		 setting.fromDivId = p.fromDivId;		 
 		 setting.body=url+ ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
 		jzsoft.grid.openDialog(setting)
 
@@ -923,8 +934,6 @@ jzsoft.grid.newmultiDele = function(setting) {
 	id=setting.gridId;
 	url=setting.delete.body;
 	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');
-	
-	
 	if (sels == "") {
 		//jzsoft.grid.dele(id, url);
 	} else {
@@ -935,8 +944,6 @@ jzsoft.grid.newmultiDele = function(setting) {
 			var ids = "";
 			for ( var i = 0; i < len; i++) {
 				var rowdata = $("#" + id).jqGrid("getRowData", sels[i]);
-				
-
 				if(ids.length>0)
 				{
 					ids +="&";
@@ -944,9 +951,7 @@ jzsoft.grid.newmultiDele = function(setting) {
 				
 				ids += 'keys['+rowdata.key+']=' + rowdata.key;
 			}
-			
-		
-			
+						
 			$.ajax({
 				type : "POST",
 				url : url,
@@ -971,7 +976,19 @@ jzsoft.grid.newmultiDele = function(setting) {
 };
 
 
-jzsoft.grid.openDialog = function(setting) {
+jzsoft.grid.openDialog = function(setting) {	
+	
+
+	if(setting.fromDivId!="undefined")
+	{
+		setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+" > "+setting.title;
+		//console.log(setting.fromDivId)
+	//	console.log(jzsoft.grid.getParentTitle(setting.fromDivId));
+		//console.log($('#'+setting.fromDivId).parent().find('.ui-dialog-title').text());
+	}
+	
+	
+	
 	id=openDialog({	
 		width : setting.width ? setting.width : 1020,
 		height : setting.height ? setting.height : 620,
@@ -984,14 +1001,36 @@ jzsoft.grid.openDialog = function(setting) {
 		data : setting.data,
 		buttons : setting.buttons
 	});
+	
+
+	$('#'+id).parent().find('.ui-dialog-title').attr('data-dialogID',id).attr('data-fromDialogID',setting.fromDivId)	
 };
+
+jzsoft.grid.getParentTitle = function (fromDivId) {
+	var obj=$('#'+fromDivId).parent().find('.ui-dialog-title');
+	console.log(obj);
+	var title=obj.text();	
+	var fromDialogID=obj.attr('data-fromdialogid');	
+//
+//	if(typeof(fromDialogID)!="undefined" )
+//	{
+//		var parentTitle = jzsoft.grid.getParentTitle(fromDialogID);
+//		if(typeof(parentTitle)!="undefined")
+//		{
+//			console.log('parentTitle='+parentTitle);
+//			title=parentTitle + " > " + title;
+//		}
+//	}
+	
+	return title;
+}
 
 
 jzsoft.grid.formFilter = function(p) {
 	
-	 var setting = new Object();		    
-	 setting = $.extend({}, p.filter); //物件複製			 
-	 setting.gridId = p.gridId;
+	var setting = new Object();		    
+	setting = $.extend({}, p.filter); //物件複製			 
+	setting.gridId = p.gridId;
 		
 	setting.width=400;
 	setting.height=300;
@@ -999,11 +1038,10 @@ jzsoft.grid.formFilter = function(p) {
 	
 	/*
 	 	var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        	        	
-        		$("#" + this.pick_list_id).jqGrid('setGridParam', {				
-        					postData : $("#formPost",formContainer).serialize(),
-        					page : 1
-        				}).trigger("reloadGrid");	
-	 * 
+        $("#" + this.pick_list_id).jqGrid('setGridParam', {				
+        		postData : $("#formPost",formContainer).serialize(),
+        		page : 1
+        }).trigger("reloadGrid");
 	 */
 	
 	setting.buttons={
@@ -1023,7 +1061,6 @@ jzsoft.grid.formFilter = function(p) {
 			}
 		};
 	jzsoft.grid.openDialog(setting);
-
 };
 
 
@@ -1063,6 +1100,5 @@ jzsoft.grid.sendPost = function(id, url) {
 				}
 			});
 		}
-	}
-	
+	}	
 };

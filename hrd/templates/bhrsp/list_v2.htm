@@ -10,10 +10,11 @@
 
 
 <body id="body_{gridId}">
-	<input type="hidden" name="empId" value="F39BA5B7-0F25-492B-AB6B-7FFC132EB351" />
+	<input type="hidden" name="empId"  value="F39BA5B7-0F25-492B-AB6B-7FFC132EB351" />
 	
-	<div id="tab1">
-		
+
+	
+	<div id="tab1">		
 		<table id="{gridId}"></table>
 		<div id="{pager}"></div>
 	</div>
@@ -78,7 +79,7 @@
         });
 		*/
 		
-	
+
 		
 		jzsoft.grid.inlineMenu({
 			grid : "{inline_gridId}",
@@ -88,8 +89,13 @@
 			delService : '{deleUrl}',
 		});
 		
+
+	
+		
+		
 		
 		jzsoft.grid.newBarMenu({
+			fromDivId:'',
 			gridId : '{bar_gridId}',
 			baseUrl : '{baseUrl}',
 			 <!-- BEGIN BUTTONS -->
@@ -111,6 +117,23 @@
 			<!-- END BUTTONS -->	
 		});
 		
+		
+		
+		
+		
 	});
 
+	//##Diglog Cache
+	/*
+	if ($("#dig_{gridId}",$('#dialog_cache')).length <= 0 ) 
+	{      
+		//不存在則新增
+		$('#dialog_cache').append('<div id="dig_{gridId}" data-id="{gridId}" data-title="{DialogTitle}">dig_{gridId}:{DialogTitle}</div>');		
+   	}
+	else
+	{
+		console.log("NOTHING");
+	}	
+	*/
+	
 </script>
