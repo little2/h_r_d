@@ -22,7 +22,7 @@
 		</div>
 		<div class="Header_navBarright">
 			<a href="#" class="navrighta"><img
-				src="Framework/Themes/images/frame/navuser.png" align="absbottom">&nbsp;[admin]&nbsp;&nbsp;</a>
+				src="Framework/Themes/images/frame/navuser.png" align="absbottom">&nbsp;{user_account}&nbsp;&nbsp;</a>
 			 <a href="#" class="navrighta"><img
 				src="Framework/Themes/images/frame/navnews.png" align="absbottom">&nbsp;(5)&nbsp;&nbsp;&nbsp;</a>
 			<!-- <a href="/hrd/landESS.html" class="navrighta"><img 
@@ -45,7 +45,7 @@
 <!--Hearder end-->
 <script>
 	function logout(obj){
-		var url="/hrd/logout.html?mid="+ Math.random();
+		var url="/hrd/logout.php?mid="+ Math.random();
 		obj.parent.location.href=url;
 	}
 </script>

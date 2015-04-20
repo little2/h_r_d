@@ -293,8 +293,7 @@ function submit_to_review(obj)
 			data:{class_evaluation_appraisee_id:class_evaluation_appraisee_id,class_evaluation_appraisee_stauts:'REV'},
 			url:'/hrd/function/saveOrUpdate/save_appraisee.php',
 			onSuccess:function(data){		
-				var dialogID=$(obj).parentsUntil('div.ui-dialog').last().attr('id');		
-				closeDialog(dialogID);
+			alert(data.result);
 				}					
 	}				
 	var msg=mypost(o);	

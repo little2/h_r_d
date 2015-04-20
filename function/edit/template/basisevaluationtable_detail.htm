@@ -15,11 +15,11 @@
 
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
-		<div class="lable {display_label_information}"  dis="dis_basis_evalutiontable_properties" style="background-color: yellow;">評鑑表屬性</div>
-		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_content" >評鑑表內容</div>
-		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_suggest" >開放建議</div>
-		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_template" >通知訊息</div>
-		<div class="lable {display_label_ability}"  dis="dis_basis_evalutiontable_reportee" >受評人列表</div>		
+		<div class="lable {display_label_properties}"  dis="dis_basis_evalutiontable_properties" style="background-color: yellow;">評鑑表屬性</div>
+		<div class="lable {display_label_content}"  dis="dis_basis_evalutiontable_content" >評鑑表內容</div>
+		<div class="lable {display_label_suggest}"  dis="dis_basis_evalutiontable_suggest" >開放建議</div>
+		<div class="lable {display_label_template}"  dis="dis_basis_evalutiontable_template" >通知訊息</div>
+		<div class="lable {display_label_reportee}"  dis="dis_basis_evalutiontable_reportee" >受評人列表</div>		
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
 	
@@ -45,7 +45,17 @@
 					<tr>
 						<td class="label"><b>完成期限： </b></td>
 						<td><input name="due_date"  type="text" value="{due_date}"></td>
-					</tr>							
+					</tr>		
+					
+					
+
+					
+					<tr class='{display_preview}'>
+						<td>
+						<input class="labButton" type="button"  value="預覽評鑑表"   onClick="evaluation_table_preview('{class_evaluation_evaluator_id}')"/>
+						</td>
+					</tr>					
+										
 				</table>	
 		</div>
 		<div class="uc2"  style=“width:70%;”></div>
@@ -150,6 +160,12 @@
 		
 		//##### 需客制化修改 ##############################################
 	}); 
+	
+	function show_status_message(status)
+	{
+		alert(status);
+	}
+	
 </script>
 
 

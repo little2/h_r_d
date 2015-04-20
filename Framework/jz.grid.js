@@ -1064,12 +1064,14 @@ jzsoft.grid.formFilter = function(p) {
 };
 
 
-jzsoft.grid.sendPost = function(id, url) {
+jzsoft.grid.sendPost = function(id, url, msg) {
 	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');	
 	if (sels == "") {
 		//jzsoft.grid.dele(id, url);
 	} else {
-		if (confirm("您是否確認？")) {
+		if(typeof(msg)=='undefined') msg="您是否確認？";
+
+		if (confirm(msg)) {
 			var len = sels.length;
 			var ids = "";
 			for ( var i = 0; i < len; i++) {
