@@ -1,12 +1,42 @@
-function init_tab(container_id)
-{
-	var container =$('#'+container_id);
-	
-	
-	//console.log(container.attr('data-from'));
-	//console.log(container.attr('id'));
+function include_once(src) {
+  // hole alle vorhandenen Script-Elemente
+  var scripts = document.getElementsByTagName('script');
+  if(scripts) {
+    for(var k=0; k<scripts.length; k++) {
+      // script schon geladen, abbrechen
+      if(scripts[k].src == src) {
+        return;
+      }
+    }
+  }
+  // script noch nicht geladen, binde es ein
+  var script = document.createElement('script');
+  script.src = src;
+  script.type = 'text/javascript';
+  (document.getElementsByTagName('HEAD')[0] || document.body).appendChild(script);
+}
 
-	
+function function_exists(func_name) {
+	  // discuss at: http://phpjs.org/functions/function_exists/
+	  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+	  // improved by: Steve Clay
+	  // improved by: Legaev Andrey
+	  // improved by: Brett Zamir (http://brett-zamir.me)
+	  // example 1: function_exists('isFinite');
+	  // returns 1: true
+
+	  if (typeof func_name === 'string') 
+	  {
+	  	func_name = this.window[func_name];
+	  }
+	  return typeof func_name === 'function';
+}
+
+
+
+function init_tab(container_id)
+{	
+	var container =$('#'+container_id);
 	$(".lable",container).each(function() {
 	
 		$(this).click(function() {
@@ -20,7 +50,8 @@ function init_tab(container_id)
 			$(this).css("background-color", "yellow");
 			$("#" + divn).show();
 		});
-	});		
+	});
+
 }
 
 function mypost(o)
@@ -50,301 +81,6 @@ function mypost(o)
 			}
 		}
 	});	 
-}
-
-/*
-function open_department(group_id)
-{
-	var setting = new Object();		    
-	//http://localhost/hrd/organization/department/edit.html?company_id=1&gridId=organization_department_list&entity.key=3
-	setting.body="./organization/department/edit.html?entity.key="+group_id+"&gridId=organization_department_list"
-	jzsoft.grid.openDialog(setting)	
-}
-
-function open_dialog(key,gridId)
-{
-	console.log(gridId);
-	grid_row=gridId.split('_');
-	
-	var setting = new Object();		    
-	//http://localhost/hrd/organization/department/edit.html?company_id=1&gridId=organization_department_list&entity.key=3
-	setting.body="./"+grid_row[0]+'/'+grid_row[1]+'/edit.html?entity.key='+key+"&gridId="+gridId	
-	console.log(setting.body);
-	jzsoft.grid.openDialog(setting)	
-}
-
-
-function test123()
-{
-	alert('test');
-}
-
-
-
-function call_func(obj,nobj)
-{
-
-//	var url ='${pageContext.request.contextPath}/training/trOrganizationDepartAnnualStartClassIntentionSurvey/convertIntoAnnualTrainingPlan.html';
-//	var sels = $("#list1").jqGrid('getGridParam', 'selrow');
-//	if (sels) {
-////		var rowdata = $("#list1").jqGrid("getRowData", sels);
-//		var data = {'entity.key':rowdata.key};
-//		$.post(url,data,function(){
-//			$().message("已转换为年度训练计划！");
-//		},'json');
-//	} else {
-//		$("#list1").message("請選擇要修改的項目！");
-//	}
-	
-	if(nobj)
-	{	
-		var id=openDialog({		
-			width : nobj.width,		
-			height : nobj.height,		
-			modal : true,
-			type : 'url',
-			show : "",
-			hide : "",
-			title : nobj.title+' ID:'+nobj.gridId,
-			body : nobj.body,
-			data : nobj.data,
-			buttons : {	}
-		});
-	
-	}
-	
-
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-// Call from list/basisevalutiontable_evaluator.php
-function modify_basisevalutiontableevaluator(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "修改受評者的評鑑者",
-		body : "/hrd/basisevaluationtable/evaluator/edit.html",
-		data : {},
-		buttons : {}
-	});
-}
-
-//修改受評人的訊息 (修改所屬評鑑者)
-function modify_basisevalutiontable_reportee(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "修改受評者的評鑑者",
-		body : "/hrd/basisevaluationtable/reportee/edit.html",
-		data : {},
-		buttons : {}
-	});
-}
-
-function modify_classevalutiontableevalutor()
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "修改職能評鑑者",
-		body : "/hrd/classevaluationtable/competencyevalutor/edit.html",
-		data : {},
-		buttons : {}
-	});
-}
-
-
-function modify_classevalutiontable(obj,gridId)
-{	
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "修改職能評鑑",
-		body : "/hrd/classevaluationtable/competencyedit/edit.html",
-		data : {},
-		buttons : {}
-	});
-}
-
-
-
-function course_detail(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "課程設定",
-		body : "/hrd/competency/course/edit.html",
-		data : {request_gridId:gridId},
-		buttons : {}
-	});
-}
-
-
-function cs_manage(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "職能標準 cs_manage",
-		body : "/hrd/competency/standard/edit.html",
-		data : {request_gridId:gridId},
-		buttons : {}
-	});	
-}
-
-//evaluationtable_item_detail
-function eti_detail(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "能力指標",
-		body : "/hrd/ability/list/edit.html",
-		data : {request_gridId:gridId},
-		buttons : {}
-	});
-}
-
-
-function positionlevel_manage(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "職等職稱",
-		body : "/hrd/position_level/detail/edit.html",
-		data : {request_gridId:gridId},
-		buttons : {}
-	});
-}
-
-function create_ability(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "能力指標",
-		body : "/hrd/ability/list/edit.html",
-		data : {request_gridId:gridId},
-		buttons : {}
-	});
-}
-
-function create_competency_level(obj,gridId)
-{
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "分級職能信息",
-		body : "/hrd/competency/level/edit.html",
-		data : {request_gridId:gridId},
-		buttons : {}
-	});
-}
-
-function create_competency(obj,gridId)
-{	
-	//	console.log($(tag).html())
-	//console.log("C-"+obj.parent.name)
-	/*
-	var container=$('#competency_setting');
-		$(".lable",container).each(function() {
-			$(this).click(function() {
-				var divn = $(this).attr("dis");
-				$(".lable",container).each(function() {
-					$(this).css("background-color", "#F0F0F0");
-				});
-				$(".labDiv",container).each(function() {
-					$(this).hide();
-				});
-				$(this).css("background-color", "yellow");
-				$("#" + divn).show();
-			});
-		});
-	*/
-	
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "職能",
-		body : "/hrd/competency/setting/edit.html",
-		data : {request_gridId:gridId},
-		buttons : {}
-	});
-}
-
-function create_behavior(obj)
-{	
-	openDialog({
-		width : 1020,		
-		height : 620,
-		modal : true,
-		type : 'url',
-		show : "",
-		hide : "",
-		title : "行為",
-		body : "/hrd/behavior/setting/edit.html",
-		data : {},
-		buttons : {}
-	});
 }
 
 //-------------------------

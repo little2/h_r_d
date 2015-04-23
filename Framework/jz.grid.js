@@ -817,7 +817,7 @@ jzsoft.grid.newformAdd = function(p) {
 	
 	 //this.labelledby=$(this.container).parentsUntil('div.ui-dialog').parent().attr('aria-labelledby');
 	 
-//	console.log(setting);
+	console.log(setting);
 	jzsoft.grid.openDialog(setting)
 
 };

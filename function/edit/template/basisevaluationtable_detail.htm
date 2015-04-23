@@ -12,7 +12,6 @@
 			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
 		</div>
 
-
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 		<div class="lable {display_label_properties}"  dis="dis_basis_evalutiontable_properties" style="background-color: yellow;">評鑑表屬性</div>
@@ -30,10 +29,8 @@
 					<tr>
 						<td class="label"><b>評鑑表代碼： </b></td>
 						<td><input name="basis_evaluation_table_code" class="basis_evaluation_table_code" type="text" value="{basis_evaluation_table_code}"></td>
-					</tr>			
-			
-			
-					{field_evaluation_table_title}					
+					</tr>
+					{field_evaluation_table_title}
 					<tr>
 						<td class="label"><b>顯示職能： </b></td>
 						<td>
@@ -45,10 +42,7 @@
 					<tr>
 						<td class="label"><b>完成期限： </b></td>
 						<td><input name="due_date"  type="text" value="{due_date}"></td>
-					</tr>		
-					
-					
-
+					</tr>	
 					
 					<tr class='{display_preview}'>
 						<td>
@@ -60,7 +54,6 @@
 		</div>
 		<div class="uc2"  style=“width:70%;”></div>
 	</div>
-	
 	
 	<!-- dis_basis_evalutiontable_content  -->
 		<div id="dis_basis_evalutiontable_content" class="labDiv" >
@@ -88,11 +81,8 @@
 								<!-- END ES_LIST -->							
 							</select>
 						</td>
-					</tr>					
-					
-					{field_evaluation_table_desc}		
-					
-				
+					</tr>
+					{field_evaluation_table_desc}				
 				</table>
 		
 							
@@ -141,8 +131,12 @@
 </div>	
 
 <script type="text/javascript">
-	$(function() {				
-		init_tab('container_{elementID}');		
+
+
+
+	$(function() {			
+		
+		
 		
 		//##### 需客制化修改 ##############################################
 		$('#dis_basis_evalutiontable_properties').dashpanel({	
@@ -150,13 +144,14 @@
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_table.php'			
 		});	
+		
 		$('#dis_basis_evalutiontable_content').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_table.php'			
 		});	
 		
-		
+		init_tab('container_{elementID}');		
 		
 		//##### 需客制化修改 ##############################################
 	}); 
