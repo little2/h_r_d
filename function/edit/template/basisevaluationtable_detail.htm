@@ -41,7 +41,7 @@
 					
 					<tr>
 						<td class="label"><b>完成期限： </b></td>
-						<td><input name="due_date"  type="text" value="{due_date}"></td>
+						<td><input name="due_date"  type="text" value="{due_date}" class="date" ></td>
 					</tr>	
 					
 					<tr class='{display_preview}'>
@@ -135,7 +135,9 @@
 
 
 	$(function() {			
-		
+		$("input[name='due_date']").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
 		
 		
 		//##### 需客制化修改 ##############################################
