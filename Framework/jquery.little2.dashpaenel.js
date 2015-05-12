@@ -139,17 +139,22 @@
         	
         	//dialog_cache
         
-        	
+        	var dialog_title=null;
         	if(this.options.dialog_title.length>0)
-        	{
-        		$('#'+this.labelledby).append(' : '+this.options.dialog_title);            	
+        	{        		
+        		dialog_title=' : '+this.options.dialog_title;
+        		$(this.container).parentsUntil('div.ui-dialog').attr('data-dialogidtitle',dialog_title);
+        		/*
+        		if($('#'+this.labelledby).text().indexOf(dialog_title)<0)
+        		{
+        			$('#'+this.labelledby).append(dialog_title);       
+        		}
+        		 */ 	
         	}
         	else if( typeof($('#DialogTitle',$(this.container)).val())!="undefined" && $('#DialogTitle',$(this.container)).val()!="" )
-        	{
+        	{        		
         		$('#'+this.labelledby).append(' : '+$('#DialogTitle',$(this.container)).val());            	
-        	}
-        	
-        	
+        	}        	
         	
     		//##Diglog Cache
         	/*

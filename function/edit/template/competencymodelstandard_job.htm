@@ -6,6 +6,7 @@
 </head>
 
 <body>
+
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
@@ -84,10 +85,14 @@
 			<div style="border-bottom: 1px #cecece solid;margin: 20px;" class='hide'>
 				<div style="font-size:16px;font-weight: bold; ">二職等助理工程師(生技)</div>
 			</div>
-			<div class="hide">
-				<input type="text" id="job_id" name="job_id" value="{job_id}" />
-			</div>
+
 			
+				<div class="hide">
+					<input type="text" name="job_id"  id="job_id"  value="{job_id}">
+					<input type="text" name="job_family_id"  id="job_family_id"  value="{job_family_id}">
+					<input type="text" name="competency_model_id"  id="competency_model_id"  value="{competency_model_id}">
+				</div>
+				
 			<table class="tableStyle1"  >
 				<tr>
 					<td height="30" class="label">職能標準設定：</td>
@@ -130,11 +135,20 @@
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_job_competency.php',
 			check_before_save:function(){
+				var  _pass=true;
 				$('.tag_competency_level').each(function(){
-					//console.log(this.value);
+					
+					if(this.value>5)
+					{						
+						alert("職能等級不得超過5");
+						_pass=false
+						return false;							
+					}
 					//？？？最大值需小於等於該模型的級數標準
-				})
-				return false;
+				}
+				
+				)
+				return _pass;				
 			}
 		});		
 		

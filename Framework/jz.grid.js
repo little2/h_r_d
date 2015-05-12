@@ -811,8 +811,10 @@ jzsoft.grid.newformAdd = function(p) {
 		
 	
 	 var setting = new Object();		    
+	 
 	 var setting = $.extend({}, p.add); //物件複製		
 	 setting.fromDivId = p.fromDivId;
+	 
 	 setting.body+= ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
 	
 	 //this.labelledby=$(this.container).parentsUntil('div.ui-dialog').parent().attr('aria-labelledby');
@@ -828,6 +830,8 @@ jzsoft.grid.newformAdd = function(p) {
  */
 jzsoft.grid.newformEdit = function(p) {
 
+
+	
 	//p.gridId, p.baseUrl + p.editUrl, p.addParam, p.formKeys, p.editTitle, p.titleCustom, p.editWidth, p.editHeight
 	//id, url, addParam, formKeys, title, titleCustom, width, height, divId
 	var sels = $("#" + p.gridId).jqGrid('getGridParam', 'selrow');
@@ -836,13 +840,16 @@ jzsoft.grid.newformEdit = function(p) {
 		var url=p.edit.body;		
 			
 		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);
-		
+	
 		
 		if (url.indexOf('?') > -1) {
 			url += '&';
 		} else {
 			url += '?';
 		}		
+		
+
+		
 		
 		url += "entity.key=" + rowdata.key;		
 		if (p.addParam) {
@@ -864,8 +871,18 @@ jzsoft.grid.newformEdit = function(p) {
 		 var setting = new Object();		
 		 var setting = $.extend({}, p.edit); //物件複製		
 		 setting.fromDivId = p.fromDivId;		 
+		 
 		 setting.body=url+ ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
-		jzsoft.grid.openDialog(setting)
+
+		//設定指定的標題列
+		 var set_title_col=$("#" + p.gridId).jqGrid('getGridParam', 'set_title_col');
+		if(set_title_col.length>0)
+		{
+			setting.set_title_col=rowdata[set_title_col];
+		}		 
+		 
+		 
+		 jzsoft.grid.openDialog(setting)
 
 		
 	} else {
@@ -913,8 +930,17 @@ jzsoft.grid.newformView = function(p) {
 		}
 		
 		 var setting = new Object();		    
-		 var setting = $.extend({}, p.edit); //物件複製		
+		 var setting = $.extend({}, p.edit); //物件複製
+		 
 		 setting.body=url+ ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
+		 
+			//設定指定的標題列
+		 var set_title_col=$("#" + p.gridId).jqGrid('getGridParam', 'set_title_col');
+		if(set_title_col.length>0)
+		{
+			setting.set_title_col=rowdata[set_title_col];
+		}				 
+		 
 		jzsoft.grid.openDialog(setting)
 		
 	  
@@ -976,17 +1002,22 @@ jzsoft.grid.newmultiDele = function(setting) {
 };
 
 
-jzsoft.grid.openDialog = function(setting) {	
-	
-
+jzsoft.grid.openDialog = function(setting) 
+{	
 	if(setting.fromDivId!="undefined")
-	{
-		setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+" > "+setting.title;
-		//console.log(setting.fromDivId)
-	//	console.log(jzsoft.grid.getParentTitle(setting.fromDivId));
-		//console.log($('#'+setting.fromDivId).parent().find('.ui-dialog-title').text());
-	}
-	
+	{		
+		//var dialogidtitle=$('#'+id).attr("data-dialogidtitle");
+		console.log(typeof(setting.set_title_col));
+		if(typeof(setting.set_title_col)!="undefined")
+		{
+			setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+"："+setting.set_title_col+" > "+setting.title;
+		}
+		else
+		{
+			setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+" > "+setting.title;
+		}
+		
+	}		
 	
 	
 	id=openDialog({	
@@ -1001,6 +1032,8 @@ jzsoft.grid.openDialog = function(setting) {
 		data : setting.data,
 		buttons : setting.buttons
 	});
+
+
 	
 
 	$('#'+id).parent().find('.ui-dialog-title').attr('data-dialogID',id).attr('data-fromDialogID',setting.fromDivId)	
@@ -1008,7 +1041,7 @@ jzsoft.grid.openDialog = function(setting) {
 
 jzsoft.grid.getParentTitle = function (fromDivId) {
 	var obj=$('#'+fromDivId).parent().find('.ui-dialog-title');
-	console.log(obj);
+
 	var title=obj.text();	
 	var fromDialogID=obj.attr('data-fromdialogid');	
 //
