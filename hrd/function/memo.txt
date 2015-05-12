@@ -1,8 +1,0 @@
-(1) 新增 db
-(2) list  
-(3) pageList (同 母edit)  
-(4) edit html (子)
-(5) edit php (子) 
-(6) save    (URL:edit.html)  
-(7) delete (list.php) 
-
