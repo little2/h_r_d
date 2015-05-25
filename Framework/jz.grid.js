@@ -707,9 +707,7 @@ jzsoft.grid.newBarMenu = function(p) {
 					buttons.push({
 						name : p.edit.name,
 						bclass : 'edit',
-						onpress : function() {
-							
-							
+						onpress : function() {							
 							jzsoft.grid.newformEdit(p);
 						}
 					});
@@ -897,6 +895,8 @@ jzsoft.grid.newformEdit = function(p) {
  */
 jzsoft.grid.newformView = function(p) {
 
+
+	
 	//p.gridId, p.baseUrl + p.editUrl, p.addParam, p.formKeys, p.editTitle, p.titleCustom, p.editWidth, p.editHeight
 	//id, url, addParam, formKeys, title, titleCustom, width, height, divId
 	var sels = $("#" + p.gridId).jqGrid('getGridParam', 'selrow');
@@ -905,13 +905,16 @@ jzsoft.grid.newformView = function(p) {
 		var url=p.view.body;		
 			
 		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);
-		
+	
 		
 		if (url.indexOf('?') > -1) {
 			url += '&';
 		} else {
 			url += '?';
 		}		
+		
+
+		
 		
 		url += "entity.key=" + rowdata.key;		
 		if (p.addParam) {
@@ -920,34 +923,28 @@ jzsoft.grid.newformView = function(p) {
 			}
 		}
 		
-		if (p.view.titleCustom) {
-			var custom = '';
-			p.view.title += "(";
-			for ( var i in p.view.titleCustom) {
-				custom += '/' + rowdata[p.view.titleCustom[i]];
-			}
-			p.view.title += custom.substring(1) + ")";
-		}
+	
 		
-		 var setting = new Object();		    
-		 var setting = $.extend({}, p.edit); //物件複製
+
+		 var setting = new Object();		
+		 var setting = $.extend({}, p.edit); //物件複製		
+		 setting.fromDivId = p.fromDivId;		 
 		 
 		 setting.body=url+ ( (url.indexOf('?') > -1) ? '&':'?') + "gridId="+p.gridId;
-		 
-			//設定指定的標題列
+
+		//設定指定的標題列
 		 var set_title_col=$("#" + p.gridId).jqGrid('getGridParam', 'set_title_col');
 		if(set_title_col.length>0)
 		{
 			setting.set_title_col=rowdata[set_title_col];
-		}				 
+		}		 
 		 
-		jzsoft.grid.openDialog(setting)
-		
-	  
+		 
+		 jzsoft.grid.openDialog(setting)
 
 		
 	} else {
-		$("#" + p.gridId).message("請選擇要修改的項目！");
+		$("#" + p.gridId).message("請選擇要查閱的項目！");
 	}
 };
 
@@ -1007,7 +1004,7 @@ jzsoft.grid.openDialog = function(setting)
 	if(setting.fromDivId!="undefined")
 	{		
 		//var dialogidtitle=$('#'+id).attr("data-dialogidtitle");
-		console.log(typeof(setting.set_title_col));
+		
 		if(typeof(setting.set_title_col)!="undefined")
 		{
 			setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+"："+setting.set_title_col+" > "+setting.title;

@@ -9,7 +9,10 @@
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
 <form method="post" id="formPost" >
 		<div class="hide">
-			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
+			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}">
+			<input type="text" id="competency_model_id" name="competency_model_id"  value="{competency_model_id}">
+			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">
+			
 		</div>
 
 	<div class="labMenu">
@@ -46,7 +49,7 @@
 					
 					<tr class='{display_preview}'>
 						<td>
-						<input class="labButton" type="button"  value="預覽評鑑表"   onClick="evaluation_table_preview('{class_evaluation_evaluator_id}')"/>
+						<input class="labButton" type="button"  value="預覽評鑑表"   onClick="evaluation_table_preview()"/>
 						</td>
 					</tr>					
 										
@@ -92,7 +95,7 @@
 
 	
 	<div id="dis_basis_evalutiontable_suggest"   class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{container_basisevalutiontable_suggest}</td></tr></table>		
+		<table class="tableStyle1" ><tr><td>{container_basis-evalution-table_open-comment}</td></tr></table>		
 	</div>
 	
 	<!-- 訊息通知模板 -->
@@ -162,6 +165,22 @@
 	{
 		alert(status);
 	}
+	
+	function evaluation_table_preview()
+	{
+		 var competency_model_id=$('#competency_model_id').val();
+		 var evaluation_scale_id=$('#evaluation_scale_id').val();
+		
+		 var setting = new Object();		   
+		
+		 setting.title ='評鑑表';
+
+		 //setting.body ='/hrd/competencyevaluation/basis/edit.html?type=&method=&entity.key=2&gridId=competencyevaluation_basis_list';
+		 setting.body ='/hrd/competencyevaluation/basis/edit.html';
+		 setting.data={competency_model_id:competency_model_id,evaluation_scale_id:evaluation_scale_id}
+//		console.log(setting);
+		jzsoft.grid.openDialog(setting)
+	}	
 	
 </script>
 

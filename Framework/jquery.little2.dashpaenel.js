@@ -5,14 +5,11 @@
         version: "1.0.0",
         options: {
         	check_before_save:function(){return true},
-        	save:function(event){
-        		
+        	save:function(event){        		
         		if(!this.check_before_save())
-        		{
-        			
+        		{        			
         			return false;
-        		}
-        		
+        		}        		
         		var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        		
 				var o = {
 						data: $("#formPost",formContainer).serialize(),
@@ -37,7 +34,7 @@
 										$("#tabPanel").refreshitem();	
 									}
 									var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');		
-									closeDialog(dialogID);						
+									//closeDialog(dialogID);						
 								}										
 							}					
 				}				

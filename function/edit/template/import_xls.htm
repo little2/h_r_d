@@ -17,7 +17,7 @@
 	margin-top: 20px;">
 		<div class="uc1">
 			<form method="post" id="formPost" action="">
-				<input type="hidden" id="import_type" name="import_type" value="{import_type}" >
+				<input type="text" id="import_type" name="import_type" value="{import_type}" >
 				
 				<div id="take_upload_zone" name="take_upload_zone" >						
 									<p><strong>請選取上傳的檔案</strong></p>
@@ -137,6 +137,7 @@ function bt_confirm_import ()
 				
 			
 				}
+			$("#tabPanel").refreshitem();	
 			}, 			
 		error : function(data) {
 			//$.unblockUI();

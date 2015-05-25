@@ -107,9 +107,9 @@
 <script type="text/javascript">
 	
 	var quiz_row=new Array();
-	quiz_row[1]={text:"若想了解教師如何引導學生產生自治幹部、運用小組合作學習進行工作分派、檢視燈光、座位安排是否合適、布置內容是否與學習內容相結合、學生專注於學習等表現情形，可以以哪ㄧ個評鑑規準做為討論的參考依據？",title:"發展專案章程"};
-	quiz_row[2]={text:"在國內學者研發的各個中小學教師專業發展評鑑規準版本中，可以歸納為幾個共通的向度？",title:"發展專案章程"};
-	quiz_row[3]={text:"我國第一次推動有關教師的專業評鑑，以下是四位教師討論時發表的看法，請判斷誰的發言內容有必要加以修正？成弘老師：有如身體檢查，找出自己應改善的缺點，對老師一定有幫助。欣宜老師：校內教師進行同儕互評，這樣的評鑑環境非常安全。大雄老師：很可能會影響我們的考績，我可能會被列入不適任教師。小真老師：大家不必急，我們先好好的討論，穩紮穩打目標正確最重要。？",title:"發展專案章程"};
+	<!-- BEGIN BEHAVIOR -->
+	quiz_row[{BEHAVIOR.index}]={text:"{BEHAVIOR.term}"};
+	<!-- END BEHAVIOR -->
 
 
 	$(function() {		
@@ -126,34 +126,147 @@
 				$(this).css("background-color", "yellow");
 				$("#" + divn).show();
 			});
-		});
-	
+		});	
 	});
-
 	load_quiz(1);
 	
 function exam_save()
 {
-	$().message("儲存成功");
+	basis_evaluation_evaluator_id=$('#basis_evaluation_evaluator_id').val();
+	if(basis_evaluation_evaluator_id>0)
+	{
+		var o = {
+				data: $("#formPost").serialize(),
+				url:'/hrd/function/saveOrUpdate/save_basis_evaluation_table_evalutor_grade.php',
+				onSuccess:function(data)
+					{								
+						if(data.errmsg)
+						{
+							$().message(data.errmsg);
+						}
+						else
+						{									
+							$("#tabPanel").refreshitem();	
+							$().message("儲存成功");					
+						}										
+					}					
+		}				
+		var msg=mypost(o);		
+		
+	
+	}
+	else
+	{
+		$().message("儲存成功(預覽模式不保存)");
+	}
+	
+	
 }
 
 function exam_pre()
 {
 	var quiz_no=parseInt($('#quiz_no').html());
-	 load_quiz(quiz_no-1);
+	exam_save_item(quiz_no);
+	
+	var pre_quiz_no=Math.max(1,(quiz_no-1));
+	
+	 load_quiz(pre_quiz_no);	
+	
 	$().message("上一題");
 }
 
 function exam_next()
 {
 	var quiz_no=parseInt($('#quiz_no').html());
-	 load_quiz(quiz_no+1);
+	exam_save_item(quiz_no);
+	var max_count=parseInt($('#count').val());
+	var next_quiz_no=Math.min(max_count,(quiz_no+1));
+	 load_quiz(next_quiz_no);
 	$().message("下一題");
+}
+
+
+function ck(obj)
+{
+	index=parseInt($('#quiz_no').html());
+
+	var evaluation_scale_item_id=$("input[name=evaluation_scale_item_id]:checked").val();
+	var evaluation_scale_item_term=$("input[name=evaluation_scale_item_id]:checked").attr('data-term');
+
+	$('#answer_'+index).text(evaluation_scale_item_term);
+	$('#item_id_'+index).val(evaluation_scale_item_id);
+}
+
+function exam_save_item(index)
+{
+	var evaluation_scale_item_id=$("input[name=evaluation_scale_item_id]:checked").val();
+	var evaluation_scale_item_term=$("input[name=evaluation_scale_item_id]:checked").attr('data-term');
+
+	$('#answer_'+index).text(evaluation_scale_item_term);
+	$('#item_id_'+index).val(evaluation_scale_item_id);
+	
+	$("input[name=evaluation_scale_item_id]").removeAttr("checked"); 
+	
+    /*
+    <tr onClick='load_quiz({BEHAVIOR.index})' id="behavior_{BEHAVIOR.index}" name="behavior_{BEHAVIOR.index}">
+        <td>{BEHAVIOR.index}</td >
+        <td>{BEHAVIOR.term}</td>
+        <td id="answer_{BEHAVIOR.index}"  data-item_id="">{BEHAVIOR.answer}</td>
+    </tr>
+	<input type="radio" {SCALE.term} id="evaluation_scale_item_id" name="evaluation_scale_item_id" value="{SCALE.evaluation_scale_item_id}">{SCALE.term}<br>
+	*/
+	
+	
 }
 	 
 function exam_finish()
 {
-	$().message("交卷結束");
+	basis_evaluation_evaluator_id=$('#basis_evaluation_evaluator_id').val();
+	if(basis_evaluation_evaluator_id>0)
+	{
+		var _pass=true;
+		//
+		$(".evalutor_grade").each(function(){
+		   	if(parseInt($(this).val())<=0)
+	   		{		   		
+		   		_pass=false;
+	   		}
+		  });
+		
+		if(_pass)
+		{
+			
+			var o = {
+					data: $("#formPost").serialize(),
+					url:'/hrd/function/saveOrUpdate/save_basis_evaluation_table_evalutor_grade.php?f=1',
+					onSuccess:function(data)
+						{								
+							if(data.errmsg)
+							{
+								$().message(data.errmsg);
+							}
+							else
+							{									
+								$("#tabPanel").refreshitem();	
+								$().message("交卷結束");		
+							}										
+						}					
+			}				
+			var msg=mypost(o);		
+			
+			
+			
+		}
+		else
+		{
+			$().message("尚有未評分的關鍵行為指標");
+		}	
+		
+	}
+	else
+	{
+		$().message("交卷結束(預覽模式不保存)");
+	}
 }
 
 function exam_quiz()
@@ -183,7 +296,22 @@ function load_quiz(quiz_no)
 	quiz=quiz_row[quiz_no];
 	$('#quiz_no').html(quiz_no);
 	$('#quiz_text').html(quiz.text);
-	exam_quiz()
+	
+	/*
+  	$('#answer_'+index).text(evaluation_scale_item_term).attr("data-item_id",evaluation_scale_item_id).text(evaluation_scale_item_term);	
+	$("input[name=evaluation_scale_item_id]").removeAttr("checked");
+	*/
+
+	var dataitem_id=$('#item_id_'+quiz_no).val();
+	if(dataitem_id.length>0)
+	{
+		console.log((dataitem_id))
+		//處理選項	
+		$('input:radio[name="evaluation_scale_item_id"]').filter('[value="'+dataitem_id+'"]').attr('checked', true);
+		
+
+	}
+	exam_quiz()		
 
 
 }
@@ -192,11 +320,22 @@ function load_quiz(quiz_no)
 
 <body>
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
+
+	<form id="formPost" name="formPost">
+	<div>                                      
+		<input type="hidden" id="basis_evaluation_evaluator_id" name="basis_evaluation_evaluator_id"  value="{basis_evaluation_evaluator_id}" />
+		<input type="hidden" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id"  value="{basis_evaluation_appraisee_id}" />
+		<input type="hidden" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}" />
+		
+		
+		<input type="hidden" id="appraisee_uid" name="appraisee_uid"  value="{appraisee_uid}"/>		
+		<input type="hidden" id="count" name="count"  value="{count}"/>		
+	</div>
+
 	<div class="labMenu">
 		<div class="lable"  dis="dis_rule"  style="background-color: yellow;">規則說明</div>
 		<div class="lable"  dis="dis_quiz" >評鑑題目</div>		
-		<div class="lable"  dis="dis_suggest" >開放建議</div>		
-
+		<div class="lable"  dis="dis_suggest" >開放建議</div>	
 	</div>
 
 	<div id="dis_rule" class="labDiv"   style="display: block;">
@@ -206,28 +345,25 @@ function load_quiz(quiz_no)
 	
 	<div id="dis_quiz" class="labDiv"   >
 		<div class="uc1">			
-			<div class="CSSTableGenerator hide"  id="list_area" class="hide" style="width:94%;margin-left: 20px;margin-top: 20px;">
+			<div class="CSSTableGenerator hide"  id="list_area" class="hide" style="width:94%;margin-left: 20px;margin-top: 20px;">                
                 <table >
                     <tr>
                         <td>題號</td >
                         <td width="70%">題目</td>
                         <td width="20%">答案</td>
                     </tr>
-                    <tr onClick='load_quiz(1)'>
-                        <td>1</td >
-                        <td>若想了解教師如何引導學生產生自治幹部、運用小組合作學習進行工作分派、檢視燈光、座位安排是否合適、布置內容是否與學習內容相結合、學生專注於學習等表現情形，可以以哪ㄧ個評鑑規準做為討論的參考依據？</td>
-                        <td>有認知大多未做到</td>
+                    <!-- BEGIN BEHAVIOR -->
+                    <tr onClick='load_quiz({BEHAVIOR.index})' id="behavior_{BEHAVIOR.index}" name="behavior_{BEHAVIOR.index}">
+                        <td>{BEHAVIOR.index}</td >
+                        <td>{BEHAVIOR.term}
+                        	<input type="hidden"  class="evalutor_grade" id="item_id_{BEHAVIOR.index}" name="item_id[{BEHAVIOR.behavior_id}]"  value="{BEHAVIOR.evaluation_scale_item_grade}"/>
+                       		<input type="hidden"  id="competency_id[{BEHAVIOR.behavior_id}]" name="competency_id[{BEHAVIOR.behavior_id}]"  value="{BEHAVIOR.competency_id}"/>
+                       		<input type="hidden"  id="weight[{BEHAVIOR.behavior_id}]" name="weight[{BEHAVIOR.behavior_id}]"  value="{BEHAVIOR.weight}"/>                        	
+                       		<input type="hidden"  id="competency_weight[{BEHAVIOR.competency_id}]" name="competency_weight[{BEHAVIOR.competency_id}]"  value="{BEHAVIOR.competency_weight}"/>                        	
+                        </td>
+                        <td id="answer_{BEHAVIOR.index}"  >{BEHAVIOR.behavior_title}</td>
                     </tr>
-                    <tr  onClick='load_quiz(2)'>
-                        <td>2</td >
-                        <td>在國內學者研發的各個中小學教師專業發展評鑑規準版本中，可以歸納為幾個共通的向度？</td>
-                        <td>有認知一般都能做到</td>
-                    </tr>                   
-                    <tr  onClick='load_quiz(3)'>
-                        <td>3</td >
-                        <td>我國第一次推動有關教師的專業評鑑，以下是四位教師討論時發表的看法，請判斷誰的發言內容有必要加以修正？成弘老師：有如身體檢查，找出自己應改善的缺點，對老師一定有幫助。欣宜老師：校內教師進行同儕互評，這樣的評鑑環境非常安全。大雄老師：很可能會影響我們的考績，我可能會被列入不適任教師。小真老師：大家不必急，我們先好好的討論，穩紮穩打目標正確最重要。？</td>
-                        <td>能做到且表現卓越</td>
-                    </tr>                   
+					<!-- END BEHAVIOR -->
                 </table>
             </div>
             
@@ -236,20 +372,17 @@ function load_quiz(quiz_no)
 			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
 				<tr>
 					<td>		
-						<div style="float:left;font-size:large" id="quiz_no" name="quiz_no"></div><div  style="float:left;vertical-align:bottom;">/50</div><div style="clear:both"></div>
+						<div style="float:left;font-size:large" id="quiz_no" name="quiz_no"></div><div  style="float:left;vertical-align:bottom;">/{count}</div><div style="clear:both"></div>
 						<h3 id="quiz_text" name="quiz_text"></h3>
 						<br>							
 					</td>
 				</tr>
 					<tr>
 					<td >						
-						<input type="radio" id="a" name="a">有認知大多未做到<br>
-						<input type="radio" id="a" name="a">有認知少部份能做到<br>
-						<input type="radio" id="a" name="a">有認知部份能做到<br>
-						<input type="radio" id="a" name="a">有認知一般都能做到<br>
-						<input type="radio" id="a" name="a">大部份都能做到<br>
-						<input type="radio" id="a" name="a">能做到且表現優秀<br>
-						<input type="radio" id="a" name="a">能做到且表現卓越<br>
+						<!-- BEGIN SCALE -->
+						<input type="radio" id="evaluation_scale_item_id" name="evaluation_scale_item_id"  onclick="ck(this)"  value="{SCALE.evaluation_scale_item_id}" data-term="{SCALE.term}">{SCALE.term}<br>
+						<!-- END SCALE -->
+						
 					</td>
 				</tr>
 			</table>
@@ -257,28 +390,63 @@ function load_quiz(quiz_no)
 		<div class="uc2" style="width:94%;margin-left: 20px;">
 			<div   style="float:left;">
 				<input class="labButton"  name="bt_cancel"  id="bt_cancel" type="button"  value="上一題" onClick='exam_pre();'/>
-				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />
+				<input class="labButton {bt_sava_display}" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />
 			</div>
 			<div  style="float:right;">
 				<input class="labButton" name="bt_list" id="bt_list" type="button"  value="列表"  onClick='exam_list();' />
 				<input class="labButton hide" name="bt_quiz" id="bt_quiz" type="button"  value="題目"  onClick='exam_quiz();' />
 				
-				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='exam_save();' />
+				<input class="labButton {bt_sava_display}" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='exam_save();' />
 				<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="下一題" onClick='exam_next();' align='right'  />
 			</div>
 		</div>
 	</div>	
 
-	<div id="dis_suggest" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>開放建議</td></tr></table>		
+	<div id="dis_suggest" class="labDiv" >
+		<div class="uc1">			
+		
+			<!-- BEGIN OPENCOMMENT -->			
+			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
+				<tr>
+					<td>		
+						<div style="float:left;font-size:large" id="quiz_no" name="quiz_no"></div>
+						<div  style="float:left;vertical-align:bottom;">{OPENCOMMENT.no}/{OPENCOMMENT.count}</div>
+						<div style="clear:both"></div>
+						<h3 id="quiz_text" name="quiz_text">{OPENCOMMENT.quiz}</h3>
+						<br>							
+					</td>
+				</tr>
+					<tr>
+					<td >						
+						<textarea style="width:100%" rows="5" name="comment[{OPENCOMMENT.basis_evaluation_user_comment_id}]">{OPENCOMMENT.comment}</textarea>						
+					</td>
+				</tr>
+			</table>
+			<!-- END OPENCOMMENT -->
+			
+		</div>
+		<div class="uc2" style="width:94%;margin-left: 20px;">
+			<div   style="float:left;">
+				
+			</div>
+			<div  style="float:right;">
+				
+
+				
+			</div>
+		</div>
 	</div>	
-	
-	
-
-	
-
-
-	
+	</form>
 </div>	
 </body>
+
+<script>
+$('#dis_suggest').dashpanel({	
+	dialog_title:"{DialogTitle}",
+	element_id:'{elementID}',
+	save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_user_comment.php'			
+});	
+
+</script>
+
 </html>
