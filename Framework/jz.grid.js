@@ -756,9 +756,7 @@ jzsoft.grid.newBarMenu = function(p) {
 							separator : true
 						});
 					}
-				
-
-					
+									
 					/*
 					for (key in index) {
 						buttons.push(p.index[key]);
@@ -775,13 +773,17 @@ jzsoft.grid.newBarMenu = function(p) {
 		}		
 		
 		$('#t_' + p.gridId).newButtons(buttons);
-		$("#" + p.gridId).jqGrid("setGridParam", {
-			ondblClickRow : function(rowid, iRow, iCol, e) {
-				jzsoft.grid.selectRow(p.gridId, rowid);
-				jzsoft.grid.newformEdit(p);
+		
 
-			}
-		});
+		if(typeof(p.edit)!="undefined")
+		{		
+			$("#" + p.gridId).jqGrid("setGridParam", {
+				ondblClickRow : function(rowid, iRow, iCol, e) {
+					jzsoft.grid.selectRow(p.gridId, rowid);
+					jzsoft.grid.newformEdit(p);
+				}
+			});
+		}
 	}
 	
 };
@@ -827,27 +829,17 @@ jzsoft.grid.newformAdd = function(p) {
  *  * @param
  */
 jzsoft.grid.newformEdit = function(p) {
-
-
-	
 	//p.gridId, p.baseUrl + p.editUrl, p.addParam, p.formKeys, p.editTitle, p.titleCustom, p.editWidth, p.editHeight
 	//id, url, addParam, formKeys, title, titleCustom, width, height, divId
-	var sels = $("#" + p.gridId).jqGrid('getGridParam', 'selrow');
-	
+	var sels = $("#" + p.gridId).jqGrid('getGridParam', 'selrow');	
 	if (sels) {
-		var url=p.edit.body;		
-			
-		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);
-	
-		
+		var url=p.edit.body;					
+		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);		
 		if (url.indexOf('?') > -1) {
 			url += '&';
 		} else {
 			url += '?';
-		}		
-		
-
-		
+		}
 		
 		url += "entity.key=" + rowdata.key;		
 		if (p.addParam) {
@@ -884,7 +876,7 @@ jzsoft.grid.newformEdit = function(p) {
 
 		
 	} else {
-		$("#" + p.gridId).message("請選擇要修改的項目！");
+		$("#" + p.gridId).message("請選擇要修改的項目！!");
 	}
 };
 
@@ -894,38 +886,24 @@ jzsoft.grid.newformEdit = function(p) {
  *  * @param
  */
 jzsoft.grid.newformView = function(p) {
-
-
-	
 	//p.gridId, p.baseUrl + p.editUrl, p.addParam, p.formKeys, p.editTitle, p.titleCustom, p.editWidth, p.editHeight
 	//id, url, addParam, formKeys, title, titleCustom, width, height, divId
 	var sels = $("#" + p.gridId).jqGrid('getGridParam', 'selrow');
 	
 	if (sels) {
-		var url=p.view.body;		
-			
-		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);
-	
-		
+		var url=p.view.body;				
+		var rowdata = $("#" + p.gridId).jqGrid("getRowData", sels);		
 		if (url.indexOf('?') > -1) {
 			url += '&';
 		} else {
 			url += '?';
-		}		
-		
-
-		
-		
+		}				
 		url += "entity.key=" + rowdata.key;		
 		if (p.addParam) {
 			for ( var i = 0; i < p.addParam.length; i++) {
 				url += "&" + p.addParam[i] + "=" + eval('rowdata.' + p.addParam[i]);
 			}
 		}
-		
-	
-		
-
 		 var setting = new Object();		
 		 var setting = $.extend({}, p.edit); //物件複製		
 		 setting.fromDivId = p.fromDivId;		 
@@ -938,12 +916,10 @@ jzsoft.grid.newformView = function(p) {
 		{
 			setting.set_title_col=rowdata[set_title_col];
 		}		 
-		 
-		 
-		 jzsoft.grid.openDialog(setting)
-
-		
-	} else {
+		jzsoft.grid.openDialog(setting)		
+	} 
+	else 
+	{
 		$("#" + p.gridId).message("請選擇要查閱的項目！");
 	}
 };
@@ -1009,7 +985,7 @@ jzsoft.grid.openDialog = function(setting)
 		{
 			setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+"："+setting.set_title_col+" > "+setting.title;
 		}
-		else
+		else 	if(typeof(setting.title)!="undefined")
 		{
 			setting.title=jzsoft.grid.getParentTitle(setting.fromDivId)+" > "+setting.title;
 		}

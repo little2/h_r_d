@@ -44,6 +44,18 @@
 			height : {height},
 			multiselect : {multiselect},
 			rowNum:25,
+			
+			subGrid: {subGrid}, // set the subGrid property to true to show expand buttons for each row
+            subGridRowExpanded: {showChildGrid}, // javascript function that will take care of showing the child grid
+		    subGridOptions : {
+				// load the subgrid data only once
+				// and the just show/hide
+				reloadOnExpand :false,
+				// select the row when the expand column is clicked
+				selectOnExpand : true 
+			},
+			
+			
 			toolbar :{toolbar},
 			pager : '#{pager}',
 			scroll: {scroll},
@@ -84,11 +96,6 @@
 			delService : '{deleUrl}',
 		});
 		
-
-	
-		
-		
-		
 		jzsoft.grid.newBarMenu({
 			fromDivId:'',
 			gridId : '{bar_gridId}',
@@ -110,25 +117,42 @@
  		   		
 			},
 			<!-- END BUTTONS -->	
-		});
-		
-		
-		
-		
-		
+		});		
 	});
-
-	//##Diglog Cache
-	/*
-	if ($("#dig_{gridId}",$('#dialog_cache')).length <= 0 ) 
-	{      
-		//不存在則新增
-		$('#dialog_cache').append('<div id="dig_{gridId}" data-id="{gridId}" data-title="{DialogTitle}">dig_{gridId}:{DialogTitle}</div>');		
-   	}
-	else
-	{
-		console.log("NOTHING");
-	}	
-	*/
 	
+	// the event handler on expanding parent row receives two parameters
+    // the ID of the grid tow  and the primary key of the row
+    function showChildGrid(parentRowID, parentRowKey) {	
+        var childGridID = parentRowID + "_table";
+        var childGridPagerID = parentRowID + "_pager";
+        var childGridURL = "/hrd/report-personal-sub/list/pageList.html";
+        // add a table and pager HTML elements to the parent grid row - we will render the child grid here
+        $('#' + parentRowID).append('<table id=' + childGridID + '></table><div id=' + childGridPagerID + ' class=scroll></div>');
+        /////////////////
+        		
+		//function(id, options, menup)
+		jzsoft.grid(childGridID, {
+			url : childGridURL,
+			postData : {				
+				'user_id' :parentRowKey,
+				'report_config_id':$('#report_config_id').val()
+			},
+			rowNum:10,
+			colModel: [
+			                       { label: 'ID', name: 'key', key: true, width: 75 },  
+			                       { label: '{$lang.ReportTitle}', name: 'report_title', width: 610 },
+			                       { label: '創建日期', name: 'create_time', width: 200 }             
+			                   ],
+			autowidth : true,
+			footerrow: {footerrow},	
+		});      
+        
+		$("#" + childGridID).jqGrid("setGridParam", {
+			ondblClickRow : function(rowid, iRow, iCol, e) {				
+				setting={body:'/hrd/view/report/edit.html?entity_key='+rowid};
+				jzsoft.grid.openDialog(setting)
+			}
+		});
+        
+    }		
 </script>

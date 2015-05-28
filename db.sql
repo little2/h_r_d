@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: May 25, 2015, 02:33 AM
+-- 建立日期: May 28, 2015, 10:04 AM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -569,23 +569,6 @@ CREATE TABLE IF NOT EXISTS `profile_competency_detail` (
 -- --------------------------------------------------------
 
 --
--- 資料表格式： `report`
---
-
-CREATE TABLE IF NOT EXISTS `report` (
-  `report_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `report_type` varchar(10) NOT NULL,
-  `report_kind` varchar(10) NOT NULL,
-  `report_title_id` int(10) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `report_config_id` int(11) NOT NULL,
-  `create_time` int(11) NOT NULL,
-  PRIMARY KEY (`report_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
-
--- --------------------------------------------------------
-
---
 -- 資料表格式： `report_config`
 --
 
@@ -601,6 +584,36 @@ CREATE TABLE IF NOT EXISTS `report_config` (
   `evaluation_table_id` int(11) NOT NULL,
   PRIMARY KEY (`report_config_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `report_group`
+--
+
+CREATE TABLE IF NOT EXISTS `report_group` (
+  `report_group_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `report_title_id` int(10) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `report_config_id` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`report_group_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `report_personal`
+--
+
+CREATE TABLE IF NOT EXISTS `report_personal` (
+  `report_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `report_title_id` int(10) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `report_config_id` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`report_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 

@@ -1,0 +1,71 @@
+
+
+
+
+
+<!-- 說明 -->
+<div class="content">
+
+<p>下面的報表顯示出本次評鑑的全體評鑑結果。這是本次360度評鑑的所有真實資料，是以上提供給您的7份報表的資料運算的基礎。</p> 
+<p>報表中包含了所有被評鑑人在各個職能項目與各個維度的評鑑結果。您能夠透過閱讀這份報表獲知您的團隊整體的情況，可以對全體被測評人員進行相對的比較，在每個職能項目下，辨別出每個被測評的情況。並且，您也可以獲知每個被測評人在不同維度的評鑑情況，辨別出來自不同觀察者的評鑑差異。</p> 
+
+</div>
+
+<div style="clear:both"></div>
+<div  class="report">
+	<div >
+		<table >
+			<tr>
+				<td colspan="9" class="bar"></td>
+			</tr>
+			<!-- BEGIN COMPETENCY -->
+			<tr class="maintitle">
+				<td>有效授權</td>
+				<td>AVG</td>
+				<td>自己</td>
+				<td>直屬主管</td>
+				<td>同事</td>
+				<td>部屬</td>
+			</tr>
+			
+			<tr>
+				<th>{COMPETENCY.competency_title}</th>
+				<th>{COMPETENCY.competency_base}</th>
+				<th>{COMPETENCY.competency_avg}</th>	<!-- 自己 -->
+				<th>{COMPETENCY.competency_block_1}</th>	<!-- 直屬主管 -->
+				<th>{COMPETENCY.competency_block_2}</th>	<!-- 同事 -->
+				<th>{COMPETENCY.competency_block_3}</th>	<!-- 部屬 -->
+				<th>{COMPETENCY.competency_block_4}</th>	<!-- 部屬 -->
+				<th>{COMPETENCY.competency_block_5}</th>	<!-- 部屬 -->
+				<th>{COMPETENCY.competency_block_6}</th>	<!-- 部屬 -->
+			</tr>
+			
+			<!-- BEGIN BEHAVIOR -->
+			<tr>
+				<td>{COMPETENCY.BEHAVIOR.behavior_definition}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_base}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_avg}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_block_1}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_block_2}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_block_3}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_block_4}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_block_5}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_block_6}</td>
+			</tr>
+			<!-- END BEHAVIOR -->
+			
+			<!-- END COMPETENCY -->
+			
+			
+		</table>
+	</div>
+	
+
+
+</div>
+<div style="clear:both"></div>
+
+
+
+</body>
+</html>

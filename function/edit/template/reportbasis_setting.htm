@@ -9,15 +9,22 @@
 
 <body><div  id="container_{elementID}"  data-from="{From_elementID}" >
 <form method="post" id="formPost" action="">			
-
+	<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
 	<div class="labMenu">
-		<div class="lable {display_report_info}"  dis="dis_report_info"   style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_report_info}"  dis="dis_report_info"   >{$lang.Information}</div>
 		<div class="lable {display_mail_tpl} hide"  dis="dis_mail_tpl"  >通知訊息</div>	
 		<div class="lable {display_setting}"  dis="dis_setting"     >參數設定</div>
-		<div class="lable {display_group}"  dis="dis_group"     >團體報表</div>
-		<div class="lable {display_person}"  dis="dis_person"    >個人報表</div>
+		<div class="lable {display_group}"  dis="dis_group"     >團體報表設定</div>
+		<div class="lable {display_person}"  dis="dis_person"    >個人報表設定</div>
 		<div class="lable {display_reportee} hide"  dis="dis_reportee"    >評鑑關係</div>
 		<div class="lable {display_rexport}"  dis="dis_export"     >產生報表</div>		
+		<div class="lable {display_rexport}"  dis="dis_report_personal_list"  style="background-color: yellow;">個人報表列表</div>		
+		<div class="lable {display_rexport}"  dis="dis_report_list"  >團體報表列表</div>		
+	</div>
+
+	<!-- 報表列表 -->
+	<div id="dis_report_personal_list" class="labDiv"  style="display: block;">	
+		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-personal_list}</td></tr></table>		
 	</div>
 
 	<!-- 個人報表 -->
@@ -32,15 +39,12 @@
 					</tr>				
 					<tr>
 						<td class="left"  colspan="2"> 	
-							<input type="checkbox" name="code1"  class='hide'>所有受評人<p>
-							
+							<input type="checkbox" name="code1"  class='hide'>所有受評人<p>							
 							<div class='hide'>
 							<input type="checkbox" name="code2" >指定特定人員<input type="button" value="挑選名單">
 							</div>
-						</td>
-							
-					</tr>			
-					
+						</td>							
+					</tr>
 					<tr>
 						<td class="label" >個人報表種類：</td>
 						<td >								
@@ -49,20 +53,14 @@
 					<tr>
 						<td class="left"  colspan="2">
 							<input type="checkbox" name="code1" >全選（全體回饋明細除外 ）<p>
-							<!-- BEGIN PERSON_REPORT -->
-							
+							<!-- BEGIN PERSON_REPORT -->							
 							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
-							<!-- END PERSON_REPORT -->
-													
-						</td>
-							
-					</tr>		
-						
-											
+							<!-- END PERSON_REPORT -->													
+						</td>							
+					</tr>			
 				</table>
 		</div>
 		<div class="uc2">
-	
 		</div>
 	</div>	
 
@@ -83,9 +81,7 @@
 							<input type="checkbox" name="code3"  >部門平均成績與總體平均成績比較(個人 vs 全體)	<input type="button" value="挑選部門"><p>
 							<input type="checkbox" name="code"  >部門與部門間的平均數比較(個人 vs 全體)	<input type="button" value="挑選部門"><p>
 						</td>
-							
-					</tr>			
-					
+					</tr>	
 					<tr>
 						<td class="label" >團體報表種類：</td>
 						<td >								
@@ -105,18 +101,12 @@
 							<input type="checkbox" name="code6" >個人落點區間分布圖
 							<input type="checkbox" name="code6" >未完成/部分完成名單<p>							
 						</td>
-							
-					</tr>		
-						
-											
+					</tr>													
 				</table>
 		</div>
 		<div class="uc2">
-
 		</div>
 	</div>	
-
-
 	<div id="dis_export" class="labDiv"   >
 		<div class="uc1">		
 				<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
@@ -217,7 +207,7 @@
 	
 	
 	<!-- 頁面(開始) -->
-	<div id="dis_report_info" class="labDiv" style="display: block;">
+	<div id="dis_report_info" class="labDiv" >
 		<div class="uc1">			
 
 				<table class="tableStyle1"  >
