@@ -34,7 +34,7 @@
 										$("#tabPanel").refreshitem();	
 									}
 									var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');		
-									//closeDialog(dialogID);						
+									closeDialog(dialogID);						
 								}										
 							}					
 				}				

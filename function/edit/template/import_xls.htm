@@ -16,8 +16,15 @@
 <div id="dis_import_xls" class="labDiv" style="display: block;left:0;	margin-left: 20px;
 	margin-top: 20px;">
 		<div class="uc1">
-			<form method="post" id="formPost" action="">
-				<input type="text" id="import_type" name="import_type" value="{import_type}" >
+			<form method="post" id="formPostImport" name="formPostImport" action="">
+				<input type="hidden" id="import_type" name="import_type" value="{import_type}" >
+				
+			
+				
+				
+				<!-- BEGIN PAR -->
+				<input type="hidden" id="{PAR.id}" name="{PAR.id}" value="{PAR.value}" >
+				<!-- END PAR -->
 				
 				<div id="take_upload_zone" name="take_upload_zone" >						
 									<p><strong>請選取上傳的檔案</strong></p>
@@ -41,7 +48,7 @@
 											<a href=''  target='_blank'></a>
 											<input id="filename" name="filename" type="text" />
 											<br><br>
-											<button type="button"  onClick="bt_confirm_import()">確認匯入</button>											
+											<button type="button"  onClick="bt_confirm_import(this )">確認匯入</button>											
 									</div>	
 							</div>								
 							<div style="clear:both"></div>		
@@ -107,15 +114,18 @@ $(function() {
 }); 
 
 
-function bt_confirm_import ()
+function bt_confirm_import (obj)
 {
+	$(obj).addClass('hide');
 	var filename=$('#filename').val();
 	var import_type=$('#import_type').val();
+	console.log($("#formPostImport").serialize());
+	console.log($('#filename').val());
 	$.ajax({
 		type : 'POST', //GET or POST
-		url : 'function/import/import_xls.php', 						//請求的頁面
-		cache : false,									//防止抓到快取的回應
-		data : {filename:filename,import_type:import_type}, //要傳送到頁面的參數
+		url : 'function/import/{import_func}.php', 						//請求的頁面
+		cache : false,									//防止抓到快取的回應		
+		data : $("#formPostImport").serialize(), //要傳送到頁面的參數
 		success :  function(data) {
 			if(data.errmsg)
 				{
