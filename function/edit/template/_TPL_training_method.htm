@@ -1,0 +1,145 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable" dis="lab1" style="background-color: yellow;">{$lang.DepartmentInformation}</div>
+		<div class="lable {display_label_lab2}" dis="lab2"  id='lable_lab2'>{$lang.DepartmentMember}</div>
+		<div class="lable {display_label_lab2}" dis="lab3"  id='lable_lab3'>{$lang.DepartmentTree}</div>
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="lab1" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" action="">
+			
+				
+				<table class="tableStyle1"  >
+					<tr>
+						<td height="30">{$lang.DepartmentCode}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30">{$lang.DepartmentTitle}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td height="30"  class="right">{$lang.TradChinese}：</td>
+						<td><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30"  class="right">{$lang.SimChinese}：</td>
+						<td><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					<tr>
+						<td height="30"  class="right">{$lang.English}：</td>
+						<td><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					
+					<tr>
+						<td height="30">{$lang.DepartmentProperties}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td height="30"  class="right">{$lang.DepartmentLevel}：</td>
+						<td>
+							<select>
+								<option>公司級</option>
+								<option>一級單位</option>
+								<option>二級單位</option>
+								<option>三級單位</option>
+								<option>四級單位</option>
+								<option>五級單位</option>
+								<option>六級單位</option>
+							</select>
+						</td>
+					</tr>
+					
+
+					<tr>
+						<td height="30"  class="right">{$lang.DepartmentParent}：</td>
+						<td>
+							<select>
+								<option>業務部</option>
+								<option>事業部</option>
+								<option>會計部</option>
+								<option>研發部</option>
+							</select>
+						</td>
+					</tr>					
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">
+			<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='func_finish();' />
+			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" onClick='func_cancel();' />
+			
+		</div>
+
+	</div>
+	
+	
+	<div id="lab2" class="labDiv"   >
+	
+		<div class="uc1" >
+			<div  style="padding:20px">
+				<table id="list1"  ></table>
+				<div id="pager1"  ></div>
+			</div>
+		</div>
+		<div class="uc2"  ></div>
+	</div>
+	
+	<div id="lab3" class="labDiv"   ></div>
+
+	<div id="information" class="hide">
+		<ul id="organisation">
+			<li><a href="">總經理室</a>
+				<ul>
+					<li><a href="">業務部</a>
+						<ul>
+							<li><a href="">國內組</a>
+								<ul>
+									<li><a href="">南區</a></li>
+									<li><a href="">北區</a></li>
+								</ul></li>
+						</ul></li>
+					<li><a href="">研發部</a>
+						<ul>
+							<li><a href="">硬體組</a></li>
+							<li><a href="">軟體組</a></li>
+						</ul></li>
+					<li><a href="">財務部</a></li>
+				</ul></li>
+		</ul>
+	</div>	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_evaluationtable_detail').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_training_material.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/hrd/Framework/g3.buttons.js"></script>
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+
+		<div style="border-bottom: 1px #cecece solid;margin-top: 15px;width:97%;margin-left: 20px;">
+				<div style="font-size:16px;font-weight: bold; ">{$lang.Warning}</div>
+		</div>
+
+
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<form method="post" id="formPost" action="">
+		<table>
+			<tr>
+				<td colspan="2"><div class="t1">郵件賬號：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="text" name="username" id="username" value="262235331@qq.com" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="t1">密碼：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="password" name="password" id="password" value="ben870425!" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div class="t1">SMTP服務器：</div></td>
+				<td colspan="2"><div class="i1">
+						<input type="text" name="host" id="host" value="smtp.qq.com" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="t1">SSL：</div></td>
+				<td><div class="i1">
+						<input type="checkbox" name="starttls" id="starttls" checked="checked"  value="true" />
+					</div></td>
+				<td></td>
+				<td><div style="float:right;"><span>端口：</span>
+						<input type="text" name="port" id="port" value="465" size="6" class="contxt" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4"><div class="b1">
+						<input type="button" id="save" class="labButton" value="保存" /><input type="button" class="labButton" id="validate" value="驗證" />
+					</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+</body>
+</html>
