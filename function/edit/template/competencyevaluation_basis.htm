@@ -111,7 +111,6 @@
 	quiz_row[{BEHAVIOR.index}]={text:"{BEHAVIOR.term}"};
 	<!-- END BEHAVIOR -->
 
-
 	$(function() {		
 		var container=$('#container_{elementID}');
 		$(".lable",container).each(function() {
@@ -151,9 +150,7 @@ function exam_save()
 						}										
 					}					
 		}				
-		var msg=mypost(o);		
-		
-	
+		var msg=mypost(o);	
 	}
 	else
 	{
@@ -339,6 +336,55 @@ function load_quiz(quiz_no)
 	</div>
 
 	<div id="dis_rule" class="labDiv"   style="display: block;">
+		<table id="appraisee_area" class="contb "   style="width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
+			<tr align="left" >
+				<td rowspan="2" style="width:64px">
+					<img src='templates/bhrsp/images/icon_robot.png'>
+				</td>
+				
+				<th width="10%">	
+				
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					受評人:
+				</th>
+				<td  width="23%">
+					{fullName}
+				</td>
+			
+				<th width="12%"></th>
+				<td width="23%"></td>				
+			
+				<th width="10%"></th>
+				<td></td>		
+			</tr>
+			<tr align="left" >
+				<th >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 公司:
+				</th>
+				<td >
+					
+				</td>
+		
+				<th  >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 部門名稱:
+				</th>
+				<td >
+					{department_title}
+				</td>		
+				
+				<th  >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 職稱:
+				</th>
+				<td >
+					{job_title}
+				</td>
+			</tr>	
+		</table>
+				
+	
 		<table class="tableStyle1"  width="100%"><tr><td>規則說明</td></tr></table>			
 	</div>
 		
@@ -367,6 +413,9 @@ function load_quiz(quiz_no)
                 </table>
             </div>
             
+
+			<table id="appraisee_area2" class="contb "   style="width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
+			</table>
 			
 			
 			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
@@ -386,12 +435,18 @@ function load_quiz(quiz_no)
 					</td>
 				</tr>
 			</table>
+			
+			
+			
+			
 		</div>
 		<div class="uc2" style="width:94%;margin-left: 20px;">
 			<div   style="float:left;">
 				<input class="labButton"  name="bt_cancel"  id="bt_cancel" type="button"  value="上一題" onClick='exam_pre();'/>
+				<input class="labButton"  name="bt_cancel"  id="bt_cancel" type="button"  value="量表說明" onClick='exam_pre();'/>
 				<input class="labButton {bt_sava_display}" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />
 			</div>
+		
 			<div  style="float:right;">
 				<input class="labButton" name="bt_list" id="bt_list" type="button"  value="列表"  onClick='exam_list();' />
 				<input class="labButton hide" name="bt_quiz" id="bt_quiz" type="button"  value="題目"  onClick='exam_quiz();' />
@@ -447,6 +502,7 @@ $('#dis_suggest').dashpanel({
 	save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_user_comment.php'			
 });	
 
+$('#appraisee_area2').html($('#appraisee_area').html())
 </script>
 
 </html>
