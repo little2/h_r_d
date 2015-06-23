@@ -1,121 +1,155 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Renders table cells
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Cell_Renderer extends Block_Renderer {
+
+  //........................................................................
+
+  function render(Frame $frame) {
+    $style = $frame->get_style();
+    
+    if ( trim($frame->get_node()->nodeValue) === "" && $style->empty_cells === "hide" ) {
+      return;
+    }
+
+    $this->_set_opacity( $frame->get_opacity( $style->opacity ) );
+    list($x, $y, $w, $h) = $frame->get_border_box();
+    
+    // Draw our background, border and content
+    if ( ($bg = $style->background_color) !== "transparent" ) {
+      $this->_canvas->filled_rectangle($x, $y, $w, $h, $bg);
+    }
+
+    if ( ($url = $style->background_image) && $url !== "none" ) {
+      $this->_background_image($url, $x, $y, $w, $h, $style);
+    }
+    
+    $table = Table_Frame_Decorator::find_parent_table($frame);
+
+    if ( $table->get_style()->border_collapse !== "collapse" ) {
+      $this->_render_border($frame);
+      $this->_render_outline($frame);
+      return;
+    }
+
+    // The collapsed case is slightly complicated...
+    // @todo Add support for outlines here
+
+    $cellmap  = $table->get_cellmap();
+    $cells    = $cellmap->get_spanned_cells($frame);
+    $num_rows = $cellmap->get_num_rows();
+    $num_cols = $cellmap->get_num_cols();
+
+    // Determine the top row spanned by this cell
+    $i = $cells["rows"][0];
+    $top_row = $cellmap->get_row($i);
+
+    // Determine if this cell borders on the bottom of the table.  If so,
+    // then we draw its bottom border.  Otherwise the next row down will
+    // draw its top border instead.
+    if (in_array( $num_rows - 1, $cells["rows"])) {
+      $draw_bottom = true;
+      $bottom_row = $cellmap->get_row($num_rows - 1);
+    } else
+      $draw_bottom = false;
+
+
+    // Draw the horizontal borders
+    foreach ( $cells["columns"] as $j ) {
+      $bp = $cellmap->get_border_properties($i, $j);
+
+      $y = $top_row["y"] - $bp["top"]["width"] / 2;
+
+      $col = $cellmap->get_column($j);
+      $x = $col["x"] - $bp["left"]["width"] / 2;
+      $w = $col["used-width"] + ($bp["left"]["width"] + $bp["right"]["width"] ) / 2;
+
+      if ( $bp["top"]["style"] !== "none" && $bp["top"]["width"] > 0 ) {
+        $widths = array($bp["top"]["width"],
+                        $bp["right"]["width"],
+                        $bp["bottom"]["width"],
+                        $bp["left"]["width"]);
+        $method = "_border_". $bp["top"]["style"];
+        $this->$method($x, $y, $w, $bp["top"]["color"], $widths, "top", "square");
+      }
+
+      if ( $draw_bottom ) {
+        $bp = $cellmap->get_border_properties($num_rows - 1, $j);
+        if ( $bp["bottom"]["style"] === "none" || $bp["bottom"]["width"] <= 0 )
+          continue;
+
+        $y = $bottom_row["y"] + $bottom_row["height"] + $bp["bottom"]["width"] / 2;
+
+        $widths = array($bp["top"]["width"],
+                        $bp["right"]["width"],
+                        $bp["bottom"]["width"],
+                        $bp["left"]["width"]);
+        $method = "_border_". $bp["bottom"]["style"];
+        $this->$method($x, $y, $w, $bp["bottom"]["color"], $widths, "bottom", "square");
+
+      }
+    }
+
+    $j = $cells["columns"][0];
+
+    $left_col = $cellmap->get_column($j);
+
+    if (in_array($num_cols - 1, $cells["columns"])) {
+      $draw_right = true;
+      $right_col = $cellmap->get_column($num_cols - 1);
+    } else
+      $draw_right = false;
+
+    // Draw the vertical borders
+    foreach ( $cells["rows"] as $i ) {
+      $bp = $cellmap->get_border_properties($i, $j);
+
+      $x = $left_col["x"] - $bp["left"]["width"] / 2;
+
+      $row = $cellmap->get_row($i);
+
+      $y = $row["y"] - $bp["top"]["width"] / 2;
+      $h = $row["height"] + ($bp["top"]["width"] + $bp["bottom"]["width"])/ 2;
+
+      if ( $bp["left"]["style"] !== "none" && $bp["left"]["width"] > 0 ) {
+
+        $widths = array($bp["top"]["width"],
+                        $bp["right"]["width"],
+                        $bp["bottom"]["width"],
+                        $bp["left"]["width"]);
+
+        $method = "_border_" . $bp["left"]["style"];
+        $this->$method($x, $y, $h, $bp["left"]["color"], $widths, "left", "square");
+      }
+
+      if ( $draw_right ) {
+        $bp = $cellmap->get_border_properties($i, $num_cols - 1);
+        if ( $bp["right"]["style"] === "none" || $bp["right"]["width"] <= 0 )
+          continue;
+
+        $x = $right_col["x"] + $right_col["used-width"] + $bp["right"]["width"] / 2;
+
+        $widths = array($bp["top"]["width"],
+                        $bp["right"]["width"],
+                        $bp["bottom"]["width"],
+                        $bp["left"]["width"]);
+
+        $method = "_border_" . $bp["right"]["style"];
+        $this->$method($x, $y, $h, $bp["right"]["color"], $widths, "right", "square");
+
+      }
+    }
+
+  }
+}

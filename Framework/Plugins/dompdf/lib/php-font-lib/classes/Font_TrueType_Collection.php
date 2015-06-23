@@ -1,44 +1,94 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+require_once dirname(__FILE__) . "/Font_Binary_Stream.php";
+require_once dirname(__FILE__) . "/Font_TrueType.php";
+
+/**
+ * TrueType collection font file.
+ * 
+ * @package php-font-lib
+ */
+class Font_TrueType_Collection extends Font_Binary_Stream implements Iterator, Countable {
+  /**
+   * Current iterator position.
+   * 
+   * @var integer
+   */
+  private $position = 0;
+  
+  protected $collectionOffsets = array();
+  protected $collection = array();
+  protected $version;
+  protected $numFonts;
+  
+  function parse(){
+    if (isset($this->numFonts)) {
+      return;
+    }
+    
+    $this->read(4); // tag name
+    
+    $this->version = $this->readFixed();
+    $this->numFonts = $this->readUInt32();
+    
+    for ($i = 0; $i < $this->numFonts; $i++) {
+      $this->collectionOffsets[] = $this->readUInt32();
+    }
+  }
+
+  /**
+   * @param int $fontId
+   *
+   * @throws OutOfBoundsException
+   * @return Font_TrueType
+   */
+  function getFont($fontId) {
+    $this->parse();
+    
+    if (!isset($this->collectionOffsets[$fontId])) {
+      throw new OutOfBoundsException();
+    }
+    
+    if (isset($this->collection[$fontId])) {
+      return $this->collection[$fontId];
+    }
+    
+    $font = new Font_TrueType();
+    $font->f = $this->f;
+    $font->setTableOffset($this->collectionOffsets[$fontId]);
+    
+    return $this->collection[$fontId] = $font;
+  }
+  
+  function current() {
+    return $this->getFont($this->position);
+  }
+  
+  function key() {
+    return $this->position;
+  }
+  
+  function next() {
+    return ++$this->position;
+  }
+  
+  function rewind() {
+    $this->position = 0;
+  }
+  
+  function valid() {
+    $this->parse();
+    return isset($this->collectionOffsets[$this->position]);
+  }
+  
+  function count() {
+    $this->parse();
+    return $this->numFonts;
+  }
+}

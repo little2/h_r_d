@@ -1,86 +1,183 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-esbVn2lBeMqzhab9+fPmygG2ef/x
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Static class that resolves image urls and downloads and caches
+ * remote images if required.
+ *
+ * @access private
+ * @package dompdf
+ */
+class Image_Cache {
+
+  /**
+   * Array of downloaded images.  Cached so that identical images are
+   * not needlessly downloaded.
+   *
+   * @var array
+   */
+  static protected $_cache = array();
+  
+  /**
+   * The url to the "broken image" used when images can't be loade
+   * 
+   * @var string
+   */
+  public static $broken_image;
+
+  /**
+   * Resolve and fetch an image for use.
+   *
+   * @param string $url        The url of the image
+   * @param string $protocol   Default protocol if none specified in $url
+   * @param string $host       Default host if none specified in $url
+   * @param string $base_path  Default path if none specified in $url
+   * @param DOMPDF $dompdf     The DOMPDF instance
+   *
+   * @throws DOMPDF_Image_Exception
+   * @return array             An array with two elements: The local path to the image and the image extension
+   */
+  static function resolve_url($url, $protocol, $host, $base_path, DOMPDF $dompdf) {
+    $parsed_url = explode_url($url);
+    $message = null;
+
+    $remote = ($protocol && $protocol !== "file://") || ($parsed_url['protocol'] != "");
+    
+    $data_uri = strpos($parsed_url['protocol'], "data:") === 0;
+    $full_url = null;
+    $enable_remote = $dompdf->get_option("enable_remote");
+
+    try {
+      
+      // Remote not allowed and is not DataURI
+      if ( !$enable_remote && $remote && !$data_uri ) {
+        throw new DOMPDF_Image_Exception("DOMPDF_ENABLE_REMOTE is set to FALSE");
+      } 
+      
+      // Remote allowed or DataURI
+      else if ( $enable_remote && $remote || $data_uri ) {
+        // Download remote files to a temporary directory
+        $full_url = build_url($protocol, $host, $base_path, $url);
+  
+        // From cache
+        if ( isset(self::$_cache[$full_url]) ) {
+          $resolved_url = self::$_cache[$full_url];
+        }
+        
+        // From remote
+        else {
+          $tmp_dir = $dompdf->get_option("temp_dir");
+          $resolved_url = tempnam($tmp_dir, "ca_dompdf_img_");
+          $image = "";
+
+          if ($data_uri) {
+            if ($parsed_data_uri = parse_data_uri($url)) {
+              $image = $parsed_data_uri['data'];
+            }
+          }
+          else {
+            set_error_handler("record_warnings");
+            $image = file_get_contents($full_url);
+            restore_error_handler();
+          }
+  
+          // Image not found or invalid
+          if ( strlen($image) == 0 ) {
+            $msg = ($data_uri ? "Data-URI could not be parsed" : "Image not found");
+            throw new DOMPDF_Image_Exception($msg);
+          }
+          
+          // Image found, put in cache and process
+          else {
+            //e.g. fetch.php?media=url.jpg&cache=1
+            //- Image file name might be one of the dynamic parts of the url, don't strip off!
+            //- a remote url does not need to have a file extension at all
+            //- local cached file does not have a matching file extension
+            //Therefore get image type from the content
+            file_put_contents($resolved_url, $image);
+          }
+        }
+      }
+      
+      // Not remote, local image
+      else {
+        $resolved_url = build_url($protocol, $host, $base_path, $url);
+      }
+  
+      // Check if the local file is readable
+      if ( !is_readable($resolved_url) || !filesize($resolved_url) ) {
+        throw new DOMPDF_Image_Exception("Image not readable or empty");
+      }
+      
+      // Check is the file is an image
+      else {
+        list($width, $height, $type) = dompdf_getimagesize($resolved_url);
+        
+        // Known image type
+        if ( $width && $height && in_array($type, array(IMAGETYPE_GIF, IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_BMP)) ) {
+          //Don't put replacement image into cache - otherwise it will be deleted on cache cleanup.
+          //Only execute on successful caching of remote image.
+          if ( $enable_remote && $remote || $data_uri ) {
+            self::$_cache[$full_url] = $resolved_url;
+          }
+        }
+        
+        // Unknown image type
+        else {
+          throw new DOMPDF_Image_Exception("Image type unknown");
+        }
+      }
+    }
+    catch(DOMPDF_Image_Exception $e) {
+      $resolved_url = self::$broken_image;
+      $type = IMAGETYPE_PNG;
+      $message = $e->getMessage()." \n $url";
+    }
+
+    return array($resolved_url, $type, $message);
+  }
+
+  /**
+   * Unlink all cached images (i.e. temporary images either downloaded
+   * or converted)
+   */
+  static function clear() {
+    if ( empty(self::$_cache) || DEBUGKEEPTEMP ) return;
+    
+    foreach ( self::$_cache as $file ) {
+      if (DEBUGPNG) print "[clear unlink $file]";
+      unlink($file);
+    }
+    
+    self::$_cache = array();
+  }
+  
+  static function detect_type($file) {
+    list(, , $type) = dompdf_getimagesize($file);
+    return $type;
+  }
+  
+  static function type_to_ext($type) {
+    $image_types = array(
+      IMAGETYPE_GIF  => "gif",
+      IMAGETYPE_PNG  => "png",
+      IMAGETYPE_JPEG => "jpeg",
+      IMAGETYPE_BMP  => "bmp",
+    );
+    
+    return (isset($image_types[$type]) ? $image_types[$type] : null);
+  }
+  
+  static function is_broken($url) {
+    return $url === self::$broken_image;
+  }
+}
+
+Image_Cache::$broken_image = DOMPDF_LIB_DIR . "/res/broken_image.png";

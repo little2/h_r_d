@@ -1,86 +1,284 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-kAUvGuu=
+<?php
+
+/*
+
+Copyright 2009 Geoffrey Sneddon <http://gsnedders.com/>
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+// Some conventions:
+// /* */ indicates verbatim text from the HTML 5 specification
+// // indicates regular comments
+
+class HTML5_InputStream {
+    /**
+     * The string data we're parsing.
+     */
+    private $data;
+
+    /**
+     * The current integer byte position we are in $data
+     */
+    private $char;
+
+    /**
+     * Length of $data; when $char === $data, we are at the end-of-file.
+     */
+    private $EOF;
+
+    /**
+     * Parse errors.
+     */
+    public $errors = array();
+
+    /**
+     * @param $data Data to parse
+     */
+    public function __construct($data) {
+
+        /* Given an encoding, the bytes in the input stream must be
+        converted to Unicode characters for the tokeniser, as
+        described by the rules for that encoding, except that the
+        leading U+FEFF BYTE ORDER MARK character, if any, must not
+        be stripped by the encoding layer (it is stripped by the rule below).
+
+        Bytes or sequences of bytes in the original byte stream that
+        could not be converted to Unicode characters must be converted
+        to U+FFFD REPLACEMENT CHARACTER code points. */
+
+        // XXX currently assuming input data is UTF-8; once we
+        // build encoding detection this will no longer be the case
+        //
+        // We previously had an mbstring implementation here, but that
+        // implementation is heavily non-conforming, so it's been
+        // omitted.
+        if (extension_loaded('iconv')) {
+            // non-conforming
+            $data = @iconv('UTF-8', 'UTF-8//IGNORE', $data);
+        } else {
+            // we can make a conforming native implementation
+            throw new Exception('Not implemented, please install mbstring or iconv');
+        }
+
+        /* One leading U+FEFF BYTE ORDER MARK character must be
+        ignored if any are present. */
+        if (substr($data, 0, 3) === "\xEF\xBB\xBF") {
+            $data = substr($data, 3);
+        }
+
+        /* All U+0000 NULL characters in the input must be replaced
+        by U+FFFD REPLACEMENT CHARACTERs. Any occurrences of such
+        characters is a parse error. */
+        for ($i = 0, $count = substr_count($data, "\0"); $i < $count; $i++) {
+            $this->errors[] = array(
+                'type' => HTML5_Tokenizer::PARSEERROR,
+                'data' => 'null-character'
+            );
+        }
+        /* U+000D CARRIAGE RETURN (CR) characters and U+000A LINE FEED
+        (LF) characters are treated specially. Any CR characters
+        that are followed by LF characters must be removed, and any
+        CR characters not followed by LF characters must be converted
+        to LF characters. Thus, newlines in HTML DOMs are represented
+        by LF characters, and there are never any CR characters in the
+        input to the tokenization stage. */
+        $data = str_replace(
+            array(
+                "\0",
+                "\r\n",
+                "\r"
+            ),
+            array(
+                "\xEF\xBF\xBD",
+                "\n",
+                "\n"
+            ),
+            $data
+        );
+
+        /* Any occurrences of any characters in the ranges U+0001 to
+        U+0008, U+000B,  U+000E to U+001F,  U+007F  to U+009F,
+        U+D800 to U+DFFF , U+FDD0 to U+FDEF, and
+        characters U+FFFE, U+FFFF, U+1FFFE, U+1FFFF, U+2FFFE, U+2FFFF,
+        U+3FFFE, U+3FFFF, U+4FFFE, U+4FFFF, U+5FFFE, U+5FFFF, U+6FFFE,
+        U+6FFFF, U+7FFFE, U+7FFFF, U+8FFFE, U+8FFFF, U+9FFFE, U+9FFFF,
+        U+AFFFE, U+AFFFF, U+BFFFE, U+BFFFF, U+CFFFE, U+CFFFF, U+DFFFE,
+        U+DFFFF, U+EFFFE, U+EFFFF, U+FFFFE, U+FFFFF, U+10FFFE, and
+        U+10FFFF are parse errors. (These are all control characters
+        or permanently undefined Unicode characters.) */
+        // Check PCRE is loaded.
+        if (extension_loaded('pcre')) {
+            $count = preg_match_all(
+                '/(?:
+                    [\x01-\x08\x0B\x0E-\x1F\x7F] # U+0001 to U+0008, U+000B,  U+000E to U+001F and U+007F
+                |
+                    \xC2[\x80-\x9F] # U+0080 to U+009F
+                |
+                    \xED(?:\xA0[\x80-\xFF]|[\xA1-\xBE][\x00-\xFF]|\xBF[\x00-\xBF]) # U+D800 to U+DFFFF
+                |
+                    \xEF\xB7[\x90-\xAF] # U+FDD0 to U+FDEF
+                |
+                    \xEF\xBF[\xBE\xBF] # U+FFFE and U+FFFF
+                |
+                    [\xF0-\xF4][\x8F-\xBF]\xBF[\xBE\xBF] # U+nFFFE and U+nFFFF (1 <= n <= 10_{16})
+                )/x',
+                $data,
+                $matches
+            );
+            for ($i = 0; $i < $count; $i++) {
+                $this->errors[] = array(
+                    'type' => HTML5_Tokenizer::PARSEERROR,
+                    'data' => 'invalid-codepoint'
+                );
+            }
+        } else {
+            // XXX: Need non-PCRE impl, probably using substr_count
+        }
+
+        $this->data = $data;
+        $this->char = 0;
+        $this->EOF  = strlen($data);
+    }
+
+    /**
+     * Returns the current line that the tokenizer is at.
+     */
+    public function getCurrentLine() {
+        // Check the string isn't empty
+        if($this->EOF) {
+            // Add one to $this->char because we want the number for the next
+            // byte to be processed.
+            return substr_count($this->data, "\n", 0, min($this->char, $this->EOF)) + 1;
+        } else {
+            // If the string is empty, we are on the first line (sorta).
+            return 1;
+        }
+    }
+
+    /**
+     * Returns the current column of the current line that the tokenizer is at.
+     */
+    public function getColumnOffset() {
+        // strrpos is weird, and the offset needs to be negative for what we
+        // want (i.e., the last \n before $this->char). This needs to not have
+        // one (to make it point to the next character, the one we want the
+        // position of) added to it because strrpos's behaviour includes the
+        // final offset byte.
+        $lastLine = strrpos($this->data, "\n", $this->char - 1 - strlen($this->data));
+
+        // However, for here we want the length up until the next byte to be
+        // processed, so add one to the current byte ($this->char).
+        if($lastLine !== false) {
+            $findLengthOf = substr($this->data, $lastLine + 1, $this->char - 1 - $lastLine);
+        } else {
+            $findLengthOf = substr($this->data, 0, $this->char);
+        }
+
+        // Get the length for the string we need.
+        if(extension_loaded('iconv')) {
+            return iconv_strlen($findLengthOf, 'utf-8');
+        } elseif(extension_loaded('mbstring')) {
+            return mb_strlen($findLengthOf, 'utf-8');
+        } elseif(extension_loaded('xml')) {
+            return strlen(utf8_decode($findLengthOf));
+        } else {
+            $count = count_chars($findLengthOf);
+            // 0x80 = 0x7F - 0 + 1 (one added to get inclusive range)
+            // 0x33 = 0xF4 - 0x2C + 1 (one added to get inclusive range)
+            return array_sum(array_slice($count, 0, 0x80)) +
+                   array_sum(array_slice($count, 0xC2, 0x33));
+        }
+    }
+
+    /**
+     * Retrieve the currently consume character.
+     * @note This performs bounds checking
+     */
+    public function char() {
+        return ($this->char++ < $this->EOF)
+            ? $this->data[$this->char - 1]
+            : false;
+    }
+
+    /**
+     * Get all characters until EOF.
+     * @note This performs bounds checking
+     */
+    public function remainingChars() {
+        if($this->char < $this->EOF) {
+            $data = substr($this->data, $this->char);
+            $this->char = $this->EOF;
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Matches as far as possible until we reach a certain set of bytes
+     * and returns the matched substring.
+     * @param $bytes Bytes to match.
+     */
+    public function charsUntil($bytes, $max = null) {
+        if ($this->char < $this->EOF) {
+            if ($max === 0 || $max) {
+                $len = strcspn($this->data, $bytes, $this->char, $max);
+            } else {
+                $len = strcspn($this->data, $bytes, $this->char);
+            }
+            $string = (string) substr($this->data, $this->char, $len);
+            $this->char += $len;
+            return $string;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Matches as far as possible with a certain set of bytes
+     * and returns the matched substring.
+     * @param $bytes Bytes to match.
+     */
+    public function charsWhile($bytes, $max = null) {
+        if ($this->char < $this->EOF) {
+            if ($max === 0 || $max) {
+                $len = strspn($this->data, $bytes, $this->char, $max);
+            } else {
+                $len = strspn($this->data, $bytes, $this->char);
+            }
+            $string = (string) substr($this->data, $this->char, $len);
+            $this->char += $len;
+            return $string;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Unconsume one character.
+     */
+    public function unget() {
+        if ($this->char <= $this->EOF) {
+            $this->char--;
+        }
+    }
+}

@@ -1,185 +1,592 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-UtE6HmFgisGfaAmnlCQ9GaC=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Translates HTML 4.0 attributes into CSS rules
+ *
+ * @package dompdf
+ */
+class Attribute_Translator {
+  static $_style_attr = "_html_style_attribute";
+  
+  // Munged data originally from
+  // http://www.w3.org/TR/REC-html40/index/attributes.html
+  // http://www.cs.tut.fi/~jkorpela/html2css.html
+  static private $__ATTRIBUTE_LOOKUP = array(
+    //'caption' => array ( 'align' => '', ),
+    'img' => array(
+      'align' => array(
+        'bottom' => 'vertical-align: baseline;',
+        'middle' => 'vertical-align: middle;',
+        'top'    => 'vertical-align: top;',
+        'left'   => 'float: left;',
+        'right'  => 'float: right;'
+      ),
+      'border' => 'border: %0.2F px solid;',
+      'height' => 'height: %s px;',
+      'hspace' => 'padding-left: %1$0.2F px; padding-right: %1$0.2F px;',
+      'vspace' => 'padding-top: %1$0.2F px; padding-bottom: %1$0.2F px;',
+      'width'  => 'width: %s px;',
+    ),
+    'table' => array(
+      'align' => array(
+        'left'   => 'margin-left: 0; margin-right: auto;',
+        'center' => 'margin-left: auto; margin-right: auto;',
+        'right'  => 'margin-left: auto; margin-right: 0;'
+      ),
+      'bgcolor' => 'background-color: %s;',
+      'border' => '!set_table_border',
+      'cellpadding' => '!set_table_cellpadding',//'border-spacing: %0.2F; border-collapse: separate;',
+      'cellspacing' => '!set_table_cellspacing',
+      'frame' => array(
+        'void'   => 'border-style: none;',
+        'above'  => 'border-top-style: solid;',
+        'below'  => 'border-bottom-style: solid;',
+        'hsides' => 'border-left-style: solid; border-right-style: solid;',
+        'vsides' => 'border-top-style: solid; border-bottom-style: solid;',
+        'lhs'    => 'border-left-style: solid;',
+        'rhs'    => 'border-right-style: solid;',
+        'box'    => 'border-style: solid;',
+        'border' => 'border-style: solid;'
+      ),
+      'rules' => '!set_table_rules',
+      'width' => 'width: %s;',
+    ),
+    'hr' => array(
+      'align'   => '!set_hr_align', // Need to grab width to set 'left' & 'right' correctly
+      'noshade' => 'border-style: solid;',
+      'size'    => '!set_hr_size', //'border-width: %0.2F px;',
+      'width'   => 'width: %s;',
+    ),
+    'div' => array(
+      'align' => 'text-align: %s;',
+    ),
+    'h1' => array(
+      'align' => 'text-align: %s;',
+    ),
+    'h2' => array(
+      'align' => 'text-align: %s;',
+    ),
+    'h3' => array(
+      'align' => 'text-align: %s;',
+    ),
+    'h4' => array(
+      'align' => 'text-align: %s;',
+    ),
+    'h5' => array(
+      'align' => 'text-align: %s;',
+    ),
+    'h6' => array(
+      'align' => 'text-align: %s;',
+    ),
+    'p' => array(
+      'align' => 'text-align: %s;',
+    ),
+//    'col' => array(
+//      'align'  => '',
+//      'valign' => '',
+//    ),
+//    'colgroup' => array(
+//      'align'  => '',
+//      'valign' => '',
+//    ),
+    'tbody' => array(
+      'align'  => '!set_table_row_align',
+      'valign' => '!set_table_row_valign',
+    ),
+    'td' => array(
+      'align'   => 'text-align: %s;',
+      'bgcolor' => '!set_background_color',
+      'height'  => 'height: %s;',
+      'nowrap'  => 'white-space: nowrap;',
+      'valign'  => 'vertical-align: %s;',
+      'width'   => 'width: %s;',
+    ),
+    'tfoot' => array(
+      'align'   => '!set_table_row_align',
+      'valign'  => '!set_table_row_valign',
+    ),
+    'th' => array(
+      'align'   => 'text-align: %s;',
+      'bgcolor' => '!set_background_color',
+      'height'  => 'height: %s;',
+      'nowrap'  => 'white-space: nowrap;',
+      'valign'  => 'vertical-align: %s;',
+      'width'   => 'width: %s;',
+    ),
+    'thead' => array(
+      'align'   => '!set_table_row_align',
+      'valign'  => '!set_table_row_valign',
+    ),
+    'tr' => array(
+      'align'   => '!set_table_row_align',
+      'bgcolor' => '!set_table_row_bgcolor',
+      'valign'  => '!set_table_row_valign',
+    ),
+    'body' => array(
+      'background' => 'background-image: url(%s);',
+      'bgcolor'    => '!set_background_color',
+      'link'       => '!set_body_link',
+      'text'       => '!set_color',
+    ),
+    'br' => array(
+      'clear' => 'clear: %s;',
+    ),
+    'basefont' => array(
+      'color' => '!set_color',
+      'face'  => 'font-family: %s;',
+      'size'  => '!set_basefont_size',
+    ),
+    'font' => array(
+      'color' => '!set_color',
+      'face'  => 'font-family: %s;',
+      'size'  => '!set_font_size',
+    ),
+    'dir' => array(
+      'compact' => 'margin: 0.5em 0;',
+    ),
+    'dl' => array(
+      'compact' => 'margin: 0.5em 0;',
+    ),
+    'menu' => array(
+      'compact' => 'margin: 0.5em 0;',
+    ),
+    'ol' => array(
+      'compact' => 'margin: 0.5em 0;',
+      'start'   => 'counter-reset: -dompdf-default-counter %d;',
+      'type'    => 'list-style-type: %s;',
+    ),
+    'ul' => array(
+      'compact' => 'margin: 0.5em 0;',
+      'type'    => 'list-style-type: %s;',
+    ),
+    'li' => array(
+      'type'    => 'list-style-type: %s;',
+      'value'   => 'counter-reset: -dompdf-default-counter %d;',
+    ),
+    'pre' => array(
+      'width' => 'width: %s;',
+    ),
+  );
+  
+  static protected $_last_basefont_size = 3;
+  static protected $_font_size_lookup = array(
+    // For basefont support
+    -3 => "4pt", 
+    -2 => "5pt", 
+    -1 => "6pt", 
+     0 => "7pt", 
+    
+     1 => "8pt",
+     2 => "10pt",
+     3 => "12pt",
+     4 => "14pt",
+     5 => "18pt",
+     6 => "24pt",
+     7 => "34pt",
+     
+    // For basefont support
+     8 => "48pt", 
+     9 => "44pt", 
+    10 => "52pt", 
+    11 => "60pt", 
+  );
+
+  /**
+   * @param Frame $frame
+   */
+  static function translate_attributes(Frame $frame) {
+    $node = $frame->get_node();
+    $tag = $node->nodeName;
+
+    if ( !isset(self::$__ATTRIBUTE_LOOKUP[$tag]) ) {
+      return;
+    }
+
+    $valid_attrs = self::$__ATTRIBUTE_LOOKUP[$tag];
+    $attrs = $node->attributes;
+    $style = rtrim($node->getAttribute(self::$_style_attr), "; ");
+    if ( $style != "" ) {
+      $style .= ";";
+    }
+
+    foreach ($attrs as $attr => $attr_node ) {
+      if ( !isset($valid_attrs[$attr]) ) {
+        continue;
+      }
+
+      $value = $attr_node->value;
+
+      $target = $valid_attrs[$attr];
+      
+      // Look up $value in $target, if $target is an array:
+      if ( is_array($target) ) {
+        if ( isset($target[$value]) ) {
+          $style .= " " . self::_resolve_target($node, $target[$value], $value);
+        }
+      }
+      else {
+        // otherwise use target directly
+        $style .= " " . self::_resolve_target($node, $target, $value);
+      }
+    }
+    
+    if ( !is_null($style) ) {
+      $style = ltrim($style);
+      $node->setAttribute(self::$_style_attr, $style);
+    }
+    
+  }
+
+  /**
+   * @param DOMNode $node
+   * @param string  $target
+   * @param string      $value
+   *
+   * @return string
+   */
+  static protected function _resolve_target(DOMNode $node, $target, $value) {
+    if ( $target[0] === "!" ) {
+      // Function call
+      $func = "_" . mb_substr($target, 1);
+      return self::$func($node, $value);
+    }
+    
+    return $value ? sprintf($target, $value) : "";
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $new_style
+   */
+  static function append_style(DOMElement $node, $new_style) {
+    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
+    $style .= $new_style;
+    $style = ltrim($style, ";");
+    $node->setAttribute(self::$_style_attr, $style);
+  }
+
+  /**
+   * @param DOMNode $node
+   *
+   * @return DOMNodeList|DOMElement[]
+   */
+  static protected function get_cell_list(DOMNode $node) {
+    $xpath = new DOMXpath($node->ownerDocument);
+    
+    switch($node->nodeName) {
+      default:
+      case "table":
+        $query = "tr/td | thead/tr/td | tbody/tr/td | tfoot/tr/td | tr/th | thead/tr/th | tbody/tr/th | tfoot/tr/th";
+        break;
+        
+      case "tbody":
+      case "tfoot":
+      case "thead":
+        $query = "tr/td | tr/th";
+        break;
+        
+      case "tr":
+        $query = "td | th";
+        break;
+    }
+    
+    return $xpath->query($query, $node);
+  }
+
+  /**
+   * @param string $value
+   *
+   * @return string
+   */
+  static protected function _get_valid_color($value) {
+    if ( preg_match('/^#?([0-9A-F]{6})$/i', $value, $matches) ) {
+      $value = "#$matches[1]";
+    }
+    
+    return $value;
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return string
+   */
+  static protected function _set_color(DOMElement $node, $value) {
+    $value = self::_get_valid_color($value);
+    return "color: $value;";
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return string
+   */
+  static protected function _set_background_color(DOMElement $node, $value) {
+    $value = self::_get_valid_color($value);
+    return "background-color: $value;";
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null
+   */
+  static protected function _set_table_cellpadding(DOMElement $node, $value) {
+    $cell_list = self::get_cell_list($node);
+    
+    foreach ($cell_list as $cell) {
+      self::append_style($cell, "; padding: {$value}px;");
+    }
+    
+    return null;
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return string
+   */
+  static protected function _set_table_border(DOMElement $node, $value) {
+    $cell_list = self::get_cell_list($node);
+
+    foreach ($cell_list as $cell) {
+      $style = rtrim($cell->getAttribute(self::$_style_attr));
+      $style .= "; border-width: " . ($value > 0 ? 1 : 0) . "pt; border-style: inset;";
+      $style = ltrim($style, ";");
+      $cell->setAttribute(self::$_style_attr, $style);
+    }
+    
+    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
+    $style .= "; border-width: $value" . "px; ";
+    return ltrim($style, "; ");
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return string
+   */
+  static protected function _set_table_cellspacing(DOMElement $node, $value) {
+    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
+
+    if ( $value == 0 ) {
+      $style .= "; border-collapse: collapse;";
+    }
+    else {
+      $style .= "; border-spacing: {$value}px; border-collapse: separate;";
+    }
+    
+    return ltrim($style, ";");
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null|string
+   */
+  static protected function _set_table_rules(DOMElement $node, $value) {
+    $new_style = "; border-collapse: collapse;";
+    
+    switch ($value) {
+    case "none":
+      $new_style .= "border-style: none;";
+      break;
+
+    case "groups":
+      // FIXME: unsupported
+      return null;
+
+    case "rows":
+      $new_style .= "border-style: solid none solid none; border-width: 1px; ";
+      break;
+
+    case "cols":
+      $new_style .= "border-style: none solid none solid; border-width: 1px; ";
+      break;
+
+    case "all":
+      $new_style .= "border-style: solid; border-width: 1px; ";
+      break;
+      
+    default:
+      // Invalid value
+      return null;
+    }
+
+    $cell_list = self::get_cell_list($node);
+    
+    foreach ($cell_list as $cell) {
+      $style = $cell->getAttribute(self::$_style_attr);
+      $style .= $new_style;
+      $cell->setAttribute(self::$_style_attr, $style);
+    }
+    
+    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
+    $style .= "; border-collapse: collapse; ";
+    
+    return ltrim($style, "; ");
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return string
+   */
+  static protected function _set_hr_size(DOMElement $node, $value) {
+    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
+    $style .= "; border-width: ".max(0, $value-2)."; ";
+    return ltrim($style, "; ");
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null|string
+   */
+  static protected function _set_hr_align(DOMElement $node, $value) {
+    $style = rtrim($node->getAttribute(self::$_style_attr),";");
+    $width = $node->getAttribute("width");
+    
+    if ( $width == "" ) {
+      $width = "100%";
+    }
+
+    $remainder = 100 - (double)rtrim($width, "% ");
+    
+    switch ($value) {
+      case "left":
+        $style .= "; margin-right: $remainder %;";
+        break;
+  
+      case "right":
+        $style .= "; margin-left: $remainder %;";
+        break;
+  
+      case "center":
+        $style .= "; margin-left: auto; margin-right: auto;";
+        break;
+  
+      default:
+        return null;
+    }
+    
+    return ltrim($style, "; ");
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null
+   */
+  static protected function _set_table_row_align(DOMElement $node, $value) {
+    $cell_list = self::get_cell_list($node);
+
+    foreach ($cell_list as $cell) {
+      self::append_style($cell, "; text-align: $value;");
+    }
+
+    return null;
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null
+   */
+  static protected function _set_table_row_valign(DOMElement $node, $value) {
+    $cell_list = self::get_cell_list($node);
+
+    foreach ($cell_list as $cell) {
+      self::append_style($cell, "; vertical-align: $value;");
+    }
+
+    return null;
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null
+   */
+  static protected function _set_table_row_bgcolor(DOMElement $node, $value) {
+    $cell_list = self::get_cell_list($node);
+    $value = self::_get_valid_color($value);
+    
+    foreach ($cell_list as $cell) {
+      self::append_style($cell, "; background-color: $value;");
+    }
+
+    return null;
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null
+   */
+  static protected function _set_body_link(DOMElement $node, $value) {
+    $a_list = $node->getElementsByTagName("a");
+    $value = self::_get_valid_color($value);
+    
+    foreach ($a_list as $a) {
+      self::append_style($a, "; color: $value;");
+    }
+
+    return null;
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return null
+   */
+  static protected function _set_basefont_size(DOMElement $node, $value) {
+    // FIXME: ? we don't actually set the font size of anything here, just
+    // the base size for later modification by <font> tags.
+    self::$_last_basefont_size = $value;
+    return null;
+  }
+
+  /**
+   * @param DOMElement $node
+   * @param string     $value
+   *
+   * @return string
+   */
+  static protected function _set_font_size(DOMElement $node, $value) {
+    $style = $node->getAttribute(self::$_style_attr);
+
+    if ( $value[0] === "-" || $value[0] === "+" ) {
+      $value = self::$_last_basefont_size + (int)$value;
+    }
+    
+    if ( isset(self::$_font_size_lookup[$value]) ) {
+      $style .= "; font-size: " . self::$_font_size_lookup[$value] . ";";
+    }
+    else {
+      $style .= "; font-size: $value;";
+    }
+    
+    return ltrim($style, "; ");
+  }
+}

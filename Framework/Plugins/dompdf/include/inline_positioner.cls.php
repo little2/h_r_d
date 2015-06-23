@@ -1,40 +1,70 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-Lm032a3rrR69iMYLcSO=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Positions inline frames
+ *
+ * @access private
+ * @package dompdf
+ */
+class Inline_Positioner extends Positioner {
+
+  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
+
+  //........................................................................
+
+  function position() {
+    /**
+     * Find our nearest block level parent and access its lines property.
+     * @var Block_Frame_Decorator
+     */ 
+    $p = $this->_frame->find_block_parent();
+
+    // Debugging code:
+
+//     pre_r("\nPositioning:");
+//     pre_r("Me: " . $this->_frame->get_node()->nodeName . " (" . spl_object_hash($this->_frame->get_node()) . ")");
+//     pre_r("Parent: " . $p->get_node()->nodeName . " (" . spl_object_hash($p->get_node()) . ")");
+
+    // End debugging
+
+    if ( !$p )
+      throw new DOMPDF_Exception("No block-level parent found.  Not good.");
+
+    $f = $this->_frame;
+    
+    $cb = $f->get_containing_block();
+    $line = $p->get_current_line_box();
+
+    // Skip the page break if in a fixed position element
+    $is_fixed = false;
+    while($f = $f->get_parent()) {
+      if($f->get_style()->position === "fixed") {
+        $is_fixed = true;
+        break;
+      }
+    }
+
+    $f = $this->_frame;
+
+    if ( !$is_fixed && $f->get_parent() &&
+         $f->get_parent() instanceof Inline_Frame_Decorator &&
+         $f->is_text_node() ) {
+      
+      $min_max = $f->get_reflower()->get_min_max_width();
+      
+      // If the frame doesn't fit in the current line, a line break occurs
+      if ( $min_max["min"] > ($cb["w"] - $line->left - $line->w - $line->right) ) {
+        $p->add_line();
+      }
+    }
+    
+    $f->set_position($cb["x"] + $line->w, $line->y);
+
+  }
+}

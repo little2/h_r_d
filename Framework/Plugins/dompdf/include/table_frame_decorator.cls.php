@@ -1,115 +1,334 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-Tbts/hwdJqYkcJ2WtPVHu7s9wFMn+kQJXm==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates Frames for table layout
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Frame_Decorator extends Frame_Decorator {
+  static $VALID_CHILDREN = array("table-row-group",
+                                 "table-row",
+                                 "table-header-group",
+                                 "table-footer-group",
+                                 "table-column",
+                                 "table-column-group",
+                                 "table-caption",
+                                 "table-cell");
+
+  static $ROW_GROUPS = array('table-row-group',
+                             'table-header-group',
+                             'table-footer-group');
+
+  /**
+   * The Cellmap object for this table.  The cellmap maps table cells
+   * to rows and columns, and aids in calculating column widths.
+   *
+   * @var Cellmap
+   */
+  protected $_cellmap;
+
+  /**
+   * The minimum width of the table, in pt
+   *
+   * @var float
+   */
+  protected $_min_width;
+
+  /**
+   * The maximum width of the table, in pt
+   *
+   * @var float
+   */
+  protected $_max_width;
+
+  /**
+   * Table header rows.  Each table header is duplicated when a table
+   * spans pages.
+   *
+   * @var array
+   */
+  protected $_headers;
+
+  /**
+   * Table footer rows.  Each table footer is duplicated when a table
+   * spans pages.
+   *
+   * @var array
+   */
+  protected $_footers;
+
+  /**
+   * Class constructor
+   *
+   * @param Frame  $frame the frame to decorate
+   * @param DOMPDF $dompdf
+   */
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    parent::__construct($frame, $dompdf);
+    $this->_cellmap = new Cellmap($this);
+    
+    if ( $frame->get_style()->table_layout === "fixed" ) {
+      $this->_cellmap->set_layout_fixed(true);
+    }
+    
+    $this->_min_width = null;
+    $this->_max_width = null;
+    $this->_headers = array();
+    $this->_footers = array();
+  }
+
+
+  function reset() {
+    parent::reset();
+    $this->_cellmap->reset();
+    $this->_min_width = null;
+    $this->_max_width = null;
+    $this->_headers = array();
+    $this->_footers = array();
+    $this->_reflower->reset();
+  }
+
+  //........................................................................
+
+  /**
+   * split the table at $row.  $row and all subsequent rows will be
+   * added to the clone.  This method is overidden in order to remove
+   * frames from the cellmap properly.
+   *
+   * @param Frame $child
+   * @param bool  $force_pagebreak
+   *
+   * @return void
+   */
+  function split(Frame $child = null, $force_pagebreak = false) {
+
+    if ( is_null($child) ) {
+      parent::split();
+      return;
+    }
+
+    // If $child is a header or if it is the first non-header row, do
+    // not duplicate headers, simply move the table to the next page.
+    if ( count($this->_headers) && !in_array($child, $this->_headers, true) &&
+         !in_array($child->get_prev_sibling(), $this->_headers, true) ) {
+
+      $first_header = null;
+
+      // Insert copies of the table headers before $child
+      foreach ($this->_headers as $header) {
+
+        $new_header = $header->deep_copy();
+
+        if ( is_null($first_header) )
+          $first_header = $new_header;
+
+        $this->insert_child_before($new_header, $child);
+      }
+
+      parent::split($first_header);
+
+    } else if ( in_array($child->get_style()->display, self::$ROW_GROUPS) ) {
+
+      // Individual rows should have already been handled
+      parent::split($child);
+
+    } else {
+
+      $iter = $child;
+
+      while ($iter) {
+        $this->_cellmap->remove_row($iter);
+        $iter = $iter->get_next_sibling();
+      }
+
+      parent::split($child);
+    }
+  }
+
+  /**
+   * Return a copy of this frame with $node as its node
+   * 
+   * @param DOMNode $node
+   * @return Frame
+   */ 
+  function copy(DOMNode $node) {
+    $deco = parent::copy($node);
+    
+    // In order to keep columns' widths through pages
+    $deco->_cellmap->set_columns($this->_cellmap->get_columns());
+    $deco->_cellmap->lock_columns();
+
+    return $deco;
+  }
+
+  /**
+   * Static function to locate the parent table of a frame
+   *
+   * @param Frame $frame
+   * @return Table_Frame_Decorator the table that is an ancestor of $frame
+   */
+  static function find_parent_table(Frame $frame) {
+
+    while ( $frame = $frame->get_parent() )
+      if ( $frame->is_table() )
+        break;
+
+    return $frame;
+  }
+
+  /**
+   * Return this table's Cellmap
+   *
+   * @return Cellmap
+   */
+  function get_cellmap() { return $this->_cellmap; }
+
+  /**
+   * Return the minimum width of this table
+   *
+   * @return float
+   */
+  function get_min_width() { return $this->_min_width; }
+
+  /**
+   * Return the maximum width of this table
+   *
+   * @return float
+   */
+  function get_max_width() { return $this->_max_width; }
+
+  /**
+   * Set the minimum width of the table
+   *
+   * @param float $width the new minimum width
+   */
+  function set_min_width($width) { $this->_min_width = $width; }
+
+  /**
+   * Set the maximum width of the table
+   *
+   * @param float $width the new maximum width
+   */
+  function set_max_width($width) { $this->_max_width = $width; }
+
+  /**
+   * Restructure tree so that the table has the correct structure.
+   * Invalid children (i.e. all non-table-rows) are moved below the
+   * table.
+   */
+  function normalise() {
+
+    // Store frames generated by invalid tags and move them outside the table
+    $erroneous_frames = array();
+    $anon_row = false;
+    $iter = $this->get_first_child();
+    while ( $iter ) {
+      $child = $iter;
+      $iter = $iter->get_next_sibling();
+
+      $display = $child->get_style()->display;
+
+      if ( $anon_row ) {
+
+        if ( $display === "table-row" ) {
+          // Add the previous anonymous row
+          $this->insert_child_before($table_row, $child);
+
+          $table_row->normalise();
+          $child->normalise();
+          $anon_row = false;
+          continue;
+        }
+
+        // add the child to the anonymous row
+        $table_row->append_child($child);
+        continue;
+
+      } else {
+
+        if ( $display === "table-row" ) {
+          $child->normalise();
+          continue;
+        }
+
+        if ( $display === "table-cell" ) {
+          // Create an anonymous table row
+          $tr = $this->get_node()->ownerDocument->createElement("tr");
+
+          $frame = new Frame($tr);
+
+          $css = $this->get_style()->get_stylesheet();
+          $style = $css->create_style();
+          $style->inherit($this->get_style());
+
+          // Lookup styles for tr tags.  If the user wants styles to work
+          // better, they should make the tr explicit... I'm not going to
+          // try to guess what they intended.
+          if ( $tr_style = $css->lookup("tr") )
+            $style->merge($tr_style);
+
+          // Okay, I have absolutely no idea why I need this clone here, but
+          // if it's omitted, php (as of 2004-07-28) segfaults.
+          $frame->set_style(clone $style);
+          $table_row = Frame_Factory::decorate_frame($frame, $this->_dompdf, $this->_root);
+
+          // Add the cell to the row
+          $table_row->append_child($child);
+
+          $anon_row = true;
+          continue;
+        }
+
+        if ( !in_array($display, self::$VALID_CHILDREN) ) {
+          $erroneous_frames[] = $child;
+          continue;
+        }
+
+        // Normalise other table parts (i.e. row groups)
+        foreach ($child->get_children() as $grandchild) {
+          if ( $grandchild->get_style()->display === "table-row" ) {
+            $grandchild->normalise();
+          }
+        }
+
+        // Add headers and footers
+        if ( $display === "table-header-group" )
+          $this->_headers[] = $child;
+
+        else if ( $display === "table-footer-group" )
+          $this->_footers[] = $child;
+      }
+    }
+
+    if ( $anon_row ) {
+      // Add the row to the table
+      $this->_frame->append_child($table_row);
+      $table_row->normalise();
+      $this->_cellmap->add_row();
+    }
+
+    foreach ($erroneous_frames as $frame)
+      $this->move_after($frame);
+
+  }
+
+  //........................................................................
+
+  /**
+   * Moves the specified frame and it's corresponding node outside of
+   * the table.
+   *
+   * @param Frame $frame the frame to move
+   */
+  function move_after(Frame $frame) {
+    $this->get_parent()->insert_child_after($frame, $this);
+  }
+
+}

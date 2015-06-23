@@ -1,55 +1,158 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-iHo0oOsAQs+nLOowCJlS0G==
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+require_once dirname(__FILE__) . "/Font_TrueType.php";
+require_once dirname(__FILE__) . "/Font_EOT_Header.php";
+
+/**
+ * EOT font file.
+ * 
+ * @package php-font-lib
+ */
+class Font_EOT extends Font_TrueType {
+  const TTEMBED_SUBSET                   = 0x00000001;
+  const TTEMBED_TTCOMPRESSED             = 0x00000004;
+  const TTEMBED_FAILIFVARIATIONSIMULATED = 0x00000010;
+  const TTMBED_EMBEDEUDC                 = 0x00000020;
+  const TTEMBED_VALIDATIONTESTS          = 0x00000040; // Deprecated
+  const TTEMBED_WEBOBJECT                = 0x00000080;
+  const TTEMBED_XORENCRYPTDATA           = 0x10000000;
+
+  /**
+   * @var Font_EOT_Header
+   */
+  public $header;
+
+  function parseHeader(){
+    if (!empty($this->header)) {
+      return;
+    }
+
+    $this->header = new Font_EOT_Header($this);
+    $this->header->parse();
+  }
+  
+  function parse() {
+    $this->parseHeader();
+
+    $flags = $this->header->data["Flags"];
+
+    if ($flags & self::TTEMBED_TTCOMPRESSED) {
+      $mtx_version    = $this->readUInt8();
+      $mtx_copy_limit = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
+      $mtx_offset_1   = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
+      $mtx_offset_2   = $this->readUInt8() << 16 | $this->readUInt8() << 8 | $this->readUInt8();
+
+      /*
+      var_dump("$mtx_version $mtx_copy_limit $mtx_offset_1 $mtx_offset_2");
+
+      $pos = $this->pos();
+      $size = $mtx_offset_1 - $pos;
+      var_dump("pos: $pos");
+      var_dump("size: $size");*/
+    }
+
+    if ($flags & self::TTEMBED_XORENCRYPTDATA) {
+      // Process XOR
+    }
+
+    // TODO Read font data ...
+  }
+
+  /**
+   * Little endian version of the read method
+   */
+  public function read($n) {
+    if ($n < 1) {
+      return "";
+    }
+
+    $string = fread($this->f, $n);
+    $chunks = str_split($string, 2);
+    $chunks = array_map("strrev", $chunks);
+
+    return implode("", $chunks);
+  }
+
+  public function readUInt32(){
+    $uint32 = parent::readUInt32();
+    return $uint32 >> 16 & 0x0000FFFF | $uint32 << 16 & 0xFFFF0000;
+  }
+
+  /**
+   * Get font copyright
+   *
+   * @return string|null
+   */
+  function getFontCopyright(){
+    return null;
+  }
+
+  /**
+   * Get font name
+   *
+   * @return string|null
+   */
+  function getFontName(){
+    return $this->header->data["FamilyName"];
+  }
+
+  /**
+   * Get font subfamily
+   *
+   * @return string|null
+   */
+  function getFontSubfamily(){
+    return $this->header->data["StyleName"];
+  }
+
+  /**
+   * Get font subfamily ID
+   *
+   * @return string|null
+   */
+  function getFontSubfamilyID(){
+    return $this->header->data["StyleName"];
+  }
+
+  /**
+   * Get font full name
+   *
+   * @return string|null
+   */
+  function getFontFullName(){
+    return $this->header->data["FullName"];
+  }
+
+  /**
+   * Get font version
+   *
+   * @return string|null
+   */
+  function getFontVersion(){
+    return $this->header->data["VersionName"];
+  }
+
+  /**
+   * Get font weight
+   *
+   * @return string|null
+   */
+  function getFontWeight(){
+    return $this->header->data["Weight"];
+  }
+
+  /**
+   * Get font Postscript name
+   *
+   * @return string|null
+   */
+  function getFontPostscriptName(){
+    return null;
+  }
+}

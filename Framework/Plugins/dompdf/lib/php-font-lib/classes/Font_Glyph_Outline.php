@@ -1,53 +1,107 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-86/AEe4tw6VjSpeOyM0es3B6uyn2iEpyua0=
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
+ */
+
+/**
+ * `glyf` font table.
+ *
+ * @package php-font-lib
+ */
+class Font_Glyph_Outline extends Font_Binary_Stream {
+  /**
+   * @var Font_Table_glyf
+   */
+  protected $table;
+
+  protected $offset;
+  protected $size;
+
+  // Data
+  public $numberOfContours;
+  public $xMin;
+  public $yMin;
+  public $xMax;
+  public $yMax;
+
+  public $raw;
+
+  /**
+   * @param Font_Table_glyf $table
+   * @param                 $offset
+   * @param                 $size
+   *
+   * @return Font_Glyph_Outline
+   */
+  static function init(Font_Table_glyf $table, $offset, $size) {
+    $font = $table->getFont();
+    $font->seek($offset);
+
+    if ($font->readInt16() > -1) {
+      /** @var Font_Glyph_Outline_Simple $glyph */
+      $glyph = new Font_Glyph_Outline_Simple($table, $offset, $size);
+    }
+    else {
+      /** @var Font_Glyph_Outline_Composite $glyph */
+      $glyph = new Font_Glyph_Outline_Composite($table, $offset, $size);
+    }
+
+    $glyph->parse();
+    return $glyph;
+  }
+
+  /**
+   * @return Font_TrueType
+   */
+  function getFont() {
+    return $this->table->getFont();
+  }
+
+  function __construct(Font_Table_glyf $table, $offset = null, $size = null) {
+    $this->table  = $table;
+    $this->offset = $offset;
+    $this->size   = $size;
+  }
+
+  function parse() {
+    $font = $this->getFont();
+    $font->seek($this->offset);
+
+    if (!$this->size) {
+      return;
+    }
+
+    $this->raw = $font->read($this->size);
+  }
+
+  function parseData(){
+    $font = $this->getFont();
+    $font->seek($this->offset);
+
+    $this->numberOfContours = $font->readInt16();
+    $this->xMin = $font->readFWord();
+    $this->yMin = $font->readFWord();
+    $this->xMax = $font->readFWord();
+    $this->yMax = $font->readFWord();
+  }
+
+  function encode(){
+    $font = $this->getFont();
+    return $font->write($this->raw, strlen($this->raw));
+  }
+
+  function getSVGContours() {
+    // Inherit
+  }
+
+  function getGlyphIDs(){
+    return array();
+  }
+}
+
+require_once dirname(__FILE__) . "/Font_Glyph_Outline_Simple.php";
+require_once dirname(__FILE__) . "/Font_Glyph_Outline_Composite.php";

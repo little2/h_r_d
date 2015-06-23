@@ -1,131 +1,236 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-8fvTGDTl3tl8/OoGAHvhfA9gk84ZLRCClNJB
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Renders list bullets
+ *
+ * @access private
+ * @package dompdf
+ */
+class List_Bullet_Renderer extends Abstract_Renderer {
+  static function get_counter_chars($type) {
+    static $cache = array();
+    
+    if ( isset($cache[$type]) ) {
+      return $cache[$type];
+    }
+    
+    $uppercase = false;
+    $text = "";
+    
+    switch ($type) {
+      case "decimal-leading-zero":
+      case "decimal":
+      case "1":
+        return "0123456789";
+      
+      case "upper-alpha":
+      case "upper-latin":
+      case "A":
+        $uppercase = true;
+      case "lower-alpha":
+      case "lower-latin":
+      case "a":
+        $text = "abcdefghijklmnopqrstuvwxyz";
+        break;
+        
+      case "upper-roman":
+      case "I":
+        $uppercase = true;
+      case "lower-roman":
+      case "i":
+        $text = "ivxlcdm";
+        break;
+      
+      case "lower-greek":
+        for($i = 0; $i < 24; $i++) {
+          $text .= unichr($i+944);
+        }
+        break;
+    }
+    
+    if ( $uppercase ) {
+      $text = strtoupper($text);
+    }
+    
+    return $cache[$type] = "$text.";
+  }
+
+  /**
+   * @param integer $n
+   * @param string  $type
+   * @param integer $pad
+   *
+   * @return string
+   */
+  private function make_counter($n, $type, $pad = null){
+    $n = intval($n);
+    $text = "";
+    $uppercase = false;
+    
+    switch ($type) {
+      case "decimal-leading-zero":
+      case "decimal":
+      case "1":
+        if ($pad) 
+          $text = str_pad($n, $pad, "0", STR_PAD_LEFT);
+        else 
+          $text = $n;
+        break;
+      
+      case "upper-alpha":
+      case "upper-latin":
+      case "A":
+        $uppercase = true;
+      case "lower-alpha":
+      case "lower-latin":
+      case "a":
+        $text = chr( ($n % 26) + ord('a') - 1);
+        break;
+        
+      case "upper-roman":
+      case "I":
+        $uppercase = true;
+      case "lower-roman":
+      case "i":
+        $text = dec2roman($n);
+        break;
+      
+      case "lower-greek":
+        $text = unichr($n + 944);
+        break;
+    }
+    
+    if ( $uppercase ) {
+      $text = strtoupper($text);
+    }
+    
+    return "$text.";
+  }
+  
+  function render(Frame $frame) {
+    $style = $frame->get_style();
+    $font_size = $style->get_font_size();
+    $line_height = $style->length_in_pt($style->line_height, $frame->get_containing_block("w"));
+
+    $this->_set_opacity( $frame->get_opacity( $style->opacity ) );
+
+    $li = $frame->get_parent();
+
+    // Don't render bullets twice if if was split
+    if ($li->_splitted) {
+      return;
+    }
+
+    // Handle list-style-image
+    // If list style image is requested but missing, fall back to predefined types
+    if ( $style->list_style_image !== "none" &&
+         !Image_Cache::is_broken($img = $frame->get_image_url())) {
+
+      list($x,$y) = $frame->get_position();
+      
+      //For expected size and aspect, instead of box size, use image natural size scaled to DPI.
+      // Resample the bullet image to be consistent with 'auto' sized images
+      // See also Image_Frame_Reflower::get_min_max_width
+      // Tested php ver: value measured in px, suffix "px" not in value: rtrim unnecessary.
+      //$w = $frame->get_width();
+      //$h = $frame->get_height();
+      list($width, $height) = dompdf_getimagesize($img);
+      $dpi = $this->_dompdf->get_option("dpi");
+      $w = ((float)rtrim($width, "px") * 72) / $dpi;
+      $h = ((float)rtrim($height, "px") * 72) / $dpi;
+      
+      $x -= $w;
+      $y -= ($line_height - $font_size)/2; //Reverse hinting of list_bullet_positioner
+
+      $this->_canvas->image( $img, $x, $y, $w, $h);
+
+    } else {
+
+      $bullet_style = $style->list_style_type;
+
+      $fill = false;
+
+      switch ($bullet_style) {
+
+      default:
+      case "disc":
+        $fill = true;
+
+      case "circle":
+        list($x,$y) = $frame->get_position();
+        $r = ($font_size*(List_Bullet_Frame_Decorator::BULLET_SIZE /*-List_Bullet_Frame_Decorator::BULLET_THICKNESS*/ ))/2;
+        $x -= $font_size*(List_Bullet_Frame_Decorator::BULLET_SIZE/2);
+        $y += ($font_size*(1-List_Bullet_Frame_Decorator::BULLET_DESCENT))/2;
+        $o = $font_size*List_Bullet_Frame_Decorator::BULLET_THICKNESS;
+        $this->_canvas->circle($x, $y, $r, $style->color, $o, null, $fill);
+        break;
+
+      case "square":
+        list($x, $y) = $frame->get_position();
+        $w = $font_size*List_Bullet_Frame_Decorator::BULLET_SIZE;
+        $x -= $w;
+        $y += ($font_size*(1-List_Bullet_Frame_Decorator::BULLET_DESCENT-List_Bullet_Frame_Decorator::BULLET_SIZE))/2;
+        $this->_canvas->filled_rectangle($x, $y, $w, $w, $style->color);
+        break;
+    
+      case "decimal-leading-zero":
+      case "decimal":
+      case "lower-alpha":
+      case "lower-latin":
+      case "lower-roman":
+      case "lower-greek":
+      case "upper-alpha":
+      case "upper-latin":
+      case "upper-roman":
+      case "1": // HTML 4.0 compatibility
+      case "a":
+      case "i":
+      case "A":
+      case "I":
+        $pad = null;
+        if ( $bullet_style === "decimal-leading-zero" ) {
+          $pad = strlen($li->get_parent()->get_node()->getAttribute("dompdf-children-count"));
+        }
+
+        $node = $frame->get_node();
+
+        if ( !$node->hasAttribute("dompdf-counter") ) {
+          return;
+        }
+
+        $index = $node->getAttribute("dompdf-counter");
+        $text = $this->make_counter($index, $bullet_style, $pad);
+
+        if ( trim($text) == "" ) {
+          return;
+        }
+        
+        $spacing = 0;
+        $font_family = $style->font_family;
+        
+        $line = $li->get_containing_line();
+        list($x, $y) = array($frame->get_position("x"), $line->y);
+
+        $x -= Font_Metrics::get_text_width($text, $font_family, $font_size, $spacing);
+        
+        // Take line-height into account
+        $line_height = $style->line_height;
+        $y += ($line_height - $font_size) / 4; // FIXME I thought it should be 2, but 4 gives better results
+        
+        $this->_canvas->text($x, $y, $text,
+                             $font_family, $font_size,
+                             $style->color, $spacing);
+      
+      case "none":
+        break;
+      }
+    }
+  }
+}

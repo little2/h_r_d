@@ -1,45 +1,143 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-yzYi61QSG0==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates frames for list bullets with custom images
+ *
+ * @access private
+ * @package dompdf
+ */
+class List_Bullet_Image_Frame_Decorator extends Frame_Decorator {
+
+  /**
+   * The underlying image frame
+   * 
+   * @var Image_Frame_Decorator
+   */
+  protected $_img;
+
+  /**
+   * The image's width in pixels
+   *
+   * @var int
+   */
+  protected $_width;
+  
+  /**
+   * The image's height in pixels
+   *
+   * @var int
+   */
+  protected $_height;
+
+  /**
+   * Class constructor
+   *
+   * @param Frame $frame the bullet frame to decorate
+   * @param DOMPDF $dompdf the document's dompdf object
+   */
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    $style = $frame->get_style();
+    $url = $style->list_style_image;
+    $frame->get_node()->setAttribute("src", $url);
+    $this->_img = new Image_Frame_Decorator($frame, $dompdf);
+    parent::__construct($this->_img, $dompdf);
+    list($width, $height) = dompdf_getimagesize($this->_img->get_image_url());
+
+    // Resample the bullet image to be consistent with 'auto' sized images
+    // See also Image_Frame_Reflower::get_min_max_width
+    // Tested php ver: value measured in px, suffix "px" not in value: rtrim unnecessary.
+    $dpi = $this->_dompdf->get_option("dpi");
+    $this->_width = ((float)rtrim($width, "px") * 72) / $dpi;
+    $this->_height = ((float)rtrim($height, "px") * 72) / $dpi;
+ 
+    //If an image is taller as the containing block/box, the box should be extended.
+    //Neighbour elements are overwriting the overlapping image areas.
+    //Todo: Where can the box size be extended?   
+    //Code below has no effect.
+    //See block_frame_reflower _calculate_restricted_height
+    //See generated_frame_reflower, Dompdf:render() "list-item", "-dompdf-list-bullet"S.
+    //Leave for now    
+    //if ($style->min_height < $this->_height ) {
+    //  $style->min_height = $this->_height;
+    //}
+    //$style->height = "auto";   
+  }
+
+  /**
+   * Return the bullet's width
+   *
+   * @return int
+   */
+  function get_width() {
+    //ignore image width, use same width as on predefined bullet List_Bullet_Frame_Decorator
+    //for proper alignment of bullet image and text. Allow image to not fitting on left border.
+    //This controls the distance between bullet image and text 
+    //return $this->_width;
+    return $this->_frame->get_style()->get_font_size()*List_Bullet_Frame_Decorator::BULLET_SIZE + 
+      2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
+  }
+
+  /**
+   * Return the bullet's height
+   *
+   * @return int
+   */
+  function get_height() {
+    //based on image height
+    return $this->_height;
+  }
+  
+  /**
+   * Override get_margin_width
+   *
+   * @return int
+   */
+  function get_margin_width() {
+    //ignore image width, use same width as on predefined bullet List_Bullet_Frame_Decorator
+    //for proper alignment of bullet image and text. Allow image to not fitting on left border.
+    //This controls the extra indentation of text to make room for the bullet image.
+    //Here use actual image size, not predefined bullet size 
+    //return $this->_frame->get_style()->get_font_size()*List_Bullet_Frame_Decorator::BULLET_SIZE + 
+    //  2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
+
+    // Small hack to prevent indenting of list text
+    // Image Might not exist, then position like on list_bullet_frame_decorator fallback to none. 
+    if ( $this->_frame->get_style()->list_style_position === "outside" ||
+         $this->_width == 0) 
+      return 0;
+    //This aligns the "inside" image position with the text.
+    //The text starts to the right of the image.
+    //Between the image and the text there is an added margin of image width.
+    //Where this comes from is unknown.
+    //The corresponding List_Bullet_Frame_Decorator sets a smaller margin. bullet size?
+    return $this->_width + 2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
+  }
+
+  /**
+   * Override get_margin_height()
+   *
+   * @return int
+   */
+  function get_margin_height() {
+    //Hits only on "inset" lists items, to increase height of box
+    //based on image height
+    return $this->_height + 2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
+  }
+
+  /**
+   * Return image url
+   *
+   * @return string
+   */
+  function get_image_url() {
+    return $this->_img->get_image_url();
+  }
+  
+}

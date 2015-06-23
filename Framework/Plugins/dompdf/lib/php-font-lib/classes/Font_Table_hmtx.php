@@ -1,40 +1,53 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-3S7e8w7LAoskEejNKm==
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * `hmtx` font table.
+ * 
+ * @package php-font-lib
+ */
+class Font_Table_hmtx extends Font_Table {
+  protected function _parse(){
+    $font = $this->getFont();
+    $offset = $font->pos();
+    
+    $numOfLongHorMetrics = $font->getData("hhea", "numOfLongHorMetrics");
+    $numGlyphs = $font->getData("maxp", "numGlyphs");
+    
+    $font->seek($offset);
+    
+    $data = array();
+    for($gid = 0; $gid < $numOfLongHorMetrics; $gid++) {
+      $advanceWidth = $font->readUInt16();
+      $leftSideBearing = $font->readUInt16();
+      $data[$gid] = array($advanceWidth, $leftSideBearing);
+    }
+    
+    if($numOfLongHorMetrics < $numGlyphs){
+      $lastWidth = end($data);
+      $data = array_pad($data, $numGlyphs, $lastWidth);
+    }
+    
+    $this->data = $data;
+  }
+  
+  protected function _encode() {
+    $font = $this->getFont();
+    $subset = $font->getSubset();
+    $data = $this->data;
+    
+    $length = 0;
+    
+    foreach($subset as $gid) {
+      $length += $font->writeUInt16($data[$gid][0]);
+      $length += $font->writeUInt16($data[$gid][1]);
+    }
+    
+    return $length;
+  }
+}

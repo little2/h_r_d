@@ -1,135 +1,233 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
+ */
+
+require_once dirname(__FILE__) . "/Font_Glyph_Outline_Component.php";
+
+/**
+ * Composite glyph outline
+ *
+ * @package php-font-lib
+ */
+class Font_Glyph_Outline_Composite extends Font_Glyph_Outline {
+  const ARG_1_AND_2_ARE_WORDS    = 0x0001;
+  const ARGS_ARE_XY_VALUES       = 0x0002;
+  const ROUND_XY_TO_GRID         = 0x0004;
+  const WE_HAVE_A_SCALE          = 0x0008;
+  const MORE_COMPONENTS          = 0x0020;
+  const WE_HAVE_AN_X_AND_Y_SCALE = 0x0040;
+  const WE_HAVE_A_TWO_BY_TWO     = 0x0080;
+  const WE_HAVE_INSTRUCTIONS     = 0x0100;
+  const USE_MY_METRICS           = 0x0200;
+  const OVERLAP_COMPOUND         = 0x0400;
+
+  /**
+   * @var Font_Glyph_Outline_Component[]
+   */
+  public $components = array();
+
+  function getGlyphIDs(){
+    if (empty($this->components)) {
+      $this->parseData();
+    }
+
+    $glyphIDs = array();
+    foreach ($this->components as $_component) {
+      $glyphIDs[] = $_component->glyphIndex;
+
+      $_glyph = $this->table->data[$_component->glyphIndex];
+      $glyphIDs = array_merge($glyphIDs, $_glyph->getGlyphIDs());
+    }
+
+    return $glyphIDs;
+  }
+
+  /*function parse() {
+    //$this->parseData();
+  }*/
+
+  function parseData(){
+    parent::parseData();
+
+    $font = $this->getFont();
+
+    do {
+      $flags      = $font->readUInt16();
+      $glyphIndex = $font->readUInt16();
+
+      $a = 1.0; $b = 0.0;
+      $c = 0.0; $d = 1.0;
+      $e = 0.0; $f = 0.0;
+
+      $point_compound  = null;
+      $point_component = null;
+
+      $instructions = null;
+
+      if ($flags & self::ARG_1_AND_2_ARE_WORDS) {
+        if ($flags & self::ARGS_ARE_XY_VALUES) {
+          $e = $font->readInt16();
+          $f = $font->readInt16();
+        }
+        else {
+          $point_compound  = $font->readUInt16();
+          $point_component = $font->readUInt16();
+        }
+      }
+      else {
+        if ($flags & self::ARGS_ARE_XY_VALUES) {
+          $e = $font->readInt8();
+          $f = $font->readInt8();
+        }
+        else {
+          $point_compound  = $font->readUInt8();
+          $point_component = $font->readUInt8();
+        }
+      }
+
+      if ($flags & self::WE_HAVE_A_SCALE) {
+        $a = $d = $font->readInt16();
+      }
+      elseif ($flags & self::WE_HAVE_AN_X_AND_Y_SCALE) {
+        $a = $font->readInt16();
+        $d = $font->readInt16();
+      }
+      elseif ($flags & self::WE_HAVE_A_TWO_BY_TWO) {
+        $a = $font->readInt16();
+        $b = $font->readInt16();
+        $c = $font->readInt16();
+        $d = $font->readInt16();
+      }
+
+      //if ($flags & self::WE_HAVE_INSTRUCTIONS) {
+      //
+      //}
+
+      $component = new Font_Glyph_Outline_Component();
+      $component->flags = $flags;
+      $component->glyphIndex = $glyphIndex;
+      $component->a = $a;
+      $component->b = $b;
+      $component->c = $c;
+      $component->d = $d;
+      $component->e = $e;
+      $component->f = $f;
+      $component->point_compound = $point_compound;
+      $component->point_component = $point_component;
+      $component->instructions = $instructions;
+
+      $this->components[] = $component;
+
+    } while ($flags & self::MORE_COMPONENTS);
+  }
+
+  function encode(){
+    $font = $this->getFont();
+
+    $gids = $font->getSubset();
+
+    $size  = $font->writeInt16(-1);
+    $size += $font->writeFWord($this->xMin);
+    $size += $font->writeFWord($this->yMin);
+    $size += $font->writeFWord($this->xMax);
+    $size += $font->writeFWord($this->yMax);
+
+    foreach ($this->components as $_i => $_component) {
+      $flags = 0;
+      if ($_component->point_component === null && $_component->point_compound === null) {
+        $flags |= self::ARGS_ARE_XY_VALUES;
+
+        if (abs($_component->e) > 0x7F || abs($_component->f) > 0x7F) {
+          $flags |= self::ARG_1_AND_2_ARE_WORDS;
+        }
+      }
+      elseif ($_component->point_component > 0xFF || $_component->point_compound > 0xFF) {
+        $flags |= self::ARG_1_AND_2_ARE_WORDS;
+      }
+
+      if ($_component->b == 0 && $_component->c == 0) {
+        if ($_component->a == $_component->d) {
+          if ($_component->a != 1.0) {
+            $flags |= self::WE_HAVE_A_SCALE;
+          }
+        }
+        else {
+          $flags |= self::WE_HAVE_AN_X_AND_Y_SCALE;
+        }
+      }
+      else {
+        $flags |= self::WE_HAVE_A_TWO_BY_TWO;
+      }
+
+      if ($_i < count($this->components)-1) {
+        $flags |= self::MORE_COMPONENTS;
+      }
+
+      $size += $font->writeUInt16($flags);
+
+      $new_gid = array_search($_component->glyphIndex, $gids);
+      $size += $font->writeUInt16($new_gid);
+
+      if ($flags & self::ARG_1_AND_2_ARE_WORDS) {
+        if ($flags & self::ARGS_ARE_XY_VALUES) {
+          $size += $font->writeInt16($_component->e);
+          $size += $font->writeInt16($_component->f);
+        }
+        else {
+          $size += $font->writeUInt16($_component->point_compound);
+          $size += $font->writeUInt16($_component->point_component);
+        }
+      }
+      else {
+        if ($flags & self::ARGS_ARE_XY_VALUES) {
+          $size += $font->writeInt8($_component->e);
+          $size += $font->writeInt8($_component->f);
+        }
+        else {
+          $size += $font->writeUInt8($_component->point_compound);
+          $size += $font->writeUInt8($_component->point_component);
+        }
+      }
+
+      if ($flags & self::WE_HAVE_A_SCALE) {
+        $size += $font->writeInt16($_component->a);
+      }
+      elseif ($flags & self::WE_HAVE_AN_X_AND_Y_SCALE) {
+        $size += $font->writeInt16($_component->a);
+        $size += $font->writeInt16($_component->d);
+      }
+      elseif ($flags & self::WE_HAVE_A_TWO_BY_TWO) {
+        $size += $font->writeInt16($_component->a);
+        $size += $font->writeInt16($_component->b);
+        $size += $font->writeInt16($_component->c);
+        $size += $font->writeInt16($_component->d);
+      }
+    }
+
+    return $size;
+  }
+
+  public function getSVGContours(){
+    $contours = array();
+
+    /** @var Font_Table_glyf $glyph_data */
+    $glyph_data = $this->getFont()->getTableObject("glyf");
+
+    /** @var Font_Glyph_Outline[] $glyphs */
+    $glyphs = $glyph_data->data;
+
+    foreach ($this->components as $component) {
+      $contours[] = array(
+        "contours"  => $glyphs[$component->glyphIndex]->getSVGContours(),
+        "transform" => $component->getMatrix(),
+      );
+    }
+
+    return $contours;
+  }
+}

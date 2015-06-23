@@ -1,83 +1,163 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-hizuHFe=
+<?php
+set_time_limit(9900);
+
+
+
+/**
+ * Command line utility to use dompdf.
+ * Can also be used with HTTP GET parameters
+ * 
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+require_once ("dompdf_config.inc.php");
+global $_dompdf_show_warnings, $_dompdf_debug, $_DOMPDF_DEBUG_TYPES;
+
+$options = array();
+global $id,$type;
+
+
+$type='report';
+$input_file='95.htm';        
+
+
+
+if (isset($input_file))
+    $file = rawurldecode($input_file);
+else
+    throw new DOMPDF_Exception("An input file is required (i.e. input_file _GET variable).");
+
+
+$paper = DOMPDF_DEFAULT_PAPER_SIZE;
+$orientation = "portrait";
+
+
+$base_path = rawurldecode("data/".$type."/");
+$file = $base_path . $file; // Set the input file
+
+reg(__LINE__,$msg=false);
+
+
+$file_parts = explode_url($file);
+/*
+ * Check to see if the input file is local and, if so, that the base path falls
+ * within that specified by DOMDPF_CHROOT
+ */
+if (($file_parts['protocol'] == '' || $file_parts['protocol'] === 'file://')) {
+    
+    if (! ($file = realpath($file))) {
+        $file = realpath($base_path) . DIRECTORY_SEPARATOR .
+                 rawurldecode($input_file);
+    }
+
+    if (strpos($file, DOMPDF_CHROOT) !== 0) {
+        throw new DOMPDF_Exception("Permission denied on $file. The file could not be found under the directory specified by DOMPDF_CHROOT.");
+    }
+}
+
+$outfile = str_replace('.htm', '.pdf', $file);
+if(file_exists($outfile))
+{
+    reg(__LINE__,$msg=false);
+    $data = $_POST;
+    $data['errmsg']="";
+    echo 'Exists';
+    exit(0);
+    die;
+}
+
+if ($file_parts['protocol'] === 'php://') {
+    throw new DOMPDF_Exception(
+            "Permission denied on $file. This script does not allow PHP streams.");
+}
+// $outfile = "dompdf_out123.pdf"; # Don't allow them to set the output file
+
+$save_file = true; // Don't save the file
+
+$dompdf = new DOMPDF();
+reg(__LINE__,$msg=false);
+
+if ($file === "-") {
+    reg(__LINE__,$file);
+    $str = "";
+    while (! feof(STDIN))
+        $str .= fread(STDIN, 4096);
+    
+    $dompdf->load_html($str);
+} 
+else
+{
+    reg(__LINE__,$file);
+    $dompdf->load_html_file($file);
+}    
+    
+
+
+if (isset($base_path)) {
+    reg(__LINE__,$base_path);
+    $dompdf->set_base_path($base_path);
+}
+
+$dompdf->set_paper($paper, $orientation);
+
+reg(__LINE__,$msg=false);
+$dompdf->render();
+reg(__LINE__,$msg=false);
+if ($_dompdf_show_warnings) {
+    reg(__LINE__,$msg=false);
+    global $_dompdf_warnings;
+    foreach ($_dompdf_warnings as $msg)
+        echo $msg . "\n";
+    echo $dompdf->get_canvas()->get_cpdf()->messages;
+    flush();
+}
+reg(__LINE__,$msg=false);
+if ($save_file) {
+    reg(__LINE__,$msg=false);
+    // if ( !is_writable($outfile) )
+    // throw new DOMPDF_Exception("'$outfile' is not writable.");
+    /*
+    if (strtolower(DOMPDF_PDF_BACKEND) === "gd")
+        $outfile = str_replace(".pdf", ".png", $outfile);
+  
+    list ($proto, $host, $path, $file) = explode_url($outfile);
+    if ($proto != "") // i.e. not file://
+        $outfile = $file; // just save it locally, FIXME? could save it like
+                          // wget:
+                              // ./host/basepath/file
+    
+    $outfile = realpath(dirname($outfile)) . DIRECTORY_SEPARATOR . basename(
+            $outfile);
+    
+    if (! ($file = realpath($file))) {
+        $file = realpath($base_path) . DIRECTORY_SEPARATOR .
+                 rawurldecode($input_file);
+    }
+    */
+    $outfile = str_replace('.htm', '.pdf', $file);
+  
+    if (strpos($outfile, DOMPDF_CHROOT) !== 0)
+        throw new DOMPDF_Exception("Permission denied.");
+   
+    reg(__LINE__,$msg=false);
+    file_put_contents($outfile, $dompdf->output(array("compress" => 0)));
+    
+    // //若順利儲存,則轉到 company_view
+    echo 'Finish';
+    
+    
+    exit(0);
+}
+
+if (! headers_sent()) {
+    $dompdf->stream($outfile, $options);
+}
+
+
+function reg($line,$msg=false)
+{
+    file_put_contents('_SVGIG.txt', $line.' Time:'.time().'  '.$msg.chr(10),FILE_APPEND);    
+}

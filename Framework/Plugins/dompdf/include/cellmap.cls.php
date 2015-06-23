@@ -1,350 +1,790 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Maps table cells to the table grid.
+ *
+ * This class resolves borders in tables with collapsed borders and helps
+ * place row & column spanned table cells.
+ *
+ * @access private
+ * @package dompdf
+ */
+class Cellmap {
+
+  /**
+   * Border style weight lookup for collapsed border resolution.
+   *
+   * @var array
+   */
+  static protected $_BORDER_STYLE_SCORE = array(
+    "inset"  => 1,
+    "groove" => 2,
+    "outset" => 3,
+    "ridge"  => 4,
+    "dotted" => 5,
+    "dashed" => 6,
+    "solid"  => 7,
+    "double" => 8,
+    "hidden" => 9,
+    "none"   => 0,
+   );
+
+  /**
+   * The table object this cellmap is attached to.
+   *
+   * @var Table_Frame_Decorator
+   */
+  protected $_table;
+
+  /**
+   * The total number of rows in the table
+   *
+   * @var int
+   */
+  protected $_num_rows;
+
+  /**
+   * The total number of columns in the table
+   *
+   * @var int
+   */
+  protected $_num_cols;
+
+  /**
+   * 2D array mapping <row,column> to frames
+   *
+   * @var Frame[][]
+   */
+  protected $_cells;
+
+  /**
+   * 1D array of column dimensions
+   *
+   * @var array
+   */
+  protected $_columns;
+
+  /**
+   * 1D array of row dimensions
+   *
+   * @var array
+   */
+  protected $_rows;
+
+  /**
+   * 2D array of border specs
+   *
+   * @var array
+   */
+  protected $_borders;
+
+  /**
+   * 1D Array mapping frames to (multiple) <row, col> pairs, keyed on frame_id.
+   *
+   * @var Frame[]
+   */
+  protected $_frames;
+
+  /**
+   * Current column when adding cells, 0-based
+   *
+   * @var int
+   */
+  private $__col;
+
+  /**
+   * Current row when adding cells, 0-based
+   *
+   * @var int
+   */
+  private $__row;
+  
+  /**
+   * Tells wether the columns' width can be modified
+   *
+   * @var bool
+   */
+  private $_columns_locked = false;
+  
+  /**
+   * Tells wether the table has table-layout:fixed
+   *
+   * @var bool
+   */
+  private $_fixed_layout = false;
+
+  //........................................................................
+
+  function __construct(Table_Frame_Decorator $table) {
+    $this->_table = $table;
+    $this->reset();
+  }
+  
+  function __destruct() {
+    clear_object($this);
+  }
+  //........................................................................
+
+  function reset() {
+    $this->_num_rows = 0;
+    $this->_num_cols = 0;
+
+    $this->_cells  = array();
+    $this->_frames = array();
+
+    if ( !$this->_columns_locked ) {
+      $this->_columns = array();
+    }
+    
+    $this->_rows = array();
+
+    $this->_borders = array();
+
+    $this->__col = $this->__row = 0;
+  }
+
+  //........................................................................
+
+  function lock_columns() { 
+    $this->_columns_locked = true; 
+  }
+
+  function is_columns_locked() {
+    return $this->_columns_locked;
+  }
+  
+  function set_layout_fixed($fixed) { 
+    $this->_fixed_layout = $fixed; 
+  }
+
+  function is_layout_fixed() {
+    return $this->_fixed_layout;
+  }
+  
+  function get_num_rows() { return $this->_num_rows; }
+  function get_num_cols() { return $this->_num_cols; }
+
+  function &get_columns() {
+    return $this->_columns;
+  }
+
+  function set_columns($columns) {
+    $this->_columns = $columns;
+  }
+
+  function &get_column($i) {
+    if ( !isset($this->_columns[$i]) ) {
+      $this->_columns[$i] = array(
+        "x" => 0,
+        "min-width" => 0,
+        "max-width" => 0,
+        "used-width" => null,
+        "absolute" => 0,
+        "percent" => 0,
+        "auto" => true,
+      );
+    }
+    
+    return $this->_columns[$i];
+  }
+
+  function &get_rows() {
+    return $this->_rows;
+  }
+
+  function &get_row($j) {
+    if ( !isset($this->_rows[$j]) ) {
+      $this->_rows[$j] = array(
+        "y" => 0,
+        "first-column" => 0,
+        "height" => null,
+      );
+    }
+    
+    return $this->_rows[$j];
+  }
+
+  function get_border($i, $j, $h_v, $prop = null) {
+    if ( !isset($this->_borders[$i][$j][$h_v]) ) {
+      $this->_borders[$i][$j][$h_v] = array(
+        "width" => 0,
+        "style" => "solid",
+        "color" => "black",
+      );
+    }
+    
+    if ( isset($prop) ) {
+      return $this->_borders[$i][$j][$h_v][$prop];
+    }
+    
+    return $this->_borders[$i][$j][$h_v];
+  }
+
+  function get_border_properties($i, $j) {
+    return array(
+      "top"    => $this->get_border($i,   $j,   "horizontal"), 
+      "right"  => $this->get_border($i,   $j+1, "vertical"),
+      "bottom" => $this->get_border($i+1, $j,   "horizontal"), 
+      "left"   => $this->get_border($i,   $j,   "vertical"),
+    );
+  }
+
+  //........................................................................
+
+  function get_spanned_cells(Frame $frame) {
+    $key = $frame->get_id();
+
+    if ( !isset($this->_frames[$key]) ) {
+      throw new DOMPDF_Exception("Frame not found in cellmap");
+    }
+
+    return $this->_frames[$key];
+
+  }
+
+  function frame_exists_in_cellmap(Frame $frame) {
+    $key = $frame->get_id();
+    return isset($this->_frames[$key]);
+  }
+  
+  function get_frame_position(Frame $frame) {
+    global $_dompdf_warnings;
+
+    $key = $frame->get_id();
+
+    if ( !isset($this->_frames[$key]) ) {
+      throw new DOMPDF_Exception("Frame not found in cellmap");
+    }
+
+    $col = $this->_frames[$key]["columns"][0];
+    $row = $this->_frames[$key]["rows"][0];
+
+    if ( !isset($this->_columns[$col])) {
+      $_dompdf_warnings[] = "Frame not found in columns array.  Check your table layout for missing or extra TDs.";
+      $x = 0;
+    }
+    else {
+      $x = $this->_columns[$col]["x"];
+    }
+
+    if ( !isset($this->_rows[$row])) {
+      $_dompdf_warnings[] = "Frame not found in row array.  Check your table layout for missing or extra TDs.";
+      $y = 0;
+    }
+    else {
+      $y = $this->_rows[$row]["y"];
+    }
+
+    return array($x, $y, "x" => $x, "y" => $y);
+  }
+
+  function get_frame_width(Frame $frame) {
+    $key = $frame->get_id();
+
+    if ( !isset($this->_frames[$key]) ) {
+      throw new DOMPDF_Exception("Frame not found in cellmap");
+    }
+
+    $cols = $this->_frames[$key]["columns"];
+    $w = 0;
+    foreach ($cols as $i) {
+      $w += $this->_columns[$i]["used-width"];
+    }
+    
+    return $w;
+  }
+
+  function get_frame_height(Frame $frame) {
+    $key = $frame->get_id();
+
+    if ( !isset($this->_frames[$key]) ) {
+      throw new DOMPDF_Exception("Frame not found in cellmap");
+    }
+
+    $rows = $this->_frames[$key]["rows"];
+    $h = 0;
+    foreach ($rows as $i) {
+      if ( !isset($this->_rows[$i]) )  {
+        throw new Exception("The row #$i could not be found, please file an issue in the tracker with the HTML code");
+      }
+      
+      $h += $this->_rows[$i]["height"];
+    }
+    
+    return $h;
+  }
+
+
+  //........................................................................
+
+  function set_column_width($j, $width) {
+    if ( $this->_columns_locked ) {
+      return;
+    }
+    
+    $col =& $this->get_column($j);
+    $col["used-width"] = $width;
+    $next_col =& $this->get_column($j+1);
+    $next_col["x"] = $next_col["x"] + $width;
+  }
+
+  function set_row_height($i, $height) {
+    $row =& $this->get_row($i);
+    
+    if ( $row["height"] !== null && $height <= $row["height"] ) {
+      return;
+    }
+
+    $row["height"] = $height;
+    $next_row =& $this->get_row($i+1);
+    $next_row["y"] = $row["y"] + $height;
+
+  }
+
+  //........................................................................
+
+
+  protected function _resolve_border($i, $j, $h_v, $border_spec) {
+    $n_width = $border_spec["width"];
+    $n_style = $border_spec["style"];
+
+    if ( !isset($this->_borders[$i][$j][$h_v]) ) {
+      $this->_borders[$i][$j][$h_v] = $border_spec;
+      return $this->_borders[$i][$j][$h_v]["width"];
+    }
+    
+    $border = &$this->_borders[$i][$j][$h_v];
+    
+    $o_width = $border["width"];
+    $o_style = $border["style"];
+
+    if ( ($n_style === "hidden" ||
+          $n_width  >  $o_width ||
+          $o_style === "none")
+
+         or
+
+         ($o_width == $n_width &&
+          in_array($n_style, self::$_BORDER_STYLE_SCORE) &&
+          self::$_BORDER_STYLE_SCORE[ $n_style ] > self::$_BORDER_STYLE_SCORE[ $o_style ]) ) {
+      $border = $border_spec;
+    }
+
+    return $border["width"];
+  }
+
+  //........................................................................
+
+  function add_frame(Frame $frame) {
+    
+    $style = $frame->get_style();
+    $display = $style->display;
+
+    $collapse = $this->_table->get_style()->border_collapse == "collapse";
+
+    // Recursively add the frames within tables, table-row-groups and table-rows
+    if ( $display === "table-row" ||
+         $display === "table" ||
+         $display === "inline-table" ||
+         in_array($display, Table_Frame_Decorator::$ROW_GROUPS) ) {
+
+      $start_row = $this->__row;
+      foreach ( $frame->get_children() as $child ) {
+        $this->add_frame( $child );
+      }
+
+      if ( $display === "table-row" ) {
+        $this->add_row();
+      }
+
+      $num_rows = $this->__row - $start_row - 1;
+      $key = $frame->get_id();
+
+      // Row groups always span across the entire table
+      $this->_frames[$key]["columns"] = range(0,max(0,$this->_num_cols-1));
+      $this->_frames[$key]["rows"] = range($start_row, max(0, $this->__row - 1));
+      $this->_frames[$key]["frame"] = $frame;
+
+      if ( $display !== "table-row" && $collapse ) {
+
+        $bp = $style->get_border_properties();
+
+        // Resolve the borders
+        for ( $i = 0; $i < $num_rows+1; $i++) {
+          $this->_resolve_border($start_row + $i, 0, "vertical", $bp["left"]);
+          $this->_resolve_border($start_row + $i, $this->_num_cols, "vertical", $bp["right"]);
+        }
+
+        for ( $j = 0; $j < $this->_num_cols; $j++) {
+          $this->_resolve_border($start_row, $j, "horizontal", $bp["top"]);
+          $this->_resolve_border($this->__row, $j, "horizontal", $bp["bottom"]);
+        }
+      }
+
+
+      return;
+    }
+    
+    $node = $frame->get_node();
+    
+    // Determine where this cell is going
+    $colspan = $node->getAttribute("colspan");
+    $rowspan = $node->getAttribute("rowspan");
+
+    if ( !$colspan ) {
+      $colspan = 1;
+      $node->setAttribute("colspan",1);
+    }
+
+    if ( !$rowspan ) {
+      $rowspan = 1;
+      $node->setAttribute("rowspan",1);
+    }
+    $key = $frame->get_id();
+
+    $bp = $style->get_border_properties();
+
+
+    // Add the frame to the cellmap
+    $max_left = $max_right = 0;
+
+    // Find the next available column (fix by Ciro Mondueri)
+    $ac = $this->__col;
+    while ( isset($this->_cells[$this->__row][$ac]) ) {
+       $ac++;
+    }
+    
+    $this->__col = $ac;
+
+    // Rows:
+    for ( $i = 0; $i < $rowspan; $i++ ) {
+      $row = $this->__row + $i;
+
+      $this->_frames[$key]["rows"][] = $row;
+
+      for ( $j = 0; $j < $colspan; $j++) {
+        $this->_cells[$row][$this->__col + $j] = $frame;
+      }
+
+      if ( $collapse ) {
+        // Resolve vertical borders
+        $max_left = max($max_left, $this->_resolve_border($row, $this->__col, "vertical", $bp["left"]));
+        $max_right = max($max_right, $this->_resolve_border($row, $this->__col + $colspan, "vertical", $bp["right"]));
+      }
+    }
+
+    $max_top = $max_bottom = 0;
+
+    // Columns:
+    for ( $j = 0; $j < $colspan; $j++ ) {
+      $col = $this->__col + $j;
+      $this->_frames[$key]["columns"][] = $col;
+
+      if ( $collapse ) {
+        // Resolve horizontal borders
+        $max_top = max($max_top, $this->_resolve_border($this->__row, $col, "horizontal", $bp["top"]));
+        $max_bottom = max($max_bottom, $this->_resolve_border($this->__row + $rowspan, $col, "horizontal", $bp["bottom"]));
+      }
+    }
+
+    $this->_frames[$key]["frame"] = $frame;
+
+    // Handle seperated border model
+    if ( !$collapse ) {
+      list($h, $v) = $this->_table->get_style()->border_spacing;
+
+      // Border spacing is effectively a margin between cells
+      $v = $style->length_in_pt($v) / 2;
+      $h = $style->length_in_pt($h) / 2;
+      $style->margin = "$v $h";
+
+      // The additional 1/2 width gets added to the table proper
+    }
+    else {
+      // Drop the frame's actual border
+      $style->border_left_width = $max_left / 2;
+      $style->border_right_width = $max_right / 2;
+      $style->border_top_width = $max_top / 2;
+      $style->border_bottom_width = $max_bottom / 2;
+      $style->margin = "none";
+    }
+
+    if ( !$this->_columns_locked ) {
+      // Resolve the frame's width
+      if ( $this->_fixed_layout ) {
+        list($frame_min, $frame_max) = array(0, 10e-10);
+      }
+      else {
+        list($frame_min, $frame_max) = $frame->get_min_max_width();
+      }
+  
+      $width = $style->width;
+
+      $val = null;
+      if ( is_percent($width) ) {
+        $var = "percent";
+        $val = (float)rtrim($width, "% ") / $colspan;
+      }
+      else if ( $width !== "auto" ) {
+        $var = "absolute";
+        $val = $style->length_in_pt($frame_min) / $colspan;
+      }
+      
+      $min = 0;
+      $max = 0;
+      for ( $cs = 0; $cs < $colspan; $cs++ ) {
+  
+        // Resolve the frame's width(s) with other cells
+        $col =& $this->get_column( $this->__col + $cs );
+  
+        // Note: $var is either 'percent' or 'absolute'.  We compare the
+        // requested percentage or absolute values with the existing widths
+        // and adjust accordingly.
+        if ( isset($var) && $val > $col[$var] ) {
+          $col[$var] = $val;
+          $col["auto"] = false;
+        }
+  
+        $min += $col["min-width"];
+        $max += $col["max-width"];
+      }
+  
+      if ( $frame_min > $min ) {
+        // The frame needs more space.  Expand each sub-column
+        // FIXME try to avoid putting this dummy value when table-layout:fixed
+        $inc = ($this->is_layout_fixed() ? 10e-10 : ($frame_min - $min) / $colspan);
+        for ($c = 0; $c < $colspan; $c++) {
+          $col =& $this->get_column($this->__col + $c);
+          $col["min-width"] += $inc;
+        }
+      }
+  
+      if ( $frame_max > $max ) {
+        // FIXME try to avoid putting this dummy value when table-layout:fixed
+        $inc = ($this->is_layout_fixed() ? 10e-10 : ($frame_max - $max) / $colspan);
+        for ($c = 0; $c < $colspan; $c++) {
+          $col =& $this->get_column($this->__col + $c);
+          $col["max-width"] += $inc;
+        }
+      }
+    }
+
+    $this->__col += $colspan;
+    if ( $this->__col > $this->_num_cols )
+      $this->_num_cols = $this->__col;
+
+  }
+
+  //........................................................................
+
+  function add_row() {
+
+    $this->__row++;
+    $this->_num_rows++;
+
+    // Find the next available column
+    $i = 0;
+    while ( isset($this->_cells[$this->__row][$i]) ) {
+      $i++;
+    }
+
+    $this->__col = $i;
+
+  }
+
+  //........................................................................
+
+  /**
+   * Remove a row from the cellmap.
+   *
+   * @param Frame
+   */
+  function remove_row(Frame $row) {
+
+    $key = $row->get_id();
+    if ( !isset($this->_frames[$key]) ) {
+      return;  // Presumably this row has alredy been removed
+    }
+
+    $this->_row = $this->_num_rows--;
+
+    $rows = $this->_frames[$key]["rows"];
+    $columns = $this->_frames[$key]["columns"];
+
+    // Remove all frames from this row
+    foreach ( $rows as $r ) {
+      foreach ( $columns as $c ) {
+        if ( isset($this->_cells[$r][$c]) ) {
+          $id = $this->_cells[$r][$c]->get_id();
+          
+          $this->_frames[$id] = null;
+          unset($this->_frames[$id]);
+          
+          $this->_cells[$r][$c] = null;
+          unset($this->_cells[$r][$c]);
+        }
+      }
+      
+      $this->_rows[$r] = null;
+      unset($this->_rows[$r]);
+    }
+
+    $this->_frames[$key] = null;
+    unset($this->_frames[$key]);
+
+  }
+
+  /**
+   * Remove a row group from the cellmap.
+   *
+   * @param Frame $group  The group to remove
+   */
+  function remove_row_group(Frame $group) {
+
+    $key = $group->get_id();
+    if ( !isset($this->_frames[$key]) ) {
+      return;  // Presumably this row has alredy been removed
+    }
+    
+    $iter = $group->get_first_child();
+    while ($iter) {
+      $this->remove_row($iter);
+      $iter = $iter->get_next_sibling();
+    }
+
+    $this->_frames[$key] = null;
+    unset($this->_frames[$key]);
+  }
+
+  /**
+   * Update a row group after rows have been removed
+   *
+   * @param Frame $group    The group to update
+   * @param Frame $last_row The last row in the row group
+   */
+  function update_row_group(Frame $group, Frame $last_row) {
+
+    $g_key = $group->get_id();
+    $r_key = $last_row->get_id();
+
+    $r_rows = $this->_frames[$r_key]["rows"];
+    $this->_frames[$g_key]["rows"] = range( $this->_frames[$g_key]["rows"][0], end($r_rows) );
+
+  }
+
+  //........................................................................
+
+  function assign_x_positions() {
+    // Pre-condition: widths must be resolved and assigned to columns and
+    // column[0]["x"] must be set.
+
+    if ( $this->_columns_locked ) {
+      return;
+    }
+    
+    $x = $this->_columns[0]["x"];
+    foreach ( array_keys($this->_columns) as $j ) {
+      $this->_columns[$j]["x"] = $x;
+      $x += $this->_columns[$j]["used-width"];
+    }
+
+  }
+
+  function assign_frame_heights() {
+    // Pre-condition: widths and heights of each column & row must be
+    // calcluated
+
+    foreach ( $this->_frames as $arr ) {
+      $frame = $arr["frame"];
+
+      $h = 0;
+      foreach( $arr["rows"] as $row ) {
+        if ( !isset($this->_rows[$row]) ) {
+          // The row has been removed because of a page split, so skip it.
+          continue;
+        }
+        
+        $h += $this->_rows[$row]["height"];
+      }
+
+      if ( $frame instanceof Table_Cell_Frame_Decorator ) {
+        $frame->set_cell_height($h);
+      }
+      else {
+        $frame->get_style()->height = $h;
+      }
+    }
+
+  }
+
+  //........................................................................
+
+  /**
+   * Re-adjust frame height if the table height is larger than its content
+   */
+  function set_frame_heights($table_height, $content_height) {
+
+
+    // Distribute the increased height proportionally amongst each row
+    foreach ( $this->_frames as $arr ) {
+      $frame = $arr["frame"];
+
+      $h = 0;
+      foreach ($arr["rows"] as $row ) {
+        if ( !isset($this->_rows[$row]) ) {
+          continue;
+        }
+
+        $h += $this->_rows[$row]["height"];
+      }
+      
+      if ( $content_height > 0 ) {
+        $new_height = ($h / $content_height) * $table_height;
+      }
+      else {
+        $new_height = 0;
+      }
+
+      if ( $frame instanceof Table_Cell_Frame_Decorator ) {
+        $frame->set_cell_height($new_height);
+      }
+      else {
+        $frame->get_style()->height = $new_height;
+      }
+    }
+
+  }
+
+  //........................................................................
+
+  // Used for debugging:
+  function __toString() {
+    $str = "";
+    $str .= "Columns:<br/>";
+    $str .= pre_r($this->_columns, true);
+    $str .=  "Rows:<br/>";
+    $str .= pre_r($this->_rows, true);
+
+    $str .=  "Frames:<br/>";
+    $arr = array();
+    foreach ( $this->_frames as $key => $val ) {
+      $arr[$key] = array("columns" => $val["columns"], "rows" => $val["rows"]);
+    }
+    
+    $str .= pre_r($arr, true);
+
+    if ( php_sapi_name() == "cli" ) {
+      $str = strip_tags(str_replace(array("<br/>","<b>","</b>"),
+                                    array("\n",chr(27)."[01;33m", chr(27)."[0m"),
+                                    $str));
+    }
+    
+    return $str;
+  }
+}

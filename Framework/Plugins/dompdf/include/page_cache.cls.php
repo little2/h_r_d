@@ -1,79 +1,126 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-tuQohDYoLm==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Caches individual rendered PDF pages
+ *
+ * Not totally implemented yet.  Use at your own risk ;)
+ * 
+ * @access private
+ * @package dompdf
+ * @static
+ */
+class Page_Cache {
+
+  const DB_USER = "dompdf_page_cache";
+  const DB_PASS = "some meaningful password";
+  const DB_NAME = "dompdf_page_cache";
+  
+  static private $__connection = null;
+  
+  static function init() {
+    if ( is_null(self::$__connection) ) {
+      $con_str = "host=" . DB_HOST .
+        " dbname=" . self::DB_NAME .
+        " user=" . self::DB_USER .
+        " password=" . self::DB_PASS;
+      
+      if ( !self::$__connection = pg_connect($con_str) )
+        throw new Exception("Database connection failed.");
+    }
+  }
+  
+  function __construct() { throw new Exception("Can not create instance of Page_Class.  Class is static."); }
+
+  private static function __query($sql) {
+    if ( !($res = pg_query(self::$__connection, $sql)) )
+      throw new Exception(pg_last_error(self::$__connection));
+    return $res;
+  }
+  
+  static function store_page($id, $page_num, $data) {
+    $where = "WHERE id='" . pg_escape_string($id) . "' AND ".
+      "page_num=". pg_escape_string($page_num);
+
+    $res = self::__query("SELECT timestamp FROM page_cache ". $where);
+
+    $row = pg_fetch_assoc($res);
+    
+    if ( $row ) 
+      self::__query("UPDATE page_cache SET data='" . pg_escape_string($data) . "' " . $where);
+    else 
+      self::__query("INSERT INTO page_cache (id, page_num, data) VALUES ('" . pg_escape_string($id) . "', ".
+                     pg_escape_string($page_num) . ", ".
+                     "'". pg_escape_string($data) . "')");
+
+  }
+
+  static function store_fonts($id, $fonts) {
+    self::__query("BEGIN");
+    // Update the font information
+    self::__query("DELETE FROM page_fonts WHERE id='" . pg_escape_string($id) . "'");
+
+    foreach (array_keys($fonts) as $font)
+      self::__query("INSERT INTO page_fonts (id, font_name) VALUES ('" .
+                    pg_escape_string($id) . "', '" . pg_escape_string($font) . "')");
+    self::__query("COMMIT");
+  }
+  
+//   static function retrieve_page($id, $page_num) {
+
+//     $res = self::__query("SELECT data FROM page_cache WHERE id='" . pg_escape_string($id) . "' AND ".
+//                           "page_num=". pg_escape_string($page_num));
+
+//     $row = pg_fetch_assoc($res);
+
+//     return pg_unescape_bytea($row["data"]);
+    
+//   }
+
+  static function get_page_timestamp($id, $page_num) {
+    $res = self::__query("SELECT timestamp FROM page_cache WHERE id='" . pg_escape_string($id) . "' AND ".
+                          "page_num=". pg_escape_string($page_num));
+
+    $row = pg_fetch_assoc($res);
+
+    return $row["timestamp"];
+    
+  }
+
+  // Adds the cached document referenced by $id to the provided pdf
+  static function insert_cached_document(CPDF_Adapter $pdf, $id, $new_page = true) {
+    $res = self::__query("SELECT font_name FROM page_fonts WHERE id='" . pg_escape_string($id) . "'");
+
+    // Ensure that the fonts needed by the cached document are loaded into
+    // the pdf
+    while ($row = pg_fetch_assoc($res)) 
+      $pdf->get_cpdf()->selectFont($row["font_name"]);
+    
+    $res = self::__query("SELECT data FROM page_cache WHERE id='" . pg_escape_string($id) . "'");
+
+    if ( $new_page )
+      $pdf->new_page();
+
+    $first = true;
+    while ($row = pg_fetch_assoc($res)) {
+
+      if ( !$first ) 
+        $pdf->new_page();
+      else 
+        $first = false;        
+      
+      $page = $pdf->reopen_serialized_object($row["data"]);
+      //$pdf->close_object();
+      $pdf->add_object($page, "add");
+
+    }
+      
+  }
+}
+
+Page_Cache::init();

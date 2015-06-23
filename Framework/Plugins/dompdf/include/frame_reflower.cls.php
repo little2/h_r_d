@@ -1,216 +1,458 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Base reflower class
+ *
+ * Reflower objects are responsible for determining the width and height of
+ * individual frames.  They also create line and page breaks as necessary.
+ *
+ * @access private
+ * @package dompdf
+ */
+abstract class Frame_Reflower {
+
+  /**
+   * Frame for this reflower
+   *
+   * @var Frame
+   */
+  protected $_frame;
+
+  /**
+   * Cached min/max size
+   *
+   * @var array
+   */
+  protected $_min_max_cache;
+  
+  function __construct(Frame $frame) {
+    $this->_frame = $frame;
+    $this->_min_max_cache = null;
+  }
+
+  function dispose() {
+    clear_object($this);
+  }
+
+  /**
+   * @return DOMPDF
+   */
+  function get_dompdf() {
+    return $this->_frame->get_dompdf();
+  }
+
+  /**
+   * Collapse frames margins
+   * http://www.w3.org/TR/CSS2/box.html#collapsing-margins
+   */
+  protected function _collapse_margins() {
+    $frame = $this->_frame;
+    $cb = $frame->get_containing_block();
+    $style = $frame->get_style();
+    
+    if ( !$frame->is_in_flow() ) {
+      return;
+    }
+
+    $t = $style->length_in_pt($style->margin_top, $cb["h"]);
+    $b = $style->length_in_pt($style->margin_bottom, $cb["h"]);
+
+    // Handle 'auto' values
+    if ( $t === "auto" ) {
+      $style->margin_top = "0pt";
+      $t = 0;
+    }
+
+    if ( $b === "auto" ) {
+      $style->margin_bottom = "0pt";
+      $b = 0;
+    }
+
+    // Collapse vertical margins:
+    $n = $frame->get_next_sibling();
+    if ( $n && !$n->is_block() ) {
+      while ( $n = $n->get_next_sibling() ) {
+        if ( $n->is_block() ) {
+          break;
+        }
+        
+        if ( !$n->get_first_child() ) {
+          $n = null;
+          break;
+        }
+      }
+    }
+    
+    if ( $n ) {
+      $n_style = $n->get_style();
+      $b = max($b, $n_style->length_in_pt($n_style->margin_top, $cb["h"]));
+      $n_style->margin_top = "0pt";
+      $style->margin_bottom = $b."pt";
+    }
+
+    // Collapse our first child's margin
+    /*$f = $this->_frame->get_first_child();
+    if ( $f && !$f->is_block() ) {
+      while ( $f = $f->get_next_sibling() ) {
+        if ( $f->is_block() ) {
+          break;
+        }
+        
+        if ( !$f->get_first_child() ) {
+          $f = null;
+          break;
+        }
+      }
+    }
+
+    // Margin are collapsed only between block elements
+    if ( $f ) {
+      $f_style = $f->get_style();
+      $t = max($t, $f_style->length_in_pt($f_style->margin_top, $cb["h"]));
+      $style->margin_top = $t."pt";
+      $f_style->margin_bottom = "0pt";
+    }*/
+  }
+
+  //........................................................................
+
+  abstract function reflow(Block_Frame_Decorator $block = null);
+
+  //........................................................................
+
+  // Required for table layout: Returns an array(0 => min, 1 => max, "min"
+  // => min, "max" => max) of the minimum and maximum widths of this frame.
+  // This provides a basic implementation.  Child classes should override
+  // this if necessary.
+  function get_min_max_width() {
+    if ( !is_null($this->_min_max_cache) ) {
+      return $this->_min_max_cache;
+    }
+    
+    $style = $this->_frame->get_style();
+
+    // Account for margins & padding
+    $dims = array($style->padding_left,
+                  $style->padding_right,
+                  $style->border_left_width,
+                  $style->border_right_width,
+                  $style->margin_left,
+                  $style->margin_right);
+
+    $cb_w = $this->_frame->get_containing_block("w");
+    $delta = $style->length_in_pt($dims, $cb_w);
+
+    // Handle degenerate case
+    if ( !$this->_frame->get_first_child() ) {
+      return $this->_min_max_cache = array(
+        $delta, $delta,
+        "min" => $delta, 
+        "max" => $delta,
+      );
+    }
+
+    $low = array();
+    $high = array();
+
+    for ( $iter = $this->_frame->get_children()->getIterator();
+          $iter->valid();
+          $iter->next() ) {
+
+      $inline_min = 0;
+      $inline_max = 0;
+
+      // Add all adjacent inline widths together to calculate max width
+      while ( $iter->valid() && in_array( $iter->current()->get_style()->display, Style::$INLINE_TYPES ) ) {
+
+        $child = $iter->current();
+
+        $minmax = $child->get_min_max_width();
+
+        if ( in_array( $iter->current()->get_style()->white_space, array("pre", "nowrap") ) ) {
+          $inline_min += $minmax["min"];
+        }
+        else {
+          $low[] = $minmax["min"];
+        }
+
+        $inline_max += $minmax["max"];
+        $iter->next();
+
+      }
+
+      if ( $inline_max > 0 ) $high[] = $inline_max;
+      if ( $inline_min > 0 ) $low[]  = $inline_min;
+
+      if ( $iter->valid() ) {
+        list($low[], $high[]) = $iter->current()->get_min_max_width();
+        continue;
+      }
+
+    }
+    $min = count($low) ? max($low) : 0;
+    $max = count($high) ? max($high) : 0;
+
+    // Use specified width if it is greater than the minimum defined by the
+    // content.  If the width is a percentage ignore it for now.
+    $width = $style->width;
+    if ( $width !== "auto" && !is_percent($width) ) {
+      $width = $style->length_in_pt($width, $cb_w);
+      if ( $min < $width ) $min = $width;
+      if ( $max < $width ) $max = $width;
+    }
+
+    $min += $delta;
+    $max += $delta;
+    return $this->_min_max_cache = array($min, $max, "min"=>$min, "max"=>$max);
+  }
+
+  /**
+   * Parses a CSS string containing quotes and escaped hex characters
+   * 
+   * @param $string string The CSS string to parse
+   * @param $single_trim
+   * @return string
+   */
+  protected function _parse_string($string, $single_trim = false) {
+    if ( $single_trim ) {
+      $string = preg_replace('/^[\"\']/', "", $string);
+      $string = preg_replace('/[\"\']$/', "", $string);
+    }
+    else {
+      $string = trim($string, "'\"");
+    }
+    
+    $string = str_replace(array("\\\n",'\\"',"\\'"),
+                          array("",'"',"'"), $string);
+
+    // Convert escaped hex characters into ascii characters (e.g. \A => newline)
+    $string = preg_replace_callback("/\\\\([0-9a-fA-F]{0,6})/",
+                                    create_function('$matches',
+                                                    'return unichr(hexdec($matches[1]));'),
+                                    $string);
+    return $string;
+  }
+  
+  /**
+   * Parses a CSS "quotes" property
+   * 
+   * @return array|null An array of pairs of quotes
+   */
+  protected function _parse_quotes() {
+    
+    // Matches quote types
+    $re = '/(\'[^\']*\')|(\"[^\"]*\")/';
+    
+    $quotes = $this->_frame->get_style()->quotes;
+      
+    // split on spaces, except within quotes
+    if ( !preg_match_all($re, "$quotes", $matches, PREG_SET_ORDER) ) {
+      return null;
+    }
+      
+    $quotes_array = array();
+    foreach($matches as &$_quote){
+      $quotes_array[] = $this->_parse_string($_quote[0], true);
+    }
+    
+    if ( empty($quotes_array) ) {
+      $quotes_array = array('"', '"');
+    }
+    
+    return array_chunk($quotes_array, 2);
+  }
+
+  /**
+   * Parses the CSS "content" property
+   * 
+   * @return string|null The resulting string
+   */
+  protected function _parse_content() {
+
+    // Matches generated content
+    $re = "/\n".
+      "\s(counters?\\([^)]*\\))|\n".
+      "\A(counters?\\([^)]*\\))|\n".
+      "\s([\"']) ( (?:[^\"']|\\\\[\"'])+ )(?<!\\\\)\\3|\n".
+      "\A([\"']) ( (?:[^\"']|\\\\[\"'])+ )(?<!\\\\)\\5|\n" .
+      "\s([^\s\"']+)|\n" .
+      "\A([^\s\"']+)\n".
+      "/xi";
+    
+    $content = $this->_frame->get_style()->content;
+
+    $quotes = $this->_parse_quotes();
+    
+    // split on spaces, except within quotes
+    if ( !preg_match_all($re, $content, $matches, PREG_SET_ORDER) ) {
+      return null;
+    }
+      
+    $text = "";
+
+    foreach ($matches as $match) {
+      
+      if ( isset($match[2]) && $match[2] !== "" ) {
+        $match[1] = $match[2];
+      }
+      
+      if ( isset($match[6]) && $match[6] !== "" ) {
+        $match[4] = $match[6];
+      }
+
+      if ( isset($match[8]) && $match[8] !== "" ) {
+        $match[7] = $match[8];
+      }
+
+      if ( isset($match[1]) && $match[1] !== "" ) {
+        
+        // counters?(...)
+        $match[1] = mb_strtolower(trim($match[1]));
+
+        // Handle counter() references:
+        // http://www.w3.org/TR/CSS21/generate.html#content
+
+        $i = mb_strpos($match[1], ")");
+        if ( $i === false ) {
+          continue;
+        }
+
+        preg_match( '/(counters?)(^\()*?\(\s*([^\s,]+)\s*(,\s*["\']?([^"\'\)]+)["\']?\s*(,\s*([^\s)]+)\s*)?)?\)/i' , $match[1] , $args );
+        $counter_id = $args[3];
+        if ( strtolower( $args[1] ) == 'counter' ) {
+          // counter(name [,style])
+          if ( isset( $args[5] ) ) {
+            $type = trim( $args[5] );
+          }
+          else {
+            $type = null;
+          }
+          $p = $this->_frame->lookup_counter_frame( $counter_id );
+          
+          $text .= $p->counter_value($counter_id, $type);
+          
+        }
+        else if ( strtolower( $args[1] ) == 'counters' ) {
+          // counters(name, string [,style])
+          if ( isset($args[5]) ) {
+            $string = $this->_parse_string( $args[5] );
+          }
+          else {
+            $string = "";
+          }
+          
+          if ( isset( $args[7] ) ) {
+            $type = trim( $args[7] );
+          }
+          else {
+            $type = null;
+          }
+          
+          $p = $this->_frame->lookup_counter_frame($counter_id);
+          $tmp = array();
+          while ($p) {
+            // We only want to use the counter values when they actually increment the counter
+            if ( array_key_exists( $counter_id , $p->_counters ) ) {
+              array_unshift( $tmp , $p->counter_value($counter_id, $type) );
+            }
+            $p = $p->lookup_counter_frame($counter_id);
+            
+          }
+          $text .= implode( $string , $tmp );
+          
+        }
+        else {
+          // countertops?
+          continue;
+        }
+        
+      }
+      else if ( isset($match[4]) && $match[4] !== "" ) {
+        // String match
+        $text .= $this->_parse_string($match[4]);
+      }
+      else if ( isset($match[7]) && $match[7] !== "" ) {
+        // Directive match
+
+        if ( $match[7] === "open-quote" ) {
+          // FIXME: do something here
+          $text .= $quotes[0][0];
+        }
+        else if ( $match[7] === "close-quote" ) {
+          // FIXME: do something else here
+          $text .= $quotes[0][1];
+        }
+        else if ( $match[7] === "no-open-quote" ) {
+          // FIXME:
+        }
+        else if ( $match[7] === "no-close-quote" ) {
+          // FIXME:
+        }
+        else if ( mb_strpos($match[7],"attr(") === 0 ) {
+
+          $i = mb_strpos($match[7],")");
+          if ( $i === false ) {
+            continue;
+          }
+
+          $attr = mb_substr($match[7], 5, $i - 5);
+          if ( $attr == "" ) {
+            continue;
+          }
+            
+          $text .= $this->_frame->get_parent()->get_node()->getAttribute($attr);
+        }
+        else {
+          continue;
+        }
+      }
+    }
+    
+    return $text;
+  }
+  
+  /**
+   * Sets the generated content of a generated frame
+   */
+  protected function _set_content(){
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    
+    // if the element was pushed to a new page use the saved counter value, otherwise use the CSS reset value
+    if ( $style->counter_reset && ($reset = $style->counter_reset) !== "none" ) {
+      $vars = preg_split('/\s+/', trim($reset), 2);
+      $frame->reset_counter( $vars[0] , ( isset($frame->_counters['__'.$vars[0]]) ? $frame->_counters['__'.$vars[0]] : ( isset($vars[1]) ? $vars[1] : 0 ) ) );
+    }
+    
+    if ( $style->counter_increment && ($increment = $style->counter_increment) !== "none" ) {
+      $frame->increment_counters($increment);
+    }
+  
+    if ( $style->content && !$frame->get_first_child() && $frame->get_node()->nodeName === "dompdf_generated" ) {
+      $content = $this->_parse_content();
+      // add generated content to the font subset
+      // FIXME: This is currently too late because the font subset has already been generated.
+      //        See notes in issue #750.
+      if ( $frame->get_dompdf()->get_option("enable_font_subsetting") && $frame->get_dompdf()->get_canvas() instanceof CPDF_Adapter ) {
+        $frame->get_dompdf()->get_canvas()->register_string_subset($style->font_family, $content);
+      }
+      
+      $node = $frame->get_node()->ownerDocument->createTextNode($content);
+      
+      $new_style = $style->get_stylesheet()->create_style();
+      $new_style->inherit($style);
+      
+      $new_frame = new Frame($node);
+      $new_frame->set_style($new_style);
+      
+      Frame_Factory::decorate_frame($new_frame, $frame->get_dompdf(), $frame->get_root());
+      $frame->append_child($new_frame);
+    }
+  }
+}

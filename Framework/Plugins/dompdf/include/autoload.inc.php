@@ -1,42 +1,86 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-HR+cPmRx5AJzHEsBx4g1Xvd6PcT05a12+zI5pVGCdHT/v1cCPAnAs7nfuOk2QQe3MTedToh8Zux7
-kX/ZZ3XQU6eBxwSnidt8jlAjj7yHGH11ncfD0UN5iAop0iLAcQHYQ25KOgI8k9QGLd1MmFsFkhLO
-CALQVCqN2sUtvz53bTr/WYcnBdicaHtuYO7pk9Xab/IEMRHILlusKUBaH2IhaEEWWgdpzUtOKILS
-b2n8+Utbqv9N58EFYnDk3zP4p3ISQmi8aBZXVijeazUyXcYYZGpU0uWIBe4phidZdm97Td7cjajT
-LAgZgmyg9MyHM45i6dHw42dV4MXqv2fvyM4fEwypm/2GIzit+fTnFUVkEn/T5Ajksi/JVL2rszIw
-+4KX5+W7tGg250aQ94lOajHeC4qw6vOAek5d8kDbvahFPM/ut6w9RawS97keJq03gRbyPBTdFlLS
-wU1mXIlBtk0h4GKzJ7YDGq2rpoUmTtz3o6aIOcBCGJ1bAuzHikFDRJ1SwTpdYurB7yA3wE5+NDf0
-vUdNIDeECLGNzVU/8nr0/WeuY0z5h4GKdsbd7nUmMTPwWV2acP1yri3cNLLKhRdt53sb1JOCqyU1
-C3ii9gmlIJ4bzwvD4tBsrD7nj6ix4KxxPu7J8s+GO6qG2o+EYGN+/ZLZikNZmKYnYuuupSuKHd4C
-9qpYNNjx8yWpzWAQusXqgFRXoJQY30UoDBPbq6g1HzRIMaJDvCkTuWn/oNA3yopz03ZOn52GgPU4
-CskF4a+jfcTxJo18dy1+Jc23ZvsuElag9cw38pQF1sxmHhCOJ3KTer09eKFB1O21PHQ1CbKHJToI
-eCtIMiJCfDFIXYJvyVd/UJfd8M05hwgcAu12UfE5nd3X1i2JkpdYuhXkpbt17mvX3ZZYwmFKVxbb
-HT9ZtMAFmLY+AtM1W/c3s9dJA/K3Is+ii4pCkb1rI3vXf+gxW0TZTg/UuykzR8ANATlCPXZ6lcA6
-DA1l/zXB47lTq6/yHF/G4AY0oeavEdEIkn0qMXipQJc0GPc1jz+03KKkWV9QXk87XrGwRXcjHgkz
-YNIHe/9n5qy0Fm6I3yrLlcyI9SONXnWRdMzk7lgM4MkUEcAm/pVFQUkAleSkIttaS/43hv5qS9jw
-EKMOK0j8QL3hS6tKObxTpOc6Ihl79x1hBQSc1J1G5nEu7wm/5vIVPWWdVo1l5UgLUJ4KOdo9/UvY
-kY6PYCJgVt8wOyZQOdep376rXhNNfbmV2XHurJQAuF5c/m+U09QlcpCLnf7Q9ZX3BMra1hiFAMcd
-dHXk1/viKizT1fujB208L+kwD7Rrey+8cgfnGAkhNpd/r8XuDhH258CUgd07oWM7fFoe+L8RDdix
-7spNvD4oIvORVjAdMWHJFNXQ1qv4bxOaewMPtuY5SQgMMWRxTMFXV/fdMsrNIR7e/+GDFsIw45MR
-kW/D2DY0ccAfNHv5pXWMMSYQYC2nM/ZW4YUytdGH/dE/tOruedTNWmoUFbizLk88Z8Y3hJ/07YXV
-/YT8mMJiovadcGjWgDX3VY0ND2GWl3Uy95rHNH2mXxWvWlLSmRo9nR/WoFfheefy4+ezkKV22OYF
-/nVe7taXpp9hsTVRdOy4uaxXe91oPXyajlFE0qTpNE6lwtDY3f/vh4nRl/A++5NVdWbG0jWTL09Y
-3UHMJrU7UMEh92/QtrPDk6R/pz2gjlB90xi41RQ1XzBexq+gOsZzAquOxWGAzMMERoP6z0GhGb3e
-SvpFrXY71Ge4tvOG5bdMsZ/I7hzy+6dbxxLh43UuIU0MTusFn2+dJISYNaqu7Dz9xROPGY0rxSY2
-p1TnSxFVc8VY37yBsv2de/yKLbOhP8H73H/llCuwxgkE/+cSqUy7KWDMGQdzkxSXX5qPs1o4m93w
-LT1HCizOckNAUfi2kqJ0aVmVbwqXkpv4vGAKmUY/4Y0epbVjksE5aW+63xzs/lv3sx46BSWAP/z/
-8+Qr02J2Xp6tDFcfngMy827AnVCViNbExlqNHRW8JnezjjzSYrywfL0NNeKdN5PvKZDcfTfJ/RLq
-EZUOgoWNtoM8RznjiyFDoJV4689tUJU6fJeVzAFezcPKVC5ZwFbfsZ1kgwbn1fgCYKNNXPlDMJ2C
-+s5R2jszt9D5QMYxX6E3ShFqBqA0+p+SXhQmAEfVXR4ZnwECkfJH09zTNLcfTcCG3cQ7BVGLmdZu
-Ym8LuHQSvJPpJ5x7ZcHmltKIqQDgsdbekHXt85bIFLS/nznwMY0+/0uNquxXqiYBwcphaPWIRVbW
-qwYgeUIqcdHUBTAjdloLkyFa7VX25X57uVveFzGTqD8ubLjTCT9ZA/7JVPpObEunVXrgiavdaXsp
-URsEoLT6bF2H8HJ/BJrDDsaLsvHtm8dTsjjGmS8C9Dgq2oVFOQS7AwUgA5a1piR8Ed297EWamDYe
-V48uab8rAQleOCruXrjuWwMZDJwSQiTNFyiFPo/hagynaH7NIWFPJ7NLriQx7gAWeFAz9lcX2gqD
-1D72cw1QiKjycXW6zkLdHITxs/altwO7g9N+7hDp013BqYcc/SGokdqwtpBEeVdOBUPUNMPy7uwI
-cMWl4w/tP8b7Gb1Ypi/EVi7TKEW064vR6+yiEfOCNkyppT9ho0zGsmAdNIVx1DqgCbnlJSYSHB8v
-1DdqgHHQz1JTnKW+tcio3+GiFzyBHFgqiDR2i7h1+u7vc6JVbMhNEgpU/vV1CYuS+kzKu9cRBb1q
-ZOqDnbsS7vxM2N69S3BfFK68HBomvMPRo/gxqUB3NCPJcjjtd5sqI8EfEY94wJil2mtAuLHh8/k9
-dmdpWOMwrqGNFYz4Ljfk9bJh0F701oXnbw7aZpkEHmU3qjWjY7YURd8cb68+XxMq2N9jmkQUnu4s
-r2wNgJFO+9PZGA8h3xd3FaQw0ZRuoid/u0oED+9dplqPQZLH6RbZ4rOuhetI34u=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+ 
+/**
+ * DOMPDF autoload function
+ *
+ * If you have an existing autoload function, add a call to this function
+ * from your existing __autoload() implementation.
+ *
+ * @param string $class
+ */
+function DOMPDF_autoload($class) {
+  $filename = DOMPDF_INC_DIR . "/" . mb_strtolower($class) . ".cls.php";
+  
+  if ( is_file($filename) ) {
+    include_once $filename;
+  }
+}
+
+// If SPL autoload functions are available (PHP >= 5.1.2)
+if ( function_exists("spl_autoload_register") ) {
+  $autoload = "DOMPDF_autoload";
+  $funcs = spl_autoload_functions();
+  
+  // No functions currently in the stack. 
+  if ( !DOMPDF_AUTOLOAD_PREPEND || $funcs === false ) {
+    spl_autoload_register($autoload); 
+  }
+  
+  // If PHP >= 5.3 the $prepend argument is available
+  else if ( PHP_VERSION_ID >= 50300 ) {
+    spl_autoload_register($autoload, true, true); 
+  }
+  
+  else {
+    // Unregister existing autoloaders... 
+    $compat = (PHP_VERSION_ID <= 50102 && PHP_VERSION_ID >= 50100);
+              
+    foreach ($funcs as $func) { 
+      if (is_array($func)) { 
+        // :TRICKY: There are some compatibility issues and some 
+        // places where we need to error out 
+        $reflector = new ReflectionMethod($func[0], $func[1]); 
+        if (!$reflector->isStatic()) { 
+          throw new Exception('This function is not compatible with non-static object methods due to PHP Bug #44144.'); 
+        }
+        
+        // Suprisingly, spl_autoload_register supports the 
+        // Class::staticMethod callback format, although call_user_func doesn't 
+        if ($compat) $func = implode('::', $func); 
+      }
+      
+      spl_autoload_unregister($func); 
+    }
+    
+    // Register the new one, thus putting it at the front of the stack... 
+    spl_autoload_register($autoload); 
+    
+    // Now, go back and re-register all of our old ones. 
+    foreach ($funcs as $func) { 
+      spl_autoload_register($func); 
+    }
+    
+    // Be polite and ensure that userland autoload gets retained
+    if ( function_exists("__autoload") ) {
+      spl_autoload_register("__autoload");
+    }
+  }
+}
+
+else if ( !function_exists("__autoload") ) {
+  /**
+   * Default __autoload() function
+   *
+   * @param string $class
+   */
+  function __autoload($class) {
+    DOMPDF_autoload($class);
+  }
+}

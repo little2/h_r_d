@@ -1,123 +1,164 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-21EGFi+lJkMKiIzmNnSu/VbUeCh22Se=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Caching canvas implementation
+ *
+ * Each rendered page is serialized and stored in the {@link Page_Cache}.
+ * This is useful for static forms/pages that do not need to be re-rendered
+ * all the time.
+ *
+ * This class decorates normal CPDF_Adapters.  It is currently completely
+ * experimental.
+ *
+ * @access private
+ * @package dompdf
+ */
+class Cached_PDF_Decorator extends CPDF_Adapter implements Canvas {
+  /**
+   * @var CPDF_Adapter
+   */
+  protected $_pdf;
+  protected $_cache_id;
+  protected $_current_page_id;
+  protected $_fonts;  // fonts used in this document
+  
+  function __construct($paper = "letter", $orientation = "portrait", DOMPDF $dompdf) {
+    $this->_fonts = array();
+  }
+
+  /**
+   * Must be called after constructor
+   *
+   * @param int          $cache_id
+   * @param CPDF_Adapter $pdf
+   */
+  function init($cache_id, CPDF_Adapter $pdf) {
+    $this->_cache_id = $cache_id;
+    $this->_pdf = $pdf;
+    $this->_current_page_id = $this->_pdf->open_object();
+  }
+
+  //........................................................................
+
+  function get_cpdf() { return $this->_pdf->get_cpdf(); }
+
+  function open_object() { $this->_pdf->open_object(); }
+  function reopen_object($object) { $this->_pdf->reopen_object($object); }
+  
+  function close_object() { $this->_pdf->close_object(); }
+
+  function add_object($object, $where = 'all') { $this->_pdf->add_object($object, $where); }
+
+  function serialize_object($id) { $this->_pdf->serialize_object($id); }
+
+  function reopen_serialized_object($obj) { $this->_pdf->reopen_serialized_object($obj); }
+    
+  //........................................................................
+
+  function get_width() { return $this->_pdf->get_width(); }
+  function get_height() {  return $this->_pdf->get_height(); }
+  function get_page_number() { return $this->_pdf->get_page_number(); }
+  function get_page_count() { return $this->_pdf->get_page_count(); }
+
+  function set_page_number($num) { $this->_pdf->set_page_number($num); }
+  function set_page_count($count) { $this->_pdf->set_page_count($count); }
+
+  function line($x1, $y1, $x2, $y2, $color, $width, $style = array()) {
+    $this->_pdf->line($x1, $y1, $x2, $y2, $color, $width, $style);
+  }
+                              
+  function rectangle($x1, $y1, $w, $h, $color, $width, $style = array()) {
+    $this->_pdf->rectangle($x1, $y1, $w, $h, $color, $width, $style);
+  }
+ 
+  function filled_rectangle($x1, $y1, $w, $h, $color) {
+    $this->_pdf->filled_rectangle($x1, $y1, $w, $h, $color);
+  }
+    
+  function polygon($points, $color, $width = null, $style = array(), $fill = false) {
+    $this->_pdf->polygon($points, $color, $width, $style, $fill);
+  }
+
+  function circle($x, $y, $r1, $color, $width = null, $style = null, $fill = false) {
+    $this->_pdf->circle($x, $y, $r1, $color, $width, $style, $fill);
+  }
+
+  function image($img_url, $x, $y, $w, $h, $resolution = "normal") {
+    $this->_pdf->image($img_url, $x, $y, $w, $h, $resolution);
+  }
+  
+  function text($x, $y, $text, $font, $size, $color = array(0,0,0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0) {
+    $this->_fonts[$font] = true;
+    $this->_pdf->text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+  }
+
+  function page_text($x, $y, $text, $font, $size, $color = array(0,0,0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0) {
+    
+    // We want to remove this from cached pages since it may not be correct
+    $this->_pdf->close_object();
+    $this->_pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+    $this->_pdf->reopen_object($this->_current_page_id);
+  }
+  
+  function page_script($script, $type = 'text/php') {
+    
+    // We want to remove this from cached pages since it may not be correct
+    $this->_pdf->close_object();
+    $this->_pdf->page_script($script, $type);
+    $this->_pdf->reopen_object($this->_current_page_id);
+  }
+  
+  function new_page() {
+    $this->_pdf->close_object();
+
+    // Add the object to the current page
+    $this->_pdf->add_object($this->_current_page_id, "add");
+    $this->_pdf->new_page();    
+
+    Page_Cache::store_page($this->_cache_id,
+                           $this->_pdf->get_page_number() - 1,
+                           $this->_pdf->serialize_object($this->_current_page_id));
+
+    $this->_current_page_id = $this->_pdf->open_object();
+    return $this->_current_page_id;
+  }
+  
+  function stream($filename, $options = null) {
+    // Store the last page in the page cache
+    if ( !is_null($this->_current_page_id) ) {
+      $this->_pdf->close_object();
+      $this->_pdf->add_object($this->_current_page_id, "add");
+      Page_Cache::store_page($this->_cache_id,
+                             $this->_pdf->get_page_number(),
+                             $this->_pdf->serialize_object($this->_current_page_id));
+      Page_Cache::store_fonts($this->_cache_id, $this->_fonts);
+      $this->_current_page_id = null;
+    }
+    
+    $this->_pdf->stream($filename);
+    
+  }
+  
+  function output($options = null) {
+    // Store the last page in the page cache
+    if ( !is_null($this->_current_page_id) ) {
+      $this->_pdf->close_object();
+      $this->_pdf->add_object($this->_current_page_id, "add");
+      Page_Cache::store_page($this->_cache_id,
+                             $this->_pdf->get_page_number(),
+                             $this->_pdf->serialize_object($this->_current_page_id));
+      $this->_current_page_id = null;
+    }
+    
+    return $this->_pdf->output();
+  }
+  
+  function get_messages() { return $this->_pdf->get_messages(); }
+  
+}

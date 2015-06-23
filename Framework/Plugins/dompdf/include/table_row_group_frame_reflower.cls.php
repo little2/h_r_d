@@ -1,40 +1,59 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-5VH2iNnerVeZk05IzwFkkbMLVZ4=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Reflows table row groups (e.g. tbody tags)
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Row_Group_Frame_Reflower extends Frame_Reflower {
+
+  function __construct($frame) {
+    parent::__construct($frame);
+  }
+
+  function reflow(Block_Frame_Decorator $block = null) {
+    $page = $this->_frame->get_root();
+
+    $style = $this->_frame->get_style();
+    
+    // Our width is equal to the width of our parent table
+    $table = Table_Frame_Decorator::find_parent_table($this->_frame);
+    
+    $cb = $this->_frame->get_containing_block();
+    
+    foreach ( $this->_frame->get_children() as $child) {
+      // Bail if the page is full
+      if ( $page->is_full() )
+        return;
+
+      $child->set_containing_block($cb["x"], $cb["y"], $cb["w"], $cb["h"]);
+      $child->reflow();
+
+      // Check if a split has occured
+      $page->check_page_break($child);
+
+    }
+
+    if ( $page->is_full() )
+      return;
+
+    $cellmap = $table->get_cellmap();
+    $style->width = $cellmap->get_frame_width($this->_frame);
+    $style->height = $cellmap->get_frame_height($this->_frame);
+
+    $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
+    
+    if ( $table->get_style()->border_collapse === "collapse" ) 
+      // Unset our borders because our cells are now using them
+      $style->border_style = "none";
+ 
+  }
+
+}

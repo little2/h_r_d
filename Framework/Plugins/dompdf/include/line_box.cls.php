@@ -1,86 +1,252 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-trGwGnmtvba5xO+pDCSoeP2wP3S=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * The line box class
+ *
+ * This class represents a line box
+ * http://www.w3.org/TR/CSS2/visuren.html#line-box
+ *
+ * @access protected
+ * @package dompdf
+ */
+class Line_Box {
+
+  /**
+   * @var Block_Frame_Decorator
+   */
+  protected $_block_frame;
+
+  /**
+   * @var Frame[]
+   */
+  protected $_frames = array();
+  
+  /**
+   * @var integer
+   */
+  public $wc = 0;
+  
+  /**
+   * @var float
+   */
+  public $y = null;
+  
+  /**
+   * @var float
+   */
+  public $w = 0.0;
+  
+  /**
+   * @var float
+   */
+  public $h = 0.0;
+  
+  /**
+   * @var float
+   */
+  public $left = 0.0;
+  
+  /**
+   * @var float
+   */
+  public $right = 0.0;
+  
+  /**
+   * @var Frame
+   */
+  public $tallest_frame = null;
+
+  /**
+   * @var bool[]
+   */
+  public $floating_blocks = array();
+  
+  /**
+   * @var bool
+   */
+  public $br = false;
+  
+  /**
+   * Class constructor
+   *
+   * @param Block_Frame_Decorator $frame the Block_Frame_Decorator containing this line
+   */
+  function __construct(Block_Frame_Decorator $frame, $y = 0) {
+    $this->_block_frame = $frame;
+    $this->_frames = array();
+    $this->y = $y;
+    
+    $this->get_float_offsets();
+  }
+  
+  /**
+   * Returns the floating elements inside the first floating parent
+   *
+   * @param Page_Frame_Decorator $root
+   *
+   * @return Frame[]
+   */
+  function get_floats_inside(Page_Frame_Decorator $root) {
+    $floating_frames = $root->get_floating_frames();
+    
+    if ( count($floating_frames) == 0 ) {
+      return $floating_frames;
+    }
+    
+    // Find nearest floating element
+    $p = $this->_block_frame;
+    while( $p->get_style()->float === "none" ) {
+      $parent = $p->get_parent();
+      
+      if ( !$parent ) {
+        break;
+      }
+      
+      $p = $parent;
+    }
+    
+    if ( $p == $root ) {
+      return $floating_frames;
+    }
+    
+    $parent = $p;
+    
+    $childs = array();
+    
+    foreach ($floating_frames as $_floating) {
+      $p = $_floating->get_parent();
+      
+      while (($p = $p->get_parent()) && $p !== $parent);
+      
+      if ( $p ) {
+        $childs[] = $p;
+      }
+    }
+    
+    return $childs;
+  }
+  
+  function get_float_offsets() {
+    $enable_css_float = $this->_block_frame->get_dompdf()->get_option("enable_css_float");
+    if ( !$enable_css_float ) {
+      return;
+    }
+      
+    static $anti_infinite_loop = 500; // FIXME smelly hack
+    
+    $reflower = $this->_block_frame->get_reflower();
+    
+    if ( !$reflower ) {
+      return;
+    }
+    
+    $cb_w = null;
+  
+    $block = $this->_block_frame;
+    $root = $block->get_root();
+    
+    if ( !$root ) {
+      return;
+    }
+    
+    $floating_frames = $this->get_floats_inside($root);
+    
+    foreach ( $floating_frames as $child_key => $floating_frame ) {
+      $id = $floating_frame->get_id();
+      
+      if ( isset($this->floating_blocks[$id]) ) {
+        continue;
+      }
+      
+      $floating_style = $floating_frame->get_style();
+      $float = $floating_style->float;
+      
+      $floating_width = $floating_frame->get_margin_width();
+      
+      if (!$cb_w) {
+        $cb_w = $floating_frame->get_containing_block("w");
+      }
+      
+      $line_w = $this->get_width();
+      
+      if ( !$floating_frame->_float_next_line && ($cb_w <= $line_w + $floating_width) && ($cb_w > $line_w) ) {
+        $floating_frame->_float_next_line = true;
+        continue;
+      }
+      
+      // If the child is still shifted by the floating element
+      if ( $anti_infinite_loop-- > 0 &&
+           $floating_frame->get_position("y") + $floating_frame->get_margin_height() > $this->y && 
+           $block->get_position("x") + $block->get_margin_width() > $floating_frame->get_position("x")
+           ) {
+        if ( $float === "left" )
+          $this->left  += $floating_width;
+        else
+          $this->right += $floating_width;
+        
+        $this->floating_blocks[$id] = true;
+      }
+      
+      // else, the floating element won't shift anymore
+      else {
+        $root->remove_floating_frame($child_key);
+      }
+    }
+  }
+
+  /**
+   * @return float
+   */
+  function get_width(){
+    return $this->left + $this->w + $this->right;
+  }
+
+  /**
+   * @return Block_Frame_Decorator
+   */
+  function get_block_frame() {
+    return $this->_block_frame;
+  }
+
+  /**
+   * @return Frame[]
+   */
+  function &get_frames() {
+    return $this->_frames;
+  }
+
+  /**
+   * @param Frame $frame
+   */
+  function add_frame(Frame $frame) {
+    $this->_frames[] = $frame;
+  }
+  
+  function __toString(){
+    $props = array("wc", "y", "w", "h", "left", "right", "br");
+    $s = "";
+    foreach($props as $prop) {
+      $s .= "$prop: ".$this->$prop."\n";
+    }
+    $s .= count($this->_frames)." frames\n";
+    return $s;
+  }
+  /*function __get($prop) {
+    if (!isset($this->{"_$prop"})) return;
+    return $this->{"_$prop"};
+  }*/
+}
+
+/*
+class LineBoxList implements Iterator {
+  private $_p = 0;
+  private $_lines = array();
+  
+}
+*/

@@ -1,108 +1,252 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-HR+cP/zprD0q6OyfE/0JHHTIvnFdr/tR9+JxT/vKVX3z0lcTZRFJwLwrzEpWOsaMG9nC/JVdHySj
-GuKwR1xQemQ3id+6neT4ybJNbKx5Ib81jIth0X4iDFFHQpQMl9XECbzuEb22Zb9IjFq3OcJisKJL
-hbSWyZU/X7GgTKiSkceiQQm8Bx+/50G0oRTtNYAQuFwuxkP9eyg+ydeBSUp2RdFejUmLMIXvor7I
-9CUAoMubaXO1k9uWnQ1YB4JCD9nh2mYGkE5+osYJrxphP97wd4uubOm+QCnkghHNNuGtb4/Jt3y0
-flGdaK4R6AjRxz7pGTyVaXbirc5elkAqSNTjha3NuvIcyE3qK3/HwpX8JsPtFWtdcY7gJyYX9C7O
-hphzfMQBPy16h2slMv1P+Kw9jf/zw6rJAog7pRhDzsFwWb1OY0w4KYFcVlqaxFjFpnXJ9sy5easG
-egPONvAbXE0aHDYVFmbw0NC1J2ec5hB04C/rr0BkICzN4p3Lcyqk+uEJ69bYkfACLfNoHMCRff8r
-YGWxG9AqehXxIeWDE2LLyV8LpMOTiGImGeeeZvQw31ETIlv54WoQYaWBzCx9RCnNxprQkW6QfkKp
-gBDUipbHwcnry9xos0p+xtDc2uaX4MOByQWRVwzf5Zqi5cf46dEJV1E4jr4L2C2QYVphVI0QMvca
-6aHlc1UnAB0N1wuC/1RmD62LE0nRTsd0hnwfbhP2U0cfS3Y92SqABSEteuJ4Zadrr6gzf2rELF7A
-jDPrZ7gUqZ+qTxdIW7lRYTxHgL8Kk8lXmGX42VA+2NEyCp00HOoDpG+YDdxmqLCXURRytTi0KoME
-YjrdZ+OLmmRv6m+Nkc4tCRKzVQj1gsDQ0cZocE+OQEor5RNnb/XDoSvFSpAoEdSjL0XJ40GQqcMA
-lSAVmO5suIAKOaGI0iO5CFu7AHmSGLs3BANVoSpDMhfVme6zlJEBase383IRYWv82IKrCbAeumv2
-R4GYV49/heRGOYlAce2kg6rOKIfnIt7X16DSY3yuUYXwYLbn18GhDMgkjgiwBMzVDi2+quFDG31i
-eOhQvH6MZCrzVsTfBqf1kBFGXfCvdQhcy2EGQ9BeKuLFkucmtpZa2cPG2Pko6G0/Pr6nD68Dz+Si
-RiYjoUrQtj9KuTZb2E6D0upNgHR4gRxfNR6W76+2zOXubSHlJP846+qXPPtdIoWDZZHrZNCx4wxn
-hVSp6gF33PNIXKPRsvo3PGlgVY+8CHzLea4+6ihriRVU2DCzHteSIRJD7vyrpNI9Z2BFc3fuUIT9
-ZoGN8uPmIsZbkfl8GKjVelET3bdzQjIS3wPlOdIlMZPtFzqYUNo5FY352uhyPPhe5FljM/lFvTVf
-rNmmcInQ4U6x/mgA5MLdI9u32Dx+VZ+NisYH6EcBb1CtHFVD0kSG1t/XKAk2g8yss+eA4s+VH5FQ
-1L3hqF04ZOqGK3Ll6424umqTTcsC7xK5xv3QELBlZhIWgSSeOuYqDWXNxwKjIxPswE3mE3WVWGTn
-4M1LIie3kHV1GWUBS+7vhffVtNvQ4W1T3iWN3Rv/MaHtyffhovuPR3sGqTQlp1BYaPJEpNmVe9Bk
-lDfy8jpk+hZD5fQGgRhnGe4H91Kj67R7NDCfP/N7MqHYoEPoq9te1LoVDaaQSToIAo23CS+PN8Mo
-f4qscqZN0Mwn11ZV2CHc4BckMQkpFQKH7O8U+NSbyeY6JMTllZStBCPN9nIhDgtih5Q59232GYdk
-EipGB6DV9dGY7nDamofT5Rq/MYpfUvYAM6lMOFsHuCbDoutS2IsGR9HHl6pXj4Axh1B7VWsvxgZH
-QIByS98RYxhxGiadYyy8MKUZWNJzdlDMTTLXI9TxCwNtXwO9VfcnCbFdkLNPdPPf5JE/A5dAKf83
-laDY+sUmgXXoWDKKPP2CVzUT8lYL0NcO5wbmN+odOSUT5hAlsN1NEPGidjUrkbYqGc5yjSwRcrTL
-YNuoJ3Ty6OZt3C/+tCRF2gEJ1V9lSTzzJOQMHE1Q8k204QeufEdLiN5h2bFO3pIwwM1f9x9jxqfU
-tKKJGjqcwsSv1mtezufe6VnDa5jsYNFbRQn4ZJHeamS+tnhhuuS1VPlw65xJsrYPy9T0ncea0+qU
-+0fL0mUTKMbKa6ihe3/yY8rDu7RCojs9Xj3dRTBdNEDA4GPU4OIC4NeqW8Td4uJvcwbb9Aztetf/
-qVsWEj4AyLU7A7A122pnbmn46j5W/0Ig733N8zbqc8xNJ/PYEBmRzNUWkkWFFYPR2wArYTqUtNe3
-ui1++G/vzRz2TA3g/Br23op8Khb3M6YLpdsm5pGPXOQbkrKtKA6fBd3wXN5TeluPqG9Y7ZZ70SVn
-cgH3vLa0rguBI4RSJsRkoM8xeLJpodp4sJlh9/TuIVqHTDBY6utALPgPmDYNIn6d2Xrwe6FSDeF/
-gJ+4uwsdCdcUiJ9ChEkb44k1qofQIRYDfZycow1bwzsNIu61uK5DLkjgig4ntd1gau/cBZOWO5z3
-f2669UEMS2rRSdtmAZ76YTpYUbYThVUsjQeQygiXgesvZGy6rbmNRSqJRIyonvnir44JyQFh1U+t
-SuruQpyGQsRhW29uAoTF1mBhZFQ4Mvl36nUIXWG9waoOqn1S3lgNyNxjEUFXvVyU59AkNnP57deA
-PvBJD75pDyzKwN4bZvzrRDCcCEU6JRH6aYjLjN7Qgd1XyeU8I9SjU99j6eNPwltZXniL1o7X0wAV
-0nzL7AHmM9M08xi3GvsBJacUeLV6bjW5QGYVEUp6mg6LA5ZYfedxWRuuxmcZLaCHgRQyfwltBdAq
-dCvaIdbFt93Yj2kbb8MOFp9IgjDPBqqESiFfX3U8OvCkV6f2VPEIWlQJmz/HhtEdsd6GPL3/vWMQ
-y3Zv0lIrWZRHE9NGeTPf+VDvYwNt22k2pQLMhRm2fNAtuP2OpXvwvqgZ6Zhp3OxmVVtdJDdLZiud
-5J9OTy0SRMNL0e6ylDvFCW3gyynfsu/FfzXyYn+wue0MeFBkX8d2uOtXw5a2OF2We2hvfrSB1ZfA
-ZQtVRRWQKxqBzH04EhRlCR81FVlrEek1M6RiIspVvhak34h/QH6Wv0OGHSE5r2f1LS/K5vsDAZPs
-i6EYWh/dkYE/oxz9rkzdgUU1jvycTj5MQrvtggWzZjRNbkOBXyNWBFWKljnM9majkL3nrh8qpzGK
-fKL/ewPnDCQW7F6hrPyMyeyNEzuTk/Bjbb3WDT4TuIMVr3Jk1siNvrk7JQQsJpNvE/q2bSR/Tsg0
-VK6Wo3BAj+b1QAzXGX+AFe9j3j8seLuIJJBKw1n/PD4StJ9qKwDucKxgJqtp7lTeBNSffLn29SZS
-ToQ1hwwFUMvoVq0MECOlNYoo69YFvX4iHtjOGYPsncE3pIKLkh17OEJT2ZNQ1QlcE9zBmxFDc9KG
-81iecS5U53lEsVsarbq5JeLWvPTj9ewB3mvYkM0lTn05kzp//WH1SlOso0XF5JljEXWRvIp4G8RX
-MigJRGWNZkdnfvGbQiC3fNVRkYbj3TEu+K7JZU5z6DrzY5tosKrqzcXbo6EFFmGYN+UXSpbWl6Be
-9ATP0MIFNSXi3yp6jBIuFzoZXoE2cfYMMcpuxcpSI2UQbRx+BS+HJyobyXt0LosXyJgTiFk3hgOO
-Y0h5EnnI7aFbHwS3z+o0hwiZfoEs/IuD/t5UtSPjYain7Dpp5WJVajoygwxhr22odYEExgeAznef
-nkKmWn33iHktCDlbb+vQ2uH5++lz0wInAgE5B+NvElPYoLO2Qc9S/zg0HQv7MWB7wWE8uMpQ4gi3
-cyPKY5/6jYQdol1Ah+Yk+igMJpEnET3Bds+RBGFYZ/IzSSfyBo+HUIZfioJaZ9Yhs4iZgFCzPyZR
-AvgDjU6nTY8htkjnwIb524ZQiqU/tknbTqUG07m0DYuUyhW3f2iqnqYT+Dd8ZR62QN+MPJktctqH
-e9NY908RC7VdyuDt/astJ0pPO8HFcoluPCQg0ouWArFDO9Ihu7Tez1zQD82tCqooHszQQ7nFwmpq
-zPygPCxTVLUneH5LgNKrd8MaUGvyzCybys9zlvoGEpP03FCvhkoNWJEsw6rxqhoCuA67Npq621Za
-Jc8pwOVGwsEPw79pq/kf9R+704P7tlHS8YR9mgJZK+xs1cRiX2X1PkGVe2c3gUDL1AojmxlFXYMu
-ErctRc9wK8zNu7xS/w1nT2QGw9zLVi6jrltbAsDsj01YqFhNwnb67ZTpM1zsDUu4P2jwXMkbWGaE
-tIvrKlBDHvh6C5JIY99BRek+guMzx10BnL1fmc3Wqi9pBWOuJl3kbjA3WjATUNfvyWGA6R7+5Nlf
-EckSnXgkPgnNpMdDYGgjqwy5cLlagdvKL0Q1RJTazeO52OB3VBNcFNaPERubikParDTVPmIKERr0
-jzljkzWhwVery3wLfsTEt9Qf1gzqaGfUfFgE/BNTC71FlScAgeWG0Myo1Ljyr1sgd+m2CT9BSqPR
-5tniRkExClCi3QnuRiBo5ht1+zZiNblnr1zGh8R2ElAwDRwLMNMbiAY4MHfQ+s6mJuA+ZYa7kw7I
-OXb+s6BIlKeV6ofrXcrtL1S+c7uGXT13N80aqb5/KqfRITo0Z6JAXe4ssB+6q6566R9Rj4dAzKMj
-sPp0URo9f/lSyRqLKnf0kQRBq9sxVkSVSIxo4W7iqBZhx2Sap6iA4awbBHxbeHHSsJRqHfNWU1ZQ
-xT5RWtXEHh76Skwh3FcnaRERvksj0aZK5hXoI/SbvwuCzUwlBpBn/GMRvbNNK9md2AfRjuA4Do+A
-AmG1ExP7MKHiJOwWZUGwqzO3QWL88mzdvu21AtDc+5GMfgaHXLhLi10RMEvJ3EI52FbCGkhPCOqj
-Y69jssl4mgHJeka34q2UdJ1pbT8/9Vaat/H85EajAz5v9vOFiQGNId4uNl1YE8BVm92A65Ba51dc
-VDe9jhPFjtj60zvYJEcTdyXngJgGKuoxRlWrBgbNU24HLzt6tce6ClTbv+CRPTmqfphr+ZJCPOP8
-PIZTeEJ5VDIc6s0YMmPo3EIvS72aBZyZHUtYJrIxBDwe3lvuQEcEIHVv2DxSZjrpe1GguLyA7F2q
-bk/rv/fRnGeJDpt3Vrf/S9qdL37igVQqDOlfBlXksBVYZHP1+cyxZu1+e8IB5RXQ7QILQ1N/xl+J
-T8ZI1FBaZnc6s0fnOHx6uG3p+cNGPqaYjRlipLtCUw8HgiUIVXh9zYrL9bg2trRGdmi2qPXp6BYu
-fKq6XqseyjTOCNlulvPA4z35tG/nR6QARtQtK6ad5r6BPymbRSFNbE2KL5RxeyR0ulgISXDhbbAf
-qMU7lHME1kLyCHcR5qQUCmLhDhXsunu1bR0YLYg6EiCw/NXp8v7FAXaXW0RfIwVIrkF4fh9TSrN3
-XvSleZ6eadKmODaf20jVQUij/HU9O30q4nZHl9H8jX30lzG72yR/UBx/4DZg5Sd6px6h0cjSnbic
-2LrMUZTYbwTyds+GspYgP3LzZxA43eX/SkaYNC69ESnTgA8u6qFWsmsD8GHPAgbz8SMchMVb8Iul
-768Z36ccGEbvve38a/Aa1WgTdC7jbEPsv4qhs4mDzDBLJf0FScvr8voO6chhPavLWLLAUB1WCcWp
-0E3wrkS6FGOE+Ho0WNnVV7/Gxy6ILVDCl1X4htOKPEWGpU8ThEmBLrIDbLwmPjRdClDdPY44Ks7m
-cJcAcl9jb1EcwL2az8SG28KLYTJihZ5YaBSjUkxTFnbMZFbmZPn5rMjlSi/jQJEHZLYO/CfrVR0n
-K1raeGXMjcDVPcMGTPmx+G73MCadB3E+qaelZ4Q58v9z7WERWJwUI6CHYoNTE7w5sZff3zuZ/GSe
-A5r9/x5AW5vLxfNEERwRU1OevQQdSq3DG7qtdZqBHmTBzaujaqiVlULNSlGKUWER9SSNWJHCsTjO
-FLNzTmqTnA8pElJ8+Fm3IZ+1HnBp+cIYVx7BpqdnFqt1micKRmrxnT/NnZstLRpIwsJrMxFJxUVI
-u0GQ7ztnG9u4M4iY5kMfnMtmku/d04AG/DXsFS/S4d0o1CVKdAfSHuB5oWdUEyKxGle/fw37cXH3
-kJJWd2YRjtopPTSs1OpfJZTflN9bgcXPaSwac58d3I7dJjtU4IdxD8q5X/g49GQPPerPGvxfQlAb
-RaBhhjCf877bErXjgpE9WPB5GQfB2Xz14BKmiz679LB/LFUe5Xod/hFs8iNqo/nmMifmk88vrlqQ
-kvWRAasBXP4eIqIhwYnt38oEn60Kt4y11eiCpXnpinLp2vaqS40SdYf1y+KUU0tcz2T+rjoTWSrT
-PUijxXHWAp7dYNCRsYZTjFqnIqiXO0LLsY48awCGifUadzJugtE0g/8TWpypp4tNEKR8PBOoLiOv
-nekiMjmJQCzVl/31J6E4PkUegxFELTJ1h3EV2AVnBQ4v9x706B6CQf7DbepzDGTVYH199oR8ZHU1
-Xl4fED3ceJyUHBat4S9F8w114XUg8MET2ewisY+FvshqwUsrRxATNbcRlA5HO1U1M+huVYUJcJKu
-w/orKY4lxGvDnoC4CuzHj0UvGEilLjSSe6hxwku805DY54293hIIFYl19R04VF2yNZcmLSa4LWGl
-cg2+cpSg/ztvMt9c5PwPfdjLUtnYC4AF9drZ6KnyIeRg6zGwz9uASAaEMnIQe9zkn02Q471xIzqc
-ZDixNFk/MfIxta4mClHh9oRdk32Ulana+k5XMHV/DQN6iVgrWLMXkQm8sEfsfUWRQacFyIs7RxN3
-llB36OTuPBnd06sd+qYIbXNWdj+buL/GURF166MgDrH96GvdNfgPtY9JjB4cedRQUMMvP7yljyoh
-9ZJ1NT1WdOjjRnl7KBgIBTGYglS0ZtdgWdwrO3XO553Wm7QNnOiRRu6z8wi0IIWeOjCDHcCDcPiC
-LGjTofjv12BLISxIm1/qqLbs7E2eX2CfqrZeK03RsVT57on5ZSAqmANn9owrrg2TC+sm9DXknY+0
-SHsUgmP0F/YYh7SACB8fl73R4IYnCXitoGKup6b4TJ2m/rSrUPkGSOyAcod8xxJctaCP67FFCJHN
-a5iiu4NqKchCg5pW18fz0jNsSQ23gMoUJqqNQgA2S/xHOD9mFpuPVO5/yhLmjC05eBRdgZsLgOGR
-nHTka7HU53rxPXsRMA1Tzu8cQ/buE/7YtFUh+lthhHn1S/fnC3YGDF3VXAQRYDztdkpzA0UkgbZJ
-4WVL9XjcxFxQeh0NQpDTJUhKntw8PxEhcjxwP12/eB5PdEhTHT1YdzfOJQCJR10GQNJMEqdx53K8
-DhxBaeg1PU6bHeiE44hnf4NS2JRBXJ/X9zlNl5yadMrgdOqIEdMM6ehkqt7lU91GqjAyawj0eHqx
-UUFRuJ7cNfvYliZpPIKNNzyruXwVji8cDsJTfewQvfLpRCa9khZXWPpcvaemVzqo0x5l6musDPdY
-GqK8ZYeRQsKqRZkETj2vHNxMeIISL5DKOe+yNoIHBbqNaNnW44KzeHDb3tR8AFdj2QQKFf9DsJGg
-M6k0PxIpyQK681VqW3b3U7syidT2M/MAtN3em3CQhb65eUfO3ka9zmqPTbtoLp3IWaWUhwyYYPnD
-iOl04u90uUsSxr6HmaqYS0R97CFejMrBUhwF5x6e7YYtYAHHUI2NzcyUSWC2jbbUDdVJO5x0STQU
-eneA1oF+Uh6VhE3rR3kiZz4wK36LmcZV70TnoUwscTeWRmtEI6HiHPnmRhHipFYxrLM5iBYsI/fZ
-dxWMzSLc9mRNcZdRmeeIsavZSWTA5xs227jNVzLxrqbj0fGwG/MVubJJce1sNWy9D8bk20UUo5us
-ymJAQNRnDVlk2AXGoM97r8Z37g1hF/HUMxLpvNUYVYpSX7o6EsVHQYx+vzsyWmzl8hzZAjB5K6XG
-B1Ut6MCheExGhFPb8NMoFNJRz44NmWyvgl8=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Contains frame decorating logic
+ *
+ * This class is responsible for assigning the correct {@link Frame_Decorator},
+ * {@link Positioner}, and {@link Frame_Reflower} objects to {@link Frame}
+ * objects.  This is determined primarily by the Frame's display type, but
+ * also by the Frame's node's type (e.g. DomElement vs. #text)
+ *
+ * @access private
+ * @package dompdf
+ */
+class Frame_Factory {
+
+  /**
+   * Decorate the root Frame
+   * 
+   * @param $root Frame The frame to decorate
+   * @param $dompdf DOMPDF The dompdf instance
+   * @return Page_Frame_Decorator
+   */
+  static function decorate_root(Frame $root, DOMPDF $dompdf) {
+    $frame = new Page_Frame_Decorator($root, $dompdf);
+    $frame->set_reflower( new Page_Frame_Reflower($frame) );
+    $root->set_decorator($frame);
+    return $frame;
+  }
+
+  /**
+   * Decorate a Frame
+   *
+   * @param Frame  $frame  The frame to decorate
+   * @param DOMPDF $dompdf The dompdf instance
+   * @param Frame  $root   The frame to decorate
+   *
+   * @throws DOMPDF_Exception
+   * @return Frame_Decorator
+   * FIXME: this is admittedly a little smelly...
+   */
+  static function decorate_frame(Frame $frame, DOMPDF $dompdf, Frame $root = null) {
+    if ( is_null($dompdf) ) {
+      throw new DOMPDF_Exception("The DOMPDF argument is required");
+    }
+    
+    $style = $frame->get_style();
+    
+    // Floating (and more generally out-of-flow) elements are blocks 
+    // http://coding.smashingmagazine.com/2007/05/01/css-float-theory-things-you-should-know/
+    if ( !$frame->is_in_flow() && in_array($style->display, Style::$INLINE_TYPES)) {
+      $style->display = "block";
+    }
+      
+    $display = $style->display;
+    
+    switch ($display) {
+      
+    case "block":
+      $positioner = "Block";        
+      $decorator = "Block";
+      $reflower = "Block";
+      break;
+    
+    case "inline-block":
+      $positioner = "Inline";
+      $decorator = "Block";
+      $reflower = "Block";
+      break;
+
+    case "inline":
+      $positioner = "Inline";
+      if ( $frame->is_text_node() ) {
+        $decorator = "Text";
+        $reflower = "Text";
+      } 
+      else {
+        $enable_css_float = $dompdf->get_option("enable_css_float");
+        if ( $enable_css_float && $style->float !== "none" ) {
+          $decorator = "Block";
+          $reflower = "Block";
+        }
+        else {
+          $decorator = "Inline";
+          $reflower = "Inline";
+        }
+      }
+      break;   
+
+    case "table":
+      $positioner = "Block";
+      $decorator = "Table";
+      $reflower = "Table";
+      break;
+      
+    case "inline-table":
+      $positioner = "Inline";
+      $decorator = "Table";
+      $reflower = "Table";
+      break;
+
+    case "table-row-group":
+    case "table-header-group":
+    case "table-footer-group":
+      $positioner = "Null";
+      $decorator = "Table_Row_Group";
+      $reflower = "Table_Row_Group";
+      break;
+      
+    case "table-row":
+      $positioner = "Null";
+      $decorator = "Table_Row";
+      $reflower = "Table_Row";
+      break;
+
+    case "table-cell":
+      $positioner = "Table_Cell";
+      $decorator = "Table_Cell";
+      $reflower = "Table_Cell";
+      break;
+        
+    case "list-item":
+      $positioner = "Block";
+      $decorator  = "Block";
+      $reflower   = "Block";
+      break;
+
+    case "-dompdf-list-bullet":
+      if ( $style->list_style_position === "inside" ) {
+        $positioner = "Inline";
+      }
+      else {        
+        $positioner = "List_Bullet";
+      }
+
+      if ( $style->list_style_image !== "none" ) {
+        $decorator = "List_Bullet_Image";
+      }
+      else {
+        $decorator = "List_Bullet";
+      }
+      
+      $reflower = "List_Bullet";
+      break;
+
+    case "-dompdf-image":
+      $positioner = "Inline";
+      $decorator = "Image";
+      $reflower = "Image";
+      break;
+      
+    case "-dompdf-br":
+      $positioner = "Inline";
+      $decorator = "Inline";
+      $reflower = "Inline";
+      break;
+
+    default:
+      // FIXME: should throw some sort of warning or something?
+    case "none":
+      if ( $style->_dompdf_keep !== "yes" ) {
+        // Remove the node and the frame
+        $frame->get_parent()->remove_child($frame);
+        return;
+      }
+
+      $positioner = "Null";
+      $decorator = "Null";
+      $reflower = "Null";
+      break;
+    }
+
+    // Handle CSS position
+    $position = $style->position;
+    
+    if ( $position === "absolute" ) {
+      $positioner = "Absolute";
+    }
+    else if ( $position === "fixed" ) {
+      $positioner = "Fixed";
+    }
+      
+    $node = $frame->get_node();
+    
+    // Handle nodeName
+    if ( $node->nodeName === "img" ) {
+      $style->display = "-dompdf-image";
+      $decorator = "Image";
+      $reflower = "Image";
+    }
+  
+    $positioner .= "_Positioner";
+    $decorator .= "_Frame_Decorator";
+    $reflower .= "_Frame_Reflower";
+
+    $deco = new $decorator($frame, $dompdf);
+    
+    $deco->set_positioner( new $positioner($deco) );
+    $deco->set_reflower( new $reflower($deco) );
+    
+    if ( $root ) {
+      $deco->set_root($root);
+    }
+    
+    if ( $display === "list-item" ) {
+      // Insert a list-bullet frame
+      $xml = $dompdf->get_dom();
+      $bullet_node = $xml->createElement("bullet"); // arbitrary choice
+      $b_f = new Frame($bullet_node);
+
+      $node = $frame->get_node();
+      $parent_node = $node->parentNode;
+      
+      if ( $parent_node ) {
+        if ( !$parent_node->hasAttribute("dompdf-children-count") ) {
+          $xpath = new DOMXPath($xml);
+          $count = $xpath->query("li", $parent_node)->length;
+          $parent_node->setAttribute("dompdf-children-count", $count);
+        }
+        
+        if ( is_numeric($node->getAttribute("value")) ) {
+          $index = intval($node->getAttribute("value"));
+        }
+        else {
+          if ( !$parent_node->hasAttribute("dompdf-counter") ) {
+            $index = ($parent_node->hasAttribute("start") ? $parent_node->getAttribute("start") : 1);
+          }
+          else {
+            $index = $parent_node->getAttribute("dompdf-counter")+1;
+          }
+        }
+        
+        $parent_node->setAttribute("dompdf-counter", $index);
+        $bullet_node->setAttribute("dompdf-counter", $index);
+      }
+      
+      $new_style = $dompdf->get_css()->create_style();
+      $new_style->display = "-dompdf-list-bullet";
+      $new_style->inherit($style);
+      $b_f->set_style($new_style);
+      
+      $deco->prepend_child( Frame_Factory::decorate_frame($b_f, $dompdf, $root) );
+    }
+    
+    return $deco;
+  }
+}

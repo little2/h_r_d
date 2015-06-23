@@ -1,43 +1,66 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-hAoucmO4Jwgsf7+TlYpnrFug4YwpBE/E/G==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Reflows inline frames
+ *
+ * @access private
+ * @package dompdf
+ */
+class Inline_Frame_Reflower extends Frame_Reflower {
+
+  function __construct(Frame $frame) { parent::__construct($frame); }
+  
+  //........................................................................
+
+  function reflow(Block_Frame_Decorator $block = null) {
+    $frame = $this->_frame;
+    
+    // Check if a page break is forced
+    $page = $frame->get_root();
+    $page->check_forced_page_break($frame);
+    
+    if ( $page->is_full() )
+      return;
+      
+    $style = $frame->get_style();
+    
+    // Generated content
+    $this->_set_content();
+    
+    $frame->position();
+
+    $cb = $frame->get_containing_block();
+
+    // Add our margin, padding & border to the first and last children
+    if ( ($f = $frame->get_first_child()) && $f instanceof Text_Frame_Decorator ) {
+      $f_style = $f->get_style();
+      $f_style->margin_left  = $style->margin_left;
+      $f_style->padding_left = $style->padding_left;
+      $f_style->border_left  = $style->border_left;
+    }
+
+    if ( ($l = $frame->get_last_child()) && $l instanceof Text_Frame_Decorator ) {
+      $l_style = $l->get_style();
+      $l_style->margin_right  = $style->margin_right;
+      $l_style->padding_right = $style->padding_right;
+      $l_style->border_right  = $style->border_right;
+    }
+    
+    if ( $block ) {
+      $block->add_frame_to_line($this->_frame);
+    }
+
+    // Set the containing blocks and reflow each child.  The containing
+    // block is not changed by line boxes.
+    foreach ( $frame->get_children() as $child ) {
+      $child->set_containing_block($cb);
+      $child->reflow($block);
+    }
+  }
+}

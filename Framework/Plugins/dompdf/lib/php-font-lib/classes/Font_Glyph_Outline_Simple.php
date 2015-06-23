@@ -1,188 +1,332 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-1hZEh1twyK0=
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
+ */
+
+/**
+ * `glyf` font table.
+ * 
+ * @package php-font-lib
+ */
+class Font_Glyph_Outline_Simple extends Font_Glyph_Outline {
+  const ON_CURVE       = 0x01;
+  const X_SHORT_VECTOR = 0x02;
+  const Y_SHORT_VECTOR = 0x04;
+  const REPEAT         = 0x08;
+  const THIS_X_IS_SAME = 0x10;
+  const THIS_Y_IS_SAME = 0x20;
+  
+  public $instructions;
+  public $points;
+  
+  function parseData(){
+    parent::parseData();
+  
+    if (!$this->size) {
+      return;
+    }
+  
+    $font = $this->getFont();
+    
+    $noc = $this->numberOfContours;
+    
+    if ($noc == 0) {
+      return;
+    }
+    
+    $endPtsOfContours = $font->r(array(self::uint16, $noc));
+    
+    $instructionLength = $font->readUInt16();
+    $this->instructions = $font->r(array(self::uint8, $instructionLength));
+    
+    $count = $endPtsOfContours[$noc-1] + 1;
+    
+    // Flags
+    $flags = array();
+    for ($index = 0; $index < $count; $index++) {
+      $flags[$index] = $font->readUInt8();
+      
+      if ($flags[$index] & self::REPEAT) {
+        $repeats = $font->readUInt8();
+        
+        for ($i = 1; $i <= $repeats; $i++) {
+          $flags[$index+$i] = $flags[$index];
+        }
+        
+        $index += $repeats;
+      }
+    }
+    
+    $points = array();
+    foreach ($flags as $i => $flag) {
+      $points[$i]["onCurve"] = $flag & self::ON_CURVE;
+      $points[$i]["endOfContour"] = in_array($i, $endPtsOfContours);
+    }
+    
+    // X Coords
+    $x = 0;
+    for($i = 0; $i < $count; $i++) {
+      $flag = $flags[$i];
+      
+      if ($flag & self::THIS_X_IS_SAME) {
+        if ($flag & self::X_SHORT_VECTOR) {
+          $x += $font->readUInt8();
+        }
+      }
+      else {
+        if ($flag & self::X_SHORT_VECTOR) {
+          $x -= $font->readUInt8();
+        }
+        else {
+          $x += $font->readInt16();
+        }
+      }
+      
+      $points[$i]["x"] = $x;
+    }
+    
+    // Y Coords
+    $y = 0;
+    for($i = 0; $i < $count; $i++) {
+      $flag = $flags[$i];
+      
+      if ($flag & self::THIS_Y_IS_SAME) {
+        if ($flag & self::Y_SHORT_VECTOR) {
+          $y += $font->readUInt8();
+        }
+      }
+      else {
+        if ($flag & self::Y_SHORT_VECTOR) {
+          $y -= $font->readUInt8();
+        }
+        else {
+          $y += $font->readInt16();
+        }
+      }
+      
+      $points[$i]["y"] = $y;
+    }
+    
+    $this->points = $points;
+  }
+  
+  public function splitSVGPath($path) {
+    preg_match_all('/([a-z])|(-?\d+(?:\.\d+)?)/i', $path, $matches, PREG_PATTERN_ORDER);
+    return $matches[0];
+  }
+  
+  public function makePoints($path) {
+    $path = $this->splitSVGPath($path);
+    $l = count($path);
+    $i = 0;
+    
+    $points = array();
+    
+    while($i < $l) {
+      switch($path[$i]) {
+        // moveTo
+        case "M":
+          $points[] = array(
+            "onCurve" => true,
+            "x"       => $path[++$i],
+            "y"       => $path[++$i],
+            "endOfContour" => false,
+          );
+          break;
+          
+        // lineTo
+        case "L":
+          $points[] = array(
+            "onCurve" => true,
+            "x"       => $path[++$i],
+            "y"       => $path[++$i],
+            "endOfContour" => false,
+          );
+          break;
+        
+        // quadraticCurveTo
+        case "Q":
+          $points[] = array(
+            "onCurve" => false,
+            "x"       => $path[++$i],
+            "y"       => $path[++$i],
+            "endOfContour" => false,
+          );
+          $points[] = array(
+            "onCurve" => true,
+            "x"       => $path[++$i],
+            "y"       => $path[++$i],
+            "endOfContour" => false,
+          );
+          break;
+        
+        // closePath
+        /** @noinspection PhpMissingBreakStatementInspection */
+        case "z":
+          $points[count($points)-1]["endOfContour"] = true;
+        
+        default:
+          $i++;
+          break;
+      }
+    }
+    
+    return $points;
+  }
+
+  function encode(){
+    if (empty($this->points)) {
+      return parent::encode();
+    }
+    
+    return $this->size = $this->encodePoints($this->points);
+  }
+
+  public function encodePoints($points) {
+    $endPtsOfContours = array();
+    $flags = array();
+    $coords_x = array();
+    $coords_y = array();
+    
+    $last_x = 0;
+    $last_y = 0;
+    $xMin = $yMin = 0xFFFF;
+    $xMax = $yMax = -0xFFFF;
+    foreach($points as $i => $point) {
+      $flag = 0;
+      if ($point["onCurve"]) {
+        $flag |= self::ON_CURVE;
+      }
+      
+      if ($point["endOfContour"]) {
+        $endPtsOfContours[] = $i;
+      }
+      
+      // Simplified, we could do some optimizations
+      if ($point["x"] == $last_x) {
+        $flag |= self::THIS_X_IS_SAME;
+      }
+      else {
+        $x = intval($point["x"]);
+        $xMin = min($x, $xMin);
+        $xMax = max($x, $xMax);
+        $coords_x[] = $x-$last_x; // int16
+      }
+      
+      // Simplified, we could do some optimizations
+      if ($point["y"] == $last_y) {
+        $flag |= self::THIS_Y_IS_SAME;
+      }
+      else {
+        $y = intval($point["y"]);
+        $yMin = min($y, $yMin);
+        $yMax = max($y, $yMax);
+        $coords_y[] = $y-$last_y; // int16
+      }
+      
+      $flags[] = $flag;
+      $last_x = $point["x"];
+      $last_y = $point["y"];
+    }
+    
+    $font = $this->getFont();
+    
+    $l = 0;
+    $l += $font->writeInt16(count($endPtsOfContours)); // endPtsOfContours
+    $l += $font->writeFWord(isset($this->xMin) ? $this->xMin : $xMin); // xMin
+    $l += $font->writeFWord(isset($this->yMin) ? $this->yMin : $yMin); // yMin
+    $l += $font->writeFWord(isset($this->xMax) ? $this->xMax : $xMax); // xMax
+    $l += $font->writeFWord(isset($this->yMax) ? $this->yMax : $yMax); // yMax
+    
+    // Simple glyf
+    $l += $font->w(array(self::uint16, count($endPtsOfContours)), $endPtsOfContours); // endPtsOfContours
+    $l += $font->writeUInt16(0); // instructionLength
+    $l += $font->w(array(self::uint8, count($flags)), $flags); // flags
+    $l += $font->w(array(self::int16, count($coords_x)), $coords_x); // xCoordinates
+    $l += $font->w(array(self::int16, count($coords_y)), $coords_y); // yCoordinates
+    return $l;
+  } 
+
+  public function getSVGContours($points = null){
+    $path = "";
+    
+    if (!$points) {
+      if (empty($this->points)) {
+        $this->parseData();
+      }
+
+      $points = $this->points;
+    }
+    
+    $length = count($points);
+    $firstIndex = 0;
+    $count = 0;
+    
+    for($i = 0; $i < $length; $i++) {
+      $count++;
+      
+      if ($points[$i]["endOfContour"]) {
+        $path .= $this->getSVGPath($points, $firstIndex, $count);
+        $firstIndex = $i + 1;
+        $count = 0;
+      }
+    }
+    
+    return $path;
+  }
+  
+  protected function getSVGPath($points, $startIndex, $count) {
+    $offset = 0;
+    $path = "";
+    
+    while($offset < $count) {
+      $point    = $points[ $startIndex +  $offset   %$count ];
+      $point_p1 = $points[ $startIndex + ($offset+1)%$count ];
+      
+      if($offset == 0) {
+        $path .= "M{$point['x']},{$point['y']} ";
+      }
+      
+      if ($point["onCurve"]) {
+        if ($point_p1["onCurve"]) {
+          $path .= "L{$point_p1['x']},{$point_p1['y']} ";
+          $offset++;
+        }
+        else {
+          $point_p2 = $points[ $startIndex + ($offset+2)%$count ];
+          
+          if ($point_p2["onCurve"]){
+            $path .= "Q{$point_p1['x']},{$point_p1['y']},{$point_p2['x']},{$point_p2['y']} ";
+          } 
+          else {
+            $path .= "Q{$point_p1['x']},{$point_p1['y']},".$this->midValue($point_p1['x'], $point_p2['x']).",".$this->midValue($point_p1['y'], $point_p2['y'])." ";
+          } 
+          
+          $offset += 2;
+        }
+      }
+      else {
+        if ($point_p1["onCurve"]) {
+          $path .= "Q{$point['x']},{$point['y']},{$point_p1['x']},{$point_p1['y']} ";
+        }
+        else {
+          $path .= "Q{$point['x']},{$point['y']},".$this->midValue($point['x'], $point_p1['x']).",".$this->midValue($point['y'], $point_p1['y'])." ";
+        }
+        
+        $offset++;
+      }
+    }
+    
+    $path .= "z ";
+    
+    return $path;
+  }
+  
+  function midValue($a, $b){
+    return $a + ($b - $a)/2;
+  }
+}

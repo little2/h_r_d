@@ -1,33 +1,73 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-HR+cPp/qPyVjNrpf/4Fov0rRqHvFoTLD1tgMzUr7UTOfDyAApRFGZdhNqqUmRWpM8ABrHeKCLzvG
-/icHUwa/ljTQvuxHNbwp2L9wxCI4QJxS+Npu8nByz6uwi1pxcSbS+Q5k0goDPBB/oOlaI+ojFTH9
-3gRc1BjAXbCKkvwXPfBiVOb22LxLRAVfKDxpgcDpAX0nq+GfHhx+k8GYZV5F4CXaI+v3GJgn+uP8
-/KyZYUkIJ+UBUajyPwsdIaJCD9nh2mYGkE5+osYJrxn6RAasNCwb+bTjJWbk6UrJOc4BPdW/fo18
-oSUeTcfKRIRaZ/KZLaKgJ4WWDF8Pd6SinXogS9NYM7iK/Wx0fmOHXqgVVZHfE6Lb9IZmWP8NbRD6
-yggt6UW3fHD55TmbeahvfksX65fjpBNoHa2NvKMRM/XnWc0+dRoojE9IddpGe0TdYSXu3agd8SjD
-vKZrbs8te3NXShxWgpgcRPkC/H1s9p36TiWx/BSR3K5cikzjh8O9EmPOvxL6VNwknAmz1PQsPISR
-G5vn2rjpl8neV7xZX6I901wo8MUdBRjLA7VjxA3DeP57SX/1fbSEYLItahjU8OAgQehG+V9yr4S7
-o3yqj6AnvCfH9LTAZvpDrWoanhExRWy8/m2e0rpSYFK5wMxkPsUxfMReKN0cphLkBKLQz3gTKdMW
-zJJELYvFZTLT0T+EdtUhbL1N1UvMgdN1gyfmxO90s71YibNPWAWZbHTe2wN331QNf18QJs01k2Im
-RilPf3asmhhZtiqrwY/MctVT20qWD4T1E6io2Wbhw0/kxEHBt8Ac5fJQZa2Cu1Zw4Ydypz3R+FMp
-pDkBs1GpjAW1Fno0oy/nnCVeLWIoTBGM09BljMilHw6ueeDdfMg7OEt9x7y4IwcSOg7jQLSim8GO
-KrpHW8sNwgjfwtmRmZTnm4l0uUNDfFLHzeF0pwpwqDvNgxM+RfbP3j2nSxrT3JKPQWem+qntVCOJ
-liEedJd5P4bENn0cSuPQ4fiUo2ZU2OdLkA0V0RZFNkGLoeF1bzB+y3KKqHlaYmY+BGGiIMEX4fbC
-hYH/yMs7/VvWaU1pTRwUBxqQwU7NstRxpbAfPZdkTTagAP3vGD0B5K7ke/N+HP1lZ2Jkui563HRn
-0HACbsE7snVzEPx2NtTxvzDgzauZ7H9JeSrh16N1n0xV+l7yPbEkW95AWUzh8zxpy5qjIc910ZIg
-K24MgCMgjq6wLXjdQOZJo3JAZ9LTkHCsEGPZcyJCum7r8YSSscKwfTpvki1kNOmfY7YNoiK/Cj7u
-wb/Osvar8TX0c/M78G+YwBqBP0Y5mZFKvb8XHeMcvXlFYwfnNT5IZPXhnt6rsfG4p4NJbaFFV1yt
-c57OA18LLWDL/o/xSxk3KkIlJzoH81nlqoabs6l87vhuJ0jTG/IUdHDXtCdoEeus34yPpEEe7WpA
-35uFkStzWHELk9c0WqQktX5/XoPNH0f7ZzDarjpnDmscDQSwVm+ppBqTrZ5ynWOsXc8s41Z1KRSa
-GKdKJmrE0zKulNcMMmXe0f6wb2wl6l+HTFZwn1iS4KRXXudgkPhBpzzjGxeWRi3EJ2BXC7A3S2Rv
-CkxLW0SKRu9NexaZXoNCVRQbYZT1U9gcDAf8ByeuJIzITjllRMCm9IgTM4BSG6n5aZ5v2Rlu13Y8
-ND/8DEC0/xhz+QfZMI654Q61b9qKqyhQ+HR8KSYYl96lCBjyeN3ONJDFDqUCHzO1qqYw/7d7/NDs
-bV4durjycNEuq2K0uPYIv0q4LMltZhirW57GiYXT6Jv8FcNt1OZW2MvsP0sVLXQcTGtjxCuZrhCL
-ncXa6aALRPpdlgVt0n6u5AbP2W9EE8u8BUoBTwGNT5QOz4uKB3IT8zlxf8zriYq4R7Kzyg3nlX2x
-qeIPeZ+M/5mbGl4w2vauglVMTmoq8udsiCAkx+Z6Q7fWDSNY0fTpYEKlpaAh4GzlHPPQps4ItYil
-2w6603SuysEAf7iLFlPkFUryjqbqpx6Yf1cKZySUjeKCLpAR+FrcgWqksJUXo1GMHSCPmr9Y12io
-y33h6sJ5BSheGByLaL2Bqxmmz/qurqdh02Mt3Gk1DTWPZgZJj/EfBmb13T9+5UCHWfw6Dn5ljPc/
-BQFLmasFN6O7s/lMSQvqv3XXKiicVrobjkMjgB0SO6um7Nt9A4rSE2VB2W97MyKYSugWQggtIV6i
-0RzqaS9agzMYO6UaUF8+n99BpZcmaSmu10==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Positions list bullets
+ *
+ * @access private
+ * @package dompdf
+ */
+class List_Bullet_Positioner extends Positioner {
+
+  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
+  
+  //........................................................................
+
+  function position() {
+    
+    // Bullets & friends are positioned an absolute distance to the left of
+    // the content edge of their parent element
+    $cb = $this->_frame->get_containing_block();
+    
+    // Note: this differs from most frames in that we must position
+    // ourselves after determining our width
+    $x = $cb["x"] - $this->_frame->get_width();
+
+    $p = $this->_frame->find_block_parent();
+
+    $y = $p->get_current_line_box()->y;
+
+    // This is a bit of a hack...
+    $n = $this->_frame->get_next_sibling();
+    if ( $n ) {
+      $style = $n->get_style();
+      $line_height = $style->length_in_pt($style->line_height, $style->get_font_size());
+      $offset = $style->length_in_pt($line_height, $n->get_containing_block("h")) - $this->_frame->get_height();             
+      $y += $offset / 2;
+    }
+
+  // Now the position is the left top of the block which should be marked with the bullet.
+  // We tried to find out the y of the start of the first text character within the block.
+  // But the top margin/padding does not fit, neither from this nor from the next sibling
+  // The "bit of a hack" above does not work also.
+  
+  // Instead let's position the bullet vertically centered to the block which should be marked.
+  // But for get_next_sibling() the get_containing_block is all zero, and for find_block_parent()
+  // the get_containing_block is paper width and the entire list as height.
+  
+    // if ($p) {
+    //   //$cb = $n->get_containing_block();
+    //   $cb = $p->get_containing_block();
+    //   $y += $cb["h"]/2;
+    // print 'cb:'.$cb["x"].':'.$cb["y"].':'.$cb["w"].':'.$cb["h"].':';
+    // }   
+
+  // Todo:
+  // For now give up on the above. Use Guesswork with font y-pos in the middle of the line spacing
+
+    /*$style = $p->get_style();
+    $font_size = $style->get_font_size();
+    $line_height = $style->length_in_pt($style->line_height, $font_size);
+    $y += ($line_height - $font_size) / 2;    */
+   
+    //Position is x-end y-top of character position of the bullet.    
+    $this->_frame->set_position($x, $y);
+    
+  }
+}
