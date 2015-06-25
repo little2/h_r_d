@@ -46,12 +46,14 @@
 								<p><strong>上傳結果</strong></p>
 									<div>		
 											<a href=''  target='_blank'></a>
-											<input id="filename" name="filename" type="text" />
+											<input id="filename" name="filename" type="hidden" />
 											<br><br>
 											<button type="button"  onClick="bt_confirm_import(this )">確認匯入</button>											
 									</div>	
 							</div>								
 							<div style="clear:both"></div>		
+							
+							<div id='processing' class='hide'><img src='./templates/bhrsp/images/processing.gif'></div>
 							
 							<div id="import_result_zone" class="tableStyle2 hide" >
 								<table id="import_result">
@@ -119,8 +121,9 @@ function bt_confirm_import (obj)
 	$(obj).addClass('hide');
 	var filename=$('#filename').val();
 	var import_type=$('#import_type').val();
-	console.log($("#formPostImport").serialize());
-	console.log($('#filename').val());
+	//console.log($("#formPostImport").serialize());
+	//console.log($('#filename').val());
+	$('#processing').removeClass('hide');
 	$.ajax({
 		type : 'POST', //GET or POST
 		url : 'function/import/{import_func}.php', 						//請求的頁面
@@ -137,6 +140,7 @@ function bt_confirm_import (obj)
 				$('#check_file_zone').addClass('hide');
 				$('#take_upload_zone').addClass('hide');
 				$('#import_result_zone').removeClass('hide');
+				$('#processing').addClass('hide');
 				var processResult=data.processResult;
 				//console.log(data)
 				//console.log(processResult)

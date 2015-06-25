@@ -33,125 +33,107 @@
 
 <body>
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
-	<div class="labMenu">
-		<div class="lable"  dis="dis_evaluation"  style="background-color: yellow;">評鑑表信息</div>
-		<div class="lable"  dis="dis_quiz" >評鑑題目</div>		
-		<div class="lable"  dis="dis_suggest" >開放建議</div>		
-
-	</div>
-
-	<div id="dis_evaluation" class="labDiv"   style="display: block;">
-			<table class="tableStyle1"  >
-					<tr>
-						<td height="30" class="label">被評鑑人：</td>
-						<td>柯文折</td>
-					</tr>
-					<tr>
-						<td height="30"  class="label">部門：</td>
-						<td>什麼部</td>
-					</tr>
-					<tr>
-						<td height="30"  class="label">職稱：</td>
-						<td>四長</td>
-					</tr>
-					
-					
-					<tr>
-						<td height="30"  class="label">職能項目：</td>
-						<td>職職能項目職能項目職能項目</td>
-					</tr>
-					<tr>
-						<td height="30"  class="label">職能定義：</td>
-						<td>定義定義定義職職能項目職能項目職能項目</td>
-					</tr>
-						
-				</table>
-		
-			
-	</div>
+	<form>
 		
 	
-	<div id="dis_quiz" class="labDiv"   >
+	<div class="labMenu">
+		<div class="lable"  dis="dis_quiz"  style="background-color: yellow;">評鑑表信息</div>		
+		<div class="lable"  dis="dis_suggest" >開放建議</div>
+	</div>
+
+	<div id="dis_quiz" class="labDiv"   style="display: block;">
 		<div class="uc1">		
+			<div style="hide">
+			<input id="class_evaluation_evaluator_id" name="class_evaluation_evaluator_id" value="{class_evaluation_evaluator_id}" />
+			</div>
+			<table id="appraisee_area" class="contb"   style="border: #D6E9FF;background: #fbfab5;width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
+			<tr align="left" >
+				<td rowspan="4" style="width:40px">
+					<img src='templates/bhrsp/images/icon_robot.png'>
+				</td>
+				
+				<th width="12%">				
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					受評人:
+				</th>
+				<td  width="17%">
+					{fullName}
+				</td>
 			
-			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:5px">
+				<th width="12%"></th>
+				<td width="23%"></td>				
+			
+				<th width="10%"></th>
+				<td></td>		
+			</tr>
+			<tr align="left" >
+				<th >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 公司:
+				</th>
+				<td >
+					
+				</td>
+		
+				<th  >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 部門名稱:
+				</th>
+				<td >
+					{department_title}
+				</td>		
+				
+				<th  >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 職稱:
+				</th>
+				<td >
+					{job_title}
+				</td>
+			</tr>	
+			
+			<tr align="left" >
+				<th >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 職能項目:
+				</th>
+				<td olspan="6">
+				{competency_title}
+				</td>
+			</tr>	
+			<tr align="left" >
+				<th >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 職能定義:
+				</th>
+				<td colspan="6">
+				{competency_definition}
+				</td>
+			</tr>	
+		</table>
+			<!-- BEGIN ABILITY -->
+			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:5px;{ABILITY.style}">
 				<tr>
 					<td width="90%">	
-						<h3>第一級</h3>
-						職能項目四的第一級的行為描述
+						<h3>第{ABILITY.competency_level}級 {ABILITY.ability_title}</h3>
+						{ABILITY.ability_def}
 						<br>							
 					</td>
 					<td>
-						<input type="radio" id="a" name="a"  disabled>0.2<br>
-						<input type="radio" id="a" name="a"  disabled>0.4<br>
-						<input type="radio" id="a" name="a"  disabled>0.6<br>
-						<input type="radio" id="a" name="a"  disabled>0.8<br>
-						<input type="radio" id="a" name="a"  disabled>1.0<br>
+						<!-- BEGIN SCORE -->
+						<input type="radio" id="evalutor_score"  name="evalutor_score"  value="{ABILITY.SCORE.grade}"  {ABILITY.SCORE.disabled}  {ABILITY.SCORE.checked}>{ABILITY.SCORE.grade}<br>
+						<!-- END SCORE -->
+						
 					</td>
 				</tr>					
 			</table>
-			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top:5px;padding:5px">
-				<tr>
-					<td width="90%">	
-						<h3>第二級</h3>
-						職能項目四的第一級的行為描述
-						<br>							
-					</td>
-					<td>
-						<input type="radio" id="a" name="a"  disabled>1.2<br>
-						<input type="radio" id="a" name="a"  disabled>2.4<br>
-						<input type="radio" id="a" name="a"  disabled>1.6<br>
-						<input type="radio" id="a" name="a"  disabled>1.8<br>
-						<input type="radio" id="a" name="a"  disabled>2.0<br>
-					</td>
-				</tr>					
-			</table>	
-
-			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top:5px;padding:5px;background: #F1FF55;">
-				<tr>
-					<td width="90%">	
-						<h3>第三級</h3>
-						職能項目四的第一級的行為描述
-						<br>							
-					</td>
-					<td>
-						<input type="radio" id="a" name="a">2.2<br>
-						<input type="radio" id="a" name="a">2.4<br>
-						<input type="radio" id="a" name="a">2.6<br>
-						<input type="radio" id="a" name="a">2.8<br>
-						<input type="radio" id="a" name="a">3.0<br>
-					</td>
-				</tr>					
-			</table>	
-
-			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top:5px;padding:5px">
-				<tr>
-					<td width="90%">	
-						<h3>第四級</h3>
-						職能項目四的第一級的行為描述
-						<br>							
-					</td>
-					<td>
-						<input type="radio" id="a" name="a"  disabled>3.2<br>
-						<input type="radio" id="a" name="a"  disabled>3.4<br>
-						<input type="radio" id="a" name="a"  disabled>3.6<br>
-						<input type="radio" id="a" name="a"  disabled>3.8<br>
-						<input type="radio" id="a" name="a"  disabled>4.0<br>
-					</td>
-				</tr>					
-			</table>									
+			<!-- END ABILITY -->
+			
+											
 		</div>
 		<div class="uc2" style="width:94%;margin-left: 20px;">
-			<div   style="float:left;">
-				<input class="labButton"  name="bt_cancel"  id="bt_cancel" type="button"  value="上一題" onClick='exam_pre();'/>
-				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />
-			</div>
 			<div  style="float:right;">
-				<input class="labButton" name="bt_list" id="bt_list" type="button"  value="列表"  onClick='exam_list();' />
-				<input class="labButton hide" name="bt_quiz" id="bt_quiz" type="button"  value="題目"  onClick='exam_quiz();' />
-				
-				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="保存"  onClick='exam_save();' />
-				<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="下一題" onClick='exam_next();' align='right'  />
+				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />				
 			</div>
 		</div>
 	</div>	
@@ -159,13 +141,35 @@
 	<div id="dis_suggest" class="labDiv"   >
 		<table class="tableStyle1" ><tr><td>開放建議</td></tr></table>		
 	</div>	
-	
-	
-
-	
-
-
-	
+	</form>
 </div>	
 </body>
+
+<script>
+function exam_finish()
+{
+	var evalutor_score=$('input[name=evalutor_score]:checked').val(); 
+	var class_evaluation_evaluator_id=$('#class_evaluation_evaluator_id').val();
+	var o = {
+			data: {evalutor_score:evalutor_score,class_evaluation_evaluator_id:class_evaluation_evaluator_id},
+			url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_evalutor_grade.php?f=1',
+			onSuccess:function(data)
+			{								
+					if(data.errmsg)
+					{
+						$().message(data.errmsg);
+					}
+					else
+					{									
+						$("#tabPanel").refreshitem();	
+						$().message("交卷結束");		
+					}										
+			}					
+	}				
+	var msg=mypost(o);		
+	
+}
+
+</script>
+
 </html>
