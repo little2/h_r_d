@@ -11,18 +11,23 @@
 <form method="post" id="formPost" action="">			
 
 	<div class="labMenu">
-		<div class="lable "  dis="dis_report_info" style="background-color: yellow;">{$lang.Information}</div>
-		<div class="lable "  dis="dis_setting" >參數設定</div>
-		<div class="lable "  dis="dis_company" >公司別報表</div>
-		<div class="lable "  dis="dis_department" >部門別報表</div>
-		<div class="lable "  dis="dis_person" >個人報表</div>
-		<div class="lable "  dis="dis_reportee" >評鑑關係</div>
-		<div class="lable "  dis="dis_export" >產生報表</div>		
+		<div class="lable {display_report_info}"  dis="dis_report_info" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_setting}"  dis="dis_setting" >參數設定</div>
+		<div class="lable {display_company}"  dis="dis_company" >公司別報表</div>
+		<div class="lable {display_group}"  dis="dis_department" >部門別報表</div>
+		<div class="lable {display_person}"  dis="dis_person" >個人報表</div>
+		<div class="lable {display_reportee}"  dis="dis_reportee" >評鑑關係</div>
+		<div class="lable {display_export}"  dis="dis_export" >產生報表</div>		
+		<div class="lable {display_export}"  dis="dis_report_personal_list"  >個人報表列表</div>		
+		<div class="lable {display_export}"  dis="dis_report_list"  >團體報表列表</div>			
 	</div>
+	
+
 	
 <!-- 個人報表 -->
 	<div id="dis_person" class="labDiv"   >
 		<div class="uc1">	
+				<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
 				<table class="tableStyle1"   >
 					<tr>
 						<td class="label" >範圍設定：</td>
@@ -44,11 +49,10 @@
 					</tr>				
 					<tr>
 						<td class="left"  colspan="2">
-							<input type="checkbox" name="code1" >全選<p>
-							<input type="checkbox" name="code2" >個人各職能鑑定紀錄表<P>
-							<input type="checkbox" name="code3" >個人各職能雷達圖<p>
-							<input type="checkbox" name="code4" >個人各職能勝任率分析<P>
-							<input type="checkbox" name="code5" >職能缺口強化訓練計劃<p>
+							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選<p>
+							<!-- BEGIN PERSON_REPORT -->							
+							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
+							<!-- END PERSON_REPORT -->						
 						</td>
 							
 					</tr>		
@@ -62,6 +66,10 @@
 		</div>
 	</div>		
 	
+		<!-- 個人報表列表 -->
+	<div id="dis_report_personal_list" class="labDiv"  >	
+		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-personal_list}</td></tr></table>		
+	</div>	
 	
 <!--職等職稱別報表 -->
 	<div id="dis_department" class="labDiv"   >
@@ -286,12 +294,16 @@
 					</tr>				
 					<tr>
 						<td class="right">報表編號：</td>
-						<td><input type="text" name="code" class="contxt" value="" /></td>
+						<td>
+							<input type="text" name="report_config_code" class="contxt" value="" />
+							<input type="hidden" name="method"  value="C" />
+							
+						</td>
 					
 					</tr>				
 					<tr>
 						<td class="right">報表簡要說明：</td>
-						<td><textarea name="entity.note"  cols="60" rows="5"></textarea></td>
+						<td><textarea name="report_config_desc"  cols="60" rows="5"></textarea></td>
 				
 					</tr>				
 		
@@ -308,13 +320,7 @@
 	</div>
 	
 	
-	<div id="dis_mail_tpl" class="labDiv"   >	
-	<table class="tableStyle1" ><tr><td>{container_mail_tpl}</td></tr></table>		
-	</div>
-			
-	<div id="dis_reportee" class="labDiv"   >
-	<table class="tableStyle1" ><tr><td>{container_basisevalutiontable_reportee}</td></tr></table>		
-	</div>
+
 	
 	
 </form>
@@ -323,22 +329,38 @@
 
 <script type="text/javascript">
 	$(function() {				
-		$('#dis_competency_info').dashpanel({
+		$('#dis_report_info').dashpanel({
 			dialog_title:"{DialogTitle}",
-			save:function(e){			
-				var o = {
-						url:'/hrd/function/saveOrUpdate/save_competency_info.php',
-						onSuccess:function(data){	
-								var dialogID=$(e.target).parentsUntil('div.ui-dialog').last().attr('id');
-								closeDialog(dialogID);
-								$("#tabPanel").refreshitem();								
-							}					
-				}				
-				var msg=mypost(o);				
-			}
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
+		});			
+		
+		$('#dis_person').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_report_personal.php'
 		});		
+		
+		$("#clickAllReport").click(function() {
+			 
+			   if($("#clickAllReport").prop("checked"))
+			   {
+			     $("input[name='report_title_id[]']").each(function() {
+			         $(this).prop("checked", true);
+			     });
+			   }
+			   else
+			   {
+			     $("input[name='report_title_id[]']").each(function() {
+			         $(this).prop("checked", false);
+			     });           
+			   }
+			});
+		
 		init_tab('container_{elementID}');
 	}); 
+	
+	
 </script>
 
 

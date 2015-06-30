@@ -11,19 +11,19 @@
 <form method="post" id="formPost" action="">			
 	<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
 	<div class="labMenu">
-		<div class="lable {display_report_info}"  dis="dis_report_info"   >{$lang.Information}</div>
+		<div class="lable {display_report_info}"  dis="dis_report_info"   style="background-color: yellow;">{$lang.Information}</div>
 		<div class="lable {display_mail_tpl} hide"  dis="dis_mail_tpl"  >通知訊息</div>	
 		<div class="lable {display_setting}"  dis="dis_setting"     >參數設定</div>
 		<div class="lable {display_group}"  dis="dis_group"     >團體報表設定</div>
 		<div class="lable {display_person}"  dis="dis_person"    >個人報表設定</div>
 		<div class="lable {display_reportee} hide"  dis="dis_reportee"    >評鑑關係</div>
 		<div class="lable {display_rexport}"  dis="dis_export"     >產生報表</div>		
-		<div class="lable {display_rexport}"  dis="dis_report_personal_list"  style="background-color: yellow;">個人報表列表</div>		
+		<div class="lable {display_rexport}"  dis="dis_report_personal_list"  >個人報表列表</div>		
 		<div class="lable {display_rexport}"  dis="dis_report_list"  >團體報表列表</div>		
 	</div>
 
 	<!-- 報表列表 -->
-	<div id="dis_report_personal_list" class="labDiv"  style="display: block;">	
+	<div id="dis_report_personal_list" class="labDiv"  >	
 		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-personal_list}</td></tr></table>		
 	</div>
 
@@ -207,7 +207,7 @@
 	
 	
 	<!-- 頁面(開始) -->
-	<div id="dis_report_info" class="labDiv" >
+	<div id="dis_report_info" class="labDiv"  style="display: block;">
 		<div class="uc1">			
 
 				<table class="tableStyle1"  >
