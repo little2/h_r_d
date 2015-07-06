@@ -1,0 +1,85 @@
+
+
+<!-- 說明 -->
+<div class="content">
+
+
+<p>部門別各項職能平均級數分析表</p>
+</div>
+
+
+<div style="clear:both"></div>
+<div  class="report">
+	<div >
+	
+		<table>
+			<tr>
+				<td colspan="2" rowspan="3" >職能類別/細項 \ 職稱/姓名</td>
+				<!-- BEGIN USER -->
+				<td colspan="3">{USER.job_title}</td>
+				<!-- END USER -->
+				<td  rowspan="3" >單項職能平均級數</td>
+			</tr>
+			
+			<tr>			
+				<!-- BEGIN USER -->
+				<td colspan="3">{USER.fullName}</td>
+				<!-- END USER -->			
+
+
+			</tr>
+			
+			<tr>			
+				<!-- BEGIN USER -->
+				<td>標準級數</td>
+				<td>現況級數</td>
+				<td>職能落差</td>
+				<!-- END USER -->	
+				
+				
+			</tr>
+			
+			<!-- BEGIN COMPETENCY -->
+			<tr>				
+				<!-- BEGIN COMPETENCY_TYPE -->
+				<td rowspan="{COMPETENCY.COMPETENCY_TYPE.rowspan}">{COMPETENCY.COMPETENCY_TYPE.competency_type}</td>
+				<!-- END COMPETENCY_TYPE -->			
+			
+				
+				<td>{COMPETENCY.competency_title}</td>					
+				<!-- BEGIN USER_COMPETENCY -->
+				<td>{COMPETENCY.USER_COMPETENCY.competency_level}</td>
+				<td>{COMPETENCY.USER_COMPETENCY.competency_score}</td>
+				<td>{COMPETENCY.USER_COMPETENCY.gap}</td>
+				<!-- END USER_COMPETENCY -->	
+				<td>{COMPETENCY.avg}</td>
+			</tr>		
+			
+			<!-- BEGIN COMPETENCY_TYPE_FOOTER -->
+			<tr>
+				<td colspan="2">總能落差總和</td>
+				<td colspan="100">{COMPETENCY.COMPETENCY_TYPE_FOOTER.all_total_gap}</td>
+			</tr>
+			<!-- END COMPETENCY_TYPE_FOOTER -->
+			
+			<!-- END COMPETENCY -->
+			
+		</table>		
+	</div>
+	
+
+
+</div>
+<!-- BEGIN CHART -->
+<div style="clear:both"></div>
+<div>{CHART.title}</div>
+<img src="{CHART.bar_chart_url}" />
+<!-- END CHART -->
+
+
+</body>
+
+
+
+
+</html>

@@ -19,7 +19,8 @@
 		<div class="lable {display_reportee}"  dis="dis_reportee" >評鑑關係</div>
 		<div class="lable {display_export}"  dis="dis_export" >產生報表</div>		
 		<div class="lable {display_export}"  dis="dis_report_personal_list"  >個人報表列表</div>		
-		<div class="lable {display_export}"  dis="dis_report_list"  >團體報表列表</div>			
+		<div class="lable {display_export}"  dis="dis_report_group_list"  >團體報表列表</div>			
+		<div class="lable {display_export}"  dis="dis_report_company_list"  >公司報表列表</div>			
 	</div>
 	
 
@@ -71,6 +72,8 @@
 		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-personal_list}</td></tr></table>		
 	</div>	
 	
+	
+	
 <!--職等職稱別報表 -->
 	<div id="dis_department" class="labDiv"   >
 		<div class="uc1">	
@@ -90,16 +93,16 @@
 						<td class="label" >報表選擇：</td>
 						<td >								
 						</td>					
-					</tr>				
-					<tr>
-						<td class="left"  colspan="2"> 	
-							<input type="checkbox" name="code1" >全選<p>
-							<input type="checkbox" name="code2" >全公司各部門各職能落差分析表<p>
-							<input type="checkbox" name="code2" >全公司各部門各職能勝任率分析表<p>
-							<input type="checkbox" name="code2" >全公司各部門各職能平均級數分析表（專業除外）<p>
+					</tr>			
+					<tr>					
+						<td class="left"  colspan="2">
+							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選<p>
+							<!-- BEGIN GROUP_REPORT -->							
+							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{GROUP_REPORT.report_title_id}" >{GROUP_REPORT.report_title}</div>
+							<!-- END GROUP_REPORT -->						
+						</td>					
+					</tr>
 
-						</td>							
-					</tr>		
 				</table>
 		</div>
 		<div class="uc2">
@@ -108,48 +111,6 @@
 		</div>
 	</div>		
 	
-	
-	<!-- 部門別報表 -->
-	<div id="dis_department" class="labDiv"   >
-		<div class="uc1">	
-				<table class="tableStyle1"   >
-					<tr>
-						<td class="label" >範圍設定：</td>
-						<td >								
-						</td>					
-					</tr>				
-					<tr>
-						<td class="left"  colspan="2"> 	
-							<input type="radio" name="code1" >所有部門   <input type="radio" name="code1" >指定部門<input type="button" value="挑選"><p>
-							<input type="radio" name="code2" >所有職稱 <input type="radio" name="code2" >特定職等職稱組合<input type="button" value="設定"><p>
-						</td>
-							
-					</tr>							
-					<tr>
-						<td class="label" >報表選擇：</td>
-						<td >								
-						</td>					
-					</tr>				
-					<tr>
-						<td class="left"  colspan="2"> 	
-							<input type="checkbox" name="code1" >全選<p>
-							<input type="checkbox" name="code2" >部門人員各職能鑑定紀錄表<p>
-							<input type="checkbox" name="code2" >部門人員各項職能落差分析表<p>
-							<input type="checkbox" name="code2" >部門人員各項職能平均級數<p>
-							<input type="checkbox" name="code2" >部門人員各項職能勝任率分析表與部門平均勝任率分析表<p>
-							<input type="checkbox" name="code2" >各部門各職能落差分析表<p>
-							<input type="checkbox" name="code2" >各部門各職能平均級數分析表<p>
-
-						</td>							
-					</tr>		
-				</table>
-		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
-		</div>
-	</div>	
-
 
 <!-- 公司別報表 -->
 	<div id="dis_company" class="labDiv"   >
@@ -161,14 +122,17 @@
 						</td>					
 					</tr>				
 					<tr>
-						<td class="left"  colspan="2"> 	
-							<input type="checkbox" name="code1" >全選<p>
-							<input type="checkbox" name="code2" >全公司各部門各職能落差分析表<p>
-							<input type="checkbox" name="code2" >全公司各部門各職能勝任率分析表<p>
-							<input type="checkbox" name="code2" >全公司各部門各職能平均級數分析表（專業除外）<p>
-							<input type="checkbox" name="code2" >全公司各部門各職能落差分析表（專業除外）<p>
-							<input type="checkbox" name="code2" >全公司各部門各單項職能平均級數分析表（專業除外）<p>
-						</td>							
+					
+						
+						<td class="left"  colspan="2">
+							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選<p>
+							<!-- BEGIN COMANY_REPORT -->							
+							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{COMANY_REPORT.report_title_id}" >{COMANY_REPORT.report_title}</div>
+							<!-- END COMANY_REPORT -->						
+					  </td>
+						
+							
+								
 					</tr>							
 											
 				</table>
@@ -179,6 +143,10 @@
 		</div>
 	</div>	
 	
+		<!-- 公司報表列表 -->
+	<div id="dis_report_company_list" class="labDiv" >	
+		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-company_list}</td></tr></table>		
+	</div>		
 
 	<!-- 團體報表 -->
 	<div id="dis_group" class="labDiv"   >
@@ -196,9 +164,7 @@
 							<input type="checkbox" name="code3"  >部門平均成績與總體平均成績比較(個人 vs 全體)	<input type="button" value="挑選部門"><p>
 							<input type="checkbox" name="code"  >部門與部門間的平均數比較(個人 vs 全體)	<input type="button" value="挑選部門"><p>
 						</td>
-							
-					</tr>			
-					
+					</tr>	
 					<tr>
 						<td class="label" >團體報表種類：</td>
 						<td >								
@@ -217,11 +183,8 @@
 							<input type="checkbox" name="code6" >各職能360度明細<p>
 							<input type="checkbox" name="code6" >個人落點區間分布圖
 							<input type="checkbox" name="code6" >未完成/部分完成名單<p>							
-						</td>
-							
-					</tr>		
-						
-											
+						</td>							
+					</tr>													
 				</table>
 		</div>
 		<div class="uc2">
@@ -229,6 +192,11 @@
 			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
 		</div>
 	</div>	
+
+	<!-- 團體報表列表 -->
+	<div id="dis_report_group_list" class="labDiv"  >	
+		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-group_list}</td></tr></table>		
+	</div>		
 
 
 	<div id="dis_export" class="labDiv"   >
@@ -340,25 +308,52 @@
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_report_personal.php'
 		});		
+
+		$('#dis_company').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_report_class_company.php'
+		});		
 		
-		$("#clickAllReport").click(function() {
-			 
-			   if($("#clickAllReport").prop("checked"))
-			   {
-			     $("input[name='report_title_id[]']").each(function() {
-			         $(this).prop("checked", true);
-			     });
-			   }
-			   else
-			   {
-			     $("input[name='report_title_id[]']").each(function() {
-			         $(this).prop("checked", false);
-			     });           
-			   }
+		$('#dis_department').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_report_class_group.php'
+		});		
+		
+		
+		function bind_click(obj,domain)
+		{
+			
+			$(obj,domain).click(function(){
+				if($(obj,domain).prop("checked"))
+				   {
+				     $("input[name='report_title_id[]']",domain).each(function() {
+				         $(this).prop("checked", true);
+				     });
+				   }
+				   else
+				   {
+				     $("input[name='report_title_id[]']",domain).each(function() {
+				         $(this).prop("checked", false);
+				     });           
+				   }
 			});
+			
+		}
+		
+		bind_click("#clickAllReport",'#dis_company');
+		bind_click("#clickAllReport",'#dis_person');
+		bind_click("#clickAllReport",'#dis_department');
+	
 		
 		init_tab('container_{elementID}');
+		
+		
+		
 	}); 
+	
+
 	
 	
 </script>

@@ -155,4 +155,75 @@
 		});
         
     }		
+	
+	
+ // the event handler on expanding parent row receives two parameters
+    // the ID of the grid tow  and the primary key of the row
+    function showCompanyChildGrid(parentRowID, parentRowKey) {	
+        var childGridID = parentRowID + "_table";
+        var childGridPagerID = parentRowID + "_pager";
+        var childGridURL = "/hrd/report-company-sub/list/pageList.html";
+        // add a table and pager HTML elements to the parent grid row - we will render the child grid here
+        $('#' + parentRowID).append('<table id=' + childGridID + '></table><div id=' + childGridPagerID + ' class=scroll></div>');
+        /////////////////
+        		
+		//function(id, options, menup)
+		jzsoft.grid(childGridID, {
+			url : childGridURL,
+			postData : {				
+				'user_id' :parentRowKey,
+				'report_config_id':$('#report_config_id').val()
+			},
+			rowNum:6,
+			colModel: [
+			                       { label: 'ID', name: 'key', key: true, width: 75 },  
+			                       { label: '{$lang.ReportTitle}', name: 'report_title', width: 610 },
+			                       { label: '創建日期', name: 'create_time', width: 200 }             
+			                   ],
+			autowidth : true,
+			footerrow: {footerrow},	
+		});      
+        
+		$("#" + childGridID).jqGrid("setGridParam", {
+			ondblClickRow : function(rowid, iRow, iCol, e) {				
+				setting={body:'/hrd/view/report/edit.html?entity_key='+rowid+'&type=C'};
+				jzsoft.grid.openDialog(setting)
+			}
+		});
+        
+    }	
+ 
+    function showGroupChildGrid(parentRowID, parentRowKey) {	
+        var childGridID = parentRowID + "_table";
+        var childGridPagerID = parentRowID + "_pager";
+        var childGridURL = "/hrd/report-group-sub/list/pageList.html";
+        // add a table and pager HTML elements to the parent grid row - we will render the child grid here
+        $('#' + parentRowID).append('<table id=' + childGridID + '></table><div id=' + childGridPagerID + ' class=scroll></div>');
+        /////////////////
+        		
+		//function(id, options, menup)
+		jzsoft.grid(childGridID, {
+			url : childGridURL,
+			postData : {				
+				'group_id' :parentRowKey,
+				'report_config_id':$('#report_config_id').val()
+			},
+			rowNum:10,
+			colModel: [
+			                       { label: 'ID', name: 'key', key: true, width: 75 },  
+			                       { label: '{$lang.ReportTitle}', name: 'report_title', width: 610 },
+			                       { label: '創建日期', name: 'create_time', width: 200 }             
+			                   ],
+			autowidth : true,
+			footerrow: {footerrow},	
+		});      
+        
+		$("#" + childGridID).jqGrid("setGridParam", {
+			ondblClickRow : function(rowid, iRow, iCol, e) {				
+				setting={body:'/hrd/view/report/edit.html?entity_key='+rowid+'&type=G'};
+				jzsoft.grid.openDialog(setting)
+			}
+		});
+        
+    }	 
 </script>
