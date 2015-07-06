@@ -2,9 +2,10 @@
     $.widget("little2.dashpanel", {
     	container:null,
     	dialogID:null,
-        version: "1.0.0",
+        version: "1.0.0",      
         options: {
         	check_before_save:function(){return true},
+        	
         	save:function(event){        		
         		if(!this.check_before_save())
         		{        			
@@ -15,6 +16,7 @@
 						data: $("#formPost",formContainer).serialize(),
 						url:this.save_url,
 						element_id:this.element_id,
+						close_after_save:this.close_after_save,
 						onSuccess:function(data)
 							{		
 								var container =$('#container_'+this.element_id);
@@ -33,8 +35,13 @@
 									{
 										$("#tabPanel").refreshitem();	
 									}
-									var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');		
-									closeDialog(dialogID);						
+									var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');
+									console.log(this.close_after_save);
+									if(this.close_after_save)
+									{
+										closeDialog(dialogID);		
+									}
+													
 								}										
 							}					
 				}				
@@ -64,6 +71,7 @@
         				}).trigger("reloadGrid");	
         	},
         	save_url:'undefined',
+        	close_after_save:true,
         	pick_url:'undefined',
         	pick_list_id:'',
         	element_id:'',
