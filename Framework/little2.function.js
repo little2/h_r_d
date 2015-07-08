@@ -112,3 +112,25 @@ function call_user_func(cb) {
 	    null, parameters) : func.apply(cb[0], parameters);
 	}
 
+
+
+
+function bind_click(obj,domain)
+{
+	
+	$(obj,domain).click(function(){
+		if($(obj,domain).prop("checked"))
+		   {
+		     $("input[name='report_title_id[]']",domain).each(function() {
+		         $(this).prop("checked", true);
+		     });
+		   }
+		   else
+		   {
+		     $("input[name='report_title_id[]']",domain).each(function() {
+		         $(this).prop("checked", false);
+		     });           
+		   }
+	});
+	
+}

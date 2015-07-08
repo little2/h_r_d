@@ -52,7 +52,8 @@
 					</tr>				
 					<tr>
 						<td class="left"  colspan="2">
-							<input type="checkbox" name="code1" >全選（全體回饋明細除外 ）<p>
+							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
+
 							<!-- BEGIN PERSON_REPORT -->							
 							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
 							<!-- END PERSON_REPORT -->													
@@ -274,7 +275,7 @@
 			save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
 		});			
 		
-		
+		bind_click("#clickAllReport",'#dis_person');
 		
 		//
 		
