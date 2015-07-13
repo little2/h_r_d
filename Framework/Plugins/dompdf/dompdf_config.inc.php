@@ -116,6 +116,7 @@ def("DOMPDF_TEMP_DIR", sys_get_temp_dir());
  */
 def("DOMPDF_CHROOT", realpath(DOMPDF_DIR));
 
+
 /**
  * Whether to use Unicode fonts or not.
  *
@@ -130,7 +131,7 @@ def("DOMPDF_UNICODE_ENABLED", true);
 /**
  * Whether to enable font subsetting or not.
  */
-def("DOMPDF_ENABLE_FONTSUBSETTING", TRUE);
+def("DOMPDF_ENABLE_FONTSUBSETTING", true);
 
 /**
  * The PDF rendering backend to use

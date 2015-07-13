@@ -61,8 +61,7 @@
         		}
         		this.save_url=url;
         		return this.save(event);
-        	},
-        	
+        	},        	
         	search:function(event){
         		var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        	        	
         		$("#" + this.pick_list_id).jqGrid('setGridParam', {				
@@ -82,8 +81,7 @@
         /*当widget被创建的时候，这两个方法都会被创建，而当页面再次调用widget方法的时候，则只执行_init方法*/
         _create: function(){
         	this.container = this.element; // 加入這行，並將以下表示 div#mytab 的 this 改為 container
-        	var that = this;
-        	
+        	var that = this;       	
         	
         	if ($("#bt_save",this.container).length <= 0  && this.options.save_url !='undefined') 
         	{        		

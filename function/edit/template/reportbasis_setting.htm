@@ -19,13 +19,18 @@
 		<div class="lable {display_reportee} hide"  dis="dis_reportee"    >評鑑關係</div>
 		<div class="lable {display_rexport}"  dis="dis_export"     >產生報表</div>		
 		<div class="lable {display_rexport}"  dis="dis_report_personal_list"  >個人報表列表</div>		
-		<div class="lable {display_rexport}"  dis="dis_report_list"  >團體報表列表</div>		
+		<div class="lable {display_rexport}"  dis="dis_report_group_list"  >團體報表列表</div>		
 	</div>
 
 	<!-- 報表列表 -->
 	<div id="dis_report_personal_list" class="labDiv"  >	
 		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-personal_list}</td></tr></table>		
 	</div>
+	
+	<!-- 團體報表列表 -->
+	<div id="dis_report_group_list" class="labDiv"  >	
+		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-group_list}</td></tr></table>		
+	</div>		
 
 	<!-- 個人報表 -->
 	<div id="dis_person" class="labDiv"   >
@@ -53,7 +58,6 @@
 					<tr>
 						<td class="left"  colspan="2">
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
-
 							<!-- BEGIN PERSON_REPORT -->							
 							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
 							<!-- END PERSON_REPORT -->													
@@ -74,7 +78,7 @@
 						<td class="label" >範圍設定：</td>
 						<td >								
 						</td>					
-					</tr>				
+					</tr>								
 					<tr>
 						<td class="left"  colspan="2"> 	
 							<input type="checkbox" name="code1" >該評鑑表的所有受評人(個人 vs 全體)<p>
@@ -87,22 +91,16 @@
 						<td class="label" >團體報表種類：</td>
 						<td >								
 						</td>					
-					</tr>				
+					</tr>						
 					<tr>
-						<td class="left"  colspan="2"> 	
-							<input type="checkbox" name="code1" >全選<p>
-							<input type="checkbox" name="code2" >團體總覽
-							<input type="checkbox" name="code3" >團體雷達圖<p>
-							<input type="checkbox" name="code4" >團體比較分析
-							<input type="checkbox" name="code5" >開放式建議<p>
-							<input type="checkbox" name="code6" >團體弱項分析
-							<input type="checkbox" name="code6" >團體明細資料<p>
-							<input type="checkbox" name="code6" >個人認知落差分析
-							<input type="checkbox" name="code6" >各職能360度明細<p>
-							<input type="checkbox" name="code6" >個人落點區間分布圖
-							<input type="checkbox" name="code6" >未完成/部分完成名單<p>							
-						</td>
-					</tr>													
+						<td class="left"  colspan="2">
+							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
+
+							<!-- BEGIN GROUP_REPORT -->							
+							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{GROUP_REPORT.report_title_id}" >{GROUP_REPORT.report_title}</div>
+							<!-- END GROUP_REPORT -->													
+						</td>							
+					</tr>								
 				</table>
 		</div>
 		<div class="uc2">
@@ -128,7 +126,7 @@
 				</table>
 		</div>
 		<div class="uc2">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="產出"   />	
+			<input class="labButton" name="bt_export" id="bt_export" type="button"  onClick="export_report()" value="產出"   />	
 		</div>
 	</div>		
 	
@@ -255,7 +253,48 @@
 
 
 <script type="text/javascript">
-	$(function() {				
+
+
+function export_report()
+{
+	var msg = {
+		id : 'g3_msg',
+		width : 500,
+		height : 400,
+		modal : true,
+		type : 'url',
+		show : "",
+		hide : "",
+		title : "產生報表",
+		body : "/hrd/function/export/export_report.php" ,
+		buttons : {
+			"關閉" : function() {
+				closeDialog(this.id);
+			}
+		}
+	};
+	openDialog(msg);
+	
+/*
+	openDialog({
+		id : 'g3_dialog',
+		width : 500,
+		height : 400,
+		modal : true,
+		type : 'url',
+		show : "",
+		hide : "",
+		title : "產生報表",
+		body : "/hrd/function/export/export_report.php" ,
+		init : null,
+		buttons : null
+	});
+*/	
+}
+
+	$(function() {		
+		
+		
 		$('#dis_report_info').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
@@ -275,7 +314,16 @@
 			save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
 		});			
 		
+		$('#dis_group').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_report_basis_group.php'			
+		});			
+		
+		
+		
 		bind_click("#clickAllReport",'#dis_person');
+		bind_click("#clickAllReport",'#dis_group');
 		
 		//
 		

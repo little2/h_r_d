@@ -83,9 +83,17 @@ class Text_Frame_Reflower extends Frame_Reflower {
       return false;
 
     // split the text into words
+    /*
     $words = preg_split('/([\s-]+)/u', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
     $wc = count($words);
+  */
 
+ 
+    //解决中文换行
+    preg_match_all('/./u', $text, $array);
+    $words = $array[0];
+    $wc = count($words);
+   
     // Determine the split point
     $width = 0;
     $str = "";

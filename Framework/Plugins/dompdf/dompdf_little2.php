@@ -1,8 +1,11 @@
 <?php
 set_time_limit(9900);
-
-
-
+/*
+http://localhost/dompdf/dompdf.php?
+base_path=www%2Ftest%2F
+&options[Attachment]=0
+&input_file=encoding_utf-8.html#toolbar=0&view=FitH&statusbar=0&messages=0&navpanes=0
+*/
 /**
  * Command line utility to use dompdf.
  * Can also be used with HTTP GET parameters
@@ -19,10 +22,22 @@ global $_dompdf_show_warnings, $_dompdf_debug, $_DOMPDF_DEBUG_TYPES;
 $options = array();
 global $id,$type;
 
-
-$type='report';
-$input_file='95.htm';        
-
+if($id=$_POST['id'])
+{
+    $type=$_POST['type'];
+    $input_file=$id.'.htm';        
+}
+else if($inquiry_number=$_POST['inquiry_number'])
+{
+    $type='inquiry';
+    $input_file=$inquiry_number.'.htm';
+}
+else 
+{
+    $type='inquiry';
+    $activity_id=$_POST['activity_id']?$_POST['activity_id']:$_GET['activity_id'];
+    $input_file=$activity_id.'.htm';
+}
 
 
 if (isset($input_file))
@@ -64,7 +79,8 @@ if(file_exists($outfile))
     reg(__LINE__,$msg=false);
     $data = $_POST;
     $data['errmsg']="";
-    echo 'Exists';
+    header("Content-type: application/json", true);
+    echo json_encode($data,JSON_FORCE_OBJECT );
     exit(0);
     die;
 }
@@ -146,7 +162,19 @@ if ($save_file) {
     file_put_contents($outfile, $dompdf->output(array("compress" => 0)));
     
     // //若順利儲存,則轉到 company_view
-    echo 'Finish';
+    $data = $_POST;
+
+    $data['errmsg']="";
+    $data['refresh']=$refresh;
+    $data['activity_id']=$_POST['activity_id'];
+ 
+    $data['inquiry_number']=$_POST['inquiry_number'];
+    
+    reg(__LINE__,$msg=false);
+    
+    // JSON encode and send back to the server
+    header("Content-type: application/json", true);
+    echo json_encode($data,JSON_FORCE_OBJECT );
     
     
     exit(0);
