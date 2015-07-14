@@ -10,13 +10,15 @@
 <body>
 
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
-
+	<form method="post" id="formPost" action="">
+				
+	<DIV class="hide">
+		<input id="exist_data" name="exist_data" value="{exist_data}" />
+	</DIV>
+	
 	<div id="dis_mail_server"  >
-		<div style="width:97%;;">
-			<form method="post" id="formPost" action="">
-			<DIV class="hide">
-				<input id="exist_data" name="exist_data" value="{exist_data}" />
-			</DIV>
+		<div style="width:97%;;"  class="uc1">
+
 		<div style="border-bottom: 1px #cecece solid;margin-top: 15px;margin-left: 20px;">
 				<div style="font-size:16px;font-weight: bold; ">{$lang.Setting}</div>
 				
@@ -73,19 +75,20 @@
 			</tr>			
 			
 		</table>
-	</form>
+	
 	</div>
 
 		<div class="uc2" style="width:97%;">
 			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
 			<input type="button" class="labButton" id="validate" value="驗證"  onClick="verify_email()"/>
 			<input class="labButton hide" name="bt_cancel" id="bt_cancel" type="button"  value="取消"   />
+			<img id='icon_wait' class='hide' src='/hrd/templates/bhrsp/images/processing.gif' width="25px" >
 			
 			
 		</div>	
 	
 	</div>
-	
+	</form>
 </div>
 </body>
 
@@ -124,21 +127,24 @@
 	
 	function verify_email()
 	{
+		$('#validate').addClass('hide');	
+		$('#icon_wait').removeClass('hide');	
+		
 		var url='/hrd/function/query/query-verify_email.php'
 		var o = {
 				data: $("#formPost").serialize(),
 				url:url,
 				onSuccess:function(data){		
 					if(data.errmsg)
-					{
-						
+					{						
 						$('#container_{elementID}').message(data.errmsg);
 					}
 					else
 					{
 						$('#container_{elementID}').message("已寄送給"+$('#test_email_address').val());	
 					}
-						
+					$('#validate').removeClass('hide');	
+					$('#icon_wait').addClass('hide');	
 				}					
 		}				
 		var msg=mypost(o);		

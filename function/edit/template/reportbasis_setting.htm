@@ -73,19 +73,33 @@
 	<div id="dis_group" class="labDiv"   >
 		<div class="uc1">	
 				<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
-				<table class="tableStyle1"   >
+				<table class="tableStyle1"   >					
 					<tr>
-						<td class="label" >範圍設定：</td>
-						<td >								
+						<td class="label" >
+							範圍設定：
+						</td>
+						<td >		
+							子數<select id='comparison'  name='comparison'  onchange='type_change(this)'>
+								 <option></option>
+								 <!-- BEGIN DEP -->
+								 <option value='{DEP.group_id}'>{DEP.group_title}</option>	
+								 <!-- END DEP -->					
+							</select>		
+							vs	 母數<select id="population" name="population">
+								<option>全體</option>		
+								 <!-- BEGIN DEP -->
+								 <option value='{DEP.group_id}'>{DEP.group_title}</option>	
+								 <!-- END DEP -->										
+							</select>						
 						</td>					
-					</tr>								
+					</tr>		
+					
+					
+											
 					<tr>
 						<td class="left"  colspan="2"> 	
-							<input type="checkbox" name="code1" >該評鑑表的所有受評人(個人 vs 全體)<p>
-							<input type="checkbox" name="code2" >個人平均成績與部門平均成績比較(個人 vs 全體)	<input type="button" value="挑選部門"><p>
-							<input type="checkbox" name="code3"  >部門平均成績與總體平均成績比較(個人 vs 全體)	<input type="button" value="挑選部門"><p>
-							<input type="checkbox" name="code"  >部門與部門間的平均數比較(個人 vs 全體)	<input type="button" value="挑選部門"><p>
-						</td>
+							
+					</td>
 					</tr>	
 					<tr>
 						<td class="label" >團體報表種類：</td>
@@ -95,11 +109,37 @@
 					<tr>
 						<td class="left"  colspan="2">
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
-
+							
+							<div id="type_group">
 							<!-- BEGIN GROUP_REPORT -->							
-							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{GROUP_REPORT.report_title_id}" >{GROUP_REPORT.report_title}</div>
-							<!-- END GROUP_REPORT -->													
-						</td>							
+							<div style="margin-right:10px" ><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{GROUP_REPORT.report_title_id}" >{GROUP_REPORT.report_title}</div>
+							<!-- END GROUP_REPORT -->
+							</div>
+							
+							<div id="type_versus" class='hide' >
+							<!-- BEGIN VERSUS_REPORT -->							
+							<div style="margin-right:10px" ><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{VERSUS_REPORT.report_title_id}">{VERSUS_REPORT.report_title}</div>
+							<!-- END VERSUS_REPORT -->								
+							</div>													
+						</td>				
+						
+							<script>
+								function type_change(obj)
+								{		
+									console.log(obj.value);
+									if(obj.value=="")
+									{
+										$('#type_versus').addClass('hide');
+										$('#type_group').removeClass('hide');		
+									}
+									else
+									{
+										$('#type_versus').removeClass('hide');		
+										$('#type_group').addClass('hide');			
+									}											
+								}
+							</script>		
+									
 					</tr>								
 				</table>
 		</div>

@@ -17,7 +17,7 @@ jzsoft.grid = function(id, options, menup) {
 		colNames : [],
 		colModel : [],
 		rowNum : 10,
-		rowList : [ 10, 25, 50, 100 ],
+		rowList : [ 10, 25, 50, 100, 10000 ],
 		jsonReader : {
 			root : "page.list", // 數據行（預設為：rows）
 			page : "page.curPage", // 當前頁
@@ -1070,6 +1070,7 @@ jzsoft.grid.formFilter = function(p) {
 };
 
 
+
 jzsoft.grid.sendPost = function(id, url, msg) {
 	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');	
 	if (sels == "") {
@@ -1110,3 +1111,56 @@ jzsoft.grid.sendPost = function(id, url, msg) {
 		}
 	}	
 };
+
+
+jzsoft.grid.sendDialogPost = function(id, url, msg) {
+	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');	
+	if (sels == "") {
+		//jzsoft.grid.dele(id, url);
+	} else {
+		if(typeof(msg)=='undefined') msg="您是否確認？";
+
+		if (confirm(msg)) {
+			var len = sels.length;
+			var ids = "";
+			for ( var i = 0; i < len; i++) {
+				var rowdata = $("#" + id).jqGrid("getRowData", sels[i]);
+				if(ids.length>0)
+				{
+					ids +="&";
+				}				
+				ids += 'keys['+rowdata.key+']=' + rowdata.key;
+			}			
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : ids,
+				beforeSend : function() {
+					$("#" + id).message("正在請求...");
+					
+
+					var setting = new Object();
+					setting.width= 500;
+					setting.height = 400;
+					setting.id = 'g3_msg';
+					setting.body= "/hrd/function/export/send_email.php" ,
+					jzsoft.grid.openDialog(setting);
+					///////////////////////////////////////
+					
+				},
+				error : function() {
+					$("#" + id).message("請求失敗...");
+				},
+				success : function(data) {
+					if (data.msg) {
+						$("#" + id).message("操作失敗！");
+					} else {						
+						$("#" + id).trigger("reloadGrid");
+						$("#" + id).message("已成功!");						
+					}
+				}
+			});
+		}
+	}	
+};
+

@@ -3,17 +3,46 @@
 <title>edit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
-</head>
 
+</head>
+<style>
+.doughnut-legend {
+  list-style: none;
+  position: static;
+  top:108px;
+}
+
+.doughnut-legend li {
+  display: block;
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 4px;
+  border-radius: 5px;
+  padding: 2px 8px 2px 28px;
+  font-size: 14px;
+  cursor: default;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  -o-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+}
+.doughnut-legend li:hover {
+  background-color: #fafafa;
+}
+.doughnut-legend li span {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  border-radius: 5px;
+}
+</style>
 <body>
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
-<form method="post" id="formPost" >
-		<div class="hide">
-			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}">
-			<input type="text" id="competency_model_id" name="competency_model_id"  value="{competency_model_id}">
-			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">
-			
-		</div>
+
+
 
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
@@ -21,13 +50,56 @@
 		<div class="lable {display_label_content}"  dis="dis_basis_evalutiontable_content" >評鑑表內容</div>
 		<div class="lable {display_label_suggest}"  dis="dis_basis_evalutiontable_suggest" >開放建議</div>
 		<div class="lable {display_label_template}"  dis="dis_basis_evalutiontable_template" >通知訊息</div>
-		<div class="lable {display_label_summary}"  dis="dis_basis_evalutiontable_summary" >評鑑表總覽</div>		
-		<div class="lable {display_label_reportee}"  dis="dis_basis_evalutiontable_reportee" >受評人列表</div>		
+		<div class="lable {display_label_summary}"  dis="dis_basis_evalutiontable_summary"  >評鑑表總覽</div>		
+		<div class="lable {display_label_reportee}"  dis="dis_basis_evalutiontable_reportee" >受評人列表</div>			
+		<div class="lable {display_label_progress}"  dis="dis_basis_evalutiontable_progress" >進度管理</div>		
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
 	
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
-	<div id="dis_basis_evalutiontable_properties" class="labDiv" style="display: block;">		
+	
+	<!-- 進度 -->
+		<div id="dis_basis_evalutiontable_progress"  class="labDiv"  style="{display_add_evalutiontable_appraisee_style}">
+		<div>
+			<form method="post" id="myformPost"  name="myformPost">
+				<div class="hide">
+					<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
+					<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">				
+				</div>	
+				<table class="tableStyle1"  >
+					
+					<tr>
+						<td class="item">{$lang.EvaluationProgress}：</td>
+						<td>
+							<select id="evaluation_progress" name="evaluation_progress">
+								<option value='1'>不限制</option>
+								<option value='2'>未開始</option>
+								<option value='3'>未完成</option>
+								<option value='4'>已完成</option>
+							</select>
+							
+							<input class="labButton" type="button"  value="搜尋" onClick='pick_evaluator(this)'   />
+						</td>
+					</tr>
+
+				</table>
+				<table class="tableStyle1"  style="width:90%"><tr><td>{container_pick_evaluator}</td></tr></table>		
+			</form>
+		</div>
+
+
+	</div>
+	
+	<!-- 屬性 -->
+	<div id="dis_basis_evalutiontable_properties" class="labDiv" >		
+		<form method="post" id="formPost" >
+		<div class="hide">
+			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}">
+			<input type="text" id="competency_model_id" name="competency_model_id"  value="{competency_model_id}">
+			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">			
+		</div>
+		
+		
 		<div class="uc1" style="width:90%;margin-left: 20px; ">
 			<table class="tableStyle1" >
 					<tr>
@@ -57,37 +129,32 @@
 				</table>	
 		</div>
 		<div class="uc2"  style=“width:70%;”></div>
+		</form>
 	</div>
 	
 	<!-- 評鑑表總覽 -->
-	<div id="dis_basis_evalutiontable_summary" class="labDiv" >
-		<div class="uc1" style="width:90%;margin-left: 20px; ">								
-			<table class="tableStyle1" >
-				<tr>
-					<td class="label">邀請函：</td>
-					<td>
-						<select><option>邀請函1號模版</option></select>
-					</td>
-				</tr>
-				<tr>
-					<td class="label">催收函：</td>
-					<td>
-						<select><option>催收函5號模版</option></select>
-					</td>
-				</tr>
-				<tr>
-					<td class="label">感謝函：</td>
-					<td>
-						<select><option>感謝函1號模版</option></select>
-					</td>
-				</tr>					
-			</table>	
+	<div id="dis_basis_evalutiontable_summary" class="labDiv"  style="display: block;">
+		<form method="post" id="formPost" >
+		<div style="margin:50px;" >
+			<div id="canvas-holder" >
+				<canvas id="chart-area" width="400" height="400" style="float:left"> </canvas>
+				<div id="legendPlace" style="margin:30px;float:left" ></div>
+			</div>
 		</div>
-		<div class="uc2"  style=“width:70%;”></div>
+		
+			<div style="clear:both"></div>
+			</form>
 	</div>	
 	
-	<!-- dis_basis_evalutiontable_content  -->
+	<!-- 內容dis_basis_evalutiontable_content  -->
 		<div id="dis_basis_evalutiontable_content" class="labDiv" >
+		<form method="post" id="formPost" >
+		<div class="hide">
+			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}">
+			<input type="text" id="competency_model_id" name="competency_model_id"  value="{competency_model_id}">
+			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">			
+		</div>
+		
 		<div class="uc1" style="width:90%;margin-left: 20px; ">		
 									
 			<table class="tableStyle1" >
@@ -119,6 +186,7 @@
 							
 		</div>
 		<div class="uc2"  style=“width:70%;”></div>
+		</form>
 	</div>
 
 	
@@ -128,30 +196,51 @@
 	
 	<!-- 訊息通知模板 -->
 	<div id="dis_basis_evalutiontable_template" class="labDiv" >
+		<form method="post" id="formPost" >
 		<div class="uc1" style="width:90%;margin-left: 20px; ">		
 									
 			<table class="tableStyle1" >
 					<tr>
 						<td class="label">邀請函：</td>
-						<td>
-							<select><option>邀請函1號模版</option></select>
+						<td>							
+							<select id="TPL_INVITE" name="TPL_INVITE">
+								<option></option>
+								<!-- BEGIN TPL_INVITE -->
+								<option value="{TPL_INVITE.tpl_id}"  {TPL_INVITE.sel_INVITE}>{TPL_INVITE.tpl_title}</option>
+								<!-- END TPL_INVITE -->
+							</select>							
 						</td>
 					</tr>
 					<tr>
 						<td class="label">催收函：</td>
 						<td>
-							<select><option>催收函5號模版</option></select>
+						
+							<select id="TPL_PUSH"  name="TPL_PUSH">
+								<option></option>
+								<!-- BEGIN TPL_PUSH -->
+								<option value="{TPL_PUSH.tpl_id}" {TPL_PUSH.sel_PUSH}>{TPL_PUSH.tpl_title}</option>
+								<!-- END TPL_PUSH -->
+							</select>
+							
 						</td>
 					</tr>
 					<tr>
 						<td class="label">感謝函：</td>
 						<td>
-							<select><option>感謝函1號模版</option></select>
+						
+							<select id="TPL_THANKS" name="TPL_THANKS">
+								<option></option>
+								<!-- BEGIN TPL_THANKS -->
+								<option value="{TPL_THANKS.tpl_id}"  {TPL_THANKS.sel_THANKS}>{TPL_THANKS.tpl_title}</option>
+								<!-- END TPL_THANKS -->
+							</select>
+							
 						</td>
 					</tr>					
 				</table>	
 		</div>
 		<div class="uc2"  style=“width:70%;”></div>
+		</form>
 	</div>	
 
 	<div id="dis_basis_evalutiontable_reportee"   class="labDiv"   >
@@ -161,15 +250,14 @@
 	</form>
 </div>	
 
+<script src="../common/plugins/chart/Chart.js"></script>
+
 <script type="text/javascript">
-
-
-
+	
 	$(function() {			
 		$("input[name='due_date']").datepicker({
 			dateFormat : 'yy-mm-dd'
-		});
-		
+		});		
 		
 		//##### 需客制化修改 ##############################################
 		$('#dis_basis_evalutiontable_properties').dashpanel({	
@@ -181,12 +269,59 @@
 		$('#dis_basis_evalutiontable_content').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
 			save_url:'/hrd/function/saveOrUpdate/save_b_evaluation_table.php'			
+		});	
+		
+		$('#dis_basis_evalutiontable_template').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_tpl_setting.php'			
 		});	
 		
 		init_tab('container_{elementID}');		
 		
 		//##### 需客制化修改 ##############################################
+		
+		
+
+		var pieData = [
+						{
+							value: ({ValueProcess}+0),
+							color:"#FDB45C",
+							highlight: "#FFC870",
+							label: "{TitleProcess}"
+						},
+						{
+							value: ({ValueWait}+0),
+							color: "#4D5360",
+							highlight: "#616774",
+							label: "{TitleWait}"
+						},
+						{
+							value: ({ValueFinish}+0),
+							color: "#46BFBD",
+							highlight: "#5AD3D1",
+							label: "{TitleFinish}"
+						}		
+					];
+				var ctx = document.getElementById("chart-area").getContext("2d");
+				
+				
+				modulePie = new Chart(ctx).Doughnut(pieData,
+				{
+					segmentShowStroke : true, 
+					pointLabelFontSize : 12,
+					 animateScale: false,
+					 animation: true,	
+				});				
+				var canvas=document.getElementById("chart-area");
+			
+				$('#legendPlace').html(modulePie.generateLegend());
+				$('#dis_basis_evalutiontable_summary').css('display','none');
+				$('#dis_basis_evalutiontable_properties').css('display','block');
+				$('.doughnut-legend').append('<li><span style="background-color:#FF5A5E"></span>全部份數：{TotalCount}份</li>');
+	//		
 	}); 
 	
 	function show_status_message(status)
@@ -210,7 +345,23 @@
 		jzsoft.grid.openDialog(setting)
 	}	
 	
+	function pick_evaluator(obj){
+		var formContainer=$('#dis_basis_evalutiontable_progress');    
+	
+		var evaluation_progress=$('#evaluation_progress').val();
+
+		$("#pick_evaluator_list").jqGrid('setGridParam', {				
+					postData : {evaluation_progress:evaluation_progress},
+					page : 1
+				}).trigger("reloadGrid");	
+	}
 </script>
+
+<script>
+
+			
+			
+	</script>
 
 
 </body>

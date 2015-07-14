@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Jul 09, 2015, 04:36 PM
+-- 建立日期: Jul 14, 2015, 02:01 PM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `competency_dic_course` (
   `competency_dic_id` int(10) unsigned NOT NULL,
   `course_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`competency_dic_course_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -377,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `evaluation_scale_item` (
   `evaluation_scale_item_grade` int(11) NOT NULL,
   `evaluation_scale_item_self` varchar(1) CHARACTER SET latin1 NOT NULL DEFAULT 'T',
   PRIMARY KEY (`evaluation_scale_item_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -433,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `group_property` (
   `group_level` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=945 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=147 ;
 
 -- --------------------------------------------------------
 
@@ -477,7 +477,7 @@ CREATE TABLE IF NOT EXISTS `job_family` (
   `job_family_id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`job_family_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -489,7 +489,29 @@ CREATE TABLE IF NOT EXISTS `job_type` (
   `job_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `job_type_code` varchar(10) NOT NULL,
   PRIMARY KEY (`job_type_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表格式： `mail_poll`
+--
+
+CREATE TABLE IF NOT EXISTS `mail_poll` (
+  `mail_poll_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `mail_tpl_id` int(11) NOT NULL,
+  `receive_datetime` datetime NOT NULL,
+  `sent_datetime` datetime NOT NULL,
+  `attachment` text NOT NULL,
+  `mail_title` varchar(100) NOT NULL,
+  `mail_to` varchar(100) NOT NULL,
+  `mail_cc` varchar(100) NOT NULL,
+  `mail_bcc` varchar(100) NOT NULL,
+  `mail_content` text NOT NULL,
+  `mail_attachment` varchar(100) NOT NULL,
+  `mail_status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`mail_poll_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=113 ;
 
 -- --------------------------------------------------------
 
@@ -634,7 +656,7 @@ CREATE TABLE IF NOT EXISTS `report_config` (
   `report_config_code` varchar(30) NOT NULL,
   `report_update` datetime NOT NULL,
   PRIMARY KEY (`report_config_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -649,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `report_group` (
   `report_config_id` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`report_group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
@@ -664,7 +686,7 @@ CREATE TABLE IF NOT EXISTS `report_personal` (
   `report_config_id` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`report_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1665 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2075 ;
 
 -- --------------------------------------------------------
 
@@ -693,7 +715,7 @@ CREATE TABLE IF NOT EXISTS `smtp` (
   `smtp_password` varchar(30) NOT NULL,
   `smtp_server` varchar(30) NOT NULL,
   `smtp_ssl` varchar(1) NOT NULL,
-  `smtp_port` tinyint(4) NOT NULL,
+  `smtp_port` int(3) NOT NULL,
   UNIQUE KEY `smtp_server` (`smtp_server`),
   KEY `smtp_server_2` (`smtp_server`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -739,8 +761,9 @@ CREATE TABLE IF NOT EXISTS `tpl` (
   `tpl_title` varchar(100) NOT NULL,
   `tpl_sender` varchar(100) NOT NULL,
   `tpl_content` text NOT NULL,
+  `tpl_trigger` varchar(10) NOT NULL,
   PRIMARY KEY (`tpl_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 

@@ -108,7 +108,8 @@
 	
 	var quiz_row=new Array();
 	<!-- BEGIN BEHAVIOR -->
-	quiz_row[{BEHAVIOR.index}]={text:"{BEHAVIOR.term}"};
+	quiz_row[{BEHAVIOR.index}]={text:"{BEHAVIOR.term}",competency_text:"{BEHAVIOR.competency_text}"};
+	
 	<!-- END BEHAVIOR -->
 
 	$(function() {		
@@ -294,6 +295,7 @@ function load_quiz(quiz_no)
 	$('#quiz_no').html(quiz_no);
 	$('#quiz_text').html(quiz.text);
 	
+	$('#competency_text').html(quiz.competency_text);
 	/*
   	$('#answer_'+index).text(evaluation_scale_item_term).attr("data-item_id",evaluation_scale_item_id).text(evaluation_scale_item_term);	
 	$("input[name=evaluation_scale_item_id]").removeAttr("checked");
@@ -421,7 +423,12 @@ function load_quiz(quiz_no)
 			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
 				<tr>
 					<td>		
-						<div style="float:left;font-size:large" id="quiz_no" name="quiz_no"></div><div  style="float:left;vertical-align:bottom;">/{count}</div><div style="clear:both"></div>
+						<div style="float:left;font-size:large" id="quiz_no" name="quiz_no"></div>
+						<div  style="float:left;vertical-align:bottom;">/{count}</div>
+						<div  style="float:left;font-size:large;margin-left:30px" id="competency_text">
+							[職能]
+						</div>
+						<div style="clear:both"></div>
 						<h3 id="quiz_text" name="quiz_text"></h3>
 						<br>							
 					</td>
