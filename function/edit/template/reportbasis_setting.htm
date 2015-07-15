@@ -79,13 +79,15 @@
 							範圍設定：
 						</td>
 						<td >		
-							子數<select id='comparison'  name='comparison'  onchange='type_change(this)'>
+							子數
+							<select id='comparison_group_id'  name='comparison_group_id'  onchange='type_change(this)'>
 								 <option></option>
 								 <!-- BEGIN DEP -->
 								 <option value='{DEP.group_id}'>{DEP.group_title}</option>	
 								 <!-- END DEP -->					
 							</select>		
-							vs	 母數<select id="population" name="population">
+							vs	 母數
+							<select id="population_group_id" name="population_group_id">
 								<option>全體</option>		
 								 <!-- BEGIN DEP -->
 								 <option value='{DEP.group_id}'>{DEP.group_title}</option>	
@@ -123,22 +125,7 @@
 							</div>													
 						</td>				
 						
-							<script>
-								function type_change(obj)
-								{		
-									console.log(obj.value);
-									if(obj.value=="")
-									{
-										$('#type_versus').addClass('hide');
-										$('#type_group').removeClass('hide');		
-									}
-									else
-									{
-										$('#type_versus').removeClass('hide');		
-										$('#type_group').addClass('hide');			
-									}											
-								}
-							</script>		
+						
 									
 					</tr>								
 				</table>
@@ -384,6 +371,24 @@ function export_report()
 		});		
 		init_tab('container_{elementID}');
 	}); 
+	
+
+	function type_change(obj)
+	{		
+		console.log(obj.value);
+		if(obj.value=="")
+		{
+			$('#type_versus').addClass('hide');
+			$('#type_group').removeClass('hide');		
+		}
+		else
+		{
+			$('#type_versus').removeClass('hide');		
+			$('#type_group').addClass('hide');			
+		}											
+	}
+
+	
 </script>
 
 

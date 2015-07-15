@@ -50,7 +50,7 @@
 		<div class="lable {display_label_content}"  dis="dis_basis_evalutiontable_content" >評鑑表內容</div>
 		<div class="lable {display_label_suggest}"  dis="dis_basis_evalutiontable_suggest" >開放建議</div>
 		<div class="lable {display_label_template}"  dis="dis_basis_evalutiontable_template" >通知訊息</div>
-		<div class="lable {display_label_summary}"  dis="dis_basis_evalutiontable_summary"  >評鑑表總覽</div>		
+		<div class="lable {display_label_summary} hide"  dis="dis_basis_evalutiontable_summary"  >評鑑表總覽</div>		
 		<div class="lable {display_label_reportee}"  dis="dis_basis_evalutiontable_reportee" >受評人列表</div>			
 		<div class="lable {display_label_progress}"  dis="dis_basis_evalutiontable_progress" >進度管理</div>		
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
@@ -66,22 +66,73 @@
 					<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
 					<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">				
 				</div>	
+				
+
+				
+				<table id="appraisee_area" class="contb "   style="width:97%;margin-left: 25px;margin-top: 25px;padding:10px">
+					<tr align="left" >						
+						<th width="12%" >						
+							<img src='templates/bhrsp/images/arrow_small.png'>
+							全部份數:
+						</th>
+						<td  width="13%">
+							{TotalCount}
+						</td>		
+						<th width="10%" style="color:green">						
+							<img src='templates/bhrsp/images/arrow_small.png'>
+							已完成:
+						</th>
+						<td  width="14%" style="color:green">
+							{ValueFinish}
+						</td>
+						<th width="10%" style="color:orange">						
+							<img src='templates/bhrsp/images/arrow_small.png'>
+							評鑑中:
+						</th>
+						<td  width="14%" style="color:orange">
+							{ValueProcess}
+						</td>
+						<th width="10%" style="color:red">						
+							<img src='templates/bhrsp/images/arrow_small.png'>
+							未開始:
+						</th>
+						<td  width="14%" style="color:red">
+							{ValueWait}
+						</td>																								
+					</tr>
+					
+				</table>
+				
+				
+				
 				<table class="tableStyle1"  >
 					
 					<tr>
-						<td class="item">{$lang.EvaluationProgress}：</td>
-						<td>
+						<td  ><img src='templates/bhrsp/images/arrow_small.png'>{$lang.EvaluationProgress}：</td>
+						<td align="left">
 							<select id="evaluation_progress" name="evaluation_progress">
 								<option value='1'>不限制</option>
 								<option value='2'>未開始</option>
 								<option value='3'>未完成</option>
 								<option value='4'>已完成</option>
-							</select>
-							
-							<input class="labButton" type="button"  value="搜尋" onClick='pick_evaluator(this)'   />
+							</select>	
 						</td>
-					</tr>
+						
+						<td style="width:20%" align="right"><img src='templates/bhrsp/images/arrow_small.png'>{$lang.Appraisee}{$lang.Keyword}：</td>
+						<td>
+							<input type="text"  id="appraisee_keyword"  value="">
+						</td>
 
+						<td style="width:20%" align="right" ><img src='templates/bhrsp/images/arrow_small.png'>{$lang.Evaluator}{$lang.Keyword}：</td>
+						<td>
+							<input type="text" value=""  id="evaluator_keyword" >
+						</td>
+												
+					</tr>
+					<tr>
+							<td colspan="6"  align="right"><input class="labButton" type="button"  value="搜尋" onClick='pick_evaluator(this)'   /></td>
+					
+					</tr>
 				</table>
 				<table class="tableStyle1"  style="width:90%"><tr><td>{container_pick_evaluator}</td></tr></table>		
 			</form>
@@ -161,7 +212,7 @@
 					<tr>
 						<td class="label">職能模型： </td>
 						<td>
-							<select id="competency_model_id" name="competency_model_id">
+							<select id="competency_model_id" name="competency_model_id" {edit_disabled}>
 								<option ></option>	
 								<!-- BEGIN CM_LIST -->								
 								<option value="{CM_LIST.competency_model_id}"  {CM_LIST.selected}>{CM_LIST.competency_model_title}</option>	
@@ -172,7 +223,7 @@
 					<tr>
 						<td class="label">評鑑量表： </td>
 						<td>
-							<select id="evaluation_scale_id" name="evaluation_scale_id">
+							<select id="evaluation_scale_id" name="evaluation_scale_id" {edit_disabled}>
 								<option ></option>	
 								<!-- BEGIN ES_LIST -->								
 								<option value="{ES_LIST.evaluation_scale_id}"  {ES_LIST.selected}>{ES_LIST.evaluation_scale_title}</option>	
@@ -349,10 +400,14 @@
 		var formContainer=$('#dis_basis_evalutiontable_progress');    
 	
 		var evaluation_progress=$('#evaluation_progress').val();
+		var appraisee_keyword=$('#appraisee_keyword').val();
+		var evaluator_keyword=$('#evaluator_keyword').val();
+		
 
 		$("#pick_evaluator_list").jqGrid('setGridParam', {				
-					postData : {evaluation_progress:evaluation_progress},
-					page : 1
+					postData : {evaluation_progress:evaluation_progress,appraisee_keyword:appraisee_keyword,evaluator_keyword:evaluator_keyword},
+					page : 1,
+					rowNum: 120,
 				}).trigger("reloadGrid");	
 	}
 </script>
