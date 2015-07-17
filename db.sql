@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Jul 14, 2015, 02:01 PM
+-- 建立日期: Jul 17, 2015, 09:55 AM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_evaluator_detail` (
   `behavior_id` int(11) NOT NULL,
   `evaluation_scale_item_grade` int(11) NOT NULL,
   PRIMARY KEY (`basis_evaluation_evaluator_detail_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39151 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54091 ;
 
 -- --------------------------------------------------------
 
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_open_comment` (
   `basis_evaluation_open_comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `basis_evaluation_table_id` int(11) NOT NULL,
   PRIMARY KEY (`basis_evaluation_open_comment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -135,12 +135,12 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_table` (
   `basis_evaluation_table_code` varchar(30) DEFAULT NULL,
   `is_show_competency` varchar(1) NOT NULL,
   `due_date` date NOT NULL,
-  `competency_model_id` int(11) NOT NULL,
+  `competency_model_id` int(11) DEFAULT '0',
   `evaluation_scale_id` int(11) NOT NULL,
   `basis_evaluation_table_status` varchar(6) NOT NULL,
   `basis_evaluation_table_process` int(11) NOT NULL,
   PRIMARY KEY (`basis_evaluation_table_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -573,7 +573,7 @@ CREATE TABLE IF NOT EXISTS `profile_behavior` (
   `behavior_arithmetic_avg` decimal(10,2) NOT NULL,
   `behavior_geometric_avg` decimal(10,2) NOT NULL,
   PRIMARY KEY (`profile_behavior_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=932 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2432 ;
 
 -- --------------------------------------------------------
 
@@ -589,7 +589,7 @@ CREATE TABLE IF NOT EXISTS `profile_behavior_detail` (
   `behavior_arithmetic_avg` decimal(10,2) NOT NULL,
   `behavior_geometric_avg` decimal(10,2) NOT NULL,
   PRIMARY KEY (`profile_behavior_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3481 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9481 ;
 
 -- --------------------------------------------------------
 
@@ -605,7 +605,7 @@ CREATE TABLE IF NOT EXISTS `profile_competency` (
   `arithmetic_avg` decimal(10,2) NOT NULL,
   `geometric_avg` decimal(10,2) NOT NULL,
   PRIMARY KEY (`profile_competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=181 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=481 ;
 
 -- --------------------------------------------------------
 
@@ -622,7 +622,7 @@ CREATE TABLE IF NOT EXISTS `profile_competency_detail` (
   `arithmetic_avg` decimal(10,2) NOT NULL,
   `geometric_avg` decimal(10,2) NOT NULL,
   PRIMARY KEY (`profile_competency_detail_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=697 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1897 ;
 
 -- --------------------------------------------------------
 
@@ -656,7 +656,7 @@ CREATE TABLE IF NOT EXISTS `report_config` (
   `report_config_code` varchar(30) NOT NULL,
   `report_update` datetime NOT NULL,
   PRIMARY KEY (`report_config_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -668,10 +668,12 @@ CREATE TABLE IF NOT EXISTS `report_group` (
   `report_group_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `report_title_id` int(10) NOT NULL,
   `group_id` int(11) NOT NULL,
+  `comparison_group_id` int(11) NOT NULL DEFAULT '0',
+  `population_group_id` int(11) NOT NULL DEFAULT '0',
   `report_config_id` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`report_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
 
 -- --------------------------------------------------------
 
@@ -702,7 +704,7 @@ CREATE TABLE IF NOT EXISTS `report_title` (
   `report_kind` varchar(30) NOT NULL,
   `report_filename` varchar(50) NOT NULL,
   PRIMARY KEY (`report_title_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 -- --------------------------------------------------------
 
@@ -733,7 +735,7 @@ CREATE TABLE IF NOT EXISTS `term` (
   `term_language` varchar(10) NOT NULL,
   `term_content` varchar(100) NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2933 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2963 ;
 
 -- --------------------------------------------------------
 
@@ -748,7 +750,7 @@ CREATE TABLE IF NOT EXISTS `text` (
   `term_language` varchar(10) NOT NULL,
   `text_content` text NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2563 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2578 ;
 
 -- --------------------------------------------------------
 

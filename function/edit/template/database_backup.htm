@@ -1,0 +1,90 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/hrd/Framework/g3.buttons.js"></script>
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+
+
+
+
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+
+	<div id="dis_website_url"  >
+		<div class="uc1">
+			<form method="post" id="formPost" action="">
+
+			
+		<div style="border-bottom: 1px #cecece solid;margin-top: 15px;width:97%;margin-left: 20px;">
+				<div style="font-size:16px;font-weight: bold; ">{$lang.Backup}</div>				
+		</div>
+		<div style=";margin-left: 25px;">
+			<input type="button" class="labButton" id="validate" value="匯出"  onClick='backup();'/>
+		</div>		
+		
+
+		<div style="border-bottom: 1px #cecece solid;margin-top: 15px;width:97%;margin-left: 20px;">
+				<div style="font-size:16px;font-weight: bold; ">{$lang.Restore}</div>				
+		</div>
+				
+	</form>
+	</div>
+
+		<div class="uc2">
+			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
+			<input type="button" class="labButton" id="validate" value="驗證" />
+			<input class="labButton hide" name="bt_cancel" id="bt_cancel" type="button"  value="取消"   />
+			
+			
+		</div>	
+	
+	</div>
+	
+</div>
+</body>
+
+<script type="text/javascript">
+	$(function() {		
+		//##### 需客制化修改 ##############################################
+		$('#dis_website_url').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save:function(event){
+        		var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        		
+				var o = {
+						data: $("#formPost",formContainer).serialize(),
+						url:this.save_url,
+						element_id:this.element_id,
+						onSuccess:function(data)
+						{		
+								var container =$('#container_'+this.element_id);
+								if(data.errmsg)
+								{
+									$(container).message(data.errmsg);
+								}
+								else
+								{
+									
+								}	
+							}					
+				}				
+				var msg=mypost(o);		},
+			save_url:'/hrd/function/saveOrUpdate/save_website.php'
+		});	
+		//##### 需客制化修改 ##############################################
+		
+
+		
+	}); 
+	
+	function backup()
+	{
+		//php-mysql-dump.php
+		location.href='./../../php-mysql-dump.php?dump=1';
+	}	
+</script>
+
+</html>
