@@ -21,10 +21,12 @@
 		<div style="border-bottom: 1px #cecece solid;margin-top: 15px;width:97%;margin-left: 20px;">
 				<div style="font-size:16px;font-weight: bold; ">{$lang.Backup}</div>				
 		</div>
-		<div style=";margin-left: 25px;">
+		<div id="uploading_bt" style=";margin-left: 25px;">
 			<input type="button" class="labButton" id="validate" value="匯出"  onClick='backup();'/>
 		</div>		
 		
+		<div style="clear:both"></div>		
+		<div id='uploading' class='hide'><img src='../../templates/bhrsp/images/processing.gif'></div>		
 
 		<div style="border-bottom: 1px #cecece solid;margin-top: 55px;width:97%;margin-left: 20px;">
 				<div style="font-size:16px;font-weight: bold; ">{$lang.Restore}</div>				
@@ -135,6 +137,8 @@
 	
 	function backup()
 	{
+		$('#uploading_bt').addClass('hide');
+		$('#uploading').removeClass('hide');
 		//php-mysql-dump.php
 		location.href='./../../php-mysql-dump.php?dump=1';
 	}	

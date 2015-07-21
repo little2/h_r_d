@@ -83,14 +83,14 @@
 							<select id='comparison_group_id'  name='comparison_group_id'  onchange='type_change(this)'>
 								 <option></option>
 								 <!-- BEGIN DEP -->
-								 <option value='{DEP.group_id}'>{DEP.group_title}</option>	
+								 <option value='{DEP.group_id}'>{DEP.group_title}-{DEP.group_id}</option>	
 								 <!-- END DEP -->					
 							</select>		
 							vs	 母數
-							<select id="population_group_id" name="population_group_id">
+							<select id="population_group_id"  name="population_group_id">
 								<option>全體</option>		
 								 <!-- BEGIN DEP -->
-								 <option value='{DEP.group_id}'>{DEP.group_title}</option>	
+								 <option value='{DEP.group_id}'>{DEP.group_title}-{DEP.group_id}</option>	
 								 <!-- END DEP -->										
 							</select>						
 						</td>					
@@ -110,15 +110,17 @@
 					</tr>						
 					<tr>
 						<td class="left"  colspan="2">
-							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
+							
 							
 							<div id="type_group">
+							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
 							<!-- BEGIN GROUP_REPORT -->							
 							<div style="margin-right:10px" ><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{GROUP_REPORT.report_title_id}" >{GROUP_REPORT.report_title}</div>
 							<!-- END GROUP_REPORT -->
 							</div>
 							
 							<div id="type_versus" class='hide' >
+							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
 							<!-- BEGIN VERSUS_REPORT -->							
 							<div style="margin-right:10px" ><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{VERSUS_REPORT.report_title_id}">{VERSUS_REPORT.report_title}</div>
 							<!-- END VERSUS_REPORT -->								
@@ -350,7 +352,13 @@ function export_report()
 		
 		
 		bind_click("#clickAllReport",'#dis_person');
-		bind_click("#clickAllReport",'#dis_group');
+		bind_click("#clickAllReport",'#type_group');
+		bind_click("#clickAllReport",'#type_versus');
+		
+		
+		
+
+		
 		
 		//
 		
@@ -375,14 +383,14 @@ function export_report()
 
 	function type_change(obj)
 	{		
-		console.log(obj.value);
+		//console.log(obj.value);
 		if(obj.value=="")
 		{
 			$('#type_versus').addClass('hide');
-			$('#type_group').removeClass('hide');		
+			$('#type_group').removeClass('hide');	
 		}
 		else
-		{
+		{			
 			$('#type_versus').removeClass('hide');		
 			$('#type_group').addClass('hide');			
 		}											
