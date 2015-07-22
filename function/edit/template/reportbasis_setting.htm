@@ -340,12 +340,15 @@ function export_report()
 		$('#dis_person').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
 			save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
 		});			
 		
 		$('#dis_group').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
+			trigger_element:['report-group_list_list'],
 			save_url:'/hrd/function/saveOrUpdate/save_report_basis_group.php'			
 		});			
 		

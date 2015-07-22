@@ -5,7 +5,7 @@
         version: "1.0.0",      
         options: {
         	check_before_save:function(){return true},
-        	
+        	trigger_element:'',
         	save:function(event){        		
         		if(!this.check_before_save())
         		{        			
@@ -19,6 +19,7 @@
 						url:this.save_url,
 						element_id:this.element_id,
 						close_after_save:this.close_after_save,
+						trigger_element:this.trigger_element,
 						onSuccess:function(data)
 							{		
 								var container =$('#container_'+this.element_id);
@@ -30,6 +31,15 @@
 								{									
 									var datafrom=container.attr('data-from');	
 									
+									var index;	
+									for (index = 0; index < this.trigger_element.length; ++index) {		
+										var obj="#"+this.trigger_element[index];										
+										if (obj.length > 0) {										
+											$(obj).jqGrid().trigger("reloadGrid");											
+										}
+									}
+									
+									
 									if ($("#"+datafrom).length > 0) {
 										$("#"+datafrom).jqGrid().trigger("reloadGrid");
 									}
@@ -38,7 +48,7 @@
 										$("#tabPanel").refreshitem();	
 									}
 									var dialogID=$(event.target).parentsUntil('div.ui-dialog').last().attr('id');
-									console.log(this.close_after_save);
+									
 									if(this.close_after_save)
 									{
 										closeDialog(dialogID);		
