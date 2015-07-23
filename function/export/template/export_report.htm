@@ -4,8 +4,8 @@
 	<div>
 	<img src='./templates/bhrsp/images/processing.gif' />
 	</div>
-	<span id='f_count'  name='f_count'>{f_count}</span>/<span id='count'  name='count'>{count}</span>
-	<span id='temp'></span>
+	已完成:<span id='f_count'  name='f_count'>{f_count}</span>/待完成:<span id='count'  name='count'>{count}</span>
+	<div id='temp'>{type}</div>
 </div>
 </body>
 
@@ -24,9 +24,14 @@ function init()
 					$('#wait_process').addClass('hide');
 					
 					$('#f_count').html(data.f_count);		
-				
+					$('#temp').html(data.type);
 					//$("#tabPanel").refreshitem();	
-					if($('#this_f_count').length >0)
+					console.log(data);
+					if( data.finish=='1')
+					{
+						alert('全部完成');
+					}
+					else if($('#this_f_count').length >0)
 					{
 						setTimeout("init();", 100);
 					}
