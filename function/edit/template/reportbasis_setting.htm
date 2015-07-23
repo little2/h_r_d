@@ -144,19 +144,21 @@
 						<td class="right">報表匯出格式：</td>
 						<td>
 						<DIV CLASS="hide">
-						<input type="radio"  name="format"  />MS Word   <br>
-						<input type="radio"  name="format" />MS Excel <br>
-						<input type="radio"  name="format" />PDF <br>
+							<input type="radio"  name="format"  />MS Word   <br>
+							<input type="radio"  name="format" />MS Excel <br>						
 						</DIV>
-						<input type="radio"  name="format" />HTML<br>
-						
+						<input type="radio"  name="format"  value="html" checked/>HTML<br>	
+						<input type="radio"  name="format"  value="pdf"/>PDF <br>
+											
 						</td>					
 					</tr>		
 				</table>
 		</div>
 		<div class="uc2">
-			<input class="labButton" name="bt_export" id="bt_export" type="button"  onClick="export_report()" value="產出"   />	
+			<input class="labButton" name="bt_export" id="bt_export" type="button"  onClick="export_report()" value="產出"   />
+			<img id="wait_process" class='hide' src='templates/bhrsp/images/processing.gif'  title='背景處理中，請稍侯' height="40"/>	
 		</div>
+		
 	</div>		
 	
 	<div id="dis_setting" class="labDiv"   >
@@ -283,9 +285,24 @@
 
 <script type="text/javascript">
 
+function test(id)
+{	
+	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
+	if (sels) {
+		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+	//	url += "?entity.key=" + rowdata.key;
+		//alert(rowdata.key);
+		  // jzsoft.grid.sendPost(id,'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val());
+	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
+	} else {
+		$("#" + id).message("請選擇要修改的項目！");
+	}
+}
 
 function export_report()
 {
+	var format = $('input[name=format]:checked').val();
+	
 	var msg = {
 		id : 'g3_msg',
 		width : 500,
@@ -295,7 +312,7 @@ function export_report()
 		show : "",
 		hide : "",
 		title : "產生報表",
-		body : "/hrd/function/export/export_report.php" ,
+		body : "/hrd/function/export/export_report.php?format="+format ,
 		buttons : {
 			"關閉" : function() {
 				closeDialog(this.id);
