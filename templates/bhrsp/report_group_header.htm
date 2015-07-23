@@ -4,7 +4,128 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>{title}</title>
 </head>
-<link rel="stylesheet" type="text/css" href="templates/{TPL_STYLE}/css/style.css" />
+
+<style>
+body {
+	font-family: droidsansfallback;
+}
+
+.content {
+	font-size: 12pt;
+}
+
+.content p {
+	margin-bottom: 28px;
+}
+
+.titlebar table {
+	margin-bottom: 3px;
+	border: solid #CCCCCC 1.0pt;
+	width: 100%;
+	background: #EEEEEE
+}
+
+.titlebar tr {
+	font-size: 9.0pt;
+	color: #4695BD;	
+}
+
+.titlebar th {
+	width: 12.5%;
+	text-align: left
+}
+
+.titlebar td {
+	width: 12.5%;
+	text-align: left
+}
+
+.report {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.report table {
+	border-collapse: collapse;
+	border: 1px solid;
+	width: 100%;
+}
+
+.report .maintitle td {
+	vertical-align: middle;
+	background-color: #D6E6EF;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: center;
+	padding: 7px;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.report .bar {
+	background-color: #90C1DE;
+	height: 12px
+}
+
+.report td {
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 7px;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+
+.report  th {
+	vertical-align: middle;
+	background-color: #E5E5E5;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: center;
+	padding: 7px;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.competencyrow {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.competencyrow table {
+	border-collapse: collapse;
+	border: 0px solid;
+	width: 100%;
+}
+
+.competencyrow  th {
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: solid #CCCCCC 0px;
+	border-width: 1px 0px 1px 0px;
+	text-align: left;
+	padding: 7px;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.competencyrow td {
+	vertical-align: middle;
+	background-color: #ffffff;
+	border-bottom: 1pt dashed #CCCCCC;
+	text-align: left;
+	padding: 7px;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+</style>
 <body>
 <h1>{title}</h1>
 <hr>
@@ -20,7 +141,7 @@
 			問卷編號:
 		</th>		
 		<td >	
-			{basis_evaluation_appraisee_id}
+			{report_group_id}
 		</td>
 		
 		<th ></th>
@@ -31,7 +152,7 @@
 			問卷名稱:
 		</th>
 		<td colspan="3" style="width:37.5%">
-			{basis_evaluation_table_title}
+			{report_title}
 		</td>		
 	</tr>
 </table>

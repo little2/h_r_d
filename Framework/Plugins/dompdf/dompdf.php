@@ -5,7 +5,7 @@ $_GET["input_file"]='index.htm';
 
 //!$_GET["base_path"] && 
 
-$_GET["base_path"]='1436537764%2F';
+$_GET["base_path"]='..%2F..%2F..%2Foutput%2Freport%2F1436537764%2F';
 
 
 //output/report/1436537764
@@ -249,7 +249,7 @@ switch ($sapi) {
         }
         
         $outfile = "dompdf_out.pdf"; // Don't allow them to set the output file
-        $save_file = false; // Don't save the file
+        $save_file = true; // Don't save the file
         
         break;
 }
@@ -291,7 +291,8 @@ if ($save_file) {
     if ($proto != "") // i.e. not file://
         $outfile = $file; // just save it locally, FIXME? could save it like wget: ./host/basepath/file
     
-    $outfile = realpath(dirname($outfile)) . DIRECTORY_SEPARATOR . basename($outfile);
+    //$outfile = realpath(dirname($outfile)) . DIRECTORY_SEPARATOR . basename($outfile);
+    echo $outfile = realpath($base_path) . DIRECTORY_SEPARATOR . basename($outfile);
     
     if (strpos($outfile, DOMPDF_CHROOT) !== 0)
         throw new DOMPDF_Exception("Permission denied.");

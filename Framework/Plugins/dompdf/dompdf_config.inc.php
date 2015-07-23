@@ -114,9 +114,11 @@ def("DOMPDF_TEMP_DIR", sys_get_temp_dir());
  * direct class use like:
  * $dompdf = new DOMPDF();	$dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
  */
-def("DOMPDF_CHROOT", realpath(DOMPDF_DIR));
+//def("DOMPDF_CHROOT", realpath(dirname(DOMPDF_DIR)));
+$chroot=realpath(dirname(dirname(dirname(DOMPDF_DIR)))).DIRECTORY_SEPARATOR.'output'.DIRECTORY_SEPARATOR.'report';
+def("DOMPDF_CHROOT", $chroot);
 
-
+//echo $chroot;
 /**
  * Whether to use Unicode fonts or not.
  *
