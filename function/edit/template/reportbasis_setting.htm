@@ -81,14 +81,14 @@
 						<td >		
 							子數
 							<select id='comparison_group_id'  name='comparison_group_id'  onchange='type_change(this)'>
-								 <option></option>
+								 <option value="0"></option>
 								 <!-- BEGIN DEP -->
 								 <option value='{DEP.group_id}'>{DEP.group_title}-{DEP.group_id}</option>	
 								 <!-- END DEP -->					
 							</select>		
 							vs	 母數
 							<select id="population_group_id"  name="population_group_id">
-								<option>全體</option>		
+								<option value="0">全體</option>		
 								 <!-- BEGIN DEP -->
 								 <option value='{DEP.group_id}'>{DEP.group_title}-{DEP.group_id}</option>	
 								 <!-- END DEP -->										
