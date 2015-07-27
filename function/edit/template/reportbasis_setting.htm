@@ -285,7 +285,7 @@
 
 <script type="text/javascript">
 
-function test(id)
+function report_download(id)
 {	
 	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
 	if (sels) {
@@ -296,6 +296,18 @@ function test(id)
 	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
 	} else {
 		$("#" + id).message("請選擇要修改的項目！");
+	}
+}
+
+function report_delete(id)
+{	
+	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
+	if (sels) {
+		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+		 jzsoft.grid.sendPost(id,'/hrd/function/delete/delete_report.php?report_config_id='+$('#report_config_id').val());
+		 $("#"+id).jqGrid().trigger("reloadGrid");
+	} else {
+		$("#" + id).message("請選擇要刪除的項目！");
 	}
 }
 
@@ -404,7 +416,7 @@ function export_report()
 	function type_change(obj)
 	{		
 		//console.log(obj.value);
-		if(obj.value=="")
+		if(obj.value=="0")
 		{
 			$('#type_versus').addClass('hide');
 			$('#type_group').removeClass('hide');	

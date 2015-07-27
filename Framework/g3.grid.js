@@ -175,7 +175,7 @@
 	var del = function(grid, model) {
 		selected_count = $('.trSelected', grid).length;
 		if (selected_count == 0) {
-			alert('請選擇壹條記錄!');
+			alert('請選擇一條記錄!');
 			return;
 		}
 		ids = '';
