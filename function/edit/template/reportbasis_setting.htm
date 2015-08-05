@@ -22,15 +22,18 @@
 		<div class="lable {display_rexport}"  dis="dis_report_group_list"  >團體報表列表</div>		
 	</div>
 
+
 	<!-- 報表列表 -->
 	<div id="dis_report_personal_list" class="labDiv"  >	
 		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-personal_list}</td></tr></table>		
 	</div>
 	
+
 	<!-- 團體報表列表 -->
 	<div id="dis_report_group_list" class="labDiv"  >	
 		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-group_list}</td></tr></table>		
 	</div>		
+
 
 	<!-- 個人報表 -->
 	<div id="dis_person" class="labDiv"   >
@@ -44,12 +47,26 @@
 					</tr>				
 					<tr>
 						<td class="left"  colspan="2"> 	
-							<input type="checkbox" name="code1"  class='hide'>所有受評人<p>							
-							<div class='hide'>
-							<input type="checkbox" name="code2" >指定特定人員<input type="button" value="挑選名單">
-							</div>
+							<div  style="float:left"><select id="evaluator_list"  name="evaluator_list"  onchange="change_evaluator(this)">
+								<option value="all">所有受評人</option>
+								<option value="spec">指定特定人員</option>
+							</select></div>
+							<div style="float:left;margin-left:10px" class='hide'  id="block_pick_user">{container_pick_report-user}</div>							
 						</td>							
 					</tr>
+				</table>
+
+				<table class="tableStyle1 hide">
+						<tr>
+							<td class="label">關鍵字：</td>
+							<td>
+								<input type="text" name="job_title_keyword"  value="" />
+								<input class="labButton {display_pick}" name="bt_inner_search" id="bt_inner_search" type="button"  value="搜尋"   />
+							</td>
+						</tr>
+				</table>
+				
+				<table class="tableStyle1">					
 					<tr>
 						<td class="label" >個人報表種類：</td>
 						<td >								
@@ -59,11 +76,11 @@
 						<td class="left"  colspan="2">
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
 							<!-- BEGIN PERSON_REPORT -->							
-							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
+							<div style="margin-right:10px;float:left;width:200px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
 							<!-- END PERSON_REPORT -->													
 						</td>							
-					</tr>			
-				</table>
+					</tr>		
+			</table>	
 		</div>
 		<div class="uc2">
 		</div>
@@ -122,7 +139,7 @@
 							<div id="type_versus" class='hide' >
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
 							<!-- BEGIN VERSUS_REPORT -->							
-							<div style="margin-right:10px" ><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{VERSUS_REPORT.report_title_id}">{VERSUS_REPORT.report_title}</div>
+							<div style="margin-right:10px;"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{VERSUS_REPORT.report_title_id}">{VERSUS_REPORT.report_title}</div>
 							<!-- END VERSUS_REPORT -->								
 							</div>													
 						</td>				
@@ -176,10 +193,9 @@
 					<tr>
 						<td class="right">平均匯出格式：</td>
 						<td>
-							<input type="radio"  name="avg_method"  checked/>所有人平均   
-							<div class='hide'>
-								<input type="radio"  name="avg_method"  />所有評鑑維度平均
-							</div>
+							<input type="radio"  name="avg_method"  value="a"  {avg_method_a_checked}/>所有人平均   
+							<input type="radio"  name="avg_method"  value="g"  {avg_method_g_checked}/>所有評鑑維度平均
+							
 						</td>				
 					</tr>							
 					
@@ -389,6 +405,7 @@ function export_report()
 		$('#dis_setting').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
 			save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
 		});			
 		
@@ -397,8 +414,13 @@ function export_report()
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
 			close_after_save:false,
+			trigger_element:['report-personal_list_list'],
+			pick_url:'/hrd/function/saveOrUpdate/save_report_config.php',		
+			pick_list_id:'pick_report-user_list',	
 			save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
 		});			
+		
+		
 		
 		$('#dis_group').dashpanel({
 			dialog_title:"{DialogTitle}",
@@ -455,6 +477,19 @@ function export_report()
 		}											
 	}
 
+	function change_evaluator(obj)
+	{
+		if(obj.value=='all')
+		{
+			$('#block_pick_user').addClass('hide');
+		}
+		else
+		{
+			$('#block_pick_user').removeClass('hide');
+		}
+		//block_pick_user
+	}
+	
 	
 </script>
 

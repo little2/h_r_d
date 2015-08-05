@@ -61,16 +61,51 @@
         	},
         	pick:function(event){
         		var url=this.pick_url;
-        		var sels = $("#" +  this.pick_list_id).jqGrid('getGridParam', 'selrow');        		
-        		if (sels) {        		
-	        		var rowdata = $("#" +  this.pick_list_id).jqGrid("getRowData", sels);	
-	        		if (url.indexOf('?') > -1) {
-	        			url += '&';
-	        		} else {
-	        			url += '?';
-	        		}	
-	        		url += "entity.key=" + rowdata.key;
-        		}
+        
+            	var sels = $("#" +  this.pick_list_id).jqGrid('getGridParam', 'selarrrow');        
+        		var len = (sels.length);
+   		
+        		
+        		if (sels) {
+        			
+        			if(len>0)
+        			{
+        			
+        				for ( var i = 0; i < len; i++) {
+        					var rowdata = $("#" + this.pick_list_id).jqGrid("getRowData", sels[i]);
+                			if (url.indexOf('?') > -1) {
+        	        			url += '&';
+        	        		} else {
+        	        			url += '?';
+        	        		}	
+        					url += 'keys['+rowdata.key+']=' + rowdata.key;
+        				}
+        			}
+        			else
+        			{
+ 
+                		sels = $("#" + this.pick_list_id).jqGrid('getGridParam', 'selrow');	
+                		if (sels)
+                		{
+	                		len = (sels.length);
+	            		   
+	        				if(len>0)
+	        				{
+		            			if (url.indexOf('?') > -1) {
+		    	        			url += '&';
+		    	        		} else {
+		    	        			url += '?';
+		    	        		}	
+		        				
+		        				var rowdata = $("#" +  this.pick_list_id).jqGrid("getRowData", sels[0]);
+		        				console.log(rowdata)
+		    	        		url += "entity.key=" + rowdata.key;
+	        				}
+                		}
+        			}
+        		
+        		}        	
+        		
         		this.save_url=url;
         		return this.save(event);
         	},        	

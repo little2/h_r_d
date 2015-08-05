@@ -931,6 +931,7 @@ jzsoft.grid.newformView = function(p) {
  */
 jzsoft.grid.newmultiDele = function(setting) {
 	id=setting.gridId;
+	
 	url=setting.delete.body;
 	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');
 	if (sels == "") {

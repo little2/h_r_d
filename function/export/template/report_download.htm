@@ -23,9 +23,10 @@ function init()
 				}
 				else
 				{
+					console.log(data);
 					$('#download_img').addClass('hide');
 					$('#download_url').attr('href',data.download_url).removeClass('hide');
-					location.href=data.download_url;
+				//	location.href=data.download_url;
 					//$('#f_count').html(data.f_count);				
 					//$("#tabPanel").refreshitem();	
 					//if($('#this_f_count').length >0)
