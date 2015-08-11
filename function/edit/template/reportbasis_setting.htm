@@ -38,8 +38,13 @@
 	<!-- 個人報表 -->
 	<div id="dis_person" class="labDiv"   >
 		<div class="uc1">	
-				<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
-				<input type="hidden" name="evaluator_list"  id="evaluator_list" class="contxt" value="all" />
+				<!-- 關連的系統參數 -->
+				<div class='hide'>
+					<input type="text" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+					<input type="text" name="basis_evaluation_table_id"  id="basis_evaluation_table_id" class="contxt" value="{basis_evaluation_table_id}" />
+					<input type="text" name="evaluator_list"  id="evaluator_list" class="contxt" value="all" />				
+				</div>
+
 				
 				<table class="tableStyle1"   >
 					<tr>
@@ -93,7 +98,15 @@
 	<!-- 團體報表 -->
 	<div id="dis_group" class="labDiv"   >
 		<div class="uc1">	
-				<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+				<!-- 關連的系統參數 -->
+				<div class='hide'>
+					<input type="text" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+					<input type="text" name="basis_evaluation_table_id"  id="basis_evaluation_table_id" class="contxt" value="{basis_evaluation_table_id}" />
+					<input type="text" name="evaluator_list"  id="evaluator_list" class="contxt" value="all" />				
+				</div>
+				
+			
+				
 				<table class="tableStyle1"   >					
 					<tr>
 						<td class="label" >
@@ -158,7 +171,14 @@
 	</div>	
 	<div id="dis_export" class="labDiv"   >
 		<div class="uc1">		
-				<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+				<!-- 關連的系統參數 -->
+				<div class='hide'>
+					<input type="text" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+					<input type="text" name="basis_evaluation_table_id"  id="basis_evaluation_table_id" class="contxt" value="{basis_evaluation_table_id}" />
+					<input type="text" name="evaluator_list"  id="evaluator_list" class="contxt" value="all" />				
+				</div>
+			
+				
 				<table class="tableStyle1"  >
 														
 					<tr>
@@ -184,7 +204,13 @@
 	
 	<div id="dis_setting" class="labDiv"   >
 		<div class="uc1">		
-				<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+				<!-- 關連的系統參數 -->
+				<div class='hide'>
+					<input type="text" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+					<input type="text" name="basis_evaluation_table_id"  id="basis_evaluation_table_id" class="contxt" value="{basis_evaluation_table_id}" />
+					<input type="text" name="evaluator_list"  id="evaluator_list" class="contxt" value="all" />				
+				</div>
+				
 				<table class="tableStyle1"  >
 					<tr>
 						<td class="label">一般：</td>
@@ -261,6 +287,13 @@
 	<div id="dis_report_info" class="labDiv"  style="display: block;">
 		<div class="uc1">			
 
+				<!-- 關連的系統參數 -->
+				<div class='hide'>
+					<input type="text" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+					<input type="text" name="basis_evaluation_table_id"  id="basis_evaluation_table_id" class="contxt" value="{basis_evaluation_table_id}" />
+					<input type="text" name="evaluator_list"  id="evaluator_list" class="contxt" value="all" />				
+				</div>
+				
 				<table class="tableStyle1"  >
 					<tr>
 						<td class="label">基本信息：</td>
@@ -270,8 +303,7 @@
 					<tr>
 						<td class="right">報表編號：</td>
 						<td>
-							<input type="text" name="report_config_code"  id="report_config_code" class="contxt" value="{report_config_code}" />
-							<input type="hidden" name="report_config_id"  id="report_config_id" class="contxt" value="{report_config_id}" />
+							<input type="text" name="report_config_code"  id="report_config_code" class="contxt" value="{report_config_code}" />						
 						</td>					
 					</tr>				
 					<tr>
