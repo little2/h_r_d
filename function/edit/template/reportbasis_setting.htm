@@ -14,8 +14,8 @@
 		<div class="lable {display_report_info}"  dis="dis_report_info"   style="background-color: yellow;">{$lang.Information}</div>
 		<div class="lable {display_mail_tpl} hide"  dis="dis_mail_tpl"  >通知訊息</div>	
 		<div class="lable {display_setting}"  dis="dis_setting"     >參數設定</div>
-		<div class="lable {display_group}"  dis="dis_group"     >團體報表設定</div>
 		<div class="lable {display_person}"  dis="dis_person"    >個人報表設定</div>
+		<div class="lable {display_group}"  dis="dis_group"     >團體報表設定</div>
 		<div class="lable {display_reportee} hide"  dis="dis_reportee"    >評鑑關係</div>
 		<div class="lable {display_rexport}"  dis="dis_export"     >產生報表</div>		
 		<div class="lable {display_rexport}"  dis="dis_report_personal_list"  >個人報表列表</div>		
@@ -219,15 +219,15 @@
 					</tr>											
 					<tr>
 						<td class="right">優勢/待發展臨界值：</td>
-						<td>0.5<input type="text" name="code" class="contxt hide" value="0.5"></td>					
+						<td><input type="text" name="threshold_interval" class="contxt"  value="{threshold_interval}"></td>					
 					</tr>													
 					<tr>
 						<td class="right">區間大小：</td>
-						<td>0.25<input type="text" name="code" class="contxt hide" value="0.25" /></td>					
+						<td><input type="text" name="block_interval" class="contxt " value="{block_interval}" /></td>					
 					</tr>															
 					<tr>
 						<td class="right">迭代次數：</td>
-						<td>2<input type="text" name="code" class="contxt hide" value="2" /></td>					
+						<td><input type="text" name="interval_count" class="contxt " value="{interval_count}" /></td>					
 					</tr>				
 
 					<tr>
@@ -254,6 +254,7 @@
 
 		</div>
 	</div>	
+	
 	
 	
 	<!-- 頁面(開始) -->
