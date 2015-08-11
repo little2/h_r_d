@@ -198,7 +198,7 @@ jzsoft.grid.dele = function(id, url) {
 				},
 				success : function(data) {
 					if (data.msg) {
-						$("#" + id).message("操作失敗！");
+						$("#" + id).message("操作失敗！"+data.msg);
 					} else {
 						$("#" + id).trigger("reloadGrid");
 						$("#" + id).message("已成功刪除!");
@@ -245,7 +245,7 @@ jzsoft.grid.multiDele = function(id, url) {
 				},
 				success : function(data) {
 					if (data.msg) {
-						$("#" + id).message("操作失敗！");
+						$("#" + id).message("操作失敗！"+data.msg);
 					} else {
 						$("#" + id).trigger("reloadGrid");
 						$("#" + id).message("已成功刪除!");
@@ -964,7 +964,7 @@ jzsoft.grid.newmultiDele = function(setting) {
 				},
 				success : function(data) {
 					if (data.msg) {
-						$("#" + id).message("操作失敗！");
+						$("#" + id).message("操作失敗！"+data.msg);
 					} else {
 						$("#" + id).trigger("reloadGrid");
 						$("#" + id).message("已成功刪除!");
@@ -1102,7 +1102,7 @@ jzsoft.grid.sendPost = function(id, url, msg) {
 				},
 				success : function(data) {
 					if (data.msg) {
-						$("#" + id).message("操作失敗！");
+						$("#" + id).message("操作失敗！"+data.msg);
 					} else {
 						$("#" + id).trigger("reloadGrid");
 						$("#" + id).message("已成功!");
@@ -1154,7 +1154,7 @@ jzsoft.grid.sendDialogPost = function(id, url, msg) {
 				},
 				success : function(data) {
 					if (data.msg) {
-						$("#" + id).message("操作失敗！");
+						$("#" + id).message("操作失敗！"+data.msg);
 					} else {						
 						$("#" + id).trigger("reloadGrid");
 						$("#" + id).message("已成功!");						

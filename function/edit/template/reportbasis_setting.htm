@@ -297,9 +297,17 @@
 				<table class="tableStyle1"  >
 					<tr>
 						<td class="label">基本信息：</td>
-						<td></td>
+						<td></td>					
+					</tr>
+									
+					<tr>
+						<td class="right">使用的的評鑑表名稱：</td>
+						<td>
+								{evaluation_table_title}
+						</td>					
+					</tr>						
 					
-					</tr>				
+					
 					<tr>
 						<td class="right">報表編號：</td>
 						<td>
@@ -308,16 +316,15 @@
 					</tr>				
 					<tr>
 						<td class="right">報表簡要說明：</td>
-						<td><textarea name="report_config_desc"  id="report_config_desc" cols="60" rows="5">{report_config_desc}</textarea></td>
-				
+						<td><textarea name="report_config_desc"  id="report_config_desc" cols="60" rows="5">{report_config_desc}</textarea></td>				
 					</tr>			
 								
 					<tr>
-						<td class="right">匯出的職能模型：</td>
+						<td class="right">使用的的職能模型：</td>
 						<td>
-							<select id="competency_model_id" name="competency_model_id">								
+							<select id="competency_model_id" name="competency_model_id"  disabled>								
 							<!-- BEGIN COMPETENCY_MODE -->							
-								<option value="{COMPETENCY_MODE.competency_model_id}" {COMPETENCY_MODE.selected}>{COMPETENCY_MODE.competency_model_title}</option>
+								<option value="{COMPETENCY_MODE.competency_model_id}" {COMPETENCY_MODE.selected} >{COMPETENCY_MODE.competency_model_title}</option>
 							<!-- END COMPETENCY_MODE -->
 							</select>
 						</td>					

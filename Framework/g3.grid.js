@@ -184,7 +184,7 @@
 		});
 		var url = model.baseUrl + model.doAction.del;
 		var id = model.gridDivId;
-		if (confirm("是否確定刪除?")) {
+		if (confirm("是否確定刪除 ?")) {
 			flexiAjax(id, ids, url);
 		}
 
