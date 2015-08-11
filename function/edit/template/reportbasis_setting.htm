@@ -84,13 +84,14 @@
 						<td class="left"  colspan="2">
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選（全體回饋明細除外 ）<p>
 							<!-- BEGIN PERSON_REPORT -->							
-							<div style="margin-right:10px;float:left;width:200px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
+							<div style="margin-right:10px;float:left;width:200px"><input type="checkbox" name="personal_report_title_id[]"  id="report_title_id[]"  value="{PERSON_REPORT.report_title_id}" >{PERSON_REPORT.report_title}</div>
 							<!-- END PERSON_REPORT -->													
 						</td>							
 					</tr>		
 			</table>	
 		</div>
 		<div class="uc2">
+			<input class="labButton" name="bt_pick" id="bt_pick" type="button"  value="保存"   />
 			<input class="hide" name="bt_save" id="bt_save" type="button"     />
 		</div>
 	</div>	
@@ -476,11 +477,12 @@ function export_report()
 		
 		
 		
-		bind_click("#clickAllReport",'#dis_person');
-		bind_click("#clickAllReport",'#type_group');
-		bind_click("#clickAllReport",'#type_versus');
 		
+		bind_click("#clickAllReport",'#type_group','report_title_id[]');
+		bind_click("#clickAllReport",'#type_versus','report_title_id[]');
+		bind_click("#clickAllReport",'#dis_person','personal_report_title_id[]');
 		
+
 		
 
 		

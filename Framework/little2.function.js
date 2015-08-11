@@ -115,19 +115,19 @@ function call_user_func(cb) {
 
 
 
-function bind_click(obj,domain)
+function bind_click(obj,domain,spec)
 {
 	
 	$(obj,domain).click(function(){
 		if($(obj,domain).prop("checked"))
 		   {
-		     $("input[name='report_title_id[]']",domain).each(function() {
+		     $("input[name='"+spec+"']",domain).each(function() {
 		         $(this).prop("checked", true);
 		     });
 		   }
 		   else
 		   {
-		     $("input[name='report_title_id[]']",domain).each(function() {
+		     $("input[name='"+spec+"']",domain).each(function() {
 		         $(this).prop("checked", false);
 		     });           
 		   }
