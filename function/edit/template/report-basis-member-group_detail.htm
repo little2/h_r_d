@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/hrd/Framework/g3.buttons.js"></script>
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+
+
+
+
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+<div>
+
+			<form method="post" id="myformPost"  name="myformPost">
+				<div class="hide">
+					<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
+					<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">				
+				</div>	
+				
+				<table class="tableStyle1"  >
+					
+					<tr>
+						<td  ><img src='/hrd/templates/bhrsp/images/arrow_small.png'>{$lang.Department}：</td>
+						<td align="left">
+							<select id="department_id"  name="department_id">
+								<option value="0">全部</option>
+							{option_str}
+							</select>
+						</td>
+						
+
+
+
+												
+					</tr>
+					<tr>
+							<td colspan="6"  align="right"><input class="labButton" type="button"  value="搜尋" onClick='filter_group_report(this)'   /></td>
+					
+					</tr>
+				</table>
+			
+				<table class="tableStyle1"  width="95%"><tr><td>{container_report-basis-member-group_list}</td></tr></table>		
+			</form>
+		</div>	
+</div>
+</body>
+
+<script>
+function filter_group_report(obj){
+	var formContainer=$('#container_{elementID}');    
+
+	var department_id=$('#department_id').val();	
+
+	$("#report-basis-member-group_list_list").jqGrid('setGridParam', {				
+				postData : {department_id:department_id},
+				page : 1,
+				rowNum: 120
+			}).trigger("reloadGrid");	
+}
+</script>
+</html>

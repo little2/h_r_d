@@ -3,8 +3,26 @@
 <head>
 
 </head>
+<body>
 
-<body><div  id="container_{elementID}"  data-from="{From_elementID}" >
+<div  id="container_{elementID}"  data-from="{From_elementID}" ></div>
+</body>
 
-</div></body>
+<script>
+init();
+function init()
+{
+	$('#wait_process').removeClass('hide');
+	var o = {
+			url:'/hrd/function/edit/view_report.php?entity_key={entity_key}&type={type}&format={format}',
+			data:{'request':1},
+			onSuccess:function(data){
+				console.log(data);
+				//	$('#wait_process').addClass('hide');		
+				}					
+	}				
+	var msg=mypost(o);				
+}
+</script>
+
 </html>

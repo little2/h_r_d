@@ -784,6 +784,15 @@ jzsoft.grid.newBarMenu = function(p) {
 				}
 			});
 		}
+		else if(typeof(p.view)!="undefined")
+		{		
+			$("#" + p.gridId).jqGrid("setGridParam", {
+				ondblClickRow : function(rowid, iRow, iCol, e) {
+					jzsoft.grid.selectRow(p.gridId, rowid);
+					jzsoft.grid.newformView(p);
+				}
+			});
+		}
 	}
 	
 };

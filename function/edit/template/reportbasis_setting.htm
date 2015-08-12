@@ -510,6 +510,11 @@ function export_report()
 
 	function type_change(obj)
 	{		
+		
+	     $("input[type='checkbox']","#dis_group").each(function() {
+	         $(this).prop("checked", false);
+	     });     
+		
 		//console.log(obj.value);
 		if(obj.value=="0")
 		{
