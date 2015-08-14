@@ -69,8 +69,7 @@
         		if (sels) {
         			
         			if(len>0)
-        			{
-        			
+        			{        			
         				for ( var i = 0; i < len; i++) {
         					var rowdata = $("#" + this.pick_list_id).jqGrid("getRowData", sels[i]);
                 			if (url.indexOf('?') > -1) {
@@ -83,12 +82,14 @@
         			}
         			else
         			{
- 
-                		sels = $("#" + this.pick_list_id).jqGrid('getGridParam', 'selrow');	
+        				//若不是多選框，則讀取單選框        				
+                		sels = $("#" + this.pick_list_id).jqGrid('getGridParam', 'selrow');
+                		
                 		if (sels)
                 		{
+                			
 	                		len = (sels.length);
-	            		   
+	                		 
 	        				if(len>0)
 	        				{
 		            			if (url.indexOf('?') > -1) {
@@ -97,16 +98,21 @@
 		    	        			url += '?';
 		    	        		}	
 		        				
-		        				var rowdata = $("#" +  this.pick_list_id).jqGrid("getRowData", sels[0]);
-		        				console.log(rowdata)
+		        				var rowdata = $("#" +  this.pick_list_id).jqGrid("getRowData", sels);
+		        				//console.log(rowdata)
 		    	        		url += "entity.key=" + rowdata.key;
 	        				}
+                		}
+                		else
+                		{
+                			//console.log('D');
                 		}
         			}
         		
         		}        	
-        		
+        	
         		this.save_url=url;
+        		
         		return this.save(event);
         	},        	
         	search:function(event){
