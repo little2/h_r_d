@@ -14,8 +14,8 @@
 	    <div class="lable {display_evaluation}"  dis="dis_evaluation"  >{$lang.Evaluation}</div>
 		<div class="lable {display_method}"  dis="dis_training_method_l" >{$lang.TrainingMethod}</div>
 		<div class="lable {display_teacher}"  dis="dis_training_teacher_l" >{$lang.TrainingTeacher}</div>
-		<div class="lable {display_course}"  dis="dis_training_course_l" >{$lang.Course}</div>
-		<div class="lable {display_material}"  dis="dis_training_material_l" >{$lang.TrainingMaterial}</div>		
+		<div class="lable {display_course}"  dis="dis_training_course_l" >{$lang.CourseAndMaterial}</div>		
+
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
 	
@@ -56,9 +56,7 @@
 	<div id="dis_training_course_l" class="labDiv"   >
 		<table class="tableStyle1" ><tr><td>{container_competency_course}</td></tr></table>		
 	</div>	
-	<div id="dis_training_material_l" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{container_training_material}</td></tr></table>		
-	</div>	
+
 	
 	
 	
@@ -97,12 +95,14 @@
 		$('#dis_competency_level').dashpanel({		
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			trigger_element:['competency_body_list','basis-competency-model_tree_list','class-competency-model_tree_list'],
 			save_url:'/hrd/function/saveOrUpdate/save_competency_level.php'			
 		});	
 		
 		$('#dis_evaluation').dashpanel({		
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
 			save_url:'/hrd/function/saveOrUpdate/save_competency_evaluation.php'			
 		});	
 		

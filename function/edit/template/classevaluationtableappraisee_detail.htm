@@ -64,10 +64,9 @@
 								<tr>
 									<td class="item">{$lang.EvaluationTableStatus}：</td>
 									<td>
-										{class_evaluation_appraisee_stauts}		
-										<input class="labButton {dis_bt_submit_to_review}" name="bt_irch" id="bt_inrch" type="button"  value="完成設定並送複審"   onClick="submit_to_review(this)"/>
-									
+										<div id="evaluation_table_status" name="evaluation_table_status">{class_evaluation_appraisee_stauts}</div>
 									</td>
+									<td><input class="labButton {dis_bt_submit_to_review}" name="bt_inrch" id="bt_inrch" type="button"  value="完成設定並送複審"   onClick="submit_to_review(this)"/></td>
 								</tr>	
 								</table>
 							</div>
@@ -293,8 +292,10 @@ function submit_to_review(obj)
 			data:{class_evaluation_appraisee_id:class_evaluation_appraisee_id,class_evaluation_appraisee_stauts:'REV'},
 			url:'/hrd/function/saveOrUpdate/save_appraisee.php',
 			onSuccess:function(data){		
-			alert(data.result);
-				}					
+				$('#bt_inrch').addClass('hide');
+				$('#evaluation_table_status').html('REV');
+			//	alert(data.result);
+			}					
 	}				
 	var msg=mypost(o);	
 }

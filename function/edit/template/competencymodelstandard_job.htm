@@ -102,7 +102,7 @@
 				<tr>
 					<td height="30"  class="right">{COMPETENCY_STANDARD.competency_title}：</td>
 					<td>
-					<!-- 
+						<!-- 
 						<input class="tag_competency_level" type="text"  id="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  name="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  value='{COMPETENCY_STANDARD.level}' />
 						 -->
 						<select id="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  name="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]" >
@@ -141,6 +141,7 @@
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_job_competency.php',
+			trigger_element:['competency-model-standard_overview_list'],
 			check_before_save:function(){
 				var  _pass=true;
 				$('.tag_competency_level').each(function(){
