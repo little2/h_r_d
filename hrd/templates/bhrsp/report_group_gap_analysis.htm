@@ -1,0 +1,69 @@
+
+
+
+
+
+<!-- 說明 -->
+<div class="content">
+
+<P>下列報表顯示您的團隊在每一項職能的得分，與基準值差異的分佈情況。</P> 
+<P>報表提供了本次360度評鑑的所有職能項目的團體差異比較情況，不僅包括了各個職能得分與基準值的差異分佈情況，同時也提供了每個職能項目下的具體行為得分與基準值的差異分佈情況。在每一張圖表的上部，以粗字體顯示該職能項目的得分與基準值的差異分佈情況，接下來則顯示隸屬於這個職能項目下具體行為的情況。通過對各個職能項目和具體行為的差異比較分析，您既可以觀察到各個職能的差異比較，也能觀察到某一具體行為的差異比較分析。</P> 
+<P>每張圖表的橫軸表示人數的比例，縱軸表示得分人數分佈所占的區間。區間的分佈由基準值、區間值、反覆運算(迭代)次數確定，其中，基準值為得分區間的中點，例如，如果您設定的基準值是4，那麼得分區間將以此為中點向兩端擴展；區間值決定每一個區間的大小，如果您設定的區間值是0.5，那麼每一個得分區間將相隔0.5，區間值越小則能夠包含的人數將越少，區間值越大則能夠包含的人數越多；反覆運算次數決定從中點向兩邊擴展的區間數量，同樣的，反覆運算次數值越小則能夠包含的人數將越小，區間值越大則能夠包含的人數越多。</P> 
+
+</div>
+
+<DIV>此報份的數據與團體掃瞄所列數據相同，但是數列方式來呈現，讓您們更容易找出您們團隊的優勢或需要發展的領域。</DIV>
+<div style="clear:both"></div>
+<div  class="report">
+	<div >
+		<table >
+			<tr>
+				<td colspan="{colspan}" class="bar"></td>
+			</tr>
+			<tr class="maintitle">
+				<td>職能名稱 / 行為名稱</td>
+				<td>基準值</td>
+				<td>平均值</td>
+				<!-- BEGIN INTVAL -->
+				<td>{INTVAL.min} {INTVAL.max}</td>
+				<!-- END INTVAL -->
+				
+			</tr>
+			
+			<!-- BEGIN COMPETENCY -->
+			<tr>
+				<th>{COMPETENCY.competency_title}</th>
+				<th>{COMPETENCY.competency_base}</th>
+				<th>{COMPETENCY.competency_avg}</th>	<!-- 自己 -->
+				<!-- BEGIN COMPETENCY_BLOCK -->
+				<th>{COMPETENCY.COMPETENCY_BLOCK.percent}%</th>	<!-- 直屬主管 -->
+				<!-- END COMPETENCY_BLOCK -->
+			</tr>
+			
+			<!-- BEGIN BEHAVIOR -->
+			<tr>
+				<td>{COMPETENCY.BEHAVIOR.behavior_definition}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_base}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_avg}</td>
+				<!-- BEGIN BEHAVIOR_BLOCK -->
+				<td>{COMPETENCY.BEHAVIOR.BEHAVIOR_BLOCK.percent}%</td>
+				<!-- END BEHAVIOR_BLOCK -->
+				
+			</tr>
+			<!-- END BEHAVIOR -->
+			
+			<!-- END COMPETENCY -->
+			
+			
+		</table>
+	</div>
+	
+
+
+</div>
+<div style="clear:both"></div>
+
+
+
+</body>
+</html>

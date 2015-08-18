@@ -1,0 +1,139 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable "  dis="dis_pick_user_info" style="background-color: yellow;display:{display_dis_pick_user_info}">新增</div>
+		<div class="lable "  dis="dis_evaluator_info" style="background-color: yellow;display:{display_dis_evaluator_info}">編輯</div>
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_pick_user_info" class="labDiv" style="display:{display_dis_pick_user_info};">
+		<div class="uc1">
+			<form method="post" id="formPost">
+				<div class="hide">
+					<input type="text" name="class_evaluation_evaluator_id"  id="{class_evaluation_evaluator_id}"  value="{class_evaluation_evaluator_id}" />
+					class_evaluation_competency_id:<input type="text" name="class_evaluation_competency_id"  id="{class_evaluation_competency_id}"  value="{class_evaluation_competency_id}" />
+				</div>
+				
+				<table class="tableStyle1"  >
+					<tr>
+						<td class="label">搜尋條件：</td>
+						<td></td>
+					</tr>
+					
+					
+					<tr>
+						<td class="item">{$lang.Keyword}：</td>
+						<td>
+							<input type="text" name="keyword"  value="" />
+							<input class="labButton" name="bt_inner_search" id="bt_inner_search" type="button"  value="搜尋"   />							
+			
+						</td>
+					</tr>
+				</table>
+				<table class="tableStyle1"  style="width:90%"><tr><td>{container_pick_user}</td></tr></table>		
+			</form>
+		</div>
+		<div class="uc2"></div>
+
+	</div>
+
+
+	<div id="dis_evaluator_info"  class="labDiv" style="display:{display_dis_evaluator_info};">
+		<div class="uc1">
+			<form method="post" id="formPost">
+				
+				<div class="hide">
+					<input type="text" name="class_evaluation_evaluator_id"  id="{class_evaluation_evaluator_id}"  value="{class_evaluation_evaluator_id}" />
+					class_evaluation_competency_id:<input type="text" name="class_evaluation_competency_id"  id="{class_evaluation_competency_id}"  value="{class_evaluation_competency_id}" />
+				</div>
+				
+				<table class="tableStyle1"  >
+					<tr>
+						<td class="label">評鑑者信息：</td>
+						<td></td>
+					</tr>
+					
+					
+					<tr>
+						<td class="item">權重：</td>
+						<td>
+							<input type="text" name="weight"  value="{weight}" />						
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input class="labButton" type="button"  value="預覽評鑑表"   onClick="evaluation_table_preview('{class_evaluation_evaluator_id}')"/>
+						</td>
+					</tr>
+				</table>
+				
+				
+				
+			</form>
+		</div>
+		<div class="uc2"></div>
+
+	</div>	
+	
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+
+		
+		$('#dis_pick_user_info').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			pick_url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_evaluator.php',
+			pick_list_id:'pick_user_list'
+		});	
+		
+
+		
+		$('#dis_evaluator_info').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			trigger_element:['classevaluationtable_competencymanage_list','classevaluationtable_competencynormal_list','classevaluationtable_competencypro_list'],			
+			save_url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_evaluator.php'		
+		});	
+		
+		
+
+		
+		//##### 需客制化修改 ##############################################
+	}); 
+	
+	function evaluation_table_preview(class_evaluation_evaluator_id)
+	{
+		 var setting = new Object();		   
+		 console.log(class_evaluation_evaluator_id);
+		 setting.title ='評鑑表';
+		 setting.body ='/hrd/class-competency-evaluation/detail/edit.html?entity_key='+class_evaluation_evaluator_id;
+		 setting.data={class_evaluation_evaluator_id:class_evaluation_evaluator_id}
+//		console.log(setting);
+		jzsoft.grid.openDialog(setting)
+	}
+	
+
+
+</script>
+
+
+</body>
+</html>

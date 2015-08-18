@@ -1,0 +1,43 @@
+<body>
+<input type="hidden" name='this_f_count' id="this_f_count" value="" />
+<div align='center'>
+	<img id='download_img' src='./templates/bhrsp/images/processing.gif' />
+	<div>
+		<a id='download_url' href='' target='_blank' class='hide' style='margin-top:30px'>Download</a>
+	</div>
+</div>
+</body>
+
+<script>
+init();
+function init()
+{
+	var o = {
+			url:'/hrd/function/export/report_download.php?user_id={user_id}&population_group_id={population_group_id}&report_config_id={report_config_id}',
+			data:{'request':1},
+			onSuccess:function(data){	
+				//console.log(data);			
+				if(data.errormsg)
+				{
+					alert(data.errormsg);	
+				}
+				else
+				{
+					console.log(data);
+					$('#download_img').addClass('hide');
+					$('#download_url').attr('href',data.download_url).removeClass('hide');
+				//	location.href=data.download_url;
+					//$('#f_count').html(data.f_count);				
+					//$("#tabPanel").refreshitem();	
+					//if($('#this_f_count').length >0)
+					//{
+						//alert('ok');
+					//	setTimeout("init();", 300);
+				//	}					
+				}		
+			}					
+	}				
+	var msg=mypost(o);				
+}
+</script>
+

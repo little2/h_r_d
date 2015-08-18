@@ -1,0 +1,101 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+
+</head>
+
+<body><div  id="container_{elementID}"  data-from="{From_elementID}" >
+
+
+	<div class="labMenu">
+		<div class="lable {display_label_information}"  dis="dis_competency_info" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_label_competencyclass}"  dis="dis_competency_class">{$lang.CompetencyClass}</div>	
+		<div class="lable {display_label_behavior}"  dis="dis_behavior_list" >{$lang.Behavior}</div>
+		<div class="lable {display_label_method}"  dis="dis_training_method" >{$lang.TrainingMethod}</div>
+		<div class="lable {display_label_teacher}"  dis="dis_training_teacher" >{$lang.TrainingTeacher}</div>
+		<div class="lable {display_label_course}"  dis="dis_training_course" >{$lang.CourseAndMaterial}</div>
+		<div class="lable {display_label_material} hide"  dis="dis_training_material" >{$lang.TrainingMaterial}</div>		
+	</div>
+	
+	
+	<!-- 頁面(開始) -->
+	<div id="dis_competency_info" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" action="">			
+				<div class="hide">
+				competency_type:<input type="text"  id="competency_type"  name="competency_type"  value="{competency_type}"/>
+				competency_method:<input type="text"  id="competency_method"  name="competency_method"  value="{competency_method}"/>							
+				competency_id:<input type="text"  id="competency_id"  name="competency_id"  value="{competency_id}"/>					
+				competency_model_id:<input type="text"  id="competency_model_id"  name="competency_model_id"  value="{competency_model_id}"/>
+				</div>
+				<table class="tableStyle1"  >
+					<tr>
+						<td class="label">{$lang.CompetencyType}：</td>
+						<td>{competency_type_title}							
+						</td>
+					</tr>				
+
+
+					
+					<tr class="{display_weight}">
+						<td class="label">{$lang.Weight}：</td>
+						<td><input type="text" id="competency_weight" name="competency_weight" value="{competency_weight}" />					
+						</td>
+					</tr>				
+					{field_competency_title}								
+					{field_competency_definition}
+				
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2"></div>
+	</div>
+	
+	
+	<div id="dis_behavior_list" class="labDiv"   >	
+	<table class="tableStyle1" ><tr><td>{container_behavior_list}</td></tr></table>		
+	</div>
+	
+	<div id="dis_training_method" class="labDiv"   >
+	<table class="tableStyle1" ><tr><td>{container_training_method}</td></tr></table>		
+	</div>
+	
+	<div id="dis_training_teacher" class="labDiv"   >
+	<table class="tableStyle1" ><tr><td>{container_training_teacher}</td></tr></table>		
+	</div>
+	
+	<div id="dis_training_course" class="labDiv"   >
+	<table class="tableStyle1" ><tr><td>{container_competency_course}</td></tr></table>		
+	</div>
+	
+	<div id="dis_training_material" class="labDiv"   >
+	<table class="tableStyle1" ><tr><td>{container_training_material}</td></tr></table>		
+	</div>
+	
+	<div id="dis_competency_class" class="labDiv"   >
+	<table class="tableStyle1" ><tr><td>{container_competency_class}</td></tr></table>		
+	</div>
+	
+
+
+
+</div></body>
+
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		$('#dis_competency_info').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			trigger_element:['competency_body_list','basis-competency-model_tree_list','class-competency-model_tree_list'],
+			save_url:'/hrd/function/saveOrUpdate/save_competency_info.php'			
+		});	
+	}); 
+</script>
+
+
+</html>

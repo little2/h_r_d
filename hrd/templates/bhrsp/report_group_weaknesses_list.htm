@@ -1,0 +1,54 @@
+
+
+
+
+
+<!-- 說明 -->
+<div class="content">
+
+<p>下列報表顯示您的團隊在每一項職能於各個得分區間的分佈情況。報表提供了本次360度評鑑的所有職能項目的團體分佈情況，不僅包括了各個項目的得分分佈情況，同時也提供了每個項目的具體行為的得分分佈情況。在每一張圖表的上部，職能項目以粗字體顯示，接著是該職能項目的得分區間分佈，再接下來則是隸屬於這個。</p>
+
+</div>
+
+<div style="clear:both"></div>
+<div  class="report">
+	<div >
+		<table >
+			<tr>
+				<td colspan="9" class="bar"></td>
+			</tr>
+			
+			<tr class="maintitle">
+				<td>職能項目/關鍵行為</td>
+				<td>人數佔比</td>
+			</tr>
+			<!-- BEGIN COMPETENCY -->
+			<tr>
+				<th colspan="2">{COMPETENCY.title}</th>
+			</tr>
+						
+			<!-- BEGIN BEHAVIOR -->
+			<tr>				
+				<td>{COMPETENCY.BEHAVIOR.behavior_definition}</td>
+				<td>{COMPETENCY.BEHAVIOR.percent}%</td>
+			</tr>
+			<!-- END BEHAVIOR -->
+			
+			<!-- END COMPETENCY -->
+			
+			
+		</table>
+	</div>
+	
+
+
+</div>
+<div style="clear:both"></div>
+
+<div class="content">
+<p>綜合建議：</p>
+<p>(1)依據職能學習地圖，實施具針對性的培育輔導計畫，並請內部講師、教練提供經驗、做法進行研討分享以教導有效的實務做法。</p>
+</div>
+
+</body>
+</html>

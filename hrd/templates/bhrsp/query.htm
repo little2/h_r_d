@@ -1,0 +1,50 @@
+<!-- 输出查询页面 conditionList-->
+
+<form method="post" id="formQueryPost" >
+<table id="queryTbl" class="contb">
+	<!-- BEGIN CONDITIONLIST -->
+	<tr>
+		<td align="right">
+			<input type="hidden" name="targetColumn[{CONDITIONLIST.index}]"  id="targetColumn[{CONDITIONLIST.index}]"  value="{CONDITIONLIST.targetColumn}" id="conditionList_[{CONDITIONLIST.index}]__targetColumn"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].columnSub2" value="" id="conditionList_[{CONDITIONLIST.index}]__columnSub2"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].columnSub1" value="" id="conditionList_[{CONDITIONLIST.index}]__columnSub1"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].subTbl" value="" id="conditionList_[{CONDITIONLIST.index}]__subTbl"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].subTblSql" value="" id="conditionList_[{CONDITIONLIST.index}]__subTblSql"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].columnType" value="STRING" id="conditionList_[{CONDITIONLIST.index}]__columnType"/>
+			{CONDITIONLIST.columnTitle}:
+		</td>
+		<td align="right">			
+				<select name="conditionType[{CONDITIONLIST.index}]" id="conditionType[{CONDITIONLIST.index}]" class="context">
+					<option value="EQ" selected="selected">等於</option>
+					<option value="IN">批量等於</option>
+					<option value="LIKE">包含</option>
+				</select>
+		</td>
+		<td align="left">
+					<input type="text" name="conditionValues[{CONDITIONLIST.index}]"  id="conditionValues[{CONDITIONLIST.index}]" value="" />
+		</td>
+	</tr>
+	<!-- END CONDITIONLIST -->
+	
+	<!-- BEGIN SEL -->
+	<tr>
+		<td align="right">
+			<input type="hidden" name="targetColumn[{SEL.index}]"  id="targetColumn[{SEL.index}]"  value="{SEL.targetColumn}" id="conditionList_[{SEL.index}]__targetColumn"/>
+			<input type="hidden" name="conditionList[{SEL.index}].columnSub2" value="" id="conditionList_[{SEL.index}]__columnSub2"/>
+			<input type="hidden" name="conditionList[{SEL.index}].columnSub1" value="" id="conditionList_[{SEL.index}]__columnSub1"/>
+			<input type="hidden" name="conditionList[{SEL.index}].subTbl" value="" id="conditionList_[{SEL.index}]__subTbl"/>
+			<input type="hidden" name="conditionList[{SEL.index}].subTblSql" value="" id="conditionList_[{SEL.index}]__subTblSql"/>
+			<input type="hidden" name="conditionList[{SEL.index}].columnType" value="STRING" id="conditionList_[{SEL.index}]__columnType"/>
+			{SEL.columnTitle}:
+		</td>	
+		<td align="left">
+			<select name="conditionValues[{SEL.index}]" >
+			<!-- BEGIN OPTION -->
+				<option value="{SEL.OPTION.value}">{SEL.OPTION.title}</option>				
+			<!-- END OPTION -->
+			</select>					
+		</td>
+	</tr>
+	<!-- END SEL -->
+</table>
+</form>

@@ -1,0 +1,9 @@
+1. lib/php-font-lib 是要下載 2.x版的
+2. 可新增中文字型 droidsansfallback
+3. 解決PDF太大的問題, 可在dompdf_config.custom.inc.php设置一下
+define("DOMPDF_ENABLE_FONTSUBSETTING", true);
+
+http://yakeworld.myesci.com/content/drupal-pdf%E8%BE%93%E5%87%BA.html
+
+4. dompdf.php Line:226
+$file =  realpath($base_path).DIRECTORY_SEPARATOR .$file;

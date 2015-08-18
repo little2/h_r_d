@@ -1,0 +1,32 @@
+<!-- 输出查询页面 conditionList-->
+<table id="queryTbl" class="contb">
+
+	<!-- BEGIN CONDITIONLIST -->
+	<tr>
+		<td align="right">
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].targetColumn" value="[{CONDITIONLIST.targetColumn}]" id="conditionList_[{CONDITIONLIST.index}]__targetColumn"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].columnSub2" value="" id="conditionList_[{CONDITIONLIST.index}]__columnSub2"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].columnSub1" value="" id="conditionList_[{CONDITIONLIST.index}]__columnSub1"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].subTbl" value="" id="conditionList_[{CONDITIONLIST.index}]__subTbl"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].subTblSql" value="" id="conditionList_[{CONDITIONLIST.index}]__subTblSql"/>
+			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].columnType" value="STRING" id="conditionList_[{CONDITIONLIST.index}]__columnType"/>
+			{CONDITIONLIST.columnTitle}:
+		</td>
+		<td align="right">			
+				<select name="conditionList[{CONDITIONLIST.index}].conditionType" class="context">
+					<option value="EQ" selected="selected">等於</option>
+					<option value="IN">批量等於</option>
+					<option value="LIKE">包含</option>
+				</select>
+		</td>
+		<td align="left">
+					<input type="text" name="conditionList[{CONDITIONLIST.index}].values" value="" id="conditionList_[{CONDITIONLIST.index}]__values"/>
+		</td>
+	</tr>
+	<!-- END CONDITIONLIST -->
+	
+
+
+
+</table>
+

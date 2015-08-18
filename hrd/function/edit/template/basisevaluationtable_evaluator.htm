@@ -1,0 +1,157 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable {display_label_add_evaluator}"  dis="dis_basis_add_evalutiontable_evaluator_content" style="background-color: yellow;">新增評鑑人</div>
+		<div class="lable {display_label_evaluator_information}"  dis="dis_basis_evalutiontable_evaluator_content" style="background-color: yellow;">評鑑人設定</div>
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_basis_add_evalutiontable_evaluator_content"  class="labDiv"  style="{display_add_evalutiontable_evaluator_style}">
+		<div class="uc1">
+			<form method="post" id="formPost" >
+				<div class="hide">
+					<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
+					<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">
+				
+				</div>	
+				<table class="tableStyle1"  >
+
+					
+
+					<tr>
+						<td class="item">{$lang.JobTitle}：</td>
+						<td>
+							<input type="text" name="job_title_keyword"  value="" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="item">{$lang.JobLevel}：</td>
+						<td>
+							<input type="text" name="job_level"  value="" />
+							<input class="labButton {display_pick}" name="bt_inner_search" id="bt_inner_search" type="button"  value="搜尋"   />
+						</td>
+					</tr>
+
+				</table>
+				<table class="tableStyle1"  style="width:90%"><tr><td>{container_pick_user}</td></tr></table>		
+			</form>
+		</div>
+		<div class="uc2">
+			<input class="labButton {display_pick}" name="bt_pick" id="bt_pick" type="button"  value="{$lang.PickUp}"   />
+
+		</div>
+
+	</div>
+	
+	
+	<div id="dis_basis_evalutiontable_evaluator_content" class="labDiv" style="{display_evalutiontable_evaluator_style}">
+		<form method="post" id="formPost" >
+		<div class="uc1">
+			
+			<div class="hide">
+			<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">
+				<input type="text" id="basis_evaluation_evaluator_id" name="basis_evaluation_evaluator_id" value="{basis_evaluation_evaluator_id}">
+			</div>			
+			
+				<table class="tableStyle1"  >
+					<tr>
+						<td height="30" class="label">基本信息</td>						
+						<td></td>
+					</tr>			
+					
+					<tr>
+						<td height="30" class="right">工號：</td>						
+						<td >
+							{user_code}
+						</td>
+					</tr>			
+					
+				
+					<tr>
+						<td height="30"  class="right">姓名：</td>
+						<td>
+							{user_name}
+						</td>
+					</tr>				
+					
+					
+					<tr>
+						<td height="30"  class="right">任職部門：</td>
+						<td>
+							{department_title}
+						</td>
+					</tr>									
+					
+					<tr>
+						<td height="30"  class="right">評鑑關係：</td>
+						<td>
+							<select id="basis_evaluation_evaluator_relation" name="basis_evaluation_evaluator_relation">
+								<option></option>
+								<!-- BEGIN RELATION_LIST -->
+								<option value="{RELATION_LIST.evaluation_relation_id}" {RELATION_LIST.selected}>{RELATION_LIST.evaluation_relation_title}</option>
+								<!-- END RELATION_LIST -->
+							</select>
+						
+						
+						
+						</td>
+					</tr>			
+									
+				</table>	
+		</div>
+		<div class="uc2"  style=“width:70%;”>
+		
+		</div>
+		</form>
+	</div>
+	
+	
+
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		
+		
+		
+		
+
+		
+		$('#dis_basis_evalutiontable_evaluator_content').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',			
+			save_url:'/hrd/function/saveOrUpdate/save_basis_evaluation_table_evaluator.php'
+		});				
+		
+		$('#dis_basis_add_evalutiontable_evaluator_content').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			pick_url:'/hrd/function/saveOrUpdate/save_basis_evaluation_table_evaluator.php',			
+			pick_list_id:'pick_user_list'
+		});				
+		
+		
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

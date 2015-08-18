@@ -1,0 +1,114 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+
+<script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/hrd/Framework/Plugins/orgchart/jquery.orgchart.css"/>
+
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable" dis="dis_department_info" style="background-color: yellow;">{$lang.DepartmentInformation}</div>
+		<div class="lable {display_label_lab2}" dis="dis_department_member">{$lang.DepartmentMember}</div>
+		<div class="lable {display_label_lab2}" dis="dis_department_tree" >{$lang.DepartmentTree}</div>
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_department_info" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" >			
+				<div class="hide">
+					<input id="group_id" name="group_id" value="{group_id}">
+					<input id="company_id" name="company_id" value="{company_id}">
+				</div>
+				
+				<table class="tableStyle1"  >
+					{field_group_title}
+					{field_group_desc}
+					<tr>
+						<td class="label">{$lang.DepartmentProperties}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="item">{$lang.DepartmentCode}：</td>
+						<td ><input type="text" name="group_code" id="group_code" class="contxt" value="{group_code}" /></td>
+					</tr>
+					<tr>
+						<td  class="item">{$lang.DepartmentParent}：</td>
+						<td>
+							{department_sel}							
+						</td>
+					</tr>					
+					
+				
+					<tr>
+						<td  class="item">{$lang.DepartmentLevel}：</td>
+						<td>
+							<select id="group_level" name="group_level">
+								<option  value="0">公司級</option>
+								<!-- BEGIN LEVEL_LIST -->
+								<option value="{LEVEL_LIST.level}"  {LEVEL_LIST.selected}>{LEVEL_LIST.level}級單位</option>
+								<!-- END LEVEL_LIST -->
+								
+							</select>
+						</td>
+					</tr>
+					
+
+					
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2"></div>
+
+	</div>
+	
+	<div id="dis_department_member" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_member_list}</td></tr></table>		
+	</div>
+	
+	
+	
+	<div id="dis_department_tree"  name="dis_department_tree" class="labDiv"   ></div>
+
+	<div id="information" class="hide">
+		<ul id="organisation">
+				{department_tree_xml}
+		</ul>
+	</div>	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {		
+		 
+			
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_department_info').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_group.php'			
+		});	
+		
+		$("#organisation").orgChart({container: $("#dis_department_tree"), interactive: true, fade: true, speed: 'slow'});
+		//##### 需客制化修改 ##############################################
+	}); 
+	
+
+	
+</script>
+
+
+</body>
+</html>

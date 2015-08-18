@@ -1,0 +1,61 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable {display_label_information}"  dis="dis_competency_info" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_label_course}"  dis="dis_training_course" >{$lang.Course}</div>
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_competency_info" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" >			
+				<div class="hide">
+					competency_type:<input type="text"  id="competency_type"  name="competency_type"  value="{competency_type}"/>			
+					competency_dic_id:<input type="text"  id="competency_dic_id"  name="competency_dic_id"  value="{competency_dic_id}"/>			
+				</div>
+				<table class="tableStyle1"  >
+					<tr>
+						<td class="label">{$lang.CompetencyType}：</td>
+						<td>{competency_type_title}							
+						</td>
+					</tr>
+					{field_competency_title}
+					{field_competency_definition}
+				</table>				
+			</form>
+		</div>
+		<div class="uc2"></div>
+	</div>	
+	<div id="dis_training_course" class="labDiv">
+	<table class="tableStyle1"><tr><td>{container_competency-dic_course}</td></tr></table>		
+	</div>
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_competency_info').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_competency-dic.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

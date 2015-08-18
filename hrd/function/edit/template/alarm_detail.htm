@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<form method="post" id="formPost" action="">
+
+		<div style="border-bottom: 1px #cecece solid;margin-top: 15px;width:97%;margin-left: 20px;">
+				<div style="font-size:16px;font-weight: bold; ">{$lang.Warning}</div>
+		</div>
+		
+		<table class="tableStyle1"  >
+			<tr>			
+				<td class="item" >鑑定未通過且一年內未提出新的鑑定申請</td>
+				<td>
+					需通知：<input type="checkbox">人資
+					<input type="checkbox">部門主管
+					<input type="checkbox">個人
+				</td>
+			</tr>
+			
+			<tr>			
+				<td class="item" >二年內均未提出任何一項鑑定申請</td>
+				<td>
+					需通知：<input type="checkbox">人資
+					<input type="checkbox">部門主管
+					<input type="checkbox">個人
+				</td>
+			</tr>			
+			
+			
+			
+		
+			
+			
+			<tr>
+				<td colspan="2">
+					<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="保存" />
+
+					
+				</td>
+			</tr>
+		</table>
+	</form>
+</div></body>
+</html>

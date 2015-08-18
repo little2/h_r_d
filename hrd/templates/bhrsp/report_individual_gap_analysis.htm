@@ -1,0 +1,61 @@
+<!-- 說明 -->
+<div class="content">
+
+
+<p>下列報表顯示您在每一項職能的反饋情況。</p>
+<p>報表用資料表格的形式提供了本次360度評鑑的所有職能項目的各個維度的反饋情況，不僅包括了各個職能項目的得分情況，同時也提供了每個職能項目下的具體行為的得分情況。每張圖表首先以加粗字體顯示該職能項目的平均值以及各維度平均得分，接著則是隸屬於這個職能項目下具體關鍵行為的得分情況。</p> 
+<p>您透過本報表，可以看到來自不同維度的反饋情況，例如，通常反饋維度會包含上評、自評、互評、下評等，有些職位會包含外部客戶等維度，通過觀察這些維度之間的差異，能夠對您的後續改善行動起到參考作用。</p> 
+</div>
+
+
+<div style="clear:both"></div>
+<div  class="report">
+	<div >
+		<table >
+			<tr>
+				<td colspan="6" class="bar"></td>
+			</tr>
+			<tr class="maintitle">
+				<td></td>
+				<td>AVG</td>
+				<td>自己</td>
+				<td>直屬主管</td>
+				<td>同事</td>
+				<td>部屬</td>
+			</tr>
+			<!-- BEGIN COMPETENCY -->
+			<tr>
+				<th>{COMPETENCY.competency_title}</th>
+				<th>{COMPETENCY.competency_avg}</th>
+				<th>{COMPETENCY.competency_relation_1}</th>	<!-- 自己 -->
+				<th>{COMPETENCY.competency_relation_2}</th>	<!-- 直屬主管 -->
+				<th>{COMPETENCY.competency_relation_3}</th>	<!-- 同事 -->
+				<th>{COMPETENCY.competency_relation_4}</th>	<!-- 部屬 -->
+			</tr>
+			
+			<!-- BEGIN BEHAVIOR -->
+			<tr>
+				<td>{COMPETENCY.BEHAVIOR.behavior_definition}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_relation_avg}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_relation_1}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_relation_2}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_relation_3}</td>
+				<td>{COMPETENCY.BEHAVIOR.behavior_relation_4}</td>
+			</tr>
+			<!-- END BEHAVIOR -->
+			
+			<!-- END COMPETENCY -->
+			
+			
+		</table>
+	</div>
+	
+
+
+</div>
+<div style="clear:both"></div>
+
+
+
+</body>
+</html>

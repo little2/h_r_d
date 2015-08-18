@@ -1,0 +1,8 @@
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/hrd/Framework/global.js"></script>
+<SCRIPT>
+/*var url="parentMenu.php";
+var sendData=false;
+var successCall = function(data) {document.write(objConvertStr(data))};
+var s=sendPostJQueryAjax(url, sendData, successCall);*/

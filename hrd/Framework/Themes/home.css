@@ -1,0 +1,169 @@
+body {
+	height: 100%;
+}
+html {
+	height: 100%;
+	font-family:Microsoft YaHei,verdana;
+}
+img{
+	border:none;
+}
+.pbodybg{
+	background:url(images/home/pbodybg.gif);
+}
+
+.spbody{
+	width:98%;
+	height:100%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+}
+
+.pbleft{
+	width:25%;
+	height:100%;
+	float:left;
+	text-align:center;
+}
+.pbleftx{
+	width:150px;
+	height:300px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+.pbright{
+	width:75%;
+	height:100%;
+	float:right;
+	text-align:center;
+}
+
+.rbleft{
+	width:40%;
+	height:100%;
+	float:left;
+	text-align:center;
+	margin-top:10px;
+}
+.rbright{
+	width:60%;
+	height:500px;
+	float:right;
+	text-align:center;
+	background:#EBEDEC;
+	margin-top:10px;
+}
+.rbbox{
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+	text-align:center;
+}
+.rbleft a{
+	color:#990000;
+	font-size:14px;
+	text-decoration: none;
+	font-weight:bold;
+}
+
+
+.pboxleft{
+	width:33%;
+	height:130px;
+	float:left;
+	margin-top:10px;
+	text-align:center;
+}
+.pboxright{
+	width:67%;
+	height:130px;
+	float:right;
+	margin-top:10px;
+	text-align:left;
+	font-size:13px;
+}
+.rbleftco{
+	width:100%;
+	height:130px;
+}
+.rbleftse{
+	width:100%;
+	height:130px;
+	background:#ECECEC;
+}
+
+.rbtitle{
+	width:100%;
+	height:33px;
+	line-height:33px;
+	clear:both;
+	background:#488FC3;
+	color:#ffffff;
+	text-align:left;
+}
+.rbinfo{
+	width:100%;
+	height:33px;
+	line-height:33px;
+	clear:both;
+	text-align:left;
+}
+.rbtable{
+	width:100%;
+	margin-top:10px;
+}
+
+
+.pline{
+	width:45%;
+	height:38px;
+	float:left;
+	text-align:center;
+	background:#D5E9E7;
+	margin-top:10px;
+	margin-right:10px;
+}
+.plineleft{
+	width:70%;
+	height:38px;
+	line-height:38px;
+	float:left;
+	text-align:center;
+	background:#D5E9E7;
+}
+.plineright{
+	width:30%;
+	height:38px;
+	float:left;
+	text-align:center;
+	background:#ffffff;
+	font-size:12px;
+}
+.plineright a{
+	color:#990000;
+	font-size:14px;
+	text-decoration: none;
+	font-weight:bold;
+}
+
+
+
+
+.ptitle{
+	width:100%;
+	height:32px;
+	font-size:16px;
+	line-height:32px;
+	font-family:Microsoft YaHei,verdana;
+	color:#ffffff;
+	background:url(images/home/ptitle.png);
+}
+.ptitlea{
+	width:200px;
+	height:30px;
+	margin-left:10px;
+}

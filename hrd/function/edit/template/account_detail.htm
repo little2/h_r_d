@@ -1,0 +1,188 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable" dis="dis_account" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_dis_position}" dis="dis_position" >{$lang.Position}</div>		
+		<div class="lable {display_dis_majoycomapny}" dis="dis_majoy_company" >{$lang.MajorCompany}</div>
+		
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_account" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost">
+				<div class="hide">
+					<input type="text" name="user_id" class="contxt" value="{user_id}" />
+					<input type="text" name="power_type" class="contxt" value="{power_type}" />
+					<input id="group_member_id" name="group_member_id" value="{group_member_id}" />
+				</div>
+				
+				<table class="tableStyle1"  ><tr>
+					<tr>
+						<td class="label">{$lang.userName}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td  class="item">{$lang.TradChinese}：</td>
+						<td><input type="text" name="fullName" class="contxt" value="{fullName}" /></td>
+					</tr>
+					<tr>
+						<td  class="item">{$lang.SimChinese}：</td>
+						<td><input type="text" name="user_name_chs" class="contxt" value="{user_name_chs}" /></td>
+					</tr>
+					<tr>
+						<td   class="item">{$lang.English}：</td>
+						<td><input type="text" name="user_name_eng" class="contxt" value="{user_name_eng}" /></td>
+					</tr>
+				
+					<tr>						
+						<td class="label">用戶信息</td>
+						<td ></td>
+					</tr>
+					
+					
+					
+					<tr>
+						<td class="item">{$lang.userWorknumber}：</td>
+						<td ><input type="text" name="user_code" class="contxt" value="{user_code}" /></td>
+					</tr>
+					<tr>
+						<td class="item">{$lang.Account}：</td>
+						<td ><input type="text" name="user_account" class="contxt" value="{user_account}" /></td>
+					</tr>
+					<tr>
+						<td class="item">{$lang.userPassword}：</td>
+						<td ><input type="password" name="password" class="contxt" value="{password}" /></td>
+					</tr>
+					<tr>
+						<td class="item">{$lang.userEmail}：</td>
+						<td ><input type="text" name="user_email" class="contxt" value="{user_email}" /></td>
+					</tr>
+					</table>
+
+					
+					<div class="{display_div_loginInfo}" >
+					<table class="tableStyle1"  ><tr>
+					
+					<tr>						
+						<td class="label">安全訊息</td>
+						<td ></td>
+					</tr>
+					
+					
+					
+					<tr>
+						<td class="item">{$lang.AccountStatus}：</td>
+						<td>
+							<select id="account_status" name="account_status">
+								<option value="T" {account_status_selected_T}>啟用</option>
+								<option value="F" {account_status_selected_F}>失效</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="item">{$lang.loginCount}：</td>
+						<td>{login_count}</td>
+					</tr>
+					<tr>
+						<td class="item">{$lang.lastLogintime}：</td>
+						<td>{login_date}</td>
+					</tr>	
+					</table>			
+					</div>
+				
+				
+			</form>
+		</div>
+		<div class="uc2"></div>
+
+	</div>
+	
+	<div id="dis_position" class="labDiv"   >
+		<div class="uc1">
+			<form method="post" id="formPost" >
+				<div class="hide">
+					<input type="text" name="user_id" class="contxt" value="{user_id}" />
+					<input type="text" name="power_type" class="contxt" value="{power_type}" />
+					<input id="group_member_id" name="group_member_id" value="{group_member_id}" />
+				</div>
+				
+			
+				<table class="tableStyle1"  >
+					<!-- 
+					<tr>
+						<td height="30">{$lang.Company}：</td>
+						<td width="400"><input type="text" name="code" class="contxt" value="" /></td>
+					</tr>
+					 -->
+					 
+					
+					
+					<tr>
+						<td class="label">{$lang.Department}：</td>
+						<td>
+							{department_sel}							
+						</td>
+					</tr>
+
+					<tr>
+						<td class="label">{$lang.Job}：</td>
+						<td>
+							<select id="job_id" name="job_id">								
+								<!-- BEGIN JOBLIST -->
+								<option value="{JOBLIST.job_id}" {{JOBLIST.selected}>{JOBLIST.job_info}</option>
+								<!-- END JOBLIST -->	
+							</select>	
+						</td>
+					</tr>
+					
+						
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2"></div>
+	</div>
+	
+	<div id="dis_majoy_company" class="labDiv"   >	
+		<table class="tableStyle1" ><tr><td> {container_majoy_company}</td></tr></table>		
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_account').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_account.php'			
+		});	
+
+		$('#dis_position').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_account.php'			
+		});	
+		
+		
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

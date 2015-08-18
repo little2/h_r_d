@@ -1,0 +1,119 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable "  dis="dis_evalution_level" style="background-color: yellow;">級數設定</div>
+		<div class="lable {display_evaluator}"  dis="dis_evaluator" >評鑑人</div>
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	<div id="dis_evalution_level"  class="labDiv"   style="display: block;">	
+		<form method="post" id="formPost" >
+		<div class="uc1">
+		
+				<div class="hide">
+					competency_id:<input type="text" id="competency_id" name="competency_id" value="{competency_id}" />
+					competency_level_id:<input type="text" id="competency_level_id" name="competency_level_id" value="{competency_level_id}" />
+					class_evaluation_competency_id:<input type="text" id="class_evaluation_competency_id" name="class_evaluation_competency_id" value="{class_evaluation_competency_id}" />
+					class_evaluation_appraisee_id:<input type="text" id="class_evaluation_appraisee_id" name="class_evaluation_appraisee_id" value="{class_evaluation_appraisee_id}" />
+				</div>
+				<table class="tableStyle1"  >
+					<tr>
+						<td height="30" class="right">職能名稱：</td>
+						<td width="400">{competency_title}</td>
+					</tr>
+					<tr>
+						<td height="30" class="right">標準級數：</td>
+						<td width="400">{job_level}</td>
+					</tr>
+					<tr>
+						<td height="30" class="right">本次鑑定級數：</td>
+						<td width="400">
+							<select id="competency_level" name="competency_level" onChange="change_level(this)" >
+								<!-- BEGIN LEVEL -->
+								<option value="{LEVEL.competency_level}"  {LEVEL.selected} >{LEVEL.competency_level}</option>
+								<!-- END LEVEL -->
+							</select>
+							<div id="evaluation_lang_data" class="hide">
+							<!-- BEGIN LEVEL -->
+								<div data-competency_evaluation_method="{LEVEL.competency_evaluation_method}"  data-competency_evaluator="{LEVEL.competency_evaluator}" data-level_id="{LEVEL.competency_level_id}"  data-level="{LEVEL.competency_level}">{LEVEL.competency_level} - {LEVEL.competency_evaluator}</div>
+							<!-- END LEVEL -->							
+							</div>
+							
+												
+						</td>											
+					</tr>			
+					
+				
+					<tr>
+						<td height="30"  class="right">評鑑方法：</td>
+						<td>
+						<div id="competency_evaluation_method">
+						{competency_evaluation_method}
+						</div>
+						</td>
+					</tr>						
+					
+					
+					<tr>
+						<td height="30"  class="right">評鑑人：</td>
+						<td>
+						<div id="competency_evaluator">
+						{competency_evaluator}
+						</div>
+						</td>
+					</tr>							
+				</table>	
+		</div>
+		<div class="uc2">
+			<input class="labButton {display_bt_save_competency_evaluation}"  name="bt_save" id="bt_save" type="button"  value="保存"  />
+		</div>
+		</form>
+	</div>
+
+
+	<div id="dis_evaluator" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_classevaluationtable_competencyevaluator}</td></tr></table>		
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_evalution_level').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_competency.php'			
+		});	
+		//##### 需客制化修改 ##############################################
+	}); 
+	
+	function change_level(obj)
+	{
+		$('div',$('#evaluation_lang_data')).each(
+				function(){
+					if($(this).attr('data-level')== obj.value)
+					{
+						$('#competency_evaluation_method').html($(this).attr('data-competency_evaluation_method'));
+						$('#competency_evaluator').html($(this).attr('data-competency_evaluator'));					
+					}					
+				});
+	}
+</script>
+
+
+</body>
+</html>

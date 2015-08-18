@@ -1,0 +1,169 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+		<div class="lable "  dis="dis_job_info" style="background-color: yellow;">{$lang.Information}</div>
+		<div class="lable {display_competency_standard}"  dis="dis_competencystandard_mng" >{$lang.CompetencyStandard}</div>
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+	<div id="dis_job_info" class="labDiv" style="display: block;">
+		<form method="post" id="formPost" >
+		<div class="uc1" style="margin-left: 20px; ">				
+
+
+				<div class="hide">
+					<input type="text" name="job_id"  id="job_id"  value="{job_id}">
+					<input type="text" name="job_family_id"  id="job_family_id"  value="{job_family_id}">
+					<input type="text" name="competency_model_id"  id="competency_model_id"  value="{competency_model_id}">
+				</div>
+						
+			<table class="tableStyle1"  >
+				
+				<tr>
+					<td  class="item">{$lang.JobFamily}：</td>
+					<td>
+					<select id="job_family_id"  name="job_family_id">
+							<option></option>
+							<!-- BEGIN JOB_FAMILY -->
+							<option value="{JOB_FAMILY.job_family_id}"  {JOB_FAMILY.selected}>{JOB_FAMILY.job_family_title}</option>
+							<!-- END JOB_FAMILY -->							
+						</select>
+					</td>
+				</tr>	
+				
+				<tr>
+					<td class="item">{$lang.JobTitle}：</td>
+					<td>
+						<input type="text" name="keyword"  value="{job_title}" />										
+					</td>
+				</tr>		
+				
+				<tr>
+					<td  class="item">{$lang.JobType}：</td>
+					<td>
+					<select id="job_type_id"  name="job_type_id">
+							<option></option>
+							<!-- BEGIN JOB_TYPE -->
+							<option value="{JOB_TYPE.job_type_id}"  {JOB_TYPE.selected}>{JOB_TYPE.job_type_title}</option>
+							<!-- END JOB_TYPE -->							
+						</select>
+					</td>
+				</tr>	
+							
+				<tr>	
+					<td></td>
+					<td><input class="labButton {display_pick_job}" name="bt_inner_search" id="bt_inner_search" type="button"  value="搜尋"   /></td>									
+				</tr>
+						
+			</table>
+			<table class="tableStyle1"  style="width:95%">						
+				<tr><td>{container_pick_job}</td></tr>
+			</table>			
+		</div>
+		<div class="uc2 {display_pick_job}"  style=“width:70%;”>			
+		</div>
+		</form>
+	</div>
+	
+	
+	
+	<div id="dis_competencystandard_mng" class="labDiv" >
+		<form method="post" id="formPost" >
+		<div class="uc1" style="width:90%;margin-left: 20px; ">				
+			
+			<div style="border-bottom: 1px #cecece solid;margin: 20px;" class='hide'>
+				<div style="font-size:16px;font-weight: bold; ">二職等助理工程師(生技)</div>
+			</div>
+
+			
+				<div class="hide">
+					<input type="text" name="job_id"  id="job_id"  value="{job_id}">
+					<input type="text" name="job_family_id"  id="job_family_id"  value="{job_family_id}">
+					<input type="text" name="competency_model_id"  id="competency_model_id"  value="{competency_model_id}">
+				</div>
+				
+			<table class="tableStyle1"  >
+				<tr>
+					<td height="30" class="label">職能標準設定：</td>
+					<td></td>
+				</tr>
+				<!-- BEGIN COMPETENCY_STANDARD -->
+				<tr>
+					<td height="30"  class="right">{COMPETENCY_STANDARD.competency_title}：</td>
+					<td>
+						<!-- 
+						<input class="tag_competency_level" type="text"  id="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  name="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  value='{COMPETENCY_STANDARD.level}' />
+						 -->
+						<select id="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]"  name="competency_level[{COMPETENCY_STANDARD.competency_id}][{COMPETENCY_STANDARD.job_competency_id}]" >
+							<!-- BEGIN COMPETENCY_LEVEL -->
+							<option value="{COMPETENCY_STANDARD.COMPETENCY_LEVEL.competency_level}"  {COMPETENCY_STANDARD.COMPETENCY_LEVEL.selected}>{COMPETENCY_STANDARD.COMPETENCY_LEVEL.competency_level} {COMPETENCY_STANDARD.COMPETENCY_LEVEL.competency_level_title}</option>
+							<!-- END COMPETENCY_LEVEL -->
+						</select>
+					</td>
+				</tr>
+				<!-- END COMPETENCY_STANDARD -->
+			</table>			
+		</div>
+		</form>
+		<div class="uc2"  style=“width:70%;”>
+				
+		</div>
+	</div>
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_job_info').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			pick_url:'/hrd/function/saveOrUpdate/save_job_level.php?type={type}',
+			pick_list_id:'pick_job_list'
+		});		
+		
+
+		$('#dis_competencystandard_mng').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save_url:'/hrd/function/saveOrUpdate/save_job_competency.php',
+			trigger_element:['competency-model-standard_overview_list'],
+			check_before_save:function(){
+				var  _pass=true;
+				$('.tag_competency_level').each(function(){
+					
+					if(this.value>5)
+					{						
+						alert("職能等級不得超過5");
+						_pass=false
+						return false;							
+					}
+					//？？？最大值需小於等於該模型的級數標準
+				}
+				
+				)
+				return _pass;				
+			}
+		});		
+		
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

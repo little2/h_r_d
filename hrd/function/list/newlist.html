@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>國際化標簽設定</title>
+
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Core/jquery-ui-1.9.2.custom.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Themes/page.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Themes/layout.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/FlexiGrid/flexigrid_gray_default.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/Validation/validationEngine.jquery.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/ymprompt-4.0-11/skin/qq/ymPrompt.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/plupload/jquery.ui.plupload/css/jquery.ui.plupload.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/JqGrid/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Themes/buttons.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/message/message.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/tzCheckbox/jquery.tzCheckbox.css" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/zTree/zTreeStyle/zTreeStyle.css"  />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/Plugins/SmartWizard/smart_wizard_vertical.css"  />
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-ext.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Core/jquery-ui-ext.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/FlexiGrid/flexigrid.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.dialog.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/Validation/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/Validation/jquery.validationEngine-zh_TW.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/plupload/plupload.full.js"></script> 
+<script type="text/javascript" src="/hrd/Framework/Plugins/plupload/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/plupload/i18n/cn.js"></script> 
+<script type="text/javascript" src="/hrd/Framework/Plugins/message/jquery.message.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/JqGrid/grid.locale-cn.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/JqGrid/jquery.jqGrid.src.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/tzCheckbox/jquery.tzCheckbox.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/ymprompt-4.0-11/ymPrompt.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/zTree/jquery.ztree.core-3.4.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/zTree/jquery.ztree.excheck-3.4.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/zTree/jquery.ztree.exedit-3.4.js"></script>
+<script type="text/javascript" src="/hrd/Framework/Plugins/SmartWizard/jquery.smartWizard-2.0.js"></script>
+<script type="text/javascript" src="/hrd/Framework/global.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.grid.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jqgrid.ext.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.grid.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.newRow.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.newCondition.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.lov.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.lov.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.ymPrompt.js"></script>
+<script type="text/javascript" src="/hrd/Framework/g3.buttons.js"></script>
+<script type="text/javascript" src="/hrd/Framework/jz.loadData.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+	
+		 $("#tabs").tabs();
+		//$("#tabs").removeClass("ui-widget-content ui-corner-all");
+		//$("#tabs").addClass("ui-tabs-vertical");
+		//$("#tabs li").removeClass("ui-corner-top");
+		//$("#tabs li").addClass("ui-corner-left");
+	
+		jzsoft.grid("list1", {
+			url : '/hrd//performance/perfPerformanceLogOfDirector/pageList.html',
+			postData : {
+				'entity.isAgent' : '0'
+			},
+			colNames : [ 'ID', '年度','員工姓名', '日誌記錄', '記錄日期', '附件'],
+			colModel : [ {
+				name : 'key',
+				index : 'key',
+				width : 55,
+				hidden : true
+			}, {
+				name : 'years',
+				index : 'years',
+				width : 80
+			}, {
+				name : 'objects.empName',
+				index : 'objects.empName',
+				width : 80
+			},{
+				name : 'diaryContent',
+				index : 'diaryContent',
+				width : 80
+			}, {
+				name : 'diaryRecordDate',
+				index : 'diaryRecordDate',
+				width : 130
+			}, {
+				name : '',
+				index : '',
+				width : 80
+			}],
+			width : GRIDWIDTH,
+			height : GRIDHEIGHT-25,
+			multiselect : true,
+			toolbar : [ true, "top" ]
+		});
+		
+		jzsoft.grid.barMenu({
+			gridId : 'list1',
+			baseUrl : '/hrd/performance/perfPerformanceLogOfDirector/',
+			queryCode : 'PERF_PERFORMANCE_LOG_D',
+			queryUrl : 'pageList.html',
+			queryTitle : '',
+			addUrl : 'edit.html',
+			addTitle : '個人績效日誌',
+			deleUrl : 'delete.html',
+			editUrl : 'edit.html',
+			editTitle : '個人績效日誌'
+		});
+		
+		jzsoft.grid("list2", {
+			url : '/hrd//performance/perfPerformanceLogOfDirector/pageList.html',
+			postData : {
+				'entity.isAgent' : '1'
+			},
+			colNames : [ 'ID', '年度','員工姓名', '日誌記錄', '記錄日期', '附件'],
+			colModel : [ {
+				name : 'key',
+				index : 'key',
+				width : 55,
+				hidden : true
+			}, {
+				name : 'years',
+				index : 'years',
+				width : 80
+			}, {
+				name : 'objects.empName',
+				index : 'objects.empName',
+				width : 80
+			},{
+				name : 'diaryContent',
+				index : 'diaryContent',
+				width : 80
+			}, {
+				name : 'diaryRecordDate',
+				index : 'diaryRecordDate',
+				width : 130
+			}, {
+				name : '',
+				index : '',
+				width : 80
+			}],
+			width : GRIDWIDTH,
+			height : GRIDHEIGHT-25,
+			multiselect : true,
+			toolbar : [ true, "top" ]
+		});
+		
+		jzsoft.grid.barMenu({
+			gridId : 'list2',
+			baseUrl : '/hrd/performance/perfPerformanceLogOfDirector/',
+			queryCode : 'PERF_PERFORMANCE_LOG_D',
+			queryUrl : 'pageList.html',
+			queryTitle : '',
+			addUrl : 'edit.html',
+			addTitle : '個人績效日誌',
+			deleUrl : 'delete.html',
+			editUrl : 'edit.html',
+			editTitle : '個人績效日誌'
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="tabs" class="g3-tabs">
+		<ul>
+			<li><a href="#tab1">個人績效日誌</a></li>
+			<li><a href="#tab2">主管績效日誌</a></li>
+		</ul>
+		<div id="tab1">
+			<table id="list1"></table>
+			<div id="pager1"></div>
+		</div>
+		<div id="tab2">
+			<table id="list2"></table>
+			<div id="pager2"></div>
+		</div>
+	</div>
+</body>
+</html>

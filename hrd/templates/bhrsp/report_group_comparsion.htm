@@ -1,0 +1,52 @@
+<!-- 說明 -->
+<div class="content">
+<P></P>
+
+</div>
+
+
+<!-- 平均結果 -->
+<h2><img src='templates/{TPL_STYLE}/images/arrow.png'>平均結果 Result: </h2>
+<div class="content">下列表格顯示您目前在每一項職能的表現的優異程度。此分數是所有評量您的分數(不包含您自己)的平均結果。</div>
+
+<div  class="report">
+	<div style="width:70%">
+		<table >	
+			<tr>
+				<td colspan="3" class="bar"></td>
+			</tr>
+			<tr>
+				<th>評量職能</th>
+				<th>{comparison_group_title}</th>
+				<th>{population_group_title}</th>
+			</tr>
+			<!-- BEGIN RESULT -->
+			<tr>
+				<td>{RESULT.competency_title}</td>
+				<td>{RESULT.comparison_group_avg}</td>
+				<td>{RESULT.population_group_avg}</td>
+			</tr>
+			<!-- END RESULT -->
+		</table>
+	</div>
+	
+	
+	<div class="content">
+	<p>此平均分數是根據以下的給分標準所得：</p>
+	<p>
+1 - 有認知大多未做到: 十件事物的處理過程,約有1~2件能觀察到此行為表現<Br>
+2 - 有認知少部份能做到: 十件事物的處理過程,約有2~4件能觀察到此行為表現<Br>
+3 - 有認知部份能做到: 十件事物的處理過程,約有4~5件能觀察到此行為表現<Br>
+4 - 有認知一般都能做到: 十件事物的處理過程,約有5~6件能觀察到此行為表現<Br>
+5 - 大部份能做到: 十件事物的處理過程,約有6~8件能觀察到此行為表現<Br>
+6 - 能做到且表現優秀: 十件事物的處理過程,約有8~9件能觀察到此行為表現<Br>
+7 - 能做到且表現卓越: 十件事物的處理過程,約有9件以上能觀察到此行為表現<Br>
+	</p>
+	</div>
+</div>
+
+</body>
+
+
+
+</html>

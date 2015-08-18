@@ -1,0 +1,15 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)/list.html$ list_v2.php?_mid=$1&_sid=$2&%{QUERY_STRING} 
+#RewriteRule ^([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)\.html$ list.php?id1=$1&id2=$2&id3=$3
+RewriteRule ^([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)/pageList.html$ pageList.php?_mid=$1&_sid=$2
+
+RewriteRule ^([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)/edit.html$ edit.php?_mid=$1&_sid=$2&%{QUERY_STRING} 
+RewriteRule ^([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)/delete.html$ delete.php?_mid=$1&_sid=$2&%{QUERY_STRING} 
+
+
+RewriteRule query.html$ query.php
+RewriteRule parentMenu.html parentMenu.php
+RewriteRule subMenu.html subMenu.php

@@ -1,0 +1,115 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+<div  id="container_{elementID}"  data-from="{From_elementID}" >
+	<div class="labMenu">
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	    <div class="lable"  dis="dis_competency_level"  style="background-color: yellow;">{$lang.Information}</div>
+	    <div class="lable {display_ability}"  dis="dis_ability_list" >{$lang.CompetencyGradingScale}</div>
+	    <div class="lable {display_evaluation}"  dis="dis_evaluation"  >{$lang.Evaluation}</div>
+		<div class="lable {display_method}"  dis="dis_training_method_l" >{$lang.TrainingMethod}</div>
+		<div class="lable {display_teacher}"  dis="dis_training_teacher_l" >{$lang.TrainingTeacher}</div>
+		<div class="lable {display_course}"  dis="dis_training_course_l" >{$lang.CourseAndMaterial}</div>		
+
+		<!-- #####頁面標題/需客制化修改 ##############################################-->
+	</div>
+	
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+	<div id="dis_ability_list" class="labDiv"  >
+		<table class="tableStyle1"  width="98%"><tr><td>{container_ability_list}</td></tr></table>			
+	</div>
+
+	<div id="dis_evaluation" class="labDiv"  >
+		<div class="uc1">
+		<form method="post" id="formPost" >
+				<div class="hide">
+					<input id="competency_level_id" name="competency_level_id" value="{competency_level_id}" />
+					<input id="competency_evaluation_id" name="competency_evaluation_id" value="{competency_evaluation_id}" />
+				</div>		
+		
+				<table class="tableStyle1"  >
+					{field_competency_evaluator}	
+					{field_competency_evaluation_method}
+				</table>
+				
+		</form>	
+		</div>
+		<div class="uc2">			
+		</div>
+	</div>		
+	
+	
+	
+	
+	<div id="dis_training_method_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_method}</td></tr></table>		
+	</div>	
+	<div id="dis_training_teacher_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_training_teacher}</td></tr></table>		
+	</div>	
+	<div id="dis_training_course_l" class="labDiv"   >
+		<table class="tableStyle1" ><tr><td>{container_competency_course}</td></tr></table>		
+	</div>	
+
+	
+	
+	
+		<div id="dis_competency_level" class="labDiv" style="display: block;">
+		<div class="uc1">
+			<form method="post" id="formPost" >
+			
+				<div class="hide">
+					<input id="competency_id" name="competency_id" value="{competency_id}" />
+					<input id="competency_level_id" name="competency_level_id" value="{competency_level_id}" />
+				</div>
+				
+				
+				<table class="tableStyle1"  >	
+					<tr>
+						<td height="30"  class="label">{$lang.CompetencyLevel}：</td>
+						<td><input type="text" name="competency_level" id="competency_level"  value="{competency_level}" class="contxt" /></td>
+					</tr>				
+					{field_competency_level_title}	
+				</table>
+				
+			</form>
+		</div>
+		<div class="uc2">			
+		</div>
+	</div>
+	<!-- #####頁面欄位/需客制化修改 ##############################################-->
+	
+</div>	
+
+<script type="text/javascript">
+	$(function() {				
+		init_tab('container_{elementID}');		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_competency_level').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			trigger_element:['competency_body_list','basis-competency-model_tree_list','class-competency-model_tree_list'],
+			save_url:'/hrd/function/saveOrUpdate/save_competency_level.php'			
+		});	
+		
+		$('#dis_evaluation').dashpanel({		
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			close_after_save:false,
+			save_url:'/hrd/function/saveOrUpdate/save_competency_evaluation.php'			
+		});	
+		
+		//##### 需客制化修改 ##############################################
+	}); 
+</script>
+
+
+</body>
+</html>

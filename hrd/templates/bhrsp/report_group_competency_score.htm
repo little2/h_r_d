@@ -1,0 +1,72 @@
+
+
+<!-- 說明 -->
+<div class="content">
+
+
+<p>部門人員各職能鑑定記錄表</p>
+</div>
+
+
+<div style="clear:both"></div>
+<div  class="report">
+	<div >
+	
+		<table>
+			<tr>
+				<td colspan="2" rowspan="3" >職能類別/細項 \ 職稱/姓名</td>
+				<!-- BEGIN USER -->
+				<td colspan="3">{USER.job_title}</td>
+				<!-- END USER -->
+
+			</tr>
+			
+			<tr>			
+				<!-- BEGIN USER -->
+				<td colspan="3">{USER.fullName}</td>
+				<!-- END USER -->			
+
+
+			</tr>
+			
+			<tr>			
+				<!-- BEGIN USER -->
+				<td>標準級數</td>
+				<td>現況級數</td>
+				<td>職能落差</td>
+				<!-- END USER -->	
+			</tr>
+			
+			<!-- BEGIN COMPETENCY -->
+			<tr>				
+				<!-- BEGIN COMPETENCY_TYPE -->
+				<td rowspan="{COMPETENCY.COMPETENCY_TYPE.rowspan}">{COMPETENCY.COMPETENCY_TYPE.competency_type}</td>
+				<!-- END COMPETENCY_TYPE -->			
+			
+				
+				<td>{COMPETENCY.competency_title}</td>					
+				<!-- BEGIN USER_COMPETENCY -->
+				<td>{COMPETENCY.USER_COMPETENCY.competency_level}</td>
+				<td>{COMPETENCY.USER_COMPETENCY.competency_score}</td>
+				<td>{COMPETENCY.USER_COMPETENCY.gap}</td>
+				<!-- END USER_COMPETENCY -->	
+				
+			</tr>
+			<!-- END COMPETENCY -->
+					
+
+		</table>
+	
+	</div>
+	
+
+
+</div>
+
+
+</body>
+
+
+
+
+</html>
