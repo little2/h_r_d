@@ -10,9 +10,9 @@
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 		<div class="lable "  dis="dis_appraisee" style="background-color: yellow;">{$lang.Information}</div>
-		<div class="lable {display_label_manage_competency}"  dis="dis_manage_competency" >管理職能</div>
-		<div class="lable {display_label_general_competency}"  dis="dis_general_competency" >通用職能</div>
-		<div class="lable {display_label_pro_competency}"  dis="dis_pro_competency" >專業職能</div>
+		<div class="lable {display_label_manage_competency}"  dis="dis_manage_competency" >{$lang.ManageCompetency}</div>
+		<div class="lable {display_label_general_competency}"  dis="dis_general_competency" >{$lang.GeneralCompetency}</div>
+		<div class="lable {display_label_pro_competency}"  dis="dis_pro_competency" >{$lang.ProfessionalCompetency}</div>
 		
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
@@ -28,9 +28,9 @@
 						</div>
 							<table class="tableStyle1" >							
 								<tr>
-									<td class="item">{$lang.Job}：</td>
+									<td class="item">{$lang.JobTitle}：</td>
 									<td>
-										<input  style="width:300px" type="text" name="job_id"  class="contxt"  value="{job_info}"  />										
+										<input  style="width:300px" type="text" name="job_title_keyword"  id="job_title_keyword" class="contxt"  value="{job_title_keyword}"  />										
 									</td>
 								</tr>	
 								<tr>
