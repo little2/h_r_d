@@ -11,14 +11,49 @@
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 		<div class="lable "  dis="dis_evalution_level" style="background-color: yellow;">級數設定</div>
 		<div class="lable {display_evaluator}"  dis="dis_evaluator" >評鑑人</div>
+		<div class="lable {display_attachment}"  dis="dis_attachment" >附件</div>
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
 	</div>
 	
+	
+	
+	
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
+	
+	<div id="dis_attachment"  class="labDiv"  >	
+		<form method="post" id="formPost" >
+		<div class="uc1" style="margin-left: 20px;	margin-top: 20px;">		
+			<div id="take_upload_zone" name="take_upload_zone" >						
+				<p><strong>請選取上傳的檔案</strong></p>
+				<div>										
+					<div style="clear:both;height:5px">&nbsp</div>								
+					<div class="span5" >												
+						<input id="fileupload" type="file" name="files[]"  accept="text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ">									    		
+					</div>
+					<div style="clear:both;height:5px">&nbsp</div>										
+					<div id="componennt_id"  class="progress-bar span5" data-role="progress-bar" style="left:-20px"></div>										 
+				</div>	
+			</div>							
+			<div style="clear:both"></div>											
+			<div id="check_file_zone" name="check_file_zone" class="hide">	
+				<p><strong>附件內容</strong></p>
+					<div>		
+							<a href='{evaluation_attachment_path}'  target='_blank' id='attachment_path' name='attachment_path'>{evaluation_attachment_path}</a>														
+					</div>	
+					<button type="button" onClick='reupload_attachment()' style='margin-top:30px'>重新上傳</button>
+			</div>								
+			<div style="clear:both"></div>									
+			<div id='processing' class='hide'><img src='./templates/bhrsp/images/processing.gif'></div>	
+		</div>
+		<div class="uc2">
+		</div>
+		</form>
+	</div>
+	
+	
 	<div id="dis_evalution_level"  class="labDiv"   style="display: block;">	
 		<form method="post" id="formPost" >
-		<div class="uc1">
-		
+		<div class="uc1">		
 				<div class="hide">
 					competency_id:<input type="text" id="competency_id" name="competency_id" value="{competency_id}" />
 					competency_level_id:<input type="text" id="competency_level_id" name="competency_level_id" value="{competency_level_id}" />
@@ -46,13 +81,9 @@
 							<!-- BEGIN LEVEL -->
 								<div data-competency_evaluation_method="{LEVEL.competency_evaluation_method}"  data-competency_evaluator="{LEVEL.competency_evaluator}" data-level_id="{LEVEL.competency_level_id}"  data-level="{LEVEL.competency_level}">{LEVEL.competency_level} - {LEVEL.competency_evaluator}</div>
 							<!-- END LEVEL -->							
-							</div>
-							
-												
+							</div>					
 						</td>											
-					</tr>			
-					
-				
+					</tr>	
 					<tr>
 						<td height="30"  class="right">評鑑方法：</td>
 						<td>
@@ -60,9 +91,7 @@
 						{competency_evaluation_method}
 						</div>
 						</td>
-					</tr>						
-					
-					
+					</tr>			
 					<tr>
 						<td height="30"  class="right">評鑑人：</td>
 						<td>
@@ -98,8 +127,60 @@
 			element_id:'{elementID}',
 			save_url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_competency.php'			
 		});	
+		
+		
+		//上傳附件
+		var url =  'upload/';
+			$('#fileupload').fileupload({
+			    url: url+'?d_upload_dir=evaluation_att&file_append=0&specified_name={class_evaluation_competency_id}',
+			    dataType: 'json',        
+			    done: function (e, data) {       	    	
+			        $.each(data.result.files, function (index, file) {	
+			            $('#take_upload_zone').addClass('hide');           
+			            $('#check_file_zone').removeClass('hide');
+			            $('#filename').val(file.name);
+			            $('#check_file_zone div').children('a').attr('href',file.url+'?'+Date.now()).text(file.url);
+			        });
+			        
+					$('#check_file_zone').removeClass('hide');
+					$('#take_upload_zone').addClass('hide');
+					$('#import_result_zone').addClass('hide');
+			        
+			    },
+			    progressall: function (e, data) {
+				}
+			}).prop('disabled', !$.support.fileInput)
+			    .parent().addClass($.support.fileInput ? undefined : 'disabled');	
+			
+			attachment_status();
+		
 		//##### 需客制化修改 ##############################################
 	}); 
+	
+
+	function reupload_attachment()
+	{
+		$('#attachment_path').html("");
+		$('#attachment_path').prop("href","");			
+		attachment_status();
+	}
+	
+	function attachment_status()
+	{
+		if($('#attachment_path').html()=="")
+		{
+			//沒有上傳檔案	
+			$('#take_upload_zone').removeClass('hide');
+			$('#check_file_zone').addClass('hide');
+		}		
+		else
+		{
+			//沒有上傳檔案	
+			$('#take_upload_zone').addClass('hide');
+			$('#check_file_zone').removeClass('hide');
+			
+		}
+	}
 	
 	function change_level(obj)
 	{

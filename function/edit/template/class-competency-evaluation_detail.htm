@@ -49,27 +49,63 @@
 
 	<div id="dis_evaluation" class="labDiv"   style="display: block;">
 			<table class="tableStyle1"  >
+			
+			
 					<tr>
-						<td height="30" class="label">被評鑑人：</td>
-						<td>{fullName} {user_id}</td>
+						<td height="20"  class="label">{$lang.Competency}：</td>
+						<td></td>
+					</tr>
+			
+					<tr>
+						<td  class="item">{$lang.CompetencyItem}：</td>
+						<td><span class='trandparent'>{competency_id}</span> {competency_title} Lv.{competency_level}</td>
+					</tr>
+					
+					
+					
+					<tr>
+						<td class="item">{$lang.CompetencyClassDefinition}：</td>
+						<td>{competency_definition}</td>
+					</tr>
+			
+					<tr>
+						<td height="20" class="label">{$lang.Appraisee}：</td>
+						<td></td>
 					</tr>
 					<tr>
-						<td height="30"  class="label">部門：</td>
+						<td  class="item">{$lang.userName}：</td>
+						<td>{fullName}<span class='transparent' >{user_id}</span></td>
+					</tr>
+					<tr>
+						<td  class="item">{$lang.Department}：</td>
 						<td>{group_title}</td>
 					</tr>
 					<tr>
-						<td height="30"  class="label">職稱：</td>
+						<td class="item">{$lang.JobTitle}：</td>
+						<td>{job_title}</td>
+					</tr>
+					
+					<tr>
+						<td height="20" class="label">{$lang.Evaluator}：</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td  class="item">{$lang.userName}：</td>
+						<td>{fullName}<span class='transparent' >{user_id}</span></td>
+					</tr>
+					<tr>
+						<td  class="item">{$lang.Department}：</td>
+						<td>{group_title}</td>
+					</tr>
+					<tr>
+						<td class="item">{$lang.JobTitle}：</td>
 						<td>{job_title}</td>
 					</tr>
 					
 					
 					<tr>
-						<td height="30"  class="label">職能項目：</td>
-						<td>{competency_id} / {competency_title} Lv.{competency_level}</td>
-					</tr>
-					<tr>
-						<td height="30"  class="label">職能定義：</td>
-						<td>{competency_definition}</td>
+						<td height="20" class="label">{$lang.EvaluationAttachment}：</td>
+						<td><a href='{evaluation_attachment_path}' target='_blank' class='{evaluation_attachment_hide}'>{$lang.Download}</a></td>
 					</tr>
 						
 				</table>

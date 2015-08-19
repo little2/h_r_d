@@ -6,64 +6,46 @@
 <style>
 .hide {display:none;}
 </style>
-
-
 <body>
 
-
-
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
-<div id="dis_import_xls" class="labDiv" style="display: block;left:0;	margin-left: 20px;
-	margin-top: 20px;">
+<div id="dis_import_xls" class="labDiv" style="display: block;left:0;	margin-left: 20px;margin-top: 20px;">
 		<div class="uc1">
 			<form method="post" id="formPostImport" name="formPostImport" action="">
-				<input type="hidden" id="import_type" name="import_type" value="{import_type}" >
-				
+				<input type="hidden" id="import_type" name="import_type" value="{import_type}" >		
 			
-				
-				
-				<!-- BEGIN PAR -->
-				<input type="hidden" id="{PAR.id}" name="{PAR.id}" value="{PAR.value}" >
-				<!-- END PAR -->
-				
 				<div id="take_upload_zone" name="take_upload_zone" >						
-									<p><strong>請選取上傳的檔案</strong></p>
-									<div>										
-											<div style="clear:both;height:5px">&nbsp</div>								
-											<div class="span5" >
-												
-									    		<input id="fileupload" type="file" name="files[]"  accept="text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ">									    		
-											</div>
-											<div style="clear:both;height:5px">&nbsp</div>
-										
-											<div id="componennt_id"  class="progress-bar span5" data-role="progress-bar" style="left:-20px"></div>										 
-									</div>	
-							</div>
-							
-							<div style="clear:both"></div>
-														
-							<div id="check_file_zone" name="check_file_zone" class="hide">	
-								<p><strong>上傳結果</strong></p>
-									<div>		
-											<a href=''  target='_blank'></a>
-											<input id="filename" name="filename" type="hidden" />
-											<br><br>
-											<button type="button"  onClick="bt_confirm_import(this )">確認匯入</button>											
-									</div>	
-							</div>								
-							<div style="clear:both"></div>		
-							
-							<div id='processing' class='hide'><img src='./templates/bhrsp/images/processing.gif'></div>
-							
-							<div id="import_result_zone" class="tableStyle2 hide" >
-								<table id="import_result">
-									<tr >
-										<td id="sheet_title">活頁表</td>
-										<td id="rown_umber">行數</td>
-										<td id="result">執行結果</td>
-									</tr>						
-								</table>							
-							</div>
+					<p><strong>請選取上傳的檔案</strong></p>
+					<div>										
+						<div style="clear:both;height:5px">&nbsp</div>								
+						<div class="span5" >												
+							<input id="fileupload" type="file" name="files[]"  accept="text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet ">									    		
+						</div>
+						<div style="clear:both;height:5px">&nbsp</div>										
+						<div id="componennt_id"  class="progress-bar span5" data-role="progress-bar" style="left:-20px"></div>										 
+					</div>	
+				</div>							
+				<div style="clear:both"></div>											
+				<div id="check_file_zone" name="check_file_zone" class="hide">	
+					<p><strong>上傳結果</strong></p>
+						<div>		
+								<a href=''  target='_blank'></a>
+								<input id="filename" name="filename" type="hidden" />
+								<br><br>
+								<button type="button"  onClick="bt_confirm_import(this )">確認匯入</button>											
+						</div>	
+				</div>								
+				<div style="clear:both"></div>									
+				<div id='processing' class='hide'><img src='./templates/bhrsp/images/processing.gif'></div>							
+				<div id="import_result_zone" class="tableStyle2 hide" >
+					<table id="import_result">
+						<tr >
+							<td id="sheet_title">活頁表</td>
+							<td id="rown_umber">行數</td>
+							<td id="result">執行結果</td>
+						</tr>						
+					</table>							
+				</div>
 			</form>
 		</div>
 		<div class="uc2">

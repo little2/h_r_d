@@ -30,7 +30,7 @@
 								<tr>
 									<td class="item">{$lang.JobTitle}：</td>
 									<td>
-										<input  style="width:300px" type="text" name="job_title_keyword"  id="job_title_keyword" class="contxt"  value="{job_title_keyword}"  />										
+										<input  {no-modified} style="width:300px" type="text" name="job_title_keyword"  id="job_title_keyword" class="contxt"  value="{job_info}"  />										
 									</td>
 								</tr>	
 								<tr>
@@ -40,9 +40,9 @@
 									</td>
 								</tr>	
 								<tr>
-									<td class="item">姓名：</td>
+									<td class="item">{$lang.userName}：</td>
 									<td>
-										<input type="text" name="keyword"  value="{fullName}" />										
+										<input type="text" name="keyword"  value="{fullName}"  {no-modified}/>										
 									</td>
 								</tr>	
 								

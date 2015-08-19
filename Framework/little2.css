@@ -4,7 +4,9 @@
 
 .hide {display:none;}
 .show {display:block;}
-
+.transparent{
+	color: white;
+}
 /*---------------------------------
 	UTILITY
 -----------------------------------*/
