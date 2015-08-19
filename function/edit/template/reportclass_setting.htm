@@ -17,10 +17,10 @@
 		<div class="lable {display_group}"  dis="dis_department" >部門別報表</div>
 		<div class="lable {display_person}"  dis="dis_person" >個人報表</div>
 		<div class="lable {display_reportee}"  dis="dis_reportee" >評鑑關係</div>
-		<div class="lable {display_export}"  dis="dis_export" >產生報表</div>		
-		<div class="lable {display_export}"  dis="dis_report_personal_list"  >個人報表列表</div>		
-		<div class="lable {display_export}"  dis="dis_report_group_list"  >團體報表列表</div>			
+		<div class="lable {display_export}"  dis="dis_export" >產生報表</div>			
 		<div class="lable {display_export}"  dis="dis_report_company_list"  >公司報表列表</div>			
+		<div class="lable {display_export}"  dis="dis_report_group_list"  >部門報表列表</div>			
+		<div class="lable {display_export}"  dis="dis_report_personal_list"  >個人報表列表</div>	
 	</div>
 	
 
@@ -122,24 +122,17 @@
 						</td>					
 					</tr>				
 					<tr>
-					
-						
 						<td class="left"  colspan="2">
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選<p>
 							<!-- BEGIN COMANY_REPORT -->							
 							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{COMANY_REPORT.report_title_id}" >{COMANY_REPORT.report_title}</div>
 							<!-- END COMANY_REPORT -->						
 					  </td>
-						
-							
-								
-					</tr>							
-											
+					</tr>			
 				</table>
 		</div>
 		<div class="uc2">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
+		
 		</div>
 	</div>	
 	
@@ -300,24 +293,29 @@
 		$('#dis_report_info').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
 			save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
 		});			
 		
 		$('#dis_person').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
 			save_url:'/hrd/function/saveOrUpdate/save_report_personal.php'
 		});		
 
 		$('#dis_company').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
+			trigger_element:['report-company_list_list'],
 			save_url:'/hrd/function/saveOrUpdate/save_report_class_company.php'
 		});		
 		
 		$('#dis_department').dashpanel({
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
+			close_after_save:false,
 			save_url:'/hrd/function/saveOrUpdate/save_report_class_group.php'
 		});		
 		
