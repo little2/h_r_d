@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Aug 18, 2015, 08:02 AM
+-- 建立日期: Aug 20, 2015, 08:59 AM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -206,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_competency` (
   `competency_adjusted_date` datetime NOT NULL,
   `competency_grade_date` datetime NOT NULL,
   PRIMARY KEY (`class_evaluation_competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `class_evaluation_evaluator` (
   `weight_adjusted` int(11) NOT NULL,
   `adjusted_date` datetime NOT NULL,
   PRIMARY KEY (`class_evaluation_evaluator_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
 
 -- --------------------------------------------------------
 
@@ -253,8 +253,9 @@ CREATE TABLE IF NOT EXISTS `competency_dic` (
   `competency_dic_id` int(11) NOT NULL AUTO_INCREMENT,
   `competency_dic_code` varchar(10) DEFAULT NULL,
   `competency_type` varchar(5) NOT NULL,
-  PRIMARY KEY (`competency_dic_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+  PRIMARY KEY (`competency_dic_id`),
+  KEY `competency_dic_id` (`competency_dic_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
 
 -- --------------------------------------------------------
 
@@ -415,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `group_member` (
   `user_id` int(10) unsigned NOT NULL,
   `role` varchar(3) NOT NULL,
   PRIMARY KEY (`group_member_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 -- --------------------------------------------------------
 
@@ -641,6 +642,21 @@ CREATE TABLE IF NOT EXISTS `profile_competency_model` (
 -- --------------------------------------------------------
 
 --
+-- 資料表格式： `report_company`
+--
+
+CREATE TABLE IF NOT EXISTS `report_company` (
+  `report_company_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `report_title_id` int(10) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `report_config_id` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`report_company_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+-- --------------------------------------------------------
+
+--
 -- 資料表格式： `report_config`
 --
 
@@ -658,7 +674,7 @@ CREATE TABLE IF NOT EXISTS `report_config` (
   `block_interval` decimal(10,2) NOT NULL,
   `interval_count` int(10) NOT NULL,
   PRIMARY KEY (`report_config_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -674,8 +690,9 @@ CREATE TABLE IF NOT EXISTS `report_group` (
   `create_time` int(11) NOT NULL,
   `comparison_group_id` int(11) NOT NULL DEFAULT '0',
   `population_group_id` int(11) NOT NULL DEFAULT '0',
+  `job_id_str` text NOT NULL,
   PRIMARY KEY (`report_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=136 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=324 ;
 
 -- --------------------------------------------------------
 
@@ -690,7 +707,7 @@ CREATE TABLE IF NOT EXISTS `report_personal` (
   `report_config_id` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`report_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4790 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4830 ;
 
 -- --------------------------------------------------------
 
@@ -706,7 +723,7 @@ CREATE TABLE IF NOT EXISTS `report_title` (
   `report_kind` varchar(30) NOT NULL,
   `report_filename` varchar(50) NOT NULL,
   PRIMARY KEY (`report_title_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 -- --------------------------------------------------------
 

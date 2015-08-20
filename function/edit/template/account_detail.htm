@@ -110,7 +110,7 @@
 	<div id="dis_position" class="labDiv"   >
 		<div class="uc1">
 			<form method="post" id="formPost" >
-				<div class="hide">
+				<div class="hide">				
 					<input type="text" name="user_id" class="contxt" value="{user_id}" />
 					<input type="text" name="power_type" class="contxt" value="{power_type}" />
 					<input id="group_member_id" name="group_member_id" value="{group_member_id}" />
@@ -139,7 +139,7 @@
 						<td>
 							<select id="job_id" name="job_id">								
 								<!-- BEGIN JOBLIST -->
-								<option value="{JOBLIST.job_id}" {{JOBLIST.selected}>{JOBLIST.job_info}</option>
+								<option value="{JOBLIST.job_id}" {JOBLIST.selected}>{JOBLIST.job_info}</option>
 								<!-- END JOBLIST -->	
 							</select>	
 						</td>

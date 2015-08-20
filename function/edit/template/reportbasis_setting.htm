@@ -393,7 +393,19 @@ function report_group_delete(id)
 	if (sels) {
 		var rowdata = $("#" + id).jqGrid("getRowData", sels);
 		 jzsoft.grid.sendPost(id,'/hrd/function/delete/delete_group_report.php?report_config_id='+$('#report_config_id').val());
-		 $("#"+id).jqGrid().trigger("reloadGrid");
+			 
+		 var o_counts=$("#" + id).getGridParam("reccount");
+		 var sel_counts=sels.length;		
+		 if(o_counts==sel_counts)
+		{
+			 $("#"+id).jqGrid("clearGridData", true).trigger("reloadGrid");
+		}
+		else
+		{
+			$("#"+id).jqGrid().trigger("reloadGrid");
+		}		 
+		 
+		 
 	} else {
 		$("#" + id).message("請選擇要刪除的項目！");
 	}
