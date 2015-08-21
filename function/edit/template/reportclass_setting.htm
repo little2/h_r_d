@@ -8,29 +8,32 @@
 </head>
 
 <body><div  id="container_{elementID}"  data-from="{From_elementID}" >
-<form method="post" id="formPost" action="">			
+		
 
 	<div class="labMenu">
 		<div class="lable {display_report_info}"  dis="dis_report_info" style="background-color: yellow;">{$lang.Information}</div>
 		<div class="lable {display_setting}"  dis="dis_setting" >參數設定</div>
-		<div class="lable {display_company}"  dis="dis_company" >公司別報表</div>
-		<div class="lable {display_group}"  dis="dis_group" >部門別報表</div>
-
-		<div class="lable {display_person}"  dis="dis_person" >個人報表</div>
-		<div class="lable {display_reportee}"  dis="dis_reportee" >評鑑關係</div>
+		<div class="lable {display_company}"  dis="dis_company" >{$lang.CompanyReport}</div>
+		<div class="lable {display_group}"  dis="dis_group" >{$lang.GroupReport}</div>
+		<div class="lable {display_person}"  dis="dis_person" >{$lang.PersonalReport}</div>
+		<div class="lable {display_reportee} hide"  dis="dis_reportee" >評鑑關係</div>
 		<div class="lable {display_export}"  dis="dis_export" >產生報表</div>			
-		<div class="lable {display_export}"  dis="dis_report_company_list"  >公司報表列表</div>			
-		<div class="lable {display_export}"  dis="dis_report_group_list"  >部門報表列表</div>					
-	
-		<div class="lable {display_export}"  dis="dis_report_personal_list"  >個人報表列表</div>	
+		<div class="lable {display_export}"  dis="dis_report_company_list"  >{$lang.CompanyReport}列表</div>			
+		<div class="lable {display_export}"  dis="dis_report_group_list"  >{$lang.GroupReport}列表</div>	
+		<div class="lable {display_export}"  dis="dis_report_personal_list"  >{$lang.PersonalReport}列表</div>	
 	</div>
 	
 
 	
 	<!-- 個人報表 -->
 	<div id="dis_person" class="labDiv"   >
+		<form method="post" id="formPost" >	
+		<div class=hide>
+			<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
+		</div>		
+		
 		<div class="uc1">	
-				<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
+
 				<table class="tableStyle1"   >
 					<tr>
 						<td class="label" >範圍設定：</td>
@@ -67,6 +70,7 @@
 			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
 			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
 		</div>
+		</form>
 	</div>		
 	
 	<!-- 個人報表列表 -->
@@ -78,53 +82,67 @@
 	
 	<!-- 團體報表 -->
 	<div id="dis_group" class="labDiv"   >
+		<form method="post" id="formPost" >	
+		<div class=hide>
+			<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
+		</div>		
 		<div class="uc1">	
-				<table class="tableStyle1"   >
+				<table class="tableStyle1"  >
 					<tr>
-						<td class="label" >
+						<td class="label"  width="100px"  style="vertical-align:top">
 							部門範圍設定：
 						</td>
-						<td >	
-							<select id='population_group_id'  name='population_group_id' >
-								 <option value="0"></option>
-								 <!-- BEGIN DEP -->
-								 <option value='{DEP.group_id}'>{DEP.group_title}-{DEP.group_id}</option>	
-								 <!-- END DEP -->					
-							</select>		
-						</td>					
-					</tr>					
-				
-					<tr>
-						<td class="label" >職稱範圍設定：</td>
-						<td >		
-							<select id='job_id'  name='job_id'   multiple="multiple" size="5">
-								 <option value="0"></option>
-								 <!-- BEGIN JOB -->
-								 <option value='{JOB.job_id}'>{JOB.job_title}-{JOB.job_id}</option>	
-								 <!-- END JOB -->					
-							</select>		
-						
-												
-						</td>					
-					</tr>						
-
-		
-					<tr>
-						<td class="left"  colspan="2"> 							
-							<input type="radio" name="code2" >所有職稱 <input type="radio" name="code2" >特定職等職稱組合<input type="button" value="設定"><p>
+						<td  style="vertical-align:top"><div  style="float:left">
+								<select onchange="change_unit(this)" id='sel_unit'  name='sel_unit'>
+									<option value="all">全公司</option>
+									<option value="spec">指定部門</option>
+								</select>
+							</div>
 						</td>
-							
-					</tr>							
+						<td  style="vertical-align:top">
+							<div style="float:left;" class='hide'  id="block_pick_unit" name="block_pick_unit">
+									<select id='population_group_id[]'  name='population_group_id[]'  multiple="multiple" size="5" >										
+										 <!-- BEGIN DEP -->
+										 <option value='{DEP.group_id}'>{DEP.group_title}-{DEP.group_id}</option>	
+										 <!-- END DEP -->					
+									</select>									
+								</div>
+						</td>
+					</tr>	
+
+
+					<tr>
+						<td class="label"   style="vertical-align:top">
+							職稱範圍設定：
+						</td>
+						<td  style="vertical-align:top"><div  style="float:left">
+								<select onchange="change_job(this)"  id='sel_job'  name='sel_job' >
+									<option value="all">所有職稱</option>
+									<option value="spec">指定職稱</option>
+								</select>
+							</div>
+						</td>
+						<td   style="vertical-align:top">
+							<div style="float:left;" class='hide'  id="block_pick_job" name="block_pick_job">
+									<select id='job_id[]'  name='job_id[]'   multiple="multiple" size="5">										
+										 <!-- BEGIN JOB -->
+										 <option value='{JOB.job_id}'>{JOB.job_title}-{JOB.job_id}</option>	
+										 <!-- END JOB -->					
+									</select>										
+								</div>
+						</td>
+					</tr>					
+									
 					<tr>
 						<td class="label" >報表選擇：</td>
 						<td >								
 						</td>					
 					</tr>			
 					<tr>					
-						<td class="left"  colspan="2">
+						<td class="left"  colspan="3">
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選<p>
 							<!-- BEGIN GROUP_REPORT -->							
-							<div style="margin-right:10px"><input type="checkbox" name="group_report_title_id[]"  id="report_title_id[]"  value="{GROUP_REPORT.report_title_id}" >{GROUP_REPORT.report_title}</div>
+							<div style="margin-right:10px"><input type="checkbox" name="group_report_title_id[]"  id="group_report_title_id[]"  value="{GROUP_REPORT.report_title_id}" >{GROUP_REPORT.report_title}</div>
 							<!-- END GROUP_REPORT -->						
 						</td>					
 					</tr>
@@ -133,18 +151,21 @@
 		</div>
 		<div class="uc2">			
 		</div>
+		</form>
 	</div>		
 	
 	<!-- 團體報表列表 -->
-	<div id="dis_report_job_list" class="labDiv"  >	
+	<div id="dis_report_group_list" class="labDiv"  >	
 		<table class="tableStyle1"  style="width:100%"><tr><td>{container_report-group_list}</td></tr></table>		
 	</div>	
 
 
-
-
 	<!-- 公司別報表 -->
 	<div id="dis_company" class="labDiv"   >
+		<form method="post" id="formPost" >	
+		<div class=hide>
+			<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
+		</div>		
 		<div class="uc1">	
 				<table class="tableStyle1"   >
 					<tr>
@@ -156,15 +177,15 @@
 						<td class="left"  colspan="2">
 							<input type="checkbox" name="clickAllReport"  id="clickAllReport" >全選<p>
 							<!-- BEGIN COMANY_REPORT -->							
-							<div style="margin-right:10px"><input type="checkbox" name="report_title_id[]"  id="report_title_id[]"  value="{COMANY_REPORT.report_title_id}" >{COMANY_REPORT.report_title}</div>
+							<div style="margin-right:10px"><input type="checkbox"  name="company_report_title_id[]"  id="company_report_title_id[]"  value="{COMANY_REPORT.report_title_id}" >{COMANY_REPORT.report_title}</div>
 							<!-- END COMANY_REPORT -->						
 					  </td>
 					</tr>			
 				</table>
 		</div>
-		<div class="uc2">
-		
+		<div class="uc2">		
 		</div>
+		</form>
 	</div>	
 	
 	<!-- 公司報表列表 -->
@@ -175,29 +196,41 @@
 
 
 	<div id="dis_export" class="labDiv"   >
+		<form method="post" id="formPost" >	
+		<div class=hide>
+			<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
+		</div>		
 		<div class="uc1">		
 				<table class="tableStyle1"  >
 														
 					<tr>
 						<td class="right">報表匯出格式：</td>
 						<td>
-						<input type="radio"  name="format" />MS Word   <br>
-						<input type="radio"  name="format" />MS Excel <br>
-						<input type="radio"  name="format" />PDF <br>
-						
-						</td>					
+						<DIV CLASS="hide">
+							<input type="radio"  name="format"  />MS Word   <br>
+							<input type="radio"  name="format" />MS Excel <br>						
+						</DIV>
+						<input type="radio"  name="format"  value="html" checked/>HTML<br>	
+						<input type="radio"  name="format"  value="pdf"/>PDF <br>
+											
+						</td>						
 					</tr>		
 				</table>
 		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="產出"   />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
+		<div class="uc2">				
+			<input class="labButton" name="bt_export" id="bt_export" type="button"  onClick="export_report()" value="產出"   />
+			<img id="wait_process" class='hide' src='templates/bhrsp/images/processing.gif'  title='背景處理中，請稍侯' height="40"/>				
 		</div>
+		</form>
 	</div>		
 	
 	<div id="dis_setting" class="labDiv"   >
-		<div class="uc1">		
-
+		<form method="post" id="formPost" >	
+		<div class=hide>
+			<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
+			<input type="hidden" name="method"  value="C" />
+		</div>		
+		<div class="uc1">
 				<table class="tableStyle1"  >
 					<tr>
 						<td class="label">一般：</td>
@@ -205,68 +238,57 @@
 					</tr>				
 					<tr>
 						<td class="right">評鑑期間：</td>
-						<td>本次鑑定結果匯總表，評鑑期間<input type="text" name="code"  value="2014-12-05" size="8"/>~<input type="text" name="code"  value="2014-12-15"  size="8"/></td>					
+						<td>本次鑑定結果匯總表，評鑑期間<input type="text" name="report_begin_date"  id="report_begin_date"  value="{report_begin_date}" size="8"/>~<input type="text"  name="report_end_date"  id="report_end_date"    value="{report_end_date}"  size="8"/></td>					
 					</tr>				
 						
 					<tr>
 						<td class="right">異常評鑑表：</td>
-						<td>不同評鑑者評鑑結果相差<input type="text" name="code"   value="0.5"  size="3"/>級數(含)以上列為異常。
+						<td>不同評鑑者評鑑結果相差<input type="text"  name="threshold_interval"   id="threshold_interval"   value="{abnormal_val}"  size="3"/>級數(含)以上列為異常。
 						<input type="button" value="列出名單">
 						</td>								
 					</tr>																
 				</table>
-				
-			
 		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
+		<div class="uc2">	
 		</div>
+		</form>
 	</div>	
 	
 	
 	<!-- 頁面(開始) -->
 	<div id="dis_report_info" class="labDiv" style="display: block;">
+		<form method="post" id="formPost" >	
+		<div class=hide>
+			<input type="text" id="report_config_id"  name="report_config_id"  value="{report_config_id}" />
+			<input type="hidden" name="method"  value="C" />
+		</div>		
 		<div class="uc1">			
 
 				<table class="tableStyle1"  >
 					<tr>
 						<td class="label">基本信息：</td>
-						<td></td>
-					
+						<td></td>					
 					</tr>				
 					<tr>
 						<td class="right">報表編號：</td>
 						<td>
-							<input type="text" name="report_config_code" class="contxt" value="" />
-							<input type="hidden" name="method"  value="C" />
+							<input type="text" name="report_config_code" class="contxt" value="{report_config_code}" />
+							
 							
 						</td>
 					
 					</tr>				
 					<tr>
 						<td class="right">報表簡要說明：</td>
-						<td><textarea name="report_config_desc"  cols="60" rows="5"></textarea></td>
-				
-					</tr>				
-		
-
-				
+						<td><textarea name="report_config_desc"  cols="60" rows="5">{report_config_desc}</textarea></td>
+					</tr>		
 				</table>
-				
-			
 		</div>
-		<div class="uc2">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
-			<input class="labButton" name="bt_cancel"  id="bt_cancel" type="button"  value="關閉" />			
+		<div class="uc2">	
 		</div>
+		</form>
 	</div>
 	
-	
-
-	
-	
-</form>
 </div></body>
 
 
@@ -275,15 +297,23 @@ $(function() {
 	$('#dis_report_info').dashpanel({
 		dialog_title:"{DialogTitle}",
 		element_id:'{elementID}',
-		close_after_save:false,
+		close_after_save:true,
 		save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
 	});			
+	
+	$('#dis_setting').dashpanel({
+		dialog_title:"{DialogTitle}",
+		element_id:'{elementID}',
+		close_after_save:false,
+		save_url:'/hrd/function/saveOrUpdate/save_report_config.php'			
+	});				
 	
 	$('#dis_person').dashpanel({
 		dialog_title:"{DialogTitle}",
 		element_id:'{elementID}',
 		close_after_save:false,
-		save_url:'/hrd/function/saveOrUpdate/save_report_personal.php'
+		trigger_element:['report-personal_list_list'],
+		save_url:'/hrd/function/saveOrUpdate/save_report_class_personal.php'
 	});		
 
 	$('#dis_company').dashpanel({
@@ -302,10 +332,7 @@ $(function() {
 		save_url:'/hrd/function/saveOrUpdate/save_report_class_group.php'
 	});		
 	
-	
-
-	
-	bind_click("#clickAllReport",'#dis_company','report_title_id[]');
+	bind_click("#clickAllReport",'#dis_company','company_report_title_id[]');
 	bind_click("#clickAllReport",'#dis_person','report_title_id[]');
 	bind_click("#clickAllReport",'#dis_group','group_report_title_id[]');
 
@@ -315,7 +342,44 @@ $(function() {
 	
 	
 }); 
+
+
+function export_report()
+{
+	var format = $('input[name=format]:checked').val();
 	
+	var msg = {
+		id : 'g3_msg',
+		width : 500,
+		height : 400,
+		modal : true,
+		type : 'url',
+		show : "",
+		hide : "",
+		title : "產生報表",
+		body : "/hrd/function/export/export_report.php?format="+format ,
+		buttons : {
+			"關閉" : function() {
+				closeDialog(this.id);
+			}
+		}
+	};
+	openDialog(msg);
+}
+
+
+function report_person_delete(id)
+{	
+	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
+	if (sels) {
+		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+		//console.log(rowdata);
+		 jzsoft.grid.sendPost(id,'/hrd/function/delete/delete_person_report.php?report_config_id='+$('#report_config_id').val());
+		 $("#"+id).jqGrid().trigger("reloadGrid");
+	} else {
+		$("#" + id).message("請選擇要刪除的項目！");
+	}
+}
 
 function report_group_delete(id)
 {	
@@ -340,7 +404,61 @@ function report_group_delete(id)
 		$("#" + id).message("請選擇要刪除的項目！");
 	}
 }
+
+
+function report_company_delete(id)
+{	
+	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');
 	
+	if (sels) {
+		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+		 jzsoft.grid.sendPost(id,'/hrd/function/delete/delete_company_report.php?report_config_id='+$('#report_config_id').val());
+		
+		 var o_counts=$("#" + id).getGridParam("reccount");
+		 var sel_counts=sels.length;		
+		 if(o_counts==sel_counts)
+		{
+			 $("#"+id).jqGrid("clearGridData", true).trigger("reloadGrid");
+		}
+		else
+		{
+			$("#"+id).jqGrid().trigger("reloadGrid");
+		}
+		
+	} else {
+		$("#" + id).message("請選擇要刪除的項目！");
+	}
+}
+
+function change_unit(obj)
+{
+	$('#evaluator_list').val(obj.value);
+	if(obj.value=='all')
+	{
+		$('#block_pick_unit').addClass('hide');
+		
+	}
+	else
+	{
+		$('#block_pick_unit').removeClass('hide');
+	}	
+}
+
+function change_job(obj)
+{
+	$('#evaluator_list').val(obj.value);
+	if(obj.value=='all')
+	{
+		$('#block_pick_job').addClass('hide');
+		
+	}
+	else
+	{
+		$('#block_pick_job').removeClass('hide');
+	}	
+}
+
+					
 	
 </script>
 

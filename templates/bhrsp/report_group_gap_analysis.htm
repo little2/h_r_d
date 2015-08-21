@@ -18,30 +18,26 @@
 	<div >
 		<table >
 			<tr>
-				<td colspan="9" class="bar"></td>
+				<td colspan="{colspan}" class="bar"></td>
 			</tr>
 			<tr class="maintitle">
 				<td>職能名稱 / 行為名稱</td>
 				<td>基準值</td>
 				<td>平均值</td>
-				<td><-0.50</td>
-				<td>≧-0.50 ~<-0.25</td>
-				<td>≧-0.25~<0.00</td>
-				<td>≧0.00 ~<0.25</td>
-				<td>≧0.25~<0.50</td>
-				<td>≧0.50 </td>
+				<!-- BEGIN INTVAL -->
+				<td>{INTVAL.min} {INTVAL.max}</td>
+				<!-- END INTVAL -->
+				
 			</tr>
+			
 			<!-- BEGIN COMPETENCY -->
 			<tr>
 				<th>{COMPETENCY.competency_title}</th>
 				<th>{COMPETENCY.competency_base}</th>
 				<th>{COMPETENCY.competency_avg}</th>	<!-- 自己 -->
-				<th>{COMPETENCY.competency_block_1}%</th>	<!-- 直屬主管 -->
-				<th>{COMPETENCY.competency_block_2}%</th>	<!-- 同事 -->
-				<th>{COMPETENCY.competency_block_3}%</th>	<!-- 部屬 -->
-				<th>{COMPETENCY.competency_block_4}%</th>	<!-- 部屬 -->
-				<th>{COMPETENCY.competency_block_5}%</th>	<!-- 部屬 -->
-				<th>{COMPETENCY.competency_block_6}%</th>	<!-- 部屬 -->
+				<!-- BEGIN COMPETENCY_BLOCK -->
+				<th>{COMPETENCY.COMPETENCY_BLOCK.percent}%</th>	<!-- 直屬主管 -->
+				<!-- END COMPETENCY_BLOCK -->
 			</tr>
 			
 			<!-- BEGIN BEHAVIOR -->
@@ -49,12 +45,10 @@
 				<td>{COMPETENCY.BEHAVIOR.behavior_definition}</td>
 				<td>{COMPETENCY.BEHAVIOR.behavior_base}</td>
 				<td>{COMPETENCY.BEHAVIOR.behavior_avg}</td>
-				<td>{COMPETENCY.BEHAVIOR.behavior_block_1}%</td>
-				<td>{COMPETENCY.BEHAVIOR.behavior_block_2}%</td>
-				<td>{COMPETENCY.BEHAVIOR.behavior_block_3}%</td>
-				<td>{COMPETENCY.BEHAVIOR.behavior_block_4}%</td>
-				<td>{COMPETENCY.BEHAVIOR.behavior_block_5}%</td>
-				<td>{COMPETENCY.BEHAVIOR.behavior_block_6}%</td>
+				<!-- BEGIN BEHAVIOR_BLOCK -->
+				<td>{COMPETENCY.BEHAVIOR.BEHAVIOR_BLOCK.percent}%</td>
+				<!-- END BEHAVIOR_BLOCK -->
+				
 			</tr>
 			<!-- END BEHAVIOR -->
 			
