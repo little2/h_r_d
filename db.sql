@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Aug 21, 2015, 07:57 AM
+-- 建立日期: Sep 01, 2015, 05:52 AM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -30,17 +30,6 @@ CREATE TABLE IF NOT EXISTS `ability` (
   `competency_level_id` int(11) NOT NULL,
   PRIMARY KEY (`ability_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=161 ;
-
--- --------------------------------------------------------
-
---
--- 資料表格式： `account`
---
-
-CREATE TABLE IF NOT EXISTS `account` (
-  `user_name` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -240,6 +229,7 @@ CREATE TABLE IF NOT EXISTS `competency` (
   `competency_model_id` int(10) NOT NULL,
   `competency_weight` decimal(10,1) NOT NULL DEFAULT '1.0',
   `competency_level_number` int(1) NOT NULL,
+  `competency_sort` int(11) NOT NULL,
   PRIMARY KEY (`competency_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=154 ;
 
@@ -651,7 +641,7 @@ CREATE TABLE IF NOT EXISTS `report_company` (
   `report_config_id` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`report_company_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -673,7 +663,7 @@ CREATE TABLE IF NOT EXISTS `report_config` (
   `block_interval` decimal(10,2) NOT NULL,
   `interval_count` int(10) NOT NULL,
   PRIMARY KEY (`report_config_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -691,7 +681,7 @@ CREATE TABLE IF NOT EXISTS `report_group` (
   `population_group_id` int(11) NOT NULL DEFAULT '0',
   `job_id_str` text NOT NULL,
   PRIMARY KEY (`report_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 -- --------------------------------------------------------
 
@@ -706,7 +696,7 @@ CREATE TABLE IF NOT EXISTS `report_personal` (
   `report_config_id` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`report_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=536 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=598 ;
 
 -- --------------------------------------------------------
 

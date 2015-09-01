@@ -1,0 +1,161 @@
+﻿<html>
+<head>
+<title>edit</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/hrd/Framework/g3.buttons.js"></script>
+<link rel="stylesheet" type="text/css" href="/hrd/Framework/little2.css"  />
+</head>
+
+<body>
+
+
+
+
+	<div id="container_{elementID}" data-from="{From_elementID}">
+
+		<div id="dis_website_url">
+			<div class="uc1">
+				<form method="post" id="formPost" action="">
+					<div style="border-bottom: 1px #cecece solid; margin-top: 15px; width: 97%; margin-left: 20px;">
+						<div style="font-size: 16px; font-weight: bold;">註冊訊息</div>
+					</div>
+					
+					
+					<div id="uploading_bt" style="margin-left: 25px;">
+						<ul>
+							<li>公司代碼：{AUTHUSERID}</li>
+							<li>授權單位：{AUTHUNITNAME}</li>
+						</ul>
+						<input type="button" class="hide labButton" id="validate" value="匯出" onClick='backup();' />
+					</div>
+					<div style="clear: both"></div>
+				</form>
+			</div>
+
+
+
+		</div>
+
+	</div>
+</body>
+
+<script type="text/javascript">
+	$(function() {
+		
+		var url =  '../../upload/';
+		$('#fileupload').fileupload({
+		    url: url+'?d_upload_dir=importsql',
+		    dataType: 'json',        
+		    done: function (e, data) {       	    	
+		        $.each(data.result.files, function (index, file) {	
+		            $('#take_upload_zone').addClass('hide');           
+		            $('#check_file_zone').removeClass('hide');
+		            $('#filename').val(file.name);
+		            $('#check_file_zone div').children('a').attr('href',file.url+'?'+Date.now()).text(file.url);
+		        });
+		        
+				$('#check_file_zone').removeClass('hide');
+				$('#take_upload_zone').addClass('hide');
+				$('#import_result_zone').addClass('hide');
+		        
+		    },
+		    progressall: function (e, data) {
+			}
+		}).prop('disabled', !$.support.fileInput)
+		    .parent().addClass($.support.fileInput ? undefined : 'disabled');	
+		$('#dis_import_xls').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}'		
+		});		
+		
+		
+		//##### 需客制化修改 ##############################################
+		$('#dis_website_url').dashpanel({
+			dialog_title:"{DialogTitle}",
+			element_id:'{elementID}',
+			save:function(event){
+        		var formContainer=$(event.target).parentsUntil('div.labDiv').parent();	        		
+				var o = {
+						data: $("#formPost",formContainer).serialize(),
+						url:this.save_url,
+						element_id:this.element_id,
+						onSuccess:function(data)
+						{		
+								var container =$('#container_'+this.element_id);
+								if(data.errmsg)
+								{
+									$(container).message(data.errmsg);
+								}
+								else
+								{
+									
+								}	
+							}					
+				}				
+				var msg=mypost(o);		},
+			save_url:'/hrd/function/saveOrUpdate/save_website.php'
+		});	
+		//##### 需客制化修改 ##############################################
+		
+
+		
+	}); 
+	
+	function backup()
+	{
+		$('#uploading_bt').addClass('hide');
+		$('#uploading').removeClass('hide');
+		//php-mysql-dump.php
+		location.href='./../../php-mysql-dump.php?dump=1';
+	}	
+	
+
+	function bt_confirm_import_db (obj)
+	{
+		$(obj).addClass('hide');
+		var filename=$('#filename').val();
+		var import_type=$('#import_type').val();
+		//console.log($("#formPostImport").serialize());
+		//console.log($('#filename').val());
+		$('#processing').removeClass('hide');
+		$.ajax({
+			type : 'POST', //GET or POST
+			url : '../../php-mysql-dump.php', 						//請求的頁面
+			cache : false,									//防止抓到快取的回應		
+			data : {importdb:1,filename:filename}, //要傳送到頁面的參數
+			success :  function(data) {
+				if(data.errmsg)
+					{
+					alert(data.errmsg);
+					}
+				else
+					{
+					//$.unblockUI();
+					$('#check_file_zone').addClass('hide');
+					$('#take_upload_zone').addClass('hide');
+					$('#import_result_zone').removeClass('hide');
+					$('#import_result_zone').html("匯入成功");
+					$('#processing').addClass('hide');
+			
+
+				
+				
+					}
+				$("#tabPanel").refreshitem();	
+				}, 			
+			error : function(data) {
+				//$.unblockUI();
+				alert("Error");
+			}, //當請求失敗後此事件會被呼叫
+			statusCode : { //狀態碼處理
+				404 : function() {
+					//$.unblockUI();
+					alert ("page not found");        				
+				}
+			}
+		});	 
+	}	
+	
+</script>
+
+</html>
