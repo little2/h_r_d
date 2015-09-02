@@ -1,0 +1,77 @@
+<style>
+		header, section {
+			display: block;
+		}
+		
+		.connected, .sortable, .exclude, .handles {
+			margin: auto;
+			padding: 0;
+			width: 310px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+	.sortable.grid {
+			overflow: hidden;
+		}
+		.connected li, .sortable li, .exclude li, .handles li {
+			list-style: none;
+			border: 1px solid #CCC;
+			background: #F6F6F6;
+			font-family: "Tahoma";
+			color: #1C94C4;
+			margin: 5px;
+			padding: 5px;
+			height: 22px;
+		}
+</style>
+<script src="jquery.sortable.js"></script>
+
+<body>
+<div align='center'>
+<div class='transparent'>{func} {id} {grid_id}</div>
+<section>		
+		<ul class="sortable grid">
+			<!-- BEGIN LIST -->
+			<li id="{LIST.id}">{LIST.text}</li>
+			<!-- END LIST -->
+		</ul>
+	</section>
+<button type="button" onClick='save_order()'>save</button>
+</div>
+</body>
+
+<script>
+		$(function() {
+			$('.sortable').sortable();			
+		});
+		
+		function save_order(type)
+		{
+			var str='';
+			var i=0;
+			$('li',$('section')).each(function(){
+				if(str.length>0) str+=',';
+				str+=$(this).attr('id');				
+			});		
+			
+
+			var o = {
+					url:'/hrd/function/saveOrUpdate/save_sort.php?id={id}&func={func}',
+					data:{'order_str':str},
+					onSuccess:function(data){										
+												console.log('#{grid_id}_list');	
+							$('#{grid_id}_list').jqGrid().trigger("reloadGrid");											
+						
+					}					
+			}				
+			var msg=mypost(o);		
+			
+		}
+		
+	</script>
+
