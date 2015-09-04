@@ -46,8 +46,8 @@
 
 	<div class="labMenu">
 		<!-- #####頁面標題/需客制化修改 ##############################################-->
-		<div class="lable {display_label_properties}"  dis="dis_basis_evalutiontable_properties" style="background-color: yellow;">評鑑表屬性</div>
-		<div class="lable {display_label_content}"  dis="dis_basis_evalutiontable_content" >評鑑表內容</div>
+		<div class="lable {display_label_content}"  dis="dis_basis_evalutiontable_content"  style="background-color: yellow;">評鑑表內容</div>
+		<div class="lable {display_label_properties}"  dis="dis_basis_evalutiontable_properties" >評鑑表屬性</div>
 		<div class="lable {display_label_suggest}"  dis="dis_basis_evalutiontable_suggest" >開放建議</div>
 		<div class="lable {display_label_template}"  dis="dis_basis_evalutiontable_template" >通知訊息</div>
 		<div class="lable {display_label_summary} hide"  dis="dis_basis_evalutiontable_summary"  >評鑑表總覽</div>		
@@ -66,8 +66,6 @@
 					<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id" value="{basis_evaluation_table_id}">
 					<input type="text" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id" value="{basis_evaluation_appraisee_id}">				
 				</div>	
-				
-
 				
 				<table id="appraisee_area" class="contb "   style="width:97%;margin-left: 25px;margin-top: 25px;padding:10px">
 					<tr align="left" >						
@@ -141,23 +139,78 @@
 
 	</div>
 	
-	<!-- 屬性 -->
-	<div id="dis_basis_evalutiontable_properties" class="labDiv" >		
+		<!-- 屬性 -->
+		<div id="dis_basis_evalutiontable_properties" class="labDiv" >
 		<form method="post" id="formPost" >
 		<div class="hide">
 			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}">
 			<input type="text" id="competency_model_id" name="competency_model_id"  value="{competency_model_id}">
-			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">			
+			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">
+			<input type="text" id="basis_evaluation_table_status" name="basis_evaluation_table_status"  value="{basis_evaluation_table_status}"/>			
+		</div>
+		
+		<div class="uc1" style="width:90%;margin-left: 20px; ">		
+									
+			<table class="tableStyle1" >
+					<tr>
+						<td class="label">{$lang.CompetencyModel}： </td>
+						<td>
+							<select id="competency_model_id" name="competency_model_id" {edit_disabled}>
+								<option ></option>	
+								<!-- BEGIN CM_LIST -->								
+								<option value="{CM_LIST.competency_model_id}"  {CM_LIST.selected}>{CM_LIST.competency_model_title}</option>	
+								<!-- END CM_LIST -->							
+							</select>
+						</td>
+					</tr>					
+					<tr>
+						<td class="label">{$lang.EvaluationScale}： </td>
+						<td>
+							<select id="evaluation_scale_id" name="evaluation_scale_id" {edit_disabled}>
+								<option ></option>	
+								<!-- BEGIN ES_LIST -->								
+								<option value="{ES_LIST.evaluation_scale_id}"  {ES_LIST.selected}>{ES_LIST.evaluation_scale_title}</option>	
+								<!-- END ES_LIST -->							
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="label"><b>完成期限： </b></td>
+						<td><input name="due_date"  type="text" value="{due_date}" class="date" ></td>
+					</tr>	
+					
+					
+				</table>
+		
+							
+		</div>
+		<div class="uc2"  style=“width:70%;”>
+			
+		</div>
+		</form>
+	</div>
+	
+	<!-- 內容dis_basis_evalutiontable_content  -->
+
+	<div id="dis_basis_evalutiontable_content" class="labDiv" >		
+		<form method="post" id="formPost" >
+		<div class="hide">
+			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}">
+			<input type="text" id="competency_model_id" name="competency_model_id"  value="{competency_model_id}">
+			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">
+			<input type="text" id="basis_evaluation_table_status" name="basis_evaluation_table_status"  value="{basis_evaluation_table_status}"/>						
 		</div>
 		
 		
-		<div class="uc1" style="width:90%;margin-left: 20px; ">
+		<div class="uc1" style="margin-left: 20px; ">
 			<table class="tableStyle1" >
 					<tr>
 						<td class="label"><b>評鑑表代碼： </b></td>
 						<td><input name="basis_evaluation_table_code" class="basis_evaluation_table_code" type="text" value="{basis_evaluation_table_code}"></td>
 					</tr>
 					{field_evaluation_table_title}
+					{field_evaluation_desc}		
+					{field_evaluation_table_desc}	
 					<tr>
 						<td class="label"><b>顯示職能： </b></td>
 						<td>
@@ -166,20 +219,17 @@
 						</td>
 					</tr>					
 					
-					<tr>
-						<td class="label"><b>完成期限： </b></td>
-						<td><input name="due_date"  type="text" value="{due_date}" class="date" ></td>
-					</tr>	
-					
-					<tr class='{display_preview}'>
+											<tr class='{display_preview}'>
 						<td>
 						<input class="labButton" type="button"  value="預覽評鑑表"   onClick="evaluation_table_preview()"/>
 						</td>
-					</tr>					
+					</tr>		
 										
 				</table>	
 		</div>
-		<div class="uc2"  style=“width:70%;”></div>
+		<div class="uc2"  >
+			<input class="labButton {edit_hide}" name="bt_save" id="bt_save" type="button"  value="保存"   />
+		</div>
 		</form>
 	</div>
 	
@@ -197,48 +247,7 @@
 			</form>
 	</div>	
 	
-	<!-- 內容dis_basis_evalutiontable_content  -->
-		<div id="dis_basis_evalutiontable_content" class="labDiv" >
-		<form method="post" id="formPost" >
-		<div class="hide">
-			<input type="text" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}">
-			<input type="text" id="competency_model_id" name="competency_model_id"  value="{competency_model_id}">
-			<input type="text" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}">			
-		</div>
-		
-		<div class="uc1" style="width:90%;margin-left: 20px; ">		
-									
-			<table class="tableStyle1" >
-					<tr>
-						<td class="label">職能模型： </td>
-						<td>
-							<select id="competency_model_id" name="competency_model_id" {edit_disabled}>
-								<option ></option>	
-								<!-- BEGIN CM_LIST -->								
-								<option value="{CM_LIST.competency_model_id}"  {CM_LIST.selected}>{CM_LIST.competency_model_title}</option>	
-								<!-- END CM_LIST -->							
-							</select>
-						</td>
-					</tr>					
-					<tr>
-						<td class="label">評鑑量表： </td>
-						<td>
-							<select id="evaluation_scale_id" name="evaluation_scale_id" {edit_disabled}>
-								<option ></option>	
-								<!-- BEGIN ES_LIST -->								
-								<option value="{ES_LIST.evaluation_scale_id}"  {ES_LIST.selected}>{ES_LIST.evaluation_scale_title}</option>	
-								<!-- END ES_LIST -->							
-							</select>
-						</td>
-					</tr>
-					{field_evaluation_table_desc}				
-				</table>
-		
-							
-		</div>
-		<div class="uc2"  style=“width:70%;”></div>
-		</form>
-	</div>
+	
 
 	
 	<div id="dis_basis_evalutiontable_suggest"   class="labDiv"   >
@@ -370,7 +379,7 @@
 			
 				$('#legendPlace').html(modulePie.generateLegend());
 				$('#dis_basis_evalutiontable_summary').css('display','none');
-				$('#dis_basis_evalutiontable_properties').css('display','block');
+				$('#dis_basis_evalutiontable_content').css('display','block');
 				$('.doughnut-legend').append('<li><span style="background-color:#FF5A5E"></span>全部份數：{TotalCount}份</li>');
 	//		
 	}); 

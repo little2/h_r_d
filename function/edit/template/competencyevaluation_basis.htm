@@ -325,6 +325,8 @@ function load_quiz(quiz_no)
 		<input type="hidden" id="basis_evaluation_evaluator_id" name="basis_evaluation_evaluator_id"  value="{basis_evaluation_evaluator_id}" />
 		<input type="hidden" id="basis_evaluation_appraisee_id" name="basis_evaluation_appraisee_id"  value="{basis_evaluation_appraisee_id}" />
 		<input type="hidden" id="basis_evaluation_table_id" name="basis_evaluation_table_id"  value="{basis_evaluation_table_id}" />
+		<input type="hidden" id="evaluation_scale_id" name="evaluation_scale_id"  value="{evaluation_scale_id}" />
+			
 		
 		
 		<input type="hidden" id="appraisee_uid" name="appraisee_uid"  value="{appraisee_uid}"/>		
@@ -387,7 +389,11 @@ function load_quiz(quiz_no)
 		</table>
 				
 	
-		<table class="tableStyle1"  width="100%"><tr><td>規則說明</td></tr></table>			
+		<table class="tableStyle1"  width="100%">
+			<tr><td><b>{$lang.EvaluationDesc}</b></td></tr>
+			<tr><td>{basis_evaluation_desc}</td></tr>
+			
+		</table>			
 	</div>
 		
 	
@@ -450,7 +456,7 @@ function load_quiz(quiz_no)
 		<div class="uc2" style="width:94%;margin-left: 20px;">
 			<div   style="float:left;">
 				<input class="labButton"  name="bt_cancel"  id="bt_cancel" type="button"  value="上一題" onClick='exam_pre();'/>
-				<input class="labButton"  name="bt_cancel"  id="bt_cancel" type="button"  value="量表說明" onClick='exam_pre();'/>
+				<input class="labButton"  name="bt_show_scale"  id="bt_show_scale" type="button"  value="{$lang.EvaluationScaleDesc}" onClick='show_scale_table();'/>
 				<input class="labButton {bt_sava_display}" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />
 			</div>
 		
@@ -510,6 +516,25 @@ $('#dis_suggest').dashpanel({
 });	
 
 $('#appraisee_area2').html($('#appraisee_area').html())
+
+function show_scale_table()
+{	
+	 var evaluation_scale_id=$('#evaluation_scale_id').val();
+		
+	 var setting = new Object();		   
+		
+	 setting.title ='{$lang.EvaluationScaleDesc}';
+	 setting.width='600';	
+	 setting.height='350';	
+
+	
+	 //setting.body ='/hrd/competencyevaluation/basis/edit.html?type=&method=&entity.key=2&gridId=competencyevaluation_basis_list';
+	 setting.body ='/hrd/scale/table/edit.html';
+	 setting.data={evaluation_scale_id:evaluation_scale_id}
+//		console.log(setting);
+	jzsoft.grid.openDialog(setting)
+}	
+
 </script>
 
 </html>
