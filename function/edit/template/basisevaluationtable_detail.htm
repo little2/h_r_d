@@ -419,6 +419,14 @@
 					rowNum: 120,
 				}).trigger("reloadGrid");	
 	}
+	
+	function export_unfinish_list(grid_id)
+	{	
+		var basis_evaluation_table_id=$('#basis_evaluation_table_id').val();
+	    openDialog({title : '匯出未完成名單',body:'/hrd/function/export/export_excel.php?basis_evaluation_table_id='+basis_evaluation_table_id});
+	
+	}
+	
 </script>
 
 <script>

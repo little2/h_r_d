@@ -13,83 +13,83 @@
 $.jgrid = $.jgrid || {};
 $.extend($.jgrid,{
 	defaults : {
-		recordtext: "{0} - {1}\u3000共 {2} 条",	// 共字前是全角空格
-		emptyrecords: "无数据显示",
-		loadtext: "读取中...",
+		recordtext: "{0} - {1}\u3000共 {2} 條",	// 共字前是全形空格
+		emptyrecords: "無資料顯示",
+		loadtext: "讀取中...",
 		pgtext : " {0} 共 {1} 頁"
 	},
 	search : {
 		caption: "搜索...",
 		Find: "查找",
 		Reset: "重置",
-		odata : ['等于\u3000\u3000', '不等\u3000\u3000', '小于\u3000\u3000', '小于等于','大于\u3000\u3000','大于等于', 
-			'开始于','不开始于','属于\u3000\u3000','不属于','结束于','不结束于','包含\u3000\u3000','不包含','空值于\u3000\u3000','非空值'],
+		odata : ['等於\u3000\u3000', '不等\u3000\u3000', '小於\u3000\u3000', '小於等於','大於\u3000\u3000','大於等於', 
+			'開始於','不開始於','屬於\u3000\u3000','不屬於','結束於','不結束於','包含\u3000\u3000','不包含','空值於\u3000\u3000','非空值'],
 		groupOps: [	{ op: "AND", text: "所有" },	{ op: "OR",  text: "任一" }	],
 		matchText: " 匹配",
-		rulesText: " 规则"
+		rulesText: " 規則"
 	},
 	edit : {
-		addCaption: "添加记录",
-		editCaption: "编辑记录",
+		addCaption: "添加記錄",
+		editCaption: "編輯記錄",
 		bSubmit: "提交",
 		bCancel: "取消",
-		bClose: "关闭",
-		saveData: "数据已改变，是否保存？",
+		bClose: "關閉",
+		saveData: "資料已改變，是否保存？",
 		bYes : "是",
 		bNo : "否",
 		bExit : "取消",
 		msg: {
-			required:"此字段必需",
-			number:"请输入有效数字",
-			minValue:"输值必须大于等于 ",
-			maxValue:"输值必须小于等于 ",
-			email: "这不是有效的e-mail地址",
-			integer: "请输入有效整数",
-			date: "请输入有效时间",
-			url: "无效网址。前缀必须为 ('http://' 或 'https://')",
-			nodefined : " 未定义！",
+			required:"此欄位必需",
+			number:"請輸入有效數字",
+			minValue:"輸值必須大於等於 ",
+			maxValue:"輸值必須小於等於 ",
+			email: "這不是有效的e-mail位址",
+			integer: "請輸入有效整數",
+			date: "請輸入有效時間",
+			url: "無效網址。首碼必須為 ('http://' 或 'https://')",
+			nodefined : " 未定義！",
 			novalue : " 需要返回值！",
-			customarray : "自定义函数需要返回数组！",
+			customarray : "自訂函數需要返回陣列！",
 			customfcheck : "Custom function should be present in case of custom checking!"
 			
 		}
 	},
 	view : {
-		caption: "查看记录",
-		bClose: "关闭"
+		caption: "查看記錄",
+		bClose: "關閉"
 	},
 	del : {
-		caption: "删除",
-		msg: "删除所选记录？",
-		bSubmit: "删除",
+		caption: "刪除",
+		msg: "刪除所選記錄？",
+		bSubmit: "刪除",
 		bCancel: "取消"
 	},
 	nav : {
 		edittext: "",
-		edittitle: "编辑所选记录",
+		edittitle: "編輯所選記錄",
 		addtext:"",
-		addtitle: "添加新记录",
+		addtitle: "添加新記錄",
 		deltext: "",
-		deltitle: "删除所选记录",
+		deltitle: "刪除所選記錄",
 		searchtext: "",
 		searchtitle: "查找",
 		refreshtext: "",
 		refreshtitle: "刷新表格",
 		alertcap: "注意",
-		alerttext: "请选择记录",
+		alerttext: "請選擇記錄",
 		viewtext: "",
-		viewtitle: "查看所选记录"
+		viewtitle: "查看所選記錄"
 	},
 	col : {
-		caption: "选择列",
-		bSubmit: "确定",
+		caption: "選擇列",
+		bSubmit: "確定",
 		bCancel: "取消"
 	},
 	errors : {
-		errcap : "错误",
-		nourl : "没有设置url",
-		norecords: "没有要处理的记录",
-		model : "colNames 和 colModel 长度不等！"
+		errcap : "錯誤",
+		nourl : "沒有設置url",
+		norecords: "沒有要處理的記錄",
+		model : "colNames 和 colModel 長度不等！"
 	},
 	formatter : {
 		integer : {thousandsSeparator: " ", defaultValue: '0'},
@@ -131,3 +131,4 @@ $.extend($.jgrid,{
 	}
 });
 })(jQuery);
+

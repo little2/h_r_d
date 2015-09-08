@@ -30,15 +30,15 @@
 			dataType : 'xml', // 数据加载的类型
 			chooseType : false,// 是否要多选框
 			errormsg : '连接错误!',// 错误提示信息
-			usepager : false, // 是否分页
+			usepager : false, // 是否分頁
 			nowrap : true, // 是否不换行
-			page : 1, // 默认当前页
-			total : 1, // 总页面数
-			useRp : true, // 是否可以动态设置每页显示的结果数
-			rp : 15, // 每页默认的结果数
-			rpOptions : [10,25,50,100],// 可选择设定的每页结果数
+			page : 1, // 默认当前頁
+			total : 1, // 总頁面数
+			useRp : true, // 是否可以动态设置每頁显示的结果数
+			rp : 15, // 每頁默认的结果数
+			rpOptions : [10,25,50,100],// 可选择设定的每頁结果数
 			title : false,// 是否包含标题
-			pagestat : '第 {from} &nbsp;-&nbsp; {to} 笔&nbsp;&nbsp;&nbsp;共 {total} 笔',// 显示当前页和总页面的样式
+			pagestat : '第 {from} &nbsp;-&nbsp; {to} 笔&nbsp;&nbsp;&nbsp;共 {total} 笔',// 显示当前頁和总頁面的样式
 			procmsg : '正在处理,请稍候 ...',// 正在处理的提示信息
 			query : '',// 搜索查询的条件
 			qtype : '',// 搜索查询的类别
@@ -737,7 +737,7 @@
 					    value : p.qtype
 				    }];
 				 */
-				//设置分页参数
+				//设置分頁参数
 				var param = [{
 				    name : 'page.curPage',
 				    value : p.newp
@@ -1346,8 +1346,8 @@
 			g.pDiv.className = 'pDiv';
 			g.pDiv.innerHTML = '<div class="pDiv2"></div>';
 			$(g.bDiv).after(g.pDiv);
-		    //var html = ' <div class="pGroup"><div class="pFirst pButton" title="首页"><span></span></div><div class="pPrev pButton" title="上一页"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pcontrol">第 <input type="text" size="4" value="1" />页,共 <span> 1 </span>页</span></div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pNext pButton" title="下一页"><span></span></div><div class="pLast pButton" title="尾页"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pReload pButton"  title="刷新"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pPageStat"></span></div>';
-			var html = '<div class="pGroup"><span class="pPageStat"></span></div><div class="pcoadright"><div class="pGroup"> <div class="pReload pButton"  title="刷新"><span></span></div> </div><div class="btnseparator"></div> <div class="pGroup"><div class="pFirst pButton" title="首页"><span></span></div><div class="pPrev pButton" title="上一页"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pcontrol">第 <input type="text" class="pcoadgo" size="4" value="1" />页,共 <span> 1 </span>页</span></div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pNext pButton" title="下一页"><span></span></div><div class="pLast pButton" title="尾页"><span></span></div> </div></div>';
+		    //var html = ' <div class="pGroup"><div class="pFirst pButton" title="首頁"><span></span></div><div class="pPrev pButton" title="上一頁"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pcontrol">第 <input type="text" size="4" value="1" />頁,共 <span> 1 </span>頁</span></div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pNext pButton" title="下一頁"><span></span></div><div class="pLast pButton" title="尾頁"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pReload pButton"  title="刷新"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pPageStat"></span></div>';
+			var html = '<div class="pGroup"><span class="pPageStat"></span></div><div class="pcoadright"><div class="pGroup"> <div class="pReload pButton"  title="刷新"><span></span></div> </div><div class="btnseparator"></div> <div class="pGroup"><div class="pFirst pButton" title="首頁"><span></span></div><div class="pPrev pButton" title="上一頁"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pcontrol">第 <input type="text" class="pcoadgo" size="4" value="1" />頁,共 <span> 1 </span>頁</span></div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pNext pButton" title="下一頁"><span></span></div><div class="pLast pButton" title="尾頁"><span></span></div> </div></div>';
 			$('div', g.pDiv).html(html);
 
 			$('.pReload', g.pDiv).click(function() {
