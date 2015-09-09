@@ -26,21 +26,21 @@
 	
 		<table class="tableStyle1"  >
 			<tr>
-				<td colspan="2"><div class="t1">郵件賬號：</div></td>
+				<td colspan="2"><div class="t1">{$lang.MailAccout}：</div></td>
 				<td colspan="2"><div class="i1">
 						<input type="text" name="smtp_account" id="smtp_account" value="{smtp_account}" class="contxt" />
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><div class="t1">密碼：</div></td>
+				<td colspan="2"><div class="t1">{$lang.MailPassword}：</div></td>
 				<td colspan="2"><div class="i1">
 						<input type="password" name="smtp_password" id="smtp_password" value="{smtp_password}" class="contxt" />
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><div class="t1">SMTP服務器：</div></td>
+				<td colspan="2"><div class="t1">{$lang.SMTPServer}：</div></td>
 				<td colspan="2"><div class="i1">
 						<input type="text" name="smtp_server" id="smtp_server" value="{smtp_server}" class="contxt" />
 					</div>
@@ -59,15 +59,15 @@
 			</tr>
 			
 			<tr>
-				<td colspan="2"><div class="t1">端口：</div></td>
+				<td colspan="2"><div class="t1">{$lang.Port}：</div></td>
 				<td colspan="2"><div class="i1">
-						<input type="text" name="smtp_port" id="smtp_port" value="465" size="6" class="contxt" />
+						<input type="text" name="smtp_port" id="smtp_port" value="{smtp_port}" size="6" class="contxt" />
 					</div>
 				</td>
 			</tr>
 			
 			<tr>
-				<td colspan="2"><div class="t1">測驗用收件人郵件地址：</div></td>
+				<td colspan="2"><div class="t1">{$lang.ReceiverForTest}：</div></td>
 				<td colspan="2"><div class="i1">
 						<input type="text" name="test_email_address" id="test_email_address" value="" size="12" class="contxt" />
 					</div>
@@ -79,9 +79,9 @@
 	</div>
 
 		<div class="uc2" style="width:97%;">
-			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="保存"   />
-			<input type="button" class="labButton" id="validate" value="驗證"  onClick="verify_email()"/>
-			<input class="labButton hide" name="bt_cancel" id="bt_cancel" type="button"  value="取消"   />
+			<input class="labButton" name="bt_save" id="bt_save" type="button"  value="{$lang.Save}"   />
+			<input type="button" class="labButton" id="validate" value="{$lang.Validate}"  onClick="verify_email()"/>
+			<input class="labButton hide" name="bt_cancel" id="bt_cancel" type="button"  value="{$lang.Cancel}"   />
 			<img id='icon_wait' class='hide' src='/hrd/templates/bhrsp/images/processing.gif' width="25px" >
 			
 			
