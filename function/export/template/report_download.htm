@@ -1,9 +1,15 @@
+<style>
+<!--
+.hide {display:none;}
+-->
+</style>
 <body>
+
 <input type="hidden" name='this_f_count' id="this_f_count" value="" />
 <div align='center'>
-	<img id='download_img' src='./templates/bhrsp/images/processing.gif' />
+	<img id='download_img'  name='download_img' src='./templates/bhrsp/images/processing.gif' />
 	<div>
-		<a id='download_url' href='' target='_blank' class='hide' style='margin-top:30px'>Download</a>
+		<a id='download_url' href='' target='_blank' class='hide' style='margin-top:360px;font-size: 250%;'>Download</a>
 	</div>
 </div>
 </body>
@@ -23,7 +29,8 @@ function init()
 				}
 				else
 				{
-					console.log(data);
+					//console.log(data);
+	
 					$('#download_img').addClass('hide');
 					$('#download_url').attr('href',data.download_url).removeClass('hide');
 				//	location.href=data.download_url;
@@ -31,7 +38,7 @@ function init()
 					//$("#tabPanel").refreshitem();	
 					//if($('#this_f_count').length >0)
 					//{
-						//alert('ok');
+					//	alert('ok');
 					//	setTimeout("init();", 300);
 				//	}					
 				}		
