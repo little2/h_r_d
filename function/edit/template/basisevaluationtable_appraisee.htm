@@ -20,9 +20,7 @@
 	<!-- #####頁面欄位/需客制化修改 ##############################################-->	
 	<div id="dis_basis_evalutiontable_appraisee_content" class="labDiv" style="{display_information_style}">
 		<form method="post" id="formPost" >
-		<div class="uc1" style="width:90%;margin-left: 20px; ">		
-
-	
+		<div class="uc1" style="width:90%;margin-left: 20px; ">	
 				<table class="tableStyle1"  >
 					<tr>
 						<td height="30" class="label">基本信息</td>						
@@ -85,7 +83,12 @@
 
 					<tr>
 						<td class="item">{$lang.DepartmentTitle}：</td>
-						<td>{group_title}</td>
+						<td>{department_sel}</td>
+					</tr>
+					
+					<tr>
+						<td class="item">{$lang.userName}：</td>
+						<td><input type="text" name="keyword"  value="" /></td>
 					</tr>
 
 					<tr>
@@ -96,9 +99,9 @@
 					</tr>
 					
 					<tr>
-						<td class="item">{$lang.JobLevel}：</td>
+						<td class="item">{$lang.userWorknumber}：</td>
 						<td>
-							<input type="text" name="job_level"  value="" />
+							<input type="text" name="user_code"  value="" />
 							<input class="labButton {display_pick}" name="bt_inner_search" id="bt_inner_search" type="button"  value="搜尋"   />
 						</td>
 					</tr>
