@@ -39,8 +39,24 @@
 			
 						</td>
 					</tr>
+					
+
+					
+					
 				</table>
-				<table class="tableStyle1"  style="width:90%"><tr><td>{container_pick_user}</td></tr></table>		
+				<table class="tableStyle1"  style="width:90%"><tr><td>{container_pick_user}</td></tr>
+				
+					<tr>
+						
+						<td>
+							賦與權重：<input type="text" name="assign_weight"  id="assign_weight" value="{assign_weight}" />						
+						</td>
+					</tr>
+				
+				</table>
+				
+				
+						
 			</form>
 		</div>
 		<div class="uc2"></div>
@@ -101,6 +117,7 @@
 			dialog_title:"{DialogTitle}",
 			element_id:'{elementID}',
 			pick_url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_evaluator.php',
+			trigger_element:['classevaluationtable_competencymanage_list','classevaluationtable_competencynormal_list','classevaluationtable_competencypro_list'],			
 			pick_list_id:'pick_user_list'
 		});	
 		
