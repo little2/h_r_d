@@ -48,7 +48,7 @@ if($basis_evaluation_evaluator_rows=$db->select('basis_evaluation_appraisee',
     {
         foreach($evaluator_uid_row as $user_id=>$user_row)
         {
-            $template->assign_block_vars('USER_TITLE',array('NAME'=>$report->user_profile[$user_id]['fullName'].$relation_id));
+            $template->assign_block_vars('USER_TITLE',array('NAME'=>$report->user_profile[$user_id]['fullName']));
         }
     }
     
