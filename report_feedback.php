@@ -1,51 +1,89 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+<?php
+include_once('config_common.php');
+
+$template->set_filenames(array('report_body' => 'templates/'.tpl_style.'/report_feedback.htm'));
+$template->assign_vars(array(
+    'TPL_STYLE'=>tpl_style,
+    'title'=>"全體回饋明細"
+));
+
+include_once('report_header.php');
+
+//basis_evaluation_table_id 
+
+if($basis_evaluation_evaluator_rows=$db->select('basis_evaluation_appraisee',
+    array(
+        '[>]basis_evaluation_evaluator'=>'basis_evaluation_appraisee_id',
+        '[>]basis_evaluation_evaluator_detail'=>'basis_evaluation_evaluator_id'
+    ),'*',
+    array('AND'=>array(
+        'basis_evaluation_table_id'=>$report->report_config['basis_evaluation_table_id'],
+        'appraisee_uid'=>$report->report_config['user_id']
+    ))))
+{
+    foreach($basis_evaluation_evaluator_rows as $row)
+    {
+        $behavior_id=$row['behavior_id'];
+        $relation_id=$row['basis_evaluation_evaluator_relation'];
+        $report->behavior_id_row[$behavior_id]=$behavior_id;
+        //basis_evaluation_evaluator_uid
+        $evaluator_uid=$row['basis_evaluation_evaluator_uid'];
+        $evaluator_uid_row[$evaluator_uid]=$evaluator_uid;
+        $evaluator_relation_uid_row[$relation_id][$evaluator_uid]=$evaluator_uid;
+        $behavior_grade_detail[$behavior_id][$evaluator_uid]['evaluation_scale_item_grade']=$row['evaluation_scale_item_grade']; 
+    }
+    ksort($evaluator_relation_uid_row);
+    $datahandle->put_into_lang_row('text','behavior_definition',$report->behavior_id_row);
+    
+    //使用者資料
+    if($user_info_rows=$db->select('user_profile','*',array('user_id'=>$evaluator_uid_row)))
+    {
+        foreach($user_info_rows as $row)
+        {
+            $report->user_profile[$row['user_id']]=$row;            
+        }
+    }
+    
+    foreach($evaluator_relation_uid_row as $relation_id =>$evaluator_uid_row)
+    {
+        foreach($evaluator_uid_row as $user_id=>$user_row)
+        {
+            $template->assign_block_vars('USER_TITLE',array('NAME'=>$report->user_profile[$user_id]['fullName'].$relation_id));
+        }
+    }
+    
+
+    //列出評鑑資料
+    if($behavior_grade_detail)
+    {
+        foreach($behavior_grade_detail as $behavior_id=>$row)
+        {
+            $template->assign_block_vars('BEHAVIOR',array(
+                'behavior_definition'=>++$no.'.'.$datahandle->fetch_lang('behavior_definition',$behavior_id,'text'),
+            ));
+            foreach($evaluator_relation_uid_row as $relation_id =>$evaluator_uid_row)
+            {            
+                foreach($evaluator_uid_row as $user_id=>$user_row)
+                {
+                    $template->assign_block_vars('BEHAVIOR.USERGRADE',array(
+                        'evaluation_scale_item_grade'=>$row[$user_id]['evaluation_scale_item_grade']
+                    ));
+                }
+            }             
+        }
+    }
+}
+
+
+
+$template->assign_vars(array(
+	'user_cols'=>count($report->user_profile)+1
+));
+
+
+
+include_once('report_footer.php');
+
+
+
 ?>
-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
-ilVgmww6QQVTKqBQ3oJXGvvOQNgyATL8G0==
