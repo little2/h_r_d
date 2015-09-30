@@ -1,627 +1,1282 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+<?php
+/**
+ * Class contact
+ *
+ * 有關於使用者的所有函式
+ *.
+ * @author Ryan Chiu <[email]ryan@inetar.net[/email]>
+ * @version 1.0
+ * @date 2009/4/29 7:43:26
+ */
+
+
+class competency 
+{
+
+    public $behavior_id_row=array();
+    public $competency_id_row=array();
+    public $basis_evaluation_evaluator_id_row=array();
+    
+    public $appraisee_profile=array();
+    public $behavior_profile=array();
+    public $evaluator_row=array();
+    public $competency_structure=array();    
+    
+    public $profile_behavior_detail=array();
+    public $profile_behavior=array();
+    public $profile_competency_detail=array();
+    public $profile_competency =array();
+    
+    
+	function __construct(&$db)
+	{
+		$this->db=$db;
+	}
+
+	//更新受評人的評鑑表進度
+	function update_table_process($basis_evaluation_evaluator_id)
+	{
+	    //**更新該受評人所屬的評鑑表的總體進度 (*Tabel -> Appraisee -> Evalutor )
+	    $basis_evaluation_table_process = $this->db->avg("basis_evaluation_appraisee", "basis_evaluation_progress", array(
+	        "basis_evaluation_table_id" =>$basis_evaluation_table_id
+	    ));
+	    
+	    //echo '<br>更新評鑑表:'.$basis_evaluation_table_id.'進度<br>';
+	    $this->db->update('basis_evaluation_table',
+	        array('basis_evaluation_table_process'=>$basis_evaluation_table_process),
+	        array('basis_evaluation_table_id'=>$basis_evaluation_table_id)
+	    );
+	}	
+	
+	//更新受評人進度
+	function update_appraisee_process($basis_evaluation_appraisee_id)
+	{
+	    $average = $this->db->avg("basis_evaluation_evaluator", "basis_evaluation_evaluator_progress", 
+	        array('basis_evaluation_appraisee_id'=>$basis_evaluation_appraisee_id));
+	    
+	    $this->db->update('basis_evaluation_appraisee',array('basis_evaluation_progress'=>$average),array('basis_evaluation_appraisee_id'=>$basis_evaluation_appraisee_id));	    
+	}
+
+	//更新受評人下的評鑑人進度
+	function update_evaluator_process($basis_evaluation_table_id)
+	{
+	     
+	}	
+	
+    /**
+     * @param unknown $option /basis_evaluation_appraisee_id / basis_evaluation_table_id
+     */
+    function update_progress($option)
+    {
+        $basis_evaluation_appraisee_id=$option['basis_evaluation_appraisee_id'];
+        $basis_evaluation_table_id=$option['basis_evaluation_table_id'];
+        
+        $this->update_appraisee_process($basis_evaluation_appraisee_id);
+                
+        
+        if(!$basis_evaluation_table_id)
+        {
+            $rows=$this->db->select('basis_evaluation_evaluator','*',array('basis_evaluation_appraisee_id'=>$option['basis_evaluation_appraisee_id']));
+            $basis_evaluation_table_id=$rows[0]['basis_evaluation_table_id'];
+        }
+        
+        $this->update_table_process($basis_evaluation_evaluator_id);
+    }
+    
+    function avg($row)
+    {
+        $sum=array_sum($row);      //此關係群，所有行為的分數
+        $count=count($row);
+        return $avg=($count>0)?($sum/$count):0;
+    }
+       
+    /** 
+     * 更新 basis_evaluation_evaluator_detail 及 basis_evaluation_evaluator_competeny
+     * @param unknown $basis_evaluation_evaluator_id
+     * @param unknown $basis_evaluation_appraisee_id
+     */
+    function update_basis_evaluation_evaluator_competeny($basis_evaluation_evaluator_id,$basis_evaluation_appraisee_id)
+    {
+        #找出這個 評鑑表之受評人 需要哪些 behavior_id (整理職能/行為)
+        if(!$this->behavior_id_row)
+        {
+            $rows=$this->db->select('basis_evaluation_appraisee',array(
+                "[>]basis_evaluation_table"=>"basis_evaluation_table_id",
+                "[>]competency"=>"competency_model_id",
+                "[>]behavior"=>"competency_id"
+            ),'*',array('basis_evaluation_appraisee_id'=>$basis_evaluation_appraisee_id));        
+             
+            //整理
+            if($rows)
+            {
+                foreach($rows as $row)
+                {
+                    $appraisee_uid=$row['appraisee_uid'];
+                    
+                    $this->competency_id_row[$row['competency_id']]=$row['competency_id'];
+                    $this->behavior_id_row[$row['behavior_id']]=$row['behavior_id'];
+                    $this->behavior_profile[$row['behavior_id']]=$row;
+                    $this->competency_structure[$row['competency_id']][$row['behavior_id']]=$row['behavior_id'];                      
+                }
+            }
+        }     
+        
+        #再找出這個評鑑人的評鑑資料及關係
+        /*
+        $rows = $this->db->get('basis_evaluation_evaluator', '*', array(
+            'basis_evaluation_evaluator_id' => $basis_evaluation_evaluator_id
+        ));
+        $basis_evaluation_evaluator_relation=$rows['basis_evaluation_evaluator_relation'];
+        */
+        
+        #整理評鑑的資料
+        if($_rows = $this->db->select('basis_evaluation_evaluator_detail', '*', array(
+            'basis_evaluation_evaluator_id' => $basis_evaluation_evaluator_id
+        )))
+        {
+            foreach($_rows as $row)
+            {
+                $_behavior=$row['behavior_id'];
+                $_competency_id= $this->behavior_profile[$_behavior]['competency_id'];
+                $_weight= $this->behavior_profile[$_behavior]['weight'];
+                
+                $basis_ec_row[$_competency_id]['grade'][$_behavior]=$row['evaluation_scale_item_grade'];
+                $basis_ec_row[$_competency_id]['weight'][$_behavior]=$_weight;
+                $basis_ec_row[$_competency_id]['weight_grade'][$_behavior]=$_weight*$row['evaluation_scale_item_grade'];;
+            }
+        }
+        
+        #讀出資料庫內的評鑑資料
+        if($rows=$db->select('basis_evaluation_evaluator_competeny','*',array('AND'=>array(
+            'competency_id'=>$this->competency_id_row,
+            'basis_evaluation_evaluator_id'=>$basis_evaluation_evaluator_id
+        ))))
+        {
+            foreach($rows as $row)
+            {
+                $db_basis_ec_row[$row['competency_id']]=$row;
+            }
+        }
+        
+        foreach($this->competency_id_row as $competency_id)
+        {
+            $count=array_sum($basis_ec_row[$competency_id]['weight']);
+            
+            $sum=array_sum($basis_ec_row[$competency_id]['weight_grade']);
+            
+            $basis_ec_row[$competency_id]['evaluation_competency_grade']=
+                ($count>0)?($sum/$count):'0';
+            
+            if(isset($db_basis_ec_row[$competency_id]))
+            {
+                //若存在則更新
+                $this->db->update('basis_evaluation_evaluator_competeny',array(
+                	'evaluation_competency_grade'=>$basis_ec_row[$competency_id]['evaluation_competency_grade']
+                ),array(
+                	'basis_evaluation_evaluator_competency_id'=>$db_basis_ec_row[$competency_id]['basis_evaluation_evaluator_competency_id']
+                ));
+            }
+            else 
+            {
+                //不存在則新增
+                $this->db->insert('basis_evaluation_evaluator_competeny',array(
+                    'evaluation_competency_grade'=>$basis_ec_row[$competency_id]['evaluation_competency_grade'],
+                    'basis_evaluation_evaluator_id'=>$basis_evaluation_evaluator_id,
+                    'competency_id'=>$competency_id                    
+                ));                
+            }
+        }
+    }
+    
+    /**
+     * 整理此評鑑表(評鑑人)的profiles
+     * 會產出 profile_behavior profile_behavior_detail profile_competency profile_competency_detail
+     */
+    function calculate_appraisee_profile($basis_evaluation_appraisee_id)
+    {        
+        #找出這個 評鑑表之受評人 有哪些評鑑人及關係        
+        if($rows = $this->db->select('basis_evaluation_evaluator', '*', array(
+            'basis_evaluation_appraisee_id' => $basis_evaluation_appraisee_id
+        )))
+        {
+            foreach ($rows as $row) {
+                $this->basis_evaluation_evaluator_id_row[$basis_evaluation_appraisee_id][$row['basis_evaluation_evaluator_id']] = $row['basis_evaluation_evaluator_id'];
+                $this->evaluator_profile[$row['basis_evaluation_evaluator_id']] = $row;
+        
+                //有幾種關係
+                $relation_id_row[$row['basis_evaluation_evaluator_relation']] = $row['basis_evaluation_evaluator_relation'];
+            }
+        }
+        
+
+        
+        #找出這個 評鑑表之受評人 需要哪些 behavior_id (整理職能/行為)
+        if(!$this->behavior_id_row)
+        {
+            $rows=$this->db->select('basis_evaluation_appraisee',array(
+                "[>]basis_evaluation_table"=>"basis_evaluation_table_id",
+                "[>]competency"=>"competency_model_id",
+                "[>]behavior"=>"competency_id"
+            ),'*',array('basis_evaluation_appraisee_id'=>$basis_evaluation_appraisee_id));        
+             
+            //整理
+            if($rows)
+            {
+                foreach($rows as $row)
+                {
+                    $appraisee_uid=$row['appraisee_uid'];
+                    $this->appraisee_profile[$row['basis_evaluation_appraisee_id']]=array(
+                    	'basis_evaluation_appraisee_id'=>$row['basis_evaluation_appraisee_id'],
+                        'appraisee_uid'=>$row['appraisee_uid']
+                    );                    
+                  
+                    $this->competency_id_row[$row['competency_id']]=$row['competency_id'];
+                    $this->behavior_id_row[$row['behavior_id']]=$row['behavior_id'];
+                    $this->behavior_profile[$row['behavior_id']]=$row;
+                    $this->competency_structure[$row['competency_id']][$row['behavior_id']]=$row['behavior_id'];                      
+                }
+            }
+        }
+        else 
+        {
+            $row=$this->db->get('basis_evaluation_appraisee','*',array('basis_evaluation_appraisee_id'=>$basis_evaluation_appraisee_id));
+            $this->appraisee_profile[$row['basis_evaluation_appraisee_id']]=$row; 
+            $appraisee_uid=$row['appraisee_uid'];
+           
+        }
+
+        
+        #評鑑分數整理
+        if ($rows = $this->db->select('basis_evaluation_evaluator_detail', '*',
+            array('basis_evaluation_evaluator_id'=>$this->basis_evaluation_evaluator_id_row[$basis_evaluation_appraisee_id]))) {
+            foreach ($rows as $row) {
+    
+                // 簡易參數
+                $behavior_id = $row['behavior_id'];
+                $grade = $row['evaluation_scale_item_grade'];
+                $basis_evaluation_evaluator_id=$row['basis_evaluation_evaluator_id'];    
+                $basis_evaluation_evaluator_uid=$this->evaluator_profile[$basis_evaluation_evaluator_id]['basis_evaluation_evaluator_uid'];                
+                $relation_id = $this->evaluator_profile[$basis_evaluation_evaluator_id]['basis_evaluation_evaluator_relation'];                
+                $competency_id=$this->behavior_profile[$row['behavior_id']]['competency_id'];    
+                try {
+                    /*
+                    echo '<br>$appraisee_uid'.$appraisee_uid;
+                    echo '<br>$$competency_id'.$competency_id;
+                    echo '<br>$$behavior_id'.$behavior_id;
+                    echo '<br>$$relation_id'.$relation_id;
+                    echo '<br>$$basis_evaluation_evaluator_id'.$basis_evaluation_evaluator_id;
+                    */
+                    $profile_behavior_row[$appraisee_uid][$competency_id][$behavior_id][$relation_id][$basis_evaluation_evaluator_uid]=$grade;
+                    
+                }
+                catch (Exception $e)
+                {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }         
+             }   
+
+
+             
+            //計算出 算術平均 和 幾何平均
+            foreach($profile_behavior_row[$appraisee_uid] as $competency_id => $row)
+            {                
+                foreach($row as $behavior_id=>$row2)
+                {
+                    unset($total_sum);
+                    unset($total_count);
+                    
+                    foreach($row2 as $relation_id => $row3)
+                    {          
+                        //收集每一評鑑者評鑑出的分數
+                        //(處理basis_evaluation_evaluator_competeny)
+                        foreach($row3 as $basis_evaluation_evaluator_uid => $grade)
+                        {
+  
+                            
+                            $profile_competency_row[$appraisee_uid][$competency_id][$relation_id][$basis_evaluation_evaluator_uid]['grade'][$behavior_id]=$grade;
+                            $profile_competency_row[$appraisee_uid][$competency_id][$relation_id][$basis_evaluation_evaluator_uid]['weight'][$behavior_id]=$this->behavior_profile[$behavior_id]['weight'];
+                            $profile_competency_row[$appraisee_uid][$competency_id][$relation_id][$basis_evaluation_evaluator_uid]['weighted_grade'][$behavior_id]=$grade * $this->behavior_profile[$behavior_id]['weight'];
+                            unset($_row);
+                        }
+                        
+                        
+                        //去除自評
+                        if($relation_id==1) continue;
+                        
+                        //算出此關係的算術平均                              
+                        $profile_behavior_detail[$appraisee_uid][$behavior_id]['behavior_arithmetic_avg'][$relation_id]=
+                            $this->avg($row3);
+
+                        $total_sum+=array_sum($row3);
+                        $total_count+=count($row3);
+                    }    
+                    
+
+                                    
+                    /**
+                    結算‧行為 (算術平均 和 幾何平均)
+                    */
+                    $behavior_arithmetic_avg=($total_count>0)?($total_sum/$total_count):0;                
+                    $profile_behavior[$appraisee_uid][$behavior_id ]['behavior_arithmetic_avg']=$behavior_arithmetic_avg;                       
+
+                    $profile_behavior[$appraisee_uid][$behavior_id ]['behavior_geometric_avg']=
+                        $this->avg($profile_behavior_detail[$appraisee_uid][$behavior_id]['behavior_arithmetic_avg']);                    
+                }   //$behavior_id 
+
+         
+
+                
+                #當此職能下的行為指標，數據都收集完成後，才可以做處理
+                //(處理basis_evaluation_evaluator_competeny)
+                foreach($profile_competency_row[$appraisee_uid][$competency_id] as $relation_id =>$crow1)
+                {
+                    //算出每個評鑑者 為 受評人 的 職能分數
+                    //$_row['grade'][$behavior_id]
+                    foreach($crow1 as $basis_evaluation_evaluator_uid => $crow2)
+                    {                            
+                        $_sum=array_sum($crow2['weighted_grade']);
+                        $_count=array_sum($crow2['weight']);
+                        $_avg=($_count>0)?($_sum/$_count):0;
+                        
+                       // echo '$_sum/$_count =>'.$_sum.'/'.$_count.'= avg:'.$_avg.'<br>';
+                        
+                        $basis_evaluation_evaluator_competency[$competency_id][$relation_id][$basis_evaluation_evaluator_uid]=$_avg;
+                        
+                        if($relation_id!='1')
+                        {
+                            $basis_evaluation_evaluator_competency[$competency_id]["ALL"][$basis_evaluation_evaluator_uid]=$_avg;
+                        }                        
+                    }
+                }
+                
+
+
+                
+                //算出受評人每個職能 在 某關係的 算術平均術
+                foreach($basis_evaluation_evaluator_competency[$competency_id] as $relation_id =>$crow1)
+                {                                
+                   // $basis_evaluation_evaluator_competency[$competency_id][$relation_id];
+                   
+                    if($relation_id!="ALL")
+                    { 
+                        //依關係算出值
+                        $_avg=$this->avg($basis_evaluation_evaluator_competency[$competency_id][$relation_id]);
+                        $profile_competency_detail[$appraisee_uid][$competency_id]['arithmetic_avg'][$relation_id]=$_avg;
+                    }
+                    else 
+                    {                        
+                        $_avg=$this->avg($basis_evaluation_evaluator_competency[$competency_id]["ALL"]);
+                        $profile_competency[$appraisee_uid][$competency_id]['arithmetic_avg']=$_avg;
+                    }
+                }              
+                
+                //職能的幾何平均數                
+                $tmp_profile_competency_detail[$appraisee_uid][$competency_id]['arithmetic_avg']=$profile_competency_detail[$appraisee_uid][$competency_id]['arithmetic_avg'];
+                //扣掉自評
+                unset($tmp_profile_competency_detail[$appraisee_uid][$competency_id]['arithmetic_avg'][1]);                
+                $_profile_competency_geometric_avg=$this->avg($tmp_profile_competency_detail[$appraisee_uid][$competency_id]['arithmetic_avg']);
+                $profile_competency[$appraisee_uid][$competency_id]['geometric_avg']=$_profile_competency_geometric_avg;               
+            }//$competency_id            
+            #結算‧職能            
+        } 
+        
+        $this->profile_competency=$profile_competency;
+        $this->profile_competency_detail=$profile_competency_detail;
+        $this->profile_behavior=$profile_behavior;
+        $this->profile_behavior_detail=$profile_behavior_detail;        
+    }//function
+    
+    function update_appraisee_profile($basis_evaluation_appraisee_id)
+    {
+        $appraisee_uid=$this->appraisee_profile[$basis_evaluation_appraisee_id]['appraisee_uid'];
+                
+        /** 
+         * 開始處理   $profile_behavior
+         */
+        $profile_behavior=$this->profile_behavior[$appraisee_uid];
+
+        $db_profile_behavior=$this->db->select('profile_behavior','*',array(
+            'AND'=>array('behavior_id'=>$this->behavior_id_row,'user_id'=>$appraisee_uid)));
+
+        foreach($db_profile_behavior as $row)
+        {
+            $behavior_id=$row['behavior_id'];
+            if(isset($profile_behavior[$behavior_id]))
+            {
+                //若存在，則更新
+                $this->db->update('profile_behavior',array(
+                	'behavior_arithmetic_avg'=>$profile_behavior[$behavior_id]['behavior_arithmetic_avg'],
+                    'behavior_geometric_avg'=>$profile_behavior[$behavior_id]['behavior_geometric_avg']                    
+                ),array(
+                    'profile_behavior_id'=>$row['profile_behavior_id']                	
+                ));
+                unset($profile_behavior[$behavior_id]);
+            }            
+        }
+        
+        
+        if($profile_behavior)
+        {
+            foreach($profile_behavior as $behavior_id=>$row)
+            {
+                $this->db->insert('profile_behavior',array(
+                    'behavior_id'=>$behavior_id,
+                    'user_id'=>$appraisee_uid,
+                    'behavior_arithmetic_avg'=>$profile_behavior[$behavior_id]['behavior_arithmetic_avg'],
+                    'behavior_geometric_avg'=>$profile_behavior[$behavior_id]['behavior_geometric_avg']                	
+                ));                
+            }
+        }
+
+        /**
+         * 開始處理   $profile_behavior_detail
+         */      
+        $profile_behavior_detail=$this->profile_behavior_detail[$appraisee_uid];
+        $db_profile_behavior_detail=$this->db->select('profile_behavior_detail','*',array(
+            'AND'=>array('behavior_id'=>$this->behavior_id_row,'user_id'=>$appraisee_uid)));
+
+        foreach($db_profile_behavior_detail as $row)
+        {
+            $behavior_id=$row['behavior_id'];
+            $evaluation_relation_id=$row['evaluation_relation_id'];
+            
+            if(isset($profile_behavior_detail[$behavior_id]['behavior_arithmetic_avg'][$evaluation_relation_id]))
+            {
+                //若存在，則更新
+                $this->db->update('profile_behavior_detail',array(
+                    'behavior_arithmetic_avg'=>$profile_behavior_detail[$behavior_id]['behavior_arithmetic_avg'][$evaluation_relation_id]                   
+                ),array(
+                    'profile_behavior_id'=>$row['profile_behavior_id']
+                ));
+            
+                unset($profile_behavior_detail[$behavior_id]['behavior_arithmetic_avg'][$evaluation_relation_id]);
+            }
+        }
+                
+        if($profile_behavior_detail)
+        {
+            foreach($profile_behavior_detail as $behavior_id=>$row)
+            {
+                foreach($row['behavior_arithmetic_avg'] as $evaluation_relation_id=>$behavior_arithmetic_avg)
+                {
+                    $this->db->insert('profile_behavior_detail',array(
+                        'behavior_id'=>$behavior_id,
+                        'evaluation_relation_id'=>$evaluation_relation_id,
+                        'user_id'=>$appraisee_uid,
+                        'behavior_arithmetic_avg'=>$behavior_arithmetic_avg                 
+                    ));                 
+                }
+            }
+        }
+
+        
+        /**
+         * 開始處理   $profile_competency
+         */
+         $profile_competency=$this->profile_competency[$appraisee_uid];
+        $db_profile_competency=$this->db->select('profile_competency','*',array(
+            'AND'=>array('competency_id'=>$this->competency_id_row,'user_id'=>$appraisee_uid)));
+
+        foreach($db_profile_competency as $row)
+        {
+            $competency_id=$row['competency_id'];
+            if(isset($profile_competency[$competency_id]))
+            {
+                //若存在，則更新
+                $this->db->update('profile_competency',array(
+                    'arithmetic_avg'=>$profile_competency[$competency_id]['arithmetic_avg'],
+                    'geometric_avg'=>$profile_competency[$competency_id]['geometric_avg']
+                ),array(
+                    'profile_competency_id'=>$row['profile_competency_id']
+                ));
+              
+                unset($profile_competency[$competency_id]);
+            }
+        }
+        
+        
+        if($profile_competency)
+        {
+            foreach($profile_competency as $competency_id=>$row)
+            {
+                $this->db->insert('profile_competency',array(
+                    'competency_id'=>$competency_id,
+                    'user_id'=>$appraisee_uid,
+                    'arithmetic_avg'=>$profile_competency[$competency_id]['arithmetic_avg'],
+                    'geometric_avg'=>$profile_competency[$competency_id]['geometric_avg']
+                ));
+         
+            }
+        }       
+    
+         
+        /**
+         * 開始處理   $profile_competency_detail
+         */
+        $profile_competency_detail=$this->profile_competency_detail[$appraisee_uid];
+        $db_profile_competency_detail=$this->db->select('profile_competency_detail','*',array(
+            'AND'=>array('competency_id'=>$this->competency_id_row,'user_id'=>$appraisee_uid)));
+
+        foreach($db_profile_competency_detail as $row)
+        {
+            $competency_id=$row['competency_id'];
+            $evaluation_relation_id=$row['evaluation_relation_id'];
+        
+            if(isset($profile_competency_detail[$competency_id]['arithmetic_avg'][$evaluation_relation_id]))
+            {
+                //若存在，則更新
+                $this->db->update('profile_competency_detail',array(
+                    'arithmetic_avg'=>$profile_competency_detail[$competency_id]['arithmetic_avg'][$evaluation_relation_id]
+                ),array(
+                    'profile_competency_detail_id'=>$row['profile_competency_detail_id']
+                ));                
+                
+                unset($profile_competency_detail[$competency_id]['arithmetic_avg'][$evaluation_relation_id]);
+            }
+        }
+        
+        if($profile_competency_detail)
+        {
+            foreach($profile_competency_detail as $competency_id=>$row)
+            {
+                foreach($row['arithmetic_avg'] as $evaluation_relation_id=>$arithmetic_avg)
+                {
+                    $this->db->insert('profile_competency_detail',array(
+                        'competency_id'=>$competency_id,
+                        'evaluation_relation_id'=>$evaluation_relation_id,
+                        'user_id'=>$appraisee_uid,
+                        'arithmetic_avg'=>$arithmetic_avg
+                    ));
+                   
+                }
+            }
+        }                        
+    }
+
+    function release_appraisee_profile($basis_evaluation_appraisee_id)
+    {
+        $appraisee_uid=$this->appraisee_profile[$basis_evaluation_appraisee_id]['appraisee_uid'];
+        unset($this->profile_behavior[$appraisee_uid]);
+        unset($this->profile_behavior_detail[$appraisee_uid]);
+        unset($this->profile_competencyr[$appraisee_uid]);
+        unset($this->profile_competency_detail[$appraisee_uid]);
+    }
+    
+    
+    function calculate_competency($option)
+    {
+        //A.針對此行為, 關係分類         的平均分數 （沒有算數及幾何的問題 不考量權重, 此關係群中 所有針對 此行為 的分數 加總平均）
+        //B.針對此行為（不分關係類）的算數分數 (不考量權重,  所有分數 加總平均)
+        //C.針對此行為（不分關係類）的幾何分數 (不考量權重,  四個A成績 加總 / 4)
+    
+        // $option['basis_evaluation_appraisee_id']
+    
+        // --> 找出這個 受評人 需要哪些 behavior_id
+        if(!$option['behavior_id_row'])
+        {
+            $rows=$this->db->select('basis_evaluation_appraisee',array(
+                "[>]basis_evaluation_table"=>"basis_evaluation_table_id",
+                "[>]competency"=>"competency_model_id",
+                "[>]behavior"=>"competency_id"
+            ),'*',array('basis_evaluation_appraisee_id'=>$option['basis_evaluation_appraisee_id']));
+    
+             
+            //整理
+            if($rows)
+            {
+                foreach($rows as $row)
+                {
+                    $option['behavior_id_row'][$row['behavior_id']]=$row['behavior_id'];
+                    $option['behavior'][$row['behavior_id']]=$row;
+    
+                    $_hash_competency[$row['behavior_id']]=$row['competency_id'];
+                }
+            }
+        }
+    
+    
+    
+        // -->  找出這個 受評人 有哪些評鑑人及關係
+        $rows=$this->db->select('basis_evaluation_evaluator','*',array('basis_evaluation_appraisee_id'=>$option['basis_evaluation_appraisee_id']));
+    
+        foreach($rows as $row)
+        {
+            $basis_evaluation_evaluator_id_row[]=$row['basis_evaluation_evaluator_id'];
+            $evaluator_row[$row['basis_evaluation_evaluator_id']]=$row;
+            $relation_id_row[$row['basis_evaluation_evaluator_relation']]=$row['basis_evaluation_evaluator_relation'];
+        }
+    
+        if($rows=$this->db->select('basis_evaluation_evaluator_detail','*'))
+        {
+            foreach($rows as $row)
+            {
+                //behavior_geometric_avg
+    
+                #簡易參數
+                $behavior_id=$row['behavior_id'];
+                    $relation_id=$evaluator_row[$row['basis_evaluation_evaluator_id']]['basis_evaluation_evaluator_relation'];
+                        $grade=$row['evaluation_scale_item_grade'];
+    
+                            #分類整理
+                            $behavior_grade[$behavior_id][0]['total_grade']+=$grade;
+                            $behavior_grade[$behavior_id][0]['count']++;
+                             
+                            $behavior_grade[$behavior_id][$relation_id]['total_grade']+=$grade;
+                            $behavior_grade[$behavior_id][$relation_id]['count']++;
+    
+                            #陣列處理
+                            $_behavior_id_row[$behavior_id]=$behavior_id;
+                            $_competency_id_row[$competency_id]=$competency_id;
+            }
+    
+            //開始計算每個行為的數值
+            foreach($_behavior_id_row as $behavior_id)
+            {
+            $competency_id=$_hash_competency[$behavior_id];
+            $behavior_weight=$option['behavior'][$behavior_id]['weight'];
+                $competency_grade[$competency_id][0]['total_weight']+=$behavior_weight;
+    
+                    foreach($relation_id_row as $relation_id)
+                    {
+                    //行為的算術平均數, 分關係的行為分數 (behavior_arithmetic_avg=behavior_geometric_avg)
+                IF($behavior_grade[$behavior_id][$relation_id]['count'])
+                    {
+                    $_behavior_arithmetic_avg=
+                    $behavior_grade[$behavior_id][$relation_id]['total_grade']/$behavior_grade[$behavior_id][$relation_id]['count'];
+                }
+                $behavior_grade[$behavior_id][$relation_id]['behavior_arithmetic_avg']=$_behavior_arithmetic_avg;
+                    $behavior_grade[$behavior_id][$relation_id]['behavior_geometric_avg']=$_behavior_arithmetic_avg;
+    
+                        $behavior_grade[$behavior_id][0]['total_relation_grade']+=$_behavior_arithmetic_avg;
+                        $behavior_grade[$behavior_id][0]['total_relation_count']++;
+    
+                    $_total_weighted_grade=$behavior_grade[$behavior_id][$relation_id]['total_grade']*$behavior_weight;
+                    $competency_grade[$competency_id][$relation_id]['total_weighted_grade']+=$_total_weighted_grade;
+                    $competency_grade[$competency_id][0]['total_weighted_grade']+=$_total_weighted_grade;
+    
+                    $competency_grade[$competency_id][$relation_id]['count']=$behavior_grade[$behavior_id][$relation_id]['count'];
+    
+                    $competency_grade[$competency_id][$relation_id]['behavior_row'][$behavior_id]=
+                    'total_grade:'.$behavior_grade[$behavior_id][$relation_id]['total_grade'].'/count:'.$behavior_grade[$behavior_id][$relation_id]['count'];
+                     
+            }
+    
+            //此行為的算數平均數
+            if($behavior_grade[$behavior_id][0]['count'])
+            {
+            $behavior_grade[$behavior_id][0]['behavior_arithmetic_avg']=
+            $behavior_grade[$behavior_id][0]['total_grade']/$behavior_grade[$behavior_id][0]['count'];
+            }
+    
+                //此行為的幾何平均數
+                if($behavior_grade[$behavior_id][0]['total_relation_count'])
+                {
+                $behavior_grade[$behavior_id][0]['behavior_geometric_avg']=
+                $behavior_grade[$behavior_id][0]['total_relation_grade']/$behavior_grade[$behavior_id][0]['total_relation_count'];
+                }
+                }
+    
+                //D.針對此職能, 關係分類         的算數分數（該關係群中 每一(B類成績x行為權重) 的 加總除權平均）
+                //E.針對此職能, 關係分類         的幾何分數 （該關係群中 每一(C類成績x行為權重) 的 加總除權平均）
+    
+                    //F.針對此職能（全部關係）的算數分數（屬於該職能的  SUM（行為成績x行為權重） /權重總和 /筆數 ）
+                    //G.針對此職能（全部關係）的幾何分數（依關係分類，算出四大關係個別的平均分數 [SUM（行為成績x行為權重） /權重總和 /筆數 ]，再除於四）
+    
+                    foreach($competency_grade as $competency_id => $row)
+                    {
+    
+                        //職能的算術平均數
+                        $competency_grade[$competency_id][0]['arithmetic_avg']=
+                        $competency_grade[$competency_id][0]['total_weighted_grade']/$competency_grade[$competency_id][0]['total_weight'];
+                             
+                            foreach($row as $relation_id => $row1)
+                            {
+                            if($relation_id>0)
+                            {
+                            $competency_grade[$competency_id][0]['count']+=
+                            $competency_grade[$competency_id][$relation_id]['count'];
+                             
+    
+                            if(($competency_grade[$competency_id][0]['total_weight'])>0 && $competency_grade[$competency_id][$relation_id]['count']>0)
+                            {
+                            //各別關係的算術平術數
+                            $competency_grade[$competency_id][$relation_id]['arithmetic_avg']=
+                            $competency_grade[$competency_id][$relation_id]['total_weighted_grade']/($competency_grade[$competency_id][0]['total_weight'])/$competency_grade[$competency_id][$relation_id]['count'];
+                            }
+                                 
+                            $competency_grade[$competency_id][0]['geometric_total']+=
+                                $competency_grade[$competency_id][$relation_id]['arithmetic_avg'];
+                            }
+                            }
+                             
+                            $competency_grade[$competency_id][0]['geometric_avg']=
+                            $competency_grade[$competency_id][0]['geometric_total']/(count($row)-1);
+                             
+                            $competency_grade[$competency_id][0]['arithmetic_avg']=
+                            $competency_grade[$competency_id][0]['total_weighted_grade']/($competency_grade[$competency_id][0]['total_weight'])/$competency_grade[$competency_id][0]['count'];
+                        }
+                        }
+                            return array($competency_grade,$behavior_grade);
+        }
+    
+    
+    
+    /**
+     * @param unknown $option   //basis_evaluation_appraisee_id
+     * @return Ambigous <multitype:, number>
+     */
+    function get_basis_evaluation_appraisee_grade($option)
+    {
+        $return=array();
+    
+        // 找出這個受評人採用哪個 table > 得知採用哪一個 competency_model_id
+    
+        // --> 找出這個 受評人 需要哪些 behavior_id
+        if(!$option['behavior_id_row'])
+        {
+            $rows=$this->db->select('basis_evaluation_appraisee',array(
+                "[>]basis_evaluation_table"=>"basis_evaluation_table_id",
+                "[>]competency"=>"competency_model_id",
+                "[>]behavior"=>"competency_id"
+            ),'*',array('basis_evaluation_appraisee_id'=>$option['basis_evaluation_appraisee_id']));
+    
+             
+            //整理
+            if($rows)
+            {
+                foreach($rows as $row)
+                {
+                    $option['behavior_id_row'][$row['behavior_id']]=$row['behavior_id'];
+                    $option['behavior'][$row['behavior_id']]=$row;
+                }
+            }
+        }
+    
+        // -->  找出這個 受評人 有哪些評鑑人及關係
+        $rows=$this->db->select('basis_evaluation_evaluator','*',array('basis_evaluation_appraisee_id'=>$option['basis_evaluation_appraisee_id']));
+        foreach($rows as $row)
+        {
+            $basis_evaluation_evaluator_id_row[]=$row['basis_evaluation_evaluator_id'];
+            $evaluator_row[$row['basis_evaluation_evaluator_id']]=$row;
+        }
+    
+    
+        // --> （若無）找出behavior的屬性
+        if(!$option['behavior'])
+        {
+            if($rows=$this->db->select('behavior','*',array(
+                    'behavior_id'=>$option['behavior_id_row']
+            )))
+            {
+                foreach($rows as $row)
+                {
+                    $option['behavior'][$row['behavior_id']]=$row;
+                }
+            }
+        }
+         
+    
+    
+        // -->  找出此次計算評鑑資料
+        if($evaluator_detail_rows=$this->db->select('basis_evaluation_evaluator_detail','*',
+            array(
+                'behavior_id'=>$option['behavior_id_row'],
+                'basis_evaluation_evaluator_id'=>$basis_evaluation_evaluator_id_row
+            )
+        ))
+        {
+        //此受評人的所有評鑑明細
+        foreach($evaluator_detail_rows as $row)
+        {
+            //引用
+            $relation=$evaluator_row[$row['basis_evaluation_evaluator_id']]['basis_evaluation_evaluator_relation'];
+            $competency_id= $option['behavior'][$row['behavior_id']]['competency_id'];
+            $weight= $option['behavior'][$row['behavior_id']]['weight'];
+            $behavior_id=$row['behavior_id'];
+             
+            $evaluation_scale_item_grade=$row['evaluation_scale_item_grade'];
+            $basis_evaluation_evaluator_id=$row['basis_evaluation_evaluator_id'];
+    
+     
+            $geometric_grade[$competency_id][$relation][$basis_evaluation_evaluator_id]['weighted_grade']+=($evaluation_scale_item_grade*$weight);
+            $geometric_grade[$competency_id][$relation][$basis_evaluation_evaluator_id]['weight']+=($weight);
+    
+            $arithmetic_grade[$competency_id]['weighted_grade']+=($evaluation_scale_item_grade*$weight);
+            $arithmetic_grade[$competency_id]['weight']+=($weight);
+    
+            $geometric_behavior_grade[$competency_id][$behavior_id][$relation][$basis_evaluation_evaluator_id]['grade']+=($evaluation_scale_item_grade);
+            $geometric_behavior_grade[$competency_id][$behavior_id][$relation][$basis_evaluation_evaluator_id]['weighted_grade']+=($evaluation_scale_item_grade*$weight);
+            $geometric_behavior_grade[$competency_id][$behavior_id][$relation][$basis_evaluation_evaluator_id]['weight']+=($weight);
+    
+            $arithmetic_behavior_grade[$competency_id][$behavior_id]['weighted_grade']+=($evaluation_scale_item_grade*$weight);
+            $arithmetic_behavior_grade[$competency_id][$behavior_id]['weight']+=($weight);
+
+        }
+        }
+        return array($geometric_grade,$arithmetic_grade,$geometric_behavior_grade,$arithmetic_behavior_grade);
+    
+    }
+        
+
+
+    /*
+     * 分級制
+    */
+    function update_class_evaluator_grade($option)
+    {
+         
+        $this->db->update('class_evaluation_evaluator',array(
+            'evalutor_score'=>$option['evalutor_score']
+        ),array(
+            'class_evaluation_evaluator_id'=>$option['class_evaluation_evaluator_id']
+        ));
+    
+        if(!$option['class_evaluation_competency_id'])
+        {
+            $row=$this->db->get('class_evaluation_evaluator','*',array('class_evaluation_evaluator_id'=>$option['class_evaluation_evaluator_id']));
+            $option['class_evaluation_competency_id']=$row['class_evaluation_competency_id'];
+        }
+         
+        //算出各評鑑人針對此職能的平均,並更新此人的此職能平均
+        if($rows=$this->db->select('class_evaluation_evaluator','*',array(
+            'class_evaluation_competency_id'=>$option['class_evaluation_competency_id']
+        )))
+        {
+            foreach($rows as $row)
+            {
+                $total_evalutor_score+=$row['evalutor_score']*$row['weight'];
+            }
+            $competency_score=$total_evalutor_score/100;
+            $this->db->update('class_evaluation_competency',
+                array('competency_score'=>$competency_score,
+                    'competency_grade_date'=>date("Y-m-d H:i:s")
+                ),array('class_evaluation_competency_id'=>$option['class_evaluation_competency_id']));
+        }
+         
+        //  $competency_score=
+         
+    }
+      
+    function get_competency_type($s)
+    {
+        global $base;
+        $langrow['competency_type']['C']=$base->message('CoreCompetency');
+        $langrow['competency_type']['M']=$base->message('ManageCompetency');
+        $langrow['competency_type']['G']=$base->message('GeneralCompetency');
+        $langrow['competency_type']['P']=$base->message('ProfessionalCompetency');
+        return $langrow['competency_type'][$s];
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * 舊程式碼 2015/7/9
+     * @param unknown $option   //basis_evaluation_appraisee_id
+     * @return Ambigous <multitype:, number>
+     */
+    function count_basis_evaluation_appraisee($option)
+    {
+        $return=array();   
+
+        $grade_competency=array();
+        $grade_behavior=array();
+        
+        
+        // 找出這個受評人採用哪個 table > 得知採用哪一個 competency_model_id        
+        list($geometric_grade,$arithmetic_grade,$geometric_behavior_grade,$arithmetic_behavior_grade) = $this->get_basis_evaluation_appraisee_grade($option);                            
+        //算術平均數（Arithmetic mean）： 所有屬於該職能下的行為之評分 的 平均
+        //幾何平均數（Geometric mean）： 先依關係分做N類，每類中求個別平均（C1,C2,C3)，之後再求平均(SUM(C)/N)       
+        
+
+        
+        if($geometric_behavior_grade)
+        {           
+            foreach($geometric_behavior_grade as $competency_id => $row)
+            {
+                $competency_id_row[]=$competency_id;    //職能代碼陣列
+                foreach($row as $behavior_id=>$row1 )
+                {
+                    $behavior_id_row[]=$behavior_id;            //行為代碼陣列
+            
+                    foreach($row1 as $relation =>$row2)
+                    {
+                        //屬於此關係群組的評鑑成績
+                        foreach($row2 as $basis_evaluation_evaluator_id=>$row3)
+                        {
+                            $_behavior_grade=$row3['weighted_grade']/$row3['weight'];     //此人  此行為 的除權成績
+                            $grade_behavior[$competency_id][$behavior_id][$relation]['grade']+=$_behavior_grade;  //此行為目標的累積成績
+                            unset($_behavior_grade);
+                        }
+                        //取得 此關係 此行為 的 平均除權成績
+                        $grade_behavior[$competency_id][$behavior_id][$relation]['avg_grade']=$grade_behavior[$competency_id][$behavior_id][$relation]['grade']/count($row2);
+            
+                        //此關係 此職能 的 累積除權成績
+                        $grade_competency[$competency_id][$relation]['grade']+= $grade_behavior[$competency_id][$behavior_id][$relation]['avg_grade'];
+                    }
+            
+                    //求此 行為的平均
+                    $grade_behavior[$competency_id][$behavior_id]['behavior_geometric_avg']=
+                    ($grade_behavior[$competency_id][$behavior_id][2]['avg_grade']+
+                        $grade_behavior[$competency_id][$behavior_id][3]['avg_grade']+
+                        $grade_behavior[$competency_id][$behavior_id][4]['avg_grade'])/3;
+                    
+                    $grade_behavior[$competency_id][$behavior_id]['behavior_arithmetic_avg']=
+                        $arithmetic_behavior_grade[$competency_id][$behavior_id]['weighted_grade']/
+                        $arithmetic_behavior_grade[$competency_id][$behavior_id]['weight'];
+                }
+                 
+            }
+            
+            
+            foreach($geometric_behavior_grade as $competency_id => $row)
+            {
+                for($r=1;$r<=4;$r++)
+                {
+                    // 依序求出此職能 各關係 的平均除權成績  (累積除權成績/行為個數)
+                    $grade_competency[$competency_id][$r]['avg_grade']=
+                    $grade_competency[$competency_id][$r]['grade']/count($row);
+                }
+            
+                //求出此職能的 所有關係的 平均除權成績
+                $grade_competency[$competency_id]['avg_geometric_avg']=
+                ($grade_competency[$competency_id][2]['avg_grade']+
+                    $grade_competency[$competency_id][3]['avg_grade']+
+                    $grade_competency[$competency_id][4]['avg_grade'])/3;
+                        
+                /* Output
+                    $grade_competency[$competency_id]['avg_geometric_avg']
+                    $grade_competency[$competency_id]['avg_arithmetic_avg']
+                    $grade_competency[$competency_id][1]['avg_grade']
+                    $grade_competency[$competency_id][2]['avg_grade']
+                    $grade_competency[$competency_id][3]['avg_grade']
+                    $grade_competency[$competency_id][4]['avg_grade']
+                  
+                    $grade_behavior[$competency_id][$behavior_id]['behavior_geometric_avg']
+                    $grade_behavior[$competency_id][$behavior_id]['behavior_arithmetic_avg']
+                    $grade_behavior[$competency_id][$behavior_id][1]['avg_grade']
+                    $grade_behavior[$competency_id][$behavior_id][2]['avg_grade']
+                    $grade_behavior[$competency_id][$behavior_id][3]['avg_grade']
+                    $grade_behavior[$competency_id][$behavior_id][4]['avg_grade']                  
+                 */
+            
+            }     
+        }
+        
+        if($arithmetic_grade)
+        foreach($arithmetic_grade as $competency_id=>$row )
+        {
+            $grade_competency[$competency_id]['avg_arithmetic_avg']=
+                $arithmetic_grade[$competency_id]['weighted_grade']/$arithmetic_grade[$competency_id]['weight'];
+        }
+        
+        
+        return array($grade_behavior,$grade_competency);
+        
+        
+//         //arithmetic_avg
+        
+//         if($arithmetic_grade)
+//         {
+//             foreach($arithmetic_grade as $competency_id=>$row)
+//             {
+//                 $return[$competency_id]['arithmetic_avg']=$row['grade']/$row['weight'];
+                
+//                 //算出每個關係類 的 平均
+//                 foreach($geometric_grade[$competency_id] as $relation => $row1)
+//                 {
+//                     //依關依，算平均
+//                     if(count($row1))
+//                     {    
+//                         foreach($row1 as $basis_evaluation_evaluator_id=>$row2)
+//                         {
+//                             $_relation_grade[$relation]+=$row2['grade']/$row2['weight'];
+//                         }
+//                         $_relation_avg[$relation]=$_relation_grade[$relation]/count($row1);
+                        
+//                         $_geometric_grade_total[$competency_id]+=$_relation_avg[$relation];
+                        
+//                         unset($_relation_grade);
+//                     }
+//                 }
+//                 $return[$competency_id]['geometric_avg']=$_geometric_grade_total[$competency_id]/count($geometric_grade[$competency_id]);            
+//             }
+//         }
+//         return $return;
+    }
+        
+    //舊程式碼 2015/7/9
+    function update_basis_evaluation_appraisee($option,$grade_row)
+    {   
+        $appraisee_uid=$option['appraisee_uid'];
+        list($grade_competency,$grade_behavior)=$grade_row;
+
+        /* Output
+         $grade_competency[$competency_id]['avg_geometric_avg']
+        $grade_competency[$competency_id][1]['avg_grade']
+        $grade_competency[$competency_id][2]['avg_grade']
+        $grade_competency[$competency_id][3]['avg_grade']
+        $grade_competency[$competency_id][4]['avg_grade']
+        
+        $grade_behavior[$competency_id][$behavior_id]['avg_grade']
+        $grade_behavior[$competency_id][$behavior_id][1]['avg_grade']
+        $grade_behavior[$competency_id][$behavior_id][2]['avg_grade']
+        $grade_behavior[$competency_id][$behavior_id][3]['avg_grade']
+        $grade_behavior[$competency_id][$behavior_id][4]['avg_grade']
+        */
+                        
+        //**找出評鑑表 所屬的 職能模型 / 職能 / 行為
+        if($rows=$this->db->select('profile_competency','*',array('user_id'=>$appraisee_uid)))
+        {
+            foreach($rows as $row)
+            {
+                $profile_competency[$row['competency_id']]=$row;                
+            }
+        }          
+
+        //**找出評鑑表 所屬的 職能模型 / 職能 / 行為
+        if($rows=$this->db->select('profile_behavior','*',array('user_id'=>$appraisee_uid)))
+        {
+            foreach($rows as $row)
+            {
+                $profile_behavior[$row['behavior_id']]=$row;
+            }
+        }
+                
+        //**找出[以關係區分]的職能評鑑資訊
+        if($rows=$this->db->select('profile_competency_detail','*',array('user_id'=>$appraisee_uid)))
+        {
+            foreach($rows as $row)
+            {
+                $profile_competency_detail[$row['competency_id']][$row['evaluation_relation_id']]=$row;
+            }
+        }    
+        
+        //**找出[以關係區分]的行為評鑑資訊
+        if($rows=$this->db->select('profile_behavior_detail','*',array('user_id'=>$appraisee_uid)))
+        {
+            foreach($rows as $row)
+            {
+                $profile_behavior_detail[$row['behavior_id']][$row['evaluation_relation_id']]=$row;
+            }
+        }
+
+        if(!$option['competency_model_id'])
+        {
+            if($option['basis_evaluation_table_id'])
+            {
+                $_r=$this->db->get('basis_evaluation_table','*',array('basis_evaluation_table_id'=>$option['basis_evaluation_table_id']));
+                $option['competency_model_id']=$_r['competency_model_id'];
+            }
+            else if($option['basis_evaluation_appraisee_id'])
+            {
+                $_r=$this->db->get('basis_evaluation_appraisee',array("[>]basis_evaluation_table"=>'basis_evaluation_table_id'),'*',array('basis_evaluation_table_id'=>$option['basis_evaluation_table_id']));
+                $option['competency_model_id']=$_r['competency_model_id'];
+            }
+        }
+        
+        
+        if($option['competency_model_id'])
+        {
+            //**找出個人的評鑑總分
+            $profile_competency_model_row=$this->db->get('profile_competency_model','*',array('AND'=>array(
+                'user_id'=>$appraisee_uid,
+                'competency_model_id'=>$option['competency_model_id']
+            )));
+              
+        }
+        
+        
+        
+        // 依職能尋找
+        foreach($grade_competency as $competency_id =>$row1)
+        {        
+            $_grade['arithmetic'][$competency_id]=$row1[0]['arithmetic_avg'];
+            $_grade['geometric'][$competency_id]=$row1[0]['geometric_avg'];
+            
+            
+            if(isset($profile_competency[$competency_id]))
+            {           
+                //echo    $competency_id.'存在並更新<br>';
+                //存在就更新
+                $profile_competency_id=$profile_competency[$competency_id]['profile_competency_id'];
+                $this->db->update('profile_competency',array(
+                    'arithmetic_avg'=>$row1[0]['arithmetic_avg'],
+                    'geometric_avg'=>$row1[0]['geometric_avg']
+                ),array('profile_competency_id'=>$profile_competency_id));   
+            }
+            else
+            {           
+                //echo    $competency_id.'不存在並新增<br>';
+                //不存在就新增
+                $this->db->insert('profile_competency',array(
+                    'user_id'=>$appraisee_uid,
+                    'competency_id'=>$competency_id,
+                    'competency_level'=>0, 
+                    'arithmetic_avg'=>$row1[0]['arithmetic_avg'],
+                    'geometric_avg'=>$row1[0]['geometric_avg']
+                ));              
+            }         
+                  
+            for($relation=1;$relation<=4;$relation++)
+            {                
+                $__row=$profile_competency_detail[$competency_id][$relation];               
+                
+                if(isset($profile_competency_detail[$competency_id][$relation]))
+                {
+                //    echo    $competency_id.'-'.$relation.'-存在並更新<br>';
+                    //存在就更新
+                    
+                    $profile_competency_detail_id=$__row['profile_competency_detail_id'];
+                    $this->db->update('profile_competency_detail',array(
+                        'arithmetic_avg'=>intval($row1[$relation]['arithmetic_avg']),
+                        'geometric_avg'=>intval($row1[$relation]['geometric_avg'])
+                    ),array('profile_competency_detail_id'=>$profile_competency_detail_id));
+                }
+                else
+                {
+                   // echo    $competency_id.'-'.$relation.'-不存在並新增<br>';
+                    //不存在就新增
+                    
+                    $this->db->insert('profile_competency_detail',array(
+                        'user_id'=>$appraisee_uid,
+                        'competency_id'=>$competency_id,
+                        'evaluation_relation_id'=>$relation,
+                        'competency_level'=>0,
+                        'arithmetic_avg'=>intval($row1[$relation]['arithmetic_avg']),
+                        'geometric_avg'=>intval($row1[$relation]['geometric_avg'])
+                    ));
+                   
+                }
+            }                 
+        //$grade_behavior[$competency_id][$behavior_id]['avg_grade']       
+         }
+         
+         
+         
+         
+         foreach($grade_behavior as $behavior_id =>$behavior_row1)
+         {
+             if(isset($profile_behavior[$behavior_id]))
+             {
+                // echo    'B:'.$behavior_id.'存在並更新<br>';
+                 //存在就更新
+                 $profile_behavior_id=$profile_behavior[$behavior_id]['profile_behavior_id'];
+                 $this->db->update('profile_behavior',array(
+                     'behavior_arithmetic_avg'=>$behavior_row1[0]['behavior_arithmetic_avg'],
+                     'behavior_geometric_avg'=>$behavior_row1[0]['behavior_geometric_avg']
+                 ),array('profile_behavior_id'=>$profile_behavior_id));
+             }
+             else
+             {
+              //   echo    'B:'.$behavior_id.'不存在並新增<br>';
+                 //不存在就新增
+                 $this->db->insert('profile_behavior',array(
+                     'user_id'=>$appraisee_uid,
+                     'behavior_id'=>$behavior_id,
+                     'behavior_arithmetic_avg'=>$behavior_row1[0]['behavior_arithmetic_avg'],
+                     'behavior_geometric_avg'=>$behavior_row1[0]['behavior_geometric_avg']
+                 ));
+             }
+         
+             for($relation=1;$relation<=4;$relation++)
+             {
+                 $__row=$profile_behavior_detail[$behavior_id][$relation];
+                 if(isset($profile_behavior_detail[$behavior_id][$relation]))
+                 {         
+                   //  echo    'B:'.$behavior_id.'存在並更新<br>';
+                     //存在就更新
+                     $profile_behavior_detail_id=$__row['profile_behavior_detail_id'];
+                     $this->db->update('profile_behavior_detail',array(
+                         'behavior_arithmetic_avg'=>$behavior_row1[$relation]['behavior_arithmetic_avg'],
+                         'behavior_geometric_avg'=>$behavior_row1[$relation]['behavior_geometric_avg']
+                     ),array('profile_behavior_detail_id'=>$profile_behavior_detail_id));
+                 }
+                 else
+                 {
+                    // echo    'B:'.$behavior_id.'不存在並新增<br>';
+                     //不存在就新增
+                     $this->db->insert('profile_behavior_detail',array(
+                         'user_id'=>$appraisee_uid,
+                         'evaluation_relation_id'=>$relation,
+                         'behavior_id'=>$behavior_id,
+                         'behavior_arithmetic_avg'=>$behavior_row1[$relation]['behavior_arithmetic_avg'],
+                         'behavior_geometric_avg'=>$behavior_row1[$relation]['behavior_geometric_avg']
+                     ));
+                     }
+                 }         
+              }
+            
+         // 開始處理 competency_model
+              if(count( $_grade['arithmetic'])>0)
+                $_arithmetic_avg=array_sum( $_grade['arithmetic'])/count( $_grade['arithmetic']);
+              if(count( $_grade['geometric'])>0)
+                $_geometric_avg=array_sum( $_grade['geometric'])/count( $_grade['geometric']);
+              
+              if ($profile_competency_model_row['profile_competency_model_id']) {  
+                     // echo 'competency_model_id:' . $option['competency_model_id'] . '存在並更新<br>';
+                      // 存在就更新
+                   
+                      $this->db->update('profile_competency_model', array(
+                          'arithmetic_avg' => $_arithmetic_avg,
+                          'geometric_avg' => $_geometric_avg
+                      ), array(
+                          'profile_competency_model_id' => $profile_competency_model_row['profile_competency_model_id']
+                      ));
+                  } else {
+                   //   echo 'competency_model_id:' . $option['competency_model_id'] . '不存在並新增<br>';
+                      // 不存在就新增
+                      $this->db->insert('profile_competency_model', array(
+                          'user_id' => $appraisee_uid,
+                          'competency_model_id' => $option['competency_model_id'],
+                          'arithmetic_avg' =>  $_arithmetic_avg,
+                          'geometric_avg' => $_geometric_avg
+                      ));
+                  }
+        
+    }   //function
+    
+    function del_evaluator($evaluator_id_row)
+    {
+        $this->db->delete("basis_evaluation_evaluator", array("basis_evaluation_evaluator_id" => $evaluator_id_row));
+        $this->db->delete("basis_evaluation_evaluator_detail", array("basis_evaluation_evaluator_id" => $evaluator_id_row));
+        $this->db->delete("basis_evaluation_evaluator_competeny", array("basis_evaluation_evaluator_id" => $evaluator_id_row));
+    }
+    
+    function del_appeaisee($appraisee_id_row)    
+    {
+        if($rows=$this->db->select('basis_evaluation_evaluator','*',array('basis_evaluation_appraisee_id'=>$appraisee_id_row)))
+        {
+            foreach($rows as $row)
+            {
+                $evaluator_id_row[]=$row['basis_evaluation_evaluator_id'];
+            }           
+        }
+        $evaluator_id_row && $this->del_evaluator($evaluator_id_row);
+        $this->db->delete("basis_evaluation_appraisee", array("basis_evaluation_appraisee_id" => $appraisee_id_row));
+    }
+    
+    /**
+     * 刪除評鑑表，連同報告
+     * @param unknown $table_id_row
+     */
+    function del_basis_table($table_id_row)
+    {
+        if($rows=$this->db->select('basis_evaluation_appraisee','*',array('basis_evaluation_table_id'=>$table_id_row)))
+        {
+            foreach($rows as $row)
+            {
+                $basis_evaluation_appraisee_id[]=$row['basis_evaluation_appraisee_id'];
+            }
+        }
+        $basis_evaluation_appraisee_id && $this->del_appeaisee($basis_evaluation_appraisee_id);
+        $this->db->delete("basis_evaluation_table", array("basis_evaluation_table_id" => $table_id_row));
+        $this->db->delete('report_config',array('basis_evaluation_table_id'=>$table_id_row));
+    }
+}
 ?>
-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
-ML99tm==
