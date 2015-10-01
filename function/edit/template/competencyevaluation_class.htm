@@ -37,14 +37,16 @@
 		
 	
 	<div class="labMenu">
-		<div class="lable"  dis="dis_quiz"  style="background-color: yellow;">評鑑表信息</div>		
-		<div class="lable"  dis="dis_suggest" >開放建議</div>
+		<div class="lable"  dis="dis_quiz"  style="background-color: yellow;">{$lang.EvaluationTableInfo}</div>		
+		<div class="lable"  dis="dis_suggest" >{$lang.OpenComment}</div>
 	</div>
 
 	<div id="dis_quiz" class="labDiv"   style="display: block;">
 		<div class="uc1">		
 			<div class="hide">
 				<input id="class_evaluation_evaluator_id" name="class_evaluation_evaluator_id" value="{class_evaluation_evaluator_id}" />
+				<input id="class_evaluation_appraisee_id" name="class_evaluation_appraisee_id" value="{class_evaluation_appraisee_id}" />
+				
 			</div>
 			<table id="appraisee_area" class="contb"   style="border: #D6E9FF;background: #fbfab5;width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
 			<tr align="left" >
@@ -54,20 +56,20 @@
 				
 				<th width="17%">				
 					<img src='templates/bhrsp/images/arrow_small.png'>
-					受評人:
+					{$lang.Appraisee}:
 				</th>
 				<td  width="30%">
 					{fullName}
 				</td>
 			
-				<th width="17%"> <img src='templates/bhrsp/images/arrow_small.png'> 公司:</th>
+				<th width="17%"> <img src='templates/bhrsp/images/arrow_small.png'>{$lang.Company}:</th>
 				<td width="30%"></td>				
 	
 			</tr>
 			<tr align="left" >
 				<th >
 					<img src='templates/bhrsp/images/arrow_small.png'>
-					 部門名稱:
+					 {$lang.Department}:
 					
 				</th>
 				<td >
@@ -76,7 +78,7 @@
 		
 				<th  >
 					<img src='templates/bhrsp/images/arrow_small.png'>
-					 職稱:
+					 {$lang.JobTitle}:
 				</th>
 				<td >
 					{job_title}
@@ -88,14 +90,14 @@
 			<tr align="left" >
 				<th >
 					<img src='templates/bhrsp/images/arrow_small.png'>
-					 職能項目:
+					 {$lang.CompetencyItem}:
 				</th>
 				<td>
 				{competency_title}
 				</td>
 				<th  >
 					<img src='templates/bhrsp/images/arrow_small.png'>
-					本次評鑑級數:
+					{$lang.CurrentEvaluationLevel}:
 				</th>
 				<td >
 					{competency_level}
@@ -105,7 +107,7 @@
 			<tr align="left" >
 				<th >
 					<img src='templates/bhrsp/images/arrow_small.png'>
-					 職能定義:
+					 {$lang.CompetencyDefinition}:
 				</th>
 				<td colspan="6">
 				{competency_definition}
@@ -134,13 +136,13 @@
 		</div>
 		<div class="uc2" style="width:94%;margin-left: 20px;">
 			<div  style="float:right;">
-				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="交卷"  onClick='exam_finish();' />				
+				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="{$lang.SubmitSurvey}"  onClick='exam_finish();' />				
 			</div>
 		</div>
 	</div>	
 
 	<div id="dis_suggest" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>開放建議</td></tr></table>		
+		<table class="tableStyle1" ><tr><td>{$lang.OpenComment}</td></tr></table>		
 	</div>	
 	</form>
 </div>	
@@ -151,8 +153,10 @@ function exam_finish()
 {
 	var evalutor_score=$('input[name=evalutor_score]:checked').val(); 
 	var class_evaluation_evaluator_id=$('#class_evaluation_evaluator_id').val();
+	var class_evaluation_appraisee_id=$('#class_evaluation_appraisee_id').val();
+	
 	var o = {
-			data: {evalutor_score:evalutor_score,class_evaluation_evaluator_id:class_evaluation_evaluator_id},
+			data: {evalutor_score:evalutor_score,class_evaluation_evaluator_id:class_evaluation_evaluator_id,class_evaluation_appraisee_id:class_evaluation_appraisee_id},
 			url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_evalutor_grade.php?f=1',
 			onSuccess:function(data)
 			{								
