@@ -26,32 +26,32 @@
 			</div>			
 			<table class="tableStyle1"  >
 				  <tr>
-						<td class="label">評鑑職能信息：</td>
+						<td class="label">{$lang.EvaluationTableInfo}：</td>
 						<td></td>
 					</tr>
 					<tr>
-						<td  class="right">職能類別：</td>
+						<td  class="right">{$lang.CompetencyType}：</td>
 						<td>{competency_type_str}<input type="hidden" name="competency_type" class="contxt" value="{competency_type}" /></td>
 					</tr>
 					<tr>
-						<td  class="right">職能項目：</td>
+						<td  class="right">{$lang.CompetencyItem}：</td>
 						<td>{competency_title}<input type="hidden" name="competency_id" class="contxt" value="{competency_id}" /></td>
 					</tr>
 
 					
 					<tr>
-						<td  class="right">評鑑人：</td>
+						<td  class="right">{$lang.Evaluator}：</td>
 						<td>{fullName}<input type="hidden" name="user_id" class="contxt" value="{user_id}" /></td>
 					</tr>
 					
 						<tr>
-						<td  class="label">評鑑級數信息：</td>
+						<td  class="label">{$lang.EvaluationLevel}：</td>
 						<td></td>
 					</tr>
 					
 					<!-- BEGIN EVALUATOR -->					
 					<tr class='{EVALUATOR.display}'>
-						<td  colspan="2" class="">原始級數 x 原始權重 = 評鑑級數</td>					
+						<td  colspan="2" class="">{$lang.OriginalScore} x {$lang.OriginalWeight} = {$lang.EvaluationScore}</td>					
 					</tr>					
 					<tr class='{EVALUATOR.display}'>
 						<td colspan="2">
@@ -63,7 +63,7 @@
 					<tr class='{EVALUATOR.display}'><td colspan="2"  style="height:10px"></td></tr>
 					
 					<tr class='{EVALUATOR.display}'>
-						<td  colspan="2" class="">調整後級數 x 調整後權重 = 調整後評鑑級數</td>					
+						<td  colspan="2" class="">{$lang.AdjustedScore} x {$lang.AdjustedWeight} = {$lang.AdjustedEvaluationScore}</td>					
 					</tr>					
 					<tr class='{EVALUATOR.display}'>	
 						<td colspan="2">
@@ -78,11 +78,11 @@
 					<!-- END EVALUATOR -->		
 					<tr><td colspan="2"  style="height:10px"></td></tr>
 					<tr>
-						<td  class="right">原始評鑑總級數：</td>
+						<td  class="right">{$lang.OriginalTotalWeight}：</td>
 						<td><div id="competency_score">{competency_score}</div></td>
 					</tr>
 					<tr>
-						<td  class="right">調整後評鑑總級數：</td>
+						<td  class="right">{$lang.AdjustedTotalWeight}：</td>
 						<td><div id="competency_score_adjusted">{competency_score_adjusted}</div></td>
 					</tr>										
 								
