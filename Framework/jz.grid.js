@@ -4,6 +4,8 @@ var jzsoft = {
 	dateFormat : 'yy-mm-dd'
 };
 
+
+
 jzsoft.grid = function(id, options, menup) {	
 	$("#" + id).jqGrid($.extend({
 		ajaxGridOptions : {
@@ -38,7 +40,7 @@ jzsoft.grid = function(id, options, menup) {
 			rows : "page.count",
 			sort : "page.sortName",
 			order : "page.orderType",
-			search : "search",
+			search : "search",			
 			nd : "nd"
 		}
 	}, options)).navGrid(options.pager, $.extend({
@@ -46,7 +48,7 @@ jzsoft.grid = function(id, options, menup) {
 		add : false,
 		del : false,
 		refresh : false,
-		search : false
+		search : false		
 	}, menup));
 };
 
@@ -642,14 +644,16 @@ jzsoft.grid.newBarMenu = function(p) {
 		
 		 var settings = new Object();		    
 		 var settings = $.extend({},p); //物件複製	
-		 
+		
+	
+	
 		var buttons = [];
 
 		for(var index in p)
-		{						
-			switch(index)
-			{
+		{					
 		
+			switch(index)
+			{	
 				case "add":
 					buttons.push({
 						name : p.add.name,
@@ -688,10 +692,12 @@ jzsoft.grid.newBarMenu = function(p) {
 						separator : true
 					});					
 					break;					
-					
+				
+				case "del":	
 				case "delete":
+					settings['delete']=settings['del'];
 					buttons.push({
-						name : p.delete.name,
+						name : settings['delete']['name'],
 						bclass : 'delete',
 						onpress : function() {							
 							jzsoft.grid.newmultiDele(settings);
@@ -700,6 +706,7 @@ jzsoft.grid.newBarMenu = function(p) {
 					buttons.push({
 						separator : true
 					});
+		
 					break;
 					
 
@@ -729,14 +736,16 @@ jzsoft.grid.newBarMenu = function(p) {
 					});
 					break;		
 
+				case "imp":		
 				case "import":
+					settings['import']=settings['imp'];
 					buttons.push({
 						name : '匯入',
 						bclass : 'import',
 						onpress : function() {
-							p.import.width=840;
-							p.import.height=620;					
-							jzsoft.grid.openDialog(p.import);
+							settings['import']['width']=840;
+							settings['import']['height']=620;					
+							jzsoft.grid.openDialog(settings['import']);
 						}
 					});
 					buttons.push({
@@ -941,13 +950,13 @@ jzsoft.grid.newformView = function(p) {
 jzsoft.grid.newmultiDele = function(setting) {
 	id=setting.gridId;
 	
-	url=setting.delete.body;
+	url=setting['delete']['body'];
 	var sels = $("#" + id).jqGrid('getGridParam', 'selarrrow');
 	if (sels == "") {
 		//jzsoft.grid.dele(id, url);
 	} else {
 		var confirmMsg=null;
-		confirmMsg=(typeof(setting.delete.confirmMsg)!="undefined")?setting.delete.confirmMsg:'您是否確認刪除？';
+		confirmMsg=(typeof(setting['delete']['confirmMsg'])!="undefined")?setting['delete']['confirmMsg']:'您是否確認刪除？';
 		if (confirm(confirmMsg)) {
 			var len = sels.length;
 			var ids = "";
