@@ -130,6 +130,7 @@
 	});
 	load_quiz(1);
 	
+	
 function exam_save()
 {
 	basis_evaluation_evaluator_id=$('#basis_evaluation_evaluator_id').val();
@@ -193,6 +194,7 @@ function ck(obj)
 
 	$('#answer_'+index).text(evaluation_scale_item_term);
 	$('#item_id_'+index).val(evaluation_scale_item_id);
+
 }
 
 function exam_save_item(index)
@@ -291,25 +293,39 @@ function exam_list()
 
 function load_quiz(quiz_no)
 {
-	quiz=quiz_row[quiz_no];
-	$('#quiz_no').html(quiz_no);
-	$('#quiz_text').html(quiz.text);
+	//先將選項清除
+	$('input:radio:checked[name="evaluation_scale_item_id"]').attr('checked', false);
 	
-	$('#competency_text').html(quiz.competency_text);
-	/*
-  	$('#answer_'+index).text(evaluation_scale_item_term).attr("data-item_id",evaluation_scale_item_id).text(evaluation_scale_item_term);	
-	$("input[name=evaluation_scale_item_id]").removeAttr("checked");
-	*/
-
-	var dataitem_id=$('#item_id_'+quiz_no).val();
-	if(dataitem_id.length>0)
+	quiz=quiz_row[quiz_no];
+	if(typeof(quiz)!='undefined')
 	{
-		console.log((dataitem_id))
-		//處理選項	
-		$('input:radio[name="evaluation_scale_item_id"]').filter('[value="'+dataitem_id+'"]').attr('checked', true);
+		$('#quiz_no').html(quiz_no);
+		$('#quiz_text').html(quiz.text);
 		
-
+		$('#competency_text').html(quiz.competency_text);
+		/*
+	  	$('#answer_'+index).text(evaluation_scale_item_term).attr("data-item_id",evaluation_scale_item_id).text(evaluation_scale_item_term);	
+		$("input[name=evaluation_scale_item_id]").removeAttr("checked");
+		*/
+		
+		var dataitem_id=$('#item_id_'+quiz_no).val();
+		if(dataitem_id.length>0)
+		{
+			
+			//處理選項	
+			$('input:radio[name="evaluation_scale_item_id"]').filter('[value="'+dataitem_id+'"]').attr('checked', true);
+		}
+		
 	}
+
+
+	
+
+	
+
+
+	
+	
 	exam_quiz()		
 
 
@@ -443,8 +459,7 @@ function load_quiz(quiz_no)
 					<td >						
 						<!-- BEGIN SCALE -->
 						<input type="radio" id="evaluation_scale_item_id" name="evaluation_scale_item_id"  onclick="ck(this)"  value="{SCALE.evaluation_scale_item_id}" data-term="{SCALE.term}">{SCALE.term}<br>
-						<!-- END SCALE -->
-						
+						<!-- END SCALE -->						
 					</td>
 				</tr>
 			</table>
