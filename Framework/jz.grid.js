@@ -996,6 +996,13 @@ jzsoft.grid.newmultiDele = function(setting) {
 
 jzsoft.grid.openDialog = function(setting) 
 {	
+	
+
+
+	alert('職能系統歡迎您！');
+
+	
+	
 	if(setting.fromDivId!="undefined")
 	{		
 		//var dialogidtitle=$('#'+id).attr("data-dialogidtitle");
