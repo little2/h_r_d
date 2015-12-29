@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: localhost
--- 建立日期: Nov 12, 2015, 02:08 PM
+-- 建立日期: Dec 29, 2015, 02:21 AM
 -- 伺服器版本: 5.6.15
 -- PHP 版本: 5.4.24
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_appraisee` (
   `basis_evaluation_table_id` int(11) NOT NULL,
   `basis_evaluation_progress` int(11) NOT NULL,
   PRIMARY KEY (`basis_evaluation_appraisee_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=106 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107 ;
 
 --
 -- 列出以下資料庫的數據： `basis_evaluation_appraisee`
@@ -230,7 +230,8 @@ INSERT INTO `basis_evaluation_appraisee` (`basis_evaluation_appraisee_id`, `appr
 (101, 1859, 3, 60),
 (102, 1899, 3, 100),
 (104, 3135, 3, 60),
-(105, 3234, 3, 60);
+(105, 3234, 3, 60),
+(106, 54, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -245,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_evaluator` (
   `basis_evaluation_evaluator_relation` int(11) NOT NULL,
   `basis_evaluation_evaluator_progress` int(11) NOT NULL,
   PRIMARY KEY (`basis_evaluation_evaluator_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1016 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1019 ;
 
 --
 -- 列出以下資料庫的數據： `basis_evaluation_evaluator`
@@ -1252,7 +1253,10 @@ INSERT INTO `basis_evaluation_evaluator` (`basis_evaluation_evaluator_id`, `basi
 (1012, 105, 13275, 3, 100),
 (1013, 105, 17540, 4, 0),
 (1014, 105, 17590, 4, 0),
-(1015, 105, 17686, 4, 0);
+(1015, 105, 17686, 4, 0),
+(1016, 106, 1, 2, 0),
+(1017, 106, 47, 3, 0),
+(1018, 1, 1, 0, 23);
 
 -- --------------------------------------------------------
 
@@ -1266,7 +1270,7 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_evaluator_competeny` (
   `competency_id` int(11) NOT NULL,
   `evaluation_competency_grade` int(11) NOT NULL,
   PRIMARY KEY (`basis_evaluation_evaluator_competency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5299 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5305 ;
 
 --
 -- 列出以下資料庫的數據： `basis_evaluation_evaluator_competeny`
@@ -6559,7 +6563,13 @@ INSERT INTO `basis_evaluation_evaluator_competeny` (`basis_evaluation_evaluator_
 (5295, 60, 3, 6),
 (5296, 60, 4, 6),
 (5297, 60, 5, 6),
-(5298, 60, 6, 6);
+(5298, 60, 6, 6),
+(5299, 1018, 1, 3),
+(5300, 1018, 2, 2),
+(5301, 1018, 3, 0),
+(5302, 1018, 4, 0),
+(5303, 1018, 5, 1),
+(5304, 1018, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -6573,7 +6583,7 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_evaluator_detail` (
   `behavior_id` int(11) NOT NULL,
   `evaluation_scale_item_grade` int(11) NOT NULL,
   PRIMARY KEY (`basis_evaluation_evaluator_detail_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26491 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26551 ;
 
 --
 -- 列出以下資料庫的數據： `basis_evaluation_evaluator_detail`
@@ -33018,7 +33028,37 @@ INSERT INTO `basis_evaluation_evaluator_detail` (`basis_evaluation_evaluator_det
 (26487, 60, 27, 6),
 (26488, 60, 28, 6),
 (26489, 60, 29, 6),
-(26490, 60, 30, 6);
+(26490, 60, 30, 6),
+(26550, 1018, 30, 0),
+(26549, 1018, 29, 0),
+(26548, 1018, 28, 0),
+(26547, 1018, 27, 0),
+(26546, 1018, 26, 0),
+(26545, 1018, 25, 0),
+(26544, 1018, 24, 0),
+(26543, 1018, 23, 0),
+(26542, 1018, 22, 0),
+(26541, 1018, 21, 6),
+(26540, 1018, 20, 0),
+(26539, 1018, 19, 0),
+(26538, 1018, 18, 0),
+(26537, 1018, 17, 0),
+(26536, 1018, 16, 0),
+(26535, 1018, 15, 0),
+(26534, 1018, 14, 0),
+(26533, 1018, 13, 0),
+(26532, 1018, 12, 0),
+(26531, 1018, 11, 0),
+(26530, 1018, 10, 0),
+(26529, 1018, 9, 0),
+(26528, 1018, 8, 0),
+(26527, 1018, 7, 5),
+(26526, 1018, 6, 5),
+(26525, 1018, 5, 7),
+(26524, 1018, 4, 5),
+(26523, 1018, 3, 0),
+(26522, 1018, 2, 3),
+(26521, 1018, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -33078,9 +33118,9 @@ CREATE TABLE IF NOT EXISTS `basis_evaluation_table` (
 --
 
 INSERT INTO `basis_evaluation_table` (`basis_evaluation_table_id`, `basis_evaluation_table_code`, `is_show_competency`, `due_date`, `competency_model_id`, `evaluation_scale_id`, `basis_evaluation_table_status`, `basis_evaluation_table_process`) VALUES
-(2, 'wacoal01', 'F', '2015-09-18', 1, 1, 'FNS', 0),
-(3, 'wacoal02', 'F', '2015-09-18', 2, 1, 'FNS', 0),
-(4, 'test', 'F', '2015-09-21', 0, 0, 'EDT', 0);
+(2, 'wacoal01', 'F', '2015-09-18', 1, 1, 'PUB', 0),
+(3, 'wacoal02', 'F', '2015-09-18', 2, 1, 'PUB', 0),
+(4, 'test', 'F', '2015-09-21', 0, 0, 'PUB', 0);
 
 -- --------------------------------------------------------
 
@@ -33420,7 +33460,7 @@ CREATE TABLE IF NOT EXISTS `competency_dic` (
   `competency_dic_code` varchar(10) DEFAULT NULL,
   `competency_type` varchar(5) NOT NULL,
   PRIMARY KEY (`competency_dic_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- 列出以下資料庫的數據： `competency_dic`
@@ -37856,36 +37896,36 @@ CREATE TABLE IF NOT EXISTS `profile_behavior` (
 --
 
 INSERT INTO `profile_behavior` (`profile_behavior_id`, `user_id`, `behavior_id`, `behavior_arithmetic_avg`, `behavior_geometric_avg`) VALUES
-(1, 1061, 1, 5.56, 5.47),
-(2, 1061, 2, 5.67, 5.72),
-(3, 1061, 3, 5.56, 5.31),
-(4, 1061, 4, 5.50, 5.31),
-(5, 1061, 5, 5.56, 5.67),
-(6, 1061, 6, 5.56, 5.50),
-(7, 1061, 7, 5.63, 6.03),
-(8, 1061, 8, 5.63, 5.47),
-(9, 1061, 9, 5.60, 5.39),
-(10, 1061, 10, 5.62, 5.67),
-(11, 1061, 11, 5.61, 5.42),
-(12, 1061, 12, 5.58, 5.31),
-(13, 1061, 13, 5.56, 5.14),
-(14, 1061, 14, 5.52, 4.94),
-(15, 1061, 15, 5.51, 5.36),
-(16, 1061, 16, 5.53, 5.83),
-(17, 1061, 17, 5.50, 5.14),
-(18, 1061, 18, 5.51, 5.67),
-(19, 1061, 19, 5.52, 5.75),
-(20, 1061, 20, 5.51, 5.31),
-(21, 1061, 21, 5.50, 5.39),
-(22, 1061, 22, 5.49, 5.33),
-(23, 1061, 23, 5.49, 5.42),
-(24, 1061, 24, 5.49, 5.58),
-(25, 1061, 25, 5.48, 5.33),
-(26, 1061, 26, 5.49, 5.53),
-(27, 1061, 27, 5.48, 5.33),
-(28, 1061, 28, 5.49, 5.67),
-(29, 1061, 29, 5.50, 5.78),
-(30, 1061, 30, 5.50, 5.50),
+(1, 1061, 1, 5.20, 4.60),
+(2, 1061, 2, 5.40, 4.79),
+(3, 1061, 3, 5.10, 4.73),
+(4, 1061, 4, 5.30, 5.23),
+(5, 1061, 5, 5.70, 5.50),
+(6, 1061, 6, 5.60, 5.63),
+(7, 1061, 7, 5.80, 5.27),
+(8, 1061, 8, 5.70, 5.85),
+(9, 1061, 9, 5.10, 4.54),
+(10, 1061, 10, 5.60, 5.25),
+(11, 1061, 11, 5.40, 5.31),
+(12, 1061, 12, 5.40, 5.48),
+(13, 1061, 13, 5.10, 4.85),
+(14, 1061, 14, 5.10, 5.21),
+(15, 1061, 15, 5.30, 5.02),
+(16, 1061, 16, 5.80, 5.88),
+(17, 1061, 17, 4.90, 4.60),
+(18, 1061, 18, 5.60, 5.50),
+(19, 1061, 19, 5.80, 6.06),
+(20, 1061, 20, 5.20, 4.98),
+(21, 1061, 21, 5.10, 4.79),
+(22, 1061, 22, 5.20, 5.00),
+(23, 1061, 23, 5.00, 4.56),
+(24, 1061, 24, 5.40, 5.19),
+(25, 1061, 25, 5.30, 5.25),
+(26, 1061, 26, 5.40, 5.15),
+(27, 1061, 27, 5.10, 4.75),
+(28, 1061, 28, 5.70, 5.50),
+(29, 1061, 29, 5.50, 5.08),
+(30, 1061, 30, 5.60, 5.63),
 (31, 16167, 31, 5.89, 6.03),
 (32, 16167, 32, 5.83, 5.83),
 (33, 16167, 33, 5.78, 5.75),
@@ -41022,7 +41062,7 @@ CREATE TABLE IF NOT EXISTS `profile_behavior_detail` (
   `behavior_arithmetic_avg` decimal(10,2) NOT NULL,
   `behavior_geometric_avg` decimal(10,2) NOT NULL,
   PRIMARY KEY (`profile_behavior_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12151 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12181 ;
 
 --
 -- 列出以下資料庫的數據： `profile_behavior_detail`
@@ -53185,7 +53225,37 @@ INSERT INTO `profile_behavior_detail` (`profile_behavior_id`, `user_id`, `behavi
 (12147, 1755, 27, 1, 6.00, 0.00),
 (12148, 1755, 28, 1, 6.00, 0.00),
 (12149, 1755, 29, 1, 6.00, 0.00),
-(12150, 1755, 30, 1, 6.00, 0.00);
+(12150, 1755, 30, 1, 6.00, 0.00),
+(12151, 1061, 1, 0, 2.00, 0.00),
+(12152, 1061, 2, 0, 2.00, 0.00),
+(12153, 1061, 3, 0, 3.00, 0.00),
+(12154, 1061, 4, 0, 5.00, 0.00),
+(12155, 1061, 5, 0, 5.00, 0.00),
+(12156, 1061, 6, 0, 6.00, 0.00),
+(12157, 1061, 7, 0, 3.00, 0.00),
+(12158, 1061, 8, 0, 7.00, 0.00),
+(12159, 1061, 9, 0, 2.00, 0.00),
+(12160, 1061, 10, 0, 4.00, 0.00),
+(12161, 1061, 11, 0, 5.00, 0.00),
+(12162, 1061, 12, 0, 6.00, 0.00),
+(12163, 1061, 13, 0, 4.00, 0.00),
+(12164, 1061, 14, 0, 6.00, 0.00),
+(12165, 1061, 15, 0, 4.00, 0.00),
+(12166, 1061, 16, 0, 6.00, 0.00),
+(12167, 1061, 17, 0, 3.00, 0.00),
+(12168, 1061, 18, 0, 5.00, 0.00),
+(12169, 1061, 19, 0, 7.00, 0.00),
+(12170, 1061, 20, 0, 4.00, 0.00),
+(12171, 1061, 21, 0, 3.00, 0.00),
+(12172, 1061, 22, 0, 4.00, 0.00),
+(12173, 1061, 23, 0, 2.00, 0.00),
+(12174, 1061, 24, 0, 4.00, 0.00),
+(12175, 1061, 25, 0, 5.00, 0.00),
+(12176, 1061, 26, 0, 4.00, 0.00),
+(12177, 1061, 27, 0, 3.00, 0.00),
+(12178, 1061, 28, 0, 5.00, 0.00),
+(12179, 1061, 29, 0, 3.00, 0.00),
+(12180, 1061, 30, 0, 6.00, 0.00);
 
 -- --------------------------------------------------------
 
@@ -53208,12 +53278,12 @@ CREATE TABLE IF NOT EXISTS `profile_competency` (
 --
 
 INSERT INTO `profile_competency` (`profile_competency_id`, `user_id`, `competency_id`, `competency_level`, `arithmetic_avg`, `geometric_avg`) VALUES
-(1, 1061, 1, 0, 5.70, 5.67),
-(2, 1061, 2, 0, 5.70, 5.67),
-(3, 1061, 3, 0, 5.30, 5.36),
-(4, 1061, 4, 0, 5.30, 5.31),
-(5, 1061, 5, 0, 5.30, 5.33),
-(6, 1061, 6, 0, 5.50, 5.50),
+(1, 1061, 1, 0, 5.34, 5.49),
+(2, 1061, 2, 0, 5.56, 5.61),
+(3, 1061, 3, 0, 5.26, 5.23),
+(4, 1061, 4, 0, 5.46, 5.54),
+(5, 1061, 5, 0, 5.20, 5.41),
+(6, 1061, 6, 0, 5.46, 5.56),
 (7, 16167, 7, 0, 5.50, 5.50),
 (8, 16167, 8, 0, 5.60, 5.69),
 (9, 16167, 9, 0, 5.70, 5.78),
@@ -53861,24 +53931,24 @@ CREATE TABLE IF NOT EXISTS `profile_competency_detail` (
 --
 
 INSERT INTO `profile_competency_detail` (`profile_competency_detail_id`, `user_id`, `evaluation_relation_id`, `competency_id`, `competency_level`, `arithmetic_avg`, `geometric_avg`) VALUES
-(1, 1061, 2, 1, 0, 5.00, 0.00),
-(2, 1061, 2, 2, 0, 5.00, 0.00),
-(3, 1061, 2, 3, 0, 5.00, 0.00),
-(4, 1061, 2, 4, 0, 5.00, 0.00),
-(5, 1061, 2, 5, 0, 5.00, 0.00),
-(6, 1061, 2, 6, 0, 5.00, 0.00),
+(1, 1061, 2, 1, 0, 5.10, 0.00),
+(2, 1061, 2, 2, 0, 5.10, 0.00),
+(3, 1061, 2, 3, 0, 4.80, 0.00),
+(4, 1061, 2, 4, 0, 5.50, 0.00),
+(5, 1061, 2, 5, 0, 5.30, 0.00),
+(6, 1061, 2, 6, 0, 5.10, 0.00),
 (7, 16167, 4, 7, 0, 5.50, 0.00),
 (8, 16167, 4, 8, 0, 5.25, 0.00),
 (9, 16167, 4, 9, 0, 5.50, 0.00),
 (10, 16167, 4, 10, 0, 5.25, 0.00),
 (11, 16167, 4, 11, 0, 5.75, 0.00),
 (12, 16167, 4, 12, 0, 4.75, 0.00),
-(13, 1061, 4, 1, 0, 6.00, 0.00),
-(14, 1061, 4, 2, 0, 6.00, 0.00),
-(15, 1061, 4, 3, 0, 5.75, 0.00),
+(13, 1061, 4, 1, 0, 5.65, 0.00),
+(14, 1061, 4, 2, 0, 5.80, 0.00),
+(15, 1061, 4, 3, 0, 5.30, 0.00),
 (16, 1061, 4, 4, 0, 5.25, 0.00),
 (17, 1061, 4, 5, 0, 5.00, 0.00),
-(18, 1061, 4, 6, 0, 5.50, 0.00),
+(18, 1061, 4, 6, 0, 5.45, 0.00),
 (19, 1079, 2, 1, 0, 5.50, 0.00),
 (20, 1079, 2, 2, 0, 5.50, 0.00),
 (21, 1079, 2, 3, 0, 5.00, 0.00),
@@ -53951,17 +54021,17 @@ INSERT INTO `profile_competency_detail` (`profile_competency_detail_id`, `user_i
 (88, 16167, 1, 10, 0, 5.00, 0.00),
 (89, 16167, 1, 11, 0, 5.00, 0.00),
 (90, 16167, 1, 12, 0, 5.00, 0.00),
-(91, 1061, 3, 1, 0, 6.00, 0.00),
-(92, 1061, 1, 1, 0, 5.00, 0.00),
-(93, 1061, 3, 2, 0, 6.00, 0.00),
-(94, 1061, 1, 2, 0, 5.00, 0.00),
-(95, 1061, 3, 3, 0, 5.33, 0.00),
-(96, 1061, 1, 3, 0, 4.00, 0.00),
-(97, 1061, 3, 4, 0, 5.67, 0.00),
-(98, 1061, 1, 4, 0, 5.00, 0.00),
-(99, 1061, 3, 5, 0, 6.00, 0.00),
-(100, 1061, 1, 5, 0, 5.00, 0.00),
-(101, 1061, 3, 6, 0, 6.00, 0.00),
+(91, 1061, 3, 1, 0, 5.73, 0.00),
+(92, 1061, 1, 1, 0, 5.40, 0.00),
+(93, 1061, 3, 2, 0, 5.93, 0.00),
+(94, 1061, 1, 2, 0, 5.20, 0.00),
+(95, 1061, 3, 3, 0, 5.60, 0.00),
+(96, 1061, 1, 3, 0, 4.60, 0.00),
+(97, 1061, 3, 4, 0, 5.87, 0.00),
+(98, 1061, 1, 4, 0, 5.40, 0.00),
+(99, 1061, 3, 5, 0, 5.93, 0.00),
+(100, 1061, 1, 5, 0, 5.40, 0.00),
+(101, 1061, 3, 6, 0, 6.13, 0.00),
 (102, 1061, 1, 6, 0, 5.00, 0.00),
 (103, 10869, 3, 7, 0, 5.25, 0.00),
 (104, 10869, 3, 8, 0, 5.50, 0.00),
@@ -56360,8 +56430,6 @@ CREATE TABLE IF NOT EXISTS `report_config` (
 --
 
 INSERT INTO `report_config` (`report_config_id`, `report_config_desc`, `method`, `id`, `basis_evaluation_table_id`, `base_value`, `avg_method`, `report_config_code`, `report_update`, `threshold_interval`, `block_interval`, `interval_count`) VALUES
-(4, '', 'B', 2, 3, 5.00, 'a', '', '2015-09-21 18:11:42', 0.50, 0.25, 2),
-(3, '', 'B', 1, 2, 5.00, 'a', '', '2015-09-25 14:58:42', 0.50, 0.25, 2),
 (5, '', 'C', 0, 0, 0.00, '', '2', '2015-11-03 16:20:25', 0.00, 0.00, 0);
 
 -- --------------------------------------------------------
@@ -57149,7 +57217,7 @@ CREATE TABLE IF NOT EXISTS `term` (
   `term_language` varchar(10) NOT NULL,
   `term_content` varchar(100) NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1057 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1060 ;
 
 --
 -- 列出以下資料庫的數據： `term`
@@ -58212,7 +58280,10 @@ INSERT INTO `term` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (1053, 'group_title', 4910, 'tw', '資工課'),
 (1054, 'group_title', 4920, 'tw', '醫資課'),
 (1055, 'group_title', 4930, 'tw', '行資課'),
-(1056, 'group_title', 4940, 'tw', '應資課');
+(1056, 'group_title', 4940, 'tw', '應資課'),
+(1057, 'competency_dic_title', 5, 'tw', 'd'),
+(1058, 'competency_dic_title', 5, 'cn', 'dsa'),
+(1059, 'competency_dic_title', 5, 'en', 'das');
 
 -- --------------------------------------------------------
 
@@ -58227,7 +58298,7 @@ CREATE TABLE IF NOT EXISTS `text` (
   `term_language` varchar(10) NOT NULL,
   `text_content` text NOT NULL,
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=870 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=873 ;
 
 --
 -- 列出以下資料庫的數據： `text`
@@ -59103,7 +59174,10 @@ INSERT INTO `text` (`term_id`, `term_title`, `depend_on_id`, `term_language`, `t
 (866, 'training_material', 1, 'en', ''),
 (867, 'ability_def', 144, 'tw', '級別要求/行為描述：'),
 (868, 'ability_def', 144, 'cn', ''),
-(869, 'ability_def', 144, 'en', '');
+(869, 'ability_def', 144, 'en', ''),
+(870, 'competency_dic_definition', 5, 'tw', 's'),
+(871, 'competency_dic_definition', 5, 'cn', 'da'),
+(872, 'competency_dic_definition', 5, 'en', 'das');
 
 -- --------------------------------------------------------
 
@@ -59278,7 +59352,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
 --
 
 INSERT INTO `user_profile` (`user_id`, `fullName`, `user_name_chs`, `user_name_eng`, `user_mps`, `name`, `first_name`, `last_name`, `birth_day`, `birth_month`, `birth_year`, `gender`, `job_title`, `company_id`, `notes`, `city_code`, `address`, `url`, `office_phone`, `home_phone`, `mobile`, `image`, `power_type`, `account_status`, `job_id`, `department_id`, `user_code`, `login_count`, `login_date`) VALUES
-(1, 'admin', 'admin', 'admin', '', '', '', '', 0, 0, 0, '', '', 102, '', 0, '', '', '', '', '', '', 'M', 'T', 0, 0, 'admin', 160, '2015-11-12 21:06:42'),
+(1, 'admin', 'admin', 'admin', '', '', '', '', 0, 0, 0, '', '', 102, '', 0, '', '', '', '', '', '', 'M', 'T', 0, 0, 'admin', 170, '2015-12-07 10:15:01'),
 (46, '沈翠琴', '', NULL, '', '', '', '', 0, 0, 0, '', '', 102, '', 0, '', '', '', '', '', '', 'N', 'T', 7, 4801, '0046', 0, '0000-00-00 00:00:00'),
 (47, '何素娟', '', NULL, '', '', '', '', 0, 0, 0, '', '', 102, '', 0, '', '', '', '', '', '', 'N', 'T', 25, 4110, '0047', 0, '0000-00-00 00:00:00'),
 (53, '簡秋蓮', '', NULL, '', '', '', '', 0, 0, 0, '', '', 102, '', 0, '', '', '', '', '', '', 'N', 'T', 2, 4960, '0053', 0, '0000-00-00 00:00:00'),
