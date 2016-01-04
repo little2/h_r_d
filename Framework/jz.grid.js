@@ -1015,19 +1015,26 @@ jzsoft.grid.openDialog = function(setting)
 	
 	var max_width=0;
 	var max_height=0;
+	
 	    if ($.browser.msie) {    	
 	    	max_width =window.screen.availWidth-50;
     		max_height=window.screen.availHeight-100;
 	    } else {
-	    	max_width= self.innerWidth;	    	
-	    	max_height=self.innerHeight;	  
+	    	max_width= self.innerWidth+178;	    	//加上旁邊的導覽列空間
+	    	max_height=self.innerHeight+140;	  
+	    	
+	    	
+	    	
+	    	console.log(max_height);
+	    
+	    
 	    }
 
-	
+
 
 
 	id=openDialog({	
-		width : setting.width ? setting.width : Math.min(1020,max_width),
+		width : setting.width ? setting.width : Math.min(1040,max_width),
 		height : setting.height ? setting.height : Math.min(620,max_height),
 		modal : true,		
 		type : 'url',
