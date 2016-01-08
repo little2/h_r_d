@@ -414,8 +414,7 @@ function report_group_delete(id)
 
 function export_report()
 {
-	var format = $('input[name=format]:checked').val();
-	
+	var format = $('input[name=format]:checked').val();	
 	var msg = {
 		id : 'g3_msg',
 		width : 500,
@@ -518,6 +517,22 @@ function export_report()
 			}
 		});		
 		init_tab('container_{elementID}');
+		
+		
+		
+		$('#bt_export').addClass('hide');
+		$('#wait_process').removeClass('hide');		
+		var report_config_id=$('#report_config_id').val();
+		var o = {
+				url:'/hrd/function/export/sync_grade.php',
+				data:{report_config_id:report_config_id},
+				onSuccess:function(data){	
+					$('#bt_export').removeClass('hide');
+					$('#wait_process').addClass('hide');
+					}					
+		}				
+		var msg=mypost(o);		
+		
 	}); 
 	
 

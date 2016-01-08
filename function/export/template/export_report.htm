@@ -7,6 +7,7 @@
 	已完成:<span id='f_count'  name='f_count'>{f_count}</span>/全部:<span id='total_count'  name='total_count'>{total_count}</span>
 	<div id='temp'>{type}</div>
 </div>
+<input type="hidden" id="recount" name="recount" value="0" /> 
 </body>
 
 <script>
@@ -15,14 +16,15 @@ function init()
 {
 	$('#bt_export').addClass('hide');
 	$('#wait_process').removeClass('hide');
+	var recount=$('#recount').val();
 	var o = {
-			url:'/hrd/function/export/export_report.php?format={format}',
+			url:'/hrd/function/export/export_report.php?format={format}&recount='+recount,
 			data:{'request':1},
 			onSuccess:function(data){	
 				console.log(data);			
 					$('#bt_export').removeClass('hide');
 					$('#wait_process').addClass('hide');
-					
+					$('#recount').val(data.recount);
 					$('#f_count').html(data.f_count);		
 					$('#temp').html(data.type);
 					//$("#tabPanel").refreshitem();	
