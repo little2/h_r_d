@@ -367,6 +367,19 @@ function export_report()
 	openDialog(msg);
 }
 
+function report_person_download(id)
+{	
+	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
+	if (sels) {
+		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+	//	url += "?entity.key=" + rowdata.key;
+		//alert(rowdata.key);
+		  // jzsoft.grid.sendPost(id,'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val());
+	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?user_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
+	} else {
+		$("#" + id).message("請選擇要下載的項目！");
+	}
+}
 
 function report_person_delete(id)
 {	
@@ -380,6 +393,24 @@ function report_person_delete(id)
 		$("#" + id).message("請選擇要刪除的項目！");
 	}
 }
+
+
+//-----
+
+function report_group_download(id)
+{	
+	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
+	if (sels) {
+		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+	//	url += "?entity.key=" + rowdata.key;
+		//alert(rowdata.key);
+		  // jzsoft.grid.sendPost(id,'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val());
+	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
+	} else {
+		$("#" + id).message("請選擇要下載的項目！");
+	}
+}
+
 
 function report_group_delete(id)
 {	
@@ -405,6 +436,18 @@ function report_group_delete(id)
 	}
 }
 
+//---
+
+function report_company_download(id)
+{	
+	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
+	if (sels) {
+	var rowdata = $("#" + id).jqGrid("getRowData", sels);
+	     openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?company_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
+	} else {
+		$("#" + id).message("請選擇要下載的項目！");
+	}
+}
 
 function report_company_delete(id)
 {	
@@ -457,6 +500,7 @@ function change_job(obj)
 		$('#block_pick_job').removeClass('hide');
 	}	
 }
+
 
 					
 	
