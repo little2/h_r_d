@@ -142,30 +142,27 @@ body {
 <span class='transparent'>{report_filename}</span>
 <div  class="titlebar">
 
-<table>
-	<tr >
-		<td style="width:32px">
-			<img src='templates/{TPL_STYLE}/images/icon_suvey.png'>
-		</td>
-		
-		<th >	
-			<img src='templates/{TPL_STYLE}/images/arrow_small.png'>
-			問卷編號:
-		</th>		
-		<td >	
-			{report_group_id}
-		</td>
-		
-		<th ></th>
+<table style="display:{basis_header}">
+	<tr>
+		<td style="width:32px"><img src='templates/{TPL_STYLE}/images/icon_suvey.png'></td>		
+		<th><img src='templates/{TPL_STYLE}/images/arrow_small.png'>問卷編號:</th>		
+		<td>{report_group_id}</td>		
+		<th></th>
 		<td></td>		
-		
-		<th >
-			<img src='templates/{TPL_STYLE}/images/arrow_small.png'>
-			問卷名稱:
-		</th>
-		<td colspan="3" style="width:37.5%">
-			{basis_evaluation_table_title}
-		</td>		
+		<th><img src='templates/{TPL_STYLE}/images/arrow_small.png'>問卷名稱:</th>
+		<td colspan="3" style="width:37.5%">{basis_evaluation_table_title}</td>		
+	</tr>
+</table>
+
+<table style="display:{class_header}">
+	<tr>
+		<td style="width:32px"><img src='templates/{TPL_STYLE}/images/icon_suvey.png'></td>		
+		<th><img src='templates/{TPL_STYLE}/images/arrow_small.png'>部門名稱:</th>		
+		<td>{group_title}</td>		
+		<th></th>
+		<td></td>		
+		<th></th>
+		<td colspan="3" style="width:37.5%"></td>		
 	</tr>
 </table>
 
