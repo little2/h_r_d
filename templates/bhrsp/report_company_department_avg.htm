@@ -11,21 +11,27 @@
 <div style="clear:both"></div>
 <div  class="report">
 	<div >
-		<!-- BEGIN AVG -->
 		<table >
 			<tr>
-				<td colspan="{AVG.colspan}" class="bar">{AVG.competency_type}</td>
-			</tr>				
-			<!-- BEGIN ROW -->
-				<tr class="{AVG.ROW.class}">				
-					<!-- BEGIN COMPETENCY -->
-					<td>{AVG.ROW.COMPETENCY.title}</td>
-					<!-- END COMPETENCY -->					
-				</tr>
-			<!-- END ROW -->		
+				<td colspan="6" class="bar"></td>
+			</tr>
+			<tr class="maintitle">
+				<td>部門名稱</td>	
+				<td>部門人數</td>
+				<td>管理職能平級級數</td>
+				<td>通用職能平級級數</td>
+				<td>專業職能平級級數</td>
+			</tr>
+			<!-- BEGIN DEP -->
+			<tr>
+				<td>{DEP.department_title}</td>
+				<td>{DEP.diff_member_count}</td>
+				<td>{DEP.avg_M}</td>
+				<td>{DEP.avg_C}</td>
+				<td>{DEP.avg_P}</td>			
+			</tr>
+			<!-- END COMPETENCY -->			
 		</table>
-		<BR>
-		<!-- END AVG -->		
 	</div>
 	
 
