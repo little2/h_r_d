@@ -1024,8 +1024,7 @@ jzsoft.grid.openDialog = function(setting)
 	    	max_height=self.innerHeight+140;	  
 	    	
 	    	
-	    	
-	    	console.log(max_height);
+	
 	    
 	    
 	    }

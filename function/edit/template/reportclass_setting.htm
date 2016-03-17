@@ -370,12 +370,21 @@ function export_report()
 function report_person_download(id)
 {	
 	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
+	
 	if (sels) {
 		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+		
+		var selectedIDs =  $("#" + id).getGridParam("selarrrow");
+		var selectedIdStr = "";
+        for (var i = 0; i < selectedIDs.length; i++) {
+        	if(selectedIdStr) selectedIdStr +=';';
+        	selectedIdStr += selectedIDs[i];
+        }
+      
 	//	url += "?entity.key=" + rowdata.key;
 		//alert(rowdata.key);
 		  // jzsoft.grid.sendPost(id,'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val());
-	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?user_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
+	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?selectedIdStr='+selectedIdStr+'&user_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
 	} else {
 		$("#" + id).message("請選擇要下載的項目！");
 	}
@@ -405,7 +414,14 @@ function report_group_download(id)
 	//	url += "?entity.key=" + rowdata.key;
 		//alert(rowdata.key);
 		  // jzsoft.grid.sendPost(id,'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val());
-	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
+		var selectedIDs =  $("#" + id).getGridParam("selarrrow");
+		var selectedIdStr = "";
+        for (var i = 0; i < selectedIDs.length; i++) {
+        	if(selectedIdStr) selectedIdStr +=';';
+        	selectedIdStr += selectedIDs[i];
+        }		  
+		  
+	       openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?selectedIdStr='+selectedIdStr+'&population_group_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
 	} else {
 		$("#" + id).message("請選擇要下載的項目！");
 	}
@@ -443,8 +459,16 @@ function report_company_download(id)
 {	
 	var sels = $("#" + id).jqGrid('getGridParam', 'selrow');
 	if (sels) {
-	var rowdata = $("#" + id).jqGrid("getRowData", sels);
-	     openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?company_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
+		var rowdata = $("#" + id).jqGrid("getRowData", sels);
+		
+		var selectedIDs =  $("#" + id).getGridParam("selarrrow");
+		var selectedIdStr = "";
+        for (var i = 0; i < selectedIDs.length; i++) {
+        	if(selectedIdStr) selectedIdStr +=';';
+        	selectedIdStr += selectedIDs[i];
+        }		 
+		
+	     openDialog({title : '下載報告',body:'/hrd/function/export/report_download.php?selectedIdStr='+selectedIdStr+'&company_id='+rowdata.key+'&report_config_id='+$('#report_config_id').val()});
 	} else {
 		$("#" + id).message("請選擇要下載的項目！");
 	}
