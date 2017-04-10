@@ -1,592 +1,206 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Decorates frames for page layout
- *
- * @access private
- * @package dompdf
- */
-class Page_Frame_Decorator extends Frame_Decorator {
-
-  /**
-   * y value of bottom page margin
-   *
-   * @var float
-   */
-  protected $_bottom_page_margin;
-
-  /**
-   * Flag indicating page is full.
-   *
-   * @var bool
-   */
-  protected $_page_full;
-
-  /**
-   * Number of tables currently being reflowed
-   *
-   * @var int
-   */
-  protected $_in_table;
-
-  /**
-   * The pdf renderer
-   *
-   * @var Renderer
-   */
-  protected $_renderer;
-  
-  /**
-   * This page's floating frames
-   * 
-   * @var array
-   */
-  protected $_floating_frames = array();
-
-  //........................................................................
-
-  /**
-   * Class constructor
-   *
-   * @param Frame  $frame the frame to decorate
-   * @param DOMPDF $dompdf
-   */
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    parent::__construct($frame, $dompdf);
-    $this->_page_full = false;
-    $this->_in_table = 0;
-    $this->_bottom_page_margin = null;
-  }
-
-  /**
-   * Set the renderer used for this pdf
-   *
-   * @param Renderer $renderer the renderer to use
-   */
-  function set_renderer($renderer) {
-    $this->_renderer = $renderer;
-  }
-
-  /**
-   * Return the renderer used for this pdf
-   *
-   * @return Renderer
-   */
-  function get_renderer() {
-    return $this->_renderer;
-  }
-
-  /**
-   * Set the frame's containing block.  Overridden to set $this->_bottom_page_margin.
-   *
-   * @param float $x
-   * @param float $y
-   * @param float $w
-   * @param float $h
-   */
-  function set_containing_block($x = null, $y = null, $w = null, $h = null) {
-    parent::set_containing_block($x,$y,$w,$h);
-    //$w = $this->get_containing_block("w");
-    if ( isset($h) )
-      $this->_bottom_page_margin = $h; // - $this->_frame->get_style()->length_in_pt($this->_frame->get_style()->margin_bottom, $w);
-  }
-
-  /**
-   * Returns true if the page is full and is no longer accepting frames.
-   *
-   * @return bool
-   */
-  function is_full() {
-    return $this->_page_full;
-  }
-
-  /**
-   * Start a new page by resetting the full flag.
-   */
-  function next_page() {
-    $this->_floating_frames = array();
-    $this->_renderer->new_page();
-    $this->_page_full = false;
-  }
-
-  /**
-   * Indicate to the page that a table is currently being reflowed.
-   */
-  function table_reflow_start() {
-    $this->_in_table++;
-  }
-
-  /**
-   * Indicate to the page that table reflow is finished.
-   */
-  function table_reflow_end() {
-    $this->_in_table--;
-  }
-
-  /**
-   * Return whether we are currently in a nested table or not
-   *
-   * @return bool
-   */
-  function in_nested_table() {
-    return $this->_in_table > 1;
-  }
-  
-  /**
-   * Check if a forced page break is required before $frame.  This uses the
-   * frame's page_break_before property as well as the preceeding frame's
-   * page_break_after property.
-   *
-   * @link http://www.w3.org/TR/CSS21/page.html#forced
-   *
-   * @param Frame $frame the frame to check
-   * @return bool true if a page break occured
-   */
-  function check_forced_page_break(Frame $frame) {
-      
-    // Skip check if page is already split
-    if ( $this->_page_full )
-      return null;
-
-    $block_types = array("block", "list-item", "table", "inline");
-    $page_breaks = array("always", "left", "right");
-
-    $style = $frame->get_style();
-
-    if ( !in_array($style->display, $block_types) )
-      return false;
-
-    // Find the previous block-level sibling
-    $prev = $frame->get_prev_sibling();
-
-    while ( $prev && !in_array($prev->get_style()->display, $block_types) )
-      $prev = $prev->get_prev_sibling();
-
-
-    if ( in_array($style->page_break_before, $page_breaks) ) {
-
-      // Prevent cascading splits
-      $frame->split(null, true);
-      // We have to grab the style again here because split() resets
-      // $frame->style to the frame's orignal style.
-      $frame->get_style()->page_break_before = "auto";
-      $this->_page_full = true;
-      
-      return true;
-    }
-
-    if ( $prev && in_array($prev->get_style()->page_break_after, $page_breaks) ) {
-      // Prevent cascading splits
-      $frame->split(null, true);
-      $prev->get_style()->page_break_after = "auto";
-      $this->_page_full = true;
-      return true;
-    }
-    
-    if( $prev && $prev->get_last_child() && $frame->get_node()->nodeName != "body" ) {
-      $prev_last_child = $prev->get_last_child();
-      if ( in_array($prev_last_child->get_style()->page_break_after, $page_breaks) ) {
-        $frame->split(null, true);
-        $prev_last_child->get_style()->page_break_after = "auto";
-        $this->_page_full = true;
-        return true;
-      }
-    }
-
-
-    return false;
-  }
-
-  /**
-   * Determine if a page break is allowed before $frame
-   * http://www.w3.org/TR/CSS21/page.html#allowed-page-breaks
-   * 
-   * In the normal flow, page breaks can occur at the following places:
-   * 
-   *    1. In the vertical margin between block boxes. When a page
-   *    break occurs here, the used values of the relevant
-   *    'margin-top' and 'margin-bottom' properties are set to '0'.
-   *    2. Between line boxes inside a block box.
-   *
-   * These breaks are subject to the following rules:
-   * 
-   *   * Rule A: Breaking at (1) is allowed only if the
-   *     'page-break-after' and 'page-break-before' properties of
-   *     all the elements generating boxes that meet at this margin
-   *     allow it, which is when at least one of them has the value
-   *     'always', 'left', or 'right', or when all of them are
-   *     'auto'.
-   *
-   *   * Rule B: However, if all of them are 'auto' and the
-   *     nearest common ancestor of all the elements has a
-   *     'page-break-inside' value of 'avoid', then breaking here is
-   *     not allowed.
-   *
-   *   * Rule C: Breaking at (2) is allowed only if the number of
-   *     line boxes between the break and the start of the enclosing
-   *     block box is the value of 'orphans' or more, and the number
-   *     of line boxes between the break and the end of the box is
-   *     the value of 'widows' or more.
-   *
-   *   * Rule D: In addition, breaking at (2) is allowed only if
-   *     the 'page-break-inside' property is 'auto'.
-   *
-   * If the above doesn't provide enough break points to keep
-   * content from overflowing the page boxes, then rules B and D are
-   * dropped in order to find additional breakpoints.
-   *
-   * If that still does not lead to sufficient break points, rules A
-   * and C are dropped as well, to find still more break points.
-   *
-   * We will also allow breaks between table rows.  However, when
-   * splitting a table, the table headers should carry over to the
-   * next page (but they don't yet).
-   * 
-   * @param Frame $frame the frame to check
-   * @return bool true if a break is allowed, false otherwise
-   */
-  protected function _page_break_allowed(Frame $frame) {
-
-    $block_types = array("block", "list-item", "table", "-dompdf-image");
-    dompdf_debug("page-break", "_page_break_allowed(" . $frame->get_node()->nodeName. ")");
-    $display = $frame->get_style()->display;
-
-    // Block Frames (1):
-    if ( in_array($display, $block_types) ) {
-
-      // Avoid breaks within table-cells
-      if ( $this->_in_table ) {
-        dompdf_debug("page-break", "In table: " . $this->_in_table);
-        return false;
-      }
-
-      // Rules A & B
-
-      if ( $frame->get_style()->page_break_before === "avoid" ) {
-        dompdf_debug("page-break", "before: avoid");
-        return false;
-      }
-
-      // Find the preceeding block-level sibling
-      $prev = $frame->get_prev_sibling();
-      while ( $prev && !in_array($prev->get_style()->display, $block_types) )
-        $prev = $prev->get_prev_sibling();
-
-      // Does the previous element allow a page break after?
-      if ( $prev && $prev->get_style()->page_break_after === "avoid" ) {
-        dompdf_debug("page-break", "after: avoid");
-        return false;
-      }
-
-      // If both $prev & $frame have the same parent, check the parent's
-      // page_break_inside property.
-      $parent = $frame->get_parent();
-      if ( $prev && $parent && $parent->get_style()->page_break_inside === "avoid" ) {
-          dompdf_debug("page-break", "parent inside: avoid");
-        return false;
-      }
-
-      // To prevent cascading page breaks when a top-level element has
-      // page-break-inside: avoid, ensure that at least one frame is
-      // on the page before splitting.
-      if ( $parent->get_node()->nodeName === "body" && !$prev ) {
-        // We are the body's first child
-          dompdf_debug("page-break", "Body's first child.");
-        return false;
-      }
-
-      // If the frame is the first block-level frame, use the value from
-      // $frame's parent instead.
-      if ( !$prev && $parent )
-        return $this->_page_break_allowed( $parent );
-
-      dompdf_debug("page-break", "block: break allowed");
-      return true;
-
-    }
-
-    // Inline frames (2):
-    else if ( in_array($display, Style::$INLINE_TYPES) ) {
-
-      // Avoid breaks within table-cells
-      if ( $this->_in_table ) {
-          dompdf_debug("page-break", "In table: " . $this->_in_table);
-        return false;
-      }
-
-      // Rule C
-      $block_parent = $frame->find_block_parent();
-      if ( count($block_parent->get_line_boxes() ) < $frame->get_style()->orphans ) {
-          dompdf_debug("page-break", "orphans");
-        return false;
-      }
-
-      // FIXME: Checking widows is tricky without having laid out the
-      // remaining line boxes.  Just ignore it for now...
-
-      // Rule D
-      $p = $block_parent;
-      while ($p) {
-        if ( $p->get_style()->page_break_inside === "avoid" ) {
-          dompdf_debug("page-break", "parent->inside: avoid");
-          return false;
-        }
-        $p = $p->find_block_parent();
-      }
-
-      // To prevent cascading page breaks when a top-level element has
-      // page-break-inside: avoid, ensure that at least one frame with
-      // some content is on the page before splitting.
-      $prev = $frame->get_prev_sibling();
-      while ( $prev && ($prev->is_text_node() && trim($prev->get_node()->nodeValue) == "") )
-        $prev = $prev->get_prev_sibling();
-
-      if ( $block_parent->get_node()->nodeName === "body" && !$prev ) {
-        // We are the body's first child
-          dompdf_debug("page-break", "Body's first child.");
-        return false;
-      }
-
-      // Skip breaks on empty text nodes
-      if ( $frame->is_text_node() &&
-           $frame->get_node()->nodeValue == "" )
-        return false;
-
-      dompdf_debug("page-break", "inline: break allowed");
-      return true;
-
-    // Table-rows
-    } else if ( $display === "table-row" ) {
-
-      // Simply check if the parent table's page_break_inside property is
-      // not 'avoid'
-      $p = Table_Frame_Decorator::find_parent_table($frame);
-
-      while ($p) {
-        if ( $p->get_style()->page_break_inside === "avoid" ) {
-          dompdf_debug("page-break", "parent->inside: avoid");
-          return false;
-        }
-        $p = $p->find_block_parent();
-      }
-
-      // Avoid breaking after the first row of a table
-      if ( $p && $p->get_first_child() === $frame) {
-         dompdf_debug("page-break", "table: first-row");
-        return false;
-      }
-
-      // If this is a nested table, prevent the page from breaking
-      if ( $this->_in_table > 1 ) {
-        dompdf_debug("page-break", "table: nested table");
-        return false;
-      }
-
-      dompdf_debug("page-break","table-row/row-groups: break allowed");
-      return true;
-
-    } else if ( in_array($display, Table_Frame_Decorator::$ROW_GROUPS) ) {
-
-      // Disallow breaks at row-groups: only split at row boundaries
-      return false;
-
-    } else {
-
-      dompdf_debug("page-break", "? " . $frame->get_style()->display . "");
-      return false;
-    }
-
-  }
-
-  /**
-   * Check if $frame will fit on the page.  If the frame does not fit,
-   * the frame tree is modified so that a page break occurs in the
-   * correct location.
-   *
-   * @param Frame $frame the frame to check
-   * @return Frame the frame following the page break
-   */
-  function check_page_break(Frame $frame) {
-    // Do not split if we have already or if the frame was already 
-    // pushed to the next page (prevents infinite loops)
-    if ( $this->_page_full || $frame->_already_pushed ) {
-      return false;
-    }
-    
-    // If the frame is absolute of fixed it shouldn't break
-    $p = $frame;
-    do {
-      if ( $p->is_absolute() )
-        return false;
-    } while ( $p = $p->get_parent() );
-    
-    $margin_height = $frame->get_margin_height();
-    
-    // FIXME If the row is taller than the page and 
-    // if it the first of the page, we don't break
-    if ( $frame->get_style()->display === "table-row" &&
-         !$frame->get_prev_sibling() && 
-         $margin_height > $this->get_margin_height() )
-      return false;
-
-    // Determine the frame's maximum y value
-    $max_y = $frame->get_position("y") + $margin_height;
-
-    // If a split is to occur here, then the bottom margins & paddings of all
-    // parents of $frame must fit on the page as well:
-    $p = $frame->get_parent();
-    while ( $p ) {
-      $style = $p->get_style();
-      $max_y += $style->length_in_pt(array($style->margin_bottom,
-                                           $style->padding_bottom,
-                                           $style->border_bottom_width));
-      $p = $p->get_parent();
-    }
-
-
-    // Check if $frame flows off the page
-    if ( $max_y <= $this->_bottom_page_margin )
-      // no: do nothing
-      return false;
-
-    dompdf_debug("page-break", "check_page_break");
-    dompdf_debug("page-break", "in_table: " . $this->_in_table);
-
-    // yes: determine page break location
-    $iter = $frame;
-    $flg = false;
-
-    $in_table = $this->_in_table;
-
-    dompdf_debug("page-break","Starting search");
-    while ( $iter ) {
-      // echo "\nbacktrack: " .$iter->get_node()->nodeName ." ".spl_object_hash($iter->get_node()). "";
-      if ( $iter === $this ) {
-         dompdf_debug("page-break", "reached root.");
-        // We've reached the root in our search.  Just split at $frame.
-        break;
-      }
-
-      if ( $this->_page_break_allowed($iter) ) {
-        dompdf_debug("page-break","break allowed, splitting.");
-        $iter->split(null, true);
-        $this->_page_full = true;
-        $this->_in_table = $in_table;
-        $frame->_already_pushed = true;
-        return true;
-      }
-
-      if ( !$flg && $next = $iter->get_last_child() ) {
-         dompdf_debug("page-break", "following last child.");
-
-        if ( $next->is_table() )
-          $this->_in_table++;
-
-        $iter = $next;
-        continue;
-      }
-
-      if ( $next = $iter->get_prev_sibling() ) {
-         dompdf_debug("page-break", "following prev sibling.");
-
-        if ( $next->is_table() && !$iter->is_table() )
-          $this->_in_table++;
-
-        else if ( !$next->is_table() && $iter->is_table() )
-          $this->_in_table--;
-
-        $iter = $next;
-        $flg = false;
-        continue;
-      }
-
-      if ( $next = $iter->get_parent() ) {
-         dompdf_debug("page-break", "following parent.");
-
-        if ( $iter->is_table() )
-          $this->_in_table--;
-
-        $iter = $next;
-        $flg = true;
-        continue;
-      }
-
-      break;
-    }
-
-    $this->_in_table = $in_table;
-
-    // No valid page break found.  Just break at $frame.
-    dompdf_debug("page-break", "no valid break found, just splitting.");
-    
-    // If we are in a table, backtrack to the nearest top-level table row
-    if ( $this->_in_table ) {
-      $iter = $frame;
-      while ($iter && $iter->get_style()->display !== "table-row")
-        $iter = $iter->get_parent();
-      
-      $iter->split(null, true);
-    } else {
-      $frame->split(null, true);
-    }
-    
-    $this->_page_full = true;
-    $frame->_already_pushed = true;
-    return true;
-  }
-
-  //........................................................................
-
-  function split(Frame $frame = null, $force_pagebreak = false) {
-    // Do nothing
-  }
-
-  /**
-   * Add a floating frame
-   *
-   * @param Frame $frame
-   *
-   * @return void
-   */
-  function add_floating_frame(Frame $frame) {
-    array_unshift($this->_floating_frames, $frame);
-  }
-  
-  /**
-   * @return Frame[]
-   */
-  function get_floating_frames() { 
-    return $this->_floating_frames; 
-  }
-
-  public function remove_floating_frame($key) {
-    unset($this->_floating_frames[$key]);
-  }
-
-  public function get_lowest_float_offset(Frame $child) {
-    $style = $child->get_style();
-    $side = $style->clear;
-    $float = $style->float;
-    
-    $y = 0;
-    
-    foreach($this->_floating_frames as $key => $frame) {
-      if ( $side === "both" || $frame->get_style()->float === $side ) {
-        $y = max($y, $frame->get_position("y") + $frame->get_margin_height());
-        
-        if ( $float !== "none" ) {
-          $this->remove_floating_frame($key);
-        }
-      }
-    }
-    
-    return $y;
-  }
-
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+zARECvDeFjwgN7bSeURm7qS=

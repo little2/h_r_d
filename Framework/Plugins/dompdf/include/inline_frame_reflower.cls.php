@@ -1,66 +1,43 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Reflows inline frames
- *
- * @access private
- * @package dompdf
- */
-class Inline_Frame_Reflower extends Frame_Reflower {
-
-  function __construct(Frame $frame) { parent::__construct($frame); }
-  
-  //........................................................................
-
-  function reflow(Block_Frame_Decorator $block = null) {
-    $frame = $this->_frame;
-    
-    // Check if a page break is forced
-    $page = $frame->get_root();
-    $page->check_forced_page_break($frame);
-    
-    if ( $page->is_full() )
-      return;
-      
-    $style = $frame->get_style();
-    
-    // Generated content
-    $this->_set_content();
-    
-    $frame->position();
-
-    $cb = $frame->get_containing_block();
-
-    // Add our margin, padding & border to the first and last children
-    if ( ($f = $frame->get_first_child()) && $f instanceof Text_Frame_Decorator ) {
-      $f_style = $f->get_style();
-      $f_style->margin_left  = $style->margin_left;
-      $f_style->padding_left = $style->padding_left;
-      $f_style->border_left  = $style->border_left;
-    }
-
-    if ( ($l = $frame->get_last_child()) && $l instanceof Text_Frame_Decorator ) {
-      $l_style = $l->get_style();
-      $l_style->margin_right  = $style->margin_right;
-      $l_style->padding_right = $style->padding_right;
-      $l_style->border_right  = $style->border_right;
-    }
-    
-    if ( $block ) {
-      $block->add_frame_to_line($this->_frame);
-    }
-
-    // Set the containing blocks and reflow each child.  The containing
-    // block is not changed by line boxes.
-    foreach ( $frame->get_children() as $child ) {
-      $child->set_containing_block($cb);
-      $child->reflow($block);
-    }
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+ucwuXjlyqbTdjpbby9nhR1MCvw9Y0/Se

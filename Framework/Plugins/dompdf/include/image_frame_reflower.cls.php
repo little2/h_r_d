@@ -1,186 +1,112 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Image reflower class
- *
- * @access private
- * @package dompdf
- */
-class Image_Frame_Reflower extends Frame_Reflower {
-
-  function __construct(Image_Frame_Decorator $frame) {
-    parent::__construct($frame);
-  }
-
-  function reflow(Block_Frame_Decorator $block = null) {
-    $this->_frame->position();
-    
-    //FLOAT
-    //$frame = $this->_frame;
-    //$page = $frame->get_root();
-
-    //$enable_css_float = $this->get_dompdf()->get_option("enable_css_float");
-    //if ($enable_css_float && $frame->get_style()->float !== "none" ) {
-    //  $page->add_floating_frame($this);
-    //}
-    // Set the frame's width
-    $this->get_min_max_width();
-    
-    if ( $block ) {
-      $block->add_frame_to_line($this->_frame);
-    }
-  }
-
-  function get_min_max_width() {
-    if (DEBUGPNG) {
-      // Determine the image's size. Time consuming. Only when really needed?
-      list($img_width, $img_height) = dompdf_getimagesize($this->_frame->get_image_url());
-      print "get_min_max_width() ".
-        $this->_frame->get_style()->width.' '.
-        $this->_frame->get_style()->height.';'.
-        $this->_frame->get_parent()->get_style()->width." ".
-        $this->_frame->get_parent()->get_style()->height.";".
-        $this->_frame->get_parent()->get_parent()->get_style()->width.' '.
-        $this->_frame->get_parent()->get_parent()->get_style()->height.';'.
-        $img_width. ' '.
-        $img_height.'|' ;
-    }
-
-    $style = $this->_frame->get_style();
-    
-    $width_forced = true;
-    $height_forced = true;
-
-    //own style auto or invalid value: use natural size in px
-    //own style value: ignore suffix text including unit, use given number as px
-    //own style %: walk up parent chain until found available space in pt; fill available space
-    //
-    //special ignored unit: e.g. 10ex: e treated as exponent; x ignored; 10e completely invalid ->like auto
-
-    $width = ($style->width > 0 ? $style->width : 0);
-    if ( is_percent($width) ) {
-      $t = 0.0;
-      for ($f = $this->_frame->get_parent(); $f; $f = $f->get_parent()) {
-        $f_style = $f->get_style();
-        $t = $f_style->length_in_pt($f_style->width);
-        if ($t != 0) {
-          break;
-        }
-      }
-      $width = ((float)rtrim($width,"%") * $t)/100; //maybe 0
-    } elseif ( !mb_strpos($width, 'pt') ) {
-      // Don't set image original size if "%" branch was 0 or size not given.
-      // Otherwise aspect changed on %/auto combination for width/height
-      // Resample according to px per inch
-      // See also List_Bullet_Image_Frame_Decorator::__construct
-      $width = $style->length_in_pt($width);
-    }
-
-    $height = ($style->height > 0 ? $style->height : 0);
-    if ( is_percent($height) ) {
-      $t = 0.0;
-      for ($f = $this->_frame->get_parent(); $f; $f = $f->get_parent()) {
-        $f_style = $f->get_style();
-        $t = $f_style->length_in_pt($f_style->height);
-        if ($t != 0) {
-          break;
-        }
-      }
-      $height = ((float)rtrim($height,"%") * $t)/100; //maybe 0
-    } elseif ( !mb_strpos($height, 'pt') ) {
-      // Don't set image original size if "%" branch was 0 or size not given.
-      // Otherwise aspect changed on %/auto combination for width/height
-      // Resample according to px per inch
-      // See also List_Bullet_Image_Frame_Decorator::__construct
-      $height = $style->length_in_pt($height);
-    }
-
-    if ($width == 0 || $height == 0) {
-      // Determine the image's size. Time consuming. Only when really needed!
-      list($img_width, $img_height) = dompdf_getimagesize($this->_frame->get_image_url());
-      
-      // don't treat 0 as error. Can be downscaled or can be catched elsewhere if image not readable.
-      // Resample according to px per inch
-      // See also List_Bullet_Image_Frame_Decorator::__construct
-      if ($width == 0 && $height == 0) {
-        $dpi = $this->_frame->get_dompdf()->get_option("dpi");
-        $width = (float)($img_width * 72) / $dpi;
-        $height = (float)($img_height * 72) / $dpi;
-        $width_forced = false;
-        $height_forced = false;
-      } elseif ($height == 0 && $width != 0) {
-        $height_forced = false;
-        $height = ($width / $img_width) * $img_height; //keep aspect ratio
-      } elseif ($width == 0 && $height != 0) {
-        $width_forced = false;
-        $width = ($height / $img_height) * $img_width; //keep aspect ratio
-      }
-    }
-    
-    // Handle min/max width/height
-    if ( $style->min_width  !== "none" || 
-         $style->max_width  !== "none" || 
-         $style->min_height !== "none" || 
-         $style->max_height !== "none" ) {
-           
-      list(/*$x*/, /*$y*/, $w, $h) = $this->_frame->get_containing_block();
-      
-      $min_width = $style->length_in_pt($style->min_width, $w);
-      $max_width = $style->length_in_pt($style->max_width, $w);
-      $min_height = $style->length_in_pt($style->min_height, $h);
-      $max_height = $style->length_in_pt($style->max_height, $h);
-  
-      if ( $max_width !== "none" && $width > $max_width ) {
-        if ( !$height_forced ) {
-          $height *= $max_width / $width;
-        }
-        
-        $width = $max_width;
-      }
-  
-      if ( $min_width !== "none" && $width < $min_width ) {
-        if ( !$height_forced ) {
-          $height *= $min_width / $width;
-        }
-        
-        $width = $min_width;
-      }
-      
-      if ( $max_height !== "none" && $height > $max_height ) {
-        if ( !$width_forced ) {
-          $width *= $max_height / $height;
-        }
-        
-        $height = $max_height;
-      }
-      
-      if ( $min_height !== "none" && $height < $min_height ) {
-        if ( !$width_forced ) {
-          $width *= $min_height / $height;
-        }
-        
-        $height = $min_height;
-      }
-    }
-    
-    if (DEBUGPNG) print $width.' '.$height.';';
-
-    $style->width = $width . "pt";
-    $style->height = $height . "pt";
-    
-    $style->min_width = "none";
-    $style->max_width = "none";
-    $style->min_height = "none";
-    $style->max_height = "none";
-
-    return array( $width, $width, "min" => $width, "max" => $width);
-    
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

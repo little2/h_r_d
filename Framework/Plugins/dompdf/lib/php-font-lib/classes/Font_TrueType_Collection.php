@@ -1,94 +1,44 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-require_once dirname(__FILE__) . "/Font_Binary_Stream.php";
-require_once dirname(__FILE__) . "/Font_TrueType.php";
-
-/**
- * TrueType collection font file.
- * 
- * @package php-font-lib
- */
-class Font_TrueType_Collection extends Font_Binary_Stream implements Iterator, Countable {
-  /**
-   * Current iterator position.
-   * 
-   * @var integer
-   */
-  private $position = 0;
-  
-  protected $collectionOffsets = array();
-  protected $collection = array();
-  protected $version;
-  protected $numFonts;
-  
-  function parse(){
-    if (isset($this->numFonts)) {
-      return;
-    }
-    
-    $this->read(4); // tag name
-    
-    $this->version = $this->readFixed();
-    $this->numFonts = $this->readUInt32();
-    
-    for ($i = 0; $i < $this->numFonts; $i++) {
-      $this->collectionOffsets[] = $this->readUInt32();
-    }
-  }
-
-  /**
-   * @param int $fontId
-   *
-   * @throws OutOfBoundsException
-   * @return Font_TrueType
-   */
-  function getFont($fontId) {
-    $this->parse();
-    
-    if (!isset($this->collectionOffsets[$fontId])) {
-      throw new OutOfBoundsException();
-    }
-    
-    if (isset($this->collection[$fontId])) {
-      return $this->collection[$fontId];
-    }
-    
-    $font = new Font_TrueType();
-    $font->f = $this->f;
-    $font->setTableOffset($this->collectionOffsets[$fontId]);
-    
-    return $this->collection[$fontId] = $font;
-  }
-  
-  function current() {
-    return $this->getFont($this->position);
-  }
-  
-  function key() {
-    return $this->position;
-  }
-  
-  function next() {
-    return ++$this->position;
-  }
-  
-  function rewind() {
-    $this->position = 0;
-  }
-  
-  function valid() {
-    $this->parse();
-    return isset($this->collectionOffsets[$this->position]);
-  }
-  
-  function count() {
-    $this->parse();
-    return $this->numFonts;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

@@ -1,86 +1,42 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
- 
-/**
- * DOMPDF autoload function
- *
- * If you have an existing autoload function, add a call to this function
- * from your existing __autoload() implementation.
- *
- * @param string $class
- */
-function DOMPDF_autoload($class) {
-  $filename = DOMPDF_INC_DIR . "/" . mb_strtolower($class) . ".cls.php";
-  
-  if ( is_file($filename) ) {
-    include_once $filename;
-  }
-}
-
-// If SPL autoload functions are available (PHP >= 5.1.2)
-if ( function_exists("spl_autoload_register") ) {
-  $autoload = "DOMPDF_autoload";
-  $funcs = spl_autoload_functions();
-  
-  // No functions currently in the stack. 
-  if ( !DOMPDF_AUTOLOAD_PREPEND || $funcs === false ) {
-    spl_autoload_register($autoload); 
-  }
-  
-  // If PHP >= 5.3 the $prepend argument is available
-  else if ( PHP_VERSION_ID >= 50300 ) {
-    spl_autoload_register($autoload, true, true); 
-  }
-  
-  else {
-    // Unregister existing autoloaders... 
-    $compat = (PHP_VERSION_ID <= 50102 && PHP_VERSION_ID >= 50100);
-              
-    foreach ($funcs as $func) { 
-      if (is_array($func)) { 
-        // :TRICKY: There are some compatibility issues and some 
-        // places where we need to error out 
-        $reflector = new ReflectionMethod($func[0], $func[1]); 
-        if (!$reflector->isStatic()) { 
-          throw new Exception('This function is not compatible with non-static object methods due to PHP Bug #44144.'); 
-        }
-        
-        // Suprisingly, spl_autoload_register supports the 
-        // Class::staticMethod callback format, although call_user_func doesn't 
-        if ($compat) $func = implode('::', $func); 
-      }
-      
-      spl_autoload_unregister($func); 
-    }
-    
-    // Register the new one, thus putting it at the front of the stack... 
-    spl_autoload_register($autoload); 
-    
-    // Now, go back and re-register all of our old ones. 
-    foreach ($funcs as $func) { 
-      spl_autoload_register($func); 
-    }
-    
-    // Be polite and ensure that userland autoload gets retained
-    if ( function_exists("__autoload") ) {
-      spl_autoload_register("__autoload");
-    }
-  }
-}
-
-else if ( !function_exists("__autoload") ) {
-  /**
-   * Default __autoload() function
-   *
-   * @param string $class
-   */
-  function __autoload($class) {
-    DOMPDF_autoload($class);
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

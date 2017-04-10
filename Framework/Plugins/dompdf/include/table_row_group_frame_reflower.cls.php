@@ -1,59 +1,40 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Reflows table row groups (e.g. tbody tags)
- *
- * @access private
- * @package dompdf
- */
-class Table_Row_Group_Frame_Reflower extends Frame_Reflower {
-
-  function __construct($frame) {
-    parent::__construct($frame);
-  }
-
-  function reflow(Block_Frame_Decorator $block = null) {
-    $page = $this->_frame->get_root();
-
-    $style = $this->_frame->get_style();
-    
-    // Our width is equal to the width of our parent table
-    $table = Table_Frame_Decorator::find_parent_table($this->_frame);
-    
-    $cb = $this->_frame->get_containing_block();
-    
-    foreach ( $this->_frame->get_children() as $child) {
-      // Bail if the page is full
-      if ( $page->is_full() )
-        return;
-
-      $child->set_containing_block($cb["x"], $cb["y"], $cb["w"], $cb["h"]);
-      $child->reflow();
-
-      // Check if a split has occured
-      $page->check_page_break($child);
-
-    }
-
-    if ( $page->is_full() )
-      return;
-
-    $cellmap = $table->get_cellmap();
-    $style->width = $cellmap->get_frame_width($this->_frame);
-    $style->height = $cellmap->get_frame_height($this->_frame);
-
-    $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
-    
-    if ( $table->get_style()->border_collapse === "collapse" ) 
-      // Unset our borders because our cells are now using them
-      $style->border_style = "none";
- 
-  }
-
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

@@ -1,790 +1,350 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Maps table cells to the table grid.
- *
- * This class resolves borders in tables with collapsed borders and helps
- * place row & column spanned table cells.
- *
- * @access private
- * @package dompdf
- */
-class Cellmap {
-
-  /**
-   * Border style weight lookup for collapsed border resolution.
-   *
-   * @var array
-   */
-  static protected $_BORDER_STYLE_SCORE = array(
-    "inset"  => 1,
-    "groove" => 2,
-    "outset" => 3,
-    "ridge"  => 4,
-    "dotted" => 5,
-    "dashed" => 6,
-    "solid"  => 7,
-    "double" => 8,
-    "hidden" => 9,
-    "none"   => 0,
-   );
-
-  /**
-   * The table object this cellmap is attached to.
-   *
-   * @var Table_Frame_Decorator
-   */
-  protected $_table;
-
-  /**
-   * The total number of rows in the table
-   *
-   * @var int
-   */
-  protected $_num_rows;
-
-  /**
-   * The total number of columns in the table
-   *
-   * @var int
-   */
-  protected $_num_cols;
-
-  /**
-   * 2D array mapping <row,column> to frames
-   *
-   * @var Frame[][]
-   */
-  protected $_cells;
-
-  /**
-   * 1D array of column dimensions
-   *
-   * @var array
-   */
-  protected $_columns;
-
-  /**
-   * 1D array of row dimensions
-   *
-   * @var array
-   */
-  protected $_rows;
-
-  /**
-   * 2D array of border specs
-   *
-   * @var array
-   */
-  protected $_borders;
-
-  /**
-   * 1D Array mapping frames to (multiple) <row, col> pairs, keyed on frame_id.
-   *
-   * @var Frame[]
-   */
-  protected $_frames;
-
-  /**
-   * Current column when adding cells, 0-based
-   *
-   * @var int
-   */
-  private $__col;
-
-  /**
-   * Current row when adding cells, 0-based
-   *
-   * @var int
-   */
-  private $__row;
-  
-  /**
-   * Tells wether the columns' width can be modified
-   *
-   * @var bool
-   */
-  private $_columns_locked = false;
-  
-  /**
-   * Tells wether the table has table-layout:fixed
-   *
-   * @var bool
-   */
-  private $_fixed_layout = false;
-
-  //........................................................................
-
-  function __construct(Table_Frame_Decorator $table) {
-    $this->_table = $table;
-    $this->reset();
-  }
-  
-  function __destruct() {
-    clear_object($this);
-  }
-  //........................................................................
-
-  function reset() {
-    $this->_num_rows = 0;
-    $this->_num_cols = 0;
-
-    $this->_cells  = array();
-    $this->_frames = array();
-
-    if ( !$this->_columns_locked ) {
-      $this->_columns = array();
-    }
-    
-    $this->_rows = array();
-
-    $this->_borders = array();
-
-    $this->__col = $this->__row = 0;
-  }
-
-  //........................................................................
-
-  function lock_columns() { 
-    $this->_columns_locked = true; 
-  }
-
-  function is_columns_locked() {
-    return $this->_columns_locked;
-  }
-  
-  function set_layout_fixed($fixed) { 
-    $this->_fixed_layout = $fixed; 
-  }
-
-  function is_layout_fixed() {
-    return $this->_fixed_layout;
-  }
-  
-  function get_num_rows() { return $this->_num_rows; }
-  function get_num_cols() { return $this->_num_cols; }
-
-  function &get_columns() {
-    return $this->_columns;
-  }
-
-  function set_columns($columns) {
-    $this->_columns = $columns;
-  }
-
-  function &get_column($i) {
-    if ( !isset($this->_columns[$i]) ) {
-      $this->_columns[$i] = array(
-        "x" => 0,
-        "min-width" => 0,
-        "max-width" => 0,
-        "used-width" => null,
-        "absolute" => 0,
-        "percent" => 0,
-        "auto" => true,
-      );
-    }
-    
-    return $this->_columns[$i];
-  }
-
-  function &get_rows() {
-    return $this->_rows;
-  }
-
-  function &get_row($j) {
-    if ( !isset($this->_rows[$j]) ) {
-      $this->_rows[$j] = array(
-        "y" => 0,
-        "first-column" => 0,
-        "height" => null,
-      );
-    }
-    
-    return $this->_rows[$j];
-  }
-
-  function get_border($i, $j, $h_v, $prop = null) {
-    if ( !isset($this->_borders[$i][$j][$h_v]) ) {
-      $this->_borders[$i][$j][$h_v] = array(
-        "width" => 0,
-        "style" => "solid",
-        "color" => "black",
-      );
-    }
-    
-    if ( isset($prop) ) {
-      return $this->_borders[$i][$j][$h_v][$prop];
-    }
-    
-    return $this->_borders[$i][$j][$h_v];
-  }
-
-  function get_border_properties($i, $j) {
-    return array(
-      "top"    => $this->get_border($i,   $j,   "horizontal"), 
-      "right"  => $this->get_border($i,   $j+1, "vertical"),
-      "bottom" => $this->get_border($i+1, $j,   "horizontal"), 
-      "left"   => $this->get_border($i,   $j,   "vertical"),
-    );
-  }
-
-  //........................................................................
-
-  function get_spanned_cells(Frame $frame) {
-    $key = $frame->get_id();
-
-    if ( !isset($this->_frames[$key]) ) {
-      throw new DOMPDF_Exception("Frame not found in cellmap");
-    }
-
-    return $this->_frames[$key];
-
-  }
-
-  function frame_exists_in_cellmap(Frame $frame) {
-    $key = $frame->get_id();
-    return isset($this->_frames[$key]);
-  }
-  
-  function get_frame_position(Frame $frame) {
-    global $_dompdf_warnings;
-
-    $key = $frame->get_id();
-
-    if ( !isset($this->_frames[$key]) ) {
-      throw new DOMPDF_Exception("Frame not found in cellmap");
-    }
-
-    $col = $this->_frames[$key]["columns"][0];
-    $row = $this->_frames[$key]["rows"][0];
-
-    if ( !isset($this->_columns[$col])) {
-      $_dompdf_warnings[] = "Frame not found in columns array.  Check your table layout for missing or extra TDs.";
-      $x = 0;
-    }
-    else {
-      $x = $this->_columns[$col]["x"];
-    }
-
-    if ( !isset($this->_rows[$row])) {
-      $_dompdf_warnings[] = "Frame not found in row array.  Check your table layout for missing or extra TDs.";
-      $y = 0;
-    }
-    else {
-      $y = $this->_rows[$row]["y"];
-    }
-
-    return array($x, $y, "x" => $x, "y" => $y);
-  }
-
-  function get_frame_width(Frame $frame) {
-    $key = $frame->get_id();
-
-    if ( !isset($this->_frames[$key]) ) {
-      throw new DOMPDF_Exception("Frame not found in cellmap");
-    }
-
-    $cols = $this->_frames[$key]["columns"];
-    $w = 0;
-    foreach ($cols as $i) {
-      $w += $this->_columns[$i]["used-width"];
-    }
-    
-    return $w;
-  }
-
-  function get_frame_height(Frame $frame) {
-    $key = $frame->get_id();
-
-    if ( !isset($this->_frames[$key]) ) {
-      throw new DOMPDF_Exception("Frame not found in cellmap");
-    }
-
-    $rows = $this->_frames[$key]["rows"];
-    $h = 0;
-    foreach ($rows as $i) {
-      if ( !isset($this->_rows[$i]) )  {
-        throw new Exception("The row #$i could not be found, please file an issue in the tracker with the HTML code");
-      }
-      
-      $h += $this->_rows[$i]["height"];
-    }
-    
-    return $h;
-  }
-
-
-  //........................................................................
-
-  function set_column_width($j, $width) {
-    if ( $this->_columns_locked ) {
-      return;
-    }
-    
-    $col =& $this->get_column($j);
-    $col["used-width"] = $width;
-    $next_col =& $this->get_column($j+1);
-    $next_col["x"] = $next_col["x"] + $width;
-  }
-
-  function set_row_height($i, $height) {
-    $row =& $this->get_row($i);
-    
-    if ( $row["height"] !== null && $height <= $row["height"] ) {
-      return;
-    }
-
-    $row["height"] = $height;
-    $next_row =& $this->get_row($i+1);
-    $next_row["y"] = $row["y"] + $height;
-
-  }
-
-  //........................................................................
-
-
-  protected function _resolve_border($i, $j, $h_v, $border_spec) {
-    $n_width = $border_spec["width"];
-    $n_style = $border_spec["style"];
-
-    if ( !isset($this->_borders[$i][$j][$h_v]) ) {
-      $this->_borders[$i][$j][$h_v] = $border_spec;
-      return $this->_borders[$i][$j][$h_v]["width"];
-    }
-    
-    $border = &$this->_borders[$i][$j][$h_v];
-    
-    $o_width = $border["width"];
-    $o_style = $border["style"];
-
-    if ( ($n_style === "hidden" ||
-          $n_width  >  $o_width ||
-          $o_style === "none")
-
-         or
-
-         ($o_width == $n_width &&
-          in_array($n_style, self::$_BORDER_STYLE_SCORE) &&
-          self::$_BORDER_STYLE_SCORE[ $n_style ] > self::$_BORDER_STYLE_SCORE[ $o_style ]) ) {
-      $border = $border_spec;
-    }
-
-    return $border["width"];
-  }
-
-  //........................................................................
-
-  function add_frame(Frame $frame) {
-    
-    $style = $frame->get_style();
-    $display = $style->display;
-
-    $collapse = $this->_table->get_style()->border_collapse == "collapse";
-
-    // Recursively add the frames within tables, table-row-groups and table-rows
-    if ( $display === "table-row" ||
-         $display === "table" ||
-         $display === "inline-table" ||
-         in_array($display, Table_Frame_Decorator::$ROW_GROUPS) ) {
-
-      $start_row = $this->__row;
-      foreach ( $frame->get_children() as $child ) {
-        $this->add_frame( $child );
-      }
-
-      if ( $display === "table-row" ) {
-        $this->add_row();
-      }
-
-      $num_rows = $this->__row - $start_row - 1;
-      $key = $frame->get_id();
-
-      // Row groups always span across the entire table
-      $this->_frames[$key]["columns"] = range(0,max(0,$this->_num_cols-1));
-      $this->_frames[$key]["rows"] = range($start_row, max(0, $this->__row - 1));
-      $this->_frames[$key]["frame"] = $frame;
-
-      if ( $display !== "table-row" && $collapse ) {
-
-        $bp = $style->get_border_properties();
-
-        // Resolve the borders
-        for ( $i = 0; $i < $num_rows+1; $i++) {
-          $this->_resolve_border($start_row + $i, 0, "vertical", $bp["left"]);
-          $this->_resolve_border($start_row + $i, $this->_num_cols, "vertical", $bp["right"]);
-        }
-
-        for ( $j = 0; $j < $this->_num_cols; $j++) {
-          $this->_resolve_border($start_row, $j, "horizontal", $bp["top"]);
-          $this->_resolve_border($this->__row, $j, "horizontal", $bp["bottom"]);
-        }
-      }
-
-
-      return;
-    }
-    
-    $node = $frame->get_node();
-    
-    // Determine where this cell is going
-    $colspan = $node->getAttribute("colspan");
-    $rowspan = $node->getAttribute("rowspan");
-
-    if ( !$colspan ) {
-      $colspan = 1;
-      $node->setAttribute("colspan",1);
-    }
-
-    if ( !$rowspan ) {
-      $rowspan = 1;
-      $node->setAttribute("rowspan",1);
-    }
-    $key = $frame->get_id();
-
-    $bp = $style->get_border_properties();
-
-
-    // Add the frame to the cellmap
-    $max_left = $max_right = 0;
-
-    // Find the next available column (fix by Ciro Mondueri)
-    $ac = $this->__col;
-    while ( isset($this->_cells[$this->__row][$ac]) ) {
-       $ac++;
-    }
-    
-    $this->__col = $ac;
-
-    // Rows:
-    for ( $i = 0; $i < $rowspan; $i++ ) {
-      $row = $this->__row + $i;
-
-      $this->_frames[$key]["rows"][] = $row;
-
-      for ( $j = 0; $j < $colspan; $j++) {
-        $this->_cells[$row][$this->__col + $j] = $frame;
-      }
-
-      if ( $collapse ) {
-        // Resolve vertical borders
-        $max_left = max($max_left, $this->_resolve_border($row, $this->__col, "vertical", $bp["left"]));
-        $max_right = max($max_right, $this->_resolve_border($row, $this->__col + $colspan, "vertical", $bp["right"]));
-      }
-    }
-
-    $max_top = $max_bottom = 0;
-
-    // Columns:
-    for ( $j = 0; $j < $colspan; $j++ ) {
-      $col = $this->__col + $j;
-      $this->_frames[$key]["columns"][] = $col;
-
-      if ( $collapse ) {
-        // Resolve horizontal borders
-        $max_top = max($max_top, $this->_resolve_border($this->__row, $col, "horizontal", $bp["top"]));
-        $max_bottom = max($max_bottom, $this->_resolve_border($this->__row + $rowspan, $col, "horizontal", $bp["bottom"]));
-      }
-    }
-
-    $this->_frames[$key]["frame"] = $frame;
-
-    // Handle seperated border model
-    if ( !$collapse ) {
-      list($h, $v) = $this->_table->get_style()->border_spacing;
-
-      // Border spacing is effectively a margin between cells
-      $v = $style->length_in_pt($v) / 2;
-      $h = $style->length_in_pt($h) / 2;
-      $style->margin = "$v $h";
-
-      // The additional 1/2 width gets added to the table proper
-    }
-    else {
-      // Drop the frame's actual border
-      $style->border_left_width = $max_left / 2;
-      $style->border_right_width = $max_right / 2;
-      $style->border_top_width = $max_top / 2;
-      $style->border_bottom_width = $max_bottom / 2;
-      $style->margin = "none";
-    }
-
-    if ( !$this->_columns_locked ) {
-      // Resolve the frame's width
-      if ( $this->_fixed_layout ) {
-        list($frame_min, $frame_max) = array(0, 10e-10);
-      }
-      else {
-        list($frame_min, $frame_max) = $frame->get_min_max_width();
-      }
-  
-      $width = $style->width;
-
-      $val = null;
-      if ( is_percent($width) ) {
-        $var = "percent";
-        $val = (float)rtrim($width, "% ") / $colspan;
-      }
-      else if ( $width !== "auto" ) {
-        $var = "absolute";
-        $val = $style->length_in_pt($frame_min) / $colspan;
-      }
-      
-      $min = 0;
-      $max = 0;
-      for ( $cs = 0; $cs < $colspan; $cs++ ) {
-  
-        // Resolve the frame's width(s) with other cells
-        $col =& $this->get_column( $this->__col + $cs );
-  
-        // Note: $var is either 'percent' or 'absolute'.  We compare the
-        // requested percentage or absolute values with the existing widths
-        // and adjust accordingly.
-        if ( isset($var) && $val > $col[$var] ) {
-          $col[$var] = $val;
-          $col["auto"] = false;
-        }
-  
-        $min += $col["min-width"];
-        $max += $col["max-width"];
-      }
-  
-      if ( $frame_min > $min ) {
-        // The frame needs more space.  Expand each sub-column
-        // FIXME try to avoid putting this dummy value when table-layout:fixed
-        $inc = ($this->is_layout_fixed() ? 10e-10 : ($frame_min - $min) / $colspan);
-        for ($c = 0; $c < $colspan; $c++) {
-          $col =& $this->get_column($this->__col + $c);
-          $col["min-width"] += $inc;
-        }
-      }
-  
-      if ( $frame_max > $max ) {
-        // FIXME try to avoid putting this dummy value when table-layout:fixed
-        $inc = ($this->is_layout_fixed() ? 10e-10 : ($frame_max - $max) / $colspan);
-        for ($c = 0; $c < $colspan; $c++) {
-          $col =& $this->get_column($this->__col + $c);
-          $col["max-width"] += $inc;
-        }
-      }
-    }
-
-    $this->__col += $colspan;
-    if ( $this->__col > $this->_num_cols )
-      $this->_num_cols = $this->__col;
-
-  }
-
-  //........................................................................
-
-  function add_row() {
-
-    $this->__row++;
-    $this->_num_rows++;
-
-    // Find the next available column
-    $i = 0;
-    while ( isset($this->_cells[$this->__row][$i]) ) {
-      $i++;
-    }
-
-    $this->__col = $i;
-
-  }
-
-  //........................................................................
-
-  /**
-   * Remove a row from the cellmap.
-   *
-   * @param Frame
-   */
-  function remove_row(Frame $row) {
-
-    $key = $row->get_id();
-    if ( !isset($this->_frames[$key]) ) {
-      return;  // Presumably this row has alredy been removed
-    }
-
-    $this->_row = $this->_num_rows--;
-
-    $rows = $this->_frames[$key]["rows"];
-    $columns = $this->_frames[$key]["columns"];
-
-    // Remove all frames from this row
-    foreach ( $rows as $r ) {
-      foreach ( $columns as $c ) {
-        if ( isset($this->_cells[$r][$c]) ) {
-          $id = $this->_cells[$r][$c]->get_id();
-          
-          $this->_frames[$id] = null;
-          unset($this->_frames[$id]);
-          
-          $this->_cells[$r][$c] = null;
-          unset($this->_cells[$r][$c]);
-        }
-      }
-      
-      $this->_rows[$r] = null;
-      unset($this->_rows[$r]);
-    }
-
-    $this->_frames[$key] = null;
-    unset($this->_frames[$key]);
-
-  }
-
-  /**
-   * Remove a row group from the cellmap.
-   *
-   * @param Frame $group  The group to remove
-   */
-  function remove_row_group(Frame $group) {
-
-    $key = $group->get_id();
-    if ( !isset($this->_frames[$key]) ) {
-      return;  // Presumably this row has alredy been removed
-    }
-    
-    $iter = $group->get_first_child();
-    while ($iter) {
-      $this->remove_row($iter);
-      $iter = $iter->get_next_sibling();
-    }
-
-    $this->_frames[$key] = null;
-    unset($this->_frames[$key]);
-  }
-
-  /**
-   * Update a row group after rows have been removed
-   *
-   * @param Frame $group    The group to update
-   * @param Frame $last_row The last row in the row group
-   */
-  function update_row_group(Frame $group, Frame $last_row) {
-
-    $g_key = $group->get_id();
-    $r_key = $last_row->get_id();
-
-    $r_rows = $this->_frames[$r_key]["rows"];
-    $this->_frames[$g_key]["rows"] = range( $this->_frames[$g_key]["rows"][0], end($r_rows) );
-
-  }
-
-  //........................................................................
-
-  function assign_x_positions() {
-    // Pre-condition: widths must be resolved and assigned to columns and
-    // column[0]["x"] must be set.
-
-    if ( $this->_columns_locked ) {
-      return;
-    }
-    
-    $x = $this->_columns[0]["x"];
-    foreach ( array_keys($this->_columns) as $j ) {
-      $this->_columns[$j]["x"] = $x;
-      $x += $this->_columns[$j]["used-width"];
-    }
-
-  }
-
-  function assign_frame_heights() {
-    // Pre-condition: widths and heights of each column & row must be
-    // calcluated
-
-    foreach ( $this->_frames as $arr ) {
-      $frame = $arr["frame"];
-
-      $h = 0;
-      foreach( $arr["rows"] as $row ) {
-        if ( !isset($this->_rows[$row]) ) {
-          // The row has been removed because of a page split, so skip it.
-          continue;
-        }
-        
-        $h += $this->_rows[$row]["height"];
-      }
-
-      if ( $frame instanceof Table_Cell_Frame_Decorator ) {
-        $frame->set_cell_height($h);
-      }
-      else {
-        $frame->get_style()->height = $h;
-      }
-    }
-
-  }
-
-  //........................................................................
-
-  /**
-   * Re-adjust frame height if the table height is larger than its content
-   */
-  function set_frame_heights($table_height, $content_height) {
-
-
-    // Distribute the increased height proportionally amongst each row
-    foreach ( $this->_frames as $arr ) {
-      $frame = $arr["frame"];
-
-      $h = 0;
-      foreach ($arr["rows"] as $row ) {
-        if ( !isset($this->_rows[$row]) ) {
-          continue;
-        }
-
-        $h += $this->_rows[$row]["height"];
-      }
-      
-      if ( $content_height > 0 ) {
-        $new_height = ($h / $content_height) * $table_height;
-      }
-      else {
-        $new_height = 0;
-      }
-
-      if ( $frame instanceof Table_Cell_Frame_Decorator ) {
-        $frame->set_cell_height($new_height);
-      }
-      else {
-        $frame->get_style()->height = $new_height;
-      }
-    }
-
-  }
-
-  //........................................................................
-
-  // Used for debugging:
-  function __toString() {
-    $str = "";
-    $str .= "Columns:<br/>";
-    $str .= pre_r($this->_columns, true);
-    $str .=  "Rows:<br/>";
-    $str .= pre_r($this->_rows, true);
-
-    $str .=  "Frames:<br/>";
-    $arr = array();
-    foreach ( $this->_frames as $key => $val ) {
-      $arr[$key] = array("columns" => $val["columns"], "rows" => $val["rows"]);
-    }
-    
-    $str .= pre_r($arr, true);
-
-    if ( php_sapi_name() == "cli" ) {
-      $str = strip_tags(str_replace(array("<br/>","<b>","</b>"),
-                                    array("\n",chr(27)."[01;33m", chr(27)."[0m"),
-                                    $str));
-    }
-    
-    return $str;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

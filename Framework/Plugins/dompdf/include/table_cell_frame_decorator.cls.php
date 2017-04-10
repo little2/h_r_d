@@ -1,102 +1,54 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Decorates table cells for layout
- *
- * @access private
- * @package dompdf
- */
-class Table_Cell_Frame_Decorator extends Block_Frame_Decorator {
-  
-  protected $_resolved_borders;
-  protected $_content_height;
-  
-  //........................................................................
-
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    parent::__construct($frame, $dompdf);
-    $this->_resolved_borders = array();
-    $this->_content_height = 0;    
-  }
-
-  //........................................................................
-
-  function reset() {
-    parent::reset();
-    $this->_resolved_borders = array();
-    $this->_content_height = 0;
-    $this->_frame->reset();    
-  }
-  
-  function get_content_height() {
-    return $this->_content_height;
-  }
-
-  function set_content_height($height) {
-    $this->_content_height = $height;
-  }
-  
-  function set_cell_height($height) {
-    $style = $this->get_style();
-    $v_space = $style->length_in_pt(array($style->margin_top,
-                                          $style->padding_top,
-                                          $style->border_top_width,
-                                          $style->border_bottom_width,
-                                          $style->padding_bottom,
-                                          $style->margin_bottom),
-                                    $style->width);
-
-    $new_height = $height - $v_space;    
-    $style->height = $new_height;
-
-    if ( $new_height > $this->_content_height ) {
-      $y_offset = 0;
-      
-      // Adjust our vertical alignment
-      switch ($style->vertical_align) {
-        default:
-        case "baseline":
-          // FIXME: this isn't right
-          
-        case "top":
-          // Don't need to do anything
-          return;
-  
-        case "middle":
-          $y_offset = ($new_height - $this->_content_height) / 2;
-          break;
-  
-        case "bottom":
-          $y_offset = $new_height - $this->_content_height;
-          break;
-      }
-   
-      if ( $y_offset ) {
-        // Move our children
-        foreach ( $this->get_line_boxes() as $line ) {
-          foreach ( $line->get_frames() as $frame )
-            $frame->move( 0, $y_offset );
-        }
-      }
-   }
-        
-  }
-
-  function set_resolved_border($side, $border_spec) {    
-    $this->_resolved_borders[$side] = $border_spec;
-  }
-
-  //........................................................................
-
-  function get_resolved_border($side) {
-    return $this->_resolved_borders[$side];
-  }
-
-  function get_resolved_borders() { return $this->_resolved_borders; }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+G5HfEh/y4mmlPFbLiF4Tkaa=

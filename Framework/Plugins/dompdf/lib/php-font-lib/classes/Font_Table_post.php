@@ -1,141 +1,47 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * `post` font table.
- * 
- * @package php-font-lib
- */
-class Font_Table_post extends Font_Table {
-  protected $def = array(
-    "format"             => self::Fixed,
-    "italicAngle"        => self::Fixed,
-    "underlinePosition"  => self::FWord,
-    "underlineThickness" => self::FWord,
-    "isFixedPitch"       => self::uint32,
-    "minMemType42"       => self::uint32,
-    "maxMemType42"       => self::uint32,
-    "minMemType1"        => self::uint32,
-    "maxMemType1"        => self::uint32,
-  );
-  
-  protected function _parse(){
-    $font = $this->getFont();
-    $data = $font->unpack($this->def);
-    
-    $names = array();
-    
-    switch($data["format"]) {
-      case 1:
-        $names = Font_TrueType::$macCharNames;
-      break;
-      
-      case 2:
-        $data["numberOfGlyphs"] = $font->readUInt16();
-        
-        $glyphNameIndex = array();
-        for($i = 0; $i < $data["numberOfGlyphs"]; $i++) {
-          $glyphNameIndex[] = $font->readUInt16();
-        }
-        
-        $data["glyphNameIndex"] = $glyphNameIndex;
-        
-        $namesPascal = array();
-        for($i = 0; $i < $data["numberOfGlyphs"]; $i++) {
-          $len = $font->readUInt8();
-          $namesPascal[] = $font->read($len);
-        }
-        
-        foreach($glyphNameIndex as $g => $index) {
-          if ($index < 258) {
-            $names[$g] = Font_TrueType::$macCharNames[$index];
-          }
-          else {
-            $names[$g] = $namesPascal[$index - 258];
-          }
-        }
-        
-      break;
-      
-      case 2.5:
-        // TODO
-      break;
-      
-      case 3:
-        // nothing
-      break;
-      
-      case 4:
-        // TODO
-      break;
-    }
-    
-    $data["names"] = $names;
-    
-    $this->data = $data;
-  }
-  
-  function _encode(){
-    $font = $this->getFont();
-    $data = $this->data;
-    $data["format"] = 3;
-    
-    $length = $font->pack($this->def, $data);
-    
-    return $length;
-
-    /*
-    $subset = $font->getSubset();
-    
-    switch($data["format"]) {
-      case 1:
-        // nothing to do
-      break;
-      
-      case 2:
-        $old_names = $data["names"];
-        
-        $glyphNameIndex = range(0, count($subset));
-        
-        $names = array();
-        foreach($subset as $gid) {
-          $names[] = $data["names"][$data["glyphNameIndex"][$gid]];
-        }
-    
-        $numberOfGlyphs = count($names);
-        $length += $font->writeUInt16($numberOfGlyphs);
-        
-        foreach($glyphNameIndex as $gni) {
-          $length += $font->writeUInt16($gni);
-        }
-        
-        //$names = array_slice($names, 257);
-        foreach($names as $name) {
-          $len = strlen($name);
-          $length += $font->writeUInt8($len);
-          $length += $font->write($name, $len);
-        }
-        
-      break;
-      
-      case 2.5:
-        // TODO
-      break;
-      
-      case 3:
-        // nothing
-      break;
-      
-      case 4:
-        // TODO
-      break;
-    }
-    
-    return $length;*/
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

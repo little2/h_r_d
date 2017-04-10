@@ -1,14 +1,14 @@
 <!-- 說明 -->
 <div class="content">
 
-<p>下列報表顯示本組織的層級團隊在每一項職能表現的總體情況。</p>			
-<p>這份報表包由二部分組成：</p>			
-<p>第一部分顯示出貴公司在每個職能項目所達到的水準。</p>			
-<p>每項職能所顯示的分值是對所有參與本次360度評鑑的人員進行加權平均的結果。您可以通過觀察每項職能的分值，獲知您的組織團隊在各個職能項目上的現況水準。當然，平均數反應出整體的趨勢，總會有人超過標準或者低於標準，您可以依據團體評鑑分值結果進行改善決策；但是，我們仍然有義務提醒您，在進行改善決策時您需要將個人報表與團體報表結合使用，尤其是針對某些關鍵職位，其個人報告比團體報告更有輔導諮詢的改善決策參考價值。</p>			
-			
-<p>第二部分則顯示出貴公司的優勢職能與發展需求。</p>			
-<p>當某一項職能的360度評鑑分數高於企業所設定的基準值時，這意味著達到了企業所設定的職能標準，當超越基準值標準(區間標準通常設定為0.5)則可視為具備了職能優勢傾向。下面的報表顯示出此次受評的團隊中，具備優勢職能的人數占參與本次360度評鑑總人數的比例。</p>			
-<p>當某一項職能的360度評鑑分數低於企業所設定的基準值時，這意味著沒有達到企業所設定的職能標準，當低於基準值標準(區間標準通常設定為0.5)則可視為弱勢職能需要進行培訓發展改善。下面的報表顯示出此次受評的團隊中，需要培訓發展的人數占參與本次360度評鑑總人數的比例。</p>			
+<p>下列報表顯示本組織的層級團隊在每一項職能表現的總體情況。</p>
+<p>這份報表包由二部分組成：</p>
+<p>第一部分顯示出貴公司在每個職能項目所達到的水準。</p>
+<p>每項職能所顯示的分值是對所有參與本次360度評鑑的人員進行加權平均的結果。您可以通過觀察每項職能的分值，獲知您的組織團隊在各個職能項目上的現況水準。當然，平均數反應出整體的趨勢，總會有人超過標準或者低於標準，您可以依據團體評鑑分值結果進行改善決策；但是，我們仍然有義務提醒您，在進行改善決策時您需要將個人報表與團體報表結合使用，尤其是針對某些關鍵職位，其個人報告比團體報告更有輔導諮詢的改善決策參考價值。</p>
+
+<p>第二部分則顯示出貴公司的優勢職能與發展需求。</p>
+<p>當某一項職能的360度評鑑分數高於企業所設定的基準值時，這意味著達到了企業所設定的職能標準，當超越基準值標準(區間標準通常設定為0.5)則可視為具備了職能優勢傾向。下面的報表顯示出此次受評的團隊中，具備優勢職能的人數占參與本次360度評鑑總人數的比例。</p>
+<p>當某一項職能的360度評鑑分數低於企業所設定的基準值時，這意味著沒有達到企業所設定的職能標準，當低於基準值標準(區間標準通常設定為0.5)則可視為弱勢職能需要進行培訓發展改善。下面的報表顯示出此次受評的團隊中，需要培訓發展的人數占參與本次360度評鑑總人數的比例。</p>
 
 </div>
 
@@ -19,7 +19,7 @@
 
 <div  class="report">
 	<div style="width:70%">
-		<table >	
+		<table >
 			<tr>
 				<td colspan="2" class="bar"></td>
 			</tr>
@@ -35,13 +35,13 @@
 			<!-- END RESULT -->
 		</table>
 	</div>
-	
-	
 
 
-	
-	
-	
+
+
+
+
+
 	<div class="content">
 	<p>此平均分數是根據以下的給分標準所得：</p>
 	<p>
@@ -61,7 +61,7 @@
 
 
 <h2><img src='templates/{TPL_STYLE}/images/arrow.png'>優勢職能 Personal Strengths: </h2>
-<div class="content">此部分將個人得分結果之平均值與標準要求之基準值做比較。團體優勢職能的呈現：為超過要求基準值{threshold_interval}以上的職能為優勢職能結果，百分比顯示你們團隊中具備該項優勢的人數比例。</div>
+<div class="content">此部分將團體得分結果之平均值與標準要求之基準值做比較。團體優勢職能的呈現：為超過要求基準值{threshold_interval}以上的職能為優勢職能結果，百分比顯示你們團隊中具備該項優勢的人數比例。</div>
 <div  class="report">
 	<div style="width:40%;float:left">
 		<table >
@@ -70,17 +70,17 @@
 			</tr>
 			<tr>
 				<th>評量職能</th>
-				<th>人數比例(%)</th>			
+				<th>人數比例(%)</th>
 			</tr>
 			<!-- BEGIN STRENGTHS -->
 			<tr>
 				<td>{STRENGTHS.competency_title}</td>
-				<td>{STRENGTHS.rate}</td>				
+				<td>{STRENGTHS.rate}</td>
 			</tr>
 			<!-- END STRENGTHS -->
 		</table>
 	</div>
-	
+
 	<div style="width:55%;float:left;margin-left:10px">
 		<img src="{strengths_img_url}" />
 	</div>
@@ -90,7 +90,7 @@
 
 
 <h2><img src='templates/{TPL_STYLE}/images/arrow.png'>發展需求 Developmental Needs: </h2>
-<div class="content">此部份將個人得分之平均值與標準要求之基準值做比較。選擇低於要求基準值的職能中，排名後百分之三十的職能為代表。若沒有職能達到基準值的要求，則選擇其平均值為後三名的職能為代表。</div>
+<div class="content">此部份將團體得分之平均值與標準要求之基準值做比較。選擇低於要求基準值的職能中，排名後百分之三十的職能為代表。若沒有職能達到基準值的要求，則選擇其平均值為後三名的職能為代表。</div>
 <div  class="report">
 	<div style="width:40%;float:left">
 		<table >
@@ -107,10 +107,10 @@
 				<td>{NEEDS.rate}</td>
 			</tr>
 			<!-- END NEEDS -->
-			
+
 		</table>
 	</div>
-	
+
 	<div style="width:55%;float:left;margin-left:10px">
 		<img src="{develop_img_url}" />
 	</div>
@@ -124,7 +124,7 @@
 
 
 <script>
-  
+
 
 
 	window.onload = function(){
@@ -132,17 +132,17 @@
 		show_canvas("{CANVAS_LIST.canvas_title}", {labels : [{CANVAS_LIST.competency_title}],datasets : [{fillColor : "rgba(151,187,205,1)",data : [{CANVAS_LIST.competency_avg}]}]	})
 		<!-- END CANVAS_LIST -->
 	};
-	
+
 	function show_canvas(canvas_id, canvas_chardata)
 	{
 		var canvas_strengths = document.getElementById(canvas_id).getContext("2d");
     	new Chart(canvas_strengths).HorizontalBar(canvas_chardata, {responsive: true,barShowStroke: false,bezierCurve : false,onAnimationComplete: done});
-		
+
 	}
-	
-	function done() {	  
+
+	function done() {
 		//var url=document.getElementById("canvas").toDataURL();
-		//document.getElementById("canvasImg").src=url;	  		
+		//document.getElementById("canvasImg").src=url;
 	}
 
 </script>

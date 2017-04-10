@@ -1,80 +1,41 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Decorates frames for image layout and rendering
- *
- * @access private
- * @package dompdf
- */
-class Image_Frame_Decorator extends Frame_Decorator {
-
-  /**
-   * The path to the image file (note that remote images are
-   * downloaded locally to DOMPDF_TEMP_DIR).
-   *
-   * @var string
-   */
-  protected $_image_url;
-  
-  /**
-   * The image's file error message
-   *
-   * @var string
-   */
-  protected $_image_msg;
-
-  /**
-   * Class constructor
-   *
-   * @param Frame $frame the frame to decorate
-   * @param DOMPDF $dompdf the document's dompdf object (required to resolve relative & remote urls)
-   */
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    parent::__construct($frame, $dompdf);
-    $url = $frame->get_node()->getAttribute("src");
-
-    $debug_png = $dompdf->get_option("debug_png");
-    if ($debug_png) print '[__construct '.$url.']';
-
-    list($this->_image_url, /*$type*/, $this->_image_msg) = Image_Cache::resolve_url(
-      $url,
-      $dompdf->get_protocol(),
-      $dompdf->get_host(),
-      $dompdf->get_base_path(),
-      $dompdf
-    );
-
-    if ( Image_Cache::is_broken($this->_image_url) &&
-         $alt = $frame->get_node()->getAttribute("alt") ) {
-      $style = $frame->get_style();
-      $style->width  = (4/3)*Font_Metrics::get_text_width($alt, $style->font_family, $style->font_size, $style->word_spacing);
-      $style->height = Font_Metrics::get_font_height($style->font_family, $style->font_size);
-    }
-  }
-
-  /**
-   * Return the image's url
-   *
-   * @return string The url of this image
-   */
-  function get_image_url() {
-    return $this->_image_url;
-  }
-
-  /**
-   * Return the image's error message
-   *
-   * @return string The image's error message
-   */
-  function get_image_msg() {
-    return $this->_image_msg;
-  }
-  
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+2skE/om1mBK3iNFX

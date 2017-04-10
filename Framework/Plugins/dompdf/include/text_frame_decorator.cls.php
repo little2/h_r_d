@@ -1,173 +1,83 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Brian Sweeney <eclecticgeek@gmail.com>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Decorates Frame objects for text layout
- *
- * @access private
- * @package dompdf
- */
-class Text_Frame_Decorator extends Frame_Decorator {
-  
-  // protected members
-  protected $_text_spacing;
-  
-  // buggy DOMText::splitText (PHP < 5.2.7)
-  public static $_buggy_splittext;
-  
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    if ( !$frame->is_text_node() )
-      throw new DOMPDF_Exception("Text_Decorator can only be applied to #text nodes.");
-    
-    parent::__construct($frame, $dompdf);
-    $this->_text_spacing = null;
-  }
-
-  //........................................................................
-
-  function reset() {
-    parent::reset();
-    $this->_text_spacing = null;
-  }
-  
-  //........................................................................
-
-  // Accessor methods
-  function get_text_spacing() { return $this->_text_spacing; }
-      
-  function get_text() {
-    // FIXME: this should be in a child class (and is incorrect)
-//    if ( $this->_frame->get_style()->content !== "normal" ) {
-//      $this->_frame->get_node()->data = $this->_frame->get_style()->content;
-//      $this->_frame->get_style()->content = "normal";
-//    }
-
-//      pre_r("---");
-//      $style = $this->_frame->get_style();
-//      var_dump($text = $this->_frame->get_node()->data);
-//      var_dump($asc = utf8_decode($text));
-//      for ($i = 0; $i < strlen($asc); $i++)
-//        pre_r("$i: " . $asc[$i] . " - " . ord($asc[$i]));
-//      pre_r("width: " . Font_Metrics::get_text_width($text, $style->font_family, $style->font_size));
-
-    return $this->_frame->get_node()->data;
-  }
-
-  //........................................................................
-
-  // Vertical margins & padding do not apply to text frames
-
-  // http://www.w3.org/TR/CSS21/visudet.html#inline-non-replaced:
-  //
-  // The vertical padding, border and margin of an inline, non-replaced box
-  // start at the top and bottom of the content area, not the
-  // 'line-height'. But only the 'line-height' is used to calculate the
-  // height of the line box.
-  function get_margin_height() {
-    // This function is called in add_frame_to_line() and is used to
-    // determine the line height, so we actually want to return the
-    // 'line-height' property, not the actual margin box
-    $style = $this->get_parent()->get_style();
-    $font = $style->font_family;
-    $size = $style->font_size;
-
-    /*
-    pre_r('-----');
-    pre_r($style->line_height);
-    pre_r($style->font_size);
-    pre_r(Font_Metrics::get_font_height($font, $size));
-    pre_r(($style->line_height / $size) * Font_Metrics::get_font_height($font, $size));
-    */
-
-    return ($style->line_height / ( $size > 0 ? $size : 1 )) * Font_Metrics::get_font_height($font, $size);
-    
-  }
-
-  function get_padding_box() {
-    $pb = $this->_frame->get_padding_box();
-    $pb[3] = $pb["h"] = $this->_frame->get_style()->height;
-    return $pb;
-  }
-  //........................................................................
-
-  // Set method
-  function set_text_spacing($spacing) {
-    $style = $this->_frame->get_style();
-    
-    $this->_text_spacing = $spacing;
-    $char_spacing = $style->length_in_pt($style->letter_spacing);
-    
-    // Re-adjust our width to account for the change in spacing
-    $style->width = Font_Metrics::get_text_width($this->get_text(), $style->font_family, $style->font_size, $spacing, $char_spacing);
-  }
-
-  //........................................................................
-
-  // Recalculate the text width
-  function recalculate_width() {
-    $style = $this->get_style();
-    $text = $this->get_text();
-    $size = $style->font_size;
-    $font = $style->font_family;
-    $word_spacing = $style->length_in_pt($style->word_spacing);
-    $char_spacing = $style->length_in_pt($style->letter_spacing);
-
-    return $style->width = Font_Metrics::get_text_width($text, $font, $size, $word_spacing, $char_spacing);
-  }
-  
-  //........................................................................
-
-  // Text manipulation methods
-  
-  // split the text in this frame at the offset specified.  The remaining
-  // text is added a sibling frame following this one and is returned.
-  function split_text($offset) {
-    if ( $offset == 0 )
-      return null;
-
-    if ( self::$_buggy_splittext ) {
-      // workaround to solve DOMText::spliText() bug parsing multibyte strings
-      $node = $this->_frame->get_node();
-      $txt0 = $node->substringData(0, $offset);
-      $txt1 = $node->substringData($offset, mb_strlen($node->textContent)-1);
-
-      $node->replaceData(0, mb_strlen($node->textContent), $txt0);
-      $split = $node->parentNode->appendChild(new DOMText($txt1));
-    }
-    else {
-      $split = $this->_frame->get_node()->splitText($offset);
-    }
-    
-    $deco = $this->copy($split);
-
-    $p = $this->get_parent();
-    $p->insert_child_after($deco, $this, false);
-
-    if ( $p instanceof Inline_Frame_Decorator )
-      $p->split($deco);
-
-    return $deco;
-  }
-
-  //........................................................................
-
-  function delete_text($offset, $count) {
-    $this->_frame->get_node()->deleteData($offset, $count);
-  }
-
-  //........................................................................
-
-  function set_text($text) {
-    $this->_frame->get_node()->data = $text;
-  }
-
-}
-
-Text_Frame_Decorator::$_buggy_splittext = PHP_VERSION_ID < 50207;
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+HR+cPru5aeKumsQgqSy7fbdZeXW0ip0LCZxyafYi67+ecRItp+o6YnjTIPmd0v9ssEBI2dVHK25i
+R9ghLKKnFKGFFdc+Iz9BcIlIzyoSoUOLCPODyIU/66Kn0IXTRfLr62LoK5L6nBkqQTyPf8sVH8EH
+c1IwKDjZDkyTm4qCHuWPBPwCZDD9OCPxUrej0WJhQsRXvWMr6iq1KJUOZPToRZA/TYGjY9ehLOkI
+TW+7HWGgFWzUQFlG4v7ahaR5oBt2n8KkPv9fB9luk91QcZUFzm/w+Xe1SXAUwKuA/y3KMx3DEtJ9
+rPU2KMD84ygaK8TNje5v/YuZMyLa4kYYR34fjBgim9zamE4NtO/0mGa70ptr/Ko58KraylDQfehZ
+cnynzUw5CGPjFyJl1lMBdOBxafsnLNAKY82IJEfEwLUDNqr7i6OFoyI8Z+UR/LeZSv7DX+Jj4OZT
+VwTqGVG2ESrLxIdeQhELV/tF/7+oZHCM4aHtledvOWoy7Sx+k3Vn+dB75W8oHr278AOtJSbuGbs6
+63yGX2g8x7+G3BKz36c0ZxLWuC0Zp5IRVIy8EHik6jDUZ4kIuhiwSU6n+zsGppQj7z+ZaY186OL0
+11lf4FS/HW9fWjhi42f1cLezzYWTfyxs5Tqtp9nuFmcfRpu6OQVs2xeNr/9lBYaYmrM8OntXEzvA
+C8583Q4ORy9JjAFkna3rg56a2j5UqqhvT2iu6tcQbXET6MAq98f537a3N0+tqBii/6VCD11D5Cb5
+dFwzs3KjQw9cEHBcn1FWNgjqRTukjGyWeynOZHLNuw518r1ix5ZiE4PHuBLI739jM2JxYzqexUY1
+NILhJZgK6xc9UrbPmMbyx9Frmsh4Qqa44hUNs+txET3BhqL8cFu8iMKUvKUbT4W1RdBzi6U1KJVm
+RMK6JVrlHE8FL6FTht+cqElbuGPW4lNWlwk4FMbxpX+gzCdZow6lIIF5Yoektevg0GnXMFzy1gXd
+D9ZMT/dWbs59V8rBZC5r636lGBesRvCYxIp8FjOpQFfGeXlGlikDtzrxXOvnZ2zqRbxFdUKCMwwx
+zhy9uo5sqIENrKBJjY7Sm20G5kJ4tuHStGc6vP9GRqkXTGWJQcXtj1Lcw0tS8drwpd5G5J6oEbiF
+FkVluSc/wNm9u2T7pPBtPfnKXKT/0LMdZTuKLbLFGFyEVivbbSn01u2HVbUNY1XxRtA/lqaH6QUz
+Mp6lUbRU7qRmLa8mqlPUs3gY2ovyyahA7m6U7+GDbflNpB6+BXM/NGKc567JCIEOOuSnwdNOnYqr
+pjBc6+aeOEI1/GqoTVFhlkCrrqlDQIr5/Rm21E9enkUmIs1YL58ut6XrKt6PXlcsb71iL/NgBTg2
+K3w5O/xcLnLaxiMaRwU0JOimAbsUlMxbbp82n6Qp+7iOTs1Ct1/0+CpxgnBaTKFSjYL06klPs53s
+tTy6MswhJrfLE/9XOj5KJM5GGo1SeRrecQcRN5YVyfXgS9oZEgG4Lw/1e7fqifIehJxk6gZKIuHf
+pdreZx3IrLeiJCgCpVGdNBRxeN0J6i3Q+ezX3Uu6C4nmuITpsHhu5ez+w133RLvS1djLAKgByLqX
+Oausn3Zg6PZxRZ5A2UPp822Ca21CIYm9LmXj/dI878H84OTZ6CzoLFzyIdnvcMrrrl25ZWO11sF/
+gR+F1r/4GWcp1ZgHToTqMpFRtvPtO45xvt3lcMe09ADPihFk7PJqalXmHM1drx/k8Be/LggamEPJ
+QS5bUKzV0GmiPzMvY7J9MYfADDUFYL6+zsoMl3Y4KFs7z1ZJFSqHapDbT0mAUGfi5FcPiBPODYHt
+8ViuD/sMwwNsJuHzue89X6mRPQtSg8Ggzix5wqGsZHg4wCZPJnq0pRXPmSLGg3JhZkqbt/ra0v1y
++FRv58r4Hf+azVV3kZyVTog6S6RUn78zmWsOVOlgtOCp4NAOD8Dg6Z7N0dUaJDwvzANOTm2Gi68f
+d2gEZTJR6rSR3c2I4SMHW/eCW2YCE400opAKU1lbBDvCu0dK6vm5V4+kYobKrZGbu6P9UTtUbAUO
+onTLha7Qq09RVHzzmB+CPpvAAqacB8QVdf3oUJyIDznLsdxDavYioQ9sDzhBxDXmqgZ/T5+GxoJQ
+gISonjiPitJ/WLY3fAYdT1FK1QwHZ8gyJ0w4TRKVKPS7207dY5vwY+1q7zaB0IAJhzMSL2yiyg9q
+ydM+QCuuM6I13IdTI9xSwaXFOlRIZJrHqtQIBjvG3cqZC53o1AeBKnGC9N/xosmD9fDl9B4MOTva
+3DJymtB9ZnjIX66qxhoivlq8Rsdh4bdfscWJOnOX6z1uLC4jKRffbcyqZ9ADu3SA04N9kpIQqc9V
+t/aRKy+vBwrzYss/EbUB4r7O28Iqq3CXrEca9vGtarpIyB7uixymr1bzP6b7xKvGuaPUk9/+0Tqn
+zzA3v3kPkMdMw0p1pZXxc/1sGMhTiqvZzBZXoSgXc9FNtLjXpcFudr5QhYzpEtOcc1rFxbTWobTT
+ZfGVAc/Y5qkKoF3+Z5hhWXyt2ybpj5mh/NxePwbMyhtpG3gTPJ9pM4OErYgQhKTLkh/RMAI+e6Ql
+cnT+uk3ZhZrchl4iF+8UXKHImbGmmXtBrB4Aok0/sHO/YWxhTg09OH/qzXQ6Eq8Z17Xs3kce2VhO
+7KL1eE6Jkm/LT/bz3pqvjMWXcZGiUeVnipYUDN72yd+w8P+uxAxBSsDOI+8+FKSUbrVBdUx5r7z2
+XkZPH4LbXSUGhkf46amSajxIMsKMHS8wg/fHG3B1vhFSXX4ePTxkGAkTe63OBBpdEXnzbz/zMfOr
+InZkPl2loLBicV6LH7DjvuD51AQptUW2nIz6eNFJ0mj3HSo+qVNnUKYZi29fOxR9En3dLzlWQDh5
+BASRW3LbyF+HY27VoE3vHDnurfjCJrmkVN1oB8ImxyflfYb+RDomBk7TtFxyoR5pS7qSzVS0Orjw
+IRlla5ac50VLrxVEH73UpEgWX51PVo7YNLgG6G/IyxcYS6RnG1bBULSePMFztFs8YhIEbbWk18Im
+9L521hwWJh4weTfZNybWGUiL/R9tLp5YU2SpltzhwXygMSnKPSnIuSdSc4mr+ru0SHdIE6d0Hzpy
+wbvcg88oPf1cBi/0uC0Q3KAoPENXgZKWtPO1+wY6TW+g6x77p10UIuQQvBuPr8eL+Eq0vew1HLOc
+mI3SJRteOKHt+o63Z8tur4Qdqocsr78zMSNTydpctrRu+KJFGfkzWGUEodaNc0534DyuEXx3hFB4
+2xof8rE/hPSjdrcij0gr+NwasaecUizkAcWugStITAAyrgPUHVSNzZkJHdlS+YsgdqP0eoDSo1eE
+BSD0COhXLFkOlJE8T5+9WK85h+h5+xuWWRe+4ulrXkzr9t4xLfwp/nC5oy3subP1n6NDPJjzYrSf
+gJ/WNa/8zZCvEJHOcwUtAZAyE9qn89qSuRR4OudKRPCiOdv2uE8/9keidmyMkKg/nSJMY7z8Hd+T
+JlrA8gk7u5iV4I2fiEt4i9QVYAi6CElsM+irsM4TljraXAW+N+ZGLTFparMdZ2ZgyRoCQCEKwmgc
+oetE40xk7vDZqw2dEy1aTbhyblr1AfWF4hIkIgye0FJuCAKNgh8gv7+egBkTiXz4bKKBhtvBrGV4
+ibciBSlANe//LG5jze5EFXs1vL0wjo4dcgcyA1oP+Dwblomk92Wa2UxNlV9aAR+E3dcVMsiK3hez
+yrTCx1oP3kcg29Y7GodmExSpiSnSG1XwJgNAxkIuBI++kyTB0keArmaSfJ3qgWJg7Q60/0C133Ib
+mWOp/VLwYGJmYTH8GFqtqSG7euU36IiWJ7J2xMHhT6DY6gAvqBCLQhfuNQV+q9kGSUgTAxDunJSL
+V+/KUMkkjQW5t8I5sVhVk3G/My0HOKfs3oXO16d4nlVOUpA4gFTxGElroNaXqBKSM1i3+DnINy7I
+yITMZ8iMdljE5UqiPCg815mFiYm6oarhN65y7wGqMTnGXh5DIcA6cemUhhoirteSm0WjC4bFHTdf
+j0O+er+ekjA88Wp76gMUNTl/gNCDIKXVjPQsas/PatVpnBORUeTS8pr16OgwR8wuNR2UUcVw7lzq
+pkBQM6R1bdOBQS7S2AkOhADlxN3mW4RTWiB9NW0erkAJQ6iLVXQYU5I8wqP8dm4lWA7KkrhNLIZd
+HGUa+EbMIuDffvZh1d4Cs4JIQA/T69vnit9KQQzG3bCfKsRgVuVTqa1k9nLk1mHczATugZL7+6rD
+AZNdMKFc4pD4J4uACpzvoZg5v6vuRjNxj9kDF+XPvLV0xTKR7WQhooJdIs8a5mY94hDE8LBc7nAd
+WDTQhXZuu/r1Jp1KLd0tElLzMiEhxpCwow8x+dkMY6dzVJ56IoSczD+ged9ADeWMxgDmm1V/haLf
+kzleTf/AZSVXd2N4VrzYp1w7Gg4UWssSxGSP/zdw9ZFRp4CcKDS4CaJWjSuT7KYJPngUIwko711F
+qGECXX7l7sbVaYPen51BYxUb9+yoDG0K/TkBPMSdA55JslzX6+gWnBpfJV4gcKTNa7wVFVs6uiQm
+KxNz9DHTeJPd6FBXwbmwfLHc71S7HddYWrG0075W+pUOWPVmy30joqfPK2B/eWPIT6FSD2e/Q1KH
+7iZ7S+gXkTxlh5jXx+yD+wozRupo6+kEFv5Y3DT9eJCd1foXFYfsKvd1NrwEYHpQpLvLCRJ07qH/
+pgwoM+Yt0QxF4kCDLE0d7ubp8f3WvwkOTXIK8fYF1b6aiIkytVDSTbrYgOm6JPBFmElI3xlu2M7/
+GubQAvspmVF9z4R2+e/0nlcopY/bMaNk6NTv+iV9vBeu0D8woHjmH1+hGno4T6qOsrldP8nqTPAY
+ipAiAZy4r3vtwBV5eA/iJEsZd+tHkRf2oAepvew5m05487anSMwRPYwiHus4RHi7AmBG3GhCp5TL
+IQMsMGZZdxNWNILOpvGRh+Zes+QZ8fKfcWZObJIISo398DBMvtRwOFAxbk5/qBrfGRYYvIoATW11
+6aGgI76qG1mWjn0OvNOBCTyQbLfcbtpdnKoYAsVufwHmMtrIE2Fa9UaeV/zqlkng4PlzWL0WMJ0J
+fhTfh44YKfmcHsuuJAwFmIkLoOBuu8dTjHRM8F+2KWju3it1W6mlKkLPz/RjZ6Y07ShjrN6UPP/2
+k5J8L0uGeTfMYgPgh91dGyS+DD+tc2N+y2Ay22WSrDZPWNXC4shPjg7TCtfjhYHZ7m/15E6SYw8t
+1SCkBdbyd5819pVswrNh+Fy2MC+t1w+LGMn9TuugpVDClGGiafzY8fPj0k8oE4xyFKPhIEBjuXju
+g4dTwwkfqhX3JxceL+Mqdvjw19aMVPK4AWHTjGLzG1kucqCI/abBGSNJx2nfFzgJG9PAeG/U5D/b
+q7URp7dFzWOdZdmYXLP2Xug0QERJqNhqp1ADHZLa2etmb9wY2PWHoFDo1UjRaTzxci195gvqmC93
+//ZFplSOGdeiSE0hwDGUXd5ws1FZvNXVsYi6zNfngSrBgiBhib9jwk/dMUqtIxF1t//TgNMzAeP3
+k3jWj3rh+HPxGRO99YL1RUvWioTjiX6bw+nbGnitBH5/+zOdjQhKtj01Y3sDrZwZVQMKJEvDHnj8
+ks/eAGRGoV9R4WP7TnXtJGrD6+WxNYhb94d6tbb7r2zQqW6v20agtfnaVBtMgGxGOxrVyvv5JLfh
+okmvkCNW3pFvZkgg7ZNJ7e6aP+3otJ+eGpLu1xE07HdsokjSwawYwEn7eDt3t5H9Rf/urEg/qRrE
+mHXcje9vqtZ7xLN5yizdln11EKmkkQAqrB5u5tYpbqWA6BA7Y8j4GzUbK2txLoD8Ie350uBqlxdP
+NFVSq+R++soAflILl+dD4wYRghnTpot3OhCVawuKQ8/JK4Bw7O92YRto3dSpWQmGFJVVWTG2r9sl
+e0ghmjuPUGHvov/7dYfCH4Pz7pxjToe3HvvUNlD10ffruUzYOL+ceD+H/uH59IoBz2wvBXIIEmOi
+S2BtnNSmuDPhH4gG8+O5DN5lv+PMH87BZ/wrEBqVXok5ceCmPiAi7dOnn0==

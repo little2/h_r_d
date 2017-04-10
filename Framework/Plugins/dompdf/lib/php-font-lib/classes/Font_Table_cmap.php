@@ -1,252 +1,152 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * `cmap` font table.
- * 
- * @package php-font-lib
- */
-class Font_Table_cmap extends Font_Table {
-  private static $header_format = array(
-    "version"         => self::uint16,
-    "numberSubtables" => self::uint16,
-  );
-  
-  private static $subtable_header_format = array(
-    "platformID"         => self::uint16,
-    "platformSpecificID" => self::uint16,
-    "offset"             => self::uint32,
-  );
-  
-  private static $subtable_v4_format = array(
-    "length"        => self::uint16, 
-    "language"      => self::uint16, 
-    "segCountX2"    => self::uint16, 
-    "searchRange"   => self::uint16, 
-    "entrySelector" => self::uint16, 
-    "rangeShift"    => self::uint16,
-  );
-  
-  protected function _parse(){
-    $font = $this->getFont();
-    
-    $cmap_offset = $font->pos();
-    
-    $data = $font->unpack(self::$header_format);
-    
-    $subtables = array();
-    for($i = 0; $i < $data["numberSubtables"]; $i++){
-      $subtables[] = $font->unpack(self::$subtable_header_format);
-    }
-    $data["subtables"] = $subtables;
-    
-    foreach($data["subtables"] as $i => &$subtable) {
-      $font->seek($cmap_offset + $subtable["offset"]);
-      
-      $subtable["format"] = $font->readUInt16();
-      
-      // @todo Only CMAP version 4
-      if($subtable["format"] != 4) {
-        unset($data["subtables"][$i]);
-        $data["numberSubtables"]--;
-        continue;
-      }
-      
-      $subtable += $font->unpack(self::$subtable_v4_format);
-      $segCount = $subtable["segCountX2"] / 2;
-      $subtable["segCount"] = $segCount;
-      
-      $endCode       = $font->r(array(self::uint16, $segCount));
-      
-      $font->readUInt16(); // reservedPad
-      
-      $startCode     = $font->r(array(self::uint16, $segCount));
-      $idDelta       = $font->r(array(self::int16, $segCount));
-      
-      $ro_start      = $font->pos();
-      $idRangeOffset = $font->r(array(self::uint16, $segCount));
-      
-      $glyphIndexArray = array();
-      for($i = 0; $i < $segCount; $i++) {
-        $c1 = $startCode[$i];
-        $c2 = $endCode[$i];
-        $d  = $idDelta[$i];
-        $ro = $idRangeOffset[$i];
-        
-        if($ro > 0)
-          $font->seek($subtable["offset"] + 2 * $i + $ro);
-          
-        for($c = $c1; $c <= $c2; $c++) {
-          if ($ro == 0)
-            $gid = ($c + $d) & 0xFFFF;
-          else {
-            $offset = ($c - $c1) * 2 + $ro;
-            $offset = $ro_start + 2 * $i + $offset;
-            
-            $font->seek($offset);
-            $gid = $font->readUInt16();
-            
-            if ($gid != 0)
-               $gid = ($gid + $d) & 0xFFFF;
-          }
-          
-          if($gid > 0) {
-            $glyphIndexArray[$c] = $gid;
-          }
-        }
-      }
-      
-      $subtable += array(
-        "endCode"         => $endCode,
-        "startCode"       => $startCode,
-        "idDelta"         => $idDelta,
-        "idRangeOffset"   => $idRangeOffset,
-        "glyphIndexArray" => $glyphIndexArray,
-      );
-    }
-    
-    $this->data = $data;
-  }
-  
-  function _encode(){
-    $font = $this->getFont();
-
-    $subset = $font->getSubset();
-    $glyphIndexArray = $font->getUnicodeCharMap();
-
-    $newGlyphIndexArray = array();
-    foreach ($glyphIndexArray as $code => $gid) {
-      $new_gid = array_search($gid, $subset);
-      if ($new_gid !== false) {
-        $newGlyphIndexArray[$code] = $new_gid;
-      }
-    }
-
-    ksort($newGlyphIndexArray); // Sort by char code
-    
-    $segments = array();
-
-    $i = -1;
-    $prevCode = 0xFFFF;
-    $prevGid = 0xFFFF;
-
-    foreach($newGlyphIndexArray as $code => $gid) {
-      if (
-        $prevCode + 1 != $code ||
-        $prevGid + 1 != $gid
-      ) {
-        $i++;
-        $segments[$i] = array();
-      }
-      
-      $segments[$i][] = array($code, $gid);
-
-      $prevCode = $code;
-      $prevGid = $gid;
-    }
-    
-    $segments[][] = array(0xFFFF, 0xFFFF);
-    
-    $startCode = array();
-    $endCode = array();
-    $idDelta = array();
-    
-    foreach($segments as $codes){
-      $start = reset($codes);
-      $end   = end($codes);
-      
-      $startCode[] = $start[0];
-      $endCode[]   = $end[0];
-      $idDelta[]   = $start[1] - $start[0];
-    }
-    
-    $segCount = count($startCode);
-    $idRangeOffset = array_fill(0, $segCount, 0);
-    
-    $searchRange = 1;
-    $entrySelector = 0;
-    while ($searchRange * 2 <= $segCount) {
-      $searchRange *= 2;
-      $entrySelector++;
-    }
-    $searchRange *= 2;
-    $rangeShift = $segCount * 2 - $searchRange;
-    
-    $subtables = array(
-      array(
-        // header
-        "platformID"         => 3, // Unicode
-        "platformSpecificID" => 1,
-        "offset"        => null,
-      
-        // subtable
-        "format"        => 4, 
-        "length"        => null, 
-        "language"      => 0, 
-        "segCount"      => $segCount, 
-        "segCountX2"    => $segCount * 2, 
-        "searchRange"   => $searchRange, 
-        "entrySelector" => $entrySelector, 
-        "rangeShift"    => $rangeShift,
-        "startCode"     => $startCode,
-        "endCode"       => $endCode,
-        "idDelta"       => $idDelta,
-        "idRangeOffset" => $idRangeOffset, 
-        "glyphIndexArray" => $newGlyphIndexArray,
-      )
-    );
-    
-    $data = array(
-      "version"         => 0,
-      "numberSubtables" => count($subtables),
-      "subtables"       => $subtables,
-    );
-
-    $length = $font->pack(self::$header_format, $data);
-    
-    $subtable_headers_size = $data["numberSubtables"] * 8; // size of self::$subtable_header_format
-    $subtable_headers_offset = $font->pos();
-    
-    $length += $font->write(str_repeat("\0", $subtable_headers_size), $subtable_headers_size);
-    
-    // write subtables data
-    foreach($data["subtables"] as $i => $subtable) {
-      $length_before = $length;
-      $data["subtables"][$i]["offset"] = $length;
-      
-      $length += $font->writeUInt16($subtable["format"]);
-      
-      $before_subheader = $font->pos();
-      $length += $font->pack(self::$subtable_v4_format, $subtable);
-
-      $segCount = $subtable["segCount"];
-      $length += $font->w(array(self::uint16, $segCount), $subtable["endCode"]);
-      $length += $font->writeUInt16(0); // reservedPad
-      $length += $font->w(array(self::uint16, $segCount), $subtable["startCode"]);
-      $length += $font->w(array(self::int16, $segCount), $subtable["idDelta"]);
-      $length += $font->w(array(self::uint16, $segCount), $subtable["idRangeOffset"]);
-      $length += $font->w(array(self::uint16, $segCount), array_values($subtable["glyphIndexArray"]));
-      
-      $after_subtable = $font->pos();
-      
-      $subtable["length"] = $length - $length_before;
-      $font->seek($before_subheader);
-      $length += $font->pack(self::$subtable_v4_format, $subtable);
-      
-      $font->seek($after_subtable);
-    }
-    
-    // write subtables headers
-    $font->seek($subtable_headers_offset);
-    foreach($data["subtables"] as $subtable) {
-      $font->pack(self::$subtable_header_format, $subtable);
-    }
-    
-    return $length;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

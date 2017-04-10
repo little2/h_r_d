@@ -1,592 +1,185 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Translates HTML 4.0 attributes into CSS rules
- *
- * @package dompdf
- */
-class Attribute_Translator {
-  static $_style_attr = "_html_style_attribute";
-  
-  // Munged data originally from
-  // http://www.w3.org/TR/REC-html40/index/attributes.html
-  // http://www.cs.tut.fi/~jkorpela/html2css.html
-  static private $__ATTRIBUTE_LOOKUP = array(
-    //'caption' => array ( 'align' => '', ),
-    'img' => array(
-      'align' => array(
-        'bottom' => 'vertical-align: baseline;',
-        'middle' => 'vertical-align: middle;',
-        'top'    => 'vertical-align: top;',
-        'left'   => 'float: left;',
-        'right'  => 'float: right;'
-      ),
-      'border' => 'border: %0.2F px solid;',
-      'height' => 'height: %s px;',
-      'hspace' => 'padding-left: %1$0.2F px; padding-right: %1$0.2F px;',
-      'vspace' => 'padding-top: %1$0.2F px; padding-bottom: %1$0.2F px;',
-      'width'  => 'width: %s px;',
-    ),
-    'table' => array(
-      'align' => array(
-        'left'   => 'margin-left: 0; margin-right: auto;',
-        'center' => 'margin-left: auto; margin-right: auto;',
-        'right'  => 'margin-left: auto; margin-right: 0;'
-      ),
-      'bgcolor' => 'background-color: %s;',
-      'border' => '!set_table_border',
-      'cellpadding' => '!set_table_cellpadding',//'border-spacing: %0.2F; border-collapse: separate;',
-      'cellspacing' => '!set_table_cellspacing',
-      'frame' => array(
-        'void'   => 'border-style: none;',
-        'above'  => 'border-top-style: solid;',
-        'below'  => 'border-bottom-style: solid;',
-        'hsides' => 'border-left-style: solid; border-right-style: solid;',
-        'vsides' => 'border-top-style: solid; border-bottom-style: solid;',
-        'lhs'    => 'border-left-style: solid;',
-        'rhs'    => 'border-right-style: solid;',
-        'box'    => 'border-style: solid;',
-        'border' => 'border-style: solid;'
-      ),
-      'rules' => '!set_table_rules',
-      'width' => 'width: %s;',
-    ),
-    'hr' => array(
-      'align'   => '!set_hr_align', // Need to grab width to set 'left' & 'right' correctly
-      'noshade' => 'border-style: solid;',
-      'size'    => '!set_hr_size', //'border-width: %0.2F px;',
-      'width'   => 'width: %s;',
-    ),
-    'div' => array(
-      'align' => 'text-align: %s;',
-    ),
-    'h1' => array(
-      'align' => 'text-align: %s;',
-    ),
-    'h2' => array(
-      'align' => 'text-align: %s;',
-    ),
-    'h3' => array(
-      'align' => 'text-align: %s;',
-    ),
-    'h4' => array(
-      'align' => 'text-align: %s;',
-    ),
-    'h5' => array(
-      'align' => 'text-align: %s;',
-    ),
-    'h6' => array(
-      'align' => 'text-align: %s;',
-    ),
-    'p' => array(
-      'align' => 'text-align: %s;',
-    ),
-//    'col' => array(
-//      'align'  => '',
-//      'valign' => '',
-//    ),
-//    'colgroup' => array(
-//      'align'  => '',
-//      'valign' => '',
-//    ),
-    'tbody' => array(
-      'align'  => '!set_table_row_align',
-      'valign' => '!set_table_row_valign',
-    ),
-    'td' => array(
-      'align'   => 'text-align: %s;',
-      'bgcolor' => '!set_background_color',
-      'height'  => 'height: %s;',
-      'nowrap'  => 'white-space: nowrap;',
-      'valign'  => 'vertical-align: %s;',
-      'width'   => 'width: %s;',
-    ),
-    'tfoot' => array(
-      'align'   => '!set_table_row_align',
-      'valign'  => '!set_table_row_valign',
-    ),
-    'th' => array(
-      'align'   => 'text-align: %s;',
-      'bgcolor' => '!set_background_color',
-      'height'  => 'height: %s;',
-      'nowrap'  => 'white-space: nowrap;',
-      'valign'  => 'vertical-align: %s;',
-      'width'   => 'width: %s;',
-    ),
-    'thead' => array(
-      'align'   => '!set_table_row_align',
-      'valign'  => '!set_table_row_valign',
-    ),
-    'tr' => array(
-      'align'   => '!set_table_row_align',
-      'bgcolor' => '!set_table_row_bgcolor',
-      'valign'  => '!set_table_row_valign',
-    ),
-    'body' => array(
-      'background' => 'background-image: url(%s);',
-      'bgcolor'    => '!set_background_color',
-      'link'       => '!set_body_link',
-      'text'       => '!set_color',
-    ),
-    'br' => array(
-      'clear' => 'clear: %s;',
-    ),
-    'basefont' => array(
-      'color' => '!set_color',
-      'face'  => 'font-family: %s;',
-      'size'  => '!set_basefont_size',
-    ),
-    'font' => array(
-      'color' => '!set_color',
-      'face'  => 'font-family: %s;',
-      'size'  => '!set_font_size',
-    ),
-    'dir' => array(
-      'compact' => 'margin: 0.5em 0;',
-    ),
-    'dl' => array(
-      'compact' => 'margin: 0.5em 0;',
-    ),
-    'menu' => array(
-      'compact' => 'margin: 0.5em 0;',
-    ),
-    'ol' => array(
-      'compact' => 'margin: 0.5em 0;',
-      'start'   => 'counter-reset: -dompdf-default-counter %d;',
-      'type'    => 'list-style-type: %s;',
-    ),
-    'ul' => array(
-      'compact' => 'margin: 0.5em 0;',
-      'type'    => 'list-style-type: %s;',
-    ),
-    'li' => array(
-      'type'    => 'list-style-type: %s;',
-      'value'   => 'counter-reset: -dompdf-default-counter %d;',
-    ),
-    'pre' => array(
-      'width' => 'width: %s;',
-    ),
-  );
-  
-  static protected $_last_basefont_size = 3;
-  static protected $_font_size_lookup = array(
-    // For basefont support
-    -3 => "4pt", 
-    -2 => "5pt", 
-    -1 => "6pt", 
-     0 => "7pt", 
-    
-     1 => "8pt",
-     2 => "10pt",
-     3 => "12pt",
-     4 => "14pt",
-     5 => "18pt",
-     6 => "24pt",
-     7 => "34pt",
-     
-    // For basefont support
-     8 => "48pt", 
-     9 => "44pt", 
-    10 => "52pt", 
-    11 => "60pt", 
-  );
-
-  /**
-   * @param Frame $frame
-   */
-  static function translate_attributes(Frame $frame) {
-    $node = $frame->get_node();
-    $tag = $node->nodeName;
-
-    if ( !isset(self::$__ATTRIBUTE_LOOKUP[$tag]) ) {
-      return;
-    }
-
-    $valid_attrs = self::$__ATTRIBUTE_LOOKUP[$tag];
-    $attrs = $node->attributes;
-    $style = rtrim($node->getAttribute(self::$_style_attr), "; ");
-    if ( $style != "" ) {
-      $style .= ";";
-    }
-
-    foreach ($attrs as $attr => $attr_node ) {
-      if ( !isset($valid_attrs[$attr]) ) {
-        continue;
-      }
-
-      $value = $attr_node->value;
-
-      $target = $valid_attrs[$attr];
-      
-      // Look up $value in $target, if $target is an array:
-      if ( is_array($target) ) {
-        if ( isset($target[$value]) ) {
-          $style .= " " . self::_resolve_target($node, $target[$value], $value);
-        }
-      }
-      else {
-        // otherwise use target directly
-        $style .= " " . self::_resolve_target($node, $target, $value);
-      }
-    }
-    
-    if ( !is_null($style) ) {
-      $style = ltrim($style);
-      $node->setAttribute(self::$_style_attr, $style);
-    }
-    
-  }
-
-  /**
-   * @param DOMNode $node
-   * @param string  $target
-   * @param string      $value
-   *
-   * @return string
-   */
-  static protected function _resolve_target(DOMNode $node, $target, $value) {
-    if ( $target[0] === "!" ) {
-      // Function call
-      $func = "_" . mb_substr($target, 1);
-      return self::$func($node, $value);
-    }
-    
-    return $value ? sprintf($target, $value) : "";
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $new_style
-   */
-  static function append_style(DOMElement $node, $new_style) {
-    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
-    $style .= $new_style;
-    $style = ltrim($style, ";");
-    $node->setAttribute(self::$_style_attr, $style);
-  }
-
-  /**
-   * @param DOMNode $node
-   *
-   * @return DOMNodeList|DOMElement[]
-   */
-  static protected function get_cell_list(DOMNode $node) {
-    $xpath = new DOMXpath($node->ownerDocument);
-    
-    switch($node->nodeName) {
-      default:
-      case "table":
-        $query = "tr/td | thead/tr/td | tbody/tr/td | tfoot/tr/td | tr/th | thead/tr/th | tbody/tr/th | tfoot/tr/th";
-        break;
-        
-      case "tbody":
-      case "tfoot":
-      case "thead":
-        $query = "tr/td | tr/th";
-        break;
-        
-      case "tr":
-        $query = "td | th";
-        break;
-    }
-    
-    return $xpath->query($query, $node);
-  }
-
-  /**
-   * @param string $value
-   *
-   * @return string
-   */
-  static protected function _get_valid_color($value) {
-    if ( preg_match('/^#?([0-9A-F]{6})$/i', $value, $matches) ) {
-      $value = "#$matches[1]";
-    }
-    
-    return $value;
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return string
-   */
-  static protected function _set_color(DOMElement $node, $value) {
-    $value = self::_get_valid_color($value);
-    return "color: $value;";
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return string
-   */
-  static protected function _set_background_color(DOMElement $node, $value) {
-    $value = self::_get_valid_color($value);
-    return "background-color: $value;";
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null
-   */
-  static protected function _set_table_cellpadding(DOMElement $node, $value) {
-    $cell_list = self::get_cell_list($node);
-    
-    foreach ($cell_list as $cell) {
-      self::append_style($cell, "; padding: {$value}px;");
-    }
-    
-    return null;
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return string
-   */
-  static protected function _set_table_border(DOMElement $node, $value) {
-    $cell_list = self::get_cell_list($node);
-
-    foreach ($cell_list as $cell) {
-      $style = rtrim($cell->getAttribute(self::$_style_attr));
-      $style .= "; border-width: " . ($value > 0 ? 1 : 0) . "pt; border-style: inset;";
-      $style = ltrim($style, ";");
-      $cell->setAttribute(self::$_style_attr, $style);
-    }
-    
-    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
-    $style .= "; border-width: $value" . "px; ";
-    return ltrim($style, "; ");
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return string
-   */
-  static protected function _set_table_cellspacing(DOMElement $node, $value) {
-    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
-
-    if ( $value == 0 ) {
-      $style .= "; border-collapse: collapse;";
-    }
-    else {
-      $style .= "; border-spacing: {$value}px; border-collapse: separate;";
-    }
-    
-    return ltrim($style, ";");
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null|string
-   */
-  static protected function _set_table_rules(DOMElement $node, $value) {
-    $new_style = "; border-collapse: collapse;";
-    
-    switch ($value) {
-    case "none":
-      $new_style .= "border-style: none;";
-      break;
-
-    case "groups":
-      // FIXME: unsupported
-      return null;
-
-    case "rows":
-      $new_style .= "border-style: solid none solid none; border-width: 1px; ";
-      break;
-
-    case "cols":
-      $new_style .= "border-style: none solid none solid; border-width: 1px; ";
-      break;
-
-    case "all":
-      $new_style .= "border-style: solid; border-width: 1px; ";
-      break;
-      
-    default:
-      // Invalid value
-      return null;
-    }
-
-    $cell_list = self::get_cell_list($node);
-    
-    foreach ($cell_list as $cell) {
-      $style = $cell->getAttribute(self::$_style_attr);
-      $style .= $new_style;
-      $cell->setAttribute(self::$_style_attr, $style);
-    }
-    
-    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
-    $style .= "; border-collapse: collapse; ";
-    
-    return ltrim($style, "; ");
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return string
-   */
-  static protected function _set_hr_size(DOMElement $node, $value) {
-    $style = rtrim($node->getAttribute(self::$_style_attr), ";");
-    $style .= "; border-width: ".max(0, $value-2)."; ";
-    return ltrim($style, "; ");
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null|string
-   */
-  static protected function _set_hr_align(DOMElement $node, $value) {
-    $style = rtrim($node->getAttribute(self::$_style_attr),";");
-    $width = $node->getAttribute("width");
-    
-    if ( $width == "" ) {
-      $width = "100%";
-    }
-
-    $remainder = 100 - (double)rtrim($width, "% ");
-    
-    switch ($value) {
-      case "left":
-        $style .= "; margin-right: $remainder %;";
-        break;
-  
-      case "right":
-        $style .= "; margin-left: $remainder %;";
-        break;
-  
-      case "center":
-        $style .= "; margin-left: auto; margin-right: auto;";
-        break;
-  
-      default:
-        return null;
-    }
-    
-    return ltrim($style, "; ");
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null
-   */
-  static protected function _set_table_row_align(DOMElement $node, $value) {
-    $cell_list = self::get_cell_list($node);
-
-    foreach ($cell_list as $cell) {
-      self::append_style($cell, "; text-align: $value;");
-    }
-
-    return null;
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null
-   */
-  static protected function _set_table_row_valign(DOMElement $node, $value) {
-    $cell_list = self::get_cell_list($node);
-
-    foreach ($cell_list as $cell) {
-      self::append_style($cell, "; vertical-align: $value;");
-    }
-
-    return null;
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null
-   */
-  static protected function _set_table_row_bgcolor(DOMElement $node, $value) {
-    $cell_list = self::get_cell_list($node);
-    $value = self::_get_valid_color($value);
-    
-    foreach ($cell_list as $cell) {
-      self::append_style($cell, "; background-color: $value;");
-    }
-
-    return null;
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null
-   */
-  static protected function _set_body_link(DOMElement $node, $value) {
-    $a_list = $node->getElementsByTagName("a");
-    $value = self::_get_valid_color($value);
-    
-    foreach ($a_list as $a) {
-      self::append_style($a, "; color: $value;");
-    }
-
-    return null;
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return null
-   */
-  static protected function _set_basefont_size(DOMElement $node, $value) {
-    // FIXME: ? we don't actually set the font size of anything here, just
-    // the base size for later modification by <font> tags.
-    self::$_last_basefont_size = $value;
-    return null;
-  }
-
-  /**
-   * @param DOMElement $node
-   * @param string     $value
-   *
-   * @return string
-   */
-  static protected function _set_font_size(DOMElement $node, $value) {
-    $style = $node->getAttribute(self::$_style_attr);
-
-    if ( $value[0] === "-" || $value[0] === "+" ) {
-      $value = self::$_last_basefont_size + (int)$value;
-    }
-    
-    if ( isset(self::$_font_size_lookup[$value]) ) {
-      $style .= "; font-size: " . self::$_font_size_lookup[$value] . ";";
-    }
-    else {
-      $style .= "; font-size: $value;";
-    }
-    
-    return ltrim($style, "; ");
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+NX1DO/PjGo4aImsMb9kYsgmByicelzWPDG==

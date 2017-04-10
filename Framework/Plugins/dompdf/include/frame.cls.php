@@ -1,1191 +1,406 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * The main Frame class
- *
- * This class represents a single HTML element.  This class stores
- * positioning information as well as containing block location and
- * dimensions. Style information for the element is stored in a {@link
- * Style} object.  Tree structure is maintained via the parent & children
- * links.
- *
- * @access protected
- * @package dompdf
- */
-class Frame {
-
-  /**
-   * The DOMElement or DOMText object this frame represents
-   *
-   * @var DOMElement|DOMText
-   */
-  protected $_node;
-
-  /**
-   * Unique identifier for this frame.  Used to reference this frame
-   * via the node.
-   *
-   * @var string
-   */
-  protected $_id;
-
-  /**
-   * Unique id counter
-   */
-  static /*protected*/ $ID_COUNTER = 0;
-
-  /**
-   * This frame's calculated style
-   *
-   * @var Style
-   */
-  protected $_style;
-
-  /**
-   * This frame's original style.  Needed for cases where frames are
-   * split across pages.
-   *
-   * @var Style
-   */
-  protected $_original_style;
-
-  /**
-   * This frame's parent in the document tree.
-   *
-   * @var Frame
-   */
-  protected $_parent;
-
-  /**
-   * This frame's children
-   *
-   * @var Frame[]
-   */
-  protected $_frame_list;
-
-  /**
-   * This frame's first child.  All children are handled as a
-   * doubly-linked list.
-   *
-   * @var Frame
-   */
-  protected $_first_child;
-
-  /**
-   * This frame's last child.
-   *
-   * @var Frame
-   */
-  protected $_last_child;
-
-  /**
-   * This frame's previous sibling in the document tree.
-   *
-   * @var Frame
-   */
-  protected $_prev_sibling;
-
-  /**
-   * This frame's next sibling in the document tree.
-   *
-   * @var Frame
-   */
-  protected $_next_sibling;
-
-  /**
-   * This frame's containing block (used in layout): array(x, y, w, h)
-   *
-   * @var float[]
-   */
-  protected $_containing_block;
-
-  /**
-   * Position on the page of the top-left corner of the margin box of
-   * this frame: array(x,y)
-   *
-   * @var float[]
-   */
-  protected $_position;
-
-  /**
-   * Absolute opacity of this frame
-   *
-   * @var float
-   */
-  protected $_opacity;
-
-  /**
-   * This frame's decorator
-   *
-   * @var Frame_Decorator
-   */
-  protected $_decorator;
-
-  /**
-   * This frame's containing line box
-   *
-   * @var Line_Box
-   */
-  protected $_containing_line;
-
-  protected $_is_cache = array();
-
-  /**
-   * Tells wether the frame was already pushed to the next page
-   *
-   * @var bool
-   */
-  public $_already_pushed = false;
-
-  public $_float_next_line = false;
-
-  /**
-   * Tells wether the frame was split
-   *
-   * @var bool
-   */
-  public $_splitted;
-
-  static $_ws_state = self::WS_SPACE;
-
-  const WS_TEXT = 1;
-  const WS_SPACE = 2;
-
-  /**
-   * Class destructor
-   */
-  function __destruct() {
-    clear_object($this);
-  }
-
-  /**
-   * Class constructor
-   *
-   * @param DOMNode $node the DOMNode this frame represents
-   */
-  function __construct(DOMNode $node) {
-    $this->_node = $node;
-
-    $this->_parent = null;
-    $this->_first_child = null;
-    $this->_last_child = null;
-    $this->_prev_sibling = $this->_next_sibling = null;
-
-    $this->_style = null;
-    $this->_original_style = null;
-
-    $this->_containing_block = array(
-      "x" => null,
-      "y" => null,
-      "w" => null,
-      "h" => null,
-    );
-
-    $this->_containing_block[0] =& $this->_containing_block["x"];
-    $this->_containing_block[1] =& $this->_containing_block["y"];
-    $this->_containing_block[2] =& $this->_containing_block["w"];
-    $this->_containing_block[3] =& $this->_containing_block["h"];
-
-    $this->_position = array(
-      "x" => null,
-      "y" => null,
-    );
-
-    $this->_position[0] =& $this->_position["x"];
-    $this->_position[1] =& $this->_position["y"];
-
-    $this->_opacity = 1.0;
-    $this->_decorator = null;
-
-    $this->set_id( self::$ID_COUNTER++ );
-  }
-
-  // WIP : preprocessing to remove all the unused whitespace
-  protected function ws_trim(){
-    if ( $this->ws_keep() ) {
-      return;
-    }
-
-    switch(self::$_ws_state) {
-      case self::WS_SPACE:
-        $node = $this->_node;
-
-        if ( $node->nodeName === "#text" ) {
-          $node->nodeValue = preg_replace("/[ \t\r\n\f]+/u", " ", $node->nodeValue);
-
-          // starts with a whitespace
-          if ( isset($node->nodeValue[0]) && $node->nodeValue[0] === " " ) {
-            $node->nodeValue = ltrim($node->nodeValue);
-          }
-
-          // if not empty
-          if ( $node->nodeValue !== "" ) {
-            // change the current state (text)
-            self::$_ws_state = self::WS_TEXT;
-
-            // ends with a whitespace
-            if ( preg_match("/[ \t\r\n\f]+$/u", $node->nodeValue) ) {
-              $node->nodeValue = ltrim($node->nodeValue);
-            }
-          }
-        }
-      break;
-
-      case self::WS_TEXT:
-    }
-  }
-
-  protected function ws_keep(){
-    $whitespace = $this->get_style()->white_space;
-    return in_array($whitespace, array("pre", "pre-wrap", "pre-line"));
-  }
-
-  protected function ws_is_text(){
-    $node = $this->get_node();
-
-    if ($node->nodeName === "img") {
-      return true;
-    }
-
-    if ( !$this->is_in_flow() ) {
-      return false;
-    }
-
-    if ($this->is_text_node()) {
-      return trim($node->nodeValue) !== "";
-    }
-
-    return true;
-  }
-
-  /**
-   * "Destructor": forcibly free all references held by this frame
-   *
-   * @param bool $recursive if true, call dispose on all children
-   */
-  function dispose($recursive = false) {
-
-    if ( $recursive ) {
-      while ( $child = $this->_first_child ) {
-        $child->dispose(true);
-      }
-    }
-
-    // Remove this frame from the tree
-    if ( $this->_prev_sibling ) {
-      $this->_prev_sibling->_next_sibling = $this->_next_sibling;
-    }
-
-    if ( $this->_next_sibling ) {
-      $this->_next_sibling->_prev_sibling = $this->_prev_sibling;
-    }
-
-    if ( $this->_parent && $this->_parent->_first_child === $this ) {
-      $this->_parent->_first_child = $this->_next_sibling;
-    }
-
-    if ( $this->_parent && $this->_parent->_last_child === $this ) {
-      $this->_parent->_last_child = $this->_prev_sibling;
-    }
-
-    if ( $this->_parent ) {
-      $this->_parent->get_node()->removeChild($this->_node);
-    }
-
-    $this->_style->dispose();
-    $this->_style = null;
-    unset($this->_style);
-
-    $this->_original_style->dispose();
-    $this->_original_style = null;
-    unset($this->_original_style);
-
-  }
-
-  // Re-initialize the frame
-  function reset() {
-    $this->_position["x"] = null;
-    $this->_position["y"] = null;
-
-    $this->_containing_block["x"] = null;
-    $this->_containing_block["y"] = null;
-    $this->_containing_block["w"] = null;
-    $this->_containing_block["h"] = null;
-
-    $this->_style = null;
-    unset($this->_style);
-    $this->_style = clone $this->_original_style;
-  }
-
-  //........................................................................
-
-  /**
-   * @return DOMElement|DOMText
-   */
-  function get_node() {
-    return $this->_node;
-  }
-
-  /**
-   * @return string
-   */
-  function get_id() {
-    return $this->_id;
-  }
-
-  /**
-   * @return Style
-   */
-  function get_style() {
-    return $this->_style;
-  }
-
-  /**
-   * @return Style
-   */
-  function get_original_style() {
-    return $this->_original_style;
-  }
-
-  /**
-   * @return Frame
-   */
-  function get_parent() {
-    return $this->_parent;
-  }
-
-  /**
-   * @return Frame_Decorator
-   */
-  function get_decorator() {
-    return $this->_decorator;
-  }
-
-  /**
-   * @return Frame
-   */
-  function get_first_child() {
-    return $this->_first_child;
-  }
-
-  /**
-   * @return Frame
-   */
-  function get_last_child() {
-    return $this->_last_child;
-  }
-
-  /**
-   * @return Frame
-   */
-  function get_prev_sibling() {
-    return $this->_prev_sibling;
-  }
-
-  /**
-   * @return Frame
-   */
-  function get_next_sibling() {
-    return $this->_next_sibling;
-  }
-
-  /**
-   * @return FrameList|Frame[]
-   */
-  function get_children() {
-    if ( isset($this->_frame_list) ) {
-      return $this->_frame_list;
-    }
-
-    $this->_frame_list = new FrameList($this);
-    return $this->_frame_list;
-  }
-
-  // Layout property accessors
-
-  /**
-   * Containing block dimensions
-   *
-   * @param $i string The key of the wanted containing block's dimension (x, y, x, h)
-   *
-   * @return float[]|float
-   */
-  function get_containing_block($i = null) {
-    if ( isset($i) ) {
-      return $this->_containing_block[$i];
-    }
-    return $this->_containing_block;
-  }
-
-  /**
-   * Block position
-   *
-   * @param $i string The key of the wanted position value (x, y)
-   *
-   * @return array|float
-   */
-  function get_position($i = null) {
-    if ( isset($i) ) {
-      return $this->_position[$i];
-    }
-    return $this->_position;
-  }
-
-  //........................................................................
-
-  /**
-   * Return the height of the margin box of the frame, in pt.  Meaningless
-   * unless the height has been calculated properly.
-   *
-   * @return float
-   */
-  function get_margin_height() {
-    $style = $this->_style;
-
-    return $style->length_in_pt(array(
-      $style->height,
-      $style->margin_top,
-      $style->margin_bottom,
-      $style->border_top_width,
-      $style->border_bottom_width,
-      $style->padding_top,
-      $style->padding_bottom
-    ), $this->_containing_block["h"]);
-  }
-
-  /**
-   * Return the width of the margin box of the frame, in pt.  Meaningless
-   * unless the width has been calculated properly.
-   *
-   * @return float
-   */
-  function get_margin_width() {
-    $style = $this->_style;
-
-    return $style->length_in_pt(array(
-      $style->width,
-      $style->margin_left,
-      $style->margin_right,
-      $style->border_left_width,
-      $style->border_right_width,
-      $style->padding_left,
-      $style->padding_right
-    ), $this->_containing_block["w"]);
-  }
-
-  function get_break_margins(){
-    $style = $this->_style;
-
-    return $style->length_in_pt(array(
-      //$style->height,
-      $style->margin_top,
-      $style->margin_bottom,
-      $style->border_top_width,
-      $style->border_bottom_width,
-      $style->padding_top,
-      $style->padding_bottom
-    ), $this->_containing_block["h"]);
-  }
-
-  /**
-   * Return the padding box (x,y,w,h) of the frame
-   *
-   * @return array
-   */
-  function get_padding_box() {
-    $style = $this->_style;
-    $cb = $this->_containing_block;
-
-    $x = $this->_position["x"] +
-      $style->length_in_pt(array($style->margin_left,
-                                 $style->border_left_width),
-                           $cb["w"]);
-
-    $y = $this->_position["y"] +
-      $style->length_in_pt(array($style->margin_top,
-                                 $style->border_top_width),
-                           $cb["h"]);
-
-    $w = $style->length_in_pt(array($style->padding_left,
-                                    $style->width,
-                                    $style->padding_right),
-                              $cb["w"]);
-
-    $h = $style->length_in_pt(array($style->padding_top,
-                                    $style->height,
-                                    $style->padding_bottom),
-                             $cb["h"]);
-
-    return array(0 => $x, "x" => $x,
-                 1 => $y, "y" => $y,
-                 2 => $w, "w" => $w,
-                 3 => $h, "h" => $h);
-  }
-
-  /**
-   * Return the border box of the frame
-   *
-   * @return array
-   */
-  function get_border_box() {
-    $style = $this->_style;
-    $cb = $this->_containing_block;
-
-    $x = $this->_position["x"] + $style->length_in_pt($style->margin_left, $cb["w"]);
-
-    $y = $this->_position["y"] + $style->length_in_pt($style->margin_top,  $cb["h"]);
-
-    $w = $style->length_in_pt(array($style->border_left_width,
-                                    $style->padding_left,
-                                    $style->width,
-                                    $style->padding_right,
-                                    $style->border_right_width),
-                              $cb["w"]);
-
-    $h = $style->length_in_pt(array($style->border_top_width,
-                                    $style->padding_top,
-                                    $style->height,
-                                    $style->padding_bottom,
-                                    $style->border_bottom_width),
-                              $cb["h"]);
-
-    return array(0 => $x, "x" => $x,
-                 1 => $y, "y" => $y,
-                 2 => $w, "w" => $w,
-                 3 => $h, "h" => $h);
-  }
-
-  function get_opacity($opacity = null) {
-    if ( $opacity !== null ) {
-      $this->set_opacity($opacity);
-    }
-    return $this->_opacity;
-  }
-
-  /**
-   * @return Line_Box
-   */
-  function &get_containing_line() {
-    return $this->_containing_line;
-  }
-
-  //........................................................................
-
-  // Set methods
-  function set_id($id) {
-    $this->_id = $id;
-
-    // We can only set attributes of DOMElement objects (nodeType == 1).
-    // Since these are the only objects that we can assign CSS rules to,
-    // this shortcoming is okay.
-    if ( $this->_node->nodeType == XML_ELEMENT_NODE ) {
-      $this->_node->setAttribute("frame_id", $id);
-    }
-  }
-
-  function set_style(Style $style) {
-    if ( is_null($this->_style) ) {
-      $this->_original_style = clone $style;
-    }
-
-    //$style->set_frame($this);
-    $this->_style = $style;
-  }
-
-  function set_decorator(Frame_Decorator $decorator) {
-    $this->_decorator = $decorator;
-  }
-
-  function set_containing_block($x = null, $y = null, $w = null, $h = null) {
-    if ( is_array($x) ){
-      foreach($x as $key => $val){
-        $$key = $val;
-      }
-    }
-
-    if (is_numeric($x)) {
-      $this->_containing_block["x"] = $x;
-    }
-
-    if (is_numeric($y)) {
-      $this->_containing_block["y"] = $y;
-    }
-
-    if (is_numeric($w)) {
-      $this->_containing_block["w"] = $w;
-    }
-
-    if (is_numeric($h)) {
-      $this->_containing_block["h"] = $h;
-    }
-  }
-
-  function set_position($x = null, $y = null) {
-    if ( is_array($x) ) {
-      list($x, $y) = array($x["x"], $x["y"]);
-    }
-
-    if ( is_numeric($x) ) {
-      $this->_position["x"] = $x;
-    }
-
-    if ( is_numeric($y) ) {
-      $this->_position["y"] = $y;
-    }
-  }
-
-  function set_opacity($opacity) {
-    $parent = $this->get_parent();
-    $base_opacity = (($parent && $parent->_opacity !== null) ? $parent->_opacity : 1.0);
-    $this->_opacity = $base_opacity * $opacity;
-  }
-
-  function set_containing_line(Line_Box $line) {
-    $this->_containing_line = $line;
-  }
-
-  //........................................................................
-
-  /**
-   * Tells if the frame is a text node
-   * @return bool
-   */
-  function is_text_node() {
-    if ( isset($this->_is_cache["text_node"]) ) {
-      return $this->_is_cache["text_node"];
-    }
-
-    return $this->_is_cache["text_node"] = ($this->get_node()->nodeName === "#text");
-  }
-
-  function is_positionned() {
-    if ( isset($this->_is_cache["positionned"]) ) {
-      return $this->_is_cache["positionned"];
-    }
-
-    $position = $this->get_style()->position;
-
-    return $this->_is_cache["positionned"] = in_array($position, Style::$POSITIONNED_TYPES);
-  }
-
-  function is_absolute() {
-    if ( isset($this->_is_cache["absolute"]) ) {
-      return $this->_is_cache["absolute"];
-    }
-
-    $position = $this->get_style()->position;
-
-    return $this->_is_cache["absolute"] = ($position === "absolute" || $position === "fixed");
-  }
-
-  function is_block() {
-    if ( isset($this->_is_cache["block"]) ) {
-      return $this->_is_cache["block"];
-    }
-
-    return $this->_is_cache["block"] = in_array($this->get_style()->display, Style::$BLOCK_TYPES);
-  }
-
-  function is_in_flow() {
-    if ( isset($this->_is_cache["in_flow"]) ) {
-      return $this->_is_cache["in_flow"];
-    }
-
-    $enable_css_float = $this->get_style()->get_stylesheet()->get_dompdf()->get_option("enable_css_float");
-    return $this->_is_cache["in_flow"] = !($enable_css_float && $this->get_style()->float !== "none" || $this->is_absolute());
-  }
-
-  function is_pre(){
-    if ( isset($this->_is_cache["pre"]) ) {
-      return $this->_is_cache["pre"];
-    }
-
-    $white_space = $this->get_style()->white_space;
-
-    return $this->_is_cache["pre"] = in_array($white_space, array("pre", "pre-wrap"));
-  }
-
-  function is_table(){
-    if ( isset($this->_is_cache["table"]) ) {
-      return $this->_is_cache["table"];
-    }
-
-    $display = $this->get_style()->display;
-
-    return $this->_is_cache["table"] = in_array($display, Style::$TABLE_TYPES);
-  }
-
-
-  /**
-   * Inserts a new child at the beginning of the Frame
-   *
-   * @param $child Frame The new Frame to insert
-   * @param $update_node boolean Whether or not to update the DOM
-   */
-  function prepend_child(Frame $child, $update_node = true) {
-    if ( $update_node ) {
-      $this->_node->insertBefore($child->_node, $this->_first_child ? $this->_first_child->_node : null);
-    }
-
-    // Remove the child from its parent
-    if ( $child->_parent ) {
-      $child->_parent->remove_child($child, false);
-    }
-
-    $child->_parent = $this;
-    $child->_prev_sibling = null;
-
-    // Handle the first child
-    if ( !$this->_first_child ) {
-      $this->_first_child = $child;
-      $this->_last_child = $child;
-      $child->_next_sibling = null;
-    }
-    else {
-      $this->_first_child->_prev_sibling = $child;
-      $child->_next_sibling = $this->_first_child;
-      $this->_first_child = $child;
-    }
-  }
-
-  /**
-   * Inserts a new child at the end of the Frame
-   *
-   * @param $child Frame The new Frame to insert
-   * @param $update_node boolean Whether or not to update the DOM
-   */
-  function append_child(Frame $child, $update_node = true) {
-    if ( $update_node ) {
-      $this->_node->appendChild($child->_node);
-    }
-
-    // Remove the child from its parent
-    if ( $child->_parent ) {
-      $child->_parent->remove_child($child, false);
-    }
-
-    $child->_parent = $this;
-    $child->_next_sibling = null;
-
-    // Handle the first child
-    if ( !$this->_last_child ) {
-      $this->_first_child = $child;
-      $this->_last_child = $child;
-      $child->_prev_sibling = null;
-    }
-    else {
-      $this->_last_child->_next_sibling = $child;
-      $child->_prev_sibling = $this->_last_child;
-      $this->_last_child = $child;
-    }
-  }
-
-  /**
-   * Inserts a new child immediately before the specified frame
-   *
-   * @param $new_child   Frame The new Frame to insert
-   * @param $ref         Frame The Frame after the new Frame
-   * @param $update_node boolean Whether or not to update the DOM
-   *
-   * @throws DOMPDF_Exception
-   */
-  function insert_child_before(Frame $new_child, Frame $ref, $update_node = true) {
-    if ( $ref === $this->_first_child ) {
-      $this->prepend_child($new_child, $update_node);
-      return;
-    }
-
-    if ( is_null($ref) ) {
-      $this->append_child($new_child, $update_node);
-      return;
-    }
-
-    if ( $ref->_parent !== $this ) {
-      throw new DOMPDF_Exception("Reference child is not a child of this node.");
-    }
-
-    // Update the node
-    if ( $update_node ) {
-      $this->_node->insertBefore($new_child->_node, $ref->_node);
-    }
-
-    // Remove the child from its parent
-    if ( $new_child->_parent ) {
-      $new_child->_parent->remove_child($new_child, false);
-    }
-
-    $new_child->_parent = $this;
-    $new_child->_next_sibling = $ref;
-    $new_child->_prev_sibling = $ref->_prev_sibling;
-
-    if ( $ref->_prev_sibling ) {
-      $ref->_prev_sibling->_next_sibling = $new_child;
-    }
-
-    $ref->_prev_sibling = $new_child;
-  }
-
-  /**
-   * Inserts a new child immediately after the specified frame
-   *
-   * @param $new_child   Frame The new Frame to insert
-   * @param $ref         Frame The Frame before the new Frame
-   * @param $update_node boolean Whether or not to update the DOM
-   *
-   * @throws DOMPDF_Exception
-   */
-  function insert_child_after(Frame $new_child, Frame $ref, $update_node = true) {
-    if ( $ref === $this->_last_child ) {
-      $this->append_child($new_child, $update_node);
-      return;
-    }
-    
-    if ( is_null($ref) ) {
-      $this->prepend_child($new_child, $update_node);
-      return;
-    }
-
-    if ( $ref->_parent !== $this ) {
-      throw new DOMPDF_Exception("Reference child is not a child of this node.");
-    }
-
-    // Update the node
-    if ( $update_node ) {
-      if ( $ref->_next_sibling ) {
-        $next_node = $ref->_next_sibling->_node;
-        $this->_node->insertBefore($new_child->_node, $next_node);
-      }
-      else {
-        $new_child->_node = $this->_node->appendChild($new_child->_node);
-      }
-    }
-
-    // Remove the child from its parent
-    if ( $new_child->_parent ) {
-      $new_child->_parent->remove_child($new_child, false);
-    }
-
-    $new_child->_parent = $this;
-    $new_child->_prev_sibling = $ref;
-    $new_child->_next_sibling = $ref->_next_sibling;
-
-    if ( $ref->_next_sibling ) {
-      $ref->_next_sibling->_prev_sibling = $new_child;
-    }
-
-    $ref->_next_sibling = $new_child;
-  }
-
-
-  /**
-   * Remove a child frame
-   *
-   * @param Frame   $child
-   * @param boolean $update_node  Whether or not to remove the DOM node
-   *
-   * @throws DOMPDF_Exception
-   * @return Frame The removed child frame
-   */
-  function remove_child(Frame $child, $update_node = true) {
-    if ( $child->_parent !== $this ) {
-      throw new DOMPDF_Exception("Child not found in this frame");
-    }
-
-    if ( $update_node ) {
-      $this->_node->removeChild($child->_node);
-    }
-
-    if ( $child === $this->_first_child ) {
-      $this->_first_child = $child->_next_sibling;
-    }
-
-    if ( $child === $this->_last_child ) {
-      $this->_last_child = $child->_prev_sibling;
-    }
-
-    if ( $child->_prev_sibling ) {
-      $child->_prev_sibling->_next_sibling = $child->_next_sibling;
-    }
-
-    if ( $child->_next_sibling ) {
-      $child->_next_sibling->_prev_sibling = $child->_prev_sibling;
-    }
-
-    $child->_next_sibling = null;
-    $child->_prev_sibling = null;
-    $child->_parent = null;
-    return $child;
-  }
-
-  //........................................................................
-
-  // Debugging function:
-  function __toString() {
-    // Skip empty text frames
-//     if ( $this->is_text_node() &&
-//          preg_replace("/\s/", "", $this->_node->data) === "" )
-//       return "";
-
-
-    $str = "<b>" . $this->_node->nodeName . ":</b><br/>";
-    //$str .= spl_object_hash($this->_node) . "<br/>";
-    $str .= "Id: " .$this->get_id() . "<br/>";
-    $str .= "Class: " .get_class($this) . "<br/>";
-
-    if ( $this->is_text_node() ) {
-      $tmp = htmlspecialchars($this->_node->nodeValue);
-      $str .= "<pre>'" .  mb_substr($tmp,0,70) .
-        (mb_strlen($tmp) > 70 ? "..." : "") . "'</pre>";
-    }
-    elseif ( $css_class = $this->_node->getAttribute("class") ) {
-      $str .= "CSS class: '$css_class'<br/>";
-    }
-
-    if ( $this->_parent ) {
-      $str .= "\nParent:" . $this->_parent->_node->nodeName .
-        " (" . spl_object_hash($this->_parent->_node) . ") " .
-        "<br/>";
-    }
-
-    if ( $this->_prev_sibling ) {
-      $str .= "Prev: " . $this->_prev_sibling->_node->nodeName .
-        " (" . spl_object_hash($this->_prev_sibling->_node) . ") " .
-        "<br/>";
-    }
-
-    if ( $this->_next_sibling ) {
-      $str .= "Next: " . $this->_next_sibling->_node->nodeName .
-        " (" . spl_object_hash($this->_next_sibling->_node) . ") " .
-        "<br/>";
-    }
-
-    $d = $this->get_decorator();
-    while ($d && $d != $d->get_decorator()) {
-      $str .= "Decorator: " . get_class($d) . "<br/>";
-      $d = $d->get_decorator();
-    }
-
-    $str .= "Position: " . pre_r($this->_position, true);
-    $str .= "\nContaining block: " . pre_r($this->_containing_block, true);
-    $str .= "\nMargin width: " . pre_r($this->get_margin_width(), true);
-    $str .= "\nMargin height: " . pre_r($this->get_margin_height(), true);
-
-    $str .= "\nStyle: <pre>". $this->_style->__toString() . "</pre>";
-
-    if ( $this->_decorator instanceof Block_Frame_Decorator ) {
-      $str .= "Lines:<pre>";
-      foreach ($this->_decorator->get_line_boxes() as $line) {
-        foreach ($line->get_frames() as $frame) {
-          if ($frame instanceof Text_Frame_Decorator) {
-            $str .= "\ntext: ";
-            $str .= "'". htmlspecialchars($frame->get_text()) ."'";
-          }
-          else {
-            $str .= "\nBlock: " . $frame->get_node()->nodeName . " (" . spl_object_hash($frame->get_node()) . ")";
-          }
-        }
-
-        $str .=
-          "\ny => " . $line->y . "\n" .
-          "w => " . $line->w . "\n" .
-          "h => " . $line->h . "\n" .
-          "left => " . $line->left . "\n" .
-          "right => " . $line->right . "\n";
-      }
-      $str .= "</pre>";
-    }
-    
-    $str .= "\n";
-    if ( php_sapi_name() === "cli" ) {
-      $str = strip_tags(str_replace(array("<br/>","<b>","</b>"),
-                                    array("\n","",""),
-                                    $str));
-    }
-
-    return $str;
-  }
-}
-
-//------------------------------------------------------------------------
-
-/**
- * Linked-list IteratorAggregate
- *
- * @access private
- * @package dompdf
- */
-class FrameList implements IteratorAggregate {
-  protected $_frame;
-
-  function __construct($frame) { $this->_frame = $frame; }
-  function getIterator() { return new FrameListIterator($this->_frame); }
-}
-
-/**
- * Linked-list Iterator
- *
- * Returns children in order and allows for list to change during iteration,
- * provided the changes occur to or after the current element
- *
- * @access private
- * @package dompdf
- */
-class FrameListIterator implements Iterator {
-
-  /**
-   * @var Frame
-   */
-  protected $_parent;
-
-  /**
-   * @var Frame
-   */
-  protected $_cur;
-
-  /**
-   * @var int
-   */
-  protected $_num;
-
-  function __construct(Frame $frame) {
-    $this->_parent = $frame;
-    $this->_cur = $frame->get_first_child();
-    $this->_num = 0;
-  }
-
-  function rewind() {
-    $this->_cur = $this->_parent->get_first_child();
-    $this->_num = 0;
-  }
-
-  /**
-   * @return bool
-   */
-  function valid() {
-    return isset($this->_cur);// && ($this->_cur->get_prev_sibling() === $this->_prev);
-  }
-
-  function key() { return $this->_num; }
-
-  /**
-   * @return Frame
-   */
-  function current() { return $this->_cur; }
-
-  /**
-   * @return Frame
-   */
-  function next() {
-
-    $ret = $this->_cur;
-    if ( !$ret ) {
-      return null;
-    }
-
-    $this->_cur = $this->_cur->get_next_sibling();
-    $this->_num++;
-    return $ret;
-  }
-}
-
-//------------------------------------------------------------------------
-
-/**
- * Pre-order IteratorAggregate
- *
- * @access private
- * @package dompdf
- */
-class FrameTreeList implements IteratorAggregate {
-  /**
-   * @var Frame
-   */
-  protected $_root;
-
-  function __construct(Frame $root) { $this->_root = $root; }
-
-  /**
-   * @return FrameTreeIterator
-   */
-  function getIterator() { return new FrameTreeIterator($this->_root); }
-}
-
-/**
- * Pre-order Iterator
- *
- * Returns frames in preorder traversal order (parent then children)
- *
- * @access private
- * @package dompdf
- */
-class FrameTreeIterator implements Iterator {
-  /**
-   * @var Frame
-   */
-  protected $_root;
-  protected $_stack = array();
-
-  /**
-   * @var int
-   */
-  protected $_num;
-
-  function __construct(Frame $root) {
-    $this->_stack[] = $this->_root = $root;
-    $this->_num = 0;
-  }
-
-  function rewind() {
-    $this->_stack = array($this->_root);
-    $this->_num = 0;
-  }
-
-  /**
-   * @return bool
-   */
-  function valid() {
-    return count($this->_stack) > 0;
-  }
-
-  /**
-   * @return int
-   */
-  function key() {
-    return $this->_num;
-  }
-
-  /**
-   * @return Frame
-   */
-  function current() {
-    return end($this->_stack);
-  }
-
-  /**
-   * @return Frame
-   */
-  function next() {
-    $b = end($this->_stack);
-
-    // Pop last element
-    unset($this->_stack[ key($this->_stack) ]);
-    $this->_num++;
-
-    // Push all children onto the stack in reverse order
-    if ( $c = $b->get_last_child() ) {
-      $this->_stack[] = $c;
-      while ( $c = $c->get_prev_sibling() ) {
-        $this->_stack[] = $c;
-      }
-    }
-
-    return $b;
-  }
-}
-
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

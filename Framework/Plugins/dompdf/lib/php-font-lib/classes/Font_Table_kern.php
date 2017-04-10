@@ -1,72 +1,37 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * `kern` font table.
- * 
- * @package php-font-lib
- */
-class Font_Table_kern extends Font_Table {
-  protected function _parse(){
-    $font = $this->getFont();
-    
-    $data = $font->unpack(array(
-      "version"    => self::uint16,
-      "nTables"    => self::uint16,
-    
-      // only the first subtable will be parsed
-      "subtableVersion" => self::uint16,
-      "length"     => self::uint16,
-      "coverage"   => self::uint16,
-    ));
-    
-    $data["format"] = ($data["coverage"] >> 8);
-    
-    $subtable = array();
-    
-    switch($data["format"]) {
-      case 0:
-      $subtable = $font->unpack(array(
-        "nPairs"        => self::uint16,
-        "searchRange"   => self::uint16,
-        "entrySelector" => self::uint16,
-        "rangeShift"    => self::uint16,
-      ));
-      
-      $pairs = array();
-      $tree = array();
-       
-      for ($i = 0; $i < $subtable["nPairs"]; $i++) {
-        $left  = $font->readUInt16();
-        $right = $font->readUInt16();
-        $value = $font->readInt16();
-        
-        $pairs[] = array(
-          "left"  => $left,
-          "right" => $right,
-          "value" => $value,
-        );
-        
-        $tree[$left][$right] = $value;
-      }
-      
-      //$subtable["pairs"] = $pairs;
-      $subtable["tree"] = $tree;
-      break;
-      
-      case 1:
-      case 2:
-      case 3:
-      break;
-    }
-    
-    $data["subtable"] = $subtable;
-    
-    $this->data = $data;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

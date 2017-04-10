@@ -1,107 +1,53 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
- */
-
-/**
- * `glyf` font table.
- *
- * @package php-font-lib
- */
-class Font_Glyph_Outline extends Font_Binary_Stream {
-  /**
-   * @var Font_Table_glyf
-   */
-  protected $table;
-
-  protected $offset;
-  protected $size;
-
-  // Data
-  public $numberOfContours;
-  public $xMin;
-  public $yMin;
-  public $xMax;
-  public $yMax;
-
-  public $raw;
-
-  /**
-   * @param Font_Table_glyf $table
-   * @param                 $offset
-   * @param                 $size
-   *
-   * @return Font_Glyph_Outline
-   */
-  static function init(Font_Table_glyf $table, $offset, $size) {
-    $font = $table->getFont();
-    $font->seek($offset);
-
-    if ($font->readInt16() > -1) {
-      /** @var Font_Glyph_Outline_Simple $glyph */
-      $glyph = new Font_Glyph_Outline_Simple($table, $offset, $size);
-    }
-    else {
-      /** @var Font_Glyph_Outline_Composite $glyph */
-      $glyph = new Font_Glyph_Outline_Composite($table, $offset, $size);
-    }
-
-    $glyph->parse();
-    return $glyph;
-  }
-
-  /**
-   * @return Font_TrueType
-   */
-  function getFont() {
-    return $this->table->getFont();
-  }
-
-  function __construct(Font_Table_glyf $table, $offset = null, $size = null) {
-    $this->table  = $table;
-    $this->offset = $offset;
-    $this->size   = $size;
-  }
-
-  function parse() {
-    $font = $this->getFont();
-    $font->seek($this->offset);
-
-    if (!$this->size) {
-      return;
-    }
-
-    $this->raw = $font->read($this->size);
-  }
-
-  function parseData(){
-    $font = $this->getFont();
-    $font->seek($this->offset);
-
-    $this->numberOfContours = $font->readInt16();
-    $this->xMin = $font->readFWord();
-    $this->yMin = $font->readFWord();
-    $this->xMax = $font->readFWord();
-    $this->yMax = $font->readFWord();
-  }
-
-  function encode(){
-    $font = $this->getFont();
-    return $font->write($this->raw, strlen($this->raw));
-  }
-
-  function getSVGContours() {
-    // Inherit
-  }
-
-  function getGlyphIDs(){
-    return array();
-  }
-}
-
-require_once dirname(__FILE__) . "/Font_Glyph_Outline_Simple.php";
-require_once dirname(__FILE__) . "/Font_Glyph_Outline_Composite.php";
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+xG1yXPKY4wprHxxrZVQuoViUsm==

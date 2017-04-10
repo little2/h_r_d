@@ -7,8 +7,8 @@
 <script src="/hrd/Framework/Plugins/orgchart/jquery.orgchart.js" type="text/javascript"></script>
 
 
-<script type="text/javascript">	
-	$(function() {		
+<script type="text/javascript">
+	$(function() {
 		var container=$('#container_{elementID}');
 		$(".lable",container).each(function() {
 			$(this).click(function() {
@@ -23,7 +23,7 @@
 				$("#" + divn).show();
 			});
 		});
-	
+
 	});
 
 
@@ -34,59 +34,59 @@
 <body>
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<form>
-		
-	
+
+
 	<div class="labMenu">
-		<div class="lable"  dis="dis_quiz"  style="background-color: yellow;">{$lang.EvaluationTableInfo}</div>		
+		<div class="lable"  dis="dis_quiz"  style="background-color: yellow;">{$lang.EvaluationTableInfo}</div>
 		<div class="lable"  dis="dis_suggest" >{$lang.OpenComment}</div>
 	</div>
 
 	<div id="dis_quiz" class="labDiv"   style="display: block;">
-		<div class="uc1">		
+		<div class="uc1">
 			<div class="hide">
 				<input id="class_evaluation_evaluator_id" name="class_evaluation_evaluator_id" value="{class_evaluation_evaluator_id}" />
 				<input id="class_evaluation_appraisee_id" name="class_evaluation_appraisee_id" value="{class_evaluation_appraisee_id}" />
-				
+
 			</div>
 			<table id="appraisee_area" class="contb"   style="border: #D6E9FF;background: #fbfab5;width:94%;margin-left: 20px;margin-top: 20px;padding:20px">
 			<tr align="left" >
-				<td rowspan="4" style="width:40px">
+				<td rowspan="6" style="width:40px">
 					<img src='templates/bhrsp/images/icon_robot.png'>
 				</td>
-				
-				<th width="17%">				
+
+				<th width="17%">
 					<img src='templates/bhrsp/images/arrow_small.png'>
 					{$lang.Appraisee}:
 				</th>
 				<td  width="30%">
 					{fullName}
 				</td>
-			
+
 				<th width="17%"> <img src='templates/bhrsp/images/arrow_small.png'>{$lang.Company}:</th>
-				<td width="30%"></td>				
-	
+				<td width="30%"></td>
+
 			</tr>
+
+
+
 			<tr align="left" >
 				<th >
 					<img src='templates/bhrsp/images/arrow_small.png'>
 					 {$lang.Department}:
-					
 				</th>
 				<td >
 					{department_title}
 				</td>
-		
+
 				<th  >
 					<img src='templates/bhrsp/images/arrow_small.png'>
 					 {$lang.JobTitle}:
 				</th>
 				<td >
 					{job_title}
-				</td>		
-				
-				
-			</tr>	
-			
+				</td>
+			</tr>
+
 			<tr align="left" >
 				<th >
 					<img src='templates/bhrsp/images/arrow_small.png'>
@@ -101,9 +101,10 @@
 				</th>
 				<td >
 					{competency_level}
-				</td>						
-				
-			</tr>	
+				</td>
+
+			</tr>
+
 			<tr align="left" >
 				<th >
 					<img src='templates/bhrsp/images/arrow_small.png'>
@@ -112,67 +113,78 @@
 				<td colspan="6">
 				{competency_definition}
 				</td>
-			</tr>	
+			</tr>
+
+			<tr align="left" class='{evaluation_attachment_hide}'>
+				<th >
+					<img src='templates/bhrsp/images/arrow_small.png'>
+					 {$lang.EvaluationAttachment}:
+				</th>
+				<td colspan="6">
+					<a href='{evaluation_attachment_path}' target='_blank' >{$lang.Download}</a>
+				</td>
+			</tr>
+
 		</table>
-			<!-- BEGIN ABILITY -->
-			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:5px;{ABILITY.style}">
-				<tr>
-					<td width="90%">	
-						<h3>第{ABILITY.competency_level}級 {ABILITY.ability_title}</h3>
-						{ABILITY.ability_def}
-						<br>							
-					</td>
-					<td>
-						<!-- BEGIN SCORE -->
-						<input type="radio" id="evalutor_score"  name="evalutor_score"  value="{ABILITY.SCORE.grade}"  {ABILITY.SCORE.disabled}  {ABILITY.SCORE.checked}>{ABILITY.SCORE.grade}<br>
-						<!-- END SCORE -->
-						
-					</td>
-				</tr>					
-			</table>
-			<!-- END ABILITY -->
-			
-											
+
+		<!-- BEGIN ABILITY -->
+		<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:5px;{ABILITY.style}">
+			<tr>
+				<td width="90%">
+					<h3>第{ABILITY.competency_level}級 {ABILITY.ability_title}</h3>
+					{ABILITY.ability_def}
+					<br>
+				</td>
+				<td>
+					<!-- BEGIN SCORE -->
+					<input type="radio" id="evalutor_score"  name="evalutor_score"  value="{ABILITY.SCORE.grade}"  {ABILITY.SCORE.disabled}  {ABILITY.SCORE.checked}>{ABILITY.SCORE.grade}<br>
+					<!-- END SCORE -->
+
+				</td>
+			</tr>
+		</table>
+		<!-- END ABILITY -->
+
 		</div>
 		<div class="uc2" style="width:94%;margin-left: 20px;">
 			<div  style="float:right;">
-				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="{$lang.SubmitSurvey}"  onClick='exam_finish();' />				
+				<input class="labButton" name="bt_finish" id="bt_finish" type="button"  value="{$lang.SubmitSurvey}"  onClick='exam_finish();' />
 			</div>
 		</div>
-	</div>	
+	</div>
 
 	<div id="dis_suggest" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{$lang.OpenComment}</td></tr></table>		
-	</div>	
+		<table class="tableStyle1" ><tr><td>{$lang.OpenComment}</td></tr></table>
+	</div>
 	</form>
-</div>	
+</div>
 </body>
 
 <script>
 function exam_finish()
 {
-	var evalutor_score=$('input[name=evalutor_score]:checked').val(); 
+	var evalutor_score=$('input[name=evalutor_score]:checked').val();
 	var class_evaluation_evaluator_id=$('#class_evaluation_evaluator_id').val();
 	var class_evaluation_appraisee_id=$('#class_evaluation_appraisee_id').val();
-	
+
 	var o = {
 			data: {evalutor_score:evalutor_score,class_evaluation_evaluator_id:class_evaluation_evaluator_id,class_evaluation_appraisee_id:class_evaluation_appraisee_id},
 			url:'/hrd/function/saveOrUpdate/save_class_evaluation_table_evalutor_grade.php?f=1',
 			onSuccess:function(data)
-			{								
+			{
 					if(data.errmsg)
 					{
 						$().message(data.errmsg);
 					}
 					else
-					{									
-						$("#tabPanel").refreshitem();	
-						$().message("交卷結束");		
-					}										
-			}					
-	}				
-	var msg=mypost(o);		
-	
+					{
+						$("#tabPanel").refreshitem();
+						$().message("交卷結束");
+					}
+			}
+	}
+	var msg=mypost(o);
+
 }
 
 </script>

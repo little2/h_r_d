@@ -1,364 +1,165 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Generic font file binary stream.
- * 
- * @package php-font-lib
- */
-class Font_Binary_Stream {
-  /**
-   * @var resource The file pointer
-   */
-  protected $f;
-  
-  const uint8     = 1;
-  const  int8     = 2;
-  const uint16    = 3;
-  const  int16    = 4;
-  const uint32    = 5;
-  const  int32    = 6;
-  const shortFrac = 7;
-  const Fixed     = 8;
-  const  FWord    = 9;
-  const uFWord    = 10;
-  const F2Dot14   = 11;
-  const longDateTime = 12;
-  const char      = 13;
-  
-  const modeRead      = "rb";
-  const modeWrite     = "wb";
-  const modeReadWrite = "rb+";
-  
-  static function backtrace(){
-    var_dump(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
-  }
-
-  /**
-   * Open a font file in read mode
-   * 
-   * @param string $filename The file name of the font to open
-   *
-   * @return bool
-   */
-  public function load($filename) {
-    return $this->open($filename, self::modeRead);
-  }
-
-  /**
-   * Open a font file in a chosen mode
-   *
-   * @param string $filename The file name of the font to open
-   * @param string $mode     The opening mode
-   *
-   * @throws Exception
-   * @return bool
-   */
-  public function open($filename, $mode = self::modeRead) {
-    if (!in_array($mode, array(self::modeRead, self::modeWrite, self::modeReadWrite))) {
-      throw new Exception("Unkown file open mode");
-    }
-    
-    $this->f = fopen($filename, $mode);
-    return $this->f != false;
-  }
-  
-  /**
-   * Close the internal file pointer
-   */
-  public function close() {
-    return fclose($this->f) != false;
-  }
-
-  /**
-   * Change the internal file pointer
-   *
-   * @param resource $fp
-   *
-   * @throws Exception
-   */
-  public function setFile($fp) {
-    if (!is_resource($fp)) {
-      throw new Exception('$fp is not a valid resource');
-    }
-    
-    $this->f = $fp;
-  }
-
-  /**
-   * Create a temporary file in write mode
-   *
-   * @param bool $allow_memory Allow in-memory files
-   *
-   * @return resource the temporary file pointer resource
-   */
-  public static function getTempFile($allow_memory = true) {
-    $f = null;
-    
-    if ($allow_memory) {
-      // PHP 5.1+
-      @fopen("php://temp", "rb+");
-    }
-    
-    if (!$f) {
-      $f = fopen(tempnam(sys_get_temp_dir(), "fnt"), "rb+");
-    }
-    
-    return $f;
-  }
-  
-  /**
-   * Move the internal file pinter to $offset bytes
-   * 
-   * @param int $offset
-   *
-   * @return bool True if the $offset position exists in the file
-   */
-  public function seek($offset) {
-    return fseek($this->f, $offset, SEEK_SET) == 0;
-  }
-  
-  /**
-   * Gives the current position in the file
-   * 
-   * @return int The current position
-   */
-  public function pos() {
-    return ftell($this->f);
-  }
-  
-  public function skip($n) {
-    fseek($this->f, $n, SEEK_CUR);
-  }
-  
-  public function read($n) {
-    if ($n < 1) {
-      return "";
-    }
-
-    return fread($this->f, $n);
-  }
-
-  public function write($data, $length = null) {
-    if ($data === null || $data === "") {
-      return 0;
-    }
-    
-    return fwrite($this->f, $data, $length);
-  }
-
-  public function readUInt8() {
-    return ord($this->read(1));
-  }
-
-  public function writeUInt8($data) {
-    return $this->write(chr($data), 1);
-  }
-
-  public function readInt8() {
-    $v = $this->readUInt8();
-    
-    if ($v >= 0x80) {
-      $v -= 0x100;
-    }
-      
-    return $v;
-  }
-
-  public function writeInt8($data) {
-    if ($data < 0) {
-      $data += 0x100;
-    }
-    
-    return $this->writeUInt8($data);
-  }
-
-  public function readUInt16() {
-    $a = unpack("nn", $this->read(2));
-    return $a["n"];
-  }
-  
-  public function readUFWord(){
-    return $this->readUInt16();
-  }
-
-  public function writeUInt16($data) {
-    return $this->write(pack("n", $data), 2);
-  }
-  
-  public function writeUFWord($data){
-    return $this->writeUInt16($data);
-  }
-
-  public function readInt16() {
-    $v = $this->readUInt16();
-    
-    if ($v >= 0x8000) {
-      $v -= 0x10000;
-    }
-      
-    return $v;
-  }
-  
-  public function readFWord(){
-    return $this->readInt16();
-  }
-
-  public function writeInt16($data) {
-    if ($data < 0) {
-      $data += 0x10000;
-    }
-    
-    return $this->writeUInt16($data);
-  }
-  
-  public function writeFWord($data){
-    return $this->writeInt16($data);
-  }
-
-  public function readUInt32() {
-    $a = unpack("NN", $this->read(4));
-    return $a["N"];
-  }
-
-  public function writeUInt32($data) {
-    return $this->write(pack("N", $data), 4);
-  }
-
-  public function readFixed() {
-    $d = $this->readInt16();
-    $d2 = $this->readUInt16();
-    return round($d + $d2 / 0x10000, 4);
-  }
-
-  public function writeFixed($data) {
-    $left = floor($data);
-    $right = ($data - $left) * 0x10000;
-    return $this->writeInt16($left) + $this->writeUInt16($right);
-  }
-  
-  public function readLongDateTime() {
-    $this->readUInt32(); // ignored 
-    $date = $this->readUInt32() - 2082844800;
-    
-    return strftime("%Y-%m-%d %H:%M:%S", $date);
-  }
-  
-  public function writeLongDateTime($data) {
-    $date = strtotime($data);
-    $date += 2082844800;
-    
-    return $this->writeUInt32(0) + $this->writeUInt32($date);
-  }
-  
-  public function unpack($def) {
-    $d = array();
-    foreach($def as $name => $type) {
-      $d[$name] = $this->r($type);
-    }
-    return $d;
-  }
-  
-  public function pack($def, $data) {
-    $bytes = 0;
-    foreach($def as $name => $type) {
-      $bytes += $this->w($type, $data[$name]);
-    }
-    return $bytes;
-  }
-  
-  /**
-   * Read a data of type $type in the file from the current position
-   * 
-   * @param mixed $type The data type to read
-   *
-   * @return mixed The data that was read
-   */
-  public function r($type) {
-    switch($type) {
-      case self::uint8:     return $this->readUInt8();
-      case self::int8:      return $this->readInt8();
-      case self::uint16:    return $this->readUInt16();
-      case self::int16:     return $this->readInt16();
-      case self::uint32:    return $this->readUInt32();
-      case self::int32:     return $this->readUInt32(); 
-      case self::shortFrac: return $this->readFixed();
-      case self::Fixed:     return $this->readFixed();
-      case self::FWord:     return $this->readInt16();
-      case self::uFWord:    return $this->readUInt16();
-      case self::F2Dot14:   return $this->readInt16();
-      case self::longDateTime: return $this->readLongDateTime();
-      case self::char:      return $this->read(1);
-      default: 
-        if ( is_array($type) ) {
-          if ($type[0] == self::char) {
-            return $this->read($type[1]);
-          }
-          
-          $ret = array();
-          for($i = 0; $i < $type[1]; $i++) {
-            $ret[] = $this->r($type[0]);
-          }
-          return $ret;
-        }
-
-        return null;
-    }
-  }
-  
-  /**
-   * Write $data of type $type in the file from the current position
-   * 
-   * @param mixed $type The data type to write
-   * @param mixed $data The data to write
-   *
-   * @return int The number of bytes read
-   */
-  public function w($type, $data) {
-    switch($type) {
-      case self::uint8:     return $this->writeUInt8($data);
-      case self::int8:      return $this->writeInt8($data);
-      case self::uint16:    return $this->writeUInt16($data);
-      case self::int16:     return $this->writeInt16($data);
-      case self::uint32:    return $this->writeUInt32($data);
-      case self::int32:     return $this->writeUInt32($data); 
-      case self::shortFrac: return $this->writeFixed($data);
-      case self::Fixed:     return $this->writeFixed($data);
-      case self::FWord:     return $this->writeInt16($data);
-      case self::uFWord:    return $this->writeUInt16($data);
-      case self::F2Dot14:   return $this->writeInt16($data);
-      case self::longDateTime: return $this->writeLongDateTime($data);
-      case self::char:      return $this->write($data, 1);
-      default: 
-        if ( is_array($type) ) {
-          if ($type[0] == self::char) {
-            return $this->write($data, $type[1]);
-          }
-          
-          $ret = 0;
-          for($i = 0; $i < $type[1]; $i++) {
-            $ret += $this->w($type[0], $data[$i]);
-          }
-          return $ret;
-        }
-
-        return null;
-    }
-  }
-  
-  /**
-   * Converts a Uint32 value to string
-   * 
-   * @param int $uint32
-   *
-   * @return string The string
-   */
-  public function convertUInt32ToStr($uint32) {
-    return chr(($uint32 >> 24) & 0xFF).chr(($uint32 >> 16) & 0xFF).chr(($uint32 >> 8) & 0xFF).chr($uint32 & 0xFF);
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

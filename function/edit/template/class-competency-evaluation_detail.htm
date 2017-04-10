@@ -8,14 +8,14 @@
 
 
 <script type="text/javascript">
-	
+
 	var quiz_row=new Array();
 	quiz_row[1]={text:"若想了解教師如何引導學生產生自治幹部、運用小組合作學習進行工作分派、檢視燈光、座位安排是否合適、布置內容是否與學習內容相結合、學生專注於學習等表現情形，可以以哪ㄧ個評鑑規準做為討論的參考依據？",title:"發展專案章程"};
 	quiz_row[2]={text:"在國內學者研發的各個中小學教師專業發展評鑑規準版本中，可以歸納為幾個共通的向度？",title:"發展專案章程"};
 	quiz_row[3]={text:"我國第一次推動有關教師的專業評鑑，以下是四位教師討論時發表的看法，請判斷誰的發言內容有必要加以修正？成弘老師：有如身體檢查，找出自己應改善的缺點，對老師一定有幫助。欣宜老師：校內教師進行同儕互評，這樣的評鑑環境非常安全。大雄老師：很可能會影響我們的考績，我可能會被列入不適任教師。小真老師：大家不必急，我們先好好的討論，穩紮穩打目標正確最重要。？",title:"發展專案章程"};
 
 
-	$(function() {		
+	$(function() {
 		var container=$('#container_{elementID}');
 		$(".lable",container).each(function() {
 			$(this).click(function() {
@@ -30,7 +30,7 @@
 				$("#" + divn).show();
 			});
 		});
-	
+
 	});
 
 
@@ -42,32 +42,32 @@
 <div  id="container_{elementID}"  data-from="{From_elementID}" >
 	<div class="labMenu">
 		<div class="lable"  dis="dis_evaluation"  style="background-color: yellow;">評鑑表信息</div>
-		<div class="lable"  dis="dis_quiz" >評鑑題目</div>		
-		<div class="lable"  dis="dis_suggest" >{$lang.OpenComment}</div>		
+		<div class="lable"  dis="dis_quiz" >評鑑題目</div>
+		<div class="lable"  dis="dis_suggest" >{$lang.OpenComment}</div>
 
 	</div>
 
 	<div id="dis_evaluation" class="labDiv"   style="display: block;">
 			<table class="tableStyle1"  >
-			
-			
+
+
 					<tr>
 						<td height="20"  class="label">{$lang.Competency}：</td>
 						<td></td>
 					</tr>
-			
+
 					<tr>
 						<td  class="item">{$lang.CompetencyItem}：</td>
 						<td><span class='trandparent'>{competency_id}</span> {competency_title} Lv.{competency_level}</td>
 					</tr>
-					
-					
-					
+
+
+
 					<tr>
 						<td class="item">{$lang.CompetencyClassDefinition}：</td>
 						<td>{competency_definition}</td>
 					</tr>
-			
+
 					<tr>
 						<td height="20" class="label">{$lang.Appraisee}：</td>
 						<td></td>
@@ -84,7 +84,7 @@
 						<td class="item">{$lang.JobTitle}：</td>
 						<td>{job_title}</td>
 					</tr>
-					
+
 					<tr>
 						<td height="20" class="label">{$lang.Evaluator}：</td>
 						<td></td>
@@ -101,28 +101,28 @@
 						<td class="item">{$lang.JobTitle}：</td>
 						<td>{job_title}</td>
 					</tr>
-					
-					
+
+
 					<tr>
 						<td height="20" class="label">{$lang.EvaluationAttachment}：</td>
 						<td><a href='{evaluation_attachment_path}' target='_blank' class='{evaluation_attachment_hide}'>{$lang.Download}</a></td>
 					</tr>
-						
+
 				</table>
-		
-			
+
+
 	</div>
-		
-	
+
+
 	<div id="dis_quiz" class="labDiv"   >
-		<div class="uc1">		
+		<div class="uc1">
 			<!-- BEGIN LEVEL -->
 			<table id="quiz_area" class="contb "  style="width:94%;margin-left: 20px;margin-top: 20px;padding:5px;background:{LEVEL.background} ;">
 				<tr>
-					<td width="90%">	
+					<td width="90%">
 						<h3>第{LEVEL.competency_level}級 {LEVEL.competency_level_title}</h3>
 						{LEVEL.ability_html}
-						<br>							
+						<br>
 					</td>
 					<td>
 						<input type="radio" id="a" name="a"  value="{LEVEL.grade_1}"    {LEVEL.disabled}>{LEVEL.grade_1}<br>
@@ -131,10 +131,10 @@
 						<input type="radio" id="a" name="a"  value="{LEVEL.grade_4}"    {LEVEL.disabled}>{LEVEL.grade_4}<br>
 						<input type="radio" id="a" name="a"  value="{LEVEL.grade_5}"    {LEVEL.disabled}>{LEVEL.grade_5}<br>
 					</td>
-				</tr>					
+				</tr>
 			</table>
 			<!-- END LEVEL -->
-											
+
 		</div>
 		<div class="uc2" style="width:94%;margin-left: 20px;">
 
@@ -144,18 +144,18 @@
 
 			</div>
 		</div>
-	</div>	
+	</div>
 
 	<div id="dis_suggest" class="labDiv"   >
-		<table class="tableStyle1" ><tr><td>{$lang.OpenComment}</td></tr></table>		
-	</div>	
-	
-	
-
-	
+		<table class="tableStyle1" ><tr><td>{$lang.OpenComment}</td></tr></table>
+	</div>
 
 
-	
-</div>	
+
+
+
+
+
+</div>
 </body>
 </html>

@@ -1,396 +1,65 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @autho   Brian Sweeney <eclecticgeek@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-if ( class_exists( 'DOMPDF' , false ) ) { return; }
-
-PHP_VERSION >= 5.0 or die("DOMPDF requires PHP 5.0+");
-
-/**
- * The root of your DOMPDF installation
- */
-define("DOMPDF_DIR", str_replace(DIRECTORY_SEPARATOR, '/', realpath(dirname(__FILE__))));
-
-/**
- * The location of the DOMPDF include directory
- */
-define("DOMPDF_INC_DIR", DOMPDF_DIR . "/include");
-
-/**
- * The location of the DOMPDF lib directory
- */
-define("DOMPDF_LIB_DIR", DOMPDF_DIR . "/lib");
-
-/**
- * Some installations don't have $_SERVER['DOCUMENT_ROOT']
- * http://fyneworks.blogspot.com/2007/08/php-documentroot-in-iis-windows-servers.html
- */
-if( !isset($_SERVER['DOCUMENT_ROOT']) ) {
-  $path = "";
-  
-  if ( isset($_SERVER['SCRIPT_FILENAME']) )
-    $path = $_SERVER['SCRIPT_FILENAME'];
-  elseif ( isset($_SERVER['PATH_TRANSLATED']) )
-    $path = str_replace('\\\\', '\\', $_SERVER['PATH_TRANSLATED']);
-    
-  $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr($path, 0, 0-strlen($_SERVER['PHP_SELF'])));
-}
-
-/** Include the custom config file if it exists */
-if ( file_exists(DOMPDF_DIR . "/dompdf_config.custom.inc.php") ){
-  require_once(DOMPDF_DIR . "/dompdf_config.custom.inc.php");
-}
-
-//FIXME: Some function definitions rely on the constants defined by DOMPDF. However, might this location prove problematic?
-require_once(DOMPDF_INC_DIR . "/functions.inc.php");
-
-/**
- * Username and password used by the configuration utility in www/
- */
-def("DOMPDF_ADMIN_USERNAME", "user");
-def("DOMPDF_ADMIN_PASSWORD", "password");
-
-/**
- * The location of the DOMPDF font directory
- *
- * The location of the directory where DOMPDF will store fonts and font metrics
- * Note: This directory must exist and be writable by the webserver process.
- * *Please note the trailing slash.*
- *
- * Notes regarding fonts:
- * Additional .afm font metrics can be added by executing load_font.php from command line.
- *
- * Only the original "Base 14 fonts" are present on all pdf viewers. Additional fonts must
- * be embedded in the pdf file or the PDF may not display correctly. This can significantly
- * increase file size unless font subsetting is enabled. Before embedding a font please
- * review your rights under the font license.
- *
- * Any font specification in the source HTML is translated to the closest font available
- * in the font directory.
- *
- * The pdf standard "Base 14 fonts" are:
- * Courier, Courier-Bold, Courier-BoldOblique, Courier-Oblique,
- * Helvetica, Helvetica-Bold, Helvetica-BoldOblique, Helvetica-Oblique,
- * Times-Roman, Times-Bold, Times-BoldItalic, Times-Italic,
- * Symbol, ZapfDingbats.
- */
-def("DOMPDF_FONT_DIR", DOMPDF_DIR . "/lib/fonts/");
-
-/**
- * The location of the DOMPDF font cache directory
- *
- * This directory contains the cached font metrics for the fonts used by DOMPDF.
- * This directory can be the same as DOMPDF_FONT_DIR
- * 
- * Note: This directory must exist and be writable by the webserver process.
- */
-def("DOMPDF_FONT_CACHE", DOMPDF_FONT_DIR);
-
-/**
- * The location of a temporary directory.
- *
- * The directory specified must be writeable by the webserver process.
- * The temporary directory is required to download remote images and when
- * using the PFDLib back end.
- */
-def("DOMPDF_TEMP_DIR", sys_get_temp_dir());
-
-/**
- * ==== IMPORTANT ====
- *
- * dompdf's "chroot": Prevents dompdf from accessing system files or other
- * files on the webserver.  All local files opened by dompdf must be in a
- * subdirectory of this directory.  DO NOT set it to '/' since this could
- * allow an attacker to use dompdf to read any files on the server.  This
- * should be an absolute path.
- * This is only checked on command line call by dompdf.php, but not by
- * direct class use like:
- * $dompdf = new DOMPDF();	$dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
- */
-//def("DOMPDF_CHROOT", realpath(dirname(DOMPDF_DIR)));
-$chroot=realpath(dirname(dirname(dirname(DOMPDF_DIR)))).DIRECTORY_SEPARATOR.'output'.DIRECTORY_SEPARATOR.'report';
-def("DOMPDF_CHROOT", $chroot);
-
-//echo $chroot;
-/**
- * Whether to use Unicode fonts or not.
- *
- * When set to true the PDF backend must be set to "CPDF" and fonts must be
- * loaded via load_font.php.
- *
- * When enabled, dompdf can support all Unicode glyphs. Any glyphs used in a
- * document must be present in your fonts, however.
- */
-def("DOMPDF_UNICODE_ENABLED", true);
-
-/**
- * Whether to enable font subsetting or not.
- */
-def("DOMPDF_ENABLE_FONTSUBSETTING", true);
-
-/**
- * The PDF rendering backend to use
- *
- * Valid settings are 'PDFLib', 'CPDF' (the bundled R&OS PDF class), 'GD' and
- * 'auto'. 'auto' will look for PDFLib and use it if found, or if not it will
- * fall back on CPDF. 'GD' renders PDFs to graphic files. {@link
- * Canvas_Factory} ultimately determines which rendering class to instantiate
- * based on this setting.
- *
- * Both PDFLib & CPDF rendering backends provide sufficient rendering
- * capabilities for dompdf, however additional features (e.g. object,
- * image and font support, etc.) differ between backends.  Please see
- * {@link PDFLib_Adapter} for more information on the PDFLib backend
- * and {@link CPDF_Adapter} and lib/class.pdf.php for more information
- * on CPDF. Also see the documentation for each backend at the links
- * below.
- *
- * The GD rendering backend is a little different than PDFLib and
- * CPDF. Several features of CPDF and PDFLib are not supported or do
- * not make any sense when creating image files.  For example,
- * multiple pages are not supported, nor are PDF 'objects'.  Have a
- * look at {@link GD_Adapter} for more information.  GD support is
- * experimental, so use it at your own risk.
- *
- * @link http://www.pdflib.com
- * @link http://www.ros.co.nz/pdf
- * @link http://www.php.net/image
- */
-def("DOMPDF_PDF_BACKEND", "CPDF");
-
-/**
- * PDFlib license key
- *
- * If you are using a licensed, commercial version of PDFlib, specify
- * your license key here.  If you are using PDFlib-Lite or are evaluating
- * the commercial version of PDFlib, comment out this setting.
- *
- * @link http://www.pdflib.com
- *
- * If pdflib present in web server and auto or selected explicitely above,
- * a real license code must exist!
- */
-//def("DOMPDF_PDFLIB_LICENSE", "your license key here");
-
-/**
- * html target media view which should be rendered into pdf.
- * List of types and parsing rules for future extensions:
- * http://www.w3.org/TR/REC-html40/types.html
- *   screen, tty, tv, projection, handheld, print, braille, aural, all
- * Note: aural is deprecated in CSS 2.1 because it is replaced by speech in CSS 3.
- * Note, even though the generated pdf file is intended for print output,
- * the desired content might be different (e.g. screen or projection view of html file).
- * Therefore allow specification of content here.
- */
-def("DOMPDF_DEFAULT_MEDIA_TYPE", "screen");
-
-/**
- * The default paper size.
- *
- * North America standard is "letter"; other countries generally "a4"
- *
- * @see CPDF_Adapter::PAPER_SIZES for valid sizes
- */
-def("DOMPDF_DEFAULT_PAPER_SIZE", "letter");
-
-/**
- * The default font family
- *
- * Used if no suitable fonts can be found. This must exist in the font folder.
- * @var string
- */
-def("DOMPDF_DEFAULT_FONT", "serif");
-
-/**
- * Image DPI setting
- *
- * This setting determines the default DPI setting for images and fonts.  The
- * DPI may be overridden for inline images by explictly setting the
- * image's width & height style attributes (i.e. if the image's native
- * width is 600 pixels and you specify the image's width as 72 points,
- * the image will have a DPI of 600 in the rendered PDF.  The DPI of
- * background images can not be overridden and is controlled entirely
- * via this parameter.
- *
- * For the purposes of DOMPDF, pixels per inch (PPI) = dots per inch (DPI).
- * If a size in html is given as px (or without unit as image size),
- * this tells the corresponding size in pt at 72 DPI.
- * This adjusts the relative sizes to be similar to the rendering of the
- * html page in a reference browser.
- *
- * In pdf, always 1 pt = 1/72 inch
- *
- * Rendering resolution of various browsers in px per inch:
- * Windows Firefox and Internet Explorer:
- *   SystemControl->Display properties->FontResolution: Default:96, largefonts:120, custom:?
- * Linux Firefox:
- *   about:config *resolution: Default:96
- *   (xorg screen dimension in mm and Desktop font dpi settings are ignored)
- *
- * Take care about extra font/image zoom factor of browser.
- *
- * In images, <img> size in pixel attribute, img css style, are overriding
- * the real image dimension in px for rendering.
- *
- * @var int
- */
-def("DOMPDF_DPI", 96);
-
-/**
- * Enable inline PHP
- *
- * If this setting is set to true then DOMPDF will automatically evaluate
- * inline PHP contained within <script type="text/php"> ... </script> tags.
- *
- * Enabling this for documents you do not trust (e.g. arbitrary remote html
- * pages) is a security risk.  Set this option to false if you wish to process
- * untrusted documents.
- *
- * @var bool
- */
-def("DOMPDF_ENABLE_PHP", false);
-
-/**
- * Enable inline Javascript
- *
- * If this setting is set to true then DOMPDF will automatically insert
- * JavaScript code contained within <script type="text/javascript"> ... </script> tags.
- *
- * @var bool
- */
-def("DOMPDF_ENABLE_JAVASCRIPT", true);
-
-/**
- * Enable remote file access
- *
- * If this setting is set to true, DOMPDF will access remote sites for
- * images and CSS files as required.
- * This is required for part of test case www/test/image_variants.html through www/examples.php
- *
- * Attention!
- * This can be a security risk, in particular in combination with DOMPDF_ENABLE_PHP and
- * allowing remote access to dompdf.php or on allowing remote html code to be passed to
- * $dompdf = new DOMPDF(); $dompdf->load_html(...);
- * This allows anonymous users to download legally doubtful internet content which on
- * tracing back appears to being downloaded by your server, or allows malicious php code
- * in remote html pages to be executed by your server with your account privileges.
- *
- * @var bool
- */
-def("DOMPDF_ENABLE_REMOTE", false);
-
-/**
- * The debug output log
- * @var string
- */
-def("DOMPDF_LOG_OUTPUT_FILE", DOMPDF_FONT_DIR."log.htm");
-
-/**
- * A ratio applied to the fonts height to be more like browsers' line height
- */
-def("DOMPDF_FONT_HEIGHT_RATIO", 1.1);
-
-/**
- * Enable CSS float
- *
- * Allows people to disabled CSS float support
- * @var bool
- */
-def("DOMPDF_ENABLE_CSS_FLOAT", false);
-
-/**
- * Enable the built in DOMPDF autoloader
- *
- * @var bool
- */
-def("DOMPDF_ENABLE_AUTOLOAD", true);
-
-/**
- * Prepend the DOMPDF autoload function to the spl_autoload stack
- *
- * @var bool
- */
-def("DOMPDF_AUTOLOAD_PREPEND", false);
-
-/**
- * Use the more-than-experimental HTML5 Lib parser
- */
-def("DOMPDF_ENABLE_HTML5PARSER", false);
-require_once(DOMPDF_LIB_DIR . "/html5lib/Parser.php");
-
-// ### End of user-configurable options ###
-
-/**
- * Load autoloader
- */
-if (DOMPDF_ENABLE_AUTOLOAD) {
-  require_once(DOMPDF_INC_DIR . "/autoload.inc.php");
-  require_once(DOMPDF_LIB_DIR . "/php-font-lib/classes/Font.php");
-}
-
-/**
- * Ensure that PHP is working with text internally using UTF8 character encoding.
- */
-mb_internal_encoding('UTF-8');
-
-/**
- * Global array of warnings generated by DomDocument parser and
- * stylesheet class
- *
- * @var array
- */
-global $_dompdf_warnings;
-$_dompdf_warnings = array();
-
-/**
- * If true, $_dompdf_warnings is dumped on script termination when using
- * dompdf/dompdf.php or after rendering when using the DOMPDF class.
- * When using the class, setting this value to true will prevent you from
- * streaming the PDF.
- *
- * @var bool
- */
-global $_dompdf_show_warnings;
-$_dompdf_show_warnings = false;
-
-/**
- * If true, the entire tree is dumped to stdout in dompdf.cls.php.
- * Setting this value to true will prevent you from streaming the PDF.
- *
- * @var bool
- */
-global $_dompdf_debug;
-$_dompdf_debug = false;
-
-/**
- * Array of enabled debug message types
- *
- * @var array
- */
-global $_DOMPDF_DEBUG_TYPES;
-$_DOMPDF_DEBUG_TYPES = array(); //array("page-break" => 1);
-
-/* Optionally enable different classes of debug output before the pdf content.
- * Visible if displaying pdf as text,
- * E.g. on repeated display of same pdf in browser when pdf is not taken out of
- * the browser cache and the premature output prevents setting of the mime type.
- */
-def('DEBUGPNG', false);
-def('DEBUGKEEPTEMP', false);
-def('DEBUGCSS', false);
-
-/* Layout debugging. Will display rectangles around different block levels.
- * Visible in the PDF itself.
- */
-def('DEBUG_LAYOUT', false);
-def('DEBUG_LAYOUT_LINES', true);
-def('DEBUG_LAYOUT_BLOCKS', true);
-def('DEBUG_LAYOUT_INLINE', true);
-def('DEBUG_LAYOUT_PADDINGBOX', true);
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+V39YsgabOnsXMMMrC0==

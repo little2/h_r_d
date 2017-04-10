@@ -1,2435 +1,974 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Represents CSS properties.
- *
- * The Style class is responsible for handling and storing CSS properties.
- * It includes methods to resolve colors and lengths, as well as getters &
- * setters for many CSS properites.
- *
- * Actual CSS parsing is performed in the {@link Stylesheet} class.
- *
- * @package dompdf
- */
-class Style {
-  
-  const CSS_IDENTIFIER = "-?[_a-zA-Z]+[_a-zA-Z0-9-]*";
-  const CSS_INTEGER    = "-?\d+";
-
-  /**
-   * Default font size, in points.
-   *
-   * @var float
-   */
-  static $default_font_size = 12;
-
-  /**
-   * Default line height, as a fraction of the font size.
-   *
-   * @var float
-   */
-  static $default_line_height = 1.2;
-  
-  /**
-   * Default "absolute" font sizes relative to the default font-size
-   * http://www.w3.org/TR/css3-fonts/#font-size-the-font-size-property
-   * @var array<float>
-   */
-  static $font_size_keywords = array(
-    "xx-small" => 0.6,   // 3/5
-    "x-small"  => 0.75,  // 3/4
-    "small"    => 0.889, // 8/9
-    "medium"   => 1,     // 1
-    "large"    => 1.2,   // 6/5
-    "x-large"  => 1.5,   // 3/2
-    "xx-large" => 2.0,   // 2/1
-  );
-  
-  /**
-   * List of all inline types.  Should really be a constant.
-   *
-   * @var array
-   */
-  static $INLINE_TYPES = array("inline");
-
-  /**
-   * List of all block types.  Should really be a constant.
-   *
-   * @var array
-   */
-  static $BLOCK_TYPES = array("block", "inline-block", "table-cell", "list-item");
-  
-  /**
-   * List of all positionned types.  Should really be a constant.
-   *
-   * @var array
-   */
-  static $POSITIONNED_TYPES = array("relative", "absolute", "fixed");
-
-  /**
-   * List of all table types.  Should really be a constant.
-   *
-   * @var array;
-   */
-  static $TABLE_TYPES = array("table", "inline-table");
-
-  /**
-   * List of valid border styles.  Should also really be a constant.
-   *
-   * @var array
-   */
-  static $BORDER_STYLES = array("none", "hidden", "dotted", "dashed", "solid",
-                                "double", "groove", "ridge", "inset", "outset");
-
-  /**
-   * Default style values.
-   *
-   * @link http://www.w3.org/TR/CSS21/propidx.html
-   *
-   * @var array
-   */
-  static protected $_defaults = null;
-
-  /**
-   * List of inherited properties
-   *
-   * @link http://www.w3.org/TR/CSS21/propidx.html
-   *
-   * @var array
-   */
-  static protected $_inherited = null;
-  
-  /**
-   * Caches method_exists result
-   * 
-   * @var array<bool>
-   */
-  static protected $_methods_cache = array();
-
-  /**
-   * The stylesheet this style belongs to
-   *
-   * @see Stylesheet
-   * @var Stylesheet
-   */
-  protected $_stylesheet; // stylesheet this style is attached to
-
-  /**
-   * Main array of all CSS properties & values
-   *
-   * @var array
-   */
-  protected $_props;
-
-  /* var instead of protected would allow access outside of class */
-  protected $_important_props;
-
-  /**
-   * Cached property values
-   *
-   * @var array
-   */
-  protected $_prop_cache;
-  
-  /**
-   * Font size of parent element in document tree.  Used for relative font
-   * size resolution.
-   *
-   * @var float
-   */
-  protected $_parent_font_size; // Font size of parent element
-  
-  protected $_font_family;
-  
-  /**
-   * @var Frame
-   */
-  protected $_frame;
-  
-  /**
-   * The origin of the style
-   * 
-   * @var int
-   */
-  protected $_origin = Stylesheet::ORIG_AUTHOR;
-  
-  // private members
-  /**
-   * True once the font size is resolved absolutely
-   *
-   * @var bool
-   */
-  private $__font_size_calculated; // Cache flag
-  
-  /**
-   * The computed border radius
-   */
-  private $_computed_border_radius = null;
-
-  /**
-   * @var bool
-   */
-  public $_has_border_radius = false;
-
-  /**
-   * Class constructor
-   *
-   * @param Stylesheet $stylesheet the stylesheet this Style is associated with.
-   * @param int        $origin
-   */
-  function __construct(Stylesheet $stylesheet, $origin = Stylesheet::ORIG_AUTHOR) {
-    $this->_props = array();
-    $this->_important_props = array();
-    $this->_stylesheet = $stylesheet;
-    $this->_origin = $origin;
-    $this->_parent_font_size = null;
-    $this->__font_size_calculated = false;
-    
-    if ( !isset(self::$_defaults) ) {
-    
-      // Shorthand
-      $d =& self::$_defaults;
-    
-      // All CSS 2.1 properties, and their default values
-      $d["azimuth"] = "center";
-      $d["background_attachment"] = "scroll";
-      $d["background_color"] = "transparent";
-      $d["background_image"] = "none";
-      $d["background_image_resolution"] = "normal";
-      $d["_dompdf_background_image_resolution"] = $d["background_image_resolution"];
-      $d["background_position"] = "0% 0%";
-      $d["background_repeat"] = "repeat";
-      $d["background"] = "";
-      $d["border_collapse"] = "separate";
-      $d["border_color"] = "";
-      $d["border_spacing"] = "0";
-      $d["border_style"] = "";
-      $d["border_top"] = "";
-      $d["border_right"] = "";
-      $d["border_bottom"] = "";
-      $d["border_left"] = "";
-      $d["border_top_color"] = "";
-      $d["border_right_color"] = "";
-      $d["border_bottom_color"] = "";
-      $d["border_left_color"] = "";
-      $d["border_top_style"] = "none";
-      $d["border_right_style"] = "none";
-      $d["border_bottom_style"] = "none";
-      $d["border_left_style"] = "none";
-      $d["border_top_width"] = "medium";
-      $d["border_right_width"] = "medium";
-      $d["border_bottom_width"] = "medium";
-      $d["border_left_width"] = "medium";
-      $d["border_width"] = "medium";
-      $d["border_bottom_left_radius"] = "";
-      $d["border_bottom_right_radius"] = "";
-      $d["border_top_left_radius"] = "";
-      $d["border_top_right_radius"] = "";
-      $d["border_radius"] = "";
-      $d["border"] = "";
-      $d["bottom"] = "auto";
-      $d["caption_side"] = "top";
-      $d["clear"] = "none";
-      $d["clip"] = "auto";
-      $d["color"] = "#000000";
-      $d["content"] = "normal";
-      $d["counter_increment"] = "none";
-      $d["counter_reset"] = "none";
-      $d["cue_after"] = "none";
-      $d["cue_before"] = "none";
-      $d["cue"] = "";
-      $d["cursor"] = "auto";
-      $d["direction"] = "ltr";
-      $d["display"] = "inline";
-      $d["elevation"] = "level";
-      $d["empty_cells"] = "show";
-      $d["float"] = "none";
-      $d["font_family"] = $stylesheet->get_dompdf()->get_option("default_font");
-      $d["font_size"] = "medium";
-      $d["font_style"] = "normal";
-      $d["font_variant"] = "normal";
-      $d["font_weight"] = "normal";
-      $d["font"] = "";
-      $d["height"] = "auto";
-      $d["image_resolution"] = "normal";
-      $d["_dompdf_image_resolution"] = $d["image_resolution"];
-      $d["_dompdf_keep"] = "";
-      $d["left"] = "auto";
-      $d["letter_spacing"] = "normal";
-      $d["line_height"] = "normal";
-      $d["list_style_image"] = "none";
-      $d["list_style_position"] = "outside";
-      $d["list_style_type"] = "disc";
-      $d["list_style"] = "";
-      $d["margin_right"] = "0";
-      $d["margin_left"] = "0";
-      $d["margin_top"] = "0";
-      $d["margin_bottom"] = "0";
-      $d["margin"] = "";
-      $d["max_height"] = "none";
-      $d["max_width"] = "none";
-      $d["min_height"] = "0";
-      $d["min_width"] = "0";
-      $d["opacity"] = "1.0"; // CSS3
-      $d["orphans"] = "2";
-      $d["outline_color"] = ""; // "invert" special color is not supported
-      $d["outline_style"] = "none";
-      $d["outline_width"] = "medium";
-      $d["outline"] = "";
-      $d["overflow"] = "visible";
-      $d["padding_top"] = "0";
-      $d["padding_right"] = "0";
-      $d["padding_bottom"] = "0";
-      $d["padding_left"] = "0";
-      $d["padding"] = "";
-      $d["page_break_after"] = "auto";
-      $d["page_break_before"] = "auto";
-      $d["page_break_inside"] = "auto";
-      $d["pause_after"] = "0";
-      $d["pause_before"] = "0";
-      $d["pause"] = "";
-      $d["pitch_range"] = "50";
-      $d["pitch"] = "medium";
-      $d["play_during"] = "auto";
-      $d["position"] = "static";
-      $d["quotes"] = "";
-      $d["richness"] = "50";
-      $d["right"] = "auto";
-      $d["size"] = "auto"; // @page
-      $d["speak_header"] = "once";
-      $d["speak_numeral"] = "continuous";
-      $d["speak_punctuation"] = "none";
-      $d["speak"] = "normal";
-      $d["speech_rate"] = "medium";
-      $d["stress"] = "50";
-      $d["table_layout"] = "auto";
-      $d["text_align"] = "left";
-      $d["text_decoration"] = "none";
-      $d["text_indent"] = "0";
-      $d["text_transform"] = "none";
-      $d["top"] = "auto";
-      $d["transform"] = "none"; // CSS3
-      $d["transform_origin"] = "50% 50%"; // CSS3
-      $d["_webkit_transform"] = $d["transform"]; // CSS3
-      $d["_webkit_transform_origin"] = $d["transform_origin"]; // CSS3
-      $d["unicode_bidi"] = "normal";
-      $d["vertical_align"] = "baseline";
-      $d["visibility"] = "visible";
-      $d["voice_family"] = "";
-      $d["volume"] = "medium";
-      $d["white_space"] = "normal";
-      $d["word_wrap"] = "normal";
-      $d["widows"] = "2";
-      $d["width"] = "auto";
-      $d["word_spacing"] = "normal";
-      $d["z_index"] = "auto";
-      
-      // for @font-face
-      $d["src"] = "";
-      $d["unicode_range"] = "";
-
-      // Properties that inherit by default
-      self::$_inherited = array(
-        "azimuth",
-        "background_image_resolution",
-        "border_collapse",
-        "border_spacing",
-        "caption_side",
-        "color",
-        "cursor",
-        "direction",
-        "elevation",
-        "empty_cells",
-        "font_family",
-        "font_size",
-        "font_style",
-        "font_variant",
-        "font_weight",
-        "font",
-        "image_resolution",
-        "letter_spacing",
-        "line_height",
-        "list_style_image",
-        "list_style_position",
-        "list_style_type",
-        "list_style",
-        "orphans",
-        "page_break_inside",
-        "pitch_range",
-        "pitch",
-        "quotes",
-        "richness",
-        "speak_header",
-        "speak_numeral",
-        "speak_punctuation",
-        "speak",
-        "speech_rate",
-        "stress",
-        "text_align",
-        "text_indent",
-        "text_transform",
-        "visibility",
-        "voice_family",
-        "volume",
-        "white_space",
-        "word_wrap",
-        "widows",
-        "word_spacing",
-      );
-    }
-  }
-
-  /**
-   * "Destructor": forcibly free all references held by this object
-   */
-  function dispose() {
-    clear_object($this);
-  }
-  
-  function set_frame(Frame $frame) {
-    $this->_frame = $frame;
-  }
-  
-  function get_frame() {
-    return $this->_frame;
-  }
-  
-  function set_origin($origin) {
-    $this->_origin = $origin;
-  }
-  
-  function get_origin() {
-    return $this->_origin;
-  }
-  
-  /**
-   * returns the {@link Stylesheet} this Style is associated with.
-   *
-   * @return Stylesheet
-   */
-  function get_stylesheet() { return $this->_stylesheet; }
-  
-  /**
-   * Converts any CSS length value into an absolute length in points.
-   *
-   * length_in_pt() takes a single length (e.g. '1em') or an array of
-   * lengths and returns an absolute length.  If an array is passed, then
-   * the return value is the sum of all elements.
-   *
-   * If a reference size is not provided, the default font size is used
-   * ({@link Style::$default_font_size}).
-   *
-   * @param float|array $length   the length or array of lengths to resolve
-   * @param float       $ref_size  an absolute reference size to resolve percentage lengths
-   * @return float
-   */
-  function length_in_pt($length, $ref_size = null) {
-    static $cache = array();
-    
-    if ( !is_array($length) ) {
-      $length = array($length);
-    }
-
-    if ( !isset($ref_size) ) {
-      $ref_size = self::$default_font_size;
-    }
-      
-    $key = implode("@", $length)."/$ref_size";
-    
-    if ( isset($cache[$key]) ) {
-      return $cache[$key];
-    }
-
-    $ret = 0;
-    foreach ($length as $l) {
-
-      if ( $l === "auto" ) {
-        return "auto";
-      }
-      
-      if ( $l === "none" ) {
-        return "none";
-      }
-
-      // Assume numeric values are already in points
-      if ( is_numeric($l) ) {
-        $ret += $l;
-        continue;
-      }
-        
-      if ( $l === "normal" ) {
-        $ret += $ref_size;
-        continue;
-      }
-
-      // Border lengths
-      if ( $l === "thin" ) {
-        $ret += 0.5;
-        continue;
-      }
-      
-      if ( $l === "medium" ) {
-        $ret += 1.5;
-        continue;
-      }
-    
-      if ( $l === "thick" ) {
-        $ret += 2.5;
-        continue;
-      }
-
-      if ( ($i = mb_strpos($l, "px"))  !== false ) {
-        $dpi = $this->_stylesheet->get_dompdf()->get_option("dpi");
-        $ret += ( mb_substr($l, 0, $i)  * 72 ) / $dpi;
-        continue;
-      }
-      
-      if ( ($i = mb_strpos($l, "pt"))  !== false ) {
-        $ret += (float)mb_substr($l, 0, $i);
-        continue;
-      }
-      
-      if ( ($i = mb_strpos($l, "%"))  !== false ) {
-        $ret += (float)mb_substr($l, 0, $i)/100 * $ref_size;
-        continue;
-      }
-
-      if ( ($i = mb_strpos($l, "rem"))  !== false ) {
-        $ret += (float)mb_substr($l, 0, $i) * $this->_stylesheet->get_dompdf()->get_tree()->get_root()->get_style()->font_size;
-        continue;
-      }
-
-      if ( ($i = mb_strpos($l, "em"))  !== false ) {
-        $ret += (float)mb_substr($l, 0, $i) * $this->__get("font_size");
-        continue;
-      }
-          
-      if ( ($i = mb_strpos($l, "cm")) !== false ) {
-        $ret += mb_substr($l, 0, $i) * 72 / 2.54;
-        continue;
-      }
-
-      if ( ($i = mb_strpos($l, "mm")) !== false ) {
-        $ret += mb_substr($l, 0, $i) * 72 / 25.4;
-        continue;
-      }
-      
-      // FIXME: em:ex ratio?
-      if ( ($i = mb_strpos($l, "ex"))  !== false ) {
-        $ret += mb_substr($l, 0, $i) * $this->__get("font_size") / 2;
-        continue;
-      }
-      
-      if ( ($i = mb_strpos($l, "in")) !== false ) {
-        $ret += (float)mb_substr($l, 0, $i) * 72;
-        continue;
-      }
-          
-      if ( ($i = mb_strpos($l, "pc")) !== false ) {
-        $ret += (float)mb_substr($l, 0, $i) * 12;
-        continue;
-      }
-          
-      // Bogus value
-      $ret += $ref_size;
-    }
-
-    return $cache[$key] = $ret;
-  }
-
-  
-  /**
-   * Set inherited properties in this style using values in $parent
-   *
-   * @param Style $parent
-   *
-   * @return Style
-   */
-  function inherit(Style $parent) {
-
-    // Set parent font size
-    $this->_parent_font_size = $parent->get_font_size();
-    
-    foreach (self::$_inherited as $prop) {
-      //inherit the !important property also.
-      //if local property is also !important, don't inherit.
-      if ( isset($parent->_props[$prop]) &&
-           ( !isset($this->_props[$prop]) ||
-             ( isset($parent->_important_props[$prop]) && !isset($this->_important_props[$prop]) )
-           )
-         ) {
-        if ( isset($parent->_important_props[$prop]) ) {
-          $this->_important_props[$prop] = true;
-        }
-        //see __set and __get, on all assignments clear cache!
-        $this->_prop_cache[$prop] = null;
-        $this->_props[$prop] = $parent->_props[$prop];
-      }
-    }
-      
-    foreach ($this->_props as $prop => $value) {
-      if ( $value === "inherit" ) {
-        if ( isset($parent->_important_props[$prop]) ) {
-          $this->_important_props[$prop] = true;
-        }
-        //do not assign direct, but
-        //implicite assignment through __set, redirect to specialized, get value with __get
-        //This is for computing defaults if the parent setting is also missing.
-        //Therefore do not directly assign the value without __set
-        //set _important_props before that to be able to propagate.
-        //see __set and __get, on all assignments clear cache!
-        //$this->_prop_cache[$prop] = null;
-        //$this->_props[$prop] = $parent->_props[$prop];
-        //props_set for more obvious explicite assignment not implemented, because
-        //too many implicite uses.
-        // $this->props_set($prop, $parent->$prop);
-        $this->__set($prop, $parent->__get($prop));
-      }
-    }
-          
-    return $this;
-  }
-  
-  /**
-   * Override properties in this style with those in $style
-   *
-   * @param Style $style
-   */
-  function merge(Style $style) {
-    //treat the !important attribute
-    //if old rule has !important attribute, override with new rule only if
-    //the new rule is also !important
-    foreach($style->_props as $prop => $val ) {
-      if (isset($style->_important_props[$prop])) {
-        $this->_important_props[$prop] = true;
-        //see __set and __get, on all assignments clear cache!
-        $this->_prop_cache[$prop] = null;
-        $this->_props[$prop] = $val;
-      }
-      else if ( !isset($this->_important_props[$prop]) ) {
-        //see __set and __get, on all assignments clear cache!
-        $this->_prop_cache[$prop] = null;
-        $this->_props[$prop] = $val;
-      }
-    }
-
-    if ( isset($style->_props["font_size"]) ) {
-      $this->__font_size_calculated = false;
-    }
-  }
-
-  /**
-   * Returns an array(r, g, b, "r"=> r, "g"=>g, "b"=>b, "hex"=>"#rrggbb")
-   * based on the provided CSS color value.
-   *
-   * @param string $color
-   * @return array
-   */
-  function munge_color($color) {
-    return CSS_Color::parse($color);
-  }
-
-  /* direct access to _important_props array from outside would work only when declared as
-   * 'var $_important_props;' instead of 'protected $_important_props;'
-   * Don't call _set/__get on missing attribute. Therefore need a special access.
-   * Assume that __set will be also called when this is called, so do not check validity again.
-   * Only created, if !important exists -> always set true.
-   */
-  function important_set($prop) {
-    $prop = str_replace("-", "_", $prop);
-    $this->_important_props[$prop] = true;
-  }
-
-  function important_get($prop) {
-    return isset($this->_important_props[$prop]);
-  }
-
-  /**
-   * PHP5 overloaded setter
-   *
-   * This function along with {@link Style::__get()} permit a user of the
-   * Style class to access any (CSS) property using the following syntax:
-   * <code>
-   *  Style->margin_top = "1em";
-   *  echo (Style->margin_top);
-   * </code>
-   *
-   * __set() automatically calls the provided set function, if one exists,
-   * otherwise it sets the property directly.  Typically, __set() is not
-   * called directly from outside of this class.
-   *
-   * On each modification clear cache to return accurate setting.
-   * Also affects direct settings not using __set
-   * For easier finding all assignments, attempted to allowing only explicite assignment:
-   * Very many uses, e.g. frame_reflower.cls.php -> for now leave as it is
-   * function __set($prop, $val) {
-   *   throw new DOMPDF_Exception("Implicite replacement of assignment by __set.  Not good.");
-   * }
-   * function props_set($prop, $val) { ... }
-   *
-   * @param string $prop  the property to set
-   * @param mixed  $val   the value of the property
-   *
-   */
-  function __set($prop, $val) {
-    $prop = str_replace("-", "_", $prop);
-    $this->_prop_cache[$prop] = null;
-    
-    if ( !isset(self::$_defaults[$prop]) ) {
-      global $_dompdf_warnings;
-      $_dompdf_warnings[] = "'$prop' is not a valid CSS2 property.";
-      return;
-    }
-    
-    if ( $prop !== "content" && is_string($val) && strlen($val) > 5 && mb_strpos($val, "url") === false ) {
-      $val = mb_strtolower(trim(str_replace(array("\n", "\t"), array(" "), $val)));
-      $val = preg_replace("/([0-9]+) (pt|px|pc|em|ex|in|cm|mm|%)/S", "\\1\\2", $val);
-    }
-    
-    $method = "set_$prop";
-    
-    if ( !isset(self::$_methods_cache[$method]) ) {
-      self::$_methods_cache[$method] = method_exists($this, $method);
-    }
-
-    if ( self::$_methods_cache[$method] ) {
-      $this->$method($val);
-    }
-    else {
-      $this->_props[$prop] = $val;
-    }
-  }
-
-  /**
-   * PHP5 overloaded getter
-   * Along with {@link Style::__set()} __get() provides access to all CSS
-   * properties directly.  Typically __get() is not called directly outside
-   * of this class.
-   * On each modification clear cache to return accurate setting.
-   * Also affects direct settings not using __set
-   *
-   * @param string $prop
-   *
-   * @throws DOMPDF_Exception
-   * @return mixed
-   */
-  function __get($prop) {
-    if ( !isset(self::$_defaults[$prop]) ) {
-      throw new DOMPDF_Exception("'$prop' is not a valid CSS2 property.");
-    }
-
-    if ( isset($this->_prop_cache[$prop]) && $this->_prop_cache[$prop] != null ) {
-      return $this->_prop_cache[$prop];
-    }
-    
-    $method = "get_$prop";
-
-    // Fall back on defaults if property is not set
-    if ( !isset($this->_props[$prop]) ) {
-      $this->_props[$prop] = self::$_defaults[$prop];
-    }
-
-    if ( !isset(self::$_methods_cache[$method]) ) {
-      self::$_methods_cache[$method] = method_exists($this, $method);
-    }
-    
-    if ( self::$_methods_cache[$method] ) {
-      return $this->_prop_cache[$prop] = $this->$method();
-    }
-
-    return $this->_prop_cache[$prop] = $this->_props[$prop];
-  }
-
-  function get_font_family_raw(){
-    return trim($this->_props["font_family"], " \t\n\r\x0B\"'");
-  }
-
-  /**
-   * Getter for the 'font-family' CSS property.
-   * Uses the {@link Font_Metrics} class to resolve the font family into an
-   * actual font file.
-   *
-   * @link http://www.w3.org/TR/CSS21/fonts.html#propdef-font-family
-   * @throws DOMPDF_Exception
-   *
-   * @return string
-   */
-  function get_font_family() {
-    if ( isset($this->_font_family) ) {
-      return $this->_font_family;
-    }
-    
-    $DEBUGCSS=DEBUGCSS; //=DEBUGCSS; Allow override of global setting for ad hoc debug
-
-    // Select the appropriate font.  First determine the subtype, then check
-    // the specified font-families for a candidate.
-
-    // Resolve font-weight
-    $weight = $this->__get("font_weight");
-    
-    if ( is_numeric($weight) ) {
-      if ( $weight < 600 ) {
-        $weight = "normal";
-      }
-      else {
-        $weight = "bold";
-      }
-    }
-    else if ( $weight === "bold" || $weight === "bolder" ) {
-      $weight = "bold";
-    }
-    else {
-      $weight = "normal";
-    }
-
-    // Resolve font-style
-    $font_style = $this->__get("font_style");
-
-    if ( $weight === "bold" && ($font_style === "italic" || $font_style === "oblique") ) {
-      $subtype = "bold_italic";
-    }
-    else if ( $weight === "bold" && $font_style !== "italic" && $font_style !== "oblique" ) {
-      $subtype = "bold";
-    }
-    else if ( $weight !== "bold" && ($font_style === "italic" || $font_style === "oblique") ) {
-      $subtype = "italic";
-    }
-    else {
-      $subtype = "normal";
-    }
-    
-    // Resolve the font family
-    if ( $DEBUGCSS ) {
-      print "<pre>[get_font_family:";
-      print '('.$this->_props["font_family"].'.'.$font_style.'.'.$this->__get("font_weight").'.'.$weight.'.'.$subtype.')';
-    }
-    
-    $families = preg_split("/\s*,\s*/", $this->_props["font_family"]);
-
-    $font = null;
-    foreach($families as $family) {
-      //remove leading and trailing string delimiters, e.g. on font names with spaces;
-      //remove leading and trailing whitespace
-      $family = trim($family, " \t\n\r\x0B\"'");
-      if ( $DEBUGCSS ) {
-        print '('.$family.')';
-      }
-      $font = Font_Metrics::get_font($family, $subtype);
-
-      if ( $font ) {
-        if ($DEBUGCSS) print '('.$font.")get_font_family]\n</pre>";
-        return $this->_font_family = $font;
-      }
-    }
-
-    $family = null;
-    if ( $DEBUGCSS ) {
-      print '(default)';
-    }
-    $font = Font_Metrics::get_font($family, $subtype);
-
-    if ( $font ) {
-      if ( $DEBUGCSS ) print '('.$font.")get_font_family]\n</pre>";
-      return$this->_font_family = $font;
-    }
-    
-    throw new DOMPDF_Exception("Unable to find a suitable font replacement for: '" . $this->_props["font_family"] ."'");
-    
-  }
-
-  /**
-   * Returns the resolved font size, in points
-   *
-   * @link http://www.w3.org/TR/CSS21/fonts.html#propdef-font-size
-   * @return float
-   */
-  function get_font_size() {
-
-    if ( $this->__font_size_calculated ) {
-      return $this->_props["font_size"];
-    }
-    
-    if ( !isset($this->_props["font_size"]) ) {
-      $fs = self::$_defaults["font_size"];
-    }
-    else {
-      $fs = $this->_props["font_size"];
-    }
-    
-    if ( !isset($this->_parent_font_size) ) {
-      $this->_parent_font_size = self::$default_font_size;
-    }
-    
-    switch ((string)$fs) {
-      case "xx-small":
-      case "x-small":
-      case "small":
-      case "medium":
-      case "large":
-      case "x-large":
-      case "xx-large":
-        $fs = self::$default_font_size * self::$font_size_keywords[$fs];
-        break;
-  
-      case "smaller":
-        $fs = 8/9 * $this->_parent_font_size;
-        break;
-        
-      case "larger":
-        $fs = 6/5 * $this->_parent_font_size;
-        break;
-        
-      default:
-        break;
-    }
-
-    // Ensure relative sizes resolve to something
-    if ( ($i = mb_strpos($fs, "em")) !== false ) {
-      $fs = mb_substr($fs, 0, $i) * $this->_parent_font_size;
-    }
-    else if ( ($i = mb_strpos($fs, "ex")) !== false ) {
-      $fs = mb_substr($fs, 0, $i) * $this->_parent_font_size;
-    }
-    else {
-      $fs = $this->length_in_pt($fs);
-    }
-
-    //see __set and __get, on all assignments clear cache!
-    $this->_prop_cache["font_size"] = null;
-    $this->_props["font_size"] = $fs;
-    $this->__font_size_calculated = true;
-    return $this->_props["font_size"];
-
-  }
-
-  /**
-   * @link http://www.w3.org/TR/CSS21/text.html#propdef-word-spacing
-   * @return float
-   */
-  function get_word_spacing() {
-    if ( $this->_props["word_spacing"] === "normal" ) {
-      return 0;
-    }
-
-    return $this->_props["word_spacing"];
-  }
-
-  /**
-   * @link http://www.w3.org/TR/CSS21/text.html#propdef-letter-spacing
-   * @return float
-   */
-  function get_letter_spacing() {
-    if ( $this->_props["letter_spacing"] === "normal" ) {
-      return 0;
-    }
-
-    return $this->_props["letter_spacing"];
-  }
-
-  /**
-   * @link http://www.w3.org/TR/CSS21/visudet.html#propdef-line-height
-   * @return float
-   */
-  function get_line_height() {
-    $line_height = $this->_props["line_height"];
-    
-    if ( $line_height === "normal" ) {
-      return self::$default_line_height * $this->get_font_size();
-    }
-
-    if ( is_numeric($line_height) ) {
-      return $this->length_in_pt( $line_height . "em", $this->get_font_size());
-    }
-    
-    return $this->length_in_pt( $line_height, $this->_parent_font_size );
-  }
-
-  /**
-   * Returns the color as an array
-   *
-   * The array has the following format:
-   * <code>array(r,g,b, "r" => r, "g" => g, "b" => b, "hex" => "#rrggbb")</code>
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-color
-   * @return array
-   */
-  function get_color() {
-    return $this->munge_color( $this->_props["color"] );
-  }
-
-  /**
-   * Returns the background color as an array
-   *
-   * The returned array has the same format as {@link Style::get_color()}
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-color
-   * @return array
-   */
-  function get_background_color() {
-    return $this->munge_color( $this->_props["background_color"] );
-  }
-  
-  /**
-   * Returns the background position as an array
-   *
-   * The returned array has the following format:
-   * <code>array(x,y, "x" => x, "y" => y)</code>
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-position
-   * @return array
-   */
-  function get_background_position() {
-    $tmp = explode(" ", $this->_props["background_position"]);
-
-    switch ($tmp[0]) {
-      case "left":
-        $x = "0%";
-        break;
-  
-      case "right":
-        $x = "100%";
-        break;
-  
-      case "top":
-        $y = "0%";
-        break;
-  
-      case "bottom":
-        $y = "100%";
-        break;
-  
-      case "center":
-        $x = "50%";
-        $y = "50%";
-        break;
-  
-      default:
-        $x = $tmp[0];
-        break;
-    }
-
-    if ( isset($tmp[1]) ) {
-
-      switch ($tmp[1]) {
-        case "left":
-          $x = "0%";
-          break;
-          
-        case "right":
-          $x = "100%";
-          break;
-          
-        case "top":
-          $y = "0%";
-          break;
-          
-        case "bottom":
-          $y = "100%";
-          break;
-          
-        case "center":
-          if ( $tmp[0] === "left" || $tmp[0] === "right" || $tmp[0] === "center" ) {
-            $y = "50%";
-          }
-          else {
-            $x = "50%";
-          }
-          break;
-          
-        default:
-          $y = $tmp[1];
-          break;
-      }
-
-    }
-    else {
-      $y = "50%";
-    }
-
-    if ( !isset($x) ) {
-      $x = "0%";
-    }
-
-    if ( !isset($y) ) {
-      $y = "0%";
-    }
-
-    return array(
-      0 => $x, "x" => $x,
-      1 => $y, "y" => $y,
-    );
-  }
-
-
-  /**
-   * Returns the background as it is currently stored
-   *
-   * (currently anyway only for completeness.
-   * not used for further processing)
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-attachment
-   * @return string
-   */
-  function get_background_attachment() {
-    return $this->_props["background_attachment"];
-  }
-
-
-  /**
-   * Returns the background_repeat as it is currently stored
-   *
-   * (currently anyway only for completeness.
-   * not used for further processing)
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-repeat
-   * @return string
-   */
-  function get_background_repeat() {
-    return $this->_props["background_repeat"];
-  }
-
-
-  /**
-   * Returns the background as it is currently stored
-   *
-   * (currently anyway only for completeness.
-   * not used for further processing, but the individual get_background_xxx)
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background
-   * @return string
-   */
-  function get_background() {
-    return $this->_props["background"];
-  }
-
-
-  /**#@+
-   * Returns the border color as an array
-   *
-   * See {@link Style::get_color()}
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#border-color-properties
-   * @return array
-   */
-  function get_border_top_color() {
-    if ( $this->_props["border_top_color"] === "" ) {
-      //see __set and __get, on all assignments clear cache!
-      $this->_prop_cache["border_top_color"] = null;
-      $this->_props["border_top_color"] = $this->__get("color");
-    }
-    
-    return $this->munge_color($this->_props["border_top_color"]);
-  }
-
-  function get_border_right_color() {
-    if ( $this->_props["border_right_color"] === "" ) {
-      //see __set and __get, on all assignments clear cache!
-      $this->_prop_cache["border_right_color"] = null;
-      $this->_props["border_right_color"] = $this->__get("color");
-    }
-    
-    return $this->munge_color($this->_props["border_right_color"]);
-  }
-
-  function get_border_bottom_color() {
-    if ( $this->_props["border_bottom_color"] === "" ) {
-      //see __set and __get, on all assignments clear cache!
-      $this->_prop_cache["border_bottom_color"] = null;
-      $this->_props["border_bottom_color"] = $this->__get("color");
-    }
-    
-    return $this->munge_color($this->_props["border_bottom_color"]);
-  }
-
-  function get_border_left_color() {
-    if ( $this->_props["border_left_color"] === "" ) {
-      //see __set and __get, on all assignments clear cache!
-      $this->_prop_cache["border_left_color"] = null;
-      $this->_props["border_left_color"] = $this->__get("color");
-    }
-    
-    return $this->munge_color($this->_props["border_left_color"]);
-  }
-  
-  /**#@-*/
-
- /**#@+
-   * Returns the border width, as it is currently stored
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#border-width-properties
-   * @return float|string
-   */
-  function get_border_top_width() {
-    $style = $this->__get("border_top_style");
-    return $style !== "none" && $style !== "hidden" ? $this->length_in_pt($this->_props["border_top_width"]) : 0;
-  }
-  
-  function get_border_right_width() {
-    $style = $this->__get("border_right_style");
-    return $style !== "none" && $style !== "hidden" ? $this->length_in_pt($this->_props["border_right_width"]) : 0;
-  }
-
-  function get_border_bottom_width() {
-    $style = $this->__get("border_bottom_style");
-    return $style !== "none" && $style !== "hidden" ? $this->length_in_pt($this->_props["border_bottom_width"]) : 0;
-  }
-
-  function get_border_left_width() {
-    $style = $this->__get("border_left_style");
-    return $style !== "none" && $style !== "hidden" ? $this->length_in_pt($this->_props["border_left_width"]) : 0;
-  }
-  /**#@-*/
-
-  /**
-   * Return an array of all border properties.
-   *
-   * The returned array has the following structure:
-   * <code>
-   * array("top" => array("width" => [border-width],
-   *                      "style" => [border-style],
-   *                      "color" => [border-color (array)]),
-   *       "bottom" ... )
-   * </code>
-   *
-   * @return array
-   */
-  function get_border_properties() {
-    return array(
-      "top" => array(
-        "width" => $this->__get("border_top_width"),
-        "style" => $this->__get("border_top_style"),
-        "color" => $this->__get("border_top_color"),
-      ),
-      "bottom" => array(
-        "width" => $this->__get("border_bottom_width"),
-        "style" => $this->__get("border_bottom_style"),
-        "color" => $this->__get("border_bottom_color"),
-      ),
-      "right" => array(
-        "width" => $this->__get("border_right_width"),
-        "style" => $this->__get("border_right_style"),
-        "color" => $this->__get("border_right_color"),
-      ),
-      "left" => array(
-        "width" => $this->__get("border_left_width"),
-        "style" => $this->__get("border_left_style"),
-        "color" => $this->__get("border_left_color"),
-      ),
-    );
-  }
-
-  /**
-   * Return a single border property
-   *
-   * @param string $side
-   *
-   * @return mixed
-   */
-  protected function _get_border($side) {
-    $color = $this->__get("border_" . $side . "_color");
-    
-    return $this->__get("border_" . $side . "_width") . " " .
-      $this->__get("border_" . $side . "_style") . " " . $color["hex"];
-  }
-
-  /**#@+
-   * Return full border properties as a string
-   *
-   * Border properties are returned just as specified in CSS:
-   * <pre>[width] [style] [color]</pre>
-   * e.g. "1px solid blue"
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#border-shorthand-properties
-   * @return string
-   */
-  function get_border_top() {
-    return $this->_get_border("top");
-  }
-  
-  function get_border_right() {
-    return $this->_get_border("right");
-  }
-  
-  function get_border_bottom() {
-    return $this->_get_border("bottom");
-  }
-  
-  function get_border_left() {
-    return $this->_get_border("left");
-  }
-  /**#@-*/
-  
-  function get_computed_border_radius($w, $h) {
-    if ( !empty($this->_computed_border_radius) ) {
-      return $this->_computed_border_radius;
-    }
-    
-    $rTL = $this->__get("border_top_left_radius");
-    $rTR = $this->__get("border_top_right_radius");
-    $rBL = $this->__get("border_bottom_left_radius");
-    $rBR = $this->__get("border_bottom_right_radius");
-    
-    if ( $rTL + $rTR + $rBL + $rBR == 0 ) {
-      return $this->_computed_border_radius = array(
-        0, 0, 0, 0,
-        "top-left"     => 0, 
-        "top-right"    => 0, 
-        "bottom-right" => 0, 
-        "bottom-left"  => 0, 
-      );
-    }
-    
-    $t = $this->__get("border_top_width");
-    $r = $this->__get("border_right_width");
-    $b = $this->__get("border_bottom_width");
-    $l = $this->__get("border_left_width");
-    
-    $rTL = min($rTL, $h - $rBL - $t/2 - $b/2, $w - $rTR - $l/2 - $r/2);
-    $rTR = min($rTR, $h - $rBR - $t/2 - $b/2, $w - $rTL - $l/2 - $r/2);
-    $rBL = min($rBL, $h - $rTL - $t/2 - $b/2, $w - $rBR - $l/2 - $r/2);
-    $rBR = min($rBR, $h - $rTR - $t/2 - $b/2, $w - $rBL - $l/2 - $r/2);
-    
-    return $this->_computed_border_radius = array(
-      $rTL, $rTR, $rBR, $rBL,
-      "top-left"     => $rTL, 
-      "top-right"    => $rTR, 
-      "bottom-right" => $rBR, 
-      "bottom-left"  => $rBL, 
-    );
-  }
-  /**#@-*/
-
-
-  /**
-   * Returns the outline color as an array
-   *
-   * See {@link Style::get_color()}
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#border-color-properties
-   * @return array
-   */
-  function get_outline_color() {
-    if ( $this->_props["outline_color"] === "" ) {
-      //see __set and __get, on all assignments clear cache!
-      $this->_prop_cache["outline_color"] = null;
-      $this->_props["outline_color"] = $this->__get("color");
-    }
-    
-    return $this->munge_color($this->_props["outline_color"]);
-  }
-
- /**#@+
-   * Returns the outline width, as it is currently stored
-   * @return float|string
-   */
-  function get_outline_width() {
-    $style = $this->__get("outline_style");
-    return $style !== "none" && $style !== "hidden" ? $this->length_in_pt($this->_props["outline_width"]) : 0;
-  }
-  
-  /**#@+
-   * Return full outline properties as a string
-   *
-   * Outline properties are returned just as specified in CSS:
-   * <pre>[width] [style] [color]</pre>
-   * e.g. "1px solid blue"
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#border-shorthand-properties
-   * @return string
-   */
-  function get_outline() {
-    $color = $this->__get("outline_color");
-    return 
-      $this->__get("outline_width") . " " . 
-      $this->__get("outline_style") . " " . 
-      $color["hex"]; 
-  }
-  /**#@-*/
-
-  /**
-   * Returns border spacing as an array
-   *
-   * The array has the format (h_space,v_space)
-   *
-   * @link http://www.w3.org/TR/CSS21/tables.html#propdef-border-spacing
-   * @return array
-   */
-  function get_border_spacing() {
-    $arr = explode(" ", $this->_props["border_spacing"]);
-    if ( count($arr) == 1 ) {
-      $arr[1] = $arr[0];
-    }
-    return $arr;
-  }
-
-/*==============================*/
-
-  /*
-   !important attribute
-   For basic functionality of the !important attribute with overloading
-   of several styles of an element, changes in inherit(), merge() and _parse_properties()
-   are sufficient [helpers var $_important_props, __construct(), important_set(), important_get()]
-
-   Only for combined attributes extra treatment needed. See below.
-
-   div { border: 1px red; }
-   div { border: solid; } // Not combined! Only one occurence of same style per context
-   //
-   div { border: 1px red; }
-   div a { border: solid; } // Adding to border style ok by inheritance
-   //
-   div { border-style: solid; } // Adding to border style ok because of different styles
-   div { border: 1px red; }
-   //
-   div { border-style: solid; !important} // border: overrides, even though not !important
-   div { border: 1px dashed red; }
-   //
-   div { border: 1px red; !important }
-   div a { border-style: solid; } // Need to override because not set
-
-   Special treatment:
-   At individual property like border-top-width need to check whether overriding value is also !important.
-   Also store the !important condition for later overrides.
-   Since not known who is initiating the override, need to get passed !important as parameter.
-   !important Paramter taken as in the original style in the css file.
-   When property border !important given, do not mark subsets like border_style as important. Only
-   individual properties.
-
-   Note:
-   Setting individual property directly from css with e.g. set_border_top_style() is not needed, because
-   missing set funcions handled by a generic handler __set(), including the !important.
-   Setting individual property of as sub-property is handled below.
-
-   Implementation see at _set_style_side_type()
-   Callers _set_style_sides_type(), _set_style_type, _set_style_type_important()
-
-   Related functionality for background, padding, margin, font, list_style
-  */
-
-  /* Generalized set function for individual attribute of combined style.
-   * With check for !important
-   * Applicable for background, border, padding, margin, font, list_style
-   * Note: $type has a leading underscore (or is empty), the others not.
-   */
-  protected function _set_style_side_type($style, $side, $type, $val, $important) {
-    $prop = $style.'_'.$side.$type;
-    
-    if ( !isset($this->_important_props[$prop]) || $important) {
-      //see __set and __get, on all assignments clear cache!
-      $this->_prop_cache[$prop] = null;
-      if ( $important ) {
-        $this->_important_props[$prop] = true;
-      }
-      $this->_props[$prop] = $val;
-    }
-  }
-
-  protected function _set_style_sides_type($style,$top,$right,$bottom,$left,$type,$important) {
-    $this->_set_style_side_type($style,'top',$type,$top,$important);
-    $this->_set_style_side_type($style,'right',$type,$right,$important);
-    $this->_set_style_side_type($style,'bottom',$type,$bottom,$important);
-    $this->_set_style_side_type($style,'left',$type,$left,$important);
-  }
-
-  protected function _set_style_type($style,$type,$val,$important) {
-    $val = preg_replace("/\s*\,\s*/", ",", $val); // when rgb() has spaces
-    $arr = explode(" ", $val);
-    
-    switch (count($arr)) {
-      case 1: $this->_set_style_sides_type($style,$arr[0],$arr[0],$arr[0],$arr[0],$type,$important); break;
-      case 2: $this->_set_style_sides_type($style,$arr[0],$arr[1],$arr[0],$arr[1],$type,$important); break;
-      case 3: $this->_set_style_sides_type($style,$arr[0],$arr[1],$arr[2],$arr[1],$type,$important); break;
-      case 4: $this->_set_style_sides_type($style,$arr[0],$arr[1],$arr[2],$arr[3],$type,$important); break;
-    }
-    
-    //see __set and __get, on all assignments clear cache!
-    $this->_prop_cache[$style.$type] = null;
-    $this->_props[$style.$type] = $val;
-  }
-
-  protected function _set_style_type_important($style,$type,$val) {
-    $this->_set_style_type($style,$type,$val,isset($this->_important_props[$style.$type]));
-  }
-
-  /* Anyway only called if _important matches and is assigned
-   * E.g. _set_style_side_type($style,$side,'',str_replace("none", "0px", $val),isset($this->_important_props[$style.'_'.$side]));
-   */
-  protected function _set_style_side_width_important($style,$side,$val) {
-    //see __set and __get, on all assignments clear cache!
-    $this->_prop_cache[$style.'_'.$side] = null;
-    $this->_props[$style.'_'.$side] = str_replace("none", "0px", $val);
-  }
-
-  protected function _set_style($style,$val,$important) {
-    if ( !isset($this->_important_props[$style]) || $important) {
-      if ( $important ) {
-        $this->_important_props[$style] = true;
-      }
-      //see __set and __get, on all assignments clear cache!
-      $this->_prop_cache[$style] = null;
-      $this->_props[$style] = $val;
-    }
-  }
-
-  protected function _image($val) {
-    $DEBUGCSS=DEBUGCSS;
-    $parsed_url = "none";
-    
-    if ( mb_strpos($val, "url") === false ) {
-      $path = "none"; //Don't resolve no image -> otherwise would prefix path and no longer recognize as none
-    }
-    else {
-      $val = preg_replace("/url\(['\"]?([^'\")]+)['\"]?\)/","\\1", trim($val));
-
-      // Resolve the url now in the context of the current stylesheet
-      $parsed_url = explode_url($val);
-      if ( $parsed_url["protocol"] == "" && $this->_stylesheet->get_protocol() == "" ) {
-        if ($parsed_url["path"][0] === '/' || $parsed_url["path"][0] === '\\' ) {
-          $path = $_SERVER["DOCUMENT_ROOT"].'/';
-        }
-        else {
-          $path = $this->_stylesheet->get_base_path();
-        }
-        
-        $path .= $parsed_url["path"] . $parsed_url["file"];
-        $path = realpath($path);
-        // If realpath returns FALSE then specifically state that there is no background image
-        if ( !$path ) {
-          $path = 'none';
-        }
-      }
-      else {
-        $path = build_url($this->_stylesheet->get_protocol(),
-                          $this->_stylesheet->get_host(),
-                          $this->_stylesheet->get_base_path(),
-                          $val);
-      }
-    }
-    if ($DEBUGCSS) {
-      print "<pre>[_image\n";
-      print_r($parsed_url);
-      print $this->_stylesheet->get_protocol()."\n".$this->_stylesheet->get_base_path()."\n".$path."\n";
-      print "_image]</pre>";;
-    }
-    return $path;
-  }
-
-/*======================*/
-
-  /**
-   * Sets color
-   *
-   * The color parameter can be any valid CSS color value
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-color
-   * @param string $color
-   */
-  function set_color($color) {
-    $col = $this->munge_color($color);
-
-    if ( is_null($col) || !isset($col["hex"]) ) {
-      $color = "inherit";
-    }
-    else {
-      $color = $col["hex"];
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["color"] = null;
-    $this->_props["color"] = $color;
-  }
-
-  /**
-   * Sets the background color
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-color
-   * @param string $color
-   */
-  function set_background_color($color) {
-    $col = $this->munge_color($color);
-    
-    if ( is_null($col) ) {
-      return;
-      //$col = self::$_defaults["background_color"];
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["background_color"] = null;
-    $this->_props["background_color"] = is_array($col) ? $col["hex"] : $col;
-  }
-
-  /**
-   * Set the background image url
-   * @link     http://www.w3.org/TR/CSS21/colors.html#background-properties
-   *
-   * @param string $val
-   */
-  function set_background_image($val) {
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["background_image"] = null;
-    $this->_props["background_image"] = $this->_image($val);
-  }
-
-  /**
-   * Sets the background repeat
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-repeat
-   * @param string $val
-   */
-  function set_background_repeat($val) {
-    if ( is_null($val) ) {
-      $val = self::$_defaults["background_repeat"];
-    }
-      
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["background_repeat"] = null;
-    $this->_props["background_repeat"] = $val;
-  }
-
-  /**
-   * Sets the background attachment
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-attachment
-   * @param string $val
-   */
-  function set_background_attachment($val) {
-    if ( is_null($val) ) {
-      $val = self::$_defaults["background_attachment"];
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["background_attachment"] = null;
-    $this->_props["background_attachment"] = $val;
-  }
-
-  /**
-   * Sets the background position
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background-position
-   * @param string $val
-   */
-  function set_background_position($val) {
-    if ( is_null($val) ) {
-      $val = self::$_defaults["background_position"];
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["background_position"] = null;
-    $this->_props["background_position"] = $val;
-  }
-
-  /**
-   * Sets the background - combined options
-   *
-   * @link http://www.w3.org/TR/CSS21/colors.html#propdef-background
-   * @param string $val
-   */
-  function set_background($val) {
-    $val = trim($val);
-    $important = isset($this->_important_props["background"]);
-    
-    if ( $val === "none" ) {
-      $this->_set_style("background_image", "none", $important);
-      $this->_set_style("background_color", "transparent", $important);
-    }
-    else {
-      $pos = array();
-      $tmp = preg_replace("/\s*\,\s*/", ",", $val); // when rgb() has spaces
-      $tmp = preg_split("/\s+/", $tmp);
-      
-      foreach($tmp as $attr) {
-        if ( mb_substr($attr, 0, 3) === "url" || $attr === "none" ) {
-          $this->_set_style("background_image", $this->_image($attr), $important);
-        } 
-        elseif ( $attr === "fixed" || $attr === "scroll" ) {
-          $this->_set_style("background_attachment", $attr, $important);
-        } 
-        elseif ( $attr === "repeat" || $attr === "repeat-x" || $attr === "repeat-y" || $attr === "no-repeat" ) {
-          $this->_set_style("background_repeat", $attr, $important);
-        }
-        elseif ( ($col = $this->munge_color($attr)) != null ) {
-          $this->_set_style("background_color", is_array($col) ? $col["hex"] : $col, $important);
-        } 
-        else {
-          $pos[] = $attr;
-        }
-      }
-      
-      if (count($pos)) {
-        $this->_set_style("background_position", implode(" ", $pos), $important);
-      }
-    }
-    
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["background"] = null;
-    $this->_props["background"] = $val;
-  }
-
-  /**
-   * Sets the font size
-   *
-   * $size can be any acceptable CSS size
-   *
-   * @link http://www.w3.org/TR/CSS21/fonts.html#propdef-font-size
-   * @param string|float $size
-   */
-  function set_font_size($size) {
-    $this->__font_size_calculated = false;
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["font_size"] = null;
-    $this->_props["font_size"] = $size;
-  }
-
-  /**
-   * Sets the font style
-   *
-   * combined attributes
-   * set individual attributes also, respecting !important mark
-   * exactly this order, separate by space. Multiple fonts separated by comma:
-   * font-style, font-variant, font-weight, font-size, line-height, font-family
-   *
-   * Other than with border and list, existing partial attributes should
-   * reset when starting here, even when not mentioned.
-   * If individual attribute is !important and explicite or implicite replacement is not,
-   * keep individual attribute
-   *
-   * require whitespace as delimiters for single value attributes
-   * On delimiter "/" treat first as font height, second as line height
-   * treat all remaining at the end of line as font
-   * font-style, font-variant, font-weight, font-size, line-height, font-family
-   *
-   * missing font-size and font-family might be not allowed, but accept it here and
-   * use default (medium size, enpty font name)
-   *
-   * @link http://www.w3.org/TR/CSS21/generate.html#propdef-list-style
-   * @param $val
-   */
-  function set_font($val) {
-    $this->__font_size_calculated = false;
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["font"] = null;
-    $this->_props["font"] = $val;
-
-    $important = isset($this->_important_props["font"]);
-
-    if ( preg_match("/^(italic|oblique|normal)\s*(.*)$/i",$val,$match) ) {
-      $this->_set_style("font_style", $match[1], $important);
-      $val = $match[2];
-    }
-    else {
-      $this->_set_style("font_style", self::$_defaults["font_style"], $important);
-    }
-
-    if ( preg_match("/^(small-caps|normal)\s*(.*)$/i",$val,$match) ) {
-      $this->_set_style("font_variant", $match[1], $important);
-      $val = $match[2];
-    }
-    else {
-      $this->_set_style("font_variant", self::$_defaults["font_variant"], $important);
-    }
-
-    //matching numeric value followed by unit -> this is indeed a subsequent font size. Skip!
-    if ( preg_match("/^(bold|bolder|lighter|100|200|300|400|500|600|700|800|900|normal)\s*(.*)$/i", $val, $match) &&
-         !preg_match("/^(?:pt|px|pc|em|ex|in|cm|mm|%)/",$match[2])
-       ) {
-      $this->_set_style("font_weight", $match[1], $important);
-      $val = $match[2];
-    }
-    else {
-      $this->_set_style("font_weight", self::$_defaults["font_weight"], $important);
-    }
-
-    if ( preg_match("/^(xx-small|x-small|small|medium|large|x-large|xx-large|smaller|larger|\d+\s*(?:pt|px|pc|em|ex|in|cm|mm|%))\s*(.*)$/i",$val,$match) ) {
-      $this->_set_style("font_size", $match[1], $important);
-      $val = $match[2];
-      if ( preg_match("/^\/\s*(\d+\s*(?:pt|px|pc|em|ex|in|cm|mm|%))\s*(.*)$/i", $val, $match ) ) {
-        $this->_set_style("line_height", $match[1], $important);
-        $val = $match[2];
-      }
-      else {
-        $this->_set_style("line_height", self::$_defaults["line_height"], $important);
-      }
-    }
-    else {
-      $this->_set_style("font_size", self::$_defaults["font_size"], $important);
-      $this->_set_style("line_height", self::$_defaults["line_height"], $important);
-    }
-
-    if( strlen($val) != 0 ) {
-      $this->_set_style("font_family", $val, $important);
-    }
-    else {
-      $this->_set_style("font_family", self::$_defaults["font_family"], $important);
-    }
-  }
-
-  /**#@+
-   * Sets page break properties
-   *
-   * @link http://www.w3.org/TR/CSS21/page.html#page-breaks
-   * @param string $break
-   */
-  function set_page_break_before($break) {
-    if ( $break === "left" || $break === "right" ) {
-      $break = "always";
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["page_break_before"] = null;
-    $this->_props["page_break_before"] = $break;
-  }
-
-  function set_page_break_after($break) {
-    if ( $break === "left" || $break === "right" ) {
-      $break = "always";
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["page_break_after"] = null;
-    $this->_props["page_break_after"] = $break;
-  }
-  /**#@-*/
-    
-  //........................................................................
-
-  /**#@+
-   * Sets the margin size
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#margin-properties
-   * @param $val
-   */
-  function set_margin_top($val) {
-    $this->_set_style_side_width_important('margin','top',$val);
-  }
-
-  function set_margin_right($val) {
-    $this->_set_style_side_width_important('margin','right',$val);
-  }
-
-  function set_margin_bottom($val) {
-    $this->_set_style_side_width_important('margin','bottom',$val);
-  }
-
-  function set_margin_left($val) {
-    $this->_set_style_side_width_important('margin','left',$val);
-  }
-  
-  function set_margin($val) {
-    $val = str_replace("none", "0px", $val);
-    $this->_set_style_type_important('margin','',$val);
-  }
-  /**#@-*/
-
-  /**#@+
-   * Sets the padding size
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#padding-properties
-   * @param $val
-   */
-  function set_padding_top($val) {
-    $this->_set_style_side_width_important('padding','top',$val);
-  }
-
-  function set_padding_right($val) {
-    $this->_set_style_side_width_important('padding','right',$val);
-  }
-
-  function set_padding_bottom($val) {
-    $this->_set_style_side_width_important('padding','bottom',$val);
-  }
-
-  function set_padding_left($val) {
-    $this->_set_style_side_width_important('padding','left',$val);
-  }
-
-  function set_padding($val) {
-    $val = str_replace("none", "0px", $val);
-    $this->_set_style_type_important('padding','',$val);
-  }
-  /**#@-*/
-
-  /**
-   * Sets a single border
-   *
-   * @param string  $side
-   * @param string  $border_spec ([width] [style] [color])
-   * @param boolean $important
-   */
-  protected function _set_border($side, $border_spec, $important) {
-    $border_spec = preg_replace("/\s*\,\s*/", ",", $border_spec);
-    //$border_spec = str_replace(",", " ", $border_spec); // Why did we have this ?? rbg(10, 102, 10) > rgb(10  102  10)
-    $arr = explode(" ", $border_spec);
-
-    // FIXME: handle partial values
- 
-    //For consistency of individal and combined properties, and with ie8 and firefox3
-    //reset all attributes, even if only partially given
-    $this->_set_style_side_type('border',$side,'_style',self::$_defaults['border_'.$side.'_style'],$important);
-    $this->_set_style_side_type('border',$side,'_width',self::$_defaults['border_'.$side.'_width'],$important);
-    $this->_set_style_side_type('border',$side,'_color',self::$_defaults['border_'.$side.'_color'],$important);
-
-    foreach ($arr as $value) {
-      $value = trim($value);
-      if ( in_array($value, self::$BORDER_STYLES) ) {
-        $this->_set_style_side_type('border',$side,'_style',$value,$important);
-      }
-      else if ( preg_match("/[.0-9]+(?:px|pt|pc|em|ex|%|in|mm|cm)|(?:thin|medium|thick)/", $value ) ) {
-        $this->_set_style_side_type('border',$side,'_width',$value,$important);
-      }
-      else {
-        // must be color
-        $this->_set_style_side_type('border',$side,'_color',$value,$important);
-      }
-    }
-
-    //see __set and __get, on all assignments clear cache!
-    $this->_prop_cache['border_'.$side] = null;
-    $this->_props['border_'.$side] = $border_spec;
-  }
-
-  /**
-   * Sets the border styles
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#border-properties
-   * @param string $val
-   */
-  function set_border_top($val) {
-    $this->_set_border("top", $val, isset($this->_important_props['border_top'])); 
-  }
-
-  function set_border_right($val) {
-    $this->_set_border("right", $val, isset($this->_important_props['border_right']));
-  }
-  
-  function set_border_bottom($val) {
-    $this->_set_border("bottom", $val, isset($this->_important_props['border_bottom']));
-  }
-  
-  function set_border_left($val) {
-    $this->_set_border("left", $val, isset($this->_important_props['border_left']));
-  }
-
-  function set_border($val) {
-    $important = isset($this->_important_props["border"]);
-    $this->_set_border("top", $val, $important);
-    $this->_set_border("right", $val, $important);
-    $this->_set_border("bottom", $val, $important);
-    $this->_set_border("left", $val, $important);
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["border"] = null;
-    $this->_props["border"] = $val;
-  }
-
-  function set_border_width($val) {
-    $this->_set_style_type_important('border','_width',$val);
-  }
-
-  function set_border_color($val) {
-    $this->_set_style_type_important('border','_color',$val);
-  }
-
-  function set_border_style($val) {
-    $this->_set_style_type_important('border','_style',$val);
-  }
-
-  /**
-   * Sets the border radius size
-   * 
-   * http://www.w3.org/TR/css3-background/#corners
-   */
-  function set_border_top_left_radius($val) {
-    $this->_set_border_radius_corner($val, "top_left");
-  }
-  
-  function set_border_top_right_radius($val) {
-    $this->_set_border_radius_corner($val, "top_right");
-  }
-  
-  function set_border_bottom_left_radius($val) {
-    $this->_set_border_radius_corner($val, "bottom_left");
-  }
-  
-  function set_border_bottom_right_radius($val) {
-    $this->_set_border_radius_corner($val, "bottom_right");
-  }
-  
-  function set_border_radius($val) {
-    $val = preg_replace("/\s*\,\s*/", ",", $val); // when border-radius has spaces
-    $arr = explode(" ", $val);
-    
-    switch (count($arr)) {
-      case 1: $this->_set_border_radii($arr[0],$arr[0],$arr[0],$arr[0]); break;
-      case 2: $this->_set_border_radii($arr[0],$arr[1],$arr[0],$arr[1]); break;
-      case 3: $this->_set_border_radii($arr[0],$arr[1],$arr[2],$arr[1]); break;
-      case 4: $this->_set_border_radii($arr[0],$arr[1],$arr[2],$arr[3]); break;
-    }
-  }
-
-  protected function _set_border_radii($val1, $val2, $val3, $val4) {
-    $this->_set_border_radius_corner($val1, "top_left");
-    $this->_set_border_radius_corner($val2, "top_right");
-    $this->_set_border_radius_corner($val3, "bottom_right");
-    $this->_set_border_radius_corner($val4, "bottom_left");
-  }
-  
-  protected function _set_border_radius_corner($val, $corner) {
-    $this->_has_border_radius = true;
-    
-    //see __set and __get, on all assignments clear cache!
-    $this->_prop_cache["border_" . $corner . "_radius"] = null;
-    
-    $this->_props["border_" . $corner . "_radius"] = $this->length_in_pt($val);
-  }
-
-  /**
-   * Sets the outline styles
-   *
-   * @link http://www.w3.org/TR/CSS21/ui.html#dynamic-outlines
-   * @param string $val
-   */
-  function set_outline($val) {
-    $important = isset($this->_important_props["outline"]);
-    
-    $props = array(
-      "outline_style", 
-      "outline_width", 
-      "outline_color",
-    );
-    
-    foreach($props as $prop) {
-      $_val = self::$_defaults[$prop];
-      
-      if ( !isset($this->_important_props[$prop]) || $important) {
-        //see __set and __get, on all assignments clear cache!
-        $this->_prop_cache[$prop] = null;
-        if ( $important ) {
-          $this->_important_props[$prop] = true;
-        }
-        $this->_props[$prop] = $_val;
-      }
-    }
-    
-    $val = preg_replace("/\s*\,\s*/", ",", $val); // when rgb() has spaces
-    $arr = explode(" ", $val);
-    foreach ($arr as $value) {
-      $value = trim($value);
-      
-      if ( in_array($value, self::$BORDER_STYLES) ) {
-        $this->set_outline_style($value);
-      }
-      else if ( preg_match("/[.0-9]+(?:px|pt|pc|em|ex|%|in|mm|cm)|(?:thin|medium|thick)/", $value ) ) {
-        $this->set_outline_width($value);
-      }
-      else {
-        // must be color
-        $this->set_outline_color($value);
-      }
-    }
-    
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["outline"] = null;
-    $this->_props["outline"] = $val;
-  }
-
-  function set_outline_width($val) {
-    $this->_set_style_type_important('outline','_width',$val);
-  }
-
-  function set_outline_color($val) {
-    $this->_set_style_type_important('outline','_color',$val);
-  }
-
-  function set_outline_style($val) {
-    $this->_set_style_type_important('outline','_style',$val);
-  }
-
-  /**
-   * Sets the border spacing
-   *
-   * @link http://www.w3.org/TR/CSS21/box.html#border-properties
-   * @param float $val
-   */
-  function set_border_spacing($val) {
-    $arr = explode(" ", $val);
-
-    if ( count($arr) == 1 ) {
-      $arr[1] = $arr[0];
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["border_spacing"] = null;
-    $this->_props["border_spacing"] = "$arr[0] $arr[1]";
-  }
-
-  /**
-   * Sets the list style image
-   *
-   * @link http://www.w3.org/TR/CSS21/generate.html#propdef-list-style-image
-   * @param $val
-   */
-  function set_list_style_image($val) {
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["list_style_image"] = null;
-    $this->_props["list_style_image"] = $this->_image($val);
-  }
-
-  /**
-   * Sets the list style
-   *
-   * @link http://www.w3.org/TR/CSS21/generate.html#propdef-list-style
-   * @param $val
-   */
-  function set_list_style($val) {
-    $important = isset($this->_important_props["list_style"]);
-    $arr = explode(" ", str_replace(",", " ", $val));
-
-    static $types = array(
-      "disc", "circle", "square", 
-      "decimal-leading-zero", "decimal", "1",
-      "lower-roman", "upper-roman", "a", "A",
-      "lower-greek", 
-      "lower-latin", "upper-latin", 
-      "lower-alpha", "upper-alpha", 
-      "armenian", "georgian", "hebrew",
-      "cjk-ideographic", "hiragana", "katakana",
-      "hiragana-iroha", "katakana-iroha", "none"
-    );
-
-    static $positions = array("inside", "outside");
-
-    foreach ($arr as $value) {
-      /* http://www.w3.org/TR/CSS21/generate.html#list-style
-       * A value of 'none' for the 'list-style' property sets both 'list-style-type' and 'list-style-image' to 'none'
-       */
-      if ( $value === "none" ) {
-         $this->_set_style("list_style_type", $value, $important);
-         $this->_set_style("list_style_image", $value, $important);
-        continue;
-      }
-
-      //On setting or merging or inheriting list_style_image as well as list_style_type,
-      //and url exists, then url has precedence, otherwise fall back to list_style_type
-      //Firefox is wrong here (list_style_image gets overwritten on explicite list_style_type)
-      //Internet Explorer 7/8 and dompdf is right.
-       
-      if ( mb_substr($value, 0, 3) === "url" ) {
-        $this->_set_style("list_style_image", $this->_image($value), $important);
-        continue;
-      }
-
-      if ( in_array($value, $types) ) {
-        $this->_set_style("list_style_type", $value, $important);
-      }
-      else if ( in_array($value, $positions) ) {
-        $this->_set_style("list_style_position", $value, $important);
-      }
-    }
-
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["list_style"] = null;
-    $this->_props["list_style"] = $val;
-  }
-  
-  function set_size($val) {
-    $length_re = "/(\d+\s*(?:pt|px|pc|em|ex|in|cm|mm|%))/";
-
-    $val = mb_strtolower($val);
-    
-    if ( $val === "auto" ) {
-      return;
-    }
-        
-    $parts = preg_split("/\s+/", $val);
-    
-    $computed = array();
-    if ( preg_match($length_re, $parts[0]) ) {
-      $computed[] = $this->length_in_pt($parts[0]);
-      
-      if ( isset($parts[1]) && preg_match($length_re, $parts[1]) ) {
-        $computed[] = $this->length_in_pt($parts[1]);
-      }
-      else {
-        $computed[] = $computed[0];
-      }
-    }
-    elseif ( isset(CPDF_Adapter::$PAPER_SIZES[$parts[0]]) ) {
-      $computed = array_slice(CPDF_Adapter::$PAPER_SIZES[$parts[0]], 2, 2);
-      
-      if ( isset($parts[1]) && $parts[1] === "landscape" ) {
-        $computed = array_reverse($computed);
-      }
-    }
-    else {
-      return;
-    }
-    
-    $this->_props["size"] = $computed;
-  }
-  
-  /**
-   * Sets the CSS3 transform property
-   *
-   * @link http://www.w3.org/TR/css3-2d-transforms/#transform-property
-   * @param string $val
-   */
-  function set_transform($val) {
-    $number   = "\s*([^,\s]+)\s*";
-    $tr_value = "\s*([^,\s]+)\s*";
-    $angle    = "\s*([^,\s]+(?:deg|rad)?)\s*";
-    
-    if ( !preg_match_all("/[a-z]+\([^\)]+\)/i", $val, $parts, PREG_SET_ORDER) ) {
-      return;
-    }
-    
-    $functions = array(
-      //"matrix"     => "\($number,$number,$number,$number,$number,$number\)",
-    
-      "translate"  => "\($tr_value(?:,$tr_value)?\)",
-      "translateX" => "\($tr_value\)",
-      "translateY" => "\($tr_value\)",
-    
-      "scale"      => "\($number(?:,$number)?\)",
-      "scaleX"     => "\($number\)",
-      "scaleY"     => "\($number\)",
-    
-      "rotate"     => "\($angle\)",
-    
-      "skew"       => "\($angle(?:,$angle)?\)",
-      "skewX"      => "\($angle\)",
-      "skewY"      => "\($angle\)",
-    );
-    
-    $transforms = array();
-    
-    foreach($parts as $part) {
-      $t = $part[0];
-      
-      foreach($functions as $name => $pattern) {
-        if ( preg_match("/$name\s*$pattern/i", $t, $matches) ) {
-          $values = array_slice($matches, 1);
-          
-          switch($name) {
-            // <angle> units
-            case "rotate":
-            case "skew":
-            case "skewX":
-            case "skewY":
-              
-              foreach($values as $i => $value) {
-                if ( strpos($value, "rad") ) {
-                  $values[$i] = rad2deg(floatval($value));
-                }
-                else {
-                  $values[$i] = floatval($value);
-                }
-              }
-              
-              switch($name) {
-                case "skew":
-                  if ( !isset($values[1]) ) {
-                    $values[1] = 0;
-                  }
-                break;
-                case "skewX":
-                  $name = "skew";
-                  $values = array($values[0], 0);
-                break;
-                case "skewY":
-                  $name = "skew";
-                  $values = array(0, $values[0]);
-                break;
-              }
-            break;
-            
-            // <translation-value> units
-            case "translate":
-              $values[0] = $this->length_in_pt($values[0], $this->width);
-              
-              if ( isset($values[1]) ) {
-                $values[1] = $this->length_in_pt($values[1], $this->height);
-              }
-              else {
-                $values[1] = 0;
-              }
-            break;
-            
-            case "translateX":
-              $name = "translate";
-              $values = array($this->length_in_pt($values[0], $this->width), 0);
-            break;
-            
-            case "translateY":
-              $name = "translate";
-              $values = array(0, $this->length_in_pt($values[0], $this->height));
-            break;
-            
-            // <number> units
-            case "scale":
-              if ( !isset($values[1]) ) {
-                $values[1] = $values[0];
-              }
-            break;
-            
-            case "scaleX":
-              $name = "scale";
-              $values = array($values[0], 1.0);
-            break;
-            
-            case "scaleY":
-              $name = "scale";
-              $values = array(1.0, $values[0]);
-            break;
-          }
-          
-          $transforms[] = array(
-            $name, 
-            $values,
-          );
-        }
-      }
-    }
-    
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["transform"] = null;
-    $this->_props["transform"] = $transforms;
-  }
-  
-  function set__webkit_transform($val) {
-    $this->set_transform($val);
-  }
-  
-  function set__webkit_transform_origin($val) {
-    $this->set_transform_origin($val);
-  }
-  
-  /**
-   * Sets the CSS3 transform-origin property
-   *
-   * @link http://www.w3.org/TR/css3-2d-transforms/#transform-origin
-   * @param string $val
-   */
-  function set_transform_origin($val) {
-    $values = preg_split("/\s+/", $val);
-    
-    if ( count($values) === 0) {
-      return;
-    }
-    
-    foreach($values as &$value) {
-      if ( in_array($value, array("top", "left")) ) {
-        $value = 0;
-      }
-      
-      if ( in_array($value, array("bottom", "right")) ) {
-        $value = "100%";
-      }
-    }
-    
-    if ( !isset($values[1]) ) {
-      $values[1] = $values[0];
-    }
-    
-    //see __set and __get, on all assignments clear cache, not needed on direct set through __set
-    $this->_prop_cache["transform_origin"] = null;
-    $this->_props["transform_origin"] = $values;
-  }
-  
-  protected function parse_image_resolution($val) {
-    // If exif data could be get: 
-    // $re = '/^\s*(\d+|normal|auto)(?:\s*,\s*(\d+|normal))?\s*$/';
-    
-    $re = '/^\s*(\d+|normal|auto)\s*$/';
-    
-    if ( !preg_match($re, $val, $matches) ) {
-      return null;
-    }
-    
-    return $matches[1];
-  }
-  
-  // auto | normal | dpi
-  function set_background_image_resolution($val) {
-    $parsed = $this->parse_image_resolution($val);
-    
-    $this->_prop_cache["background_image_resolution"] = null;
-    $this->_props["background_image_resolution"] = $parsed;
-  }
-  
-  // auto | normal | dpi
-  function set_image_resolution($val) {
-    $parsed = $this->parse_image_resolution($val);
-    
-    $this->_prop_cache["image_resolution"] = null;
-    $this->_props["image_resolution"] = $parsed;
-  }
-  
-  function set__dompdf_background_image_resolution($val) {
-    $this->set_background_image_resolution($val);
-  }
-  
-  function set__dompdf_image_resolution($val) {
-    $this->set_image_resolution($val);
-  }
-
-  function set_z_index($val) {
-    if ( round($val) != $val && $val !== "auto" ) {
-      return;
-    }
-
-    $this->_prop_cache["z_index"] = null;
-    $this->_props["z_index"] = $val;
-  }
-  
-  function set_counter_increment($val) {
-    $val = trim($val);
-    $value = null;
-    
-    if ( in_array($val, array("none", "inherit")) ) {
-      $value = $val;
-    }
-    else {
-      if ( preg_match_all("/(".self::CSS_IDENTIFIER.")(?:\s+(".self::CSS_INTEGER."))?/", $val, $matches, PREG_SET_ORDER) ){
-        $value = array();
-        foreach($matches as $match) {
-          $value[$match[1]] = isset($match[2]) ? $match[2] : 1;
-        }
-      }
-    }
-
-    $this->_prop_cache["counter_increment"] = null;
-    $this->_props["counter_increment"] = $value;
-  }
-
-  /**
-   * Generate a string representation of the Style
-   *
-   * This dumps the entire property array into a string via print_r.  Useful
-   * for debugging.
-   *
-   * @return string
-   */
- /*DEBUGCSS print: see below additional debugging util*/
-  function __toString() {
-    return print_r(array_merge(array("parent_font_size" => $this->_parent_font_size),
-                               $this->_props), true);
-  }
-
-/*DEBUGCSS*/  function debug_print() {
-/*DEBUGCSS*/    print "parent_font_size:".$this->_parent_font_size . ";\n";
-/*DEBUGCSS*/    foreach($this->_props as $prop => $val ) {
-/*DEBUGCSS*/      print $prop.':'.$val;
-/*DEBUGCSS*/      if (isset($this->_important_props[$prop])) {
-/*DEBUGCSS*/        print '!important';
-/*DEBUGCSS*/      }
-/*DEBUGCSS*/      print ";\n";
-/*DEBUGCSS*/    }
-/*DEBUGCSS*/  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+l+U3BsL2LpddUgCQjv8k

@@ -1,124 +1,68 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Generic Font table directory entry.
- * 
- * @package php-font-lib
- */
-class Font_Table_Directory_Entry extends Font_Binary_Stream {
-  /**
-   * @var Font_TrueType
-   */
-  protected $font;
-  
-  /**
-   * @var Font_Table
-   */
-  protected $font_table;
-  
-  public $entryLength = 4;
-  
-  public $tag;
-  public $checksum;
-  public $offset;
-  public $length;
-  
-  protected $origF;
-  
-  static function computeChecksum($data){
-    $len = strlen($data);
-    $mod = $len % 4;
-    
-    if ($mod) { 
-      $data = str_pad($data, $len + (4 - $mod), "\0");
-    }
-    
-    $len = strlen($data);
-    
-    $hi = 0x0000;
-    $lo = 0x0000;
-    
-    for ($i = 0; $i < $len; $i += 4) {
-      $hi += (ord($data[$i]  ) << 8) + ord($data[$i+1]);
-      $lo += (ord($data[$i+2]) << 8) + ord($data[$i+3]);
-      $hi += $lo >> 16;
-      $lo = $lo & 0xFFFF;
-      $hi = $hi & 0xFFFF;
-    }
-    
-    return ($hi << 8) + $lo;
-  }
-  
-  function __construct(Font_TrueType $font) {
-    $this->font = $font;
-    $this->f = $font->f;
-  }
-  
-  function parse() {
-    $this->tag = $this->font->read(4);
-  }
-  
-  function open($filename, $mode = self::modeRead) {
-    // void
-  }
-  
-  function setTable(Font_Table $font_table) {
-    $this->font_table = $font_table;
-  }
-  
-  function encode($entry_offset){
-    Font::d("\n==== $this->tag ====");
-    //Font::d("Entry offset  = $entry_offset");
-    
-    $data = $this->font_table;
-    $font = $this->font;
-    
-    $table_offset = $font->pos();
-    $this->offset = $table_offset;
-    $table_length = $data->encode();
-    
-    $font->seek($table_offset);
-    $table_data = $font->read($table_length);
-    
-    $font->seek($entry_offset);
-    
-    $font->write($this->tag, 4);
-    $font->writeUInt32(self::computeChecksum($table_data));
-    $font->writeUInt32($table_offset);
-    $font->writeUInt32($table_length);
-    
-    Font::d("Bytes written = $table_length");
-    
-    $font->seek($table_offset + $table_length);
-  }
-  
-  /**
-   * @return Font_TrueType
-   */
-  function getFont() {
-    return $this->font;
-  }
-  
-  function startRead() {
-    $this->font->seek($this->offset);
-  }
-  
-  function endRead() {
-    //
-  }
-  
-  function startWrite() {
-    $this->font->seek($this->offset);
-  }
-  
-  function endWrite() {
-    //
-  }
-}
-
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+5UwnAUroBMTJE3aBSYkiLIAm5wkhaW==

@@ -1,252 +1,86 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * The line box class
- *
- * This class represents a line box
- * http://www.w3.org/TR/CSS2/visuren.html#line-box
- *
- * @access protected
- * @package dompdf
- */
-class Line_Box {
-
-  /**
-   * @var Block_Frame_Decorator
-   */
-  protected $_block_frame;
-
-  /**
-   * @var Frame[]
-   */
-  protected $_frames = array();
-  
-  /**
-   * @var integer
-   */
-  public $wc = 0;
-  
-  /**
-   * @var float
-   */
-  public $y = null;
-  
-  /**
-   * @var float
-   */
-  public $w = 0.0;
-  
-  /**
-   * @var float
-   */
-  public $h = 0.0;
-  
-  /**
-   * @var float
-   */
-  public $left = 0.0;
-  
-  /**
-   * @var float
-   */
-  public $right = 0.0;
-  
-  /**
-   * @var Frame
-   */
-  public $tallest_frame = null;
-
-  /**
-   * @var bool[]
-   */
-  public $floating_blocks = array();
-  
-  /**
-   * @var bool
-   */
-  public $br = false;
-  
-  /**
-   * Class constructor
-   *
-   * @param Block_Frame_Decorator $frame the Block_Frame_Decorator containing this line
-   */
-  function __construct(Block_Frame_Decorator $frame, $y = 0) {
-    $this->_block_frame = $frame;
-    $this->_frames = array();
-    $this->y = $y;
-    
-    $this->get_float_offsets();
-  }
-  
-  /**
-   * Returns the floating elements inside the first floating parent
-   *
-   * @param Page_Frame_Decorator $root
-   *
-   * @return Frame[]
-   */
-  function get_floats_inside(Page_Frame_Decorator $root) {
-    $floating_frames = $root->get_floating_frames();
-    
-    if ( count($floating_frames) == 0 ) {
-      return $floating_frames;
-    }
-    
-    // Find nearest floating element
-    $p = $this->_block_frame;
-    while( $p->get_style()->float === "none" ) {
-      $parent = $p->get_parent();
-      
-      if ( !$parent ) {
-        break;
-      }
-      
-      $p = $parent;
-    }
-    
-    if ( $p == $root ) {
-      return $floating_frames;
-    }
-    
-    $parent = $p;
-    
-    $childs = array();
-    
-    foreach ($floating_frames as $_floating) {
-      $p = $_floating->get_parent();
-      
-      while (($p = $p->get_parent()) && $p !== $parent);
-      
-      if ( $p ) {
-        $childs[] = $p;
-      }
-    }
-    
-    return $childs;
-  }
-  
-  function get_float_offsets() {
-    $enable_css_float = $this->_block_frame->get_dompdf()->get_option("enable_css_float");
-    if ( !$enable_css_float ) {
-      return;
-    }
-      
-    static $anti_infinite_loop = 500; // FIXME smelly hack
-    
-    $reflower = $this->_block_frame->get_reflower();
-    
-    if ( !$reflower ) {
-      return;
-    }
-    
-    $cb_w = null;
-  
-    $block = $this->_block_frame;
-    $root = $block->get_root();
-    
-    if ( !$root ) {
-      return;
-    }
-    
-    $floating_frames = $this->get_floats_inside($root);
-    
-    foreach ( $floating_frames as $child_key => $floating_frame ) {
-      $id = $floating_frame->get_id();
-      
-      if ( isset($this->floating_blocks[$id]) ) {
-        continue;
-      }
-      
-      $floating_style = $floating_frame->get_style();
-      $float = $floating_style->float;
-      
-      $floating_width = $floating_frame->get_margin_width();
-      
-      if (!$cb_w) {
-        $cb_w = $floating_frame->get_containing_block("w");
-      }
-      
-      $line_w = $this->get_width();
-      
-      if ( !$floating_frame->_float_next_line && ($cb_w <= $line_w + $floating_width) && ($cb_w > $line_w) ) {
-        $floating_frame->_float_next_line = true;
-        continue;
-      }
-      
-      // If the child is still shifted by the floating element
-      if ( $anti_infinite_loop-- > 0 &&
-           $floating_frame->get_position("y") + $floating_frame->get_margin_height() > $this->y && 
-           $block->get_position("x") + $block->get_margin_width() > $floating_frame->get_position("x")
-           ) {
-        if ( $float === "left" )
-          $this->left  += $floating_width;
-        else
-          $this->right += $floating_width;
-        
-        $this->floating_blocks[$id] = true;
-      }
-      
-      // else, the floating element won't shift anymore
-      else {
-        $root->remove_floating_frame($child_key);
-      }
-    }
-  }
-
-  /**
-   * @return float
-   */
-  function get_width(){
-    return $this->left + $this->w + $this->right;
-  }
-
-  /**
-   * @return Block_Frame_Decorator
-   */
-  function get_block_frame() {
-    return $this->_block_frame;
-  }
-
-  /**
-   * @return Frame[]
-   */
-  function &get_frames() {
-    return $this->_frames;
-  }
-
-  /**
-   * @param Frame $frame
-   */
-  function add_frame(Frame $frame) {
-    $this->_frames[] = $frame;
-  }
-  
-  function __toString(){
-    $props = array("wc", "y", "w", "h", "left", "right", "br");
-    $s = "";
-    foreach($props as $prop) {
-      $s .= "$prop: ".$this->$prop."\n";
-    }
-    $s .= count($this->_frames)." frames\n";
-    return $s;
-  }
-  /*function __get($prop) {
-    if (!isset($this->{"_$prop"})) return;
-    return $this->{"_$prop"};
-  }*/
-}
-
-/*
-class LineBoxList implements Iterator {
-  private $_p = 0;
-  private $_lines = array();
-  
-}
-*/
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

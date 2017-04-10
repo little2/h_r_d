@@ -1,759 +1,443 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Base renderer class
- *
- * @access private
- * @package dompdf
- */
-abstract class Abstract_Renderer {
-
-  /**
-   * Rendering backend
-   *
-   * @var Canvas
-   */
-  protected $_canvas;
-
-  /**
-   * Current dompdf instance
-   *
-   * @var DOMPDF
-   */
-  protected $_dompdf;
-  
-  /**
-   * Class constructor
-   *
-   * @param DOMPDF $dompdf The current dompdf instance
-   */
-  function __construct(DOMPDF $dompdf) {
-    $this->_dompdf = $dompdf;
-    $this->_canvas = $dompdf->get_canvas();
-  }
-  
-  /**
-   * Render a frame.
-   *
-   * Specialized in child classes
-   *
-   * @param Frame $frame The frame to render
-   */
-  abstract function render(Frame $frame);
-
-  //........................................................................
-
-  /**
-   * Render a background image over a rectangular area
-   *
-   * @param string $url      The background image to load
-   * @param float  $x        The left edge of the rectangular area
-   * @param float  $y        The top edge of the rectangular area
-   * @param float  $width    The width of the rectangular area
-   * @param float  $height   The height of the rectangular area
-   * @param Style  $style    The associated Style object
-   *
-   * @throws Exception
-   */
-  protected function _background_image($url, $x, $y, $width, $height, $style) {
-    if ( !function_exists("imagecreatetruecolor") ) {
-      throw new Exception("The PHP GD extension is required, but is not installed.");
-    }
-
-    $sheet = $style->get_stylesheet();
-
-    // Skip degenerate cases
-    if ( $width == 0 || $height == 0 ) {
-      return;
-    }
-    
-    $box_width = $width;
-    $box_height = $height;
-
-    //debugpng
-    if (DEBUGPNG) print '[_background_image '.$url.']';
-
-    list($img, $type, /*$msg*/) = Image_Cache::resolve_url(
-      $url,
-      $sheet->get_protocol(),
-      $sheet->get_host(),
-      $sheet->get_base_path(),
-      $this->_dompdf
-    );
-
-    // Bail if the image is no good
-    if ( Image_Cache::is_broken($img) ) {
-      return;
-    }
-
-    //Try to optimize away reading and composing of same background multiple times
-    //Postponing read with imagecreatefrom   ...()
-    //final composition parameters and name not known yet
-    //Therefore read dimension directly from file, instead of creating gd object first.
-    //$img_w = imagesx($src); $img_h = imagesy($src);
-
-    list($img_w, $img_h) = dompdf_getimagesize($img);
-    if (!isset($img_w) || $img_w == 0 || !isset($img_h) || $img_h == 0) {
-      return;
-    }
-
-    $repeat = $style->background_repeat;
-    $dpi = $this->_dompdf->get_option("dpi");
-
-    //Increase background resolution and dependent box size according to image resolution to be placed in
-    //Then image can be copied in without resize
-    $bg_width = round((float)($width * $dpi) / 72);
-    $bg_height = round((float)($height * $dpi) / 72);
-
-    //Need %bg_x, $bg_y as background pos, where img starts, converted to pixel
-
-    list($bg_x, $bg_y) = $style->background_position;
-
-    if ( is_percent($bg_x) ) {
-      // The point $bg_x % from the left edge of the image is placed
-      // $bg_x % from the left edge of the background rectangle
-      $p = ((float)$bg_x)/100.0;
-      $x1 = $p * $img_w;
-      $x2 = $p * $bg_width;
-
-      $bg_x = $x2 - $x1;
-    }
-    else {
-      $bg_x = (float)($style->length_in_pt($bg_x)*$dpi) / 72;
-    }
-    
-    $bg_x = round($bg_x + $style->length_in_pt($style->border_left_width)*$dpi / 72);
-
-    if ( is_percent($bg_y) ) {
-      // The point $bg_y % from the left edge of the image is placed
-      // $bg_y % from the left edge of the background rectangle
-      $p = ((float)$bg_y)/100.0;
-      $y1 = $p * $img_h;
-      $y2 = $p * $bg_height;
-
-      $bg_y = $y2 - $y1;
-    }
-    else {
-      $bg_y = (float)($style->length_in_pt($bg_y)*$dpi) / 72;
-    }
-    
-    $bg_y = round($bg_y + $style->length_in_pt($style->border_top_width)*$dpi / 72);
-
-    //clip background to the image area on partial repeat. Nothing to do if img off area
-    //On repeat, normalize start position to the tile at immediate left/top or 0/0 of area
-    //On no repeat with positive offset: move size/start to have offset==0
-    //Handle x/y Dimensions separately
-
-    if ( $repeat !== "repeat" && $repeat !== "repeat-x" ) {
-      //No repeat x
-      if ($bg_x < 0) {
-        $bg_width = $img_w + $bg_x;
-      }
-      else {
-        $x += ($bg_x * 72)/$dpi;
-        $bg_width = $bg_width - $bg_x;
-        if ($bg_width > $img_w) {
-          $bg_width = $img_w;
-        }
-        $bg_x = 0;
-      }
-      
-      if ($bg_width <= 0) {
-        return;
-      }
-      
-      $width = (float)($bg_width * 72)/$dpi;
-    }
-    else {
-      //repeat x
-      if ($bg_x < 0) {
-        $bg_x = - ((-$bg_x) % $img_w);
-      }
-      else {
-        $bg_x = $bg_x % $img_w;
-        if ($bg_x > 0) {
-          $bg_x -= $img_w;
-        }
-      }
-    }
-
-    if ( $repeat !== "repeat" && $repeat !== "repeat-y" ) {
-      //no repeat y
-      if ($bg_y < 0) {
-        $bg_height = $img_h + $bg_y;
-      }
-      else {
-        $y += ($bg_y * 72)/$dpi;
-        $bg_height = $bg_height - $bg_y;
-        if ($bg_height > $img_h) {
-          $bg_height = $img_h;
-        }
-        $bg_y = 0;
-      }
-      if ($bg_height <= 0) {
-        return;
-      }
-      $height = (float)($bg_height * 72)/$dpi;
-    }
-    else {
-      //repeat y
-      if ($bg_y < 0) {
-        $bg_y = - ((-$bg_y) % $img_h);
-      }
-      else {
-        $bg_y = $bg_y % $img_h;
-        if ($bg_y > 0) {
-          $bg_y -= $img_h;
-        }
-      }
-    }
-
-    //Optimization, if repeat has no effect
-    if ( $repeat === "repeat" && $bg_y <= 0 && $img_h+$bg_y >= $bg_height ) {
-      $repeat = "repeat-x";
-    }
-    
-    if ( $repeat === "repeat" && $bg_x <= 0 && $img_w+$bg_x >= $bg_width ) {
-      $repeat = "repeat-y";
-    }
-    
-    if ( ($repeat === "repeat-x" && $bg_x <= 0 && $img_w+$bg_x >= $bg_width) ||
-         ($repeat === "repeat-y" && $bg_y <= 0 && $img_h+$bg_y >= $bg_height) ) {
-      $repeat = "no-repeat";
-    }
-
-    //Use filename as indicator only
-    //different names for different variants to have different copies in the pdf
-    //This is not dependent of background color of box! .'_'.(is_array($bg_color) ? $bg_color["hex"] : $bg_color)
-    //Note: Here, bg_* are the start values, not end values after going through the tile loops!
-
-    $filedummy = $img;
-    
-    $is_png = false;
-    $filedummy .= '_'.$bg_width.'_'.$bg_height.'_'.$bg_x.'_'.$bg_y.'_'.$repeat;
-
-    //Optimization to avoid multiple times rendering the same image.
-    //If check functions are existing and identical image already cached,
-    //then skip creation of duplicate, because it is not needed by addImagePng
-    if ( $this->_canvas instanceof CPDF_Adapter &&
-         $this->_canvas->get_cpdf()->image_iscached($filedummy) ) {
-      $bg = null;
-    }
-    
-    else {
-  
-      // Create a new image to fit over the background rectangle
-      $bg = imagecreatetruecolor($bg_width, $bg_height);
-      
-      switch (strtolower($type)) {
-        case IMAGETYPE_PNG:
-          $is_png = true;
-          imagesavealpha($bg, true);
-          imagealphablending($bg, false);
-          $src = imagecreatefrompng($img);
-          break;
-    
-        case IMAGETYPE_JPEG:
-          $src = imagecreatefromjpeg($img);
-          break;
-    
-        case IMAGETYPE_GIF:
-          $src = imagecreatefromgif($img);
-          break;
-          
-        case IMAGETYPE_BMP:
-          $src = imagecreatefrombmp($img);
-          break;
-    
-        default:
-          return; // Unsupported image type
-      }
-  
-      if ( $src == null ) {
-        return;
-      }
-  
-      //Background color if box is not relevant here
-      //Non transparent image: box clipped to real size. Background non relevant.
-      //Transparent image: The image controls the transparency and lets shine through whatever background.
-      //However on transparent image preset the composed image with the transparency color,
-      //to keep the transparency when copying over the non transparent parts of the tiles.
-      $ti = imagecolortransparent($src);
-      
-      if ( $ti >= 0 ) {
-        $tc = imagecolorsforindex($src, $ti);
-        $ti = imagecolorallocate($bg, $tc['red'], $tc['green'], $tc['blue']);
-        imagefill($bg, 0, 0, $ti);
-        imagecolortransparent($bg, $ti);
-      }
-  
-      //This has only an effect for the non repeatable dimension.
-      //compute start of src and dest coordinates of the single copy
-      if ( $bg_x < 0 ) {
-        $dst_x = 0;
-        $src_x = -$bg_x;
-      }
-      else {
-        $src_x = 0;
-        $dst_x = $bg_x;
-      }
-  
-      if ( $bg_y < 0 ) {
-        $dst_y = 0;
-        $src_y = -$bg_y;
-      }
-      else {
-        $src_y = 0;
-        $dst_y = $bg_y;
-      }
-  
-      //For historical reasons exchange meanings of variables:
-      //start_* will be the start values, while bg_* will be the temporary start values in the loops
-      $start_x = $bg_x;
-      $start_y = $bg_y;
-  
-      // Copy regions from the source image to the background
-      if ( $repeat === "no-repeat" ) {
-  
-        // Simply place the image on the background
-        imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $img_h);
-  
-      }
-      else if ( $repeat === "repeat-x" ) {
-  
-        for ( $bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w ) {
-          if ( $bg_x < 0 ) {
-            $dst_x = 0;
-            $src_x = -$bg_x;
-            $w = $img_w + $bg_x;
-          }
-          else {
-            $dst_x = $bg_x;
-            $src_x = 0;
-            $w = $img_w;
-          }
-          imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $img_h);
-        }
-  
-      }
-      else if ( $repeat === "repeat-y" ) {
-  
-        for ( $bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h ) {
-          if ( $bg_y < 0 ) {
-            $dst_y = 0;
-            $src_y = -$bg_y;
-            $h = $img_h + $bg_y;
-          }
-          else {
-            $dst_y = $bg_y;
-            $src_y = 0;
-            $h = $img_h;
-          }
-          imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $h);
-  
-        }
-  
-      }
-      else if ( $repeat === "repeat" ) {
-  
-        for ( $bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h ) {
-          for ( $bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w ) {
-  
-            if ( $bg_x < 0 ) {
-              $dst_x = 0;
-              $src_x = -$bg_x;
-              $w = $img_w + $bg_x;
-            }
-            else {
-              $dst_x = $bg_x;
-              $src_x = 0;
-              $w = $img_w;
-            }
-  
-            if ( $bg_y < 0 ) {
-              $dst_y = 0;
-              $src_y = -$bg_y;
-              $h = $img_h + $bg_y;
-            }
-            else {
-              $dst_y = $bg_y;
-              $src_y = 0;
-              $h = $img_h;
-            }
-            imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $h);
-          }
-        }
-      }
-      
-      else {
-        print 'Unknown repeat!';
-      }
-      
-      imagedestroy($src);
-
-    } /* End optimize away creation of duplicates */
-
-    $this->_canvas->clipping_rectangle($x, $y, $box_width, $box_height);
-    
-    //img: image url string
-    //img_w, img_h: original image size in px
-    //width, height: box size in pt
-    //bg_width, bg_height: box size in px
-    //x, y: left/top edge of box on page in pt
-    //start_x, start_y: placement of image relative to pattern
-    //$repeat: repeat mode
-    //$bg: GD object of result image
-    //$src: GD object of original image
-    //When using cpdf and optimization to direct png creation from gd object is available,
-    //don't create temp file, but place gd object directly into the pdf
-    if ( !$is_png && $this->_canvas instanceof CPDF_Adapter ) {
-      // Note: CPDF_Adapter image converts y position
-      $this->_canvas->get_cpdf()->addImagePng($filedummy, $x, $this->_canvas->get_height() - $y - $height, $width, $height, $bg);
-    } 
-    
-    else {
-      $tmp_dir = $this->_dompdf->get_option("temp_dir");
-      $tmp_name = tempnam($tmp_dir, "bg_dompdf_img_");
-      @unlink($tmp_name);
-      $tmp_file = "$tmp_name.png";
-      
-      //debugpng
-      if (DEBUGPNG) print '[_background_image '.$tmp_file.']';
-
-      imagepng($bg, $tmp_file);
-      $this->_canvas->image($tmp_file, $x, $y, $width, $height);
-      imagedestroy($bg);
-
-      //debugpng
-      if (DEBUGPNG) print '[_background_image unlink '.$tmp_file.']';
-
-      if (!DEBUGKEEPTEMP) {
-        unlink($tmp_file);
-      }
-    }
-    
-    $this->_canvas->clipping_end();
-  }
-  
-  protected function _get_dash_pattern($style, $width) {
-    $pattern = array();
-    
-    switch ($style) {
-      default:
-      /*case "solid":
-      case "double":
-      case "groove":
-      case "inset":
-      case "outset":
-      case "ridge":*/
-      case "none": break;
-      
-      case "dotted": 
-        if ( $width <= 1 )
-          $pattern = array($width, $width*2);
-        else
-          $pattern = array($width);
-      break;
-      
-      case "dashed": 
-        $pattern = array(3 * $width);
-      break;
-    }
-    
-    return $pattern;
-  }
-
-  protected function _border_none($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    return;
-  }
-  
-  protected function _border_hidden($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    return;
-  }
-  
-  // Border rendering functions
-
-  protected function _border_dotted($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    $this->_border_line($x, $y, $length, $color, $widths, $side, $corner_style, "dotted", $r1, $r2);
-  }
-
-
-  protected function _border_dashed($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    $this->_border_line($x, $y, $length, $color, $widths, $side, $corner_style, "dashed", $r1, $r2);
-  }
-
-
-  protected function _border_solid($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    // TODO: Solve rendering where one corner is beveled (radius == 0), one corner isn't.
-    if ( $corner_style !== "bevel" || $r1 > 0 || $r2 > 0 ) {
-      // do it the simple way
-      $this->_border_line($x, $y, $length, $color, $widths, $side, $corner_style, "solid", $r1, $r2);
-      return;
-    }
-
-    list($top, $right, $bottom, $left) = $widths;
-
-    // All this polygon business is for beveled corners...
-    switch ($side) {
-      case "top":
-        $points = array($x, $y,
-                        $x + $length, $y,
-                        $x + $length - $right, $y + $top,
-                        $x + $left, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-        break;
-  
-      case "bottom":
-        $points = array($x, $y,
-                        $x + $length, $y,
-                        $x + $length - $right, $y - $bottom,
-                        $x + $left, $y - $bottom);
-        $this->_canvas->polygon($points, $color, null, null, true);
-        break;
-  
-      case "left":
-        $points = array($x, $y,
-                        $x, $y + $length,
-                        $x + $left, $y + $length - $bottom,
-                        $x + $left, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-        break;
-  
-      case "right":
-        $points = array($x, $y,
-                        $x, $y + $length,
-                        $x - $right, $y + $length - $bottom,
-                        $x - $right, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-        break;
-  
-      default:
-        return;
-    }
-  }
-
-  protected function _apply_ratio($side, $ratio, $top, $right, $bottom, $left, &$x, &$y, &$length, &$r1, &$r2) {
-    switch ($side) {
-
-    case "top":
-      $r1 -= $left * $ratio;
-      $r2 -= $right * $ratio;
-      $x += $left * $ratio;
-      $y += $top * $ratio;
-      $length -= $left * $ratio + $right * $ratio;
-      break;
-
-    case "bottom":
-      $r1 -= $right * $ratio;
-      $r2 -= $left * $ratio;
-      $x += $left * $ratio;
-      $y -= $bottom * $ratio;
-      $length -= $left * $ratio + $right * $ratio;
-      break;
-
-    case "left":
-      $r1 -= $top * $ratio;
-      $r2 -= $bottom * $ratio;
-      $x += $left * $ratio;
-      $y += $top * $ratio;
-      $length -= $top * $ratio + $bottom * $ratio;
-      break;
-
-    case "right":
-      $r1 -= $bottom * $ratio;
-      $r2 -= $top * $ratio;
-      $x -= $right * $ratio;
-      $y += $top * $ratio;
-      $length -= $top * $ratio + $bottom * $ratio;
-      break;
-
-    default:
-      return;
-
-    }
-  }
-
-  protected function _border_double($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    list($top, $right, $bottom, $left) = $widths;
-
-    $third_widths = array($top / 3, $right / 3, $bottom / 3, $left / 3);
-
-    // draw the outer border
-    $this->_border_solid($x, $y, $length, $color, $third_widths, $side, $corner_style, $r1, $r2);
-
-    $this->_apply_ratio($side, 2/3, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
-
-    $this->_border_solid($x, $y, $length, $color, $third_widths, $side, $corner_style, $r1, $r2);
-  }
-
-  protected function _border_groove($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    list($top, $right, $bottom, $left) = $widths;
-
-    $half_widths = array($top / 2, $right / 2, $bottom / 2, $left / 2);
-
-    $this->_border_inset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
-    
-    $this->_apply_ratio($side, 0.5, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
-
-    $this->_border_outset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
-
-  }
-
-  protected function _border_ridge($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    list($top, $right, $bottom, $left) = $widths;
-
-    $half_widths = array($top / 2, $right / 2, $bottom / 2, $left / 2);
-
-    $this->_border_outset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
-    
-    $this->_apply_ratio($side, 0.5, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
-
-    $this->_border_inset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
-
-  }
-
-  protected function _tint($c) {
-    if ( !is_numeric($c) )
-      return $c;
-
-    return min(1, $c + 0.16);
-  }
-
-  protected function _shade($c) {
-    if ( !is_numeric($c) )
-      return $c;
-
-    return max(0, $c - 0.33);
-  }
-
-  protected function _border_inset($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    switch ($side) {
-      case "top":
-      case "left":
-        $shade = array_map(array($this, "_shade"), $color);
-        $this->_border_solid($x, $y, $length, $shade, $widths, $side, $corner_style, $r1, $r2);
-        break;
-  
-      case "bottom":
-      case "right":
-        $tint = array_map(array($this, "_tint"), $color);
-        $this->_border_solid($x, $y, $length, $tint, $widths, $side, $corner_style, $r1, $r2);
-        break;
-  
-      default:
-        return;
-    }
-  }
-
-  protected function _border_outset($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
-    switch ($side) {
-      case "top":
-      case "left":
-        $tint = array_map(array($this, "_tint"), $color);
-        $this->_border_solid($x, $y, $length, $tint, $widths, $side, $corner_style, $r1, $r2);
-        break;
-  
-      case "bottom":
-      case "right":
-        $shade = array_map(array($this, "_shade"), $color);
-        $this->_border_solid($x, $y, $length, $shade, $widths, $side, $corner_style, $r1, $r2);
-        break;
-  
-      default:
-        return;
-    }
-  }
-  // Draws a solid, dotted, or dashed line, observing the border radius
-  protected function _border_line($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $pattern_name, $r1 = 0, $r2 = 0) {
-    list($top, $right, $bottom, $left) = $widths;
-    
-    $width = $$side;
-    $pattern = $this->_get_dash_pattern($pattern_name, $width);
-
-    $half_width = $width/2;
-    $r1 -= $half_width;
-    $r2 -= $half_width;
-    $adjust = $r1/80;
-    $length -= $width; 
-    
-    switch ($side) {
-      case "top":
-        $x += $half_width; 
-        $y += $half_width;
-  
-        if ( $r1 > 0 ) {
-          $this->_canvas->arc($x + $r1, $y + $r1, $r1, $r1, 90-$adjust, 135+$adjust, $color, $width, $pattern);
-        }
-  
-        $this->_canvas->line($x + $r1, $y, $x + $length - $r2, $y, $color, $width, $pattern);
-  
-        if ( $r2 > 0 ) {
-          $this->_canvas->arc($x + $length - $r2, $y + $r2, $r2, $r2, 45-$adjust, 90+$adjust, $color, $width, $pattern);
-        }
-        break;
-        
-      case "bottom":
-        $x += $half_width; 
-        $y -= $half_width;
-        
-        if ( $r1 > 0 ) {
-          $this->_canvas->arc($x + $r1, $y - $r1, $r1, $r1, 225-$adjust, 270+$adjust, $color, $width, $pattern);
-        }
-        
-        $this->_canvas->line($x + $r1, $y, $x + $length - $r2, $y, $color, $width, $pattern);
-        
-        if ( $r2 > 0 ) {
-          $this->_canvas->arc($x + $length - $r2, $y - $r2, $r2, $r2, 270-$adjust, 315+$adjust, $color, $width, $pattern);
-        }
-        break;
-        
-      case "left":
-        $y += $half_width; 
-        $x += $half_width;
-        
-        if ( $r1 > 0 ) {
-          $this->_canvas->arc($x + $r1, $y + $r1, $r1, $r1, 135-$adjust, 180+$adjust, $color, $width, $pattern);
-        }
-        
-        $this->_canvas->line($x, $y + $r1, $x, $y + $length - $r2, $color, $width, $pattern);
-        
-        if ( $r2 > 0 ) {
-          $this->_canvas->arc($x + $r2, $y + $length - $r2, $r2, $r2, 180-$adjust, 225+$adjust, $color, $width, $pattern);
-        }
-        break;
-        
-      case "right":
-        $y += $half_width; 
-        $x -= $half_width;
-        
-        if ( $r1 > 0 ) {
-          $this->_canvas->arc($x - $r1, $y + $r1, $r1, $r1, 0-$adjust, 45+$adjust, $color, $width, $pattern);
-        }
-        
-        $this->_canvas->line($x, $y + $r1, $x, $y + $length - $r2, $color, $width, $pattern);
-        
-        if ( $r2 > 0 ) {
-          $this->_canvas->arc($x - $r2, $y + $length - $r2, $r2, $r2, 315-$adjust, 360+$adjust, $color, $width, $pattern);
-        }
-        break;
-    }
-  }
-
-  protected function _set_opacity($opacity) {
-    if ( is_numeric($opacity) && $opacity <= 1.0 && $opacity >= 0.0 ) {
-      $this->_canvas->set_opacity( $opacity );
-    }
-  }
-
-  protected function _debug_layout($box, $color = "red", $style = array()) {
-    $this->_canvas->rectangle($box[0], $box[1], $box[2], $box[3], CSS_Color::parse($color), 0.1, $style);
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
++W==

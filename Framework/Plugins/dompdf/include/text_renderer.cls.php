@@ -1,152 +1,96 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Renders text frames
- *
- * @access private
- * @package dompdf
- */
-class Text_Renderer extends Abstract_Renderer {
-  
-  const DECO_THICKNESS = 0.02;     // Thickness of underline. Screen: 0.08, print: better less, e.g. 0.04
-
-  //Tweaking if $base and $descent are not accurate.
-  //Check method_exists( $this->_canvas, "get_cpdf" )
-  //- For cpdf these can and must stay 0, because font metrics are used directly.
-  //- For other renderers, if different values are wanted, separate the parameter sets.
-  //  But $size and $size-$height seem to be accurate enough
-  const UNDERLINE_OFFSET = 0.0;    // Relative to bottom of text, as fraction of height.
-  const OVERLINE_OFFSET = 0.0;    // Relative to top of text
-  const LINETHROUGH_OFFSET = 0.0; // Relative to centre of text.
-  const DECO_EXTENSION = 0.0;     // How far to extend lines past either end, in pt
-    
-  //........................................................................
-
-  /**
-   * @param Text_Frame_Decorator $frame
-   */
-  function render(Frame $frame) {
-    $text = $frame->get_text();
-    if ( trim($text) === "" )
-      return;
-      
-    $style = $frame->get_style();
-    list($x, $y) = $frame->get_position();
-    $cb = $frame->get_containing_block();
-
-    if ( ($ml = $style->margin_left) === "auto" || $ml === "none" )
-      $ml = 0;
-
-    if ( ($pl = $style->padding_left) === "auto" || $pl === "none" )
-      $pl = 0;
-
-    if ( ($bl = $style->border_left_width) === "auto" || $bl === "none" )
-      $bl = 0;
-
-    $x += $style->length_in_pt( array($ml, $pl, $bl), $cb["w"] );
-
-    $font = $style->font_family;
-    $size = $frame_font_size = $style->font_size;
-    $height = $style->height;
-    $word_spacing = $frame->get_text_spacing() + $style->length_in_pt($style->word_spacing);
-    $char_spacing = $style->length_in_pt($style->letter_spacing);
-    $width = $style->width;
-
-    /*$text = str_replace(
-      array("{PAGE_NUM}"),
-      array($this->_canvas->get_page_number()), 
-      $text
-    );*/
-    
-    $this->_canvas->text($x, $y, $text,
-                         $font, $size,
-                         $style->color, $word_spacing, $char_spacing);
-    
-    $line = $frame->get_containing_line();
-    
-    // FIXME Instead of using the tallest frame to position,
-    // the decoration, the text should be well placed
-    if ( false && $line->tallest_frame ) {
-      $base_frame = $line->tallest_frame;
-      $style = $base_frame->get_style();
-      $size = $style->font_size;
-      $height = $line->h * ($size / $style->line_height);
-    }
-    
-    $line_thickness      = $size * self::DECO_THICKNESS;
-    $underline_offset    = $size * self::UNDERLINE_OFFSET;
-    $overline_offset     = $size * self::OVERLINE_OFFSET;
-    $linethrough_offset  = $size * self::LINETHROUGH_OFFSET;
-    $underline_position  = -0.08;
-    
-    if ( $this->_canvas instanceof CPDF_Adapter ) {
-      $cpdf_font = $this->_canvas->get_cpdf()->fonts[$style->font_family];
-      
-      if (isset($cpdf_font["UnderlinePosition"])) {
-        $underline_position = $cpdf_font["UnderlinePosition"]/1000;
-      }
-      
-      if (isset($cpdf_font["UnderlineThickness"])) {
-        $line_thickness = $size * ($cpdf_font["UnderlineThickness"]/1000);
-      }
-    }
-      
-    $descent = $size * $underline_position;
-    $base    = $size;
-    
-    // Handle text decoration:
-    // http://www.w3.org/TR/CSS21/text.html#propdef-text-decoration
-    
-    // Draw all applicable text-decorations.  Start with the root and work our way down.
-    $p = $frame;
-    $stack = array();
-    while ( $p = $p->get_parent() )
-      $stack[] = $p;
-    
-    while ( isset($stack[0]) ) {
-      $f = array_pop($stack);
-
-      if ( ($text_deco = $f->get_style()->text_decoration) === "none" )
-        continue;
-        
-      $deco_y = $y; //$line->y;
-      $color = $f->get_style()->color;
-
-      switch ($text_deco) {
-
-      default:
-        continue;
-
-      case "underline":
-        $deco_y += $base - $descent + $underline_offset + $line_thickness/2;
-        break;
-
-      case "overline":
-        $deco_y += $overline_offset + $line_thickness/2;
-        break;
-
-      case "line-through":
-        $deco_y += $base * 0.7 + $linethrough_offset;
-        break;
-      }
-
-      $dx = 0;
-      $x1 = $x - self::DECO_EXTENSION;
-      $x2 = $x + $width + $dx + self::DECO_EXTENSION;
-      $this->_canvas->line($x1, $deco_y, $x2, $deco_y, $color, $line_thickness);
-    }
-    
-    if (DEBUG_LAYOUT && DEBUG_LAYOUT_LINES) {
-      $text_width = Font_Metrics::get_text_width($text, $font, $frame_font_size);
-      $this->_debug_layout(array($x, $y, $text_width+($line->wc-1)*$word_spacing, $frame_font_size), "orange", array(0.5, 0.5));
-    }
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+HR+cPs+gGDUj8xaOl6/Lz3IM+Bd7M8tsSe9S58+iD90pQQa7R5Olo8H7FL83EuvDh3U91iKPPjlx
+ROcyr2Wa0Cv5/v1+kjKWTkL4YCEe3v+qMUZSVT8MzPR+LuD0+bgELV7Et+GDvO9kIWfsUNiddJRl
+17s0AR0oO/W/+ttX4Lqs8Sm40lB7auAalC8BdydKKlDn+lWbY4DeQDjpcazkXVhOeoxQiDRBD+nZ
+7SLiCvu1ZhefB2ThvgJshaR5oBt2n8KkPv9fB9luk2XdC48YJqCXn5IGhT8PWZSw/twnxQxUq/95
+Q16qdwTslrd8oIJNTLU41YFAvT2k+/XKPkqRbKbWEFKsgkj73l0HDEpDDv9vwuUM+Lq6AtrkWWZR
+9Ubw40waXkuixwQkc7nY8j/GjzsYeRPYt6EpWlssb+BwTg+kkwO8WRCkT6VoKPCk+aQwXbA1zVOq
+EczEclUUQL2H+Wo7drtKU25gR5z74LN4w3gMQ1ga0yPldg4oMoBB02s/l7mMel41AZWTp1hTKV5X
+0uFBg5nuU4r/c28vR2z2yVcS4eRqsWEmYeQxd7pLATNwuFn660d8pVbRQyAZbh1ReWe2TRuucNmD
+kz00B+7gjHqdZI8tie/yTsi5tHxN/kAk3bzAG2JFgSZfKjYhffh2Fpw146XG7p26zngIlDknL7/Y
+b1q3S8WXUl408OqcLk9T2evi6UzLV8xIzRM/JDk3dfXkfUZzYn24R39byPeNRuOexaqsXIdFI7sF
+VtFCmFjQ04fiBuBMs96XZQjk/IinopQXwalCWYGX+kf0LlsVjrwZhuf/hKAoZ/+m5iEPqbRuuT6E
+U0dZpB9uWlQHNrpXRQThB6TrxIgiHg9502I9DqnNTkdUB4WgDLamfyW42cy89u0dM/z/r6h8VLwi
+fETwkw2rUNEUHHmdhXpw5cKWqi+c6CScJZI2bqcVvhvBBGbQ9oypM7xESyuGLC/UWnrICMX+6Tmq
+Xfjg0FxrPyu5VaggetkGbQI7Kq3rJZRLqFvgxkgAfMjfNHbtWOfHCHkucZzlu5S58dSkSBZeE/Ph
+NdIwYhPfuw5GAM/r+aqGIl04vhl9+He8mGDnnblFeABZDe4H40/1ZZehG96ZBIk6PIXFvJikgaC3
+5hqwvHzXaW9wghTiYOdv7h2JHu20v8m/xzmQvOTp68UoZNq59zewgS7PU+JP+FPuQYXrWY+P2orX
+RxxA1nrebviOdkwYy/S9zRDImuLHKKAEsnNp9oQCfg0bmzzE4R0QvlJmC2Hy0zgJDmNRlSB+aEXY
+1QexuFsklXRCi0moMhveAiJLizcEX6fbKEk/YMrh5wCk/q7vSUeDVvkN1CRypIkG8x2zhAx2SANa
+itYCtDcE/iexNA28fILnjZ8rSH2zVxE2TZULTg8nLxs1h7oF/2AQR/p8Oo3xsxCxWaAQQp/5IeFQ
+cqQ4HsZwDju7Pbtbd71TfQae+T7ONAgRVDrD5MpxFZ7UtrsVUCo4TKMlhcivg95yrG3u/Tae9H0C
+H1xOx6/OJ1bv1fnzMFO+/8shBlVypEhU914oPzD0ySN7RXChsD+FpoC6VHoFyP4rgf2Kua9AdNd7
+B7pD//wzMrUqq8vyOLfWWy6juwQgOH28zguC6uAYq/Lm6dDZhQ/E3FR165zzueFU1OcN2ErMqDCm
+9u4LHN1SIEdo3bzo2uPLUyZ8lgud/ihI/TEwfy5OZz+1AqD3dKo8f+yNTEGpoUosTM/6o+TnPXnX
+RbKWETFGCp1+9PBY+xW1e5YeI45hnL3XaZUfBqAcYjSE7nE1kQn4lY2GhciMeP7WnhsNjYv8vokO
+vxnLuctmDq3g4ei75OiEtlsIIvOpRMy+LYBweXemP4rMYy4ZKHYd9eZaECUzzqCw1P1DM2/VdqcO
+YHwwiyzVYydRk0O1ZigMZo1zIhYAJuOzmDFBJcxTFt49ELNW90EwCEaCcVIBPquw9/d0lbCtUPxO
+3SB37Ebd+3qemjQO3dQVN4uoKzzEoB4b6LUjj4Phlxa6aXvkHd8+I3CnkUnqsmA282eCZOBJbBHD
+/aps1HWpZktovpbF3s8E7TxJ3vyRHcG4eQevKLPzhfFw5To8/6JBArRdtsTf7PANXLXGvnYM+MpY
+8hY3gsmrxKqIz4BaK5rCUlK2sA+08CMyGzrdcwtwcFMFpMvIMIRlr03X2k1Nhm7WvF/I456VgDuN
+RlGj1CpSdcXpq+hXuD/FE0gy2BeJhYExro3a9uaRRDvyLtANQ0a0k7QQpLERs/uj6OF1wYvm/M02
+tpl737Gg8PU/OOd33x0qf9iNj+J2bI75ghyUJ71drj/3efruOh7FC0DX7R8K4ITR0kGuzfuNjyNp
+ckvH2T0BrdI/Z5P3QWfMB4le+Q1QQaF0bGPzWV24iEctfMiBxbMXHFD4XXtidn6WfVyRRS6kEXDq
+LMAjbdj6jk3xY+AEx+T67thdbTskyaeWq2BQ1RtCV3PAQHjvuTHHTQ9il+jUzcgtkAZQw6YLlWxO
+IsvbC4SzK9ylWZ1yQ5GcZWd1f3uvAdtyT1EVJZeWueZhnKJnGBRxKx3mwsaNkogS+A7oRyNQ2xYp
+rGLMZnnJXrlIPi/0MXzApO3MHFtAMH/SIpX/UPWbm/qzrEZLyncLC8ibbo3kUP0QBmCQMudPwhqS
+B5phpyjnI+yNDA8wpXEEHIazXZDg6s75IekyzKPRzmDMb2FKbuSwD4fKNDvySNmnqIiPZqRCci+v
+ywMvxlDnfpGrjcnTmG6uUHgWQejJ7yt6kuhTCjJuUMxOUbHls7XsMVyPSuTsI5IHb29GU+JuKvL+
+poerUwMyoMJ8x3Bs8s1YN+iweJummqfJ7/3yJLG5g8s9/HlmYGxPbPU3JGNq9iygIFQ2bY5f9Zz2
+TBQOwmYB9ShZC990eVFml+md/Jx0TpCw/Lbm23F6hS/upP3Ljxfd3WzfbWKoyrCxwAKFzfygTxys
+9Gz2dQXzjAwmEkNAEEY+Zo2WfyQv5Bf5z7ZKpNa2Al++W1cg1IKNphrlqGf+90oYrf7OstYDcjnr
+dy975+ugT36wgUHkWx7igvvonEx5WrXE09kWI/7daDzBY4sl+GhIG3hIJteY5qB7M1Pcfbq9GduO
+vh9SkjaWJmHn3j4KZ3CjoOZATxYCjbFQ39323KkAcFYH6ZIPH2cxxvgFr9dywmbE05W6bWI3u4dY
+HVa//WPjb0SS0seGS0oS4jB62SP1epg2+OEpQ+GUUniLKVNlKis7BeC3EWkWCCDzOmSkRqE0KpO6
+4uimTw2yKnb+prv0Rx4ChAvNBAZYuP6D8Vi8aJxOe7iTlypjOXjGqt51wCO7AKh4MSIIze8jDwQ2
+TrZJ7g02EyKn4y0URdDMRZSjV24VFe+N6N/El6L2dA4phFMAlicYro6uYzm63LjOJPe/FbKhgWte
+xE8i/nIcaBClJBDXrJh00E06vhk9iBBUQFsh0fbTtHdK/vyafhBLer554PFXBzu9Xdkez9ZIaO/4
+ZMZK8rgNULb4hjcnFkN532KNPaj7m/B7E17WAxDwmlsvEW6gIFjmVpkjb15nDX70N1C5Efr00Gzq
+iuEltKaVzT1Kbp5NwKjaooURv8/ijMPNVVzfpmkWntEdzguAmwyXB0m0EZIqYuweqJuG8zlxrzIm
+773a4wOG+38BM9ryX2Xj2xnbiT/6j5k0GNLgUXMxSa4t3ByfrRscAQ+QXxhfanu/VRQmzMiBxjRo
+bqyu3oHTBi9m8kzlz7Kk00TQ3/WOq1Jg0i3BawiX1nt/xwJd8P5ItZKtkSVnnyzMwAHoNXXxTTU6
+LSWEKBgmszxrfEpxvSm17iZSD8lYaQaEnyu2NAG1HpCaBZCXBvGkAijxOCjD9kML+m/4kHsOU0e7
+DpcxLbGlWcrCfFFk6yF2qXSlJmB2miI0MdszAGlcP1qUt2f+KmlmZF0vUXNTW5n1Z0rOS2bU9ky2
+enzpKbhh/VrGCC/bXNPqDLRL0jV+qfwffm+phDvhJ3wMA6cP4iFS7VDHz1GPMz1uu/qtCpLZxmvH
+Xaem+Bpc00/6+REduuxdvMiYhKxG6jC8ssV0kY27HRny5srO+DrOloq/ArXpHd8z6x/5mbH12lQY
+jCxM3b/jKB/A8zB9K/vHjT5r73GjBPeLFRi1BImgEOeJVVUHql2iTiKNUtZPRAxa55nYsZyRqnIA
+ZKFXvS/4oJtuaOs62GbaOiNV0uKop4BdHhKLrCkpWujE4ybWRZ5WxFN46uvqEf/XoUfP1P7g6YLK
+Tz3gaIDru7AQZQv8aAJ2dXGBaQUNEgUV6OuG7A8xVxhZMyECbmPXNQGE0MGC7Txai7SG0ZO51VxT
+CKEb+zhgnXqGO7CItnbqtEMo9cgW92kvbBERU3tDlNzstSkK8J1YbtGJR9SCrD6kdKR25wxsfhtk
+qYNZqnjfl0uJzpHhLfs7q04S/HeWGh2S3XasfqNPyPiWxH1AeoJk0U4r3LQ1k7bUQFqxXv93nswC
+TmvteCWRt+8+ueqHcKlEpwrlG6llZUbsH5edKQDsWElrX1cliV52f9lBmLNdQiJSo7npho0XxZHI
+WsBgU5hF8fGig/1XOTkWIS7yRwJPfnntauLpMrM89190/iSv9baLLsY6JytZVvB+i+LAW8NLLX4u
+XxA4rwzN9/4c3/VKdsspHl7MKmRXX9Tu0q6lkNcA7HSrSWZUsfW9XQVLZx4DaVkjPtfcmERJOv08
+9Wudb2TTGIYJhN1OT2vLgmxQYabi24wZPOFcs+6Nj4eb93ZjH/I8YrmVHwZInC2KhK4BqnMgKRai
+PjrjHI5t00Yghkt4hoN/3oKxhicBM9yO5nKCJ+/ACDzfR/hh2JlaugWL4+Y21Hs86+/Wsu5pEpqu
+C0sr78VcbPUyQ5cdiM6MEbZgUmesRHk5tQpwGCClgRtDgRO6dk9KBkE9A7Euoo60qzpt3Z3ey0Zu
+QW6p9Hzn33see74qhKb3QaY8NT2/S8haNf5jrZyl2zr8hkH6kvJavBIsW8SpZ24W9GnjhqotC7q+
+aWm2zW5FbP2EH4IvRRnBqqt47zub6VQbWP2Se/S0WEmOLWWXrtf4mpqQ060LDwIlvWfbHGOVLaRE
+AUC1B97o5XJTYmmBajH+upEHjIIDaUco8EHXCOxpBNXeKb50563MI742G71VlNFlQbVtnOJAiRK9
+bRYNiUtgss7ZRCPsROCsTjYqkfhRXsTAllZifSIsqWg0rEVYT/WbesbpNv+Cl5ZYEai1NPdIwgH3
+Rv7y99w3eyE8LGNTun885aRrSTgaRSqttr1uhsOslmcJFvaRMYGruRZgWCKJZgMOPhOAL7uz6Vmz
+XZvyFl4NuP2dk/KTpTTaSiPMAe5AJPMIwv0PiUZG1/3N2eIBlO3WMCV23PkZ0DY6IdsQCiXnsjXa
+U5GewxOue5geU7xuYV5bkoE0XwFMJ+SU2JrO8o2IWlbRrIRZ9o0bdF8rw8muquBi9rSfM5cM7Nxg
+ESmlN8yvHaLjJd8bGbFeYZ80SKh3tYBdvxY5soMD52qh5v3gzFdlLZRTBLxbKuZ/hUO3ecVwdaoy
+OlrUp3YULIvXY89bZKB1up3bskdW0IQlCl9EElqZVHu9fdthqjRklXm4t81HYve+bA6l6UnweQVA
+oG7LN62LWbaOshGAH+Q7WvaCWBbXZJFt4JPiJxlePdILysILM6ODNm4gp89V92hnhGz8D5QdLGkI
+nrGAobn2dzjWwjQLXoNKBm12axqvemDj6bwLTSuiWIIc6FAjSPhhJrDRkwOONju3jK7lfrjREhtD
+xVPlmc7/00KxVu21nHmXNxyUkMvtz1+Q/B37FQ+C0GleoSxXEjdmy+T60qzQppdO3ap/Rs4NFuFZ
+PvX9gLe9bbZ4gF9rnlsnTj7d7y7cvnP2Q6/Upc8scdhf2R5GLnAFaoC/hehhkAuEFwRX4dKk/LEL
+I+aWSPig0glh7WmaLqt+gbfVDIVE3I0nVDVAfoZOq21coqRgk/QbzdvshgEtoDIS7eoRioqS5TYE
+GteMyevW1yJN8LbeQfyci6uYuGWRqB+a+ylxpRi1vX7HrbBU7l08YJvSQWAFtj0zbTUjCtwc95V1
+KnSkNxa+63lq9rKxcnXjW+2IEJtqh6MiImzHpBFWimNeQtkmSpt3NY+nrID04/qigBPzgYCE9fHE
+gtf2duSrmrFRhKQUNeRUZkCkFeAsKJ7G6b8GcZ4CT+YaQSk95RCtGwRzpSSFGIwYOCDSltkn+4++
+2f9OKxIMNnFkewyA/lKnaUvxpLoFZ5cnj8bsNAmncaQJfIKMnLkODBCxIRBfm7c169dE/G6VBm5x
+ySMn7d3QSEbnfrI0aSM3FlB+7dx/Px+Ac6o34INur9W4YVgZMqmlCon05qLY1qJkCvGZ7K0cYRxY
+xAPefsXGEu8zFklxFvLv9k6LZS3aSdwNROxkM56kCaaJsMgB9YRCbX79XCrKe/Z6jARLGI5gJAYg
+sZKSgTimNXRQFsKePpAIR4wlFkn2i0azye7jO+YGB8YPi7wn76F/hVCHlQwSZt4m96DMoW1A/xLD
+4rLtIzXkhkdRTYQszYTNcdQYQjXG4/2Yj0r5EzhVv4qcevhh1sz9vZwD+hjUAV+RlgC8ZXmdu9ku
+dfmELE+RBcYtLNjBCSXemLCtA2koRsJfrn+ROzvcLrMY+6p7fxKQZyH3yCUGif0jlcSbfti14ZAV
+JlNoPGVBYFJJrnafwY0qm/Q+L8UghAC96cmkBkEEv+ox5GDalOEfIvDZ2pvl2jHI7Sk6JyQPh5Eu
+OM0TozVSmWVPdEgMhg2IJMU9qdqVztaVT9RmUcjPPF3u7vRnRZim2LsmLP+8WTp/9uFjetUK9O3V
+umaa65dhfMCansbqbVfXuSTFZMlg8fWqI4rKD2Nh4I7dI/WZCxlzrNh57VCuq92ZfpvIfDmzomb8
+66d539qptjCMVAnS+WMPmr+3CJ3L1Uo2BDjjLxylhCtuszffiZCp9z7i6hG9BL6iKKC+aO9hgFx7
+uGW=

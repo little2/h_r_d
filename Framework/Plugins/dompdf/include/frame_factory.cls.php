@@ -1,252 +1,107 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Contains frame decorating logic
- *
- * This class is responsible for assigning the correct {@link Frame_Decorator},
- * {@link Positioner}, and {@link Frame_Reflower} objects to {@link Frame}
- * objects.  This is determined primarily by the Frame's display type, but
- * also by the Frame's node's type (e.g. DomElement vs. #text)
- *
- * @access private
- * @package dompdf
- */
-class Frame_Factory {
-
-  /**
-   * Decorate the root Frame
-   * 
-   * @param $root Frame The frame to decorate
-   * @param $dompdf DOMPDF The dompdf instance
-   * @return Page_Frame_Decorator
-   */
-  static function decorate_root(Frame $root, DOMPDF $dompdf) {
-    $frame = new Page_Frame_Decorator($root, $dompdf);
-    $frame->set_reflower( new Page_Frame_Reflower($frame) );
-    $root->set_decorator($frame);
-    return $frame;
-  }
-
-  /**
-   * Decorate a Frame
-   *
-   * @param Frame  $frame  The frame to decorate
-   * @param DOMPDF $dompdf The dompdf instance
-   * @param Frame  $root   The frame to decorate
-   *
-   * @throws DOMPDF_Exception
-   * @return Frame_Decorator
-   * FIXME: this is admittedly a little smelly...
-   */
-  static function decorate_frame(Frame $frame, DOMPDF $dompdf, Frame $root = null) {
-    if ( is_null($dompdf) ) {
-      throw new DOMPDF_Exception("The DOMPDF argument is required");
-    }
-    
-    $style = $frame->get_style();
-    
-    // Floating (and more generally out-of-flow) elements are blocks 
-    // http://coding.smashingmagazine.com/2007/05/01/css-float-theory-things-you-should-know/
-    if ( !$frame->is_in_flow() && in_array($style->display, Style::$INLINE_TYPES)) {
-      $style->display = "block";
-    }
-      
-    $display = $style->display;
-    
-    switch ($display) {
-      
-    case "block":
-      $positioner = "Block";        
-      $decorator = "Block";
-      $reflower = "Block";
-      break;
-    
-    case "inline-block":
-      $positioner = "Inline";
-      $decorator = "Block";
-      $reflower = "Block";
-      break;
-
-    case "inline":
-      $positioner = "Inline";
-      if ( $frame->is_text_node() ) {
-        $decorator = "Text";
-        $reflower = "Text";
-      } 
-      else {
-        $enable_css_float = $dompdf->get_option("enable_css_float");
-        if ( $enable_css_float && $style->float !== "none" ) {
-          $decorator = "Block";
-          $reflower = "Block";
-        }
-        else {
-          $decorator = "Inline";
-          $reflower = "Inline";
-        }
-      }
-      break;   
-
-    case "table":
-      $positioner = "Block";
-      $decorator = "Table";
-      $reflower = "Table";
-      break;
-      
-    case "inline-table":
-      $positioner = "Inline";
-      $decorator = "Table";
-      $reflower = "Table";
-      break;
-
-    case "table-row-group":
-    case "table-header-group":
-    case "table-footer-group":
-      $positioner = "Null";
-      $decorator = "Table_Row_Group";
-      $reflower = "Table_Row_Group";
-      break;
-      
-    case "table-row":
-      $positioner = "Null";
-      $decorator = "Table_Row";
-      $reflower = "Table_Row";
-      break;
-
-    case "table-cell":
-      $positioner = "Table_Cell";
-      $decorator = "Table_Cell";
-      $reflower = "Table_Cell";
-      break;
-        
-    case "list-item":
-      $positioner = "Block";
-      $decorator  = "Block";
-      $reflower   = "Block";
-      break;
-
-    case "-dompdf-list-bullet":
-      if ( $style->list_style_position === "inside" ) {
-        $positioner = "Inline";
-      }
-      else {        
-        $positioner = "List_Bullet";
-      }
-
-      if ( $style->list_style_image !== "none" ) {
-        $decorator = "List_Bullet_Image";
-      }
-      else {
-        $decorator = "List_Bullet";
-      }
-      
-      $reflower = "List_Bullet";
-      break;
-
-    case "-dompdf-image":
-      $positioner = "Inline";
-      $decorator = "Image";
-      $reflower = "Image";
-      break;
-      
-    case "-dompdf-br":
-      $positioner = "Inline";
-      $decorator = "Inline";
-      $reflower = "Inline";
-      break;
-
-    default:
-      // FIXME: should throw some sort of warning or something?
-    case "none":
-      if ( $style->_dompdf_keep !== "yes" ) {
-        // Remove the node and the frame
-        $frame->get_parent()->remove_child($frame);
-        return;
-      }
-
-      $positioner = "Null";
-      $decorator = "Null";
-      $reflower = "Null";
-      break;
-    }
-
-    // Handle CSS position
-    $position = $style->position;
-    
-    if ( $position === "absolute" ) {
-      $positioner = "Absolute";
-    }
-    else if ( $position === "fixed" ) {
-      $positioner = "Fixed";
-    }
-      
-    $node = $frame->get_node();
-    
-    // Handle nodeName
-    if ( $node->nodeName === "img" ) {
-      $style->display = "-dompdf-image";
-      $decorator = "Image";
-      $reflower = "Image";
-    }
-  
-    $positioner .= "_Positioner";
-    $decorator .= "_Frame_Decorator";
-    $reflower .= "_Frame_Reflower";
-
-    $deco = new $decorator($frame, $dompdf);
-    
-    $deco->set_positioner( new $positioner($deco) );
-    $deco->set_reflower( new $reflower($deco) );
-    
-    if ( $root ) {
-      $deco->set_root($root);
-    }
-    
-    if ( $display === "list-item" ) {
-      // Insert a list-bullet frame
-      $xml = $dompdf->get_dom();
-      $bullet_node = $xml->createElement("bullet"); // arbitrary choice
-      $b_f = new Frame($bullet_node);
-
-      $node = $frame->get_node();
-      $parent_node = $node->parentNode;
-      
-      if ( $parent_node ) {
-        if ( !$parent_node->hasAttribute("dompdf-children-count") ) {
-          $xpath = new DOMXPath($xml);
-          $count = $xpath->query("li", $parent_node)->length;
-          $parent_node->setAttribute("dompdf-children-count", $count);
-        }
-        
-        if ( is_numeric($node->getAttribute("value")) ) {
-          $index = intval($node->getAttribute("value"));
-        }
-        else {
-          if ( !$parent_node->hasAttribute("dompdf-counter") ) {
-            $index = ($parent_node->hasAttribute("start") ? $parent_node->getAttribute("start") : 1);
-          }
-          else {
-            $index = $parent_node->getAttribute("dompdf-counter")+1;
-          }
-        }
-        
-        $parent_node->setAttribute("dompdf-counter", $index);
-        $bullet_node->setAttribute("dompdf-counter", $index);
-      }
-      
-      $new_style = $dompdf->get_css()->create_style();
-      $new_style->display = "-dompdf-list-bullet";
-      $new_style->inherit($style);
-      $b_f->set_style($new_style);
-      
-      $deco->prepend_child( Frame_Factory::decorate_frame($b_f, $dompdf, $root) );
-    }
-    
-    return $deco;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

@@ -1,143 +1,45 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Decorates frames for list bullets with custom images
- *
- * @access private
- * @package dompdf
- */
-class List_Bullet_Image_Frame_Decorator extends Frame_Decorator {
-
-  /**
-   * The underlying image frame
-   * 
-   * @var Image_Frame_Decorator
-   */
-  protected $_img;
-
-  /**
-   * The image's width in pixels
-   *
-   * @var int
-   */
-  protected $_width;
-  
-  /**
-   * The image's height in pixels
-   *
-   * @var int
-   */
-  protected $_height;
-
-  /**
-   * Class constructor
-   *
-   * @param Frame $frame the bullet frame to decorate
-   * @param DOMPDF $dompdf the document's dompdf object
-   */
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    $style = $frame->get_style();
-    $url = $style->list_style_image;
-    $frame->get_node()->setAttribute("src", $url);
-    $this->_img = new Image_Frame_Decorator($frame, $dompdf);
-    parent::__construct($this->_img, $dompdf);
-    list($width, $height) = dompdf_getimagesize($this->_img->get_image_url());
-
-    // Resample the bullet image to be consistent with 'auto' sized images
-    // See also Image_Frame_Reflower::get_min_max_width
-    // Tested php ver: value measured in px, suffix "px" not in value: rtrim unnecessary.
-    $dpi = $this->_dompdf->get_option("dpi");
-    $this->_width = ((float)rtrim($width, "px") * 72) / $dpi;
-    $this->_height = ((float)rtrim($height, "px") * 72) / $dpi;
- 
-    //If an image is taller as the containing block/box, the box should be extended.
-    //Neighbour elements are overwriting the overlapping image areas.
-    //Todo: Where can the box size be extended?   
-    //Code below has no effect.
-    //See block_frame_reflower _calculate_restricted_height
-    //See generated_frame_reflower, Dompdf:render() "list-item", "-dompdf-list-bullet"S.
-    //Leave for now    
-    //if ($style->min_height < $this->_height ) {
-    //  $style->min_height = $this->_height;
-    //}
-    //$style->height = "auto";   
-  }
-
-  /**
-   * Return the bullet's width
-   *
-   * @return int
-   */
-  function get_width() {
-    //ignore image width, use same width as on predefined bullet List_Bullet_Frame_Decorator
-    //for proper alignment of bullet image and text. Allow image to not fitting on left border.
-    //This controls the distance between bullet image and text 
-    //return $this->_width;
-    return $this->_frame->get_style()->get_font_size()*List_Bullet_Frame_Decorator::BULLET_SIZE + 
-      2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
-  }
-
-  /**
-   * Return the bullet's height
-   *
-   * @return int
-   */
-  function get_height() {
-    //based on image height
-    return $this->_height;
-  }
-  
-  /**
-   * Override get_margin_width
-   *
-   * @return int
-   */
-  function get_margin_width() {
-    //ignore image width, use same width as on predefined bullet List_Bullet_Frame_Decorator
-    //for proper alignment of bullet image and text. Allow image to not fitting on left border.
-    //This controls the extra indentation of text to make room for the bullet image.
-    //Here use actual image size, not predefined bullet size 
-    //return $this->_frame->get_style()->get_font_size()*List_Bullet_Frame_Decorator::BULLET_SIZE + 
-    //  2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
-
-    // Small hack to prevent indenting of list text
-    // Image Might not exist, then position like on list_bullet_frame_decorator fallback to none. 
-    if ( $this->_frame->get_style()->list_style_position === "outside" ||
-         $this->_width == 0) 
-      return 0;
-    //This aligns the "inside" image position with the text.
-    //The text starts to the right of the image.
-    //Between the image and the text there is an added margin of image width.
-    //Where this comes from is unknown.
-    //The corresponding List_Bullet_Frame_Decorator sets a smaller margin. bullet size?
-    return $this->_width + 2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
-  }
-
-  /**
-   * Override get_margin_height()
-   *
-   * @return int
-   */
-  function get_margin_height() {
-    //Hits only on "inset" lists items, to increase height of box
-    //based on image height
-    return $this->_height + 2 * List_Bullet_Frame_Decorator::BULLET_PADDING;
-  }
-
-  /**
-   * Return image url
-   *
-   * @return string
-   */
-  function get_image_url() {
-    return $this->_img->get_image_url();
-  }
-  
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+vNcjZmyY4G==

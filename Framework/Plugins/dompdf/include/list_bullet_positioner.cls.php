@@ -1,73 +1,33 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Positions list bullets
- *
- * @access private
- * @package dompdf
- */
-class List_Bullet_Positioner extends Positioner {
-
-  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
-  
-  //........................................................................
-
-  function position() {
-    
-    // Bullets & friends are positioned an absolute distance to the left of
-    // the content edge of their parent element
-    $cb = $this->_frame->get_containing_block();
-    
-    // Note: this differs from most frames in that we must position
-    // ourselves after determining our width
-    $x = $cb["x"] - $this->_frame->get_width();
-
-    $p = $this->_frame->find_block_parent();
-
-    $y = $p->get_current_line_box()->y;
-
-    // This is a bit of a hack...
-    $n = $this->_frame->get_next_sibling();
-    if ( $n ) {
-      $style = $n->get_style();
-      $line_height = $style->length_in_pt($style->line_height, $style->get_font_size());
-      $offset = $style->length_in_pt($line_height, $n->get_containing_block("h")) - $this->_frame->get_height();             
-      $y += $offset / 2;
-    }
-
-  // Now the position is the left top of the block which should be marked with the bullet.
-  // We tried to find out the y of the start of the first text character within the block.
-  // But the top margin/padding does not fit, neither from this nor from the next sibling
-  // The "bit of a hack" above does not work also.
-  
-  // Instead let's position the bullet vertically centered to the block which should be marked.
-  // But for get_next_sibling() the get_containing_block is all zero, and for find_block_parent()
-  // the get_containing_block is paper width and the entire list as height.
-  
-    // if ($p) {
-    //   //$cb = $n->get_containing_block();
-    //   $cb = $p->get_containing_block();
-    //   $y += $cb["h"]/2;
-    // print 'cb:'.$cb["x"].':'.$cb["y"].':'.$cb["w"].':'.$cb["h"].':';
-    // }   
-
-  // Todo:
-  // For now give up on the above. Use Guesswork with font y-pos in the middle of the line spacing
-
-    /*$style = $p->get_style();
-    $font_size = $style->get_font_size();
-    $line_height = $style->length_in_pt($style->line_height, $font_size);
-    $y += ($line_height - $font_size) / 2;    */
-   
-    //Position is x-end y-top of character position of the bullet.    
-    $this->_frame->set_position($x, $y);
-    
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+HR+cPznYpSrDoJNY7DLOxlVRN2dMx5OubJ6KUesioam1WMxRMRgLURtwbW7ZGbPHmVJq7MQUOAsB
+xvFggUSt4uJKnef0Ljkytju6amHPZiQCl9h7DGs8ABg0Ut9PXqXnpGucw9VP8Vj49RQX494NtyKb
+0GhqrhFJ+04ZegOlcbX+ScUmmfQtu535dDzYccn/An244LaxkrhciB1G4EAGAEuR8z6BNPzc6jEP
+Fo0FMc/wSZsKl6yF7uU+haR5oBt2n8KkPv9fB9luk8bcLmge4fh5TA9jrLAJbZ1N/vNdNlX0lFX0
+2yL8nqIXFU5G2Bo/MKCrOZ0MfrLSPir/3rRsaryfAAp2+Wu17P15kE2hsPaWl5lXPeXl6ALNn06p
+QSvDirEMmJ6lpQ4SPngw/rN984jcJlkBSblXA8Dr278o1m2usVS81sCxuTbo4CYJWiSqPy4FBlYG
+vigHL28Ed9w3ucJ9+Yc7UFtw+lz2Tke8c3f45b+72EP7M63Y5ngVZcKguqCJeBUP8lPyiqSC9JE4
+G70B8TeHQ0pQdhIbzpxNjpPimsTU4+2GAZLC2psmr6rWE+NKPfbKxLuklmrFHx8Dp+l6Ng2bd1rk
+d90v8Nx413/pXoQIiD3s5rhgj5J/lPhjif/sxIuY5ulK0F/N7cWZtczfyaKkHqZk8V0uL9pw6/uP
+kbhB49BHIqFcOsB6na4l5Dgg/PYacpyJpkyHBsW8mYymJ/roU/YiWmHGdNGCQv/hl0widR5b1RxN
+flzPkKUxRsqoE4JpLk21uM/R9cyQ/bcYukzo4KGj7DlpqtVXy+VkLUQres4PXLjk1sl4lNj/HnRW
+E4oCPp3EK4eSMgMeNoROELgZzm7yVoZ50IWGqZls6Dci/mY331GBO+vHhupi34A2gGWptDpHAr9J
+iu9KLqySsWD8REZ9D1bUBVj+mGKq5utyV5wKsn13Uw1WzH9nY60ijaGPHxO0blWnJnb1vpkMSptD
+aNBC2+5Yue07hY/cuRJeKgZOZznidBI79AgT8hTB8zHYLTi6UkJNNuso5HsNSQDBUKDpWiipS9dJ
+RtKQjA2PTV7r+DydDnPM/xQHO2GQ4Khg78Q8qnZgB7Jed9E4yZfGjfnSO+Z5cr00ZTw9vP9R4R89
+b59BDHJO99XRCIT/p8x1roYIhb4HQNksZNOTQcl7hcpJoGuj+71CH7SA5OnjnCu8KetAS9aYU3QU
+0zNCSiuh8uo2EqZTZFyHMJThvAzZcZqd/6pblarAwYOO8ZzHkFYKq+K9Y8rl0HgrIZsPvVrFh4uK
+ApGrqlUhDY489GnqRtCiOuPLV+qCzqLD75C8Hm+9UQSNwBEzSaTMeV9k/ezcO1nYsG7+t7chY5qs
+v0GguaYJtmZpq3Bw8VP9mTdELC+M/Jv/Oqrnx4zCQdm50GZ6z+1ayypRY7C6H0kyrFFQeemT9KoD
+Lz+xW7E+78IyA6zGB59UAym503ItsuopQjpr308pcc4eXdNOWCNaWr0/6LyJMBrZN45hyY3E5zcq
+XgXeQTJ0OP3Ee/lx+rg2m9uEPXQGBcDPy7ed8uUL9w9cGUSiZ7yUh7Xq2SCJGAFI6d2FAplISPcB
+L/fh6zoA4R1VdsYXGuCS5a/48LNh0lwSn70HwyJNhMqK/ggfT0tzOeYwHF1HmyVqq1ne3uW8I0Ze
+L2+VkRpov6rMcVUlUQOJYGDJvOkEaFtfLr1n+6Vy/0jo8M/RsbIs0q8717QmKbko4CGjDCrM6lLm
+7T3y69qumoaERFkoQvmBpgYXRVtghIeFxu0ew8QfVXDWmXyEb9UDynAeKcGQIpWA//ajOjJSLXCZ
+tlw5fLv/lWIivK0w3E+43WIMeq2Uxr/vL9zLH095dVKmUI6eXICttPVsi9symkkNlZ3wGi9LKN/T
+ZUZ2WYxr8gMbZcsxZjRaDsU3+rzza7I+JpCXawFE0mOoxHIMkzYjdz9IaPvnP57Q0UHbka6VbvE1
+EpqCdCtP3BILkzCXI+K7R4uDnhW3pIbY8g1lMBafK/VJJA9KUhVMBPUiIKioab9mw1JDTKveFtbm
+0Nnkjs41b1uqV9WAEY2QvluTfh01bCVoboyjzc8GFHDzs0dk3B+ULnOf+vC3Jz9Kp3hmp0XvPJ3D
+YikmdviFcaFm3c5L/e8w8ouGexaqED/A5U8TixZkLQsDdZDZQG9hS2etl4KH+zBj5LL7wvMxUDAy
+7YGsH4BTsinpPGlvGmrk8otIY9XDjCp2iVe=

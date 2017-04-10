@@ -1,53 +1,39 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * `hmtx` font table.
- * 
- * @package php-font-lib
- */
-class Font_Table_hmtx extends Font_Table {
-  protected function _parse(){
-    $font = $this->getFont();
-    $offset = $font->pos();
-    
-    $numOfLongHorMetrics = $font->getData("hhea", "numOfLongHorMetrics");
-    $numGlyphs = $font->getData("maxp", "numGlyphs");
-    
-    $font->seek($offset);
-    
-    $data = array();
-    for($gid = 0; $gid < $numOfLongHorMetrics; $gid++) {
-      $advanceWidth = $font->readUInt16();
-      $leftSideBearing = $font->readUInt16();
-      $data[$gid] = array($advanceWidth, $leftSideBearing);
-    }
-    
-    if($numOfLongHorMetrics < $numGlyphs){
-      $lastWidth = end($data);
-      $data = array_pad($data, $numGlyphs, $lastWidth);
-    }
-    
-    $this->data = $data;
-  }
-  
-  protected function _encode() {
-    $font = $this->getFont();
-    $subset = $font->getSubset();
-    $data = $this->data;
-    
-    $length = 0;
-    
-    foreach($subset as $gid) {
-      $length += $font->writeUInt16($data[$gid][0]);
-      $length += $font->writeUInt16($data[$gid][1]);
-    }
-    
-    return $length;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

@@ -1,73 +1,46 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * `loca` font table.
- * 
- * @package php-font-lib
- */
-class Font_Table_loca extends Font_Table {
-  protected function _parse(){
-    $font = $this->getFont();
-    $offset = $font->pos();
-    
-    $indexToLocFormat = $font->getData("head", "indexToLocFormat");
-    $numGlyphs = $font->getData("maxp", "numGlyphs");
-    
-    $font->seek($offset);
-    
-    $data = array();
-    
-    // 2 bytes
-    if ($indexToLocFormat == 0) {
-      $d = $font->read(($numGlyphs + 1) * 2);
-      $loc = unpack("n*", $d);
-      
-      for ($i = 0; $i <= $numGlyphs; $i++) {
-        $data[] = $loc[$i+1] * 2;
-      }
-    }
-    
-    // 4 bytes
-    else if ($indexToLocFormat == 1) {
-      $d = $font->read(($numGlyphs + 1) * 4);
-      $loc = unpack("N*", $d);
-      
-      for ($i = 0; $i <= $numGlyphs; $i++) {
-        $data[] = $loc[$i+1];
-      }
-    }
-    
-    $this->data = $data;
-  }
-  
-  function _encode(){
-    $font = $this->getFont();
-    $data = $this->data;
-    
-    $indexToLocFormat = $font->getData("head", "indexToLocFormat");
-    $numGlyphs = $font->getData("maxp", "numGlyphs");
-    $length = 0;
-    
-    // 2 bytes
-    if ($indexToLocFormat == 0) {
-      for ($i = 0; $i <= $numGlyphs; $i++) {
-        $length += $font->writeUInt16($data[$i] / 2);
-      }
-    }
-    
-    // 4 bytes
-    else if ($indexToLocFormat == 1) {
-      for ($i = 0; $i <= $numGlyphs; $i++) {
-        $length += $font->writeUInt32($data[$i]);
-      }
-    }
-    
-    return $length;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+kADSULrIy0+uWuk7pxecBpje

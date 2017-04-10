@@ -1,332 +1,189 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
- */
-
-/**
- * `glyf` font table.
- * 
- * @package php-font-lib
- */
-class Font_Glyph_Outline_Simple extends Font_Glyph_Outline {
-  const ON_CURVE       = 0x01;
-  const X_SHORT_VECTOR = 0x02;
-  const Y_SHORT_VECTOR = 0x04;
-  const REPEAT         = 0x08;
-  const THIS_X_IS_SAME = 0x10;
-  const THIS_Y_IS_SAME = 0x20;
-  
-  public $instructions;
-  public $points;
-  
-  function parseData(){
-    parent::parseData();
-  
-    if (!$this->size) {
-      return;
-    }
-  
-    $font = $this->getFont();
-    
-    $noc = $this->numberOfContours;
-    
-    if ($noc == 0) {
-      return;
-    }
-    
-    $endPtsOfContours = $font->r(array(self::uint16, $noc));
-    
-    $instructionLength = $font->readUInt16();
-    $this->instructions = $font->r(array(self::uint8, $instructionLength));
-    
-    $count = $endPtsOfContours[$noc-1] + 1;
-    
-    // Flags
-    $flags = array();
-    for ($index = 0; $index < $count; $index++) {
-      $flags[$index] = $font->readUInt8();
-      
-      if ($flags[$index] & self::REPEAT) {
-        $repeats = $font->readUInt8();
-        
-        for ($i = 1; $i <= $repeats; $i++) {
-          $flags[$index+$i] = $flags[$index];
-        }
-        
-        $index += $repeats;
-      }
-    }
-    
-    $points = array();
-    foreach ($flags as $i => $flag) {
-      $points[$i]["onCurve"] = $flag & self::ON_CURVE;
-      $points[$i]["endOfContour"] = in_array($i, $endPtsOfContours);
-    }
-    
-    // X Coords
-    $x = 0;
-    for($i = 0; $i < $count; $i++) {
-      $flag = $flags[$i];
-      
-      if ($flag & self::THIS_X_IS_SAME) {
-        if ($flag & self::X_SHORT_VECTOR) {
-          $x += $font->readUInt8();
-        }
-      }
-      else {
-        if ($flag & self::X_SHORT_VECTOR) {
-          $x -= $font->readUInt8();
-        }
-        else {
-          $x += $font->readInt16();
-        }
-      }
-      
-      $points[$i]["x"] = $x;
-    }
-    
-    // Y Coords
-    $y = 0;
-    for($i = 0; $i < $count; $i++) {
-      $flag = $flags[$i];
-      
-      if ($flag & self::THIS_Y_IS_SAME) {
-        if ($flag & self::Y_SHORT_VECTOR) {
-          $y += $font->readUInt8();
-        }
-      }
-      else {
-        if ($flag & self::Y_SHORT_VECTOR) {
-          $y -= $font->readUInt8();
-        }
-        else {
-          $y += $font->readInt16();
-        }
-      }
-      
-      $points[$i]["y"] = $y;
-    }
-    
-    $this->points = $points;
-  }
-  
-  public function splitSVGPath($path) {
-    preg_match_all('/([a-z])|(-?\d+(?:\.\d+)?)/i', $path, $matches, PREG_PATTERN_ORDER);
-    return $matches[0];
-  }
-  
-  public function makePoints($path) {
-    $path = $this->splitSVGPath($path);
-    $l = count($path);
-    $i = 0;
-    
-    $points = array();
-    
-    while($i < $l) {
-      switch($path[$i]) {
-        // moveTo
-        case "M":
-          $points[] = array(
-            "onCurve" => true,
-            "x"       => $path[++$i],
-            "y"       => $path[++$i],
-            "endOfContour" => false,
-          );
-          break;
-          
-        // lineTo
-        case "L":
-          $points[] = array(
-            "onCurve" => true,
-            "x"       => $path[++$i],
-            "y"       => $path[++$i],
-            "endOfContour" => false,
-          );
-          break;
-        
-        // quadraticCurveTo
-        case "Q":
-          $points[] = array(
-            "onCurve" => false,
-            "x"       => $path[++$i],
-            "y"       => $path[++$i],
-            "endOfContour" => false,
-          );
-          $points[] = array(
-            "onCurve" => true,
-            "x"       => $path[++$i],
-            "y"       => $path[++$i],
-            "endOfContour" => false,
-          );
-          break;
-        
-        // closePath
-        /** @noinspection PhpMissingBreakStatementInspection */
-        case "z":
-          $points[count($points)-1]["endOfContour"] = true;
-        
-        default:
-          $i++;
-          break;
-      }
-    }
-    
-    return $points;
-  }
-
-  function encode(){
-    if (empty($this->points)) {
-      return parent::encode();
-    }
-    
-    return $this->size = $this->encodePoints($this->points);
-  }
-
-  public function encodePoints($points) {
-    $endPtsOfContours = array();
-    $flags = array();
-    $coords_x = array();
-    $coords_y = array();
-    
-    $last_x = 0;
-    $last_y = 0;
-    $xMin = $yMin = 0xFFFF;
-    $xMax = $yMax = -0xFFFF;
-    foreach($points as $i => $point) {
-      $flag = 0;
-      if ($point["onCurve"]) {
-        $flag |= self::ON_CURVE;
-      }
-      
-      if ($point["endOfContour"]) {
-        $endPtsOfContours[] = $i;
-      }
-      
-      // Simplified, we could do some optimizations
-      if ($point["x"] == $last_x) {
-        $flag |= self::THIS_X_IS_SAME;
-      }
-      else {
-        $x = intval($point["x"]);
-        $xMin = min($x, $xMin);
-        $xMax = max($x, $xMax);
-        $coords_x[] = $x-$last_x; // int16
-      }
-      
-      // Simplified, we could do some optimizations
-      if ($point["y"] == $last_y) {
-        $flag |= self::THIS_Y_IS_SAME;
-      }
-      else {
-        $y = intval($point["y"]);
-        $yMin = min($y, $yMin);
-        $yMax = max($y, $yMax);
-        $coords_y[] = $y-$last_y; // int16
-      }
-      
-      $flags[] = $flag;
-      $last_x = $point["x"];
-      $last_y = $point["y"];
-    }
-    
-    $font = $this->getFont();
-    
-    $l = 0;
-    $l += $font->writeInt16(count($endPtsOfContours)); // endPtsOfContours
-    $l += $font->writeFWord(isset($this->xMin) ? $this->xMin : $xMin); // xMin
-    $l += $font->writeFWord(isset($this->yMin) ? $this->yMin : $yMin); // yMin
-    $l += $font->writeFWord(isset($this->xMax) ? $this->xMax : $xMax); // xMax
-    $l += $font->writeFWord(isset($this->yMax) ? $this->yMax : $yMax); // yMax
-    
-    // Simple glyf
-    $l += $font->w(array(self::uint16, count($endPtsOfContours)), $endPtsOfContours); // endPtsOfContours
-    $l += $font->writeUInt16(0); // instructionLength
-    $l += $font->w(array(self::uint8, count($flags)), $flags); // flags
-    $l += $font->w(array(self::int16, count($coords_x)), $coords_x); // xCoordinates
-    $l += $font->w(array(self::int16, count($coords_y)), $coords_y); // yCoordinates
-    return $l;
-  } 
-
-  public function getSVGContours($points = null){
-    $path = "";
-    
-    if (!$points) {
-      if (empty($this->points)) {
-        $this->parseData();
-      }
-
-      $points = $this->points;
-    }
-    
-    $length = count($points);
-    $firstIndex = 0;
-    $count = 0;
-    
-    for($i = 0; $i < $length; $i++) {
-      $count++;
-      
-      if ($points[$i]["endOfContour"]) {
-        $path .= $this->getSVGPath($points, $firstIndex, $count);
-        $firstIndex = $i + 1;
-        $count = 0;
-      }
-    }
-    
-    return $path;
-  }
-  
-  protected function getSVGPath($points, $startIndex, $count) {
-    $offset = 0;
-    $path = "";
-    
-    while($offset < $count) {
-      $point    = $points[ $startIndex +  $offset   %$count ];
-      $point_p1 = $points[ $startIndex + ($offset+1)%$count ];
-      
-      if($offset == 0) {
-        $path .= "M{$point['x']},{$point['y']} ";
-      }
-      
-      if ($point["onCurve"]) {
-        if ($point_p1["onCurve"]) {
-          $path .= "L{$point_p1['x']},{$point_p1['y']} ";
-          $offset++;
-        }
-        else {
-          $point_p2 = $points[ $startIndex + ($offset+2)%$count ];
-          
-          if ($point_p2["onCurve"]){
-            $path .= "Q{$point_p1['x']},{$point_p1['y']},{$point_p2['x']},{$point_p2['y']} ";
-          } 
-          else {
-            $path .= "Q{$point_p1['x']},{$point_p1['y']},".$this->midValue($point_p1['x'], $point_p2['x']).",".$this->midValue($point_p1['y'], $point_p2['y'])." ";
-          } 
-          
-          $offset += 2;
-        }
-      }
-      else {
-        if ($point_p1["onCurve"]) {
-          $path .= "Q{$point['x']},{$point['y']},{$point_p1['x']},{$point_p1['y']} ";
-        }
-        else {
-          $path .= "Q{$point['x']},{$point['y']},".$this->midValue($point['x'], $point_p1['x']).",".$this->midValue($point['y'], $point_p1['y'])." ";
-        }
-        
-        $offset++;
-      }
-    }
-    
-    $path .= "z ";
-    
-    return $path;
-  }
-  
-  function midValue($a, $b){
-    return $a + ($b - $a)/2;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+AhAnM3gJ8W==

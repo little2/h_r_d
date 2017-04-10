@@ -1,74 +1,50 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Decorates frames for inline layout
- *
- * @access private
- * @package dompdf
- */
-class Inline_Frame_Decorator extends Frame_Decorator {
-  
-  function __construct(Frame $frame, DOMPDF $dompdf) { parent::__construct($frame, $dompdf); }
-
-  function split(Frame $frame = null, $force_pagebreak = false) {
-
-    if ( is_null($frame) ) {
-      $this->get_parent()->split($this, $force_pagebreak);
-      return;
-    }
-
-    if ( $frame->get_parent() !== $this )
-      throw new DOMPDF_Exception("Unable to split: frame is not a child of this one.");
-        
-    $split = $this->copy( $this->_frame->get_node()->cloneNode() ); 
-    $this->get_parent()->insert_child_after($split, $this);
-
-    // Unset the current node's right style properties
-    $style = $this->_frame->get_style();
-    $style->margin_right = 0;
-    $style->padding_right = 0;
-    $style->border_right_width = 0;
-
-    // Unset the split node's left style properties since we don't want them
-    // to propagate
-    $style = $split->get_style();
-    $style->margin_left = 0;
-    $style->padding_left = 0;
-    $style->border_left_width = 0;
-
-    //On continuation of inline element on next line,
-    //don't repeat non-vertically repeatble background images
-    //See e.g. in testcase image_variants, long desriptions
-    if ( ($url = $style->background_image) && $url !== "none"
-         && ($repeat = $style->background_repeat) && $repeat !== "repeat" &&  $repeat !== "repeat-y"
-       ) {
-      $style->background_image = "none";
-    }           
-
-    // Add $frame and all following siblings to the new split node
-    $iter = $frame;
-    while ($iter) {
-      $frame = $iter;      
-      $iter = $iter->get_next_sibling();
-      $frame->reset();
-      $split->append_child($frame);
-    }
-    
-    $page_breaks = array("always", "left", "right");
-    $frame_style = $frame->get_style();
-    if( $force_pagebreak ||
-      in_array($frame_style->page_break_before, $page_breaks) ||
-      in_array($frame_style->page_break_after, $page_breaks) ) {
-
-      $this->get_parent()->split($split, true);
-    }
-  }
-  
-} 
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

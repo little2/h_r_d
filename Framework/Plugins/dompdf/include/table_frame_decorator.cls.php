@@ -1,334 +1,114 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Decorates Frames for table layout
- *
- * @access private
- * @package dompdf
- */
-class Table_Frame_Decorator extends Frame_Decorator {
-  static $VALID_CHILDREN = array("table-row-group",
-                                 "table-row",
-                                 "table-header-group",
-                                 "table-footer-group",
-                                 "table-column",
-                                 "table-column-group",
-                                 "table-caption",
-                                 "table-cell");
-
-  static $ROW_GROUPS = array('table-row-group',
-                             'table-header-group',
-                             'table-footer-group');
-
-  /**
-   * The Cellmap object for this table.  The cellmap maps table cells
-   * to rows and columns, and aids in calculating column widths.
-   *
-   * @var Cellmap
-   */
-  protected $_cellmap;
-
-  /**
-   * The minimum width of the table, in pt
-   *
-   * @var float
-   */
-  protected $_min_width;
-
-  /**
-   * The maximum width of the table, in pt
-   *
-   * @var float
-   */
-  protected $_max_width;
-
-  /**
-   * Table header rows.  Each table header is duplicated when a table
-   * spans pages.
-   *
-   * @var array
-   */
-  protected $_headers;
-
-  /**
-   * Table footer rows.  Each table footer is duplicated when a table
-   * spans pages.
-   *
-   * @var array
-   */
-  protected $_footers;
-
-  /**
-   * Class constructor
-   *
-   * @param Frame  $frame the frame to decorate
-   * @param DOMPDF $dompdf
-   */
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    parent::__construct($frame, $dompdf);
-    $this->_cellmap = new Cellmap($this);
-    
-    if ( $frame->get_style()->table_layout === "fixed" ) {
-      $this->_cellmap->set_layout_fixed(true);
-    }
-    
-    $this->_min_width = null;
-    $this->_max_width = null;
-    $this->_headers = array();
-    $this->_footers = array();
-  }
-
-
-  function reset() {
-    parent::reset();
-    $this->_cellmap->reset();
-    $this->_min_width = null;
-    $this->_max_width = null;
-    $this->_headers = array();
-    $this->_footers = array();
-    $this->_reflower->reset();
-  }
-
-  //........................................................................
-
-  /**
-   * split the table at $row.  $row and all subsequent rows will be
-   * added to the clone.  This method is overidden in order to remove
-   * frames from the cellmap properly.
-   *
-   * @param Frame $child
-   * @param bool  $force_pagebreak
-   *
-   * @return void
-   */
-  function split(Frame $child = null, $force_pagebreak = false) {
-
-    if ( is_null($child) ) {
-      parent::split();
-      return;
-    }
-
-    // If $child is a header or if it is the first non-header row, do
-    // not duplicate headers, simply move the table to the next page.
-    if ( count($this->_headers) && !in_array($child, $this->_headers, true) &&
-         !in_array($child->get_prev_sibling(), $this->_headers, true) ) {
-
-      $first_header = null;
-
-      // Insert copies of the table headers before $child
-      foreach ($this->_headers as $header) {
-
-        $new_header = $header->deep_copy();
-
-        if ( is_null($first_header) )
-          $first_header = $new_header;
-
-        $this->insert_child_before($new_header, $child);
-      }
-
-      parent::split($first_header);
-
-    } else if ( in_array($child->get_style()->display, self::$ROW_GROUPS) ) {
-
-      // Individual rows should have already been handled
-      parent::split($child);
-
-    } else {
-
-      $iter = $child;
-
-      while ($iter) {
-        $this->_cellmap->remove_row($iter);
-        $iter = $iter->get_next_sibling();
-      }
-
-      parent::split($child);
-    }
-  }
-
-  /**
-   * Return a copy of this frame with $node as its node
-   * 
-   * @param DOMNode $node
-   * @return Frame
-   */ 
-  function copy(DOMNode $node) {
-    $deco = parent::copy($node);
-    
-    // In order to keep columns' widths through pages
-    $deco->_cellmap->set_columns($this->_cellmap->get_columns());
-    $deco->_cellmap->lock_columns();
-
-    return $deco;
-  }
-
-  /**
-   * Static function to locate the parent table of a frame
-   *
-   * @param Frame $frame
-   * @return Table_Frame_Decorator the table that is an ancestor of $frame
-   */
-  static function find_parent_table(Frame $frame) {
-
-    while ( $frame = $frame->get_parent() )
-      if ( $frame->is_table() )
-        break;
-
-    return $frame;
-  }
-
-  /**
-   * Return this table's Cellmap
-   *
-   * @return Cellmap
-   */
-  function get_cellmap() { return $this->_cellmap; }
-
-  /**
-   * Return the minimum width of this table
-   *
-   * @return float
-   */
-  function get_min_width() { return $this->_min_width; }
-
-  /**
-   * Return the maximum width of this table
-   *
-   * @return float
-   */
-  function get_max_width() { return $this->_max_width; }
-
-  /**
-   * Set the minimum width of the table
-   *
-   * @param float $width the new minimum width
-   */
-  function set_min_width($width) { $this->_min_width = $width; }
-
-  /**
-   * Set the maximum width of the table
-   *
-   * @param float $width the new maximum width
-   */
-  function set_max_width($width) { $this->_max_width = $width; }
-
-  /**
-   * Restructure tree so that the table has the correct structure.
-   * Invalid children (i.e. all non-table-rows) are moved below the
-   * table.
-   */
-  function normalise() {
-
-    // Store frames generated by invalid tags and move them outside the table
-    $erroneous_frames = array();
-    $anon_row = false;
-    $iter = $this->get_first_child();
-    while ( $iter ) {
-      $child = $iter;
-      $iter = $iter->get_next_sibling();
-
-      $display = $child->get_style()->display;
-
-      if ( $anon_row ) {
-
-        if ( $display === "table-row" ) {
-          // Add the previous anonymous row
-          $this->insert_child_before($table_row, $child);
-
-          $table_row->normalise();
-          $child->normalise();
-          $anon_row = false;
-          continue;
-        }
-
-        // add the child to the anonymous row
-        $table_row->append_child($child);
-        continue;
-
-      } else {
-
-        if ( $display === "table-row" ) {
-          $child->normalise();
-          continue;
-        }
-
-        if ( $display === "table-cell" ) {
-          // Create an anonymous table row
-          $tr = $this->get_node()->ownerDocument->createElement("tr");
-
-          $frame = new Frame($tr);
-
-          $css = $this->get_style()->get_stylesheet();
-          $style = $css->create_style();
-          $style->inherit($this->get_style());
-
-          // Lookup styles for tr tags.  If the user wants styles to work
-          // better, they should make the tr explicit... I'm not going to
-          // try to guess what they intended.
-          if ( $tr_style = $css->lookup("tr") )
-            $style->merge($tr_style);
-
-          // Okay, I have absolutely no idea why I need this clone here, but
-          // if it's omitted, php (as of 2004-07-28) segfaults.
-          $frame->set_style(clone $style);
-          $table_row = Frame_Factory::decorate_frame($frame, $this->_dompdf, $this->_root);
-
-          // Add the cell to the row
-          $table_row->append_child($child);
-
-          $anon_row = true;
-          continue;
-        }
-
-        if ( !in_array($display, self::$VALID_CHILDREN) ) {
-          $erroneous_frames[] = $child;
-          continue;
-        }
-
-        // Normalise other table parts (i.e. row groups)
-        foreach ($child->get_children() as $grandchild) {
-          if ( $grandchild->get_style()->display === "table-row" ) {
-            $grandchild->normalise();
-          }
-        }
-
-        // Add headers and footers
-        if ( $display === "table-header-group" )
-          $this->_headers[] = $child;
-
-        else if ( $display === "table-footer-group" )
-          $this->_footers[] = $child;
-      }
-    }
-
-    if ( $anon_row ) {
-      // Add the row to the table
-      $this->_frame->append_child($table_row);
-      $table_row->normalise();
-      $this->_cellmap->add_row();
-    }
-
-    foreach ($erroneous_frames as $frame)
-      $this->move_after($frame);
-
-  }
-
-  //........................................................................
-
-  /**
-   * Moves the specified frame and it's corresponding node outside of
-   * the table.
-   *
-   * @param Frame $frame the frame to move
-   */
-  function move_after(Frame $frame) {
-    $this->get_parent()->insert_child_after($frame, $this);
-  }
-
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

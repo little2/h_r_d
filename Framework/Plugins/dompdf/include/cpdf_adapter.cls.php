@@ -1,877 +1,347 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Orion Richardson <orionr@yahoo.com>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-// FIXME: Need to sanity check inputs to this class
-require_once(DOMPDF_LIB_DIR . "/class.pdf.php");
-
-/**
- * PDF rendering interface
- *
- * CPDF_Adapter provides a simple stateless interface to the stateful one
- * provided by the Cpdf class.
- *
- * Unless otherwise mentioned, all dimensions are in points (1/72 in).  The
- * coordinate origin is in the top left corner, and y values increase
- * downwards.
- *
- * See {@link http://www.ros.co.nz/pdf/} for more complete documentation
- * on the underlying {@link Cpdf} class.
- *
- * @package dompdf
- */
-class CPDF_Adapter implements Canvas {
-
-  /**
-   * Dimensions of paper sizes in points
-   *
-   * @var array;
-   */
-  static $PAPER_SIZES = array(
-    "4a0" => array(0,0,4767.87,6740.79),
-    "2a0" => array(0,0,3370.39,4767.87),
-    "a0" => array(0,0,2383.94,3370.39),
-    "a1" => array(0,0,1683.78,2383.94),
-    "a2" => array(0,0,1190.55,1683.78),
-    "a3" => array(0,0,841.89,1190.55),
-    "a4" => array(0,0,595.28,841.89),
-    "a5" => array(0,0,419.53,595.28),
-    "a6" => array(0,0,297.64,419.53),
-    "a7" => array(0,0,209.76,297.64),
-    "a8" => array(0,0,147.40,209.76),
-    "a9" => array(0,0,104.88,147.40),
-    "a10" => array(0,0,73.70,104.88),
-    "b0" => array(0,0,2834.65,4008.19),
-    "b1" => array(0,0,2004.09,2834.65),
-    "b2" => array(0,0,1417.32,2004.09),
-    "b3" => array(0,0,1000.63,1417.32),
-    "b4" => array(0,0,708.66,1000.63),
-    "b5" => array(0,0,498.90,708.66),
-    "b6" => array(0,0,354.33,498.90),
-    "b7" => array(0,0,249.45,354.33),
-    "b8" => array(0,0,175.75,249.45),
-    "b9" => array(0,0,124.72,175.75),
-    "b10" => array(0,0,87.87,124.72),
-    "c0" => array(0,0,2599.37,3676.54),
-    "c1" => array(0,0,1836.85,2599.37),
-    "c2" => array(0,0,1298.27,1836.85),
-    "c3" => array(0,0,918.43,1298.27),
-    "c4" => array(0,0,649.13,918.43),
-    "c5" => array(0,0,459.21,649.13),
-    "c6" => array(0,0,323.15,459.21),
-    "c7" => array(0,0,229.61,323.15),
-    "c8" => array(0,0,161.57,229.61),
-    "c9" => array(0,0,113.39,161.57),
-    "c10" => array(0,0,79.37,113.39),
-    "ra0" => array(0,0,2437.80,3458.27),
-    "ra1" => array(0,0,1729.13,2437.80),
-    "ra2" => array(0,0,1218.90,1729.13),
-    "ra3" => array(0,0,864.57,1218.90),
-    "ra4" => array(0,0,609.45,864.57),
-    "sra0" => array(0,0,2551.18,3628.35),
-    "sra1" => array(0,0,1814.17,2551.18),
-    "sra2" => array(0,0,1275.59,1814.17),
-    "sra3" => array(0,0,907.09,1275.59),
-    "sra4" => array(0,0,637.80,907.09),
-    "letter" => array(0,0,612.00,792.00),
-    "legal" => array(0,0,612.00,1008.00),
-    "ledger" => array(0,0,1224.00, 792.00),
-    "tabloid" => array(0,0,792.00, 1224.00),
-    "executive" => array(0,0,521.86,756.00),
-    "folio" => array(0,0,612.00,936.00),
-    "commercial #10 envelope" => array(0,0,684,297),
-    "catalog #10 1/2 envelope" => array(0,0,648,864),
-    "8.5x11" => array(0,0,612.00,792.00),
-    "8.5x14" => array(0,0,612.00,1008.0),
-    "11x17"  => array(0,0,792.00, 1224.00),
-  );
-
-  /**
-   * The DOMPDF object
-   *
-   * @var DOMPDF
-   */
-  private $_dompdf;
-
-  /**
-   * Instance of Cpdf class
-   *
-   * @var Cpdf
-   */
-  private $_pdf;
-
-  /**
-   * PDF width, in points
-   *
-   * @var float
-   */
-  private $_width;
-
-  /**
-   * PDF height, in points
-   *
-   * @var float;
-   */
-  private $_height;
-
-  /**
-   * Current page number
-   *
-   * @var int
-   */
-  private $_page_number;
-
-  /**
-   * Total number of pages
-   *
-   * @var int
-   */
-  private $_page_count;
-
-  /**
-   * Text to display on every page
-   *
-   * @var array
-   */
-  private $_page_text;
-
-  /**
-   * Array of pages for accesing after rendering is initially complete
-   *
-   * @var array
-   */
-  private $_pages;
-
-  /**
-   * Array of temporary cached images to be deleted when processing is complete
-   *
-   * @var array
-   */
-  private $_image_cache;
-
-  /**
-   * Class constructor
-   *
-   * @param mixed  $paper       The size of paper to use in this PDF ({@link CPDF_Adapter::$PAPER_SIZES})
-   * @param string $orientation The orientation of the document (either 'landscape' or 'portrait')
-   * @param DOMPDF $dompdf      The DOMPDF instance
-   */
-  function __construct($paper = "letter", $orientation = "portrait", DOMPDF $dompdf) {
-    if ( is_array($paper) ) {
-      $size = $paper;
-    }
-    else if ( isset(self::$PAPER_SIZES[mb_strtolower($paper)]) ) {
-      $size = self::$PAPER_SIZES[mb_strtolower($paper)];
-    }
-    else {
-      $size = self::$PAPER_SIZES["letter"];
-    }
-
-    if ( mb_strtolower($orientation) === "landscape" ) {
-      list($size[2], $size[3]) = array($size[3], $size[2]);
-    }
-
-    $this->_dompdf = $dompdf;
-    
-    $this->_pdf = new Cpdf(
-      $size,
-      $dompdf->get_option("enable_unicode"),
-      $dompdf->get_option("font_cache"),
-      $dompdf->get_option("temp_dir")
-    );
-
-    $this->_pdf->addInfo("Creator", "DOMPDF");
-    $time = substr_replace(date('YmdHisO'), '\'', -2, 0).'\'';
-    $this->_pdf->addInfo("CreationDate", "D:$time");
-    $this->_pdf->addInfo("ModDate", "D:$time");
-
-    $this->_width = $size[2] - $size[0];
-    $this->_height= $size[3] - $size[1];
-    
-    $this->_page_number = $this->_page_count = 1;
-    $this->_page_text = array();
-
-    $this->_pages = array($this->_pdf->getFirstPageId());
-
-    $this->_image_cache = array();
-  }
-
-  function get_dompdf(){
-    return $this->_dompdf;
-  }
-
-  /**
-   * Class destructor
-   *
-   * Deletes all temporary image files
-   */
-  function __destruct() {
-    foreach ($this->_image_cache as $img) {
-      // The file might be already deleted by 3rd party tmp cleaner,
-      // the file might not have been created at all
-      // (if image outputting commands failed)
-      // or because the destructor was called twice accidentally.
-      if (!file_exists($img)) {
-        continue;
-      }
-
-      if (DEBUGPNG) print '[__destruct unlink '.$img.']';
-      if (!DEBUGKEEPTEMP) unlink($img);
-    }
-  }
-  
-  /**
-   * Returns the Cpdf instance
-   *
-   * @return Cpdf
-   */
-  function get_cpdf() {
-    return $this->_pdf;
-  }
-
-  /**
-   * Add meta information to the PDF
-   *
-   * @param string $label  label of the value (Creator, Producer, etc.)
-   * @param string $value  the text to set
-   */
-  function add_info($label, $value) {
-    $this->_pdf->addInfo($label, $value);
-  }
-
-  /**
-   * Opens a new 'object'
-   *
-   * While an object is open, all drawing actions are recored in the object,
-   * as opposed to being drawn on the current page.  Objects can be added
-   * later to a specific page or to several pages.
-   *
-   * The return value is an integer ID for the new object.
-   *
-   * @see CPDF_Adapter::close_object()
-   * @see CPDF_Adapter::add_object()
-   *
-   * @return int
-   */
-  function open_object() {
-    $ret = $this->_pdf->openObject();
-    $this->_pdf->saveState();
-    return $ret;
-  }
-
-  /**
-   * Reopens an existing 'object'
-   *
-   * @see CPDF_Adapter::open_object()
-   * @param int $object  the ID of a previously opened object
-   */
-  function reopen_object($object) {
-    $this->_pdf->reopenObject($object);
-    $this->_pdf->saveState();
-  }
-
-  /**
-   * Closes the current 'object'
-   *
-   * @see CPDF_Adapter::open_object()
-   */
-  function close_object() {
-    $this->_pdf->restoreState();
-    $this->_pdf->closeObject();
-  }
-
-  /**
-   * Adds a specified 'object' to the document
-   *
-   * $object int specifying an object created with {@link
-   * CPDF_Adapter::open_object()}.  $where can be one of:
-   * - 'add' add to current page only
-   * - 'all' add to every page from the current one onwards
-   * - 'odd' add to all odd numbered pages from now on
-   * - 'even' add to all even numbered pages from now on
-   * - 'next' add the object to the next page only
-   * - 'nextodd' add to all odd numbered pages from the next one
-   * - 'nexteven' add to all even numbered pages from the next one
-   *
-   * @see Cpdf::addObject()
-   *
-   * @param int $object
-   * @param string $where
-   */
-  function add_object($object, $where = 'all') {
-    $this->_pdf->addObject($object, $where);
-  }
-
-  /**
-   * Stops the specified 'object' from appearing in the document.
-   *
-   * The object will stop being displayed on the page following the current
-   * one.
-   *
-   * @param int $object
-   */
-  function stop_object($object) {
-    $this->_pdf->stopObject($object);
-  }
-
-  /**
-   * @access private
-   */
-  function serialize_object($id) {
-    // Serialize the pdf object's current state for retrieval later
-    return $this->_pdf->serializeObject($id);
-  }
-
-  /**
-   * @access private
-   */
-  function reopen_serialized_object($obj) {
-    return $this->_pdf->restoreSerializedObject($obj);
-  }
-    
-  //........................................................................
-
-  /**
-   * Returns the PDF's width in points
-   * @return float
-   */
-  function get_width() { return $this->_width; }
-
-  /**
-   * Returns the PDF's height in points
-   * @return float
-   */
-  function get_height() { return $this->_height; }
-
-  /**
-   * Returns the current page number
-   * @return int
-   */
-  function get_page_number() { return $this->_page_number; }
-
-  /**
-   * Returns the total number of pages in the document
-   * @return int
-   */
-  function get_page_count() { return $this->_page_count; }
-
-  /**
-   * Sets the current page number
-   *
-   * @param int $num
-   */
-  function set_page_number($num) { $this->_page_number = $num; }
-
-  /**
-   * Sets the page count
-   *
-   * @param int $count
-   */
-  function set_page_count($count) {  $this->_page_count = $count; }
-    
-  /**
-   * Sets the stroke color
-   *
-   * See {@link Style::set_color()} for the format of the color array.
-   * @param array $color
-   */
-  protected function _set_stroke_color($color) {
-    $this->_pdf->setStrokeColor($color);
-  }
-  
-  /**
-   * Sets the fill colour
-   *
-   * See {@link Style::set_color()} for the format of the colour array.
-   * @param array $color
-   */
-  protected function _set_fill_color($color) {
-    $this->_pdf->setColor($color);
-  }
-
-  /**
-   * Sets line transparency
-   * @see Cpdf::setLineTransparency()
-   *
-   * Valid blend modes are (case-sensitive):
-   *
-   * Normal, Multiply, Screen, Overlay, Darken, Lighten,
-   * ColorDodge, ColorBurn, HardLight, SoftLight, Difference,
-   * Exclusion
-   *
-   * @param string $mode the blending mode to use
-   * @param float $opacity 0.0 fully transparent, 1.0 fully opaque
-   */
-  protected function _set_line_transparency($mode, $opacity) {
-    $this->_pdf->setLineTransparency($mode, $opacity);
-  }
-  
-  /**
-   * Sets fill transparency
-   * @see Cpdf::setFillTransparency()
-   *
-   * Valid blend modes are (case-sensitive):
-   *
-   * Normal, Multiply, Screen, Overlay, Darken, Lighten,
-   * ColorDogde, ColorBurn, HardLight, SoftLight, Difference,
-   * Exclusion
-   *
-   * @param string $mode the blending mode to use
-   * @param float $opacity 0.0 fully transparent, 1.0 fully opaque
-   */
-  protected function _set_fill_transparency($mode, $opacity) {
-    $this->_pdf->setFillTransparency($mode, $opacity);
-  }
-
-  /**
-   * Sets the line style
-   *
-   * @see Cpdf::setLineStyle()
-   *
-   * @param float  $width
-   * @param string $cap
-   * @param string $join
-   * @param array  $dash
-   */
-  protected function _set_line_style($width, $cap, $join, $dash) {
-    $this->_pdf->setLineStyle($width, $cap, $join, $dash);
-  }
-  
-  /**
-   * Sets the opacity 
-   * 
-   * @param $opacity
-   * @param $mode
-   */
-  function set_opacity($opacity, $mode = "Normal") {
-    $this->_set_line_transparency($mode, $opacity);
-    $this->_set_fill_transparency($mode, $opacity);
-  }
-  
-  function set_default_view($view, $options = array()) {
-    array_unshift($options, $view);
-    call_user_func_array(array($this->_pdf, "openHere"), $options);
-  }
-
-  /**
-   * Remaps y coords from 4th to 1st quadrant
-   *
-   * @param float $y
-   * @return float
-   */
-  protected function y($y) {
-    return $this->_height - $y;
-  }
-
-  // Canvas implementation
-  function line($x1, $y1, $x2, $y2, $color, $width, $style = array()) {
-    $this->_set_stroke_color($color);
-    $this->_set_line_style($width, "butt", "", $style);
-    
-    $this->_pdf->line($x1, $this->y($y1),
-                      $x2, $this->y($y2));
-  }
-  
-  function arc($x, $y, $r1, $r2, $astart, $aend, $color, $width, $style = array()) {
-    $this->_set_stroke_color($color);
-    $this->_set_line_style($width, "butt", "", $style);
-    
-    $this->_pdf->ellipse($x, $this->y($y), $r1, $r2, 0, 8, $astart, $aend, false, false, true, false);
-  }
-                              
-  //........................................................................
-
-  /**
-   * Convert a GIF or BMP image to a PNG image
-   *
-   * @param string  $image_url
-   * @param integer $type
-   *
-   * @throws DOMPDF_Exception
-   * @return string The url of the newly converted image
-   */
-  protected function _convert_gif_bmp_to_png($image_url, $type) {
-    $image_type = Image_Cache::type_to_ext($type);
-    $func_name = "imagecreatefrom$image_type";
-    
-    if ( !function_exists($func_name) ) {
-      throw new DOMPDF_Exception("Function $func_name() not found.  Cannot convert $image_type image: $image_url.  Please install the image PHP extension.");
-    }
-
-    set_error_handler("record_warnings");
-    $im = $func_name($image_url);
-
-    if ( $im ) {
-      imageinterlace($im, false);
-
-      $tmp_dir = $this->_dompdf->get_option("temp_dir");
-      $tmp_name = tempnam($tmp_dir, "{$image_type}dompdf_img_");
-      @unlink($tmp_name);
-      $filename = "$tmp_name.png";
-      $this->_image_cache[] = $filename;
-
-      imagepng($im, $filename);
-      imagedestroy($im);
-    } 
-    else {
-      $filename = Image_Cache::$broken_image;
-    }
-
-    restore_error_handler();
-    
-    return $filename;
-  }
-
-  function rectangle($x1, $y1, $w, $h, $color, $width, $style = array()) {
-    $this->_set_stroke_color($color);
-    $this->_set_line_style($width, "butt", "", $style);
-    $this->_pdf->rectangle($x1, $this->y($y1) - $h, $w, $h);
-  }
-  
-  function filled_rectangle($x1, $y1, $w, $h, $color) {
-    $this->_set_fill_color($color);
-    $this->_pdf->filledRectangle($x1, $this->y($y1) - $h, $w, $h);
-  }
-  
-  function clipping_rectangle($x1, $y1, $w, $h) {
-    $this->_pdf->clippingRectangle($x1, $this->y($y1) - $h, $w, $h);
-  }
-  
-  function clipping_roundrectangle($x1, $y1, $w, $h, $rTL, $rTR, $rBR, $rBL) {
-    $this->_pdf->clippingRectangleRounded($x1, $this->y($y1) - $h, $w, $h, $rTL, $rTR, $rBR, $rBL);
-  }
-  
-  function clipping_end() {
-    $this->_pdf->clippingEnd();
-  }
-  
-  function save() {
-    $this->_pdf->saveState();
-  }
-  
-  function restore() {
-    $this->_pdf->restoreState();
-  }
-  
-  function rotate($angle, $x, $y) {
-    $this->_pdf->rotate($angle, $x, $y);
-  }
-  
-  function skew($angle_x, $angle_y, $x, $y) {
-    $this->_pdf->skew($angle_x, $angle_y, $x, $y);
-  }
-  
-  function scale($s_x, $s_y, $x, $y) {
-    $this->_pdf->scale($s_x, $s_y, $x, $y);
-  }
-  
-  function translate($t_x, $t_y) {
-    $this->_pdf->translate($t_x, $t_y);
-  }
-  
-  function transform($a, $b, $c, $d, $e, $f) {
-    $this->_pdf->transform(array($a, $b, $c, $d, $e, $f));
-  }
-
-  function polygon($points, $color, $width = null, $style = array(), $fill = false) {
-    $this->_set_fill_color($color);
-    $this->_set_stroke_color($color);
-    
-    // Adjust y values
-    for ( $i = 1; $i < count($points); $i += 2) {
-      $points[$i] = $this->y($points[$i]);
-    }
-    
-    $this->_pdf->polygon($points, count($points) / 2, $fill);
-  }
-
-  function circle($x, $y, $r1, $color, $width = null, $style = null, $fill = false) {
-    $this->_set_fill_color($color);
-    $this->_set_stroke_color($color);
-
-    if ( !$fill && isset($width) ) {
-      $this->_set_line_style($width, "round", "round", $style);
-    }
-
-    $this->_pdf->ellipse($x, $this->y($y), $r1, 0, 0, 8, 0, 360, 1, $fill);
-  }
-
-  function image($img, $x, $y, $w, $h, $resolution = "normal") {
-    list($width, $height, $type) = dompdf_getimagesize($img);
-    
-    $debug_png = $this->_dompdf->get_option("debug_png");
-
-    if ($debug_png) print "[image:$img|$width|$height|$type]";
-
-    switch ($type) {
-    case IMAGETYPE_JPEG:
-      if ($debug_png) print '!!!jpg!!!';
-      $this->_pdf->addJpegFromFile($img, $x, $this->y($y) - $h, $w, $h);
-      break;
-      
-    case IMAGETYPE_GIF:
-    case IMAGETYPE_BMP:
-      if ($debug_png) print '!!!bmp or gif!!!';
-      // @todo use cache for BMP and GIF
-      $img = $this->_convert_gif_bmp_to_png($img, $type);
-
-    case IMAGETYPE_PNG:
-      if ($debug_png) print '!!!png!!!';
-
-      $this->_pdf->addPngFromFile($img, $x, $this->y($y) - $h, $w, $h);
-      break;
-
-    default:
-      if ($debug_png) print '!!!unknown!!!';
-    }
-  }
-
-  function text($x, $y, $text, $font, $size, $color = array(0,0,0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0) {
-    $pdf = $this->_pdf;
-    
-    $pdf->setColor($color);
-    
-    $font .= ".afm";
-    $pdf->selectFont($font);
-    
-    //Font_Metrics::get_font_height($font, $size) ==
-    //$this->get_font_height($font, $size) ==
-    //$this->_pdf->selectFont($font),$this->_pdf->getFontHeight($size)
-    //- FontBBoxheight+FontHeightOffset, scaled to $size, in pt
-    //$this->_pdf->getFontDescender($size)
-    //- Descender scaled to size
-    //
-    //$this->_pdf->fonts[$this->_pdf->currentFont] sizes:
-    //['FontBBox'][0] left, ['FontBBox'][1] bottom, ['FontBBox'][2] right, ['FontBBox'][3] top
-    //Maximum extent of all glyphs of the font from the baseline point
-    //['Ascender'] maximum height above baseline except accents
-    //['Descender'] maximum depth below baseline, negative number means below baseline
-    //['FontHeightOffset'] manual enhancement of .afm files to trim windows fonts. currently not used.
-    //Values are in 1/1000 pt for a font size of 1 pt
-    //
-    //['FontBBox'][1] should be close to ['Descender']
-    //['FontBBox'][3] should be close to ['Ascender']+Accents
-    //in practice, FontBBox values are a little bigger
-    //
-    //The text position is referenced to the baseline, not to the lower corner of the FontBBox,
-    //for what the left,top corner is given.
-    //FontBBox spans also the background box for the text.
-    //If the lower corner would be used as reference point, the Descents of the glyphs would
-    //hang over the background box border.
-    //Therefore compensate only the extent above the Baseline.
-    //
-    //print '<pre>['.$font.','.$size.','.$pdf->getFontHeight($size).','.$pdf->getFontDescender($size).','.$pdf->fonts[$pdf->currentFont]['FontBBox'][3].','.$pdf->fonts[$pdf->currentFont]['FontBBox'][1].','.$pdf->fonts[$pdf->currentFont]['FontHeightOffset'].','.$pdf->fonts[$pdf->currentFont]['Ascender'].','.$pdf->fonts[$pdf->currentFont]['Descender'].']</pre>';
-    //
-    //$pdf->addText($x, $this->y($y) - ($pdf->fonts[$pdf->currentFont]['FontBBox'][3]*$size)/1000, $size, $text, $angle, $word_space, $char_space);
-    $pdf->addText($x, $this->y($y) - $pdf->getFontHeight($size), $size, $text, $angle, $word_space, $char_space);
-  }
-
-  //........................................................................
-
-  function javascript($code) {
-    $this->_pdf->addJavascript($code);
-  }
-
-  //........................................................................
-
-  /**
-   * Add a named destination (similar to <a name="foo">...</a> in html)
-   *
-   * @param string $anchorname The name of the named destination
-   */
-  function add_named_dest($anchorname) {
-    $this->_pdf->addDestination($anchorname, "Fit");
-  }
-
-  //........................................................................
-
-  /**
-   * Add a link to the pdf
-   *
-   * @param string $url The url to link to
-   * @param float  $x   The x position of the link
-   * @param float  $y   The y position of the link
-   * @param float  $width   The width of the link
-   * @param float  $height   The height of the link
-   */
-  function add_link($url, $x, $y, $width, $height) {
-
-    $y = $this->y($y) - $height;
-
-    if ( strpos($url, '#') === 0 ) {
-      // Local link
-      $name = substr($url,1);
-      if ( $name ) {
-        $this->_pdf->addInternalLink($name, $x, $y, $x + $width, $y + $height);
-      }
-      
-    }
-    else {
-      $this->_pdf->addLink(rawurldecode($url), $x, $y, $x + $width, $y + $height);
-    }
-  }
-
-  function get_text_width($text, $font, $size, $word_spacing = 0, $char_spacing = 0) {
-    $this->_pdf->selectFont($font);
-
-    $unicode = $this->_dompdf->get_option("enable_unicode");
-    if (!$unicode) {
-      $text = mb_convert_encoding($text, 'Windows-1252', 'UTF-8');
-    }
-
-    return $this->_pdf->getTextWidth($size, $text, $word_spacing, $char_spacing);
-  }
-  
-  function register_string_subset($font, $string) {
-    $this->_pdf->registerText($font, $string);
-  }
-
-  function get_font_height($font, $size) {
-    $this->_pdf->selectFont($font);
-
-    $ratio = $this->_dompdf->get_option("font_height_ratio");
-    return $this->_pdf->getFontHeight($size) * $ratio;
-  }
-  
-  /*function get_font_x_height($font, $size) {
-    $this->_pdf->selectFont($font);
-    $ratio = $this->_dompdf->get_option("font_height_ratio");
-    return $this->_pdf->getFontXHeight($size) * $ratio;
-  }*/
-  
-  function get_font_baseline($font, $size) {
-    $ratio = $this->_dompdf->get_option("font_height_ratio");
-    return $this->get_font_height($font, $size) / $ratio;
-  }
-  
-  /**
-   * Writes text at the specified x and y coordinates on every page
-   *
-   * The strings '{PAGE_NUM}' and '{PAGE_COUNT}' are automatically replaced
-   * with their current values.
-   *
-   * See {@link Style::munge_color()} for the format of the colour array.
-   *
-   * @param float $x
-   * @param float $y
-   * @param string $text the text to write
-   * @param string $font the font file to use
-   * @param float $size the font size, in points
-   * @param array $color
-   * @param float $word_space word spacing adjustment
-   * @param float $char_space char spacing adjustment
-   * @param float $angle angle to write the text at, measured CW starting from the x-axis
-   */
-  function page_text($x, $y, $text, $font, $size, $color = array(0,0,0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0) {
-    $_t = "text";
-    $this->_page_text[] = compact("_t", "x", "y", "text", "font", "size", "color", "word_space", "char_space", "angle");
-  }
-    
-  /**
-   * Processes a script on every page
-   *
-   * The variables $pdf, $PAGE_NUM, and $PAGE_COUNT are available.
-   *
-   * This function can be used to add page numbers to all pages
-   * after the first one, for example.
-   *
-   * @param string $code the script code
-   * @param string $type the language type for script
-   */
-  function page_script($code, $type = "text/php") {
-    $_t = "script";
-    $this->_page_text[] = compact("_t", "code", "type");
-  }
-
-  function new_page() {
-    $this->_page_number++;
-    $this->_page_count++;
-
-    $ret = $this->_pdf->newPage();
-    $this->_pages[] = $ret;
-    return $ret;
-  }
-
-  /**
-   * Add text to each page after rendering is complete
-   */
-  protected function _add_page_text() {
-    
-    if ( !count($this->_page_text) ) {
-      return;
-    }
-
-    $page_number = 1;
-    $eval = null;
-
-    foreach ($this->_pages as $pid) {
-      $this->reopen_object($pid);
-
-      foreach ($this->_page_text as $pt) {
-        extract($pt);
-
-        switch ($_t) {
-          case "text":
-            $text = str_replace(array("{PAGE_NUM}","{PAGE_COUNT}"),
-                                array($page_number, $this->_page_count), $text);
-            $this->text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
-            break;
-            
-          case "script":
-            if ( !$eval ) {
-              $eval = new PHP_Evaluator($this);
-            }
-            $eval->evaluate($code, array('PAGE_NUM' => $page_number, 'PAGE_COUNT' => $this->_page_count));
-            break;
-        }
-      }
-
-      $this->close_object();
-      $page_number++;
-    }
-  }
-  
-  /**
-   * Streams the PDF directly to the browser
-   *
-   * @param string $filename the name of the PDF file
-   * @param array  $options associative array, 'Attachment' => 0 or 1, 'compress' => 1 or 0
-   */
-  function stream($filename, $options = null) {
-    // Add page text
-    $this->_add_page_text();
-    
-    $options["Content-Disposition"] = $filename;
-    $this->_pdf->stream($options);
-  }
-
-  /**
-   * Returns the PDF as a string
-   * 
-   * @param array $options Output options
-   * @return string
-   */
-  function output($options = null) {
-    $this->_add_page_text();
-
-    $debug = isset($options["compress"]) && $options["compress"] != 1;
-    
-    return $this->_pdf->output($debug);
-  }
-
-  /**
-   * Returns logging messages generated by the Cpdf class
-   *
-   * @return string
-   */
-  function get_messages() {
-    return $this->_pdf->messages;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+VW4KaQLhpRVhapMmPiXOom==

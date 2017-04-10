@@ -1,81 +1,51 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-require_once dirname(__FILE__) . "/Font_TrueType.php";
-require_once dirname(__FILE__) . "/Font_WOFF_Table_Directory_Entry.php";
-require_once dirname(__FILE__) . "/Font_WOFF_Header.php";
-
-/**
- * WOFF font file.
- * 
- * @package php-font-lib
- *
- * @property Font_WOFF_Table_Directory_Entry[] $directory
- */
-class Font_WOFF extends Font_TrueType {
-  function parseHeader(){
-    if (!empty($this->header)) {
-      return;
-    }
-    
-    $this->header = new Font_WOFF_Header($this);
-    $this->header->parse();
-  }
-  
-  public function load($file) {
-    parent::load($file);
-    
-    $this->parseTableEntries();
-    $dataOffset = $this->pos() + count($this->directory) * 20;
-    
-    $fw = $this->getTempFile(false);
-    $fr = $this->f;
-    
-    $this->f = $fw;
-    $offset = $this->header->encode();
-    
-    foreach($this->directory as $entry) {
-      // Read ...
-      $this->f = $fr;
-      $this->seek($entry->offset);
-      $data = $this->read($entry->length);
-
-      if ($entry->length < $entry->origLength) {
-        $data = gzuncompress($data);
-      }
-      
-      // Prepare data ...
-      $length = strlen($data);
-      $entry->length = $entry->origLength = $length;
-      $entry->offset = $dataOffset;
-
-      // Write ...
-      $this->f = $fw;
-      
-      // Woff Entry 
-      $this->seek($offset);
-      $offset += $this->write($entry->tag, 4);    // tag
-      $offset += $this->writeUInt32($dataOffset); // offset
-      $offset += $this->writeUInt32($length);     // length
-      $offset += $this->writeUInt32($length);     // origLength
-      $offset += $this->writeUInt32(Font_Table_Directory_Entry::computeChecksum($data)); // checksum
-      
-      // Data
-      $this->seek($dataOffset);
-      $dataOffset += $this->write($data, $length);
-    }
-    
-    $this->f = $fw;
-    $this->seek(0);
-    
-    // Need to re-parse this, don't know why
-    $this->header = null;
-    $this->directory = array();
-    $this->parseTableEntries();
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

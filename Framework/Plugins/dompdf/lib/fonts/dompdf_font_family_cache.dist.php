@@ -1,111 +1,50 @@
-<?php return array (
-  'sans-serif' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Helvetica',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Helvetica-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-Oblique',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-BoldOblique',
-  ),
-  'times' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Times-Roman',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Times-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Times-Italic',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Times-BoldItalic',
-  ),
-  'times-roman' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Times-Roman',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Times-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Times-Italic',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Times-BoldItalic',
-  ),
-  'courier' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Courier',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Courier-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Courier-Oblique',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Courier-BoldOblique',
-  ),
-  'helvetica' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Helvetica',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Helvetica-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-Oblique',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-BoldOblique',
-  ),
-  'zapfdingbats' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
-    'bold' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
-    'italic' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
-  ),
-  'symbol' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Symbol',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Symbol',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Symbol',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Symbol',
-  ),
-  'serif' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Times-Roman',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Times-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Times-Italic',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Times-BoldItalic',
-  ),
-  'monospace' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Courier',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Courier-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Courier-Oblique',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Courier-BoldOblique',
-  ),
-  'fixed' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/Courier',
-    'bold' => DOMPDF_DIR . '/lib/fonts/Courier-Bold',
-    'italic' => DOMPDF_DIR . '/lib/fonts/Courier-Oblique',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Courier-BoldOblique',
-  ),
-  'dejavu sans' => 
-  array (
-    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-Bold',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-BoldOblique',
-    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-Oblique',
-    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSans',
-  ),
-  'dejavu sans light' => 
-  array (
-    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-ExtraLight',
-  ),
-  'dejavu sans condensed' => 
-  array (
-    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed-Bold',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed-BoldOblique',
-    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed-Oblique',
-    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed',
-  ),
-  'dejavu sans mono' => 
-  array (
-    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono-Bold',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono-BoldOblique',
-    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono-Oblique',
-    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono',
-  ),
-  'dejavu serif' => 
-  array (
-    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif-Bold',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif-BoldItalic',
-    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif-Italic',
-    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif',
-  ),
-  'dejavu serif condensed' => 
-  array (
-    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed-Bold',
-    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed-BoldItalic',
-    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed-Italic',
-    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed',
-  ),
-) ?>
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+ZA3MXf/V7H14EmbowC08lOjTCX0BhwUaWGi=

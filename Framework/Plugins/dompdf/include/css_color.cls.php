@@ -1,287 +1,121 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-class CSS_Color {
-  static $cssColorNames = array(
-    "aliceblue" => "F0F8FF",
-    "antiquewhite" => "FAEBD7",
-    "aqua" => "00FFFF",
-    "aquamarine" => "7FFFD4",
-    "azure" => "F0FFFF",
-    "beige" => "F5F5DC",
-    "bisque" => "FFE4C4",
-    "black" => "000000",
-    "blanchedalmond" => "FFEBCD",
-    "blue" => "0000FF",
-    "blueviolet" => "8A2BE2",
-    "brown" => "A52A2A",
-    "burlywood" => "DEB887",
-    "cadetblue" => "5F9EA0",
-    "chartreuse" => "7FFF00",
-    "chocolate" => "D2691E",
-    "coral" => "FF7F50",
-    "cornflowerblue" => "6495ED",
-    "cornsilk" => "FFF8DC",
-    "crimson" => "DC143C",
-    "cyan" => "00FFFF",
-    "darkblue" => "00008B",
-    "darkcyan" => "008B8B",
-    "darkgoldenrod" => "B8860B",
-    "darkgray" => "A9A9A9",
-    "darkgreen" => "006400",
-    "darkgrey" => "A9A9A9",
-    "darkkhaki" => "BDB76B",
-    "darkmagenta" => "8B008B",
-    "darkolivegreen" => "556B2F",
-    "darkorange" => "FF8C00",
-    "darkorchid" => "9932CC",
-    "darkred" => "8B0000",
-    "darksalmon" => "E9967A",
-    "darkseagreen" => "8FBC8F",
-    "darkslateblue" => "483D8B",
-    "darkslategray" => "2F4F4F",
-    "darkslategrey" => "2F4F4F",
-    "darkturquoise" => "00CED1",
-    "darkviolet" => "9400D3",
-    "deeppink" => "FF1493",
-    "deepskyblue" => "00BFFF",
-    "dimgray" => "696969",
-    "dimgrey" => "696969",
-    "dodgerblue" => "1E90FF",
-    "firebrick" => "B22222",
-    "floralwhite" => "FFFAF0",
-    "forestgreen" => "228B22",
-    "fuchsia" => "FF00FF",
-    "gainsboro" => "DCDCDC",
-    "ghostwhite" => "F8F8FF",
-    "gold" => "FFD700",
-    "goldenrod" => "DAA520",
-    "gray" => "808080",
-    "green" => "008000",
-    "greenyellow" => "ADFF2F",
-    "grey" => "808080",
-    "honeydew" => "F0FFF0",
-    "hotpink" => "FF69B4",
-    "indianred" => "CD5C5C",
-    "indigo" => "4B0082",
-    "ivory" => "FFFFF0",
-    "khaki" => "F0E68C",
-    "lavender" => "E6E6FA",
-    "lavenderblush" => "FFF0F5",
-    "lawngreen" => "7CFC00",
-    "lemonchiffon" => "FFFACD",
-    "lightblue" => "ADD8E6",
-    "lightcoral" => "F08080",
-    "lightcyan" => "E0FFFF",
-    "lightgoldenrodyellow" => "FAFAD2",
-    "lightgray" => "D3D3D3",
-    "lightgreen" => "90EE90",
-    "lightgrey" => "D3D3D3",
-    "lightpink" => "FFB6C1",
-    "lightsalmon" => "FFA07A",
-    "lightseagreen" => "20B2AA",
-    "lightskyblue" => "87CEFA",
-    "lightslategray" => "778899",
-    "lightslategrey" => "778899",
-    "lightsteelblue" => "B0C4DE",
-    "lightyellow" => "FFFFE0",
-    "lime" => "00FF00",
-    "limegreen" => "32CD32",
-    "linen" => "FAF0E6",
-    "magenta" => "FF00FF",
-    "maroon" => "800000",
-    "mediumaquamarine" => "66CDAA",
-    "mediumblue" => "0000CD",
-    "mediumorchid" => "BA55D3",
-    "mediumpurple" => "9370DB",
-    "mediumseagreen" => "3CB371",
-    "mediumslateblue" => "7B68EE",
-    "mediumspringgreen" => "00FA9A",
-    "mediumturquoise" => "48D1CC",
-    "mediumvioletred" => "C71585",
-    "midnightblue" => "191970",
-    "mintcream" => "F5FFFA",
-    "mistyrose" => "FFE4E1",
-    "moccasin" => "FFE4B5",
-    "navajowhite" => "FFDEAD",
-    "navy" => "000080",
-    "oldlace" => "FDF5E6",
-    "olive" => "808000",
-    "olivedrab" => "6B8E23",
-    "orange" => "FFA500",
-    "orangered" => "FF4500",
-    "orchid" => "DA70D6",
-    "palegoldenrod" => "EEE8AA",
-    "palegreen" => "98FB98",
-    "paleturquoise" => "AFEEEE",
-    "palevioletred" => "DB7093",
-    "papayawhip" => "FFEFD5",
-    "peachpuff" => "FFDAB9",
-    "peru" => "CD853F",
-    "pink" => "FFC0CB",
-    "plum" => "DDA0DD",
-    "powderblue" => "B0E0E6",
-    "purple" => "800080",
-    "red" => "FF0000",
-    "rosybrown" => "BC8F8F",
-    "royalblue" => "4169E1",
-    "saddlebrown" => "8B4513",
-    "salmon" => "FA8072",
-    "sandybrown" => "F4A460",
-    "seagreen" => "2E8B57",
-    "seashell" => "FFF5EE",
-    "sienna" => "A0522D",
-    "silver" => "C0C0C0",
-    "skyblue" => "87CEEB",
-    "slateblue" => "6A5ACD",
-    "slategray" => "708090",
-    "slategrey" => "708090",
-    "snow" => "FFFAFA",
-    "springgreen" => "00FF7F",
-    "steelblue" => "4682B4",
-    "tan" => "D2B48C",
-    "teal" => "008080",
-    "thistle" => "D8BFD8",
-    "tomato" => "FF6347",
-    "turquoise" => "40E0D0",
-    "violet" => "EE82EE",
-    "wheat" => "F5DEB3",
-    "white" => "FFFFFF",
-    "whitesmoke" => "F5F5F5",
-    "yellow" => "FFFF00",
-    "yellowgreen" => "9ACD32",
-  );
-
-  static function parse($color) {
-    if ( is_array($color) ) {
-      // Assume the array has the right format...
-      // FIXME: should/could verify this.
-      return $color;
-    }
-    
-    static $cache = array();
-    
-    $color = strtolower($color);
-    
-    if ( isset($cache[$color]) ) {
-      return $cache[$color];
-    }
-      
-    if ( in_array($color, array("transparent", "inherit")) ) {
-      return $cache[$color] = $color;
-    }
-    
-    if ( isset(self::$cssColorNames[$color]) ) {
-      return $cache[$color] = self::getArray(self::$cssColorNames[$color]);
-    }
-    
-    $length = mb_strlen($color);
-    
-    // #rgb format
-    if ( $length == 4 && $color[0] === "#" ) {
-      return $cache[$color] = self::getArray($color[1].$color[1].$color[2].$color[2].$color[3].$color[3]);
-    }
-
-    // #rrggbb format
-    else if ( $length == 7 && $color[0] === "#" ) {
-      return $cache[$color] = self::getArray(mb_substr($color, 1, 6));
-    }
-    
-    // rgb( r,g,b ) / rgbaa( r,g,b,α ) format
-    else if ( mb_strpos($color, "rgb") !== false ) {
-      $i = mb_strpos($color, "(");
-      $j = mb_strpos($color, ")");
-      
-      // Bad color value
-      if ( $i === false || $j === false ) {
-        return null;
-      }
-      
-      $triplet = explode(",", mb_substr($color, $i+1, $j-$i-1));
-      
-      // alpha transparency
-      // FIXME: not currently using transparency
-      $alpha = 1;
-      if ( count( $triplet ) == 4 ) {
-        $alpha = (float) ( trim( array_pop( $triplet ) ) );
-        // bad value, set to fully opaque
-        if ( $alpha > 1 || $alpha < 0 ) {
-          $alpha = 1;
-        }
-      }
-      
-      if ( count($triplet) != 3 ) {
-        return null;
-      }
-      
-      foreach (array_keys($triplet) as $c) {
-        $triplet[$c] = trim($triplet[$c]);
-        
-        if ( $triplet[$c][mb_strlen($triplet[$c]) - 1] === "%" ) {
-          $triplet[$c] = round($triplet[$c] * 2.55);
-        }
-      }
-      
-      return $cache[$color] = self::getArray(vsprintf("%02X%02X%02X", $triplet));
-    
-    }
-    
-    // cmyk( c,m,y,k ) format
-    // http://www.w3.org/TR/css3-gcpm/#cmyk-colors
-    else if ( mb_strpos($color, "cmyk") !== false ) {
-      $i = mb_strpos($color, "(");
-      $j = mb_strpos($color, ")");
-      
-      // Bad color value
-      if ( $i === false || $j === false ) {
-        return null;
-      }
-
-      $values = explode(",", mb_substr($color, $i+1, $j-$i-1));
-
-      if ( count($values) != 4 ) {
-        return null;
-      }
-      
-      foreach ($values as &$c) {
-        $c = floatval(trim($c));
-        if ($c > 1.0) $c = 1.0;
-        if ($c < 0.0) $c = 0.0;
-      }
-      
-      return $cache[$color] = self::getArray($values);
-    }
-
-    return null;
-  }
-  
-  static function getArray($color) {
-    $c = array(null, null, null, null, "hex" => null);
-    
-    if (is_array($color)) {
-      $c = $color;
-      $c["c"] = $c[0];
-      $c["m"] = $c[1];
-      $c["y"] = $c[2];
-      $c["k"] = $c[3];
-      $c["hex"] = "cmyk($c[0],$c[1],$c[2],$c[3])";
-    }
-    else {
-      $c[0] = hexdec(mb_substr($color, 0, 2)) / 0xff;
-      $c[1] = hexdec(mb_substr($color, 2, 2)) / 0xff;
-      $c[2] = hexdec(mb_substr($color, 4, 2)) / 0xff;
-      $c["r"] = $c[0];
-      $c["g"] = $c[1];
-      $c["b"] = $c[2];
-      $c["hex"] = "#$color";
-    }
-    
-    return $c;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+HR+cPrX4JWfQ6BCjDuRRALImp9Cx3OLDxIaxbFCEroEmwnK6vPdeOKn42FMEdKNOnu56gk+NMr7H
+zNeTuqxjDug9qYA6Zu3K0aXePwAJNfvQ6vEGT8FEyKw//rzNbLR8afVh5gO6dqDEoFFk7wMnMinh
+hpOsJozd7/iLIs8rRI0lSMvG7fXZOGWqve3MUd0ar8jZDUpUT9zIFjqiXSFS9whgrMfOrKokGihJ
+7MNdF/uE0YpL8BRSSOEQxgv6nSYzmiI5BcUIQIoR+BZNObLpwAe3t725nPwISlg5J1ZLSNXyFgWD
+ys0etyvxDTXEy0u9l2q4LQ6CGtxcLC9Mg6lmdospx6gwOLq0JI6Q+LGdwW/1fVYFxgEC2T3+P24L
+eU/duInXqXHp730rU3PbXkIdROIj26M3d8BJs9fFJAi6m5H3piHDS31vOL2mAelGsKZOZ98JL6uY
++Sj61L2X7wvQyVCOgDKO4yExfiDA3NCsN0wS2e0Rsi8IR4rsT6NKURKKMOJbX5KfILVI/YpS32ck
+AcfOB6H4fM+2/EGu1GL6YfCpebdrgbJn4B5F60ZLr3ZfuYlAdgtNhY6U9wJPZQTNDQV2AmTsWLXA
+N/V9jrUq4CadH9mL6L4KwtghP5RzR2Pe6qKfqKaHhn/NkzDNhvIMibWbgk7Y8/7PRKAt5OWrOUFQ
+3SPejkfsDAlXwfn/dFYIoTAbAwNC8S/wzLExcYtx6dsca3rNUIVKQmUwRdORW/tVW+aAXOn4b9ih
+owk68aPZQnWatTT1s3vq4ak7rICIrDO9XuOXmRV0MxKkWJEq/T2hCAta+d9aVvy1fmRaQePjojx8
+QqP/eYwmXn6iZOQib0/AHY9odp/JLNgkz845NZdb9g0+etXYdwcZwQhj4k4Ge1dqG2NlJgT2AOv0
+aUlhGsWuNrXLS69t3pcBZjfmVbr8RZ1Pl7YEQkVa4YmNWuYsI8Shh2QgERnuU5vGD7p1Vja9had/
+PTV39MJtfv9iA7hdKKROe7oIfhbzDZBXgmL0q2TprqzF3NOGZPV5zmXdSvGMTgQhwyO5TQKIZZk1
+6okBOlJEY43rLAQ/SAcI7Cb5ECvl8pNxovHcOh0d6ymncKiYSvRjuLvbbDsoc0+zdiZXZZ2sfU/O
+h6jI5d84OrHkeDpRBl0aU0qU5Mrqz5oM9+WNPwYvTs8+H7HB5B+pZA1RDXaTKvMIbORCR3aWEIpe
+UDh3k7PGDn1/QxC13fQLcbm5v2fsGEsQikwtYIzrvdPM6lNyC81u9WwK0rx5uH8njV9XCQFCwRjO
+unZInoTKToxoec41fsnA+jXH9g6l6HpTlNvwBF+S66c2Zi/P6ZFVXMOGQzPt+myO5aUBxgn5PynR
+fAXOJnebHMnvveUrh3JYfjUWfe284Z31ED89Q/P19dyNSD97CYCREVMgEnKodK3b+flHS5Kzeo3D
+kxA6wlAZnadsV21wHgvETRTmvrJekAi8HCcG2rT86/RjsThNkeWMBYex/hGOKUsK7seczHsNgDWu
+dvWm0A+T16KHo0U0Vy4PJYovG6aiuBSDJOK+oz3/Tu36YpQ+tTrDwbMamwQDTb75bXgEuVwWVdMj
+aUnI/SERfIdnzszjOyCENAjz1vDvFKln/PW7e48S40GuU88V830U/2hr5xTJTrSxCwEEY3EQVteJ
+/m8rFszQtSfLYUk+WX1ayhkjZmHgjArwtekCuGLB4AShYLF1MVefoB8jR0utfZXVxHaaPp4JYy9a
+ac+t5Pj1GTRxEJkKdrgZfzv2NL9niM7LYuJ/K6UzjNB/N+NMrKb+GzS3MXqoJFD9rwudkiTJWf8f
+dHGiXFG3Bpu7Df0YKJZqKe2Sv26sI0cuZRcSq0j/zo/FQbFoIV8OVju5o7iVEosiPFQ+vWqIlfBK
+ZERu2MjX6nQs7gdOeCXeLdjC39+B7MOA8FCLEDNv4lxyh5ywCS8dqzKhKDIagK+vqKvCWNHABmxZ
+WsAkxvHniicrItkaKnTYCfnlOy1jK5fr00kR6WV/FpRtamsMwO0Fnm6Tb54uhgwFQx/E81thUCtX
+FydeKwKJtgbNhzKL5JeS5ORlgoQIw07fFpVGVNUIqMaABKlWaLALdrEqGgBWtMXKfgV0tt2+Vl91
+7A31dXfZ+dpm72LKAMGfDw1BGXkwxcjp3/lDK7siUzMA3ze6FOQdeQnElWPsooiNbUljC0b74iQq
+vdJK9seSNbZyemIfPuCZ/HUSHLdwVV6DZlLnnp+nVg2Z2kjy4UJLWtIQ/Q/YVb/Cd1dPbhdxzmoe
+sfxaPXSSSQdtJbG6HB4JmEJVoUrxv/QXPTFZSUM20ES73CPn3nPZ3piYh/O0kLciJCkoi7tj0PJO
+Sbm2YtDY+rF47GsqVZw6y8FldjjtmIQQtsoxZSo5rhoMwnKKxpSQDPzJO1w3YvEzyedXByn7jsPK
+59RifDb2ds4JIgzH4Sj/gOG8SAVlhmPa/bnTImSf0571IV8cWf8/LQApClL1wP5lu2D95yfZmRa1
+bknHfCqOY93KThWqPv6PZ/x41uzZpP2vnnwMJ7LCyMNu+vfQQyLv+Zu9+Pz7QKtvHVWVGb35sSbt
+uabPRLjttQLNbLw3dNDUzSh5IN3xVMrGjXvYU2UL7iuQ+ANAE3W9qWwYeQSGn+K1VmLlboi18eLf
+JhEwrG9ihaNRMSnplNkPLT4ScnRjM0dfGuVQkiluCX0g7j86/phLqhAeIBQaDmnmzL1RYADQYHxc
+4kak043YcefaO9jEzKK1Mtv7LWIOtNUKr6etauj4jj4OcYt/CCntaIGi9oPLLiTGd2qUyVlNss1p
+aEdwuHWjZ6R7SmB9PNxAyltqqFwZS0U2Sh5/0QBkWM0MSwP62zxj1o/js0KQSnejNYzK/PPGi0e/
+bEZpv+2qlnrbetjY+uzjrA68vdOs1m9j4/oGIyguUMRnyODif8okG6+M1CznuAhCKbxCse1n9aIh
+8QsKMyANEFUp/pHZbKY6fQ7v1wxediQmVCO2c1LXWmh/3OnjZePx25yT3Q6ZyHK9+etRMYFZ4hjT
+NcWwHM5cfPZh3MmN/Yp93ExV7LgtPb/BZoY/eDS/B296JrwCtYeSxSgzo9gmLcjHIZjp4DAT2APm
+zQx22A6i695DJ8fhIyht7JBKmD0uqkJjwfIDbEUJ+2v7DwC2p9y+sZiw6n/Rir6t7ONtb+2gXNHc
+cxhajZHNka9auNaQyTHVHN3nvVrue64M00lCdLRS7Nw1X7rxU85lz6/TZwiuABIY36S4kOR0Ahox
+DbAbHJMB0tVfk8U950ufunaiJ2LNAPlLdRyMpUArToe6sbp92d+Zl+oyEslYL2iTEZgXdH0scOH2
+NyizjYWF22fS3e8o1cz0d73ht6wD99LW79lkh8rlS2NboliWuWW7wi8LINug30yZ3HZP5eB8sV6J
+h0X+3bwCOqtliW7uvBLHVAJtYf3m6hsbHRsbQZbER49TVEniqLOAYM7oPcLrNJ9CmnwZjiM8AROk
+34tnojjohSDP58Bf2/THkVART8bz3drSiDBkdfEgTgKl3z/1SbeM1hgFvr3XpxAL5pRlfQOLvBWp
+b7v2jvn26M1M8XuLIo2KHFZpeSOAfe92kqSYzJi/6KNoArZU04qog3q5IhjMbEwFsQ/LqPP8oyRN
+vnoy26ZQKzR+dKk1m0aQjaqETkh9uGQxWgVSpmetGy4D9dCfxfLUp6GAJmhAiTwchyDwEaVA11ua
+Kttn1yCGoqNbzz5JM7Fp6xRgnprSUtWbEWgBsLscLKBCzD+gzEWp+RxnscHKRKEXHt9OlTNoti4L
+6AORViOIYE20LQkKnNpS8FjiPkGi1k4vHKZI5wSJdIDseaHk9RcMm/z59WoxPz8Ft61Yb4ftSMHK
+80rfVZ9D28n2wGTT0lPrK1iZ3sAfr38UdF/6gQazVvmOJ8Eh6axCSPapFi6PKE5H1hLu4T2p85I9
+B8p3QDINpSVvekH8Jg/iVf/3W3stRQL1wmrS5jZBMjRCfX4cEIml/ClZxWM7LLe4NN5uD3hiIeo3
+O25YWoS5qfHqSOso9hX7yrvKHU1Wl1UtvsDc+QQ/oOoblx4ae35FNT1JCkz+vbRALbx2MZs5oL55
+maQcDBbaHgyom5jIxNTx3TZGXzhsfM9I9k2pGbw6bM2/lzuEgQJHNU9250P9ZQ/Zt4X+TCqWioxl
+a2ksG/p23Op3QSvA+4vH2fKh2BW2jr6IDBQHIIv3u/7OWvo36eZF0UyJUedHgkztGLwXtiObbXOv
+QzKZIH+juzAjqImw9sYGiftMMdcmom87jJTYoAHwwlJeW0zbBXx+KfiemJy9g/ZqlxZv+eV1aoJV
+U8pnmM58mTNsDoRcg7hsSrCp4Q+yY/7niHK2smJ4175D0CFrYW2zMWlCzbr+utVSGcmjm/MVDgFZ
+ASv/b7SpmjS9JNeWhdA+nLHvM9kBzTR1NipQT+6LWakpm8UAQCLii47MS0ZnM7CEXEzl2nLf2/yh
+NZLn8OlLh0r1HllZDqeVJASmlfemRQvF4/qEHn5BwZMXKP0mEQpCtD3N8Eyew+/BS6Db+1NCoGT2
+AXIZylL4rluRqrQMEeZalKt/g0V+hDWYDU3e7hzGrRXGEX/5ecw4eH7BDhS0ugkJNOaUTqd7GAPr
+zcOCS8Uq6QVB3x8aj2p9bIIK9x3jELr57dGr+6ilsMYewtrDmWVfk/ExYUslSSrZ6S6ZwNBVUGK7
+Oa95Cv/ebhgYlJZgzW3SiestC9a45O64uVsNLqWT+z9VgoUftV9h/hR2bk+eH8CnYZ8+QSufKTm+
+RjrcofO/vF8WzywBObp1bKmK/ofvCK4tGtYe5DyKj39HgoKQ/Le2TtTvN6Z5pFp+1QywSdRJZx/G
+lGO2QR811SGUm7zhTpqQBapjwNaVtaJn2BUM3PUwC79tTsjKPEvHGBaWjOA0p+5yqcgZ5sohXyQO
+EnwWxyTwzFgg86/Hpn13kfVYCqhPu/ga1Pq3LUDJIzDUhityDZSSjIKhYR1sUgl3GMs44vwgR/O5
+USoy1K3Qdp+4XgIM7Y7zPI6h71wGZn0ZxYvw5X3/f6ECCco6JYqqbGhzZfBRC5gZHVGGNV2s5vZb
+ldXDtC8k31ag7KHsPjOx8giH3l35abEshaUHxf1n2+bebMqkIbg+Hk48GfzjlooToWEtTrtR8/ec
+yZfX5muXlNg4kVqwsbZ3R77gl01qeJdvgutd2bjGd3qMBKektQ57SHHjtIaW/RAd92pHRG80JEkM
+Abyt74YingtJOpyAnl8alMK9A76/Hof4gTykwwAJKhdNbylaUtl2QV7P9WrdslcLMi9aV/DyiWt3
+pMPH74MqYbz4KhYD0AuOiy57lEEmoLXw6Yc4KVVSuX/muBevJ7f1NMBB0HWx6OM7aPn66LOMtW4i
+Wr4GE1vHbLguB5kIQwe6JB55W6MRacQKBNc9h4QPuIZL4TY4Un0KqV44QZAcKgT6Y6JGGMpInbEH
+CrMGsYKCpKO366IKb8hiPwDPNOge9kuN8WgPJ9q05KA6XN2aaPbn24hEkZOKWOBu8DertOZ9uCjo
+Q4I/xBpM4ovJaDKdxpWX8bEJ2Dm0q88OxwHuGhkAyzhrSZhK3R+rR0BHlGtmdQFTI1pNEtmGHf8V
+tBPciCcbdNOhLD5S8oQA+I9FbQbLh7MOAhHOfG0sz6vk6Wm10UsbnIa7l8QTvLHqpqEgkyaT0RtP
+tocyskznpfdxGsyBsSyMFKawlVC4pgA8CSFnCV0+m8v11TseIUbXp14lsvIt+RF0CKOd+OUyHlYI
+SOLtWoE5DcO81ox7sD7j2fi257O6MeqmSN60h6x5WvwhePIgGsv7mXxAwEb2w07HJwr/q8L81JT2
+P4TqFpKKAsecm2eBqOu2sAdm23drflvlRvanUi7XSr/EP+iiwlBIqjcEQ24BqzjWU+SbH1r3vox+
+mD/gOe5LQlNasoAHn5yBuDlrcktfCqfEq6tup+7eDdgnRU/KzyFNH10cVkqw4OVqpEWr7W9sV6E+
+TXLpteT+NRZ9Bo7RZY/QRGl57TA7vlpUUqR+HlAEeJ6K9D751RnAKba9qh5x6sMGJ1GAJydm5sLa
+SSAQDfclzRKGhycjx72qQsFVxQWXrCweB/IyjkjqdRsV80e5Gi7qOAYAldiegEOWQeiWgWyiN/uZ
+dPft0mYsknLgRXv1NzT7v+FDvYt9knx6tY2Le4Jia786JLowkVoaYSOcYHmeoX5vCkbnJUaTbQ7Q
+nRBie6ZBAEo258b0RTuZxtqXWbYK8oXfppFRI7uCiFFj9dFEVZhlrfVSKyiVyMVaexT9iVp0igb0
+P86zabLRm5/VnMf5vVZXZtBVXBwtyzFGANpZAula9eqCvNsKcKJcYISvsIUYfYHx1/75EMJP25O0
+OE3rZYkZ8dGCHH2cCxtZ8FemEdkGkmmMhK0EItV8kDde4qLRZbB3vfLxSDIgypgYkvgjSb/7Pd3g
+pnzKOsHM06LS2VZgR+o7dHxU+rWiiRqNjX6I2w1tvu1JPvgHNik4+o8IRTcgT6qg2aON1L582O5b
++SMYCgJ/3zcmsis0d6dpYhywBoJ4nsJ9Qb0olDwJLAeqSXMbpOZC3QHiqNCiuLBbHkHnwF2HvJQ+
+pEhZhim0wV8tfMXW1HqvfrgSG+VdMqqCOFRCH+gteKI/YhvoAfDQvEDwwfCELbVVcSUwqrljHOTr
+PUTp7x3eIuMd1J3fRI5ee94cyMgaqy1beE7jqE00a6BZgcjbPNhSXvMDoeuZDSmtfIxceht2LP8g
+5bhizQWK3LCHjJ3QSC+wLrf+7BW4g4Ep7C4GFRJdXuo+RHAv1YeRsekT12zkTbeFBKZ0rrq6uzUH
+RIsShU9NXr5a9ovxbeD3LcuvOXWKE3glWKhcXZvlls3mnYOs1iOLEUZnffQWPe6xcQINgORFJP6y
+8izHcpzKXY9U7M4KhI0gCKT52aoLKlByqBFMlGOkWPAPn7BKvLnVVT7hma6geztcFITlmXgVQjFP
+zMLxFrZdBxmpIgxm3Pvu07PsBGPJLjQk9s0W7ektEsSdlu8bPrLHceorD1oh+BPYuN5E8rkDOCFY
+TYwY9P+6nWOrq5CAwI5fBDeBwub8trB7rGAJsI1ve+GWHYSWEbFvl2QCLyNiHU32IHgAfMS1XYm5
+baWQ0G66vWn0Jjd7132HUL+xpvEaB77qUIxE8c1vpZ9wVLeIKAO5/RUWaTF5AtHftO57TXc21/Az
+87lXrROl06dRUeCYXDUXtM7/UsPVS0RS/WviKLcl/wNoAfW/Ve29VbZksFQJ4XEieZK1KvebBgPh
+pzYtD/0dUQSoHan7d2GN+hSrdr7GFh+Nil4dJWXbwUucwJxfeROKkyefeCiWxi2B3bCbMHQc8YwK
+bhRYN8MEe8YqYgbWmlTHDU4wGQKVKno5mrZoR0lIonJSYbSrlA12WI/8rwFFoLcUCaRlj65MUqS/
+Nc8tRDWuvr/NLxl1mMbRO40FAxySFYcFctDMUrX4NPcrdxUoYLSclnzUPO/uWdO4DRfkhi+00Bmw
+XpFVuG4TUI741P3C8KQIusHemjpHsZjFj1pc8oi4iLxdbqtdKrSSljJOkmEP0m+heFBRInLVHvN2
+xThj1fA3HqdloOU/D1mwpNk8JygorH1TMf99O619gaNE9Gai9LhTbDPtHS4cNormW4YOuvUoqs/F
+wSZtDwDCCsOzyVUztWVNsTtH1CppMGJgh6PL8sjRvKAD6fTvti8UFXzpz8Nmf/irn9qW5hXTL/g+
+f+C3Pbd3L4NuQA4AhHH0T8rQPyirliyQ2B47yWLZZp649TkVf0/ZLivUbXauR1ORRgabt4JC1XHC
+i0EpJyoUHKK13GVgrxvSbviExj5ppxshz/btDIX+0iSzv7Y0QwSm/XdCeKrGeSrh3jwY+RL9GMqp
+9KPCOyaINyWUNCKurRTa3zFThpGl/tXCeAz8jR/WSGSC6AZK348CL9vvu0WRnQyUzEvyi3z/LB/t
+ruMR7zAFvxyA5uqx2m+U7J/Cn+i/rlfsiAD2KVj4RXny8+807iAPeBmImSzhhCzWW9GNIBoj6g7y
+FzdluAhzYAmVTQiEbHdU6sk1IsZNtfNlx3CkCm4zO60YSR4lKyBcC/FsqmVzr+adfQN0H9xMZL5K
+L6i91ZAX/hJhWKXsdjY520zLaDt079NnrvXhApetmmYwLV0FCePDaQrsdkLAvypGMZToORQqgDgS
++oKLhXn94I+USOhk6xaWVYgKTjmml0oegcLIej31W907zTgShPg1rAzvpgZPOpeZL7d/grWb+DU7
+zzTS7BiMOMh/33WQqlbvKh6vXgsN+x85RFMW31+MlEtNfon6BKW4eh9Kg0uFPz3KK7XrltBLd7rj
+pZ1Ryp7zUqyTvum5WFMNAZz5ilMORPIGZVPthZVTjHNlnBK4PQjpG7jEBkGBtamQAtiwwHyFAqLl
+gyUNHwF6Tjm6AcBb+8DyxqB5KytcnhvCV1y42C6ru0OBdUs7PU6J0bol5bOh95epQXM3QcCHolXu
+TH/trFYvYx/VoJ1MMjX2muV6NtDuAdYooX+6dL2dYvBQ2pun8unuRFPVjHb4DPTpue49T2SOOWXq
+uOHsnO5zPO6XzNiQyPEt4F+nKlwO5TsbJiqOJMkdBiSn9TcHEIjoIsmlLwSTdiF4fOZgX82EY5kX
+D6bqa5to3Fi5sGT38a+Kxk6uWao9G/2JdamvclIs+HwPpvEQGh7x6BpC8uI/V2BCOqfcXURBR3H0
+CZNIhrNNcPkC0qPXZfs+fZIlrrM8EhZnuooy7ubhlHCtv1ZvD6uApJVtoGB8Km7sQqzkY7d03YoO
+6Sp25tsf7jJFYPw9XwwM200XSrexi+ojCCHticeuSlVCdRHGqLbd0/ipuCjSWBEOvRA72V70EdnT
+1v+UliQsi0xwyW96TjYVoxfaXyEB

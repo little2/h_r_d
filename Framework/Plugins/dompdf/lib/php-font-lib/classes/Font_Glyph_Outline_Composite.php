@@ -1,233 +1,135 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @version $Id: Font_Table_glyf.php 46 2012-04-02 20:22:38Z fabien.menager $
- */
-
-require_once dirname(__FILE__) . "/Font_Glyph_Outline_Component.php";
-
-/**
- * Composite glyph outline
- *
- * @package php-font-lib
- */
-class Font_Glyph_Outline_Composite extends Font_Glyph_Outline {
-  const ARG_1_AND_2_ARE_WORDS    = 0x0001;
-  const ARGS_ARE_XY_VALUES       = 0x0002;
-  const ROUND_XY_TO_GRID         = 0x0004;
-  const WE_HAVE_A_SCALE          = 0x0008;
-  const MORE_COMPONENTS          = 0x0020;
-  const WE_HAVE_AN_X_AND_Y_SCALE = 0x0040;
-  const WE_HAVE_A_TWO_BY_TWO     = 0x0080;
-  const WE_HAVE_INSTRUCTIONS     = 0x0100;
-  const USE_MY_METRICS           = 0x0200;
-  const OVERLAP_COMPOUND         = 0x0400;
-
-  /**
-   * @var Font_Glyph_Outline_Component[]
-   */
-  public $components = array();
-
-  function getGlyphIDs(){
-    if (empty($this->components)) {
-      $this->parseData();
-    }
-
-    $glyphIDs = array();
-    foreach ($this->components as $_component) {
-      $glyphIDs[] = $_component->glyphIndex;
-
-      $_glyph = $this->table->data[$_component->glyphIndex];
-      $glyphIDs = array_merge($glyphIDs, $_glyph->getGlyphIDs());
-    }
-
-    return $glyphIDs;
-  }
-
-  /*function parse() {
-    //$this->parseData();
-  }*/
-
-  function parseData(){
-    parent::parseData();
-
-    $font = $this->getFont();
-
-    do {
-      $flags      = $font->readUInt16();
-      $glyphIndex = $font->readUInt16();
-
-      $a = 1.0; $b = 0.0;
-      $c = 0.0; $d = 1.0;
-      $e = 0.0; $f = 0.0;
-
-      $point_compound  = null;
-      $point_component = null;
-
-      $instructions = null;
-
-      if ($flags & self::ARG_1_AND_2_ARE_WORDS) {
-        if ($flags & self::ARGS_ARE_XY_VALUES) {
-          $e = $font->readInt16();
-          $f = $font->readInt16();
-        }
-        else {
-          $point_compound  = $font->readUInt16();
-          $point_component = $font->readUInt16();
-        }
-      }
-      else {
-        if ($flags & self::ARGS_ARE_XY_VALUES) {
-          $e = $font->readInt8();
-          $f = $font->readInt8();
-        }
-        else {
-          $point_compound  = $font->readUInt8();
-          $point_component = $font->readUInt8();
-        }
-      }
-
-      if ($flags & self::WE_HAVE_A_SCALE) {
-        $a = $d = $font->readInt16();
-      }
-      elseif ($flags & self::WE_HAVE_AN_X_AND_Y_SCALE) {
-        $a = $font->readInt16();
-        $d = $font->readInt16();
-      }
-      elseif ($flags & self::WE_HAVE_A_TWO_BY_TWO) {
-        $a = $font->readInt16();
-        $b = $font->readInt16();
-        $c = $font->readInt16();
-        $d = $font->readInt16();
-      }
-
-      //if ($flags & self::WE_HAVE_INSTRUCTIONS) {
-      //
-      //}
-
-      $component = new Font_Glyph_Outline_Component();
-      $component->flags = $flags;
-      $component->glyphIndex = $glyphIndex;
-      $component->a = $a;
-      $component->b = $b;
-      $component->c = $c;
-      $component->d = $d;
-      $component->e = $e;
-      $component->f = $f;
-      $component->point_compound = $point_compound;
-      $component->point_component = $point_component;
-      $component->instructions = $instructions;
-
-      $this->components[] = $component;
-
-    } while ($flags & self::MORE_COMPONENTS);
-  }
-
-  function encode(){
-    $font = $this->getFont();
-
-    $gids = $font->getSubset();
-
-    $size  = $font->writeInt16(-1);
-    $size += $font->writeFWord($this->xMin);
-    $size += $font->writeFWord($this->yMin);
-    $size += $font->writeFWord($this->xMax);
-    $size += $font->writeFWord($this->yMax);
-
-    foreach ($this->components as $_i => $_component) {
-      $flags = 0;
-      if ($_component->point_component === null && $_component->point_compound === null) {
-        $flags |= self::ARGS_ARE_XY_VALUES;
-
-        if (abs($_component->e) > 0x7F || abs($_component->f) > 0x7F) {
-          $flags |= self::ARG_1_AND_2_ARE_WORDS;
-        }
-      }
-      elseif ($_component->point_component > 0xFF || $_component->point_compound > 0xFF) {
-        $flags |= self::ARG_1_AND_2_ARE_WORDS;
-      }
-
-      if ($_component->b == 0 && $_component->c == 0) {
-        if ($_component->a == $_component->d) {
-          if ($_component->a != 1.0) {
-            $flags |= self::WE_HAVE_A_SCALE;
-          }
-        }
-        else {
-          $flags |= self::WE_HAVE_AN_X_AND_Y_SCALE;
-        }
-      }
-      else {
-        $flags |= self::WE_HAVE_A_TWO_BY_TWO;
-      }
-
-      if ($_i < count($this->components)-1) {
-        $flags |= self::MORE_COMPONENTS;
-      }
-
-      $size += $font->writeUInt16($flags);
-
-      $new_gid = array_search($_component->glyphIndex, $gids);
-      $size += $font->writeUInt16($new_gid);
-
-      if ($flags & self::ARG_1_AND_2_ARE_WORDS) {
-        if ($flags & self::ARGS_ARE_XY_VALUES) {
-          $size += $font->writeInt16($_component->e);
-          $size += $font->writeInt16($_component->f);
-        }
-        else {
-          $size += $font->writeUInt16($_component->point_compound);
-          $size += $font->writeUInt16($_component->point_component);
-        }
-      }
-      else {
-        if ($flags & self::ARGS_ARE_XY_VALUES) {
-          $size += $font->writeInt8($_component->e);
-          $size += $font->writeInt8($_component->f);
-        }
-        else {
-          $size += $font->writeUInt8($_component->point_compound);
-          $size += $font->writeUInt8($_component->point_component);
-        }
-      }
-
-      if ($flags & self::WE_HAVE_A_SCALE) {
-        $size += $font->writeInt16($_component->a);
-      }
-      elseif ($flags & self::WE_HAVE_AN_X_AND_Y_SCALE) {
-        $size += $font->writeInt16($_component->a);
-        $size += $font->writeInt16($_component->d);
-      }
-      elseif ($flags & self::WE_HAVE_A_TWO_BY_TWO) {
-        $size += $font->writeInt16($_component->a);
-        $size += $font->writeInt16($_component->b);
-        $size += $font->writeInt16($_component->c);
-        $size += $font->writeInt16($_component->d);
-      }
-    }
-
-    return $size;
-  }
-
-  public function getSVGContours(){
-    $contours = array();
-
-    /** @var Font_Table_glyf $glyph_data */
-    $glyph_data = $this->getFont()->getTableObject("glyf");
-
-    /** @var Font_Glyph_Outline[] $glyphs */
-    $glyphs = $glyph_data->data;
-
-    foreach ($this->components as $component) {
-      $contours[] = array(
-        "contours"  => $glyphs[$component->glyphIndex]->getSVGContours(),
-        "transform" => $component->getMatrix(),
-      );
-    }
-
-    return $contours;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

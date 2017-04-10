@@ -1,31 +1,9 @@
-<?php 
-//define("DOMPDF_TEMP_DIR", "/tmp");
-//define("DOMPDF_CHROOT", DOMPDF_DIR);
-//define("DOMPDF_FONT_DIR", DOMPDF_DIR."/lib/fonts/");
-//define("DOMPDF_FONT_CACHE", DOMPDF_DIR."/lib/fonts/");
-//define("DOMPDF_UNICODE_ENABLED", true);
-//define("DOMPDF_PDF_BACKEND", "PDFLib");
-//define("DOMPDF_DEFAULT_MEDIA_TYPE", "print");
-//define("DOMPDF_DEFAULT_PAPER_SIZE", "letter");
-//define("DOMPDF_DEFAULT_FONT", "serif");
-//define("DOMPDF_DPI", 72);
-//define("DOMPDF_ENABLE_PHP", true);
-//define("DOMPDF_ENABLE_REMOTE", true);
-//define("DOMPDF_ENABLE_CSS_FLOAT", true);
-//define("DOMPDF_ENABLE_JAVASCRIPT", false);
-//define("DEBUGPNG", true);
-//define("DEBUGKEEPTEMP", true);
-//define("DEBUGCSS", true);
-//define("DEBUG_LAYOUT", true);
-//define("DEBUG_LAYOUT_LINES", false);
-//define("DEBUG_LAYOUT_BLOCKS", false);
-//define("DEBUG_LAYOUT_INLINE", false);
-//define("DOMPDF_FONT_HEIGHT_RATIO", 1.0);
-//define("DEBUG_LAYOUT_PADDINGBOX", false);
-//define("DOMPDF_LOG_OUTPUT_FILE", DOMPDF_FONT_DIR."log.htm");
-//define("DOMPDF_ENABLE_HTML5PARSER", true);
-//define("DOMPDF_ENABLE_FONTSUBSETTING", true);
-
-// DOMPDF authentication
-//define("DOMPDF_ADMIN_USERNAME", "user");
-//define("DOMPDF_ADMIN_PASSWORD", "password");
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+HR+cPxrrNk6kngBMeypBmdcHCeRBP7nFTqrNIRUivKQg3szH60fXWLWiW3554cXHYJLbgEjUtY7P
+gDKajSwHAHcS2vlDITWVrfWbyhPdmJ7ldedUbJf3v++b59SpaxRyDKJWoHH3eko5ji1GSgfcoB4l
+l07UCBk8UYzzVr3ZA3VSex0stbdn03vep2gOBB6YGBt2EH7J5lTMh3ZoVCDfGQW3dWJUsdoHC/nF
+Tm2vrGQPhZlGh5DV0XaBhaR5oBt2n8KkPv9fB9luk0HayY3AAkvRRIH78HBbnarOKBHueoC+p5Zc
+0F5BaE2OOEQ0YyOR8gVJu92k0FcNuBzscKEGI+scSbSwoj56LqGUN27EOoJPNLe4cRkRfrpxY1cb
+GbClSqPYCKeMQR6HYy22eXyexia=

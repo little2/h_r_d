@@ -1,2429 +1,688 @@
-<?php
-
-/*
-
-Copyright 2007 Jeroen van der Meer <http://jero.net/>
-Copyright 2008 Edward Z. Yang <http://htmlpurifier.org/>
-Copyright 2009 Geoffrey Sneddon <http://gsnedders.com/>
-
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-*/
-
-// Some conventions:
-// /* */ indicates verbatim text from the HTML 5 specification
-// // indicates regular comments
-
-// all flags are in hyphenated form
-
-class HTML5_Tokenizer {
-    /**
-     * Points to an InputStream object.
-     */
-    protected $stream;
-
-    /**
-     * Tree builder that the tokenizer emits token to.
-     */
-    private $tree;
-
-    /**
-     * Current content model we are parsing as.
-     */
-    protected $content_model;
-
-    /**
-     * Current token that is being built, but not yet emitted. Also
-     * is the last token emitted, if applicable.
-     */
-    protected $token;
-
-    // These are constants describing the content model
-    const PCDATA    = 0;
-    const RCDATA    = 1;
-    const CDATA     = 2;
-    const PLAINTEXT = 3;
-
-    // These are constants describing tokens
-    // XXX should probably be moved somewhere else, probably the
-    // HTML5 class.
-    const DOCTYPE        = 0;
-    const STARTTAG       = 1;
-    const ENDTAG         = 2;
-    const COMMENT        = 3;
-    const CHARACTER      = 4;
-    const SPACECHARACTER = 5;
-    const EOF            = 6;
-    const PARSEERROR     = 7;
-
-    // These are constants representing bunches of characters.
-    const ALPHA       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    const UPPER_ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const LOWER_ALPHA = 'abcdefghijklmnopqrstuvwxyz';
-    const DIGIT       = '0123456789';
-    const HEX         = '0123456789ABCDEFabcdef';
-    const WHITESPACE  = "\t\n\x0c ";
-
-    /**
-     * @param $data Data to parse
-     */
-    public function __construct($data, $builder = null) {
-        $this->stream = new HTML5_InputStream($data);
-        if (!$builder) $this->tree = new HTML5_TreeBuilder;
-        else $this->tree = $builder;
-        $this->content_model = self::PCDATA;
-    }
-
-    public function parseFragment($context = null) {
-        $this->tree->setupContext($context);
-        if ($this->tree->content_model) {
-            $this->content_model = $this->tree->content_model;
-            $this->tree->content_model = null;
-        }
-        $this->parse();
-    }
-
-    // XXX maybe convert this into an iterator? regardless, this function
-    // and the save function should go into a Parser facade of some sort
-    /**
-     * Performs the actual parsing of the document.
-     */
-    public function parse() {
-        // Current state
-        $state = 'data';
-        // This is used to avoid having to have look-behind in the data state.
-        $lastFourChars = '';
-        /**
-         * Escape flag as specified by the HTML5 specification: "used to
-         * control the behavior of the tokeniser. It is either true or
-         * false, and initially must be set to the false state."
-         */
-        $escape = false;
-        //echo "\n\n";
-        while($state !== null) {
-            
-            /*echo $state . ' ';
-            switch ($this->content_model) {
-                case self::PCDATA: echo 'PCDATA'; break;
-                case self::RCDATA: echo 'RCDATA'; break;
-                case self::CDATA: echo 'CDATA'; break;
-                case self::PLAINTEXT: echo 'PLAINTEXT'; break;
-            }
-            if ($escape) echo " escape";
-            echo "\n";*/
-            
-            switch($state) {
-                case 'data':
-
-                    /* Consume the next input character */
-                    $char = $this->stream->char();
-                    $lastFourChars .= $char;
-                    if (strlen($lastFourChars) > 4) $lastFourChars = substr($lastFourChars, -4);
-
-                    // see below for meaning
-                    $hyp_cond = 
-                        !$escape &&
-                        (
-                            $this->content_model === self::RCDATA ||
-                            $this->content_model === self::CDATA
-                        );
-                    $amp_cond =
-                        !$escape &&
-                        (
-                            $this->content_model === self::PCDATA ||
-                            $this->content_model === self::RCDATA
-                        );
-                    $lt_cond =
-                        $this->content_model === self::PCDATA ||
-                        (
-                            (
-                                $this->content_model === self::RCDATA ||
-                                $this->content_model === self::CDATA
-                             ) &&
-                             !$escape
-                        );
-                    $gt_cond = 
-                        $escape &&
-                        (
-                            $this->content_model === self::RCDATA ||
-                            $this->content_model === self::CDATA
-                        );
-
-                    if($char === '&' && $amp_cond) {
-                        /* U+0026 AMPERSAND (&)
-                        When the content model flag is set to one of the PCDATA or RCDATA
-                        states and the escape flag is false: switch to the
-                        character reference data state. Otherwise: treat it as per
-                        the "anything else" entry below. */
-                        $state = 'character reference data';
-
-                    } elseif(
-                        $char === '-' &&
-                        $hyp_cond &&
-                        $lastFourChars === '<!--'
-                    ) {
-                        /*
-                        U+002D HYPHEN-MINUS (-)
-                        If the content model flag is set to either the RCDATA state or
-                        the CDATA state, and the escape flag is false, and there are at
-                        least three characters before this one in the input stream, and the
-                        last four characters in the input stream, including this one, are
-                        U+003C LESS-THAN SIGN, U+0021 EXCLAMATION MARK, U+002D HYPHEN-MINUS,
-                        and U+002D HYPHEN-MINUS ("<!--"), then set the escape flag to true. */
-                        $escape = true;
-
-                        /* In any case, emit the input character as a character token. Stay
-                        in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::CHARACTER,
-                            'data' => '-'
-                        ));
-                        // We do the "any case" part as part of "anything else".
-
-                    /* U+003C LESS-THAN SIGN (<) */
-                    } elseif($char === '<' && $lt_cond) {
-                        /* When the content model flag is set to the PCDATA state: switch
-                        to the tag open state.
-
-                        When the content model flag is set to either the RCDATA state or
-                        the CDATA state and the escape flag is false: switch to the tag
-                        open state.
-
-                        Otherwise: treat it as per the "anything else" entry below. */
-                        $state = 'tag open';
-
-                    /* U+003E GREATER-THAN SIGN (>) */
-                    } elseif(
-                        $char === '>' &&
-                        $gt_cond &&
-                        substr($lastFourChars, 1) === '-->'
-                    ) {
-                        /* If the content model flag is set to either the RCDATA state or
-                        the CDATA state, and the escape flag is true, and the last three
-                        characters in the input stream including this one are U+002D
-                        HYPHEN-MINUS, U+002D HYPHEN-MINUS, U+003E GREATER-THAN SIGN ("-->"),
-                        set the escape flag to false. */
-                        $escape = false;
-
-                        /* In any case, emit the input character as a character token.
-                        Stay in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::CHARACTER,
-                            'data' => '>'
-                        ));
-                        // We do the "any case" part as part of "anything else".
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Emit an end-of-file token. */
-                        $state = null;
-                        $this->tree->emitToken(array(
-                            'type' => self::EOF
-                        ));
-                    
-                    } elseif($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        // Directly after emitting a token you switch back to the "data
-                        // state". At that point spaceCharacters are important so they are
-                        // emitted separately.
-                        $chars = $this->stream->charsWhile(self::WHITESPACE);
-                        $this->emitToken(array(
-                            'type' => self::SPACECHARACTER,
-                            'data' => $char . $chars
-                        ));
-                        $lastFourChars .= $chars;
-                        if (strlen($lastFourChars) > 4) $lastFourChars = substr($lastFourChars, -4);
-
-                    } else {
-                        /* Anything else
-                        THIS IS AN OPTIMIZATION: Get as many character that
-                        otherwise would also be treated as a character token and emit it
-                        as a single character token. Stay in the data state. */
-                        
-                        $mask = '';
-                        if ($hyp_cond) $mask .= '-';
-                        if ($amp_cond) $mask .= '&';
-                        if ($lt_cond)  $mask .= '<';
-                        if ($gt_cond)  $mask .= '>';
-
-                        if ($mask === '') {
-                            $chars = $this->stream->remainingChars();
-                        } else {
-                            $chars = $this->stream->charsUntil($mask);
-                        }
-
-                        $this->emitToken(array(
-                            'type' => self::CHARACTER,
-                            'data' => $char . $chars
-                        ));
-
-                        $lastFourChars .= $chars;
-                        if (strlen($lastFourChars) > 4) $lastFourChars = substr($lastFourChars, -4);
-
-                        $state = 'data';
-                    }
-                break;
-
-                case 'character reference data':
-                    /* (This cannot happen if the content model flag
-                    is set to the CDATA state.) */
-
-                    /* Attempt to consume a character reference, with no
-                    additional allowed character. */
-                    $entity = $this->consumeCharacterReference();
-
-                    /* If nothing is returned, emit a U+0026 AMPERSAND
-                    character token. Otherwise, emit the character token that
-                    was returned. */
-                    // This is all done when consuming the character reference.
-                    $this->emitToken(array(
-                        'type' => self::CHARACTER,
-                        'data' => $entity
-                    ));
-
-                    /* Finally, switch to the data state. */
-                    $state = 'data';
-                break;
-
-                case 'tag open':
-                    $char = $this->stream->char();
-
-                    switch($this->content_model) {
-                        case self::RCDATA:
-                        case self::CDATA:
-                            /* Consume the next input character. If it is a
-                            U+002F SOLIDUS (/) character, switch to the close
-                            tag open state. Otherwise, emit a U+003C LESS-THAN
-                            SIGN character token and reconsume the current input
-                            character in the data state. */
-                            // We consumed above.
-
-                            if($char === '/') {
-                                $state = 'close tag open';
-
-                            } else {
-                                $this->emitToken(array(
-                                    'type' => self::CHARACTER,
-                                    'data' => '<'
-                                ));
-
-                                $this->stream->unget();
-
-                                $state = 'data';
-                            }
-                        break;
-
-                        case self::PCDATA:
-                            /* If the content model flag is set to the PCDATA state
-                            Consume the next input character: */
-                            // We consumed above.
-
-                            if($char === '!') {
-                                /* U+0021 EXCLAMATION MARK (!)
-                                Switch to the markup declaration open state. */
-                                $state = 'markup declaration open';
-
-                            } elseif($char === '/') {
-                                /* U+002F SOLIDUS (/)
-                                Switch to the close tag open state. */
-                                $state = 'close tag open';
-
-                            } elseif('A' <= $char && $char <= 'Z') {
-                                /* U+0041 LATIN LETTER A through to U+005A LATIN LETTER Z
-                                Create a new start tag token, set its tag name to the lowercase
-                                version of the input character (add 0x0020 to the character's code
-                                point), then switch to the tag name state. (Don't emit the token
-                                yet; further details will be filled in before it is emitted.) */
-                                $this->token = array(
-                                    'name'  => strtolower($char),
-                                    'type'  => self::STARTTAG,
-                                    'attr'  => array()
-                                );
-
-                                $state = 'tag name';
-
-                            } elseif('a' <= $char && $char <= 'z') {
-                                /* U+0061 LATIN SMALL LETTER A through to U+007A LATIN SMALL LETTER Z
-                                Create a new start tag token, set its tag name to the input
-                                character, then switch to the tag name state. (Don't emit
-                                the token yet; further details will be filled in before it
-                                is emitted.) */
-                                $this->token = array(
-                                    'name'  => $char,
-                                    'type'  => self::STARTTAG,
-                                    'attr'  => array()
-                                );
-
-                                $state = 'tag name';
-
-                            } elseif($char === '>') {
-                                /* U+003E GREATER-THAN SIGN (>)
-                                Parse error. Emit a U+003C LESS-THAN SIGN character token and a
-                                U+003E GREATER-THAN SIGN character token. Switch to the data state. */
-                                $this->emitToken(array(
-                                    'type' => self::PARSEERROR,
-                                    'data' => 'expected-tag-name-but-got-right-bracket'
-                                ));
-                                $this->emitToken(array(
-                                    'type' => self::CHARACTER,
-                                    'data' => '<>'
-                                ));
-
-                                $state = 'data';
-
-                            } elseif($char === '?') {
-                                /* U+003F QUESTION MARK (?)
-                                Parse error. Switch to the bogus comment state. */
-                                $this->emitToken(array(
-                                    'type' => self::PARSEERROR,
-                                    'data' => 'expected-tag-name-but-got-question-mark'
-                                ));
-                                $this->token = array(
-                                    'data' => '?',
-                                    'type' => self::COMMENT
-                                );
-                                $state = 'bogus comment';
-
-                            } else {
-                                /* Anything else
-                                Parse error. Emit a U+003C LESS-THAN SIGN character token and
-                                reconsume the current input character in the data state. */
-                                $this->emitToken(array(
-                                    'type' => self::PARSEERROR,
-                                    'data' => 'expected-tag-name'
-                                ));
-                                $this->emitToken(array(
-                                    'type' => self::CHARACTER,
-                                    'data' => '<'
-                                ));
-
-                                $state = 'data';
-                                $this->stream->unget();
-                            }
-                        break;
-                    }
-                break;
-
-                case 'close tag open':
-                    if (
-                        $this->content_model === self::RCDATA ||
-                        $this->content_model === self::CDATA
-                    ) {
-                        /* If the content model flag is set to the RCDATA or CDATA
-                        states... */
-                        $name = strtolower($this->stream->charsWhile(self::ALPHA));
-                        $following = $this->stream->char();
-                        $this->stream->unget();
-                        if (
-                            !$this->token ||
-                            $this->token['name'] !== $name ||
-                            $this->token['name'] === $name && !in_array($following, array("\x09", "\x0A", "\x0C", "\x20", "\x3E", "\x2F", false))
-                        ) {
-                            /* if no start tag token has ever been emitted by this instance
-                            of the tokenizer (fragment case), or, if the next few
-                            characters do not match the tag name of the last start tag
-                            token emitted (compared in an ASCII case-insensitive manner),
-                            or if they do but they are not immediately followed by one of
-                            the following characters:
-
-                                * U+0009 CHARACTER TABULATION
-                                * U+000A LINE FEED (LF)
-                                * U+000C FORM FEED (FF)
-                                * U+0020 SPACE
-                                * U+003E GREATER-THAN SIGN (>)
-                                * U+002F SOLIDUS (/)
-                                * EOF
-
-                            ...then emit a U+003C LESS-THAN SIGN character token, a
-                            U+002F SOLIDUS character token, and switch to the data
-                            state to process the next input character. */
-                            // XXX: Probably ought to replace in_array with $following === x ||...
-
-                            // We also need to emit $name now we've consumed that, as we
-                            // know it'll just be emitted as a character token.
-                            $this->emitToken(array(
-                                'type' => self::CHARACTER,
-                                'data' => '</' . $name
-                            ));
-
-                            $state = 'data';
-                        } else {
-                            // This matches what would happen if we actually did the
-                            // otherwise below (but we can't because we've consumed too
-                            // much).
-
-                            // Start the end tag token with the name we already have.
-                            $this->token = array(
-                                'name'  => $name,
-                                'type'  => self::ENDTAG
-                            );
-
-                            // Change to tag name state.
-                            $state = 'tag name';
-                        }
-                    } elseif ($this->content_model === self::PCDATA) {
-                        /* Otherwise, if the content model flag is set to the PCDATA
-                        state [...]: */
-                        $char = $this->stream->char();
-
-                        if ('A' <= $char && $char <= 'Z') {
-                            /* U+0041 LATIN LETTER A through to U+005A LATIN LETTER Z
-                            Create a new end tag token, set its tag name to the lowercase version
-                            of the input character (add 0x0020 to the character's code point), then
-                            switch to the tag name state. (Don't emit the token yet; further details
-                            will be filled in before it is emitted.) */
-                            $this->token = array(
-                                'name'  => strtolower($char),
-                                'type'  => self::ENDTAG
-                            );
-
-                            $state = 'tag name';
-
-                        } elseif ('a' <= $char && $char <= 'z') {
-                            /* U+0061 LATIN SMALL LETTER A through to U+007A LATIN SMALL LETTER Z
-                            Create a new end tag token, set its tag name to the
-                            input character, then switch to the tag name state.
-                            (Don't emit the token yet; further details will be
-                            filled in before it is emitted.) */
-                            $this->token = array(
-                                'name'  => $char,
-                                'type'  => self::ENDTAG
-                            );
-
-                            $state = 'tag name';
-
-                        } elseif($char === '>') {
-                            /* U+003E GREATER-THAN SIGN (>)
-                            Parse error. Switch to the data state. */
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'expected-closing-tag-but-got-right-bracket'
-                            ));
-                            $state = 'data';
-
-                        } elseif($char === false) {
-                            /* EOF
-                            Parse error. Emit a U+003C LESS-THAN SIGN character token and a U+002F
-                            SOLIDUS character token. Reconsume the EOF character in the data state. */
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'expected-closing-tag-but-got-eof'
-                            ));
-                            $this->emitToken(array(
-                                'type' => self::CHARACTER,
-                                'data' => '</'
-                            ));
-
-                            $this->stream->unget();
-                            $state = 'data';
-
-                        } else {
-                            /* Parse error. Switch to the bogus comment state. */
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'expected-closing-tag-but-got-char'
-                            ));
-                            $this->token = array(
-                                'data' => $char,
-                                'type' => self::COMMENT
-                            );
-                            $state = 'bogus comment';
-                        }
-                    }
-                break;
-
-                case 'tag name':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                        U+000A LINE FEED (LF)
-                        U+000C FORM FEED (FF)
-                        U+0020 SPACE
-                        Switch to the before attribute name state. */
-                        $state = 'before attribute name';
-
-                    } elseif($char === '/') {
-                        /* U+002F SOLIDUS (/)
-                        Switch to the self-closing start tag state. */
-                        $state = 'self-closing start tag';
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current tag token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif('A' <= $char && $char <= 'Z') {
-                        /* U+0041 LATIN CAPITAL LETTER A through to U+005A LATIN CAPITAL LETTER Z
-                        Append the lowercase version of the current input
-                        character (add 0x0020 to the character's code point) to
-                        the current tag token's tag name. Stay in the tag name state. */
-                        $chars = $this->stream->charsWhile(self::UPPER_ALPHA);
-
-                        $this->token['name'] .= strtolower($char . $chars);
-                        $state = 'tag name';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-tag-name'
-                        ));
-
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current tag token's tag name.
-                        Stay in the tag name state. */
-                        $chars = $this->stream->charsUntil("\t\n\x0C />" . self::UPPER_ALPHA);
-
-                        $this->token['name'] .= $char . $chars;
-                        $state = 'tag name';
-                    }
-                break;
-
-                case 'before attribute name':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    // this conditional is optimized, check bottom
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                        U+000A LINE FEED (LF)
-                        U+000C FORM FEED (FF)
-                        U+0020 SPACE
-                        Stay in the before attribute name state. */
-                        $state = 'before attribute name';
-
-                    } elseif($char === '/') {
-                        /* U+002F SOLIDUS (/)
-                        Switch to the self-closing start tag state. */
-                        $state = 'self-closing start tag';
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current tag token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif('A' <= $char && $char <= 'Z') {
-                        /* U+0041 LATIN CAPITAL LETTER A through to U+005A LATIN CAPITAL LETTER Z
-                        Start a new attribute in the current tag token. Set that
-                        attribute's name to the lowercase version of the current
-                        input character (add 0x0020 to the character's code
-                        point), and its value to the empty string. Switch to the
-                        attribute name state.*/
-                        $this->token['attr'][] = array(
-                            'name'  => strtolower($char),
-                            'value' => ''
-                        );
-
-                        $state = 'attribute name';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'expected-attribute-name-but-got-eof'
-                        ));
-
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* U+0022 QUOTATION MARK (")
-                           U+0027 APOSTROPHE (')
-                           U+003C LESS-THAN SIGN (<)
-                           U+003D EQUALS SIGN (=)
-                        Parse error. Treat it as per the "anything else" entry
-                        below. */
-                        if($char === '"' || $char === "'" || $char === '<' || $char === '=') {
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'invalid-character-in-attribute-name'
-                            ));
-                        }
-
-                        /* Anything else
-                        Start a new attribute in the current tag token. Set that attribute's
-                        name to the current input character, and its value to the empty string.
-                        Switch to the attribute name state. */
-                        $this->token['attr'][] = array(
-                            'name'  => $char,
-                            'value' => ''
-                        );
-
-                        $state = 'attribute name';
-                    }
-                break;
-
-                case 'attribute name':
-                    // Consume the next input character:
-                    $char = $this->stream->char();
-
-                    // this conditional is optimized, check bottom
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                        U+000A LINE FEED (LF)
-                        U+000C FORM FEED (FF)
-                        U+0020 SPACE
-                        Switch to the after attribute name state. */
-                        $state = 'after attribute name';
-
-                    } elseif($char === '/') {
-                        /* U+002F SOLIDUS (/)
-                        Switch to the self-closing start tag state. */
-                        $state = 'self-closing start tag';
-
-                    } elseif($char === '=') {
-                        /* U+003D EQUALS SIGN (=)
-                        Switch to the before attribute value state. */
-                        $state = 'before attribute value';
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current tag token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif('A' <= $char && $char <= 'Z') {
-                        /* U+0041 LATIN CAPITAL LETTER A through to U+005A LATIN CAPITAL LETTER Z
-                        Append the lowercase version of the current input
-                        character (add 0x0020 to the character's code point) to
-                        the current attribute's name. Stay in the attribute name
-                        state. */
-                        $chars = $this->stream->charsWhile(self::UPPER_ALPHA);
-
-                        $last = count($this->token['attr']) - 1;
-                        $this->token['attr'][$last]['name'] .= strtolower($char . $chars);
-
-                        $state = 'attribute name';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-attribute-name'
-                        ));
-
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* U+0022 QUOTATION MARK (")
-                           U+0027 APOSTROPHE (')
-                           U+003C LESS-THAN SIGN (<)
-                        Parse error. Treat it as per the "anything else"
-                        entry below. */
-                        if($char === '"' || $char === "'" || $char === '<') {
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'invalid-character-in-attribute-name'
-                            ));
-                        }
-
-                        /* Anything else
-                        Append the current input character to the current attribute's name.
-                        Stay in the attribute name state. */
-                        $chars = $this->stream->charsUntil("\t\n\x0C /=>\"'" . self::UPPER_ALPHA);
-
-                        $last = count($this->token['attr']) - 1;
-                        $this->token['attr'][$last]['name'] .= $char . $chars;
-
-                        $state = 'attribute name';
-                    }
-
-                    /* When the user agent leaves the attribute name state
-                    (and before emitting the tag token, if appropriate), the
-                    complete attribute's name must be compared to the other
-                    attributes on the same token; if there is already an
-                    attribute on the token with the exact same name, then this
-                    is a parse error and the new attribute must be dropped, along
-                    with the value that gets associated with it (if any). */
-                    // this might be implemented in the emitToken method
-                break;
-
-                case 'after attribute name':
-                    // Consume the next input character:
-                    $char = $this->stream->char();
-
-                    // this is an optimized conditional, check the bottom
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                        U+000A LINE FEED (LF)
-                        U+000C FORM FEED (FF)
-                        U+0020 SPACE
-                        Stay in the after attribute name state. */
-                        $state = 'after attribute name';
-
-                    } elseif($char === '/') {
-                        /* U+002F SOLIDUS (/)
-                        Switch to the self-closing start tag state. */
-                        $state = 'self-closing start tag';
-
-                    } elseif($char === '=') {
-                        /* U+003D EQUALS SIGN (=)
-                        Switch to the before attribute value state. */
-                        $state = 'before attribute value';
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current tag token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif('A' <= $char && $char <= 'Z') {
-                        /* U+0041 LATIN CAPITAL LETTER A through to U+005A LATIN CAPITAL LETTER Z
-                        Start a new attribute in the current tag token. Set that
-                        attribute's name to the lowercase version of the current
-                        input character (add 0x0020 to the character's code
-                        point), and its value to the empty string. Switch to the
-                        attribute name state. */
-                        $this->token['attr'][] = array(
-                            'name'  => strtolower($char),
-                            'value' => ''
-                        );
-
-                        $state = 'attribute name';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'expected-end-of-tag-but-got-eof'
-                        ));
-
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* U+0022 QUOTATION MARK (")
-                           U+0027 APOSTROPHE (')
-                           U+003C LESS-THAN SIGN(<)
-                        Parse error. Treat it as per the "anything else"
-                        entry below. */
-                        if($char === '"' || $char === "'" || $char === "<") {
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'invalid-character-after-attribute-name'
-                            ));
-                        }
-
-                        /* Anything else
-                        Start a new attribute in the current tag token. Set that attribute's
-                        name to the current input character, and its value to the empty string.
-                        Switch to the attribute name state. */
-                        $this->token['attr'][] = array(
-                            'name'  => $char,
-                            'value' => ''
-                        );
-
-                        $state = 'attribute name';
-                    }
-                break;
-
-                case 'before attribute value':
-                    // Consume the next input character:
-                    $char = $this->stream->char();
-
-                    // this is an optimized conditional
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                        U+000A LINE FEED (LF)
-                        U+000C FORM FEED (FF)
-                        U+0020 SPACE
-                        Stay in the before attribute value state. */
-                        $state = 'before attribute value';
-
-                    } elseif($char === '"') {
-                        /* U+0022 QUOTATION MARK (")
-                        Switch to the attribute value (double-quoted) state. */
-                        $state = 'attribute value (double-quoted)';
-
-                    } elseif($char === '&') {
-                        /* U+0026 AMPERSAND (&)
-                        Switch to the attribute value (unquoted) state and reconsume
-                        this input character. */
-                        $this->stream->unget();
-                        $state = 'attribute value (unquoted)';
-
-                    } elseif($char === '\'') {
-                        /* U+0027 APOSTROPHE (')
-                        Switch to the attribute value (single-quoted) state. */
-                        $state = 'attribute value (single-quoted)';
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Emit the current tag token. Switch to the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'expected-attribute-value-but-got-right-bracket'
-                        ));
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'expected-attribute-value-but-got-eof'
-                        ));
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* U+003D EQUALS SIGN (=)
-                         * U+003C LESS-THAN SIGN (<)
-                        Parse error. Treat it as per the "anything else" entry below. */
-                        if($char === '=' || $char === '<') {
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'equals-in-unquoted-attribute-value'
-                            ));
-                        }
-
-                        /* Anything else
-                        Append the current input character to the current attribute's value.
-                        Switch to the attribute value (unquoted) state. */
-                        $last = count($this->token['attr']) - 1;
-                        $this->token['attr'][$last]['value'] .= $char;
-
-                        $state = 'attribute value (unquoted)';
-                    }
-                break;
-
-                case 'attribute value (double-quoted)':
-                    // Consume the next input character:
-                    $char = $this->stream->char();
-
-                    if($char === '"') {
-                        /* U+0022 QUOTATION MARK (")
-                        Switch to the after attribute value (quoted) state. */
-                        $state = 'after attribute value (quoted)';
-
-                    } elseif($char === '&') {
-                        /* U+0026 AMPERSAND (&)
-                        Switch to the character reference in attribute value
-                        state, with the additional allowed character
-                        being U+0022 QUOTATION MARK ("). */
-                        $this->characterReferenceInAttributeValue('"');
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-attribute-value-double-quote'
-                        ));
-
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current attribute's value.
-                        Stay in the attribute value (double-quoted) state. */
-                        $chars = $this->stream->charsUntil('"&');
-
-                        $last = count($this->token['attr']) - 1;
-                        $this->token['attr'][$last]['value'] .= $char . $chars;
-
-                        $state = 'attribute value (double-quoted)';
-                    }
-                break;
-
-                case 'attribute value (single-quoted)':
-                    // Consume the next input character:
-                    $char = $this->stream->char();
-
-                    if($char === "'") {
-                        /* U+0022 QUOTATION MARK (')
-                        Switch to the after attribute value state. */
-                        $state = 'after attribute value (quoted)';
-
-                    } elseif($char === '&') {
-                        /* U+0026 AMPERSAND (&)
-                        Switch to the entity in attribute value state. */
-                        $this->characterReferenceInAttributeValue("'");
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-attribute-value-single-quote'
-                        ));
-
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current attribute's value.
-                        Stay in the attribute value (single-quoted) state. */
-                        $chars = $this->stream->charsUntil("'&");
-
-                        $last = count($this->token['attr']) - 1;
-                        $this->token['attr'][$last]['value'] .= $char . $chars;
-
-                        $state = 'attribute value (single-quoted)';
-                    }
-                break;
-
-                case 'attribute value (unquoted)':
-                    // Consume the next input character:
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                        U+000A LINE FEED (LF)
-                        U+000C FORM FEED (FF)
-                        U+0020 SPACE
-                        Switch to the before attribute name state. */
-                        $state = 'before attribute name';
-
-                    } elseif($char === '&') {
-                        /* U+0026 AMPERSAND (&)
-                        Switch to the entity in attribute value state, with the 
-                        additional allowed character  being U+003E 
-                        GREATER-THAN SIGN (>). */
-                        $this->characterReferenceInAttributeValue('>');
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current tag token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-attribute-value-no-quotes'
-                        ));
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* U+0022 QUOTATION MARK (")
-                           U+0027 APOSTROPHE (')
-                           U+003C LESS-THAN SIGN (<)
-                           U+003D EQUALS SIGN (=)
-                        Parse error. Treat it as per the "anything else"
-                        entry below. */
-                        if($char === '"' || $char === "'" || $char === '=' || $char == '<') {
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'unexpected-character-in-unquoted-attribute-value'
-                            ));
-                        }
-
-                        /* Anything else
-                        Append the current input character to the current attribute's value.
-                        Stay in the attribute value (unquoted) state. */
-                        $chars = $this->stream->charsUntil("\t\n\x0c &>\"'=");
-
-                        $last = count($this->token['attr']) - 1;
-                        $this->token['attr'][$last]['value'] .= $char . $chars;
-
-                        $state = 'attribute value (unquoted)';
-                    }
-                break;
-
-                case 'after attribute value (quoted)':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Switch to the before attribute name state. */
-                        $state = 'before attribute name';
-
-                    } elseif ($char === '/') {
-                        /* U+002F SOLIDUS (/)
-                        Switch to the self-closing start tag state. */
-                        $state = 'self-closing start tag';
-
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current tag token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-EOF-after-attribute-value'
-                        ));
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Parse error. Reconsume the character in the before attribute
-                        name state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-character-after-attribute-value'
-                        ));
-                        $this->stream->unget();
-                        $state = 'before attribute name';
-                    }
-                break;
-
-                case 'self-closing start tag':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Set the self-closing flag of the current tag token.
-                        Emit the current tag token. Switch to the data state. */
-                        // not sure if this is the name we want
-                        $this->token['self-closing'] = true;
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Reconsume the EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-eof-after-self-closing'
-                        ));
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Parse error. Reconsume the character in the before attribute name state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-character-after-self-closing'
-                        ));
-                        $this->stream->unget();
-                        $state = 'before attribute name';
-                    }
-                break;
-
-                case 'bogus comment':
-                    /* (This can only happen if the content model flag is set to the PCDATA state.) */
-                    /* Consume every character up to the first U+003E GREATER-THAN SIGN
-                    character (>) or the end of the file (EOF), whichever comes first. Emit
-                    a comment token whose data is the concatenation of all the characters
-                    starting from and including the character that caused the state machine
-                    to switch into the bogus comment state, up to and including the last
-                    consumed character before the U+003E character, if any, or up to the
-                    end of the file otherwise. (If the comment was started by the end of
-                    the file (EOF), the token is empty.) */
-                    $this->token['data'] .= (string) $this->stream->charsUntil('>');
-                    $this->stream->char();
-
-                    $this->emitToken($this->token);
-
-                    /* Switch to the data state. */
-                    $state = 'data';
-                break;
-
-                case 'markup declaration open':
-                    // Consume for below
-                    $hyphens = $this->stream->charsWhile('-', 2);
-                    if ($hyphens === '-') {
-                        $this->stream->unget();
-                    }
-                    if ($hyphens !== '--') {
-                        $alpha = $this->stream->charsWhile(self::ALPHA, 7);
-                    }
-
-                    /* If the next two characters are both U+002D HYPHEN-MINUS (-)
-                    characters, consume those two characters, create a comment token whose
-                    data is the empty string, and switch to the comment state. */
-                    if($hyphens === '--') {
-                        $state = 'comment start';
-                        $this->token = array(
-                            'data' => '',
-                            'type' => self::COMMENT
-                        );
-
-                    /* Otherwise if the next seven characters are a case-insensitive match
-                    for the word "DOCTYPE", then consume those characters and switch to the
-                    DOCTYPE state. */
-                    } elseif(strtoupper($alpha) === 'DOCTYPE') {
-                        $state = 'DOCTYPE';
-
-                    // XXX not implemented
-                    /* Otherwise, if the insertion mode is "in foreign content"
-                    and the current node is not an element in the HTML namespace
-                    and the next seven characters are an ASCII case-sensitive
-                    match for the string "[CDATA[" (the five uppercase letters
-                    "CDATA" with a U+005B LEFT SQUARE BRACKET character before
-                    and after), then consume those characters and switch to the
-                    CDATA section state (which is unrelated to the content model
-                    flag's CDATA state). */
-
-                    /* Otherwise, is is a parse error. Switch to the bogus comment state.
-                    The next character that is consumed, if any, is the first character
-                    that will be in the comment. */
-                    } else {
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'expected-dashes-or-doctype'
-                        ));
-                        $this->token = array(
-                            'data' => (string) $alpha,
-                            'type' => self::COMMENT
-                        );
-                        $state = 'bogus comment';
-                    }
-                break;
-
-                case 'comment start':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if ($char === '-') {
-                        /* U+002D HYPHEN-MINUS (-)
-                        Switch to the comment start dash state. */
-                        $state = 'comment start dash';
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Emit the comment token. Switch to the
-                        data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'incorrect-comment'
-                        ));
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Emit the comment token. Reconsume the
-                        EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-comment'
-                        ));
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Anything else
-                        Append the input character to the comment token's
-                        data. Switch to the comment state. */
-                        $this->token['data'] .= $char;
-                        $state = 'comment';
-                    }
-                break;
-
-                case 'comment start dash':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-                    if ($char === '-') {
-                        /* U+002D HYPHEN-MINUS (-)
-                        Switch to the comment end state */
-                        $state = 'comment end';
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Emit the comment token. Switch to the
-                        data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'incorrect-comment'
-                        ));
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* Parse error. Emit the comment token. Reconsume the
-                        EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-comment'
-                        ));
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        $this->token['data'] .= '-' . $char;
-                        $state = 'comment';
-                    }
-                break;
-
-                case 'comment':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === '-') {
-                        /* U+002D HYPHEN-MINUS (-)
-                        Switch to the comment end dash state */
-                        $state = 'comment end dash';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Emit the comment token. Reconsume the EOF character
-                        in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-comment'
-                        ));
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Append the input character to the comment token's data. Stay in
-                        the comment state. */
-                        $chars = $this->stream->charsUntil('-');
-
-                        $this->token['data'] .= $char . $chars;
-                    }
-                break;
-
-                case 'comment end dash':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === '-') {
-                        /* U+002D HYPHEN-MINUS (-)
-                        Switch to the comment end state  */
-                        $state = 'comment end';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Emit the comment token. Reconsume the EOF character
-                        in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-comment-end-dash'
-                        ));
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Append a U+002D HYPHEN-MINUS (-) character and the input
-                        character to the comment token's data. Switch to the comment state. */
-                        $this->token['data'] .= '-'.$char;
-                        $state = 'comment';
-                    }
-                break;
-
-                case 'comment end':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the comment token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif($char === '-') {
-                        /* U+002D HYPHEN-MINUS (-)
-                        Parse error. Append a U+002D HYPHEN-MINUS (-) character
-                        to the comment token's data. Stay in the comment end
-                        state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-dash-after-double-dash-in-comment'
-                        ));
-                        $this->token['data'] .= '-';
-
-                    } elseif($char === "\t" || $char === "\n" || $char === "\x0a" || $char === ' ') {
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-space-after-double-dash-in-comment'
-                        ));
-                        $this->token['data'] .= '--' . $char;
-                        $state = 'comment end space';
-
-                    } elseif($char === '!') {
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-bang-after-double-dash-in-comment'
-                        ));
-                        $state = 'comment end bang';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Emit the comment token. Reconsume the
-                        EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-comment-double-dash'
-                        ));
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Parse error. Append two U+002D HYPHEN-MINUS (-)
-                        characters and the input character to the comment token's
-                        data. Switch to the comment state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-char-in-comment'
-                        ));
-                        $this->token['data'] .= '--'.$char;
-                        $state = 'comment';
-                    }
-                break;
-
-                case 'comment end bang':
-                    $char = $this->stream->char();
-                    if ($char === '>') {
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === "-") {
-                        $this->token['data'] .= '--!';
-                        $state = 'comment end dash';
-                    } elseif ($char === false) {
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-comment-end-bang'
-                        ));
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        $this->token['data'] .= '--!' . $char;
-                        $state = 'comment';
-                    }
-                break;
-
-                case 'comment end space':
-                    $char = $this->stream->char();
-                    if ($char === '>') {
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === '-') {
-                        $state = 'comment end dash';
-                    } elseif ($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        $this->token['data'] .= $char;
-                    } elseif ($char === false) {
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-eof-in-comment-end-space',
-                        ));
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        $this->token['data'] .= $char;
-                        $state = 'comment';
-                    }
-                break;
-
-                case 'DOCTYPE':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Switch to the before DOCTYPE name state. */
-                        $state = 'before DOCTYPE name';
-                    
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Create a new DOCTYPE token. Set its
-                        force-quirks flag to on. Emit the token. Reconsume the
-                        EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'need-space-after-doctype-but-got-eof'
-                        ));
-                        $this->emitToken(array(
-                            'name' => '',
-                            'type' => self::DOCTYPE,
-                            'force-quirks' => true,
-                            'error' => true
-                        ));
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Parse error. Reconsume the current character in the
-                        before DOCTYPE name state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'need-space-after-doctype'
-                        ));
-                        $this->stream->unget();
-                        $state = 'before DOCTYPE name';
-                    }
-                break;
-
-                case 'before DOCTYPE name':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Stay in the before DOCTYPE name state. */
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Create a new DOCTYPE token. Set its
-                        force-quirks flag to on. Emit the token. Switch to the
-                        data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'expected-doctype-name-but-got-right-bracket'
-                        ));
-                        $this->emitToken(array(
-                            'name' => '',
-                            'type' => self::DOCTYPE,
-                            'force-quirks' => true,
-                            'error' => true
-                        ));
-
-                        $state = 'data';
-
-                    } elseif('A' <= $char && $char <= 'Z') {
-                        /* U+0041 LATIN CAPITAL LETTER A through to U+005A LATIN CAPITAL LETTER Z
-                        Create a new DOCTYPE token. Set the token's name to the
-                        lowercase version of the input character (add 0x0020 to
-                        the character's code point). Switch to the DOCTYPE name
-                        state. */
-                        $this->token = array(
-                            'name' => strtolower($char),
-                            'type' => self::DOCTYPE,
-                            'error' => true
-                        );
-
-                        $state = 'DOCTYPE name';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Create a new DOCTYPE token. Set its
-                        force-quirks flag to on. Emit the token. Reconsume the
-                        EOF character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'expected-doctype-name-but-got-eof'
-                        ));
-                        $this->emitToken(array(
-                            'name' => '',
-                            'type' => self::DOCTYPE,
-                            'force-quirks' => true,
-                            'error' => true
-                        ));
-
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Create a new DOCTYPE token. Set the token's name to the
-                        current input character. Switch to the DOCTYPE name state. */
-                        $this->token = array(
-                            'name' => $char,
-                            'type' => self::DOCTYPE,
-                            'error' => true
-                        );
-
-                        $state = 'DOCTYPE name';
-                    }
-                break;
-
-                case 'DOCTYPE name':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Switch to the after DOCTYPE name state. */
-                        $state = 'after DOCTYPE name';
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current DOCTYPE token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif('A' <= $char && $char <= 'Z') {
-                        /* U+0041 LATIN CAPITAL LETTER A through to U+005A LATIN CAPITAL LETTER Z
-                        Append the lowercase version of the input character
-                        (add 0x0020 to the character's code point) to the current
-                        DOCTYPE token's name. Stay in the DOCTYPE name state. */
-                        $this->token['name'] .= strtolower($char);
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype-name'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current
-                        DOCTYPE token's name. Stay in the DOCTYPE name state. */
-                        $this->token['name'] .= $char;
-                    }
-
-                    // XXX this is probably some sort of quirks mode designation,
-                    // check tree-builder to be sure. In general 'error' needs
-                    // to be specc'ified, this probably means removing it at the end
-                    $this->token['error'] = ($this->token['name'] === 'HTML')
-                        ? false
-                        : true;
-                break;
-
-                case 'after DOCTYPE name':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Stay in the after DOCTYPE name state. */
-
-                    } elseif($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current DOCTYPE token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else */
-
-                        $nextSix = strtoupper($char . $this->stream->charsWhile(self::ALPHA, 5));
-                        if ($nextSix === 'PUBLIC') {
-                            /* If the next six characters are an ASCII
-                            case-insensitive match for the word "PUBLIC", then
-                            consume those characters and switch to the before
-                            DOCTYPE public identifier state. */
-                            $state = 'before DOCTYPE public identifier';
-
-                        } elseif ($nextSix === 'SYSTEM') {
-                            /* Otherwise, if the next six characters are an ASCII
-                            case-insensitive match for the word "SYSTEM", then
-                            consume those characters and switch to the before
-                            DOCTYPE system identifier state. */
-                            $state = 'before DOCTYPE system identifier';
-
-                        } else {
-                            /* Otherwise, this is the parse error. Set the DOCTYPE
-                            token's force-quirks flag to on. Switch to the bogus
-                            DOCTYPE state. */
-                            $this->emitToken(array(
-                                'type' => self::PARSEERROR,
-                                'data' => 'expected-space-or-right-bracket-in-doctype'
-                            ));
-                            $this->token['force-quirks'] = true;
-                            $this->token['error'] = true;
-                            $state = 'bogus DOCTYPE';
-                        }
-                    }
-                break;
-
-                case 'before DOCTYPE public identifier':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Stay in the before DOCTYPE public identifier state. */
-                    } elseif ($char === '"') {
-                        /* U+0022 QUOTATION MARK (")
-                        Set the DOCTYPE token's public identifier to the empty
-                        string (not missing), then switch to the DOCTYPE public
-                        identifier (double-quoted) state. */
-                        $this->token['public'] = '';
-                        $state = 'DOCTYPE public identifier (double-quoted)';
-                    } elseif ($char === "'") {
-                        /* U+0027 APOSTROPHE (')
-                        Set the DOCTYPE token's public identifier to the empty
-                        string (not missing), then switch to the DOCTYPE public
-                        identifier (single-quoted) state. */
-                        $this->token['public'] = '';
-                        $state = 'DOCTYPE public identifier (single-quoted)';
-                    } elseif ($char === '>') {
-                        /* Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Switch to the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-end-of-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* Parse error. Set the DOCTYPE token's force-quirks
-                        flag to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Switch to the bogus DOCTYPE state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-char-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $state = 'bogus DOCTYPE';
-                    }
-                break;
-
-                case 'DOCTYPE public identifier (double-quoted)':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if ($char === '"') {
-                        /* U+0022 QUOTATION MARK (")
-                        Switch to the after DOCTYPE public identifier state. */
-                        $state = 'after DOCTYPE public identifier';
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Switch to the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-end-of-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current
-                        DOCTYPE token's public identifier. Stay in the DOCTYPE
-                        public identifier (double-quoted) state. */
-                        $this->token['public'] .= $char;
-                    }
-                break;
-
-                case 'DOCTYPE public identifier (single-quoted)':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if ($char === "'") {
-                        /* U+0027 APOSTROPHE (')
-                        Switch to the after DOCTYPE public identifier state. */
-                        $state = 'after DOCTYPE public identifier';
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Switch to the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-end-of-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current
-                        DOCTYPE token's public identifier. Stay in the DOCTYPE
-                        public identifier (double-quoted) state. */
-                        $this->token['public'] .= $char;
-                    }
-                break;
-
-                case 'after DOCTYPE public identifier':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Stay in the after DOCTYPE public identifier state. */
-                    } elseif ($char === '"') {
-                        /* U+0022 QUOTATION MARK (")
-                        Set the DOCTYPE token's system identifier to the
-                        empty string (not missing), then switch to the DOCTYPE
-                        system identifier (double-quoted) state. */
-                        $this->token['system'] = '';
-                        $state = 'DOCTYPE system identifier (double-quoted)';
-                    } elseif ($char === "'") {
-                        /* U+0027 APOSTROPHE (')
-                        Set the DOCTYPE token's system identifier to the
-                        empty string (not missing), then switch to the DOCTYPE
-                        system identifier (single-quoted) state. */
-                        $this->token['system'] = '';
-                        $state = 'DOCTYPE system identifier (single-quoted)';
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current DOCTYPE token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* Parse error. Set the DOCTYPE token's force-quirks
-                        flag to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Anything else
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Switch to the bogus DOCTYPE state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-char-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $state = 'bogus DOCTYPE';
-                    }
-                break;
-
-                case 'before DOCTYPE system identifier':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Stay in the before DOCTYPE system identifier state. */
-                    } elseif ($char === '"') {
-                        /* U+0022 QUOTATION MARK (")
-                        Set the DOCTYPE token's system identifier to the empty
-                        string (not missing), then switch to the DOCTYPE system
-                        identifier (double-quoted) state. */
-                        $this->token['system'] = '';
-                        $state = 'DOCTYPE system identifier (double-quoted)';
-                    } elseif ($char === "'") {
-                        /* U+0027 APOSTROPHE (')
-                        Set the DOCTYPE token's system identifier to the empty
-                        string (not missing), then switch to the DOCTYPE system
-                        identifier (single-quoted) state. */
-                        $this->token['system'] = '';
-                        $state = 'DOCTYPE system identifier (single-quoted)';
-                    } elseif ($char === '>') {
-                        /* Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Switch to the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-char-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* Parse error. Set the DOCTYPE token's force-quirks
-                        flag to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Switch to the bogus DOCTYPE state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-char-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $state = 'bogus DOCTYPE';
-                    }
-                break;
-
-                case 'DOCTYPE system identifier (double-quoted)':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if ($char === '"') {
-                        /* U+0022 QUOTATION MARK (")
-                        Switch to the after DOCTYPE system identifier state. */
-                        $state = 'after DOCTYPE system identifier';
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Switch to the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-end-of-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current
-                        DOCTYPE token's system identifier. Stay in the DOCTYPE
-                        system identifier (double-quoted) state. */
-                        $this->token['system'] .= $char;
-                    }
-                break;
-
-                case 'DOCTYPE system identifier (single-quoted)':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if ($char === "'") {
-                        /* U+0027 APOSTROPHE (')
-                        Switch to the after DOCTYPE system identifier state. */
-                        $state = 'after DOCTYPE system identifier';
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Switch to the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-end-of-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* EOF
-                        Parse error. Set the DOCTYPE token's force-quirks flag
-                        to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Anything else
-                        Append the current input character to the current
-                        DOCTYPE token's system identifier. Stay in the DOCTYPE
-                        system identifier (double-quoted) state. */
-                        $this->token['system'] .= $char;
-                    }
-                break;
-
-                case 'after DOCTYPE system identifier':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if($char === "\t" || $char === "\n" || $char === "\x0c" || $char === ' ') {
-                        /* U+0009 CHARACTER TABULATION
-                           U+000A LINE FEED (LF)
-                           U+000C FORM FEED (FF)
-                           U+0020 SPACE
-                        Stay in the after DOCTYPE system identifier state. */
-                    } elseif ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the current DOCTYPE token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-                    } elseif ($char === false) {
-                        /* Parse error. Set the DOCTYPE token's force-quirks
-                        flag to on. Emit that DOCTYPE token. Reconsume the EOF
-                        character in the data state. */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'eof-in-doctype'
-                        ));
-                        $this->token['force-quirks'] = true;
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-                    } else {
-                        /* Anything else
-                        Parse error. Switch to the bogus DOCTYPE state.
-                        (This does not set the DOCTYPE token's force-quirks
-                        flag to on.) */
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'unexpected-char-in-doctype'
-                        ));
-                        $state = 'bogus DOCTYPE';
-                    }
-                break;
-
-                case 'bogus DOCTYPE':
-                    /* Consume the next input character: */
-                    $char = $this->stream->char();
-
-                    if ($char === '>') {
-                        /* U+003E GREATER-THAN SIGN (>)
-                        Emit the DOCTYPE token. Switch to the data state. */
-                        $this->emitToken($this->token);
-                        $state = 'data';
-
-                    } elseif($char === false) {
-                        /* EOF
-                        Emit the DOCTYPE token. Reconsume the EOF character in
-                        the data state. */
-                        $this->emitToken($this->token);
-                        $this->stream->unget();
-                        $state = 'data';
-
-                    } else {
-                        /* Anything else
-                        Stay in the bogus DOCTYPE state. */
-                    }
-                break;
-
-                // case 'cdataSection':
-
-            }
-        }
-    }
-
-    /**
-     * Returns a serialized representation of the tree.
-     */
-    public function save() {
-        return $this->tree->save();
-    }
-		
-		/**
-		 * @return HTML5_TreeBuilder The tree
-		 */
-		public function getTree() {
-			return $this->tree;
-		}
-
-    /**
-     * Returns the input stream.
-     */
-    public function stream() {
-        return $this->stream;
-    }
-
-    private function consumeCharacterReference($allowed = false, $inattr = false) {
-        // This goes quite far against spec, and is far closer to the Python
-        // impl., mainly because we don't do the large unconsuming the spec
-        // requires.
-
-        // All consumed characters.
-        $chars = $this->stream->char();
-
-        /* This section defines how to consume a character
-        reference. This definition is used when parsing character
-        references in text and in attributes.
-
-        The behavior depends on the identity of the next character
-        (the one immediately after the U+0026 AMPERSAND character): */
-
-        if (
-            $chars[0] === "\x09" ||
-            $chars[0] === "\x0A" ||
-            $chars[0] === "\x0C" ||
-            $chars[0] === "\x20" ||
-            $chars[0] === '<' ||
-            $chars[0] === '&' ||
-            $chars === false ||
-            $chars[0] === $allowed
-        ) {
-            /* U+0009 CHARACTER TABULATION
-               U+000A LINE FEED (LF)
-               U+000C FORM FEED (FF)
-               U+0020 SPACE
-               U+003C LESS-THAN SIGN
-               U+0026 AMPERSAND
-               EOF
-               The additional allowed character, if there is one
-            Not a character reference. No characters are consumed,
-            and nothing is returned. (This is not an error, either.) */
-            // We already consumed, so unconsume.
-            $this->stream->unget();
-            return '&';
-        } elseif ($chars[0] === '#') {
-            /* Consume the U+0023 NUMBER SIGN. */
-            // Um, yeah, we already did that.
-            /* The behavior further depends on the character after
-            the U+0023 NUMBER SIGN: */
-            $chars .= $this->stream->char();
-            if (isset($chars[1]) && ($chars[1] === 'x' || $chars[1] === 'X')) {
-                /* U+0078 LATIN SMALL LETTER X
-                   U+0058 LATIN CAPITAL LETTER X */
-                /* Consume the X. */
-                // Um, yeah, we already did that.
-                /* Follow the steps below, but using the range of
-                characters U+0030 DIGIT ZERO through to U+0039 DIGIT
-                NINE, U+0061 LATIN SMALL LETTER A through to U+0066
-                LATIN SMALL LETTER F, and U+0041 LATIN CAPITAL LETTER
-                A, through to U+0046 LATIN CAPITAL LETTER F (in other
-                words, 0123456789, ABCDEF, abcdef). */
-                $char_class = self::HEX;
-                /* When it comes to interpreting the
-                number, interpret it as a hexadecimal number. */
-                $hex = true;
-            } else {
-                /* Anything else */
-                // Unconsume because we shouldn't have consumed this.
-                $chars = $chars[0];
-                $this->stream->unget();
-                /* Follow the steps below, but using the range of
-                characters U+0030 DIGIT ZERO through to U+0039 DIGIT
-                NINE (i.e. just 0123456789). */
-                $char_class = self::DIGIT;
-                /* When it comes to interpreting the number,
-                interpret it as a decimal number. */
-                $hex = false;
-            }
-
-            /* Consume as many characters as match the range of characters given above. */
-            $consumed = $this->stream->charsWhile($char_class);
-            if ($consumed === '' || $consumed === false) {
-                /* If no characters match the range, then don't consume
-                any characters (and unconsume the U+0023 NUMBER SIGN
-                character and, if appropriate, the X character). This
-                is a parse error; nothing is returned. */
-                $this->emitToken(array(
-                    'type' => self::PARSEERROR,
-                    'data' => 'expected-numeric-entity'
-                ));
-                return '&' . $chars;
-            } else {
-                /* Otherwise, if the next character is a U+003B SEMICOLON,
-                consume that too. If it isn't, there is a parse error. */
-                if ($this->stream->char() !== ';') {
-                    $this->stream->unget();
-                    $this->emitToken(array(
-                        'type' => self::PARSEERROR,
-                        'data' => 'numeric-entity-without-semicolon'
-                    ));
-                }
-
-                /* If one or more characters match the range, then take
-                them all and interpret the string of characters as a number
-                (either hexadecimal or decimal as appropriate). */
-                $codepoint = $hex ? hexdec($consumed) : (int) $consumed;
-
-                /* If that number is one of the numbers in the first column
-                of the following table, then this is a parse error. Find the
-                row with that number in the first column, and return a
-                character token for the Unicode character given in the
-                second column of that row. */
-                $new_codepoint = HTML5_Data::getRealCodepoint($codepoint);
-                if ($new_codepoint) {
-                    $this->emitToken(array(
-                        'type' => self::PARSEERROR,
-                        'data' => 'illegal-windows-1252-entity'
-                    ));
-                    return HTML5_Data::utf8chr($new_codepoint);
-                } else {
-                    /* Otherwise, if the number is greater than 0x10FFFF, then 
-                     * this is a parse error. Return a U+FFFD REPLACEMENT 
-                     * CHARACTER. */
-                    if ($codepoint > 0x10FFFF) {
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'overlong-character-entity' // XXX probably not correct
-                        ));
-                        return "\xEF\xBF\xBD";
-                    }
-                    /* Otherwise, return a character token for the Unicode 
-                     * character whose code point is that number.  If the 
-                     * number is in the range 0x0001 to 0x0008,    0x000E to 
-                     * 0x001F,  0x007F  to 0x009F, 0xD800 to 0xDFFF, 0xFDD0 to 
-                     * 0xFDEF, or is one of 0x000B, 0xFFFE, 0xFFFF, 0x1FFFE, 
-                     * 0x1FFFF, 0x2FFFE, 0x2FFFF, 0x3FFFE, 0x3FFFF, 0x4FFFE, 
-                     * 0x4FFFF, 0x5FFFE, 0x5FFFF, 0x6FFFE, 0x6FFFF, 0x7FFFE, 
-                     * 0x7FFFF, 0x8FFFE, 0x8FFFF, 0x9FFFE, 0x9FFFF, 0xAFFFE, 
-                     * 0xAFFFF, 0xBFFFE, 0xBFFFF, 0xCFFFE, 0xCFFFF, 0xDFFFE, 
-                     * 0xDFFFF, 0xEFFFE, 0xEFFFF, 0xFFFFE, 0xFFFFF, 0x10FFFE, 
-                     * or 0x10FFFF, then this is a parse error. */
-                    // && has higher precedence than ||
-                    if (
-                        $codepoint >= 0x0000 && $codepoint <= 0x0008 ||
-                        $codepoint === 0x000B ||
-                        $codepoint >= 0x000E && $codepoint <= 0x001F ||
-                        $codepoint >= 0x007F && $codepoint <= 0x009F ||
-                        $codepoint >= 0xD800 && $codepoint <= 0xDFFF ||
-                        $codepoint >= 0xFDD0 && $codepoint <= 0xFDEF ||
-                        ($codepoint & 0xFFFE) === 0xFFFE ||
-                        $codepoint == 0x10FFFF || $codepoint == 0x10FFFE
-                    ) {
-                        $this->emitToken(array(
-                            'type' => self::PARSEERROR,
-                            'data' => 'illegal-codepoint-for-numeric-entity'
-                        ));
-                    }
-                    return HTML5_Data::utf8chr($codepoint);
-                }
-            }
-
-        } else {
-            /* Anything else */
-
-            /* Consume the maximum number of characters possible,
-            with the consumed characters matching one of the
-            identifiers in the first column of the named character
-            references table (in a case-sensitive manner). */
-            // What we actually do here is consume as much as we can while it
-            // matches the start of one of the identifiers in the first column.
-
-            $refs = HTML5_Data::getNamedCharacterReferences();
-            
-            // Get the longest string which is the start of an identifier
-            // ($chars) as well as the longest identifier which matches ($id)
-            // and its codepoint ($codepoint).
-            $codepoint = false;
-            $char = $chars;
-            while ($char !== false && isset($refs[$char])) {
-                $refs = $refs[$char];
-                if (isset($refs['codepoint'])) {
-                    $id = $chars;
-                    $codepoint = $refs['codepoint'];
-                }
-                $chars .= $char = $this->stream->char();
-            }
-            
-            // Unconsume the one character we just took which caused the while
-            // statement to fail. This could be anything and could cause state
-            // changes (as if it matches the while loop it must be
-            // alphanumeric so we can just concat it to whatever we get later).
-            $this->stream->unget();
-            if ($char !== false) {
-                $chars = substr($chars, 0, -1);
-            }
-
-            /* If no match can be made, then this is a parse error.
-            No characters are consumed, and nothing is returned. */
-            if (!$codepoint) {
-                $this->emitToken(array(
-                    'type' => self::PARSEERROR,
-                    'data' => 'expected-named-entity'
-                ));
-                return '&' . $chars;
-            }
-
-            /* If the last character matched is not a U+003B SEMICOLON
-            (;), there is a parse error. */
-            $semicolon = true;
-            if (substr($id, -1) !== ';') {
-                $this->emitToken(array(
-                    'type' => self::PARSEERROR,
-                    'data' => 'named-entity-without-semicolon'
-                ));
-                $semicolon = false;
-            }
-
-            /* If the character reference is being consumed as part of
-            an attribute, and the last character matched is not a
-            U+003B SEMICOLON (;), and the next character is in the
-            range U+0030 DIGIT ZERO to U+0039 DIGIT NINE, U+0041
-            LATIN CAPITAL LETTER A to U+005A LATIN CAPITAL LETTER Z,
-            or U+0061 LATIN SMALL LETTER A to U+007A LATIN SMALL LETTER Z,
-            then, for historical reasons, all the characters that were
-            matched after the U+0026 AMPERSAND (&) must be unconsumed,
-            and nothing is returned. */
-            if ($inattr && !$semicolon) {
-                // The next character is either the next character in $chars or in the stream.
-                if (strlen($chars) > strlen($id)) {
-                    $next = substr($chars, strlen($id), 1);
-                } else {
-                    $next = $this->stream->char();
-                    $this->stream->unget();
-                }
-                if (
-                    '0' <= $next && $next <= '9' ||
-                    'A' <= $next && $next <= 'Z' ||
-                    'a' <= $next && $next <= 'z'
-                ) {
-                    return '&' . $chars;
-                }
-            }
-
-            /* Otherwise, return a character token for the character
-            corresponding to the character reference name (as given
-            by the second column of the named character references table). */
-            return HTML5_Data::utf8chr($codepoint) . substr($chars, strlen($id));
-        }
-    }
-
-    private function characterReferenceInAttributeValue($allowed = false) {
-        /* Attempt to consume a character reference. */
-        $entity = $this->consumeCharacterReference($allowed, true);
-
-        /* If nothing is returned, append a U+0026 AMPERSAND
-        character to the current attribute's value.
-
-        Otherwise, append the returned character token to the
-        current attribute's value. */
-        $char = (!$entity)
-            ? '&'
-            : $entity;
-
-        $last = count($this->token['attr']) - 1;
-        $this->token['attr'][$last]['value'] .= $char;
-
-        /* Finally, switch back to the attribute value state that you
-        were in when were switched into this state. */
-    }
-
-    /**
-     * Emits a token, passing it on to the tree builder.
-     */
-    protected function emitToken($token, $checkStream = true, $dry = false) {
-        if ($checkStream) {
-            // Emit errors from input stream.
-            while ($this->stream->errors) {
-                $this->emitToken(array_shift($this->stream->errors), false);
-            }
-        }
-        if($token['type'] === self::ENDTAG && !empty($token['attr'])) {
-            for ($i = 0; $i < count($token['attr']); $i++) {
-                $this->emitToken(array(
-                    'type' => self::PARSEERROR,
-                    'data' => 'attributes-in-end-tag'
-                ));
-            }
-        }
-        if($token['type'] === self::ENDTAG && !empty($token['self-closing'])) {
-            $this->emitToken(array(
-                'type' => self::PARSEERROR,
-                'data' => 'self-closing-flag-on-end-tag',
-            ));
-        }
-        if($token['type'] === self::STARTTAG) {
-            // This could be changed to actually pass the tree-builder a hash
-            $hash = array();
-            foreach ($token['attr'] as $keypair) {
-                if (isset($hash[$keypair['name']])) {
-                    $this->emitToken(array(
-                        'type' => self::PARSEERROR,
-                        'data' => 'duplicate-attribute',
-                    ));
-                } else {
-                    $hash[$keypair['name']] = $keypair['value'];
-                }
-            }
-        }
-
-        if(!$dry) {
-            // the current structure of attributes is not a terribly good one
-            $this->tree->emitToken($token);
-        }
-
-        if(!$dry && is_int($this->tree->content_model)) {
-            $this->content_model = $this->tree->content_model;
-            $this->tree->content_model = null;
-
-        } elseif($token['type'] === self::ENDTAG) {
-            $this->content_model = self::PCDATA;
-        }
-    }
-}
-
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+/8uv716zp63cwgR6y+78ZhkCz5Eo

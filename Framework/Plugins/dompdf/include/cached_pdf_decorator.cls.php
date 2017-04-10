@@ -1,164 +1,124 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Caching canvas implementation
- *
- * Each rendered page is serialized and stored in the {@link Page_Cache}.
- * This is useful for static forms/pages that do not need to be re-rendered
- * all the time.
- *
- * This class decorates normal CPDF_Adapters.  It is currently completely
- * experimental.
- *
- * @access private
- * @package dompdf
- */
-class Cached_PDF_Decorator extends CPDF_Adapter implements Canvas {
-  /**
-   * @var CPDF_Adapter
-   */
-  protected $_pdf;
-  protected $_cache_id;
-  protected $_current_page_id;
-  protected $_fonts;  // fonts used in this document
-  
-  function __construct($paper = "letter", $orientation = "portrait", DOMPDF $dompdf) {
-    $this->_fonts = array();
-  }
-
-  /**
-   * Must be called after constructor
-   *
-   * @param int          $cache_id
-   * @param CPDF_Adapter $pdf
-   */
-  function init($cache_id, CPDF_Adapter $pdf) {
-    $this->_cache_id = $cache_id;
-    $this->_pdf = $pdf;
-    $this->_current_page_id = $this->_pdf->open_object();
-  }
-
-  //........................................................................
-
-  function get_cpdf() { return $this->_pdf->get_cpdf(); }
-
-  function open_object() { $this->_pdf->open_object(); }
-  function reopen_object($object) { $this->_pdf->reopen_object($object); }
-  
-  function close_object() { $this->_pdf->close_object(); }
-
-  function add_object($object, $where = 'all') { $this->_pdf->add_object($object, $where); }
-
-  function serialize_object($id) { $this->_pdf->serialize_object($id); }
-
-  function reopen_serialized_object($obj) { $this->_pdf->reopen_serialized_object($obj); }
-    
-  //........................................................................
-
-  function get_width() { return $this->_pdf->get_width(); }
-  function get_height() {  return $this->_pdf->get_height(); }
-  function get_page_number() { return $this->_pdf->get_page_number(); }
-  function get_page_count() { return $this->_pdf->get_page_count(); }
-
-  function set_page_number($num) { $this->_pdf->set_page_number($num); }
-  function set_page_count($count) { $this->_pdf->set_page_count($count); }
-
-  function line($x1, $y1, $x2, $y2, $color, $width, $style = array()) {
-    $this->_pdf->line($x1, $y1, $x2, $y2, $color, $width, $style);
-  }
-                              
-  function rectangle($x1, $y1, $w, $h, $color, $width, $style = array()) {
-    $this->_pdf->rectangle($x1, $y1, $w, $h, $color, $width, $style);
-  }
- 
-  function filled_rectangle($x1, $y1, $w, $h, $color) {
-    $this->_pdf->filled_rectangle($x1, $y1, $w, $h, $color);
-  }
-    
-  function polygon($points, $color, $width = null, $style = array(), $fill = false) {
-    $this->_pdf->polygon($points, $color, $width, $style, $fill);
-  }
-
-  function circle($x, $y, $r1, $color, $width = null, $style = null, $fill = false) {
-    $this->_pdf->circle($x, $y, $r1, $color, $width, $style, $fill);
-  }
-
-  function image($img_url, $x, $y, $w, $h, $resolution = "normal") {
-    $this->_pdf->image($img_url, $x, $y, $w, $h, $resolution);
-  }
-  
-  function text($x, $y, $text, $font, $size, $color = array(0,0,0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0) {
-    $this->_fonts[$font] = true;
-    $this->_pdf->text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
-  }
-
-  function page_text($x, $y, $text, $font, $size, $color = array(0,0,0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0) {
-    
-    // We want to remove this from cached pages since it may not be correct
-    $this->_pdf->close_object();
-    $this->_pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
-    $this->_pdf->reopen_object($this->_current_page_id);
-  }
-  
-  function page_script($script, $type = 'text/php') {
-    
-    // We want to remove this from cached pages since it may not be correct
-    $this->_pdf->close_object();
-    $this->_pdf->page_script($script, $type);
-    $this->_pdf->reopen_object($this->_current_page_id);
-  }
-  
-  function new_page() {
-    $this->_pdf->close_object();
-
-    // Add the object to the current page
-    $this->_pdf->add_object($this->_current_page_id, "add");
-    $this->_pdf->new_page();    
-
-    Page_Cache::store_page($this->_cache_id,
-                           $this->_pdf->get_page_number() - 1,
-                           $this->_pdf->serialize_object($this->_current_page_id));
-
-    $this->_current_page_id = $this->_pdf->open_object();
-    return $this->_current_page_id;
-  }
-  
-  function stream($filename, $options = null) {
-    // Store the last page in the page cache
-    if ( !is_null($this->_current_page_id) ) {
-      $this->_pdf->close_object();
-      $this->_pdf->add_object($this->_current_page_id, "add");
-      Page_Cache::store_page($this->_cache_id,
-                             $this->_pdf->get_page_number(),
-                             $this->_pdf->serialize_object($this->_current_page_id));
-      Page_Cache::store_fonts($this->_cache_id, $this->_fonts);
-      $this->_current_page_id = null;
-    }
-    
-    $this->_pdf->stream($filename);
-    
-  }
-  
-  function output($options = null) {
-    // Store the last page in the page cache
-    if ( !is_null($this->_current_page_id) ) {
-      $this->_pdf->close_object();
-      $this->_pdf->add_object($this->_current_page_id, "add");
-      Page_Cache::store_page($this->_cache_id,
-                             $this->_pdf->get_page_number(),
-                             $this->_pdf->serialize_object($this->_current_page_id));
-      $this->_current_page_id = null;
-    }
-    
-    return $this->_pdf->output();
-  }
-  
-  function get_messages() { return $this->_pdf->get_messages(); }
-  
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+232cr8kvoqXSrAHzh5sWNk98gW==

@@ -1,70 +1,40 @@
-<?php
-/**
- * @package dompdf
- * @link    http://dompdf.github.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-/**
- * Positions inline frames
- *
- * @access private
- * @package dompdf
- */
-class Inline_Positioner extends Positioner {
-
-  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
-
-  //........................................................................
-
-  function position() {
-    /**
-     * Find our nearest block level parent and access its lines property.
-     * @var Block_Frame_Decorator
-     */ 
-    $p = $this->_frame->find_block_parent();
-
-    // Debugging code:
-
-//     pre_r("\nPositioning:");
-//     pre_r("Me: " . $this->_frame->get_node()->nodeName . " (" . spl_object_hash($this->_frame->get_node()) . ")");
-//     pre_r("Parent: " . $p->get_node()->nodeName . " (" . spl_object_hash($p->get_node()) . ")");
-
-    // End debugging
-
-    if ( !$p )
-      throw new DOMPDF_Exception("No block-level parent found.  Not good.");
-
-    $f = $this->_frame;
-    
-    $cb = $f->get_containing_block();
-    $line = $p->get_current_line_box();
-
-    // Skip the page break if in a fixed position element
-    $is_fixed = false;
-    while($f = $f->get_parent()) {
-      if($f->get_style()->position === "fixed") {
-        $is_fixed = true;
-        break;
-      }
-    }
-
-    $f = $this->_frame;
-
-    if ( !$is_fixed && $f->get_parent() &&
-         $f->get_parent() instanceof Inline_Frame_Decorator &&
-         $f->is_text_node() ) {
-      
-      $min_max = $f->get_reflower()->get_min_max_width();
-      
-      // If the frame doesn't fit in the current line, a line break occurs
-      if ( $min_max["min"] > ($cb["w"] - $line->left - $line->w - $line->right) ) {
-        $p->add_line();
-      }
-    }
-    
-    $f->set_position($cb["x"] + $line->w, $line->y);
-
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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

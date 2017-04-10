@@ -1,190 +1,77 @@
-<?php
-/**
- * @package php-font-lib
- * @link    https://github.com/PhenX/php-font-lib
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
-
-require_once dirname(__FILE__) . "/Font_Table_name_Record.php";
-
-/**
- * `name` font table.
- * 
- * @package php-font-lib
- */
-class Font_Table_name extends Font_Table {
-  private static $header_format = array(
-    "format"       => self::uint16,
-    "count"        => self::uint16,
-    "stringOffset" => self::uint16,
-  );
-
-  const NAME_COPYRIGHT          = 0;
-  const NAME_NAME               = 1;
-  const NAME_SUBFAMILY          = 2;
-  const NAME_SUBFAMILY_ID       = 3;
-  const NAME_FULL_NAME          = 4;
-  const NAME_VERSION            = 5;
-  const NAME_POSTSCRIPT_NAME    = 6;
-  const NAME_TRADEMARK          = 7;
-  const NAME_MANUFACTURER       = 8;
-  const NAME_DESIGNER           = 9;
-  const NAME_DESCRIPTION        = 10;
-  const NAME_VENDOR_URL         = 11;
-  const NAME_DESIGNER_URL       = 12;
-  const NAME_LICENSE            = 13;
-  const NAME_LICENSE_URL        = 14;
-  const NAME_PREFERRE_FAMILY    = 16;
-  const NAME_PREFERRE_SUBFAMILY = 17;
-  const NAME_COMPAT_FULL_NAME   = 18;
-  const NAME_SAMPLE_TEXT        = 19;
-
-  static $nameIdCodes = array(
-    0  => "Copyright",
-    1  => "FontName",
-    2  => "FontSubfamily",
-    3  => "UniqueID",
-    4  => "FullName",
-    5  => "Version",
-    6  => "PostScriptName",
-    7  => "Trademark",
-    8  => "Manufacturer",
-    9  => "Designer",
-    10 => "Description",
-    11 => "FontVendorURL",
-    12 => "FontDesignerURL",
-    13 => "LicenseDescription",
-    14 => "LicenseURL",
-    // 15
-    16 => "PreferredFamily",
-    17 => "PreferredSubfamily",
-    18 => "CompatibleFullName",
-    19 => "SampleText",
-  );
-
-  static $platforms = array(
-    0 => "Unicode",
-    1 => "Macintosh",
-    // 2 =>  Reserved
-    3 => "Microsoft",
-  );
-
-  static $plaformSpecific = array(
-    // Unicode
-    0 => array(
-      0 => "Default semantics",
-      1 => "Version 1.1 semantics",
-      2 => "ISO 10646 1993 semantics (deprecated)",
-      3 => "Unicode 2.0 or later semantics",
-    ),
-
-    // Macintosh
-    1 => array(
-      0 => "Roman",
-      1 => "Japanese",
-      2 => "Traditional Chinese",
-      3 => "Korean",
-      4 => "Arabic",
-      5 => "Hebrew",
-      6 => "Greek",
-      7 => "Russian",
-      8 => "RSymbol",
-      9 => "Devanagari",
-      10 => "Gurmukhi",
-      11 => "Gujarati",
-      12 => "Oriya",
-      13 => "Bengali",
-      14 => "Tamil",
-      15 => "Telugu",
-      16 => "Kannada",
-      17 => "Malayalam",
-      18 => "Sinhalese",
-      19 => "Burmese",
-      20 => "Khmer",
-      21 => "Thai",
-      22 => "Laotian",
-      23 => "Georgian",
-      24 => "Armenian",
-      25 => "Simplified Chinese",
-      26 => "Tibetan",
-      27 => "Mongolian",
-      28 => "Geez",
-      29 => "Slavic",
-      30 => "Vietnamese",
-      31 => "Sindhi",
-    ),
-
-    // Microsoft
-    3 => array(
-      0 => "Symbol",
-      1 => "Unicode BMP (UCS-2)",
-      2 => "ShiftJIS",
-      3 => "PRC",
-      4 => "Big5",
-      5 => "Wansung",
-      6 => "Johab",
-      //  7 => Reserved
-      //  8 => Reserved
-      //  9 => Reserved
-      10 => "Unicode UCS-4",
-    ),
-  );
-  
-  protected function _parse(){
-    $font = $this->getFont();
-    
-    $tableOffset = $font->pos();
-    
-    $data = $font->unpack(self::$header_format);
-    
-    $records = array();
-    for($i = 0; $i < $data["count"]; $i++) {
-      $record = new Font_Table_name_Record();
-      $record_data = $font->unpack(Font_Table_name_Record::$format);
-      $record->map($record_data);
-      
-      $records[] = $record;
-    }
-    
-    $names = array();
-    foreach($records as $record) {
-      $font->seek($tableOffset + $data["stringOffset"] + $record->offset);
-      $s = $font->read($record->length);
-      $record->string = Font::UTF16ToUTF8($s);
-      $names[$record->nameID] = $record;
-    }
-    
-    $data["records"] = $names;
-    
-    $this->data = $data;
-  }
-  
-  protected function _encode(){
-    $font = $this->getFont();
-
-    /** @var Font_Table_name_Record[] $records */
-    $records = $this->data["records"];
-    $count_records = count($records);
-    
-    $this->data["count"] = $count_records;
-    $this->data["stringOffset"] = 6 + $count_records * 12; // 6 => uint16 * 3, 12 => sizeof self::$record_format
-    
-    $length = $font->pack(self::$header_format, $this->data);
-    
-    $offset = 0;
-    foreach($records as $record) {
-      $record->length = mb_strlen($record->getUTF16(), "8bit");
-      $record->offset = $offset;
-      $offset += $record->length;
-      $length += $font->pack(Font_Table_name_Record::$format, (array)$record);
-    }
-    
-    foreach($records as $record) {
-      $str = $record->getUTF16();
-      $length += $font->write($str, mb_strlen($str, "8bit"));
-    }
-    
-    return $length;
-  }
-}
+<?php //0046a
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+?>
+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
+2/EgtwBOc0==
