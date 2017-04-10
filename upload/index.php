@@ -1,30 +1,79 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-xaC=
+<?php
+/*
+ * jQuery File Upload Plugin PHP Example 5.14
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+error_reporting(E_ALL | E_STRICT);
+require('UploadHandler.php');
+require('UploadHandler_ryan.php');
+
+ if(!isset($_GET['d_upload_dir']))
+ {
+     $option['d_upload_dir']='files';
+ }
+ else 
+ {     
+     $option['d_upload_dir']=$_GET['d_upload_dir'];
+ }
+ 
+ if(!file_exists($option['d_upload_dir']))
+ {
+     @mkdir($option['d_upload_dir']);
+ }
+ 
+
+ if(!isset($_GET['specified_name']))
+ {
+     $option['specified_name']='files';
+ }
+ else
+ {
+     $option['specified_name']=$_GET['specified_name'];
+ }
+ 
+ if(!isset($_GET['file_append']))
+ {
+     $option['file_append']=true;
+     
+ }
+ else if($_GET['file_append']=='false')
+ {
+     $option['file_append']=false;
+ }     
+ else
+ {
+    $option['file_append']=$_GET['file_append'];
+ }
+ 
+ if(!isset($_GET['create_text']))
+ {
+     $option['create_text']=true;      
+ }
+ else
+ {
+     $option['create_text']=false;
+ }
+ 
+ if(!isset($_GET['thumbnail']))
+ {
+     $option['create_thumbnail']=true;      
+ }
+ else
+ {
+     $option['create_thumbnail']=false;
+ }
+ 
+ 
+ error_reporting(0);
+
+
+
+$upload_handler = new nUploadHandler($option);
+
