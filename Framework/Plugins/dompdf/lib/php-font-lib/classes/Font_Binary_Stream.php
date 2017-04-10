@@ -1,165 +1,364 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Generic font file binary stream.
+ * 
+ * @package php-font-lib
+ */
+class Font_Binary_Stream {
+  /**
+   * @var resource The file pointer
+   */
+  protected $f;
+  
+  const uint8     = 1;
+  const  int8     = 2;
+  const uint16    = 3;
+  const  int16    = 4;
+  const uint32    = 5;
+  const  int32    = 6;
+  const shortFrac = 7;
+  const Fixed     = 8;
+  const  FWord    = 9;
+  const uFWord    = 10;
+  const F2Dot14   = 11;
+  const longDateTime = 12;
+  const char      = 13;
+  
+  const modeRead      = "rb";
+  const modeWrite     = "wb";
+  const modeReadWrite = "rb+";
+  
+  static function backtrace(){
+    var_dump(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
+  }
+
+  /**
+   * Open a font file in read mode
+   * 
+   * @param string $filename The file name of the font to open
+   *
+   * @return bool
+   */
+  public function load($filename) {
+    return $this->open($filename, self::modeRead);
+  }
+
+  /**
+   * Open a font file in a chosen mode
+   *
+   * @param string $filename The file name of the font to open
+   * @param string $mode     The opening mode
+   *
+   * @throws Exception
+   * @return bool
+   */
+  public function open($filename, $mode = self::modeRead) {
+    if (!in_array($mode, array(self::modeRead, self::modeWrite, self::modeReadWrite))) {
+      throw new Exception("Unkown file open mode");
+    }
+    
+    $this->f = fopen($filename, $mode);
+    return $this->f != false;
+  }
+  
+  /**
+   * Close the internal file pointer
+   */
+  public function close() {
+    return fclose($this->f) != false;
+  }
+
+  /**
+   * Change the internal file pointer
+   *
+   * @param resource $fp
+   *
+   * @throws Exception
+   */
+  public function setFile($fp) {
+    if (!is_resource($fp)) {
+      throw new Exception('$fp is not a valid resource');
+    }
+    
+    $this->f = $fp;
+  }
+
+  /**
+   * Create a temporary file in write mode
+   *
+   * @param bool $allow_memory Allow in-memory files
+   *
+   * @return resource the temporary file pointer resource
+   */
+  public static function getTempFile($allow_memory = true) {
+    $f = null;
+    
+    if ($allow_memory) {
+      // PHP 5.1+
+      @fopen("php://temp", "rb+");
+    }
+    
+    if (!$f) {
+      $f = fopen(tempnam(sys_get_temp_dir(), "fnt"), "rb+");
+    }
+    
+    return $f;
+  }
+  
+  /**
+   * Move the internal file pinter to $offset bytes
+   * 
+   * @param int $offset
+   *
+   * @return bool True if the $offset position exists in the file
+   */
+  public function seek($offset) {
+    return fseek($this->f, $offset, SEEK_SET) == 0;
+  }
+  
+  /**
+   * Gives the current position in the file
+   * 
+   * @return int The current position
+   */
+  public function pos() {
+    return ftell($this->f);
+  }
+  
+  public function skip($n) {
+    fseek($this->f, $n, SEEK_CUR);
+  }
+  
+  public function read($n) {
+    if ($n < 1) {
+      return "";
+    }
+
+    return fread($this->f, $n);
+  }
+
+  public function write($data, $length = null) {
+    if ($data === null || $data === "") {
+      return 0;
+    }
+    
+    return fwrite($this->f, $data, $length);
+  }
+
+  public function readUInt8() {
+    return ord($this->read(1));
+  }
+
+  public function writeUInt8($data) {
+    return $this->write(chr($data), 1);
+  }
+
+  public function readInt8() {
+    $v = $this->readUInt8();
+    
+    if ($v >= 0x80) {
+      $v -= 0x100;
+    }
+      
+    return $v;
+  }
+
+  public function writeInt8($data) {
+    if ($data < 0) {
+      $data += 0x100;
+    }
+    
+    return $this->writeUInt8($data);
+  }
+
+  public function readUInt16() {
+    $a = unpack("nn", $this->read(2));
+    return $a["n"];
+  }
+  
+  public function readUFWord(){
+    return $this->readUInt16();
+  }
+
+  public function writeUInt16($data) {
+    return $this->write(pack("n", $data), 2);
+  }
+  
+  public function writeUFWord($data){
+    return $this->writeUInt16($data);
+  }
+
+  public function readInt16() {
+    $v = $this->readUInt16();
+    
+    if ($v >= 0x8000) {
+      $v -= 0x10000;
+    }
+      
+    return $v;
+  }
+  
+  public function readFWord(){
+    return $this->readInt16();
+  }
+
+  public function writeInt16($data) {
+    if ($data < 0) {
+      $data += 0x10000;
+    }
+    
+    return $this->writeUInt16($data);
+  }
+  
+  public function writeFWord($data){
+    return $this->writeInt16($data);
+  }
+
+  public function readUInt32() {
+    $a = unpack("NN", $this->read(4));
+    return $a["N"];
+  }
+
+  public function writeUInt32($data) {
+    return $this->write(pack("N", $data), 4);
+  }
+
+  public function readFixed() {
+    $d = $this->readInt16();
+    $d2 = $this->readUInt16();
+    return round($d + $d2 / 0x10000, 4);
+  }
+
+  public function writeFixed($data) {
+    $left = floor($data);
+    $right = ($data - $left) * 0x10000;
+    return $this->writeInt16($left) + $this->writeUInt16($right);
+  }
+  
+  public function readLongDateTime() {
+    $this->readUInt32(); // ignored 
+    $date = $this->readUInt32() - 2082844800;
+    
+    return strftime("%Y-%m-%d %H:%M:%S", $date);
+  }
+  
+  public function writeLongDateTime($data) {
+    $date = strtotime($data);
+    $date += 2082844800;
+    
+    return $this->writeUInt32(0) + $this->writeUInt32($date);
+  }
+  
+  public function unpack($def) {
+    $d = array();
+    foreach($def as $name => $type) {
+      $d[$name] = $this->r($type);
+    }
+    return $d;
+  }
+  
+  public function pack($def, $data) {
+    $bytes = 0;
+    foreach($def as $name => $type) {
+      $bytes += $this->w($type, $data[$name]);
+    }
+    return $bytes;
+  }
+  
+  /**
+   * Read a data of type $type in the file from the current position
+   * 
+   * @param mixed $type The data type to read
+   *
+   * @return mixed The data that was read
+   */
+  public function r($type) {
+    switch($type) {
+      case self::uint8:     return $this->readUInt8();
+      case self::int8:      return $this->readInt8();
+      case self::uint16:    return $this->readUInt16();
+      case self::int16:     return $this->readInt16();
+      case self::uint32:    return $this->readUInt32();
+      case self::int32:     return $this->readUInt32(); 
+      case self::shortFrac: return $this->readFixed();
+      case self::Fixed:     return $this->readFixed();
+      case self::FWord:     return $this->readInt16();
+      case self::uFWord:    return $this->readUInt16();
+      case self::F2Dot14:   return $this->readInt16();
+      case self::longDateTime: return $this->readLongDateTime();
+      case self::char:      return $this->read(1);
+      default: 
+        if ( is_array($type) ) {
+          if ($type[0] == self::char) {
+            return $this->read($type[1]);
+          }
+          
+          $ret = array();
+          for($i = 0; $i < $type[1]; $i++) {
+            $ret[] = $this->r($type[0]);
+          }
+          return $ret;
+        }
+
+        return null;
+    }
+  }
+  
+  /**
+   * Write $data of type $type in the file from the current position
+   * 
+   * @param mixed $type The data type to write
+   * @param mixed $data The data to write
+   *
+   * @return int The number of bytes read
+   */
+  public function w($type, $data) {
+    switch($type) {
+      case self::uint8:     return $this->writeUInt8($data);
+      case self::int8:      return $this->writeInt8($data);
+      case self::uint16:    return $this->writeUInt16($data);
+      case self::int16:     return $this->writeInt16($data);
+      case self::uint32:    return $this->writeUInt32($data);
+      case self::int32:     return $this->writeUInt32($data); 
+      case self::shortFrac: return $this->writeFixed($data);
+      case self::Fixed:     return $this->writeFixed($data);
+      case self::FWord:     return $this->writeInt16($data);
+      case self::uFWord:    return $this->writeUInt16($data);
+      case self::F2Dot14:   return $this->writeInt16($data);
+      case self::longDateTime: return $this->writeLongDateTime($data);
+      case self::char:      return $this->write($data, 1);
+      default: 
+        if ( is_array($type) ) {
+          if ($type[0] == self::char) {
+            return $this->write($data, $type[1]);
+          }
+          
+          $ret = 0;
+          for($i = 0; $i < $type[1]; $i++) {
+            $ret += $this->w($type[0], $data[$i]);
+          }
+          return $ret;
+        }
+
+        return null;
+    }
+  }
+  
+  /**
+   * Converts a Uint32 value to string
+   * 
+   * @param int $uint32
+   *
+   * @return string The string
+   */
+  public function convertUInt32ToStr($uint32) {
+    return chr(($uint32 >> 24) & 0xFF).chr(($uint32 >> 16) & 0xFF).chr(($uint32 >> 8) & 0xFF).chr($uint32 & 0xFF);
+  }
+}

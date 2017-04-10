@@ -1,42 +1,87 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Generic font table.
+ * 
+ * @package php-font-lib
+ */
+class Font_Table extends Font_Binary_Stream {
+  /**
+   * @var Font_Table_Directory_Entry
+   */
+  protected $entry;
+  protected $def = array();
+  
+  public $data;
+  
+  final public function __construct(Font_Table_Directory_Entry $entry) {
+    $this->entry = $entry;
+    $entry->setTable($this);
+  }
+  
+  /**
+   * @return Font_TrueType
+   */
+  public function getFont(){
+    return $this->entry->getFont();
+  }
+  
+  protected function _encode(){
+    if (empty($this->data)) {
+      Font::d("  >> Table is empty");
+      return 0;
+    }
+    
+    return $this->getFont()->pack($this->def, $this->data);
+  }
+  
+  protected function _parse(){
+    $this->data = $this->getFont()->unpack($this->def);
+  }
+  
+  protected function _parseRaw(){
+    $this->data = $this->getFont()->read($this->entry->length);
+  }
+  
+  protected function _encodeRaw(){
+    return $this->getFont()->write($this->data, $this->entry->length);
+  }
+  
+  public function toHTML(){
+    return "<pre>".var_export($this->data, true)."</pre>"; 
+  }
+  
+  final public function encode(){
+    $this->entry->startWrite();
+    
+    if (false && empty($this->def)) {
+      $length = $this->_encodeRaw();
+    }
+    else {
+      $length = $this->_encode();
+    }
+    
+    $this->entry->endWrite();
+    
+    return $length;
+  }
+  
+  final public function parse(){
+    $this->entry->startRead();
+    
+    if (false && empty($this->def)) {
+      $this->_parseRaw();
+    }
+    else {
+      $this->_parse();
+    }
+    
+    $this->entry->endRead();
+  }
+}

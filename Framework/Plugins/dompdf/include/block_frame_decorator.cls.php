@@ -1,98 +1,234 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates frames for block layout
+ *
+ * @access private
+ * @package dompdf
+ */
+class Block_Frame_Decorator extends Frame_Decorator {
+  /**
+   * Current line index
+   *
+   * @var int
+   */
+  protected $_cl;
+  
+  /**
+   * The block's line boxes
+   * 
+   * @var Line_Box[]
+   */
+  protected $_line_boxes;
+
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    parent::__construct($frame, $dompdf);
+    
+    $this->_line_boxes = array(new Line_Box($this));
+    $this->_cl = 0;
+  }
+
+  function reset() {
+    parent::reset();
+    
+    $this->_line_boxes = array(new Line_Box($this));
+    $this->_cl = 0;
+  }
+
+  /**
+   * @return Line_Box
+   */
+  function get_current_line_box() {
+    return $this->_line_boxes[$this->_cl];
+  }
+
+  /**
+   * @return integer
+   */
+  function get_current_line_number() {
+    return $this->_cl;
+  }
+
+  /**
+   * @return Line_Box[]
+   */
+  function get_line_boxes() { 
+    return $this->_line_boxes; 
+  }
+
+  /**
+   * @param integer $i
+   */
+  function clear_line($i) {
+    if ( isset($this->_line_boxes[$i]) ) {
+      unset($this->_line_boxes[$i]);
+    }
+  }
+
+  /**
+   * @param Frame $frame
+   */
+  function add_frame_to_line(Frame $frame) {
+    if ( !$frame->is_in_flow() ) {
+      return;
+    }
+    
+    $style = $frame->get_style();
+    
+    $frame->set_containing_line($this->_line_boxes[$this->_cl]);
+    
+    /*
+    // Adds a new line after a block, only if certain conditions are met
+    if ((($frame instanceof Inline_Frame_Decorator && $frame->get_node()->nodeName !== "br") || 
+          $frame instanceof Text_Frame_Decorator && trim($frame->get_text())) && 
+        ($frame->get_prev_sibling() && $frame->get_prev_sibling()->get_style()->display === "block" && 
+         $this->_line_boxes[$this->_cl]->w > 0 )) {
+           
+           $this->maximize_line_height( $style->length_in_pt($style->line_height), $frame );
+           $this->add_line();
+         
+           // Add each child of the inline frame to the line individually
+           foreach ($frame->get_children() as $child)
+             $this->add_frame_to_line( $child );     
+    }
+    else*/
+
+    // Handle inline frames (which are effectively wrappers)
+    if ( $frame instanceof Inline_Frame_Decorator ) {
+
+      // Handle line breaks
+      if ( $frame->get_node()->nodeName === "br" ) {
+        $this->maximize_line_height( $style->length_in_pt($style->line_height), $frame );
+        $this->add_line(true);
+      }
+
+      return;
+    }
+
+    // Trim leading text if this is an empty line.  Kinda a hack to put it here,
+    // but what can you do...
+    if ( $this->get_current_line_box()->w == 0 &&
+         $frame->is_text_node() &&
+        !$frame->is_pre() ) {
+
+      $frame->set_text( ltrim($frame->get_text()) );
+      $frame->recalculate_width();
+    }
+
+    $w = $frame->get_margin_width();
+
+    if ( $w == 0 ) {
+      return;
+    }
+
+    // Debugging code:
+    /*
+    pre_r("\n<h3>Adding frame to line:</h3>");
+
+    //    pre_r("Me: " . $this->get_node()->nodeName . " (" . spl_object_hash($this->get_node()) . ")");
+    //    pre_r("Node: " . $frame->get_node()->nodeName . " (" . spl_object_hash($frame->get_node()) . ")");
+    if ( $frame->is_text_node() )
+      pre_r('"'.$frame->get_node()->nodeValue.'"');
+
+    pre_r("Line width: " . $this->_line_boxes[$this->_cl]->w);
+    pre_r("Frame: " . get_class($frame));
+    pre_r("Frame width: "  . $w);
+    pre_r("Frame height: " . $frame->get_margin_height());
+    pre_r("Containing block width: " . $this->get_containing_block("w"));
+    */
+    // End debugging
+
+    $line = $this->_line_boxes[$this->_cl];
+    if ( $line->left + $line->w + $line->right + $w > $this->get_containing_block("w")) {
+      $this->add_line();
+    }
+
+    $frame->position();
+
+    $current_line = $this->_line_boxes[$this->_cl];
+    $current_line->add_frame($frame);
+
+    if ( $frame->is_text_node() ) {
+      $current_line->wc += count(preg_split("/\s+/", trim($frame->get_text())));
+    }
+
+    $this->increase_line_width($w);
+    
+    $this->maximize_line_height($frame->get_margin_height(), $frame);
+  }
+
+  function remove_frames_from_line(Frame $frame) {
+    // Search backwards through the lines for $frame
+    $i = $this->_cl;
+    $j = null;
+
+    while ($i >= 0) {
+      if ( ($j = in_array($frame, $this->_line_boxes[$i]->get_frames(), true)) !== false ) {
+        break;
+      }
+      
+      $i--;
+    }
+
+    if ( $j === false ) {
+      return;
+    }
+
+    // Remove $frame and all frames that follow
+    while ($j < count($this->_line_boxes[$i]->get_frames())) {
+      $frames = $this->_line_boxes[$i]->get_frames();
+      $f = $frames[$j];
+      $frames[$j] = null;
+      unset($frames[$j]);
+      $j++;
+      $this->_line_boxes[$i]->w -= $f->get_margin_width();
+    }
+
+    // Recalculate the height of the line
+    $h = 0;
+    foreach ($this->_line_boxes[$i]->get_frames() as $f) {
+      $h = max( $h, $f->get_margin_height() );
+    }
+
+    $this->_line_boxes[$i]->h = $h;
+
+    // Remove all lines that follow
+    while ($this->_cl > $i) {
+      $this->_line_boxes[ $this->_cl ] = null;
+      unset($this->_line_boxes[ $this->_cl ]);
+      $this->_cl--;
+    }
+  }
+
+  function increase_line_width($w) {
+    $this->_line_boxes[ $this->_cl ]->w += $w;
+  }
+
+  function maximize_line_height($val, Frame $frame) {
+    if ( $val > $this->_line_boxes[ $this->_cl ]->h ) {
+      $this->_line_boxes[ $this->_cl ]->tallest_frame = $frame;
+      $this->_line_boxes[ $this->_cl ]->h = $val;
+    }
+  }
+
+  function add_line($br = false) {
+
+//     if ( $this->_line_boxes[$this->_cl]["h"] == 0 ) //count($this->_line_boxes[$i]["frames"]) == 0 ||
+//       return;
+
+    $this->_line_boxes[$this->_cl]->br = $br;
+    $y = $this->_line_boxes[$this->_cl]->y + $this->_line_boxes[$this->_cl]->h;
+
+    $new_line = new Line_Box($this, $y);
+    
+    $this->_line_boxes[ ++$this->_cl ] = $new_line;
+  }
+
+  //........................................................................
+}

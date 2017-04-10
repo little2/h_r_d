@@ -1,402 +1,805 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-kF0k
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Reflows block frames
+ *
+ * @access private
+ * @package dompdf
+ */
+class Block_Frame_Reflower extends Frame_Reflower {
+  // Minimum line width to justify, as fraction of available width
+  const MIN_JUSTIFY_WIDTH = 0.80;
+
+  /**
+   * @var Block_Frame_Decorator
+   */
+  protected $_frame;
+  
+  function __construct(Block_Frame_Decorator $frame) { parent::__construct($frame); }
+
+  /**
+   *  Calculate the ideal used value for the width property as per:
+   *  http://www.w3.org/TR/CSS21/visudet.html#Computing_widths_and_margins
+   *  
+   *  @param float $width
+   *  @return array
+   */
+  protected function _calculate_width($width) {
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    $w = $frame->get_containing_block("w");
+
+    if ( $style->position === "fixed" ) {
+      $w = $frame->get_parent()->get_containing_block("w");
+    }
+
+    $rm = $style->length_in_pt($style->margin_right, $w);
+    $lm = $style->length_in_pt($style->margin_left, $w);
+
+    $left = $style->length_in_pt($style->left, $w);
+    $right = $style->length_in_pt($style->right, $w);
+    
+    // Handle 'auto' values
+    $dims = array($style->border_left_width,
+                  $style->border_right_width,
+                  $style->padding_left,
+                  $style->padding_right,
+                  $width !== "auto" ? $width : 0,
+                  $rm !== "auto" ? $rm : 0,
+                  $lm !== "auto" ? $lm : 0);
+
+    // absolutely positioned boxes take the 'left' and 'right' properties into account
+    if ( $frame->is_absolute() ) {
+      $absolute = true;
+      $dims[] = $left !== "auto" ? $left : 0;
+      $dims[] = $right !== "auto" ? $right : 0;
+    }
+    else {
+      $absolute = false;
+    }
+
+    $sum = $style->length_in_pt($dims, $w);
+
+    // Compare to the containing block
+    $diff = $w - $sum;
+
+    if ( $diff > 0 ) {
+
+      if ( $absolute ) {
+
+        // resolve auto properties: see
+        // http://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-width
+
+        if ( $width === "auto" && $left === "auto" && $right === "auto" ) {
+
+          if ( $lm === "auto" ) $lm = 0;
+          if ( $rm === "auto" ) $rm = 0;
+
+          // Technically, the width should be "shrink-to-fit" i.e. based on the
+          // preferred width of the content...  a little too costly here as a
+          // special case.  Just get the width to take up the slack:
+          $left = 0;
+          $right = 0;
+          $width = $diff;
+        }
+        else if ( $width === "auto" ) {
+
+          if ( $lm    === "auto" ) $lm = 0;
+          if ( $rm    === "auto" ) $rm = 0;
+          if ( $left  === "auto" ) $left = 0;
+          if ( $right === "auto" ) $right = 0;
+
+          $width = $diff;
+        }
+        else if ( $left === "auto" ) {
+          
+          if ( $lm    === "auto" ) $lm = 0;
+          if ( $rm    === "auto" ) $rm = 0;
+          if ( $right === "auto" ) $right = 0;
+
+          $left = $diff;
+        }
+        else if ( $right === "auto" ) {
+
+          if ( $lm === "auto" ) $lm = 0;
+          if ( $rm === "auto" ) $rm = 0;
+
+          $right = $diff;
+        }
+
+      }
+      else {
+
+        // Find auto properties and get them to take up the slack
+        if ( $width === "auto" ) {
+          $width = $diff;
+        }
+        else if ( $lm === "auto" && $rm === "auto" ) {
+          $lm = $rm = round($diff / 2);
+        }
+        else if ( $lm === "auto" ) {
+          $lm = $diff;
+        }
+        else if ( $rm === "auto" ) {
+          $rm = $diff;
+        }
+      }
+
+    }
+    else if ($diff < 0) {
+
+      // We are over constrained--set margin-right to the difference
+      $rm = $diff;
+
+    }
+
+    return array(
+      "width"        => $width,
+      "margin_left"  => $lm,
+      "margin_right" => $rm,
+      "left"         => $left,
+      "right"        => $right,
+    );
+  }
+
+  /**
+   * Call the above function, but resolve max/min widths
+   *
+   * @throws DOMPDF_Exception
+   * @return array
+   */
+  protected function _calculate_restricted_width() {
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    $cb = $frame->get_containing_block();
+    
+    if ( $style->position === "fixed" ) {
+      $cb = $frame->get_root()->get_containing_block();
+    }
+    
+    //if ( $style->position === "absolute" )
+    //  $cb = $frame->find_positionned_parent()->get_containing_block();
+
+    if ( !isset($cb["w"]) ) {
+      throw new DOMPDF_Exception("Box property calculation requires containing block width");
+    }
+    
+    // Treat width 100% as auto
+    if ( $style->width === "100%" ) {
+      $width = "auto";
+    }
+    else {
+      $width = $style->length_in_pt($style->width, $cb["w"]);
+    }
+    
+    extract($this->_calculate_width($width));
+
+    // Handle min/max width
+    $min_width = $style->length_in_pt($style->min_width, $cb["w"]);
+    $max_width = $style->length_in_pt($style->max_width, $cb["w"]);
+
+    if ( $max_width !== "none" && $min_width > $max_width ) {
+      list($max_width, $min_width) = array($min_width, $max_width);
+    }
+    
+    if ( $max_width !== "none" && $width > $max_width ) {
+      extract($this->_calculate_width($max_width));
+    }
+
+    if ( $width < $min_width ) {
+      extract($this->_calculate_width($min_width));
+    }
+
+    return array($width, $margin_left, $margin_right, $left, $right);
+  }
+  
+  /** 
+   * Determine the unrestricted height of content within the block
+   * not by adding each line's height, but by getting the last line's position. 
+   * This because lines could have been pushed lower by a clearing element.
+   *
+   * @return float
+   */
+  protected function _calculate_content_height() {
+    $lines = $this->_frame->get_line_boxes();
+    $height = 0;
+
+    foreach ($lines as $line) {
+      $height += $line->h;
+    }
+    
+    /*
+    $first_line = reset($lines);
+    $last_line  = end($lines);
+    $height2 = $last_line->y + $last_line->h - $first_line->y;
+    */
+    
+    return $height;
+  }
+
+  /** 
+   * Determine the frame's restricted height
+   *
+   * @return array
+   */
+  protected function _calculate_restricted_height() {
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    $content_height = $this->_calculate_content_height();
+    $cb = $frame->get_containing_block();
+    
+    $height = $style->length_in_pt($style->height, $cb["h"]);
+
+    $top    = $style->length_in_pt($style->top, $cb["h"]);
+    $bottom = $style->length_in_pt($style->bottom, $cb["h"]);
+
+    $margin_top    = $style->length_in_pt($style->margin_top, $cb["h"]);
+    $margin_bottom = $style->length_in_pt($style->margin_bottom, $cb["h"]);
+
+    if ( $frame->is_absolute() ) {
+
+      // see http://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-height
+
+      $dims = array($top !== "auto" ? $top : 0,
+                    $style->margin_top !== "auto" ? $style->margin_top : 0,
+                    $style->padding_top,
+                    $style->border_top_width,
+                    $height !== "auto" ? $height : 0,
+                    $style->border_bottom_width,
+                    $style->padding_bottom,
+                    $style->margin_bottom !== "auto" ? $style->margin_bottom : 0,
+                    $bottom !== "auto" ? $bottom : 0);
+
+      $sum = $style->length_in_pt($dims, $cb["h"]);
+
+      $diff = $cb["h"] - $sum; 
+
+      if ( $diff > 0 ) {
+
+        if ( $height === "auto" && $top === "auto" && $bottom === "auto" ) {
+
+          if ( $margin_top    === "auto" ) $margin_top = 0;
+          if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+
+          $height = $diff;
+        }
+        else if ( $height === "auto" && $top === "auto" ) {
+
+          if ( $margin_top    === "auto" ) $margin_top = 0;
+          if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+
+          $height = $content_height;
+          $top = $diff - $content_height;
+        }
+        else if ( $height === "auto" && $bottom === "auto" ) {
+
+          if ( $margin_top    === "auto" ) $margin_top = 0;
+          if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+
+          $height = $content_height;
+          $bottom = $diff - $content_height;
+        }
+        else if ( $top === "auto" && $bottom === "auto" ) {
+
+          if ( $margin_top    === "auto" ) $margin_top = 0;
+          if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+
+          $bottom = $diff;
+        }
+        else if ( $top === "auto" ) {
+
+          if ( $margin_top    === "auto" ) $margin_top = 0;
+          if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+
+          $top = $diff;
+        }
+        else if ( $height === "auto" ) {
+
+          if ( $margin_top    === "auto" ) $margin_top = 0;
+          if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+
+          $height = $diff;
+        }
+        else if ( $bottom === "auto" ) {
+
+          if ( $margin_top    === "auto" ) $margin_top = 0;
+          if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+
+          $bottom = $diff;
+        }
+        else {
+
+          if ( $style->overflow === "visible" ) {
+            // set all autos to zero
+            if ( $margin_top    === "auto" ) $margin_top = 0;
+            if ( $margin_bottom === "auto" ) $margin_bottom = 0;
+            if ( $top           === "auto" ) $top = 0;
+            if ( $bottom        === "auto" ) $bottom = 0;
+            if ( $height        === "auto" ) $height = $content_height;
+          }
+
+          // FIXME: overflow hidden
+        }
+
+      }
+
+    }
+    else {
+
+      // Expand the height if overflow is visible 
+      if ( $height === "auto" && $content_height > $height /* && $style->overflow === "visible" */) {
+        $height = $content_height;
+      }
+
+      // FIXME: this should probably be moved to a seperate function as per
+      // _calculate_restricted_width
+      
+      // Only handle min/max height if the height is independent of the frame's content
+      if ( !($style->overflow === "visible" ||
+             ($style->overflow === "hidden" && $height === "auto")) ) {
+
+        $min_height = $style->min_height;
+        $max_height = $style->max_height;
+
+        if ( isset($cb["h"]) ) {
+          $min_height = $style->length_in_pt($min_height, $cb["h"]);
+          $max_height = $style->length_in_pt($max_height, $cb["h"]);
+
+        }
+        else if ( isset($cb["w"]) ) {
+
+          if ( mb_strpos($min_height, "%") !== false ) {
+            $min_height = 0;
+          }
+          else {
+            $min_height = $style->length_in_pt($min_height, $cb["w"]);
+          }
+
+          if ( mb_strpos($max_height, "%") !== false ) {
+            $max_height = "none";
+          }
+          else {
+            $max_height = $style->length_in_pt($max_height, $cb["w"]);
+          }
+        }
+
+        if ( $max_height !== "none" && $min_height > $max_height ) {
+          // Swap 'em
+          list($max_height, $min_height) = array($min_height, $max_height);
+        }
+        
+        if ( $max_height !== "none" && $height > $max_height ) {
+          $height = $max_height;
+        }
+
+        if ( $height < $min_height ) {
+          $height = $min_height;
+        }
+      }
+
+    }
+
+    return array($height, $margin_top, $margin_bottom, $top, $bottom);
+
+  }
+
+  /**
+   * Adjust the justification of each of our lines.
+   * http://www.w3.org/TR/CSS21/text.html#propdef-text-align
+   */
+  protected function _text_align() {
+    $style = $this->_frame->get_style();
+    $w = $this->_frame->get_containing_block("w");
+    $width = $style->length_in_pt($style->width, $w);
+    
+    switch ($style->text_align) {
+      default:
+      case "left":
+        foreach ($this->_frame->get_line_boxes() as $line) {
+          if ( !$line->left ) {
+            continue;
+          }
+          
+          foreach($line->get_frames() as $frame) {
+            if ( $frame instanceof Block_Frame_Decorator) {
+              continue;
+            }
+            $frame->set_position( $frame->get_position("x") + $line->left );
+          }
+        }
+        return;
+  
+      case "right":
+        foreach ($this->_frame->get_line_boxes() as $line) {
+          // Move each child over by $dx
+          $dx = $width - $line->w - $line->right;
+          
+          foreach($line->get_frames() as $frame) {
+            // Block frames are not aligned by text-align
+            if ($frame instanceof Block_Frame_Decorator) {
+              continue;
+            }
+            
+            $frame->set_position( $frame->get_position("x") + $dx );
+          }
+        }
+        break;
+  
+  
+      case "justify":
+        // We justify all lines except the last one
+        $lines = $this->_frame->get_line_boxes(); // needs to be a variable (strict standards)
+        array_pop($lines);
+        
+        foreach($lines as $i => $line) {
+          if ( $line->br ) {
+            unset($lines[$i]);
+          }
+        }
+        
+        // One space character's width. Will be used to get a more accurate spacing
+        $space_width = Font_Metrics::get_text_width(" ", $style->font_family, $style->font_size);
+        
+        foreach ($lines as $line) {
+          if ( $line->left ) {
+            foreach ( $line->get_frames() as $frame ) {
+              if ( !$frame instanceof Text_Frame_Decorator ) {
+                continue;
+              }
+    
+              $frame->set_position( $frame->get_position("x") + $line->left );
+            }
+          }
+            
+          // Only set the spacing if the line is long enough.  This is really
+          // just an aesthetic choice ;)
+          //if ( $line["left"] + $line["w"] + $line["right"] > self::MIN_JUSTIFY_WIDTH * $width ) {
+            
+            // Set the spacing for each child
+            if ( $line->wc > 1 ) {
+              $spacing = ($width - ($line->left + $line->w + $line->right) + $space_width) / ($line->wc - 1);
+            }
+            else {
+              $spacing = 0;
+            }
+  
+            $dx = 0;
+            foreach($line->get_frames() as $frame) {
+              if ( !$frame instanceof Text_Frame_Decorator ) {
+                continue;
+              }
+                
+              $text = $frame->get_text();
+              $spaces = mb_substr_count($text, " ");
+              
+              $char_spacing = $style->length_in_pt($style->letter_spacing);
+              $_spacing = $spacing + $char_spacing;
+              
+              $frame->set_position( $frame->get_position("x") + $dx );
+              $frame->set_text_spacing($_spacing);
+              
+              $dx += $spaces * $_spacing;
+            }
+  
+            // The line (should) now occupy the entire width
+            $line->w = $width;
+  
+          //}
+        }
+        break;
+  
+      case "center":
+      case "centre":
+        foreach ($this->_frame->get_line_boxes() as $line) {
+          // Centre each line by moving each frame in the line by:
+          $dx = ($width + $line->left - $line->w - $line->right ) / 2;
+          
+          foreach ($line->get_frames() as $frame) {
+            // Block frames are not aligned by text-align
+            if ($frame instanceof Block_Frame_Decorator) {
+              continue;
+            }
+            
+            $frame->set_position( $frame->get_position("x") + $dx );
+          }
+        }
+        break;
+    }
+  }
+  
+  /**
+   * Align inline children vertically.
+   * Aligns each child vertically after each line is reflowed
+   */
+  function vertical_align() {
+    
+    $canvas = null;
+    
+    foreach ( $this->_frame->get_line_boxes() as $line ) {
+
+      $height = $line->h;
+    
+      foreach ( $line->get_frames() as $frame ) {
+        $style = $frame->get_style();
+
+        if ( $style->display !== "inline" ) {
+          continue;
+        }
+
+        $align = $frame->get_parent()->get_style()->vertical_align;
+        
+        if ( !isset($canvas) ) {
+          $canvas = $frame->get_root()->get_dompdf()->get_canvas();
+        }
+        
+        $baseline = $canvas->get_font_baseline($style->font_family, $style->font_size);
+        $y_offset = 0;
+        
+        switch ($align) {
+          case "baseline":
+            $y_offset = $height*0.8 - $baseline; // The 0.8 ratio is arbitrary until we find it's meaning
+            break;
+    
+          case "middle":
+            $y_offset = ($height*0.8 - $baseline) / 2;
+            break;
+    
+          case "sub":
+            $y_offset = 0.3 * $height;
+            break;
+    
+          case "super":
+            $y_offset = -0.2 * $height;
+            break;
+    
+          case "text-top":
+          case "top": // Not strictly accurate, but good enough for now
+            break;
+    
+          case "text-bottom":
+          case "bottom":
+            $y_offset = $height*0.8 - $baseline;
+            break;
+        }
+         
+        if ( $y_offset ) {
+          $frame->move(0, $y_offset);
+        }
+      }
+    }
+  }
+
+  /**
+   * @param Frame $child
+   */
+  function process_clear(Frame $child){
+    $enable_css_float = $this->get_dompdf()->get_option("enable_css_float");
+    if ( !$enable_css_float ) {
+      return;
+    }
+    
+    $child_style = $child->get_style();
+    $root = $this->_frame->get_root();
+    
+    // Handle "clear"
+    if ( $child_style->clear !== "none" ) {
+      $lowest_y = $root->get_lowest_float_offset($child);
+      
+      // If a float is still applying, we handle it
+      if ( $lowest_y ) {
+        if ( $child->is_in_flow() ) {
+          $line_box = $this->_frame->get_current_line_box();
+          $line_box->y = $lowest_y + $child->get_margin_height();
+          $line_box->left = 0;
+          $line_box->right = 0;
+        }
+        
+        $child->move(0, $lowest_y - $child->get_position("y"));
+      }
+    }
+  }
+
+  /**
+   * @param Frame $child
+   * @param float $cb_x
+   * @param float $cb_w
+   */
+  function process_float(Frame $child, $cb_x, $cb_w){
+    $enable_css_float = $this->_frame->get_dompdf()->get_option("enable_css_float");
+    if ( !$enable_css_float ) {
+      return;
+    }
+    
+    $child_style = $child->get_style();
+    $root = $this->_frame->get_root();
+    
+    // Handle "float"
+    if ( $child_style->float !== "none" ) {
+      $root->add_floating_frame($child);
+      
+      // Remove next frame's beginning whitespace
+      $next = $child->get_next_sibling();
+      if ( $next && $next instanceof Text_Frame_Decorator) {
+        $next->set_text(ltrim($next->get_text()));
+      }
+      
+      $line_box = $this->_frame->get_current_line_box();
+      list($old_x, $old_y) = $child->get_position();
+      
+      $float_x = $cb_x;
+      $float_y = $old_y;
+      $float_w = $child->get_margin_width();
+      
+      if ( $child_style->clear === "none" ) {
+        switch( $child_style->float ) {
+          case "left": 
+            $float_x += $line_box->left;
+            break;
+          case "right": 
+            $float_x += ($cb_w - $line_box->right - $float_w);
+            break;
+        }
+      }
+      else {
+        if ( $child_style->float === "right" ) {
+          $float_x += ($cb_w - $float_w);
+        }
+      }
+      
+      if ( $cb_w < $float_x + $float_w - $old_x ) {
+        // TODO handle when floating elements don't fit
+      }
+      
+      $line_box->get_float_offsets();
+      
+      if ( $child->_float_next_line ) {
+        $float_y += $line_box->h;
+      }
+      
+      $child->set_position($float_x, $float_y);
+      $child->move($float_x - $old_x, $float_y - $old_y, true);
+    }
+  }
+
+  /**
+   * @param Frame_Decorator $block
+   */
+  function reflow(Block_Frame_Decorator $block = null) {
+
+    // Check if a page break is forced
+    $page = $this->_frame->get_root();
+    $page->check_forced_page_break($this->_frame);
+
+    // Bail if the page is full
+    if ( $page->is_full() ) {
+      return;
+    }
+      
+    // Generated content
+    $this->_set_content();
+
+    // Collapse margins if required
+    $this->_collapse_margins();
+
+    $style = $this->_frame->get_style();
+    $cb = $this->_frame->get_containing_block();
+    
+    if ( $style->position === "fixed" ) {
+      $cb = $this->_frame->get_root()->get_containing_block();
+    }
+    
+    // Determine the constraints imposed by this frame: calculate the width
+    // of the content area:
+    list($w, $left_margin, $right_margin, $left, $right) = $this->_calculate_restricted_width();
+
+    // Store the calculated properties
+    $style->width = $w . "pt";
+    $style->margin_left = $left_margin."pt";
+    $style->margin_right = $right_margin."pt";
+    $style->left = $left ."pt";
+    $style->right = $right . "pt";
+    
+    // Update the position
+    $this->_frame->position();
+    list($x, $y) = $this->_frame->get_position();
+
+    // Adjust the first line based on the text-indent property
+    $indent = $style->length_in_pt($style->text_indent, $cb["w"]);
+    $this->_frame->increase_line_width($indent);
+
+    // Determine the content edge
+    $top = $style->length_in_pt(array($style->margin_top,
+                                      $style->padding_top,
+                                      $style->border_top_width), $cb["h"]);
+
+    $bottom = $style->length_in_pt(array($style->border_bottom_width,
+                                         $style->margin_bottom,
+                                         $style->padding_bottom), $cb["h"]);
+
+    $cb_x = $x + $left_margin + $style->length_in_pt(array($style->border_left_width, 
+                                                           $style->padding_left), $cb["w"]);
+
+    $cb_y = $y + $top;
+
+    $cb_h = ($cb["h"] + $cb["y"]) - $bottom - $cb_y;
+
+    // Set the y position of the first line in this block
+    $line_box = $this->_frame->get_current_line_box();
+    $line_box->y = $cb_y;
+    $line_box->get_float_offsets();
+    
+    // Set the containing blocks and reflow each child
+    foreach ( $this->_frame->get_children() as $child ) {
+      
+      // Bail out if the page is full
+      if ( $page->is_full() ) {
+        break;
+      }
+      
+      $child->set_containing_block($cb_x, $cb_y, $w, $cb_h);
+      
+      $this->process_clear($child);
+      
+      $child->reflow($this->_frame);
+      
+      // Don't add the child to the line if a page break has occurred
+      if ( $page->check_page_break($child) ) {
+        break;
+      }
+      
+      $this->process_float($child, $cb_x, $w);
+    }
+
+    // Determine our height
+    list($height, $margin_top, $margin_bottom, $top, $bottom) = $this->_calculate_restricted_height();
+    $style->height = $height;
+    $style->margin_top = $margin_top;
+    $style->margin_bottom = $margin_bottom;
+    $style->top = $top;
+    $style->bottom = $bottom;
+    
+    $needs_reposition = ($style->position === "absolute" && ($style->right !== "auto" || $style->bottom !== "auto"));
+    
+    // Absolute positioning measurement
+    if ( $needs_reposition ) {
+      $orig_style = $this->_frame->get_original_style();
+      if ( $orig_style->width === "auto" && ($orig_style->left === "auto" || $orig_style->right === "auto") ) {
+        $width = 0;
+        foreach ($this->_frame->get_line_boxes() as $line) {
+          $width = max($line->w, $width);
+        }
+        $style->width = $width;
+      }
+      
+      $style->left = $orig_style->left;
+      $style->right = $orig_style->right;
+    }
+
+    $this->_text_align();
+    $this->vertical_align();
+    
+    // Absolute positioning
+    if ( $needs_reposition ) {
+      list($x, $y) = $this->_frame->get_position();
+      $this->_frame->position();
+      list($new_x, $new_y) = $this->_frame->get_position();
+      $this->_frame->move($new_x-$x, $new_y-$y, true);
+    }
+    
+    if ( $block && $this->_frame->is_in_flow() ) {
+      $block->add_frame_to_line($this->_frame);
+      
+      // May be inline-block
+      if ( $style->display === "block" ) {
+        $block->add_line();
+      }
+    }
+  }
+}

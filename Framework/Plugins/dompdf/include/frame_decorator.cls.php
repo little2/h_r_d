@@ -1,248 +1,717 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-tnfj37YY/91d6POcvKtAXFqY4PrhuzstfP1y9m==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Base Frame_Decorator class
+ *
+ * @access private
+ * @package dompdf
+ */
+abstract class Frame_Decorator extends Frame {
+  const DEFAULT_COUNTER = "-dompdf-default-counter";
+  
+  public $_counters = array(); // array([id] => counter_value) (for generated content)
+  
+  /**
+   * The root node of the DOM tree
+   *
+   * @var Frame
+   */
+  protected $_root;
+
+  /**
+   * The decorated frame
+   *
+   * @var Frame
+   */
+  protected $_frame;
+
+  /**
+   * Positioner object used to position this frame (Strategy pattern)
+   *
+   * @var Positioner
+   */
+  protected $_positioner;
+
+  /**
+   * Reflower object used to calculate frame dimensions (Strategy pattern)
+   *
+   * @var Frame_Reflower
+   */
+  protected $_reflower;
+  
+  /**
+   * Reference to the current dompdf instance
+   *
+   * @var DOMPDF
+   */
+  protected $_dompdf;
+  
+  /**
+   * First block parent
+   * 
+   * @var Block_Frame_Decorator
+   */
+  private $_block_parent;
+  
+  /**
+   * First positionned parent (position: relative | absolute | fixed)
+   * 
+   * @var Frame_Decorator
+   */
+  private $_positionned_parent;
+
+  /**
+   * Class constructor
+   *
+   * @param Frame  $frame  The decoration target
+   * @param DOMPDF $dompdf The DOMPDF object
+   */
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    $this->_frame = $frame;
+    $this->_root = null;
+    $this->_dompdf = $dompdf;
+    $frame->set_decorator($this);
+  }
+
+  /**
+   * "Destructor": foribly free all references held by this object
+   *
+   * @param bool $recursive if true, call dispose on all children
+   */
+  function dispose($recursive = false) {
+    if ( $recursive ) {
+      while ( $child = $this->get_first_child() ) {
+        $child->dispose(true);
+      }
+    }
+    
+    $this->_root = null;
+    unset($this->_root);
+    
+    $this->_frame->dispose(true);
+    $this->_frame = null;
+    unset($this->_frame);
+    
+    $this->_positioner = null;
+    unset($this->_positioner);
+    
+    $this->_reflower = null;
+    unset($this->_reflower);
+  }
+
+  /**
+   * Return a copy of this frame with $node as its node
+   * 
+   * @param DOMNode $node
+   *
+   * @return Frame
+   */ 
+  function copy(DOMNode $node) {
+    $frame = new Frame($node);
+    $frame->set_style(clone $this->_frame->get_original_style());
+    
+    return Frame_Factory::decorate_frame($frame, $this->_dompdf, $this->_root);
+  }
+
+  /**
+   * Create a deep copy: copy this node and all children
+   *
+   * @return Frame
+   */
+  function deep_copy() {
+    $frame = new Frame($this->get_node()->cloneNode());
+    $frame->set_style(clone $this->_frame->get_original_style());
+    
+    $deco = Frame_Factory::decorate_frame($frame, $this->_dompdf, $this->_root);
+    
+    foreach ($this->get_children() as $child) {
+      $deco->append_child($child->deep_copy());
+    }
+    
+    return $deco;
+  }
+  
+  /**
+   * Delegate calls to decorated frame object
+   */
+  function reset() {
+    $this->_frame->reset();
+    
+    $this->_counters = array();
+    
+    // Reset all children
+    foreach ($this->get_children() as $child) {
+      $child->reset();
+    }
+  }
+  
+  // Getters -----------
+  function get_id() {
+    return $this->_frame->get_id();
+  }
+  
+  /**
+   * @return Frame
+   */
+  function get_frame() {
+    return $this->_frame;
+  }
+  
+  /**
+   * @return DOMElement|DOMText
+   */
+  function get_node() {
+    return $this->_frame->get_node();
+  }
+  
+  /**
+   * @return Style
+   */
+  function get_style() {
+    return $this->_frame->get_style();
+  }
+  
+  /**
+   * @return Style
+   */
+  function get_original_style() {
+    return $this->_frame->get_original_style();
+  }
+
+  /**
+   * @param integer $i
+   *
+   * @return array|float
+   */
+  function get_containing_block($i = null) {
+    return $this->_frame->get_containing_block($i);
+  }
+
+  /**
+   * @param integer $i
+   *
+   * @return array|float
+   */
+  function get_position($i = null) {
+    return $this->_frame->get_position($i);
+  }
+  
+  /**
+   * @return DOMPDF
+   */
+  function get_dompdf() {
+    return $this->_dompdf;
+  }
+
+  /**
+   * @return float
+   */
+  function get_margin_height() {
+    return $this->_frame->get_margin_height();
+  }
+
+  /**
+   * @return float
+   */
+  function get_margin_width() {
+    return $this->_frame->get_margin_width();
+  }
+
+  /**
+   * @return array
+   */
+  function get_padding_box() {
+    return $this->_frame->get_padding_box();
+  }
+
+  /**
+   * @return array
+   */
+  function get_border_box() {
+    return $this->_frame->get_border_box();
+  }
+
+  /**
+   * @param integer $id
+   */
+  function set_id($id) {
+    $this->_frame->set_id($id);
+  }
+
+  /**
+   * @param Style $style
+   */
+  function set_style(Style $style) {
+    $this->_frame->set_style($style);
+  }
+
+  /**
+   * @param float $x
+   * @param float $y
+   * @param float $w
+   * @param float $h
+   */
+  function set_containing_block($x = null, $y = null, $w = null, $h = null) {
+    $this->_frame->set_containing_block($x, $y, $w, $h);
+  }
+
+  /**
+   * @param float $x
+   * @param float $y
+   */
+  function set_position($x = null, $y = null) {
+    $this->_frame->set_position($x, $y);
+  }
+
+  /**
+   * @return string
+   */
+  function __toString() {
+    return $this->_frame->__toString();
+  }
+
+  /**
+   * @param Frame $child
+   * @param bool  $update_node
+   */
+  function prepend_child(Frame $child, $update_node = true) {
+    while ( $child instanceof Frame_Decorator ) {
+      $child = $child->_frame;
+    }
+    
+    $this->_frame->prepend_child($child, $update_node);
+  }
+
+  /**
+   * @param Frame $child
+   * @param bool  $update_node
+   */
+  function append_child(Frame $child, $update_node = true) {
+    while ( $child instanceof Frame_Decorator ) {
+      $child = $child->_frame;
+    }
+
+    $this->_frame->append_child($child, $update_node);
+  }
+
+  /**
+   * @param Frame $new_child
+   * @param Frame $ref
+   * @param bool  $update_node
+   */
+  function insert_child_before(Frame $new_child, Frame $ref, $update_node = true) {
+    while ( $new_child instanceof Frame_Decorator ) {
+      $new_child = $new_child->_frame;
+    }
+
+    if ( $ref instanceof Frame_Decorator ) {
+      $ref = $ref->_frame;
+    }
+
+    $this->_frame->insert_child_before($new_child, $ref, $update_node);
+  }
+
+  /**
+   * @param Frame $new_child
+   * @param Frame $ref
+   * @param bool  $update_node
+   */
+  function insert_child_after(Frame $new_child, Frame $ref, $update_node = true) {
+    while ( $new_child instanceof Frame_Decorator ) {
+      $new_child = $new_child->_frame;
+    }
+
+    while ( $ref instanceof Frame_Decorator ) {
+      $ref = $ref->_frame;
+    }
+    
+    $this->_frame->insert_child_after($new_child, $ref, $update_node);
+  }
+
+  /**
+   * @param Frame $child
+   * @param bool  $update_node
+   *
+   * @return Frame
+   */
+  function remove_child(Frame $child, $update_node = true) {
+    while  ( $child instanceof Frame_Decorator ) {
+      $child = $child->_frame;
+    }
+
+    return $this->_frame->remove_child($child, $update_node);
+  }
+
+  /**
+   * @return Frame_Decorator
+   */
+  function get_parent() {
+    $p = $this->_frame->get_parent();
+    if ( $p && $deco = $p->get_decorator() ) {
+      while ( $tmp = $deco->get_decorator() ) {
+        $deco = $tmp;
+      }
+      
+      return $deco;
+    }
+    else if ( $p ) {
+      return $p;
+    }
+    
+    return null;
+  }
+
+  /**
+   * @return Frame_Decorator
+   */
+  function get_first_child() {
+    $c = $this->_frame->get_first_child();
+    if ( $c && $deco = $c->get_decorator() ) {
+      while ( $tmp = $deco->get_decorator() ) {
+        $deco = $tmp;
+      }
+      
+      return $deco;
+    }
+    else if ( $c ) {
+      return $c;
+    }
+    
+    return null;
+  }
+
+  /**
+   * @return Frame_Decorator
+   */
+  function get_last_child() {
+    $c = $this->_frame->get_last_child();
+    if ( $c && $deco = $c->get_decorator() ) {
+      while ( $tmp = $deco->get_decorator() ) {
+        $deco = $tmp;
+      }
+      
+      return $deco;
+    }
+    else if ( $c ) {
+      return $c;
+    }
+    
+    return null;
+  }
+
+  /**
+   * @return Frame_Decorator
+   */
+  function get_prev_sibling() {
+    $s = $this->_frame->get_prev_sibling();
+    if ( $s && $deco = $s->get_decorator() ) {
+      while ( $tmp = $deco->get_decorator() ) {
+        $deco = $tmp;
+      }
+      return $deco;
+    }
+    else if ( $s ) {
+      return $s;
+    }
+    
+    return null;
+  }
+  
+  /**
+   * @return Frame_Decorator
+   */
+  function get_next_sibling() {
+    $s = $this->_frame->get_next_sibling();
+    if ( $s && $deco = $s->get_decorator() ) {
+      while ( $tmp = $deco->get_decorator() ) {
+        $deco = $tmp;
+      }
+      
+      return $deco;
+    }
+    else if ( $s ) {
+      return $s;
+    }
+    
+    return null;
+  }
+
+  /**
+   * @return FrameTreeList
+   */
+  function get_subtree() {
+    return new FrameTreeList($this);
+  }
+
+  function set_positioner(Positioner $posn) {
+    $this->_positioner = $posn;
+    if ( $this->_frame instanceof Frame_Decorator ) {
+      $this->_frame->set_positioner($posn);
+    }
+  }
+
+  function set_reflower(Frame_Reflower $reflower) {
+    $this->_reflower = $reflower;
+    if ( $this->_frame instanceof Frame_Decorator ) {
+      $this->_frame->set_reflower( $reflower );
+    }
+  }
+  
+  /**
+   * @return Frame_Reflower
+   */
+  function get_reflower() {
+    return $this->_reflower;
+  }
+
+  /**
+   * @param Frame $root
+   */
+  function set_root(Frame $root) {
+    $this->_root = $root;
+    
+    if ( $this->_frame instanceof Frame_Decorator ) {
+      $this->_frame->set_root($root);
+    }
+  }
+  
+  /**
+   * @return Page_Frame_Decorator
+   */
+  function get_root() {
+    return $this->_root;
+  }
+
+  /**
+   * @return Block_Frame_Decorator
+   */
+  function find_block_parent() {
+    // Find our nearest block level parent
+    $p = $this->get_parent();
+    
+    while ( $p ) {
+      if ( $p->is_block() ) {
+        break;
+      }
+      
+      $p = $p->get_parent();
+    }
+
+    return $this->_block_parent = $p;
+  }
+  
+  /**
+   * @return Frame_Decorator
+   */
+  function find_positionned_parent() {
+    // Find our nearest relative positionned parent
+    $p = $this->get_parent();
+    while ( $p ) {
+      if ( $p->is_positionned() ) {
+        break;
+      }
+      
+      $p = $p->get_parent();
+    }
+    
+    if ( !$p ) {
+      $p = $this->_root->get_first_child(); // <body>
+    }
+
+    return $this->_positionned_parent = $p;
+  }
+
+  /**
+   * split this frame at $child.
+   * The current frame is cloned and $child and all children following
+   * $child are added to the clone.  The clone is then passed to the
+   * current frame's parent->split() method.
+   *
+   * @param Frame   $child
+   * @param boolean $force_pagebreak
+   *
+   * @throws DOMPDF_Exception
+   * @return void
+   */
+  function split(Frame $child = null, $force_pagebreak = false) {
+    // decrement any counters that were incremented on the current node, unless that node is the body
+    $style = $this->_frame->get_style();
+    if ( $this->_frame->get_node()->nodeName !== "body" && $style->counter_increment && ($decrement = $style->counter_increment) !== "none" ) {
+      $this->decrement_counters($decrement);
+    }
+    
+    if ( is_null( $child ) ) {
+      // check for counter increment on :before content (always a child of the selected element @link Frame_Reflower::_set_content)
+      // this can push the current node to the next page before counter rules have bubbled up (but only if
+      // it's been rendered, thus the position check)
+      if ( !$this->is_text_node() && $this->get_node()->hasAttribute("dompdf_before_frame_id") ) {
+        foreach($this->_frame->get_children() as $child) {
+          if ( $this->get_node()->getAttribute("dompdf_before_frame_id") == $child->get_id() && $child->get_position('x') !== NULL ) {
+            $style = $child->get_style();
+            if ( $style->counter_increment && ($decrement = $style->counter_increment) !== "none" ) {
+              $this->decrement_counters($decrement);
+            }
+          }
+        }
+      }
+      $this->get_parent()->split($this, $force_pagebreak);
+      return;
+    }
+    
+    if ( $child->get_parent() !== $this ) {
+      throw new DOMPDF_Exception("Unable to split: frame is not a child of this one.");
+    }
+    
+    $node = $this->_frame->get_node();
+    
+    $split = $this->copy( $node->cloneNode() );
+    $split->reset();
+    $split->get_original_style()->text_indent = 0;
+    $split->_splitted = true;
+    
+    // The body's properties must be kept
+    if ( $node->nodeName !== "body" ) {
+      // Style reset on the first and second parts
+      $style = $this->_frame->get_style();
+      $style->margin_bottom = 0;
+      $style->padding_bottom = 0;
+      $style->border_bottom = 0;
+      
+      // second
+      $orig_style = $split->get_original_style();
+      $orig_style->text_indent = 0;
+      $orig_style->margin_top = 0;
+      $orig_style->padding_top = 0;
+      $orig_style->border_top = 0;
+    }
+    
+    $this->get_parent()->insert_child_after($split, $this);
+    
+    // Add $frame and all following siblings to the new split node
+    $iter = $child;
+    while ($iter) {
+      $frame = $iter;
+      $iter = $iter->get_next_sibling();
+      $frame->reset();
+      $split->append_child($frame);
+    }
+    
+    $this->get_parent()->split($split, $force_pagebreak);
+    
+    // If this node resets a counter save the current value to use when rendering on the next page
+    if ( $style->counter_reset && ( $reset = $style->counter_reset ) !== "none" ) {
+      $vars = preg_split( '/\s+/' , trim( $reset ) , 2 );
+      $split->_counters[ '__' . $vars[0] ] = $this->lookup_counter_frame( $vars[0] )->_counters[$vars[0]];
+    }
+  }
+
+  function reset_counter($id = self::DEFAULT_COUNTER, $value = 0) {
+    $this->get_parent()->_counters[$id] = intval($value);
+  }
+  
+  function decrement_counters($counters) {
+    foreach($counters as $id => $increment) {
+      $this->increment_counter($id, intval($increment) * -1);
+    }
+  }
+  
+  function increment_counters($counters) {
+    foreach($counters as $id => $increment) {
+      $this->increment_counter($id, intval($increment));
+    }
+  }
+
+  function increment_counter($id = self::DEFAULT_COUNTER, $increment = 1) {
+    $counter_frame = $this->lookup_counter_frame($id);
+
+    if ( $counter_frame ) {
+      if ( !isset($counter_frame->_counters[$id]) ) {
+        $counter_frame->_counters[$id] = 0;
+      }
+      
+      $counter_frame->_counters[$id] += $increment;
+    }
+  }
+  
+  function lookup_counter_frame($id = self::DEFAULT_COUNTER) {
+    $f = $this->get_parent();
+    
+    while( $f ) {
+      if( isset($f->_counters[$id]) ) {
+        return $f;
+      }
+      $fp = $f->get_parent();
+      
+      if ( !$fp ) {
+        return $f;
+      }
+      
+      $f = $fp;
+    }
+  }
+
+  // TODO: What version is the best : this one or the one in List_Bullet_Renderer ?
+  function counter_value($id = self::DEFAULT_COUNTER, $type = "decimal") {
+    $type = mb_strtolower($type);
+    
+    if ( !isset($this->_counters[$id]) ) {
+      $this->_counters[$id] = 0;
+    }
+
+    $value = $this->_counters[$id];
+    
+    switch ($type) {
+      default:
+      case "decimal":
+        return $value;
+  
+      case "decimal-leading-zero":
+        return str_pad($value, 2, "0");
+  
+      case "lower-roman":
+        return dec2roman($value);
+  
+      case "upper-roman":
+        return mb_strtoupper(dec2roman($value));
+  
+      case "lower-latin":
+      case "lower-alpha":
+        return chr( ($value % 26) + ord('a') - 1);
+  
+      case "upper-latin":
+      case "upper-alpha":
+        return chr( ($value % 26) + ord('A') - 1);
+  
+      case "lower-greek":
+        return unichr($value + 944);
+  
+      case "upper-greek":
+        return unichr($value + 912);
+    }
+  }
+
+  final function position() {
+    $this->_positioner->position();
+  }
+  
+  final function move($offset_x, $offset_y, $ignore_self = false) {
+    $this->_positioner->move($offset_x, $offset_y, $ignore_self); 
+  }
+  
+  final function reflow(Block_Frame_Decorator $block = null) {
+    // Uncomment this to see the frames before they're laid out, instead of
+    // during rendering.
+    //echo $this->_frame; flush();
+    $this->_reflower->reflow($block);
+  }
+
+  final function get_min_max_width() {
+    return $this->_reflower->get_min_max_width();
+  }
+}

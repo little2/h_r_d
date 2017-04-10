@@ -1,149 +1,202 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-Za06cGg3b1bUh2tLkVe=
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+require_once dirname(__FILE__) . "/Encoding_Map.php";
+
+/**
+ * Adobe Font Metrics file creation utility class.
+ * 
+ * @package php-font-lib
+ */
+class Adobe_Font_Metrics {
+  private $f;
+  
+  /**
+   * @var Font_TrueType
+   */
+  private $font;
+  
+  function __construct(Font_TrueType $font) {
+    $this->font = $font;
+  }
+  
+  function write($file, $encoding = null){
+    $map_data = array();
+
+    if ($encoding) {
+      $encoding = preg_replace("/[^a-z0-9-_]/", "", $encoding);
+      $map_file = dirname(__FILE__)."/../maps/$encoding.map";
+      if (!file_exists($map_file)) {
+        throw new Exception("Unkown encoding ($encoding)");
+      }
+      
+      $map = new Encoding_Map($map_file);
+      $map_data = $map->parse();
+    }
+    
+    $this->f = fopen($file, "w+");
+    
+    $font = $this->font;
+    
+    $this->startSection("FontMetrics", 4.1);
+    $this->addPair("Notice", "Converted by PHP-font-lib");
+    $this->addPair("Comment", "https://github.com/PhenX/php-font-lib");
+    
+    $encoding_scheme = ($encoding ? $encoding : "FontSpecific");
+    $this->addPair("EncodingScheme", $encoding_scheme);
+    
+    $records = $font->getData("name", "records");
+    foreach($records as $id => $record) {
+      if (!isset(Font_Table_name::$nameIdCodes[$id]) || preg_match("/[\r\n]/", $record->string)) {
+        continue;
+      }
+      
+      $this->addPair(Font_Table_name::$nameIdCodes[$id], $record->string);
+    }
+    
+    $os2 = $font->getData("OS/2");
+    $this->addPair("Weight", ($os2["usWeightClass"] > 400 ? "Bold" : "Medium"));
+    
+    $post = $font->getData("post");
+    $this->addPair("ItalicAngle",        $post["italicAngle"]);
+    $this->addPair("IsFixedPitch",      ($post["isFixedPitch"] ? "true" : "false"));
+    $this->addPair("UnderlineThickness", $font->normalizeFUnit($post["underlineThickness"]));
+    $this->addPair("UnderlinePosition",  $font->normalizeFUnit($post["underlinePosition"]));
+    
+    $hhea = $font->getData("hhea");
+    
+    if (isset($hhea["ascent"])) {
+      $this->addPair("FontHeightOffset",  $font->normalizeFUnit($hhea["lineGap"]));
+      $this->addPair("Ascender",  $font->normalizeFUnit($hhea["ascent"]));
+      $this->addPair("Descender", $font->normalizeFUnit($hhea["descent"]));
+    }
+    else {
+      $this->addPair("FontHeightOffset",  $font->normalizeFUnit($os2["typoLineGap"]));
+      $this->addPair("Ascender",  $font->normalizeFUnit($os2["typoAscender"]));
+      $this->addPair("Descender", -abs($font->normalizeFUnit($os2["typoDescender"])));
+    }
+    
+    $head = $font->getData("head");
+    $this->addArray("FontBBox", array(
+      $font->normalizeFUnit($head["xMin"]),
+      $font->normalizeFUnit($head["yMin"]),
+      $font->normalizeFUnit($head["xMax"]),
+      $font->normalizeFUnit($head["yMax"]),
+    ));
+    
+    $glyphIndexArray = $font->getUnicodeCharMap();
+    
+    if ($glyphIndexArray) {
+      $hmtx = $font->getData("hmtx");
+      $names = $font->getData("post", "names");
+      
+      $this->startSection("CharMetrics", count($hmtx));
+        
+      if ($encoding)  {
+        foreach($map_data as $code => $value) {
+          list($c, $name) = $value;
+          
+          if (!isset($glyphIndexArray[$c])) continue;
+          
+          $g = $glyphIndexArray[$c];
+          
+          if (!isset($hmtx[$g])) {
+            $hmtx[$g] = $hmtx[0];
+          }
+          
+          $this->addMetric(array(
+            "C"  => ($code > 255 ? -1 : $code),
+            "WX" => $font->normalizeFUnit($hmtx[$g][0]),
+            "N"  => $name,
+          ));
+        }
+      }
+      else {
+        foreach($glyphIndexArray as $c => $g) {
+          if (!isset($hmtx[$g])) {
+            $hmtx[$g] = $hmtx[0];
+          }
+          
+          $this->addMetric(array(
+            "U" => $c,
+            "WX" => $font->normalizeFUnit($hmtx[$g][0]),
+            "N" => (isset($names[$g]) ? $names[$g] : sprintf("uni%04x", $c)),
+            "G" => $g,
+          ));
+        }
+      }
+        
+      $this->endSection("CharMetrics");
+    
+      $kern = $font->getData("kern", "subtable");
+      $tree = $kern["tree"];
+      
+      if (!$encoding && is_array($tree)) {
+        $this->startSection("KernData");
+          $this->startSection("KernPairs", count($tree, COUNT_RECURSIVE) - count($tree));
+            
+          foreach($tree as $left => $values) {
+            if (!is_array($values)) continue;
+            if (!isset($glyphIndexArray[$left])) continue;
+            
+            $left_gid = $glyphIndexArray[$left];
+            
+            if (!isset($names[$left_gid])) continue;
+            
+            $left_name = $names[$left_gid];
+            
+            $this->addLine("");
+            
+            foreach($values as $right => $value) {
+              if (!isset($glyphIndexArray[$right])) continue;
+              
+              $right_gid = $glyphIndexArray[$right];
+            
+              if (!isset($names[$right_gid])) continue;
+              
+              $right_name = $names[$right_gid];
+              $this->addPair("KPX", "$left_name $right_name $value");
+            }
+          }
+            
+          $this->endSection("KernPairs");
+        $this->endSection("KernData");
+      }
+    }
+      
+    $this->endSection("FontMetrics");
+  }
+  
+  function addLine($line) {
+    fwrite($this->f, "$line\n");
+  }
+  
+  function addPair($key, $value) {
+    $this->addLine("$key $value");
+  }
+  
+  function addArray($key, $array) {
+    $this->addLine("$key ".implode(" ", $array));
+  }
+  
+  function addMetric($data) {
+    $array = array();
+    foreach($data as $key => $value) {
+      $array[] = "$key $value";
+    }
+    $this->addLine(implode(" ; ", $array));
+  }
+
+  function startSection($name, $value = "") {
+    $this->addLine("Start$name $value");
+  }
+  
+  function endSection($name) {
+    $this->addLine("End$name");
+  }
+}

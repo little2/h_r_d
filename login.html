@@ -11,86 +11,7 @@
 <title>HRD Login</title>
 <script type="text/javascript" src="Framework/Core/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="/hrd/Framework/little2.function.js"></script>
-<script type="text/javascript">
-	$(function() {
-		if ($('#languageType').val() == 'CN') {
-			$('.language').css("background-image",
-					"url(Framework/Themes/images/login/cn.gif)");
-		} else if ($('#languageType').val() == 'TW') {
-			$('.language').css("background-image",
-					"url(Framework/Themes/images/login/tw.gif)");
-		} else if ($('#languageType').val() == 'EN') {
-			$('.language').css("background-image",
-					"url(Framework/Themes/images/login/en.gif)");
-		}
 
-		$('.language').click(
-				function() {
-					if ($('#languageType').val() == 'CN') {
-						$('.language').css("background-image",
-								"url(Framework/Themes/images/login/tw.gif)");
-						$('#languageType').attr("value", "TW");
-					} else if ($('#languageType').val() == 'TW') {
-						$('.language').css("background-image",
-								"url(Framework/Themes/images/login/en.gif)");
-						$('#languageType').attr("value", "EN");
-					} else if ($('#languageType').val() == 'EN') {
-						$('.language').css("background-image",
-								"url(Framework/Themes/images/login/cn.gif)");
-						$('#languageType').attr("value", "CN");
-					}
-				//	$('#login').attr("action", "changeLanguage.html");
-				//	$('#login').submit();
-				});
-
-		$('#btn1').click(login);
-		$("input").keypress(function(event) {
-			if (event.keyCode == 13) {
-				login();
-			}
-		});
-	});
-
-	function login() {
-
-		$.ajax({
-			type : 'POST', //GET or POST
-			url : '/hrd/function/query/login.php', 						//請求的頁面
-			cache : false,									//防止抓到快取的回應
-			data : $("#login").serialize(), //要傳送到頁面的參數
-			success :  function(data) {
-				if(data.errmsg)
-				{
-					$('#message_zone').text(data.errmsg);
-					reloadImages($('#images').attr("src"));
-				}
-				else
-				{
-					location.href='index.php'
-				}
-
-
-				},
-			error : function(data) {
-				//$.unblockUI();
-				alert("Error");
-			}, //當請求失敗後此事件會被呼叫
-			statusCode : { //狀態碼處理
-				404 : function() {
-					//$.unblockUI();
-					alert ("page not found");
-				}
-			}
-		});
-
-
-	}
-
-	function reloadImages(url) {
-		document.getElementById("images").src = url + "?Date"
-				+ new Date().getTime();
-	}
-</script>
 </head>
 <body class="loginbody" style="overflow: hidden">
 	<form method="post" id="login" action="">
@@ -170,4 +91,85 @@
 		<div class="loginfoot">版權所有  台灣緯任數位科技股份有限公司</div>
 	</form>
 </body>
+
+<script type="text/javascript">
+	$(function() {
+		if ($('#languageType').val() == 'CN') {
+			$('.language').css("background-image",
+					"url(Framework/Themes/images/login/cn.gif)");
+		} else if ($('#languageType').val() == 'TW') {
+			$('.language').css("background-image",
+					"url(Framework/Themes/images/login/tw.gif)");
+		} else if ($('#languageType').val() == 'EN') {
+			$('.language').css("background-image",
+					"url(Framework/Themes/images/login/en.gif)");
+		}
+
+		$('.language').click(
+				function() {
+					if ($('#languageType').val() == 'CN') {
+						$('.language').css("background-image",
+								"url(Framework/Themes/images/login/tw.gif)");
+						$('#languageType').attr("value", "TW");
+					} else if ($('#languageType').val() == 'TW') {
+						$('.language').css("background-image",
+								"url(Framework/Themes/images/login/en.gif)");
+						$('#languageType').attr("value", "EN");
+					} else if ($('#languageType').val() == 'EN') {
+						$('.language').css("background-image",
+								"url(Framework/Themes/images/login/cn.gif)");
+						$('#languageType').attr("value", "CN");
+					}
+				//	$('#login').attr("action", "changeLanguage.html");
+				//	$('#login').submit();
+				});
+
+		$('#btn1').click(login);
+		$("input").keypress(function(event) {
+			if (event.keyCode == 13) {
+				login();
+			}
+		});
+	});
+
+	function login() {
+		$.ajax({
+			type : 'POST', //GET or POST
+			url : '/hrd/function/query/login.php', 						//請求的頁面
+			cache : false,									//防止抓到快取的回應
+			data : $("#login").serialize(), //要傳送到頁面的參數
+			success :  function(data) {
+				if(data.errmsg)
+				{
+					$('#message_zone').text(data.errmsg);
+					reloadImages($('#images').attr("src"));
+				}
+				else
+				{
+					location.href='index.php'
+				}
+
+
+				},
+			error : function(data) {
+				//$.unblockUI();
+				alert("Error");
+			}, //當請求失敗後此事件會被呼叫
+			statusCode : { //狀態碼處理
+				404 : function() {
+					//$.unblockUI();
+					alert ("page not found");
+				}
+			}
+		});
+
+
+	}
+
+	function reloadImages(url) {
+		document.getElementById("images").src = url + "?Date"
+				+ new Date().getTime();
+	}
+</script>
+
 </html>

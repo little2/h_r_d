@@ -1,60 +1,125 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Positions absolutely positioned frames
+ */
+class Absolute_Positioner extends Positioner {
+
+  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
+
+  function position() {
+
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    
+    $p = $frame->find_positionned_parent();
+    
+    list($x, $y, $w, $h) = $frame->get_containing_block();
+
+    $top    = $style->length_in_pt($style->top,    $h);
+    $right  = $style->length_in_pt($style->right,  $w);
+    $bottom = $style->length_in_pt($style->bottom, $h);
+    $left   = $style->length_in_pt($style->left,   $w);
+    
+    if ( $p && !($left === "auto" && $right === "auto") ) {
+      // Get the parent's padding box (see http://www.w3.org/TR/CSS21/visuren.html#propdef-top)
+      list($x, $y, $w, $h) = $p->get_padding_box();
+    }
+    
+    list($width, $height) = array($frame->get_margin_width(), $frame->get_margin_height());
+    
+    $orig_style = $this->_frame->get_original_style();
+    $orig_width = $orig_style->width;
+    $orig_height = $orig_style->height;
+    
+    /****************************
+    
+    Width auto: 
+    ____________| left=auto | left=fixed |
+    right=auto  |     A     |     B      |
+    right=fixed |     C     |     D      |
+    
+    Width fixed: 
+    ____________| left=auto | left=fixed |
+    right=auto  |     E     |     F      |
+    right=fixed |     G     |     H      |
+    
+    *****************************/
+    
+    if ( $left === "auto" ) {
+      if ( $right === "auto" ) {
+        // A or E - Keep the frame at the same position
+        $x = $x + $frame->find_block_parent()->get_current_line_box()->w;
+      }
+      else {
+        if ( $orig_width === "auto" ) {
+          // C
+          $x += $w - $width - $right;
+        }
+        else {
+          // G
+          $x += $w - $width - $right;
+        }
+      }
+    }
+    else {
+      if ( $right === "auto" ) {
+        // B or F
+        $x += $left;
+      }
+      else {
+        if ( $orig_width === "auto" ) {
+          // D - TODO change width
+          $x += $left;
+        }
+        else {
+          // H - Everything is fixed: left + width win
+          $x += $left;
+        }
+      }
+    }
+    
+    // The same vertically
+    if ( $top === "auto" ) {
+      if ( $bottom === "auto" ) {
+        // A or E - Keep the frame at the same position
+        $y = $frame->find_block_parent()->get_current_line_box()->y;
+      }
+      else {
+        if ( $orig_height === "auto" ) {
+          // C
+          $y += $h - $height - $bottom;
+        }
+        else {
+          // G
+          $y += $h - $height - $bottom;
+        }
+      }
+    }
+    else {
+      if ( $bottom === "auto" ) {
+        // B or F
+        $y += $top;
+      }
+      else {
+        if ( $orig_height === "auto" ) {
+          // D - TODO change height
+          $y += $top;
+        }
+        else {
+          // H - Everything is fixed: top + height win
+          $y += $top;
+        }
+      }
+    }
+    
+    $frame->set_position($x, $y);
+
+  }
+}

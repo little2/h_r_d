@@ -1,152 +1,252 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-vpIigpVKgAgT58Kt
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * `cmap` font table.
+ * 
+ * @package php-font-lib
+ */
+class Font_Table_cmap extends Font_Table {
+  private static $header_format = array(
+    "version"         => self::uint16,
+    "numberSubtables" => self::uint16,
+  );
+  
+  private static $subtable_header_format = array(
+    "platformID"         => self::uint16,
+    "platformSpecificID" => self::uint16,
+    "offset"             => self::uint32,
+  );
+  
+  private static $subtable_v4_format = array(
+    "length"        => self::uint16, 
+    "language"      => self::uint16, 
+    "segCountX2"    => self::uint16, 
+    "searchRange"   => self::uint16, 
+    "entrySelector" => self::uint16, 
+    "rangeShift"    => self::uint16,
+  );
+  
+  protected function _parse(){
+    $font = $this->getFont();
+    
+    $cmap_offset = $font->pos();
+    
+    $data = $font->unpack(self::$header_format);
+    
+    $subtables = array();
+    for($i = 0; $i < $data["numberSubtables"]; $i++){
+      $subtables[] = $font->unpack(self::$subtable_header_format);
+    }
+    $data["subtables"] = $subtables;
+    
+    foreach($data["subtables"] as $i => &$subtable) {
+      $font->seek($cmap_offset + $subtable["offset"]);
+      
+      $subtable["format"] = $font->readUInt16();
+      
+      // @todo Only CMAP version 4
+      if($subtable["format"] != 4) {
+        unset($data["subtables"][$i]);
+        $data["numberSubtables"]--;
+        continue;
+      }
+      
+      $subtable += $font->unpack(self::$subtable_v4_format);
+      $segCount = $subtable["segCountX2"] / 2;
+      $subtable["segCount"] = $segCount;
+      
+      $endCode       = $font->r(array(self::uint16, $segCount));
+      
+      $font->readUInt16(); // reservedPad
+      
+      $startCode     = $font->r(array(self::uint16, $segCount));
+      $idDelta       = $font->r(array(self::int16, $segCount));
+      
+      $ro_start      = $font->pos();
+      $idRangeOffset = $font->r(array(self::uint16, $segCount));
+      
+      $glyphIndexArray = array();
+      for($i = 0; $i < $segCount; $i++) {
+        $c1 = $startCode[$i];
+        $c2 = $endCode[$i];
+        $d  = $idDelta[$i];
+        $ro = $idRangeOffset[$i];
+        
+        if($ro > 0)
+          $font->seek($subtable["offset"] + 2 * $i + $ro);
+          
+        for($c = $c1; $c <= $c2; $c++) {
+          if ($ro == 0)
+            $gid = ($c + $d) & 0xFFFF;
+          else {
+            $offset = ($c - $c1) * 2 + $ro;
+            $offset = $ro_start + 2 * $i + $offset;
+            
+            $font->seek($offset);
+            $gid = $font->readUInt16();
+            
+            if ($gid != 0)
+               $gid = ($gid + $d) & 0xFFFF;
+          }
+          
+          if($gid > 0) {
+            $glyphIndexArray[$c] = $gid;
+          }
+        }
+      }
+      
+      $subtable += array(
+        "endCode"         => $endCode,
+        "startCode"       => $startCode,
+        "idDelta"         => $idDelta,
+        "idRangeOffset"   => $idRangeOffset,
+        "glyphIndexArray" => $glyphIndexArray,
+      );
+    }
+    
+    $this->data = $data;
+  }
+  
+  function _encode(){
+    $font = $this->getFont();
+
+    $subset = $font->getSubset();
+    $glyphIndexArray = $font->getUnicodeCharMap();
+
+    $newGlyphIndexArray = array();
+    foreach ($glyphIndexArray as $code => $gid) {
+      $new_gid = array_search($gid, $subset);
+      if ($new_gid !== false) {
+        $newGlyphIndexArray[$code] = $new_gid;
+      }
+    }
+
+    ksort($newGlyphIndexArray); // Sort by char code
+    
+    $segments = array();
+
+    $i = -1;
+    $prevCode = 0xFFFF;
+    $prevGid = 0xFFFF;
+
+    foreach($newGlyphIndexArray as $code => $gid) {
+      if (
+        $prevCode + 1 != $code ||
+        $prevGid + 1 != $gid
+      ) {
+        $i++;
+        $segments[$i] = array();
+      }
+      
+      $segments[$i][] = array($code, $gid);
+
+      $prevCode = $code;
+      $prevGid = $gid;
+    }
+    
+    $segments[][] = array(0xFFFF, 0xFFFF);
+    
+    $startCode = array();
+    $endCode = array();
+    $idDelta = array();
+    
+    foreach($segments as $codes){
+      $start = reset($codes);
+      $end   = end($codes);
+      
+      $startCode[] = $start[0];
+      $endCode[]   = $end[0];
+      $idDelta[]   = $start[1] - $start[0];
+    }
+    
+    $segCount = count($startCode);
+    $idRangeOffset = array_fill(0, $segCount, 0);
+    
+    $searchRange = 1;
+    $entrySelector = 0;
+    while ($searchRange * 2 <= $segCount) {
+      $searchRange *= 2;
+      $entrySelector++;
+    }
+    $searchRange *= 2;
+    $rangeShift = $segCount * 2 - $searchRange;
+    
+    $subtables = array(
+      array(
+        // header
+        "platformID"         => 3, // Unicode
+        "platformSpecificID" => 1,
+        "offset"        => null,
+      
+        // subtable
+        "format"        => 4, 
+        "length"        => null, 
+        "language"      => 0, 
+        "segCount"      => $segCount, 
+        "segCountX2"    => $segCount * 2, 
+        "searchRange"   => $searchRange, 
+        "entrySelector" => $entrySelector, 
+        "rangeShift"    => $rangeShift,
+        "startCode"     => $startCode,
+        "endCode"       => $endCode,
+        "idDelta"       => $idDelta,
+        "idRangeOffset" => $idRangeOffset, 
+        "glyphIndexArray" => $newGlyphIndexArray,
+      )
+    );
+    
+    $data = array(
+      "version"         => 0,
+      "numberSubtables" => count($subtables),
+      "subtables"       => $subtables,
+    );
+
+    $length = $font->pack(self::$header_format, $data);
+    
+    $subtable_headers_size = $data["numberSubtables"] * 8; // size of self::$subtable_header_format
+    $subtable_headers_offset = $font->pos();
+    
+    $length += $font->write(str_repeat("\0", $subtable_headers_size), $subtable_headers_size);
+    
+    // write subtables data
+    foreach($data["subtables"] as $i => $subtable) {
+      $length_before = $length;
+      $data["subtables"][$i]["offset"] = $length;
+      
+      $length += $font->writeUInt16($subtable["format"]);
+      
+      $before_subheader = $font->pos();
+      $length += $font->pack(self::$subtable_v4_format, $subtable);
+
+      $segCount = $subtable["segCount"];
+      $length += $font->w(array(self::uint16, $segCount), $subtable["endCode"]);
+      $length += $font->writeUInt16(0); // reservedPad
+      $length += $font->w(array(self::uint16, $segCount), $subtable["startCode"]);
+      $length += $font->w(array(self::int16, $segCount), $subtable["idDelta"]);
+      $length += $font->w(array(self::uint16, $segCount), $subtable["idRangeOffset"]);
+      $length += $font->w(array(self::uint16, $segCount), array_values($subtable["glyphIndexArray"]));
+      
+      $after_subtable = $font->pos();
+      
+      $subtable["length"] = $length - $length_before;
+      $font->seek($before_subheader);
+      $length += $font->pack(self::$subtable_v4_format, $subtable);
+      
+      $font->seek($after_subtable);
+    }
+    
+    // write subtables headers
+    $font->seek($subtable_headers_offset);
+    foreach($data["subtables"] as $subtable) {
+      $font->pack(self::$subtable_header_format, $subtable);
+    }
+    
+    return $length;
+  }
+}

@@ -1,40 +1,59 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Reflows table row groups (e.g. tbody tags)
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Row_Group_Frame_Reflower extends Frame_Reflower {
+
+  function __construct($frame) {
+    parent::__construct($frame);
+  }
+
+  function reflow(Block_Frame_Decorator $block = null) {
+    $page = $this->_frame->get_root();
+
+    $style = $this->_frame->get_style();
+    
+    // Our width is equal to the width of our parent table
+    $table = Table_Frame_Decorator::find_parent_table($this->_frame);
+    
+    $cb = $this->_frame->get_containing_block();
+    
+    foreach ( $this->_frame->get_children() as $child) {
+      // Bail if the page is full
+      if ( $page->is_full() )
+        return;
+
+      $child->set_containing_block($cb["x"], $cb["y"], $cb["w"], $cb["h"]);
+      $child->reflow();
+
+      // Check if a split has occured
+      $page->check_page_break($child);
+
+    }
+
+    if ( $page->is_full() )
+      return;
+
+    $cellmap = $table->get_cellmap();
+    $style->width = $cellmap->get_frame_width($this->_frame);
+    $style->height = $cellmap->get_frame_height($this->_frame);
+
+    $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
+    
+    if ( $table->get_style()->border_collapse === "collapse" ) 
+      // Unset our borders because our cells are now using them
+      $style->border_style = "none";
+ 
+  }
+
+}

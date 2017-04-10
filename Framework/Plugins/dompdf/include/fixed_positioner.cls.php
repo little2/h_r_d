@@ -1,66 +1,88 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Positions fixely positioned frames
+ */
+class Fixed_Positioner extends Positioner {
+
+  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
+
+  function position() {
+
+    $frame = $this->_frame;
+    $style = $frame->get_original_style();
+    $root = $frame->get_root();
+    $initialcb = $root->get_containing_block();
+    $initialcb_style = $root->get_style();
+
+    $p = $frame->find_block_parent();
+    if ( $p ) {
+      $p->add_line();
+    }
+
+    // Compute the margins of the @page style
+    $margin_top    = $initialcb_style->length_in_pt($initialcb_style->margin_top,    $initialcb["h"]);
+    $margin_right  = $initialcb_style->length_in_pt($initialcb_style->margin_right,  $initialcb["w"]);
+    $margin_bottom = $initialcb_style->length_in_pt($initialcb_style->margin_bottom, $initialcb["h"]);
+    $margin_left   = $initialcb_style->length_in_pt($initialcb_style->margin_left,   $initialcb["w"]);
+    
+    // The needed computed style of the element
+    $height = $style->length_in_pt($style->height, $initialcb["h"]);
+    $width  = $style->length_in_pt($style->width,  $initialcb["w"]);
+    
+    $top    = $style->length_in_pt($style->top,    $initialcb["h"]);
+    $right  = $style->length_in_pt($style->right,  $initialcb["w"]);
+    $bottom = $style->length_in_pt($style->bottom, $initialcb["h"]);
+    $left   = $style->length_in_pt($style->left,   $initialcb["w"]);
+
+    $y = $margin_top;
+    if ( isset($top) ) {
+      $y = $top + $margin_top;
+      if ( $top === "auto" ) {
+        $y = $margin_top;
+        if ( isset($bottom) && $bottom !== "auto" ) {
+          $y = $initialcb["h"] - $bottom - $margin_bottom;
+          $margin_height = $this->_frame->get_margin_height();
+          if ( $margin_height !== "auto" ) {
+            $y -= $margin_height;
+          }
+          else {
+            $y -= $height;
+          }
+        }
+      }
+    }
+
+    $x = $margin_left;
+    if ( isset($left) ) {
+      $x = $left + $margin_left;
+      if ( $left === "auto" ) {
+        $x = $margin_left;
+        if ( isset($right) && $right !== "auto" ) {
+          $x = $initialcb["w"] - $right - $margin_right;
+          $margin_width = $this->_frame->get_margin_width();
+          if ( $margin_width !== "auto" ) {
+            $x -= $margin_width;
+          }
+          else {
+            $x -= $width;
+          }
+        }
+      }
+    }
+    
+    $frame->set_position($x, $y);
+
+    $children = $frame->get_children();
+    foreach($children as $child) {
+      $child->set_position($x, $y);
+    }
+  }
+}

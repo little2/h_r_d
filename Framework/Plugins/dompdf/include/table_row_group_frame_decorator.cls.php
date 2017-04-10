@@ -1,30 +1,66 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Table row group decorator
+ *
+ * Overrides split() method for tbody, thead & tfoot elements
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Row_Group_Frame_Decorator extends Frame_Decorator {
+
+  /**
+   * Class constructor
+   *
+   * @param Frame $frame   Frame to decorate
+   * @param DOMPDF $dompdf Current dompdf instance
+   */
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    parent::__construct($frame, $dompdf);
+  }
+
+  /**
+   * Override split() to remove all child rows and this element from the cellmap
+   *
+   * @param Frame $child
+   * @param bool  $force_pagebreak
+   *
+   * @return void
+   */
+  function split(Frame $child = null, $force_pagebreak = false) {
+
+    if ( is_null($child) ) {
+      parent::split();
+      return;
+    }
+
+    // Remove child & all subsequent rows from the cellmap
+    $cellmap = $this->get_parent()->get_cellmap();
+    $iter = $child;
+
+    while ( $iter ) {
+      $cellmap->remove_row($iter);
+      $iter = $iter->get_next_sibling();
+    }
+
+    // If we are splitting at the first child remove the
+    // table-row-group from the cellmap as well
+    if ( $child === $this->get_first_child() ) {
+      $cellmap->remove_row_group($this);
+      parent::split();
+      return;
+    }
+    
+    $cellmap->update_row_group($this, $child->get_prev_sibling());
+    parent::split($child);
+    
+  }
+}
+ 

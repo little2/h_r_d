@@ -1,388 +1,1077 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-4QMgoazXDR8xCLX+
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * DOMPDF - PHP5 HTML to PDF renderer
+ *
+ * DOMPDF loads HTML and does its best to render it as a PDF.  It gets its
+ * name from the new DomDocument PHP5 extension.  Source HTML is first
+ * parsed by a DomDocument object.  DOMPDF takes the resulting DOM tree and
+ * attaches a {@link Frame} object to each node.  {@link Frame} objects store
+ * positioning and layout information and each has a reference to a {@link
+ * Style} object.
+ *
+ * Style information is loaded and parsed (see {@link Stylesheet}) and is
+ * applied to the frames in the tree by using XPath.  CSS selectors are
+ * converted into XPath queries, and the computed {@link Style} objects are
+ * applied to the {@link Frame}s.
+ *
+ * {@link Frame}s are then decorated (in the design pattern sense of the
+ * word) based on their CSS display property ({@link
+ * http://www.w3.org/TR/CSS21/visuren.html#propdef-display}).
+ * Frame_Decorators augment the basic {@link Frame} class by adding
+ * additional properties and methods specific to the particular type of
+ * {@link Frame}.  For example, in the CSS layout model, block frames
+ * (display: block;) contain line boxes that are usually filled with text or
+ * other inline frames.  The Block_Frame_Decorator therefore adds a $lines
+ * property as well as methods to add {@link Frame}s to lines and to add
+ * additional lines.  {@link Frame}s also are attached to specific
+ * Positioner and {@link Frame_Reflower} objects that contain the
+ * positioining and layout algorithm for a specific type of frame,
+ * respectively.  This is an application of the Strategy pattern.
+ *
+ * Layout, or reflow, proceeds recursively (post-order) starting at the root
+ * of the document.  Space constraints (containing block width & height) are
+ * pushed down, and resolved positions and sizes bubble up.  Thus, every
+ * {@link Frame} in the document tree is traversed once (except for tables
+ * which use a two-pass layout algorithm).  If you are interested in the
+ * details, see the reflow() method of the Reflower classes.
+ *
+ * Rendering is relatively straightforward once layout is complete. {@link
+ * Frame}s are rendered using an adapted {@link Cpdf} class, originally
+ * written by Wayne Munro, http://www.ros.co.nz/pdf/.  (Some performance
+ * related changes have been made to the original {@link Cpdf} class, and
+ * the {@link CPDF_Adapter} class provides a simple, stateless interface to
+ * PDF generation.)  PDFLib support has now also been added, via the {@link
+ * PDFLib_Adapter}.
+ *
+ *
+ * @package dompdf
+ */
+class DOMPDF {
+
+  /**
+   * DomDocument representing the HTML document
+   *
+   * @var DOMDocument
+   */
+  protected $_xml;
+
+  /**
+   * Frame_Tree derived from the DOM tree
+   *
+   * @var Frame_Tree
+   */
+  protected $_tree;
+
+  /**
+   * Stylesheet for the document
+   *
+   * @var Stylesheet
+   */
+  protected $_css;
+
+  /**
+   * Actual PDF renderer
+   *
+   * @var Canvas
+   */
+  protected $_pdf;
+
+  /**
+   * Desired paper size ('letter', 'legal', 'A4', etc.)
+   *
+   * @var string
+   */
+  protected $_paper_size;
+
+  /**
+   * Paper orientation ('portrait' or 'landscape')
+   *
+   * @var string
+   */
+  protected $_paper_orientation;
+
+  /**
+   * Callbacks on new page and new element
+   *
+   * @var array
+   */
+  protected $_callbacks;
+
+  /**
+   * Experimental caching capability
+   *
+   * @var string
+   */
+  private $_cache_id;
+
+  /**
+   * Base hostname
+   *
+   * Used for relative paths/urls
+   * @var string
+   */
+  protected $_base_host;
+
+  /**
+   * Absolute base path
+   *
+   * Used for relative paths/urls
+   * @var string
+   */
+  protected $_base_path;
+
+  /**
+   * Protcol used to request file (file://, http://, etc)
+   *
+   * @var string
+   */
+  protected $_protocol;
+
+  /**
+   * HTTP context created with stream_context_create()
+   * Will be used for file_get_contents
+   *
+   * @var resource
+   */
+  protected $_http_context;
+
+  /**
+   * Timestamp of the script start time
+   *
+   * @var int
+   */
+  private $_start_time = null;
+
+  /**
+   * The system's locale
+   *
+   * @var string
+   */
+  private $_system_locale = null;
+
+  /**
+   * Tells if the system's locale is the C standard one
+   *
+   * @var bool
+   */
+  private $_locale_standard = false;
+
+  /**
+   * The default view of the PDF in the viewer
+   *
+   * @var string
+   */
+  private $_default_view = "Fit";
+
+  /**
+   * The default view options of the PDF in the viewer
+   *
+   * @var array
+   */
+  private $_default_view_options = array();
+
+  /**
+   * Tells wether the DOM document is in quirksmode (experimental)
+   *
+   * @var bool
+   */
+  private $_quirksmode = false;
+
+  /**
+   * The list of built-in fonts
+   *
+   * @var array
+   */
+  public static $native_fonts = array(
+    "courier", "courier-bold", "courier-oblique", "courier-boldoblique",
+    "helvetica", "helvetica-bold", "helvetica-oblique", "helvetica-boldoblique",
+    "times-roman", "times-bold", "times-italic", "times-bolditalic",
+    "symbol", "zapfdinbats"
+  );
+
+  private $_options = array(
+    // Directories
+    "temp_dir"                 => DOMPDF_TEMP_DIR,
+    "font_dir"                 => DOMPDF_FONT_DIR,
+    "font_cache"               => DOMPDF_FONT_CACHE,
+    "chroot"                   => DOMPDF_CHROOT,
+    "log_output_file"          => DOMPDF_LOG_OUTPUT_FILE,
+
+    // Rendering
+    "default_media_type"       => DOMPDF_DEFAULT_MEDIA_TYPE,
+    "default_paper_size"       => DOMPDF_DEFAULT_PAPER_SIZE,
+    "default_font"             => DOMPDF_DEFAULT_FONT,
+    "dpi"                      => DOMPDF_DPI,
+    "font_height_ratio"        => DOMPDF_FONT_HEIGHT_RATIO,
+
+    // Features
+    "enable_unicode"           => DOMPDF_UNICODE_ENABLED,
+    "enable_php"               => DOMPDF_ENABLE_PHP,
+    "enable_remote"            => DOMPDF_ENABLE_REMOTE,
+    "enable_css_float"         => DOMPDF_ENABLE_CSS_FLOAT,
+    "enable_javascript"        => DOMPDF_ENABLE_JAVASCRIPT,
+    "enable_html5_parser"      => DOMPDF_ENABLE_HTML5PARSER,
+    "enable_font_subsetting"   => DOMPDF_ENABLE_FONTSUBSETTING,
+
+    // Debug
+    "debug_png"                => DEBUGPNG,
+    "debug_keep_temp"          => DEBUGKEEPTEMP,
+    "debug_css"                => DEBUGCSS,
+    "debug_layout"             => DEBUG_LAYOUT,
+    "debug_layout_lines"       => DEBUG_LAYOUT_LINES,
+    "debug_layout_blocks"      => DEBUG_LAYOUT_BLOCKS,
+    "debug_layout_inline"      => DEBUG_LAYOUT_INLINE,
+    "debug_layout_padding_box" => DEBUG_LAYOUT_PADDINGBOX,
+
+    // Admin
+    "admin_username"           => DOMPDF_ADMIN_USERNAME,
+    "admin_password"           => DOMPDF_ADMIN_PASSWORD,
+  );
+
+  /**
+   * Class constructor
+   */
+  function __construct() {
+    $this->_locale_standard = sprintf('%.1f', 1.0) == '1.0';
+
+    $this->save_locale();
+
+    $this->_messages = array();
+    $this->_css = new Stylesheet($this);
+    $this->_pdf = null;
+    $this->_paper_size = DOMPDF_DEFAULT_PAPER_SIZE;
+    $this->_paper_orientation = "portrait";
+    $this->_base_protocol = "";
+    $this->_base_host = "";
+    $this->_base_path = "";
+    $this->_http_context = null;
+    $this->_callbacks = array();
+    $this->_cache_id = null;
+
+    $this->restore_locale();
+  }
+
+  /**
+   * Class destructor
+   */
+  function __destruct() {
+    clear_object($this);
+  }
+
+  /**
+   * Get the dompdf option value
+   *
+   * @param string $key
+   *
+   * @return mixed
+   * @throws DOMPDF_Exception
+   */
+  function get_option($key) {
+    if ( !array_key_exists($key, $this->_options) ) {
+      throw new DOMPDF_Exception("Option '$key' doesn't exist");
+    }
+
+    return $this->_options[$key];
+  }
+
+  /**
+   * @param string $key
+   * @param mixed  $value
+   *
+   * @throws DOMPDF_Exception
+   */
+  function set_option($key, $value) {
+    if ( !array_key_exists($key, $this->_options) ) {
+      throw new DOMPDF_Exception("Option '$key' doesn't exist");
+    }
+
+    $this->_options[$key] = $value;
+  }
+
+  /**
+   * @param array $options
+   */
+  function set_options(array $options) {
+    foreach ($options as $key => $value) {
+      $this->set_option($key, $value);
+    }
+  }
+
+  /**
+   * Save the system's locale configuration and
+   * set the right value for numeric formatting
+   */
+  private function save_locale() {
+    if ( $this->_locale_standard ) {
+      return;
+    }
+
+    $this->_system_locale = setlocale(LC_NUMERIC, "0");
+    setlocale(LC_NUMERIC, "C");
+  }
+
+  /**
+   * Restore the system's locale configuration
+   */
+  private function restore_locale() {
+    if ( $this->_locale_standard ) {
+      return;
+    }
+
+    setlocale(LC_NUMERIC, $this->_system_locale);
+  }
+
+  /**
+   * Returns the underlying {@link Frame_Tree} object
+   *
+   * @return Frame_Tree
+   */
+  function get_tree() {
+    return $this->_tree;
+  }
+
+  /**
+   * Sets the protocol to use
+   * FIXME validate these
+   *
+   * @param string $proto
+   */
+  function set_protocol($proto) {
+    $this->_protocol = $proto;
+  }
+
+  /**
+   * Sets the base hostname
+   *
+   * @param string $host
+   */
+  function set_host($host) {
+    $this->_base_host = $host;
+  }
+
+  /**
+   * Sets the base path
+   *
+   * @param string $path
+   */
+  function set_base_path($path) {
+    $this->_base_path = $path;
+  }
+
+  /**
+   * Sets the HTTP context
+   *
+   * @param resource $http_context
+   */
+  function set_http_context($http_context) {
+    $this->_http_context = $http_context;
+  }
+
+  /**
+   * Sets the default view
+   *
+   * @param string $default_view The default document view
+   * @param array  $options      The view's options
+   */
+  function set_default_view($default_view, $options) {
+    $this->_default_view = $default_view;
+    $this->_default_view_options = $options;
+  }
+
+  /**
+   * Returns the protocol in use
+   *
+   * @return string
+   */
+  function get_protocol() {
+    return $this->_protocol;
+  }
+
+  /**
+   * Returns the base hostname
+   *
+   * @return string
+   */
+  function get_host() {
+    return $this->_base_host;
+  }
+
+  /**
+   * Returns the base path
+   *
+   * @return string
+   */
+  function get_base_path() {
+    return $this->_base_path;
+  }
+
+  /**
+   * Returns the HTTP context
+   *
+   * @return resource
+   */
+  function get_http_context() {
+    return $this->_http_context;
+  }
+
+  /**
+   * Return the underlying Canvas instance (e.g. CPDF_Adapter, GD_Adapter)
+   *
+   * @return Canvas
+   */
+  function get_canvas() {
+    return $this->_pdf;
+  }
+
+  /**
+   * Returns the callbacks array
+   *
+   * @return array
+   */
+  function get_callbacks() {
+    return $this->_callbacks;
+  }
+
+  /**
+   * Returns the stylesheet
+   *
+   * @return Stylesheet
+   */
+  function get_css() {
+    return $this->_css;
+  }
+
+  /**
+   * @return DOMDocument
+   */
+  function get_dom() {
+    return $this->_xml;
+  }
+
+  /**
+   * Loads an HTML file
+   * Parse errors are stored in the global array _dompdf_warnings.
+   *
+   * @param string $file a filename or url to load
+   *
+   * @throws DOMPDF_Exception
+   */
+  function load_html_file($file) {
+    $this->save_locale();
+
+    // Store parsing warnings as messages (this is to prevent output to the
+    // browser if the html is ugly and the dom extension complains,
+    // preventing the pdf from being streamed.)
+    if ( !$this->_protocol && !$this->_base_host && !$this->_base_path ) {
+      list($this->_protocol, $this->_base_host, $this->_base_path) = explode_url($file);
+    }
+
+    if ( !$this->get_option("enable_remote") && ($this->_protocol != "" && $this->_protocol !== "file://" ) ) {
+      throw new DOMPDF_Exception("Remote file requested, but DOMPDF_ENABLE_REMOTE is false.");
+    }
+
+    if ($this->_protocol == "" || $this->_protocol === "file://") {
+
+      // Get the full path to $file, returns false if the file doesn't exist
+      $realfile = realpath($file);
+      if ( !$realfile ) {
+        throw new DOMPDF_Exception("File '$file' not found.");
+      }
+
+      $chroot = $this->get_option("chroot");
+      if ( strpos($realfile, $chroot) !== 0 ) {
+        throw new DOMPDF_Exception("Permission denied on $file. The file could not be found under the directory specified by DOMPDF_CHROOT.");
+      }
+
+      // Exclude dot files (e.g. .htaccess)
+      if ( substr(basename($realfile), 0, 1) === "." ) {
+        throw new DOMPDF_Exception("Permission denied on $file.");
+      }
+
+      $file = $realfile;
+    }
+
+    $contents = file_get_contents($file, null, $this->_http_context);
+    $encoding = null;
+
+    // See http://the-stickman.com/web-development/php/getting-http-response-headers-when-using-file_get_contents/
+    if ( isset($http_response_header) ) {
+      foreach($http_response_header as $_header) {
+        if ( preg_match("@Content-Type:\s*[\w/]+;\s*?charset=([^\s]+)@i", $_header, $matches) ) {
+          $encoding = strtoupper($matches[1]);
+          break;
+        }
+      }
+    }
+
+    $this->restore_locale();
+
+    $this->load_html($contents, $encoding);
+  }
+
+  /**
+   * Loads an HTML string
+   * Parse errors are stored in the global array _dompdf_warnings.
+   * @todo use the $encoding variable
+   *
+   * @param string $str      HTML text to load
+   * @param string $encoding Not used yet
+   */
+  function load_html($str, $encoding = null) {
+    $this->save_locale();
+
+    // FIXME: Determine character encoding, switch to UTF8, update meta tag. Need better http/file stream encoding detection, currently relies on text or meta tag.
+    mb_detect_order('auto');
+
+    if (mb_detect_encoding($str) !== 'UTF-8') {
+      $metatags = array(
+        '@<meta\s+http-equiv="Content-Type"\s+content="(?:[\w/]+)(?:;\s*?charset=([^\s"]+))?@i',
+        '@<meta\s+content="(?:[\w/]+)(?:;\s*?charset=([^\s"]+))"?\s+http-equiv="Content-Type"@i',
+        '@<meta [^>]*charset\s*=\s*["\']?\s*([^"\' ]+)@i',
+      );
+
+      foreach($metatags as $metatag) {
+        if (preg_match($metatag, $str, $matches)) break;
+      }
+
+      if (mb_detect_encoding($str) == '') {
+        if (isset($matches[1])) {
+          $encoding = strtoupper($matches[1]);
+        }
+        else {
+          $encoding = 'UTF-8';
+        }
+      }
+      else {
+        if ( isset($matches[1]) ) {
+          $encoding = strtoupper($matches[1]);
+        }
+        else {
+          $encoding = 'auto';
+        }
+      }
+
+      if ( $encoding !== 'UTF-8' ) {
+        $str = mb_convert_encoding($str, 'UTF-8', $encoding);
+      }
+
+      if ( isset($matches[1]) ) {
+        $str = preg_replace('/charset=([^\s"]+)/i', 'charset=UTF-8', $str);
+      }
+      else {
+        $str = str_replace('<head>', '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">', $str);
+      }
+    }
+    else {
+      $encoding = 'UTF-8';
+    }
+
+    // remove BOM mark from UTF-8, it's treated as document text by DOMDocument
+    // FIXME: roll this into the encoding detection using UTF-8/16/32 BOM (http://us2.php.net/manual/en/function.mb-detect-encoding.php#91051)?
+    if ( substr($str, 0, 3) == chr(0xEF).chr(0xBB).chr(0xBF) ) {
+      $str = substr($str, 3);
+    }
+
+    // if the document contains non utf-8 with a utf-8 meta tag chars and was 
+    // detected as utf-8 by mbstring, problems could happen.
+    // http://devzone.zend.com/article/8855
+    if ( $encoding !== 'UTF-8' ) {
+      $re = '/<meta ([^>]*)((?:charset=[^"\' ]+)([^>]*)|(?:charset=["\'][^"\' ]+["\']))([^>]*)>/i';
+      $str = preg_replace($re, '<meta $1$3>', $str);
+    }
+
+    // Store parsing warnings as messages
+    set_error_handler("record_warnings");
+
+    // @todo Take the quirksmode into account
+    // http://hsivonen.iki.fi/doctype/
+    // https://developer.mozilla.org/en/mozilla's_quirks_mode
+    $quirksmode = false;
+
+    if ( $this->get_option("enable_html5_parser") ) {
+      $tokenizer = new HTML5_Tokenizer($str);
+      $tokenizer->parse();
+      $doc = $tokenizer->save();
+
+      // Remove #text children nodes in nodes that shouldn't have
+      $tag_names = array("html", "table", "tbody", "thead", "tfoot", "tr");
+      foreach($tag_names as $tag_name) {
+        $nodes = $doc->getElementsByTagName($tag_name);
+
+        foreach($nodes as $node) {
+          self::remove_text_nodes($node);
+        }
+      }
+
+      $quirksmode = ($tokenizer->getTree()->getQuirksMode() > HTML5_TreeBuilder::NO_QUIRKS);
+    }
+    else {
+      // loadHTML assumes ISO-8859-1 unless otherwise specified, but there are
+      // bugs in how DOMDocument determines the actual encoding. Converting to
+      // HTML-ENTITIES prior to import appears to resolve the issue.
+      // http://devzone.zend.com/1538/php-dom-xml-extension-encoding-processing/ (see #4)
+      // http://stackoverflow.com/a/11310258/264628
+      $doc = new DOMDocument();
+      $doc->preserveWhiteSpace = true;
+      $doc->loadHTML( mb_convert_encoding( $str , 'HTML-ENTITIES' , 'UTF-8' ) );
+
+      // If some text is before the doctype, we are in quirksmode
+      if ( preg_match("/^(.+)<!doctype/i", ltrim($str), $matches) ) {
+        $quirksmode = true;
+      }
+      // If no doctype is provided, we are in quirksmode
+      elseif ( !preg_match("/^<!doctype/i", ltrim($str), $matches) ) {
+        $quirksmode = true;
+      }
+      else {
+        // HTML5 <!DOCTYPE html>
+        if ( !$doc->doctype->publicId && !$doc->doctype->systemId ) {
+          $quirksmode = false;
+        }
+
+        // not XHTML
+        if ( !preg_match("/xhtml/i", $doc->doctype->publicId) ) {
+          $quirksmode = true;
+        }
+      }
+    }
+
+    $this->_xml = $doc;
+    $this->_quirksmode = $quirksmode;
+
+    $this->_tree = new Frame_Tree($this->_xml);
+
+    restore_error_handler();
+
+    $this->restore_locale();
+  }
+
+  static function remove_text_nodes(DOMNode $node) {
+    $children = array();
+    for ($i = 0; $i < $node->childNodes->length; $i++) {
+      $child = $node->childNodes->item($i);
+      if ( $child->nodeName === "#text" ) {
+        $children[] = $child;
+      }
+    }
+
+    foreach($children as $child) {
+      $node->removeChild($child);
+    }
+  }
+
+  /**
+   * Builds the {@link Frame_Tree}, loads any CSS and applies the styles to
+   * the {@link Frame_Tree}
+   */
+  protected function _process_html() {
+    $this->_tree->build_tree();
+
+    $this->_css->load_css_file(Stylesheet::DEFAULT_STYLESHEET, Stylesheet::ORIG_UA);
+
+    $acceptedmedia = Stylesheet::$ACCEPTED_GENERIC_MEDIA_TYPES;
+    $acceptedmedia[] = $this->get_option("default_media_type");
+
+    // <base href="" />
+    $base_nodes = $this->_xml->getElementsByTagName("base");
+    if ( $base_nodes->length && ($href = $base_nodes->item(0)->getAttribute("href")) ) {
+      list($this->_protocol, $this->_base_host, $this->_base_path) = explode_url($href);
+    }
+
+    // Set the base path of the Stylesheet to that of the file being processed
+    $this->_css->set_protocol($this->_protocol);
+    $this->_css->set_host($this->_base_host);
+    $this->_css->set_base_path($this->_base_path);
+
+    // Get all the stylesheets so that they are processed in document order
+    $xpath = new DOMXPath($this->_xml);
+    $stylesheets = $xpath->query("//*[name() = 'link' or name() = 'style']");
+
+    foreach($stylesheets as $tag) {
+      switch (strtolower($tag->nodeName)) {
+        // load <link rel="STYLESHEET" ... /> tags
+        case "link":
+          if ( mb_strtolower(stripos($tag->getAttribute("rel"), "stylesheet") !== false) || // may be "appendix stylesheet"
+            mb_strtolower($tag->getAttribute("type")) === "text/css" ) {
+            //Check if the css file is for an accepted media type
+            //media not given then always valid
+            $formedialist = preg_split("/[\s\n,]/", $tag->getAttribute("media"),-1, PREG_SPLIT_NO_EMPTY);
+            if ( count($formedialist) > 0 ) {
+              $accept = false;
+              foreach ( $formedialist as $type ) {
+                if ( in_array(mb_strtolower(trim($type)), $acceptedmedia) ) {
+                  $accept = true;
+                  break;
+                }
+              }
+
+              if (!$accept) {
+                //found at least one mediatype, but none of the accepted ones
+                //Skip this css file.
+                continue;
+              }
+            }
+
+            $url = $tag->getAttribute("href");
+            $url = build_url($this->_protocol, $this->_base_host, $this->_base_path, $url);
+
+            $this->_css->load_css_file($url, Stylesheet::ORIG_AUTHOR);
+          }
+          break;
+
+        // load <style> tags
+        case "style":
+          // Accept all <style> tags by default (note this is contrary to W3C
+          // HTML 4.0 spec:
+          // http://www.w3.org/TR/REC-html40/present/styles.html#adef-media
+          // which states that the default media type is 'screen'
+          if ( $tag->hasAttributes() &&
+            ($media = $tag->getAttribute("media")) &&
+            !in_array($media, $acceptedmedia) ) {
+            continue;
+          }
+
+          $css = "";
+          if ( $tag->hasChildNodes() ) {
+            $child = $tag->firstChild;
+            while ( $child ) {
+              $css .= $child->nodeValue; // Handle <style><!-- blah --></style>
+              $child = $child->nextSibling;
+            }
+          }
+          else {
+            $css = $tag->nodeValue;
+          }
+
+          $this->_css->load_css($css);
+          break;
+      }
+    }
+  }
+
+  /**
+   * Sets the paper size & orientation
+   *
+   * @param string $size 'letter', 'legal', 'A4', etc. {@link CPDF_Adapter::$PAPER_SIZES}
+   * @param string $orientation 'portrait' or 'landscape'
+   */
+  function set_paper($size, $orientation = "portrait") {
+    $this->_paper_size = $size;
+    $this->_paper_orientation = $orientation;
+  }
+
+  /**
+   * Enable experimental caching capability
+   * @access private
+   */
+  function enable_caching($cache_id) {
+    $this->_cache_id = $cache_id;
+  }
+
+  /**
+   * Sets callbacks for events like rendering of pages and elements.
+   * The callbacks array contains arrays with 'event' set to 'begin_page',
+   * 'end_page', 'begin_frame', or 'end_frame' and 'f' set to a function or
+   * object plus method to be called.
+   *
+   * The function 'f' must take an array as argument, which contains info
+   * about the event.
+   *
+   * @param array $callbacks the set of callbacks to set
+   */
+  function set_callbacks($callbacks) {
+    if (is_array($callbacks)) {
+      $this->_callbacks = array();
+      foreach ($callbacks as $c) {
+        if (is_array($c) && isset($c['event']) && isset($c['f'])) {
+          $event = $c['event'];
+          $f = $c['f'];
+          if (is_callable($f) && is_string($event)) {
+            $this->_callbacks[$event][] = $f;
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Get the quirks mode
+   *
+   * @return boolean true if quirks mode is active
+   */
+  function get_quirksmode(){
+    return $this->_quirksmode;
+  }
+
+  function parse_default_view($value) {
+    $valid = array("XYZ", "Fit", "FitH", "FitV", "FitR", "FitB", "FitBH", "FitBV");
+
+    $options = preg_split("/\s*,\s*/", trim($value));
+    $default_view = array_shift($options);
+
+    if ( !in_array($default_view, $valid) ) {
+      return false;
+    }
+
+    $this->set_default_view($default_view, $options);
+    return true;
+  }
+
+  /**
+   * Renders the HTML to PDF
+   */
+  function render() {
+    $this->save_locale();
+
+    $log_output_file = $this->get_option("log_output_file");
+    if ( $log_output_file ) {
+      if ( !file_exists($log_output_file) && is_writable(dirname($log_output_file)) ) {
+        touch($log_output_file);
+      }
+
+      $this->_start_time = microtime(true);
+      ob_start();
+    }
+
+    //enable_mem_profile();
+
+    $this->_process_html();
+
+    $this->_css->apply_styles($this->_tree);
+
+    // @page style rules : size, margins
+    $page_styles = $this->_css->get_page_styles();
+
+    $base_page_style = $page_styles["base"];
+    unset($page_styles["base"]);
+
+    foreach($page_styles as $_page_style) {
+      $_page_style->inherit($base_page_style);
+    }
+
+    if ( is_array($base_page_style->size) ) {
+      $this->set_paper(array(0, 0, $base_page_style->size[0], $base_page_style->size[1]));
+    }
+
+    $this->_pdf = Canvas_Factory::get_instance($this, $this->_paper_size, $this->_paper_orientation);
+    Font_Metrics::init($this->_pdf);
+
+    if ( $this->get_option("enable_font_subsetting") && $this->_pdf instanceof CPDF_Adapter ) {
+      foreach ($this->_tree->get_frames() as $frame) {
+        $style = $frame->get_style();
+        $node  = $frame->get_node();
+
+        // Handle text nodes
+        if ( $node->nodeName === "#text" ) {
+          $this->_pdf->register_string_subset($style->font_family, $node->nodeValue);
+          continue;
+        }
+
+        // Handle generated content (list items)
+        if ( $style->display === "list-item" ) {
+          $chars = List_Bullet_Renderer::get_counter_chars($style->list_style_type);
+          $this->_pdf->register_string_subset($style->font_family, $chars);
+          continue;
+        }
+        
+        // Handle other generated content (pseudo elements)
+        // FIXME: This only captures the text of the stylesheet declaration,
+        //        not the actual generated content, and forces all possible counter
+        //        values. See notes in issue #750.
+        if ( $frame->get_node()->nodeName == "dompdf_generated" ) {
+          // all possible counter values
+          $chars = List_Bullet_Renderer::get_counter_chars('decimal');
+          $this->_pdf->register_string_subset($style->font_family, $chars);
+          $chars = List_Bullet_Renderer::get_counter_chars('upper-alpha');
+          $this->_pdf->register_string_subset($style->font_family, $chars);
+          $chars = List_Bullet_Renderer::get_counter_chars('lower-alpha');
+          $this->_pdf->register_string_subset($style->font_family, $chars);
+          $chars = List_Bullet_Renderer::get_counter_chars('lower-greek');
+          $this->_pdf->register_string_subset($style->font_family, $chars);
+          // the text of the stylesheet declaration
+          $this->_pdf->register_string_subset($style->font_family, $style->content);
+          continue;
+        }
+      }
+    }
+
+    $root = null;
+
+    foreach ($this->_tree->get_frames() as $frame) {
+      // Set up the root frame
+      if ( is_null($root) ) {
+        $root = Frame_Factory::decorate_root( $this->_tree->get_root(), $this );
+        continue;
+      }
+
+      // Create the appropriate decorators, reflowers & positioners.
+      Frame_Factory::decorate_frame($frame, $this, $root);
+    }
+
+    // Add meta information
+    $title = $this->_xml->getElementsByTagName("title");
+    if ( $title->length ) {
+      $this->_pdf->add_info("Title", trim($title->item(0)->nodeValue));
+    }
+
+    $metas = $this->_xml->getElementsByTagName("meta");
+    $labels = array(
+      "author" => "Author",
+      "keywords" => "Keywords",
+      "description" => "Subject",
+    );
+    foreach($metas as $meta) {
+      $name = mb_strtolower($meta->getAttribute("name"));
+      $value = trim($meta->getAttribute("content"));
+
+      if ( isset($labels[$name]) ) {
+        $this->_pdf->add_info($labels[$name], $value);
+        continue;
+      }
+
+      if ( $name === "dompdf.view" && $this->parse_default_view($value) ) {
+        $this->_pdf->set_default_view($this->_default_view, $this->_default_view_options);
+      }
+    }
+
+    $root->set_containing_block(0, 0, $this->_pdf->get_width(), $this->_pdf->get_height());
+    $root->set_renderer(new Renderer($this));
+
+    // This is where the magic happens:
+    $root->reflow();
+
+    // Clean up cached images
+    Image_Cache::clear();
+
+    global $_dompdf_warnings, $_dompdf_show_warnings;
+    if ( $_dompdf_show_warnings ) {
+      echo '<b>DOMPDF Warnings</b><br><pre>';
+      foreach ($_dompdf_warnings as $msg) {
+        echo $msg . "\n";
+      }
+      echo $this->get_canvas()->get_cpdf()->messages;
+      echo '</pre>';
+      flush();
+    }
+
+    $this->restore_locale();
+  }
+
+  /**
+   * Add meta information to the PDF after rendering
+   */
+  function add_info($label, $value) {
+    if ( !is_null($this->_pdf) ) {
+      $this->_pdf->add_info($label, $value);
+    }
+  }
+
+  /**
+   * Writes the output buffer in the log file
+   *
+   * @return void
+   */
+  private function write_log() {
+    $log_output_file = $this->get_option("log_output_file");
+    if ( !$log_output_file || !is_writable($log_output_file) ) {
+      return;
+    }
+
+    $frames = Frame::$ID_COUNTER;
+    $memory = DOMPDF_memory_usage() / 1024;
+    $time = (microtime(true) - $this->_start_time) * 1000;
+
+    $out = sprintf(
+      "<span style='color: #000' title='Frames'>%6d</span>".
+        "<span style='color: #009' title='Memory'>%10.2f KB</span>".
+        "<span style='color: #900' title='Time'>%10.2f ms</span>".
+        "<span  title='Quirksmode'>  ".
+        ($this->_quirksmode ? "<span style='color: #d00'> ON</span>" : "<span style='color: #0d0'>OFF</span>").
+        "</span><br />", $frames, $memory, $time);
+
+    $out .= ob_get_clean();
+
+    $log_output_file = $this->get_option("log_output_file");
+    file_put_contents($log_output_file, $out);
+  }
+
+  /**
+   * Streams the PDF to the client
+   *
+   * The file will open a download dialog by default.  The options
+   * parameter controls the output.  Accepted options are:
+   *
+   * 'Accept-Ranges' => 1 or 0 - if this is not set to 1, then this
+   *    header is not included, off by default this header seems to
+   *    have caused some problems despite the fact that it is supposed
+   *    to solve them, so I am leaving it off by default.
+   *
+   * 'compress' = > 1 or 0 - apply content stream compression, this is
+   *    on (1) by default
+   *
+   * 'Attachment' => 1 or 0 - if 1, force the browser to open a
+   *    download dialog, on (1) by default
+   *
+   * @param string $filename the name of the streamed file
+   * @param array  $options header options (see above)
+   */
+  function stream($filename, $options = null) {
+    $this->save_locale();
+
+    $this->write_log();
+
+    if ( !is_null($this->_pdf) ) {
+      $this->_pdf->stream($filename, $options);
+    }
+
+    $this->restore_locale();
+  }
+
+  /**
+   * Returns the PDF as a string
+   *
+   * The file will open a download dialog by default.  The options
+   * parameter controls the output.  Accepted options are:
+   *
+   *
+   * 'compress' = > 1 or 0 - apply content stream compression, this is
+   *    on (1) by default
+   *
+   *
+   * @param array  $options options (see above)
+   *
+   * @return string
+   */
+  function output($options = null) {
+    $this->save_locale();
+
+    $this->write_log();
+
+    if ( is_null($this->_pdf) ) {
+      return null;
+    }
+
+    $output = $this->_pdf->output( $options );
+
+    $this->restore_locale();
+
+    return $output;
+  }
+
+  /**
+   * Returns the underlying HTML document as a string
+   *
+   * @return string
+   */
+  function output_html() {
+    return $this->_xml->saveHTML();
+  }
+}

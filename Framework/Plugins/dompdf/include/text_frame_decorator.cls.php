@@ -1,84 +1,173 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-ZW==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Brian Sweeney <eclecticgeek@gmail.com>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates Frame objects for text layout
+ *
+ * @access private
+ * @package dompdf
+ */
+class Text_Frame_Decorator extends Frame_Decorator {
+  
+  // protected members
+  protected $_text_spacing;
+  
+  // buggy DOMText::splitText (PHP < 5.2.7)
+  public static $_buggy_splittext;
+  
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    if ( !$frame->is_text_node() )
+      throw new DOMPDF_Exception("Text_Decorator can only be applied to #text nodes.");
+    
+    parent::__construct($frame, $dompdf);
+    $this->_text_spacing = null;
+  }
+
+  //........................................................................
+
+  function reset() {
+    parent::reset();
+    $this->_text_spacing = null;
+  }
+  
+  //........................................................................
+
+  // Accessor methods
+  function get_text_spacing() { return $this->_text_spacing; }
+      
+  function get_text() {
+    // FIXME: this should be in a child class (and is incorrect)
+//    if ( $this->_frame->get_style()->content !== "normal" ) {
+//      $this->_frame->get_node()->data = $this->_frame->get_style()->content;
+//      $this->_frame->get_style()->content = "normal";
+//    }
+
+//      pre_r("---");
+//      $style = $this->_frame->get_style();
+//      var_dump($text = $this->_frame->get_node()->data);
+//      var_dump($asc = utf8_decode($text));
+//      for ($i = 0; $i < strlen($asc); $i++)
+//        pre_r("$i: " . $asc[$i] . " - " . ord($asc[$i]));
+//      pre_r("width: " . Font_Metrics::get_text_width($text, $style->font_family, $style->font_size));
+
+    return $this->_frame->get_node()->data;
+  }
+
+  //........................................................................
+
+  // Vertical margins & padding do not apply to text frames
+
+  // http://www.w3.org/TR/CSS21/visudet.html#inline-non-replaced:
+  //
+  // The vertical padding, border and margin of an inline, non-replaced box
+  // start at the top and bottom of the content area, not the
+  // 'line-height'. But only the 'line-height' is used to calculate the
+  // height of the line box.
+  function get_margin_height() {
+    // This function is called in add_frame_to_line() and is used to
+    // determine the line height, so we actually want to return the
+    // 'line-height' property, not the actual margin box
+    $style = $this->get_parent()->get_style();
+    $font = $style->font_family;
+    $size = $style->font_size;
+
+    /*
+    pre_r('-----');
+    pre_r($style->line_height);
+    pre_r($style->font_size);
+    pre_r(Font_Metrics::get_font_height($font, $size));
+    pre_r(($style->line_height / $size) * Font_Metrics::get_font_height($font, $size));
+    */
+
+    return ($style->line_height / ( $size > 0 ? $size : 1 )) * Font_Metrics::get_font_height($font, $size);
+    
+  }
+
+  function get_padding_box() {
+    $pb = $this->_frame->get_padding_box();
+    $pb[3] = $pb["h"] = $this->_frame->get_style()->height;
+    return $pb;
+  }
+  //........................................................................
+
+  // Set method
+  function set_text_spacing($spacing) {
+    $style = $this->_frame->get_style();
+    
+    $this->_text_spacing = $spacing;
+    $char_spacing = $style->length_in_pt($style->letter_spacing);
+    
+    // Re-adjust our width to account for the change in spacing
+    $style->width = Font_Metrics::get_text_width($this->get_text(), $style->font_family, $style->font_size, $spacing, $char_spacing);
+  }
+
+  //........................................................................
+
+  // Recalculate the text width
+  function recalculate_width() {
+    $style = $this->get_style();
+    $text = $this->get_text();
+    $size = $style->font_size;
+    $font = $style->font_family;
+    $word_spacing = $style->length_in_pt($style->word_spacing);
+    $char_spacing = $style->length_in_pt($style->letter_spacing);
+
+    return $style->width = Font_Metrics::get_text_width($text, $font, $size, $word_spacing, $char_spacing);
+  }
+  
+  //........................................................................
+
+  // Text manipulation methods
+  
+  // split the text in this frame at the offset specified.  The remaining
+  // text is added a sibling frame following this one and is returned.
+  function split_text($offset) {
+    if ( $offset == 0 )
+      return null;
+
+    if ( self::$_buggy_splittext ) {
+      // workaround to solve DOMText::spliText() bug parsing multibyte strings
+      $node = $this->_frame->get_node();
+      $txt0 = $node->substringData(0, $offset);
+      $txt1 = $node->substringData($offset, mb_strlen($node->textContent)-1);
+
+      $node->replaceData(0, mb_strlen($node->textContent), $txt0);
+      $split = $node->parentNode->appendChild(new DOMText($txt1));
+    }
+    else {
+      $split = $this->_frame->get_node()->splitText($offset);
+    }
+    
+    $deco = $this->copy($split);
+
+    $p = $this->get_parent();
+    $p->insert_child_after($deco, $this, false);
+
+    if ( $p instanceof Inline_Frame_Decorator )
+      $p->split($deco);
+
+    return $deco;
+  }
+
+  //........................................................................
+
+  function delete_text($offset, $count) {
+    $this->_frame->get_node()->deleteData($offset, $count);
+  }
+
+  //........................................................................
+
+  function set_text($text) {
+    $this->_frame->get_node()->data = $text;
+  }
+
+}
+
+Text_Frame_Decorator::$_buggy_splittext = PHP_VERSION_ID < 50207;

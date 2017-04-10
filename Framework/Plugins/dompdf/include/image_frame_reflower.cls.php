@@ -1,112 +1,186 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-HR+cPsfJmJLu3pew4PDK5eyrEbGfxPQfkingsDyd0TpnjDVFnYcQBUNE8fFpKw/+mjvvMDyL+kyH
-zsG9qdp86m/GHqD2urR8p3DWaM04+CZzgUaq/cuXRRoQxjjdGrsTL6ZHL+XNacpkmgOCQ58T5/Sb
-Vdvr18+h6AV9gcH5OjEZjW9SYtilmxJRVv0eTKw6SxHbELvvDuF3HZLETh4jQIXt6IRodlTbOSuT
-iE/xFMtaQgj7QJSB9QYUjGiBwuEv48bmam5rrH1vAJNfiM8Aq0BYaxzhE+AFk2meppd/s6io6zWh
-7Yb9r9eDxcs7uxppSxvwYZWqVGR0XzK7s69ZIACvDtYElqNFNlaY+OzUvyap94yev0M2lfR9ciJE
-wuWCXhznUQh3CB43rhvlRXCGIK+99OmsDkhyWAQ6mGWOoGc9pchunlxbQHOZKYoUswgkjWqJAalg
-x7O11nehT4VL8dbhiVmfrb8lcF6dPGTaKpzOUP2b6joz8Aifn+87nDXDfnehZQFGar2BODmVd9Pj
-SWYX/+7MApXGuxyVbLCKOT0hu5Hb/IlXtjwqLRxLh0Cx8sNwBrllwpU2hmyofUpAVslL3JY/wKGO
-oohKgcF2oRs0cGqFSkSrsD+pv/ldCFyDODoUVZ38LWWXC7txwz4C61I6DdPAciQ8Bf1OuMmLum+l
-wJqmUu9i43b1a1aIPxgjS9CSOqGIykp1fo75oHTi5Wf2aTp6mO6cEh+OUKACLSFSIi2zvzDNGXu0
-HdxPwpksFVddqgEvOw8ikIy63kLVraoWGLOHM79iEXTEMp9qYghSvguAQLFXWVN1I6JKbUjlq/du
-6nmot4oQHCzE1BEcWJDATWnEnHPPcrVpH36CFM53hiFmWFEQxupl/XyS7Bk4dnij/A0X+LCeru+P
-B9G1N4pEZObJqcWsXCWH+LAM/F1FJcywS5IW8GwLPRYctgoVXVJUC4Vg5iQkuIufy24qNN0Yqvgy
-M7vPwekaPxNPyWOGlZGz/yWAhLglJ+DCyJ5PaKQ3X3E8RyoKW4ERbxkZbvs3focvak1b7GkaaYQp
-s807Au4OkQ8a4Yv9z9Pe7KBcgO38ZMHyOV33a6ITS9IzEoVEvJQu79fZhRMvSul+beIicQxWoSab
-j8JM4vUQTXNS452+B4pXdhcRE4fvc+9S7yv4xnbJWD6hCObilVzba40BFe0/R0W4V8Iaws13GYTR
-YrSr1M1NMhyCRH++Qr7x3+wbftFcxPgnuE0rd7j59gSqWq7O/nmlqima+usm0iSDM2hRDvnk9Z1u
-x0uP3aDpHOOH/9VMWfYRJgWNorl7zwaT0H5AlotAx4EY0zMDgbmaLFcsrShcRLvPEdxF5yxV14NB
-Se20WnTk9zX0u7M88v0aEcfZ2dEhdQFSvfTAyl8fWl6nEEAFy/V65/frQ8QuDkgcym6Snn/JlfGU
-JrYhw1x/LC2QJsgMYOPkaCrGDRWly+lSgLw5qOGoMPqKHYPqtloJ7c2aKymE19RWewR1l58bPCig
-a3bnp4LoWjHezAf9B9OYLv4BDKb5efctYJAfxlTsRB6a20ghnTba9j4DP33MbpBmEUmeYEX0EOkL
-YLxuv8qRL3GF+mTV5rgNsrpPY70IKjjHrySEC85JJOGIL1Si6vsjEAr9SNh4bmy7t96UdrnTjeAb
-2Boq38mcHPYVSjBit2ju/nVhOOy5BOoB2akjkNo0ovyFk1muweEqW/BM+NxGoUuVziiCb73ncLD4
-vzcqxVZ+4OzEQGYE5CU3KYPMGx/WWJFddv3+uBWls459TO305onBvnxiru+31GpMAn4raSbFy9Ol
-pBsHRG1ADG5RG2P3bz8PkCgo5G+VhB/aCaIDaBS9cOpNN78WBuyJ+djhXqZeKecv/sstYJDIWBJM
-Xb5kwtgdd4fb2Mx5khbaqyJ7xNNSIEbl4u+sXwk9994+iZN/2p+QM4vk8qmvww8k1cczm0WmMCnV
-9AHmlJb0xuqPjtaoacCi+CzLTxggOs2mJuW6rYcmmnrrttvUFp2mkg0CPNKhTmxD70p1ekmRl7jO
-aTat/MDRayJzIIu7wFxs7g2bjvgOd7V1flm4Ccu8sZR6E1UAd5pZi4572fviVRy+Mnr7tqWa1Tsw
-Ge0lwpzPWSi1twlYKHj9s1pEI6zfI4CqOXBqT/d82qyCkuoDCNYDUzYijsd2tmziXZ7a5av0Qqi3
-eiMrYuZt5raJsu/cauBsZQo/qt3lGyEYPXkKPOdoAWF/OvY8Vi8GtlxOZ13nSoYj9lXhtLsQHDnb
-2c22ijh9xB15gLPc097kuWE4jaKivb8NMFEOwG2xg5E4xpRTruHyukeWOEG85p2rbcIr0BWBZxRY
-hvdEdTKZS8sAU4CdKmalRivVvEjS17f5wHdLRmztouRCpJ8KxmjNO6rvI8yN0vpeyuxNWqHXrmiF
-RUAq3QN0N3FL4VhwoLjMeO1jUkqNGFPFkkMUc82hoeTaEviov2DUJarYMEMfJlvCbwFVtxNFtMKN
-QgvenRjY8wUpGpFVggyhdwEj/gZTCfber0FtoI3kPE57vZ5ueu/9tT1Kip8zeMg3nGjJHLj0E8Kp
-ZDdS67xzWc/jzH8XzY66e1GiI7eiXEkMiJNqBAR89y4JPI4a5wJrA//D2muXyYyku0SLWmJKJnXz
-AJgZ0sGbyPiSnzy0Lua5pIBxnwRQBtX2ZrTM8XWGf9G1XVE0taVMeVsYKN5oYDv2Be+GNJX61dLO
-hd89uaqaxtAIv6PLN6mFLyWV9Mohs0ZXnso8c+MaFVeElgiQe64bLekkfnPM6TObNFpeD/9IINkR
-rucg6j9WiWjNt7+lDevSH6caLEIEKT90lPXDWHw7Qv4MIn1wzWiMMHjrVP41FetagsqF5lNXmNQ2
-1U5lV+jpxjaZhH+BSpKCMDrftVGh71mQeHhpXMeOy94cEwpMWe2qF+J0JAdueQrtJ+7CHhntZcAC
-GVY6w2SKkkuMd3OGUB/4BWR9Et4nfwq3Wtbjvy+bUKYlXQ0mTZbejc/qTucVKf6eAvtfqkbJugl3
-1WwC6wRp5RB304t0FLd7W3S92QVQFT01UYUyled7FVN3CQNpABBLqxO2tnuMbHVrqdG0rAOr3bkB
-yR8H8DcdnQAZzCl7dsnoioiXQ8qvVOpT3SHaeUkZ5WvfVdrQM1qmd0RPvur4j3f8Op/ooj2a74ei
-1K9DyRyb0OmsGVXrYs1pwgthn1SFtoP5ctacla1Qq6xvFgAJUM1WBquaTVX2Er1pAEZ3pQexoVq2
-RUSHKDR1pupmHJuZuQrfCVYX17q8exT5woc8qoeHBHKn9CsAKOJGLuDSmIOcD0LdJOWDerxYcweH
-GL7JUDbFQUr0SNOzjVI3vQCxFU7I0efvutczUpElmlcX/vNE0hlPA1sJS7qd/D7OXt3/OtsdwvGl
-U6NRhZ7Ob1PBIQIjKXmcqwO3AJG8/zp4gZZD8Tb2J8HVrKC/ohIQmHpw7I3sz48xl2a7v8LkK+8M
-9GAxRezNjS+8CugDrs6SC3GokeeXI+KOHRSn37GrgPA3kH384VM4dJb/74rgjZ2BCF4MNNLYdRh9
-AwW8QK+LtgWI62JzT/sy48sx9/WWTpOJPvWmNRlmjxLwHFSYbyz8vqrfE4TfBHKoDbjJHtxaJC5M
-17jcNU5nIX1449afT3Ubklwjwlg+zXkVFcJ/OjD7jHd5yHtTPFpcFwJuc/Mm/mPgjV9DQ60zXvRz
-ROY3JUUt2OORfgN0Xo/TzDIpeirc5/+8wLM++ruOEXHDUJsBudZEZDrcxRKSjqnIm6SgGiBim0MG
-DTuWLUFSo5oitKa9mG22C74adCPG+obhuNnr+hWeHaxRBG8mkwEQtO05vg1q+phbVVXwFytE6zp7
-OEUNqI1y37T/vfjxRqWt/hqfTwKZHwh7285f8eyfcQb13LB5ivqYNNqfJM/9mYtWSx05EYnqYtFg
-OA2SIjQyUtuxBiEEZMaU6T6aUrqHZeYDumE39TrkMSWGBBIrbM4AUZJrKvZCxJtXFbDsUDCJGjqV
-pBC0UeqJL4WVQ8lp1GkD5v9bEBqOPzZB68EynbfkDeU1v+HwK/tQuR9LbJhNjvGJJwzxI4TDgW0P
-YLjNdlfRXK3c5YG8Pl1z0fDN2Q1iWqpgiMcrIa7fZ/0lPWzrs7sgk6Kua2ihpl4M1bUXhCufm6B5
-e6WKlxnrQ13ppvib0BR3klb7AWByrLy9texdkpA+PiZpTMBTeiygTHt5gtrL3d5oxPVTW2YBcMqm
-RSgGv8GosTuxs2wb6jHVrBh9LKUfIJiEFcTyNzoJQkRkzKvYX6N+qNBZE6+hyuUX5puIwcljmIkI
-pIb+uXGA7g6RjxHcz7gj7TatzJNzOe6Vgu9C4JvzYbN+KrvQ/gLgyYjTWy31xuGGjRGDWpPVJZtC
-oKlm1lEEIdocRiC8wC8d+iZvwywzbEc/6pJ/lVptpNYgb9qB6dI0Thim7UfHlDH/x/OvI5YUb/Wl
-Q9VBhzN4r7LQGchx/KJPu58osd0kohNokTkYCEB1mzrIp/XWloApbuwHV/nsP1RIYfx/FMJP7RY3
-GyAlRQ+bDHmhfKSFH/KCtl5ggrfp9NN5NVs6PE6lMV3paF+tNSSPcvGw5axb0VQGgGNM5ZGaajLY
-7tXC4KVDEBDh5dCn2OwLjOTZSJPT6+TtLrk1HOTobQZpncNAdpQ1jj4KVI+egmnzReE9JpJ/mAOA
-A9kKssA5Vn4IsThjZxTX1agNZ1HLKi+/+vepOk2t3A8T8TjSFkcB13vbebeL8J0T8Flt4Hk9E/zz
-DOQD0xvNAGIzZzEDOpjulUEwW3SlBvrkOf+ILEztKql4n4g3sNJGYCZ0nuZC2PQp/i0ImK+EOSiD
-vhevh6Mz1YDCwlHGZW58f0reTwR0wzQKwfcvhR7wFVzicAcmjL9ikXq+znMFXPR6CobN95rTVu13
-6b7324Vjke4GUe901Kp6yytoEmT7dwOlhcoYWG64DxKOS+nCLhAazlPmA6Y6dgmm9h+mMZXa5G8O
-n5yfPcs6fzdhMh6a9Zi4byYv3eClkiHj7PKlOPx4isiBepJj26+sR5JCdQK/ET6STdi/a54YOxxt
-rHKfoIPBRIDeLjPsdnFJyVCDzCh/xahLCezX/mE59HSdh4rUZ+iMEwkZ0B8NiXShHtPIhWY1YpOF
-ff9ZcWg+o4W3K0stn5LshhBgAGvyA9Yars/Syx/lshsYW4kJ1arzcMjK1gLGD5mMlyrrECmO62eQ
-cnZa1Eoa25e5cB+8f1Nk1Oq/mFpQuXncNUJ49tdRBtDA5w9DLz7G41pDrNnAfnHsR5U7TBUdKLZI
-GnfaDj/QeE1grTMYDJiUPOuVi99ddpiALoiNSf6bbiub0E6DXs7BnhagiYfioX0Ji/8iu8/nM2X2
-p0VeTD5ph3b7poGKUAynA2kba3C8XpshNtmcD8n+fjxyPGMHfKJ60o8CSQ4lQt1nUjQnTKqPnbF/
-MraPPYNi5eJWlSEkNViaTtaThJw8FYyL6BfWL7EBtOsonwgInngmU+NmVQxqyM0NE3Mgwmtyd0Mt
-UL5hyJI4K8b25sIQxHX2aL52ycsmT8+ZaL5bIP4d2XJ9cqYQo0NGmX5TywucOBhU/9zCM0S1ZQBP
-JTQX+RZC28/XCpXRBD09DPrEFGWjaUHlXf8qomciSCBKL0PgasHWjYDKKqxkgYjco2fJFZrx3Ym2
-Wo4qkK/EpCN/mluHdIzNdXIo898PAW3loDGSWR7QFpuzxTU388F/OjIQQvFUr5kHt8uAhap2QNWB
-84wtMDu4N+kzA+w4hg2i8Fz0vwNSiKjPANR98VzB/pkY19O1jwb/4thSR73Bi6n2/2b7xReGcTMH
-0pIA7xjd57PT65BTl3XYQsezLKyBC6Pd4btpaXz/+XNqejLq8KqQ2cbi+yr1eTyH0nkA0q9QAzlY
-cFA4jugogUul5XyTeJW+H2l5HLrOvHfDrLh0WJRACG0qIr1Tq9r7fnHPwFYmH4YwbMqislU42Cit
-r2oj2kT+Z2mSAvhMIzg5cL3SkBXmhJ2Wjiq5Q+X1pCZILC594/XF3DS8SJTWjaIb+HfiMZX/0tI1
-XOSK4WdLPEzTBS3VrQn3ChWxE5jlKZ/Z5DPc2VX20RNroskft1j8kkw1StRoDqpbWMvDnnzlDleJ
-YweO+0jSwPhvyySOy2Ijf9mAgxqY+AwFDeIx4cSeo9eChQgdY6wu0XpoAZDlf9Tvxb1Q6ZItchFU
-cvD6BFwCMDJCEx2GXhXSg5ghUuTlAthuVs/Hgj167HsvQUHPwP33lLGE7F3rsT7C7zuMqbEj6QwA
-2FGh39w89RI4BbHNu8MA5u61rbl/dJGnKZEJov7BQtBCPm4vPDsXs+0tMnZKW1UdGalNzcmJG4qQ
-DlpsX4xiJF+NqYf4BxB4Gb3Cw6yS7lUziKg4bQNDXJSTLfnUrk3uxbUkxsgKO8sR5GPYil7W4NfM
-o+R212/Ncy4rwIoyrLSO2dsgLZsialJ/3YT3GVQmrou54HjlvWkMxhaV8mPTeWNxmiRHXVeKVlCz
-Tq1fjc0jAqXQCBQzkzW/o77264urJhb2MKqEtio6BhdUmLlJ7K19Fx9hmlBUU6WxrJ/Qq6cxOgof
-751WQ0bhhHW7fU1cdqv6OLp3wYx1f2IgU3t5YlBrPLQiFQb29WRsjmjYtU8jlIyROhgxa1zPNmjN
-NnVA6nxmXNA7ivIcUYqdaluk6fq46s6BtMuXQItTZccY1FAJCRLkERSGnUrCHQDCfIsjsZMlCdmc
-yoAQCK10oiXcGm6G6kVGN6y4HeWa0qvwspZ3N2SklHOJhercHjMFY0fpW78IgYgaEBw+2Ud+Ma+X
-nl5W8ksBn0Q54+B+JmB/L0NRT6SsHkVYrUN7MN66t5EzmY8pTOez8fPuRnCdncQhoX7jwwK7VweE
-uw9uxekGO4spDm5yUZajVB68CWIyJs80H4KYw8DO2Zf+VVBxOzv4udROnpin6mXYPWyMZDmemGw1
-glwncOE50tKDyBR4wYqPYj+M3G/7G4ww5yoaRq1Paw1ZUGZvZxTyOCkc7Tv5kvlB+wvouzGK2zqL
-wkIbSHqrcdPiXFgiHKcq5rstlXT+sz7jFXIAgtoSaO9Qti2w3lugjwBj0Thz0hQcfR7LkwjtlCu+
-dnHus1KtYmQTnl7LZAsxY77L9VW0JSgIcvqLd4fXP1eIBy3NziKBmExb9BD/B72KC4dAEZxdK1j6
-9/xAoGGo/hRT6ps9MhYFOmMBdVBiETZCNTLxgVJG7ZvF9wYkzJMGnlOlJUbwqBhsMuYtrwTI2Akb
-pTyq5x/MPSbUH3bN0k0rWmWlT0dmAkBA8jpt3ypYNiLRc/A6C6oUX2Z1kp+pwDfMVT9HL8gyREaS
-nzQPLr22yL5C5K5XhOYoXiHo/K0DOg9srQrwqWSWs1yvXFDuVodeg3PZOuBu8xwUq/J2pOJpL4lF
-fRYhWbANGyNT5cVakPtFK8Hh/WFDDeeWE2briQ2DGWL7qEVsD4vx0njidmgVuAg5UbEkJfcrGovs
-+pD8H0VEiDBkU/ZH23ZLsKjhw1xjh9ecUr7wX7ZFwOn87gyqLm+XErp72URzE+idQj1LLQIO0w4B
-SzPVPnUpsuP4MYzWwg9wRgXOnPtL+lIFbC5H5nD+pE9cos/V/C5M0KN684HyYmZ8GvHtQsUiZ2rJ
-HMCR+vJQ/klcHhQ5p7yW3/cGFMiWUItvxpQrO4wJMqxTW+GOu7gPAgnRzB+/dFfTPwqulzwlFzaQ
-XXPrgDAKj1+f1rbgXpLDX7dFIsCoALoE1lxnxApEo6wz9kB8IqXLwnuXfhX6jW0KxPeW+TaiYvEt
-EivPh4+xmqvaZ3YUCWOjUpVfUhKKxF+BgmSMi8dRO7CwxlEvElNBMyRGg/Lf8DsQKWpl2p89P9/E
-oTSIAP3vKPQFJqj0jRj7wh2w7aZY7Xq7WFfqokedN2vG/2IAPOiqlvT5czx93o5e3Em7bxg8bW4t
-qVh1PPK/fjLgc/qRbqfIMC9qJzLi75GRWZiQZphuL8NAlWep3NUQ56V8lLxeMmX/KHBfuOed9eSF
-LoWH/smznlaHysTt/WTn3rzZgI39W1E3srxTSsveLENjVhVrNc+Yb5U/kiyIIF1NtZkapuh5ut/d
-lDaZUSZqLkMDiftbGVyxzBq6O0dAVqRY4VKiTwBC1ZUZ4/z0AqmhrMpga+u7kpUUsAuAuTHzCG+N
-ZlqN0JYr+tgpY0==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Image reflower class
+ *
+ * @access private
+ * @package dompdf
+ */
+class Image_Frame_Reflower extends Frame_Reflower {
+
+  function __construct(Image_Frame_Decorator $frame) {
+    parent::__construct($frame);
+  }
+
+  function reflow(Block_Frame_Decorator $block = null) {
+    $this->_frame->position();
+    
+    //FLOAT
+    //$frame = $this->_frame;
+    //$page = $frame->get_root();
+
+    //$enable_css_float = $this->get_dompdf()->get_option("enable_css_float");
+    //if ($enable_css_float && $frame->get_style()->float !== "none" ) {
+    //  $page->add_floating_frame($this);
+    //}
+    // Set the frame's width
+    $this->get_min_max_width();
+    
+    if ( $block ) {
+      $block->add_frame_to_line($this->_frame);
+    }
+  }
+
+  function get_min_max_width() {
+    if (DEBUGPNG) {
+      // Determine the image's size. Time consuming. Only when really needed?
+      list($img_width, $img_height) = dompdf_getimagesize($this->_frame->get_image_url());
+      print "get_min_max_width() ".
+        $this->_frame->get_style()->width.' '.
+        $this->_frame->get_style()->height.';'.
+        $this->_frame->get_parent()->get_style()->width." ".
+        $this->_frame->get_parent()->get_style()->height.";".
+        $this->_frame->get_parent()->get_parent()->get_style()->width.' '.
+        $this->_frame->get_parent()->get_parent()->get_style()->height.';'.
+        $img_width. ' '.
+        $img_height.'|' ;
+    }
+
+    $style = $this->_frame->get_style();
+    
+    $width_forced = true;
+    $height_forced = true;
+
+    //own style auto or invalid value: use natural size in px
+    //own style value: ignore suffix text including unit, use given number as px
+    //own style %: walk up parent chain until found available space in pt; fill available space
+    //
+    //special ignored unit: e.g. 10ex: e treated as exponent; x ignored; 10e completely invalid ->like auto
+
+    $width = ($style->width > 0 ? $style->width : 0);
+    if ( is_percent($width) ) {
+      $t = 0.0;
+      for ($f = $this->_frame->get_parent(); $f; $f = $f->get_parent()) {
+        $f_style = $f->get_style();
+        $t = $f_style->length_in_pt($f_style->width);
+        if ($t != 0) {
+          break;
+        }
+      }
+      $width = ((float)rtrim($width,"%") * $t)/100; //maybe 0
+    } elseif ( !mb_strpos($width, 'pt') ) {
+      // Don't set image original size if "%" branch was 0 or size not given.
+      // Otherwise aspect changed on %/auto combination for width/height
+      // Resample according to px per inch
+      // See also List_Bullet_Image_Frame_Decorator::__construct
+      $width = $style->length_in_pt($width);
+    }
+
+    $height = ($style->height > 0 ? $style->height : 0);
+    if ( is_percent($height) ) {
+      $t = 0.0;
+      for ($f = $this->_frame->get_parent(); $f; $f = $f->get_parent()) {
+        $f_style = $f->get_style();
+        $t = $f_style->length_in_pt($f_style->height);
+        if ($t != 0) {
+          break;
+        }
+      }
+      $height = ((float)rtrim($height,"%") * $t)/100; //maybe 0
+    } elseif ( !mb_strpos($height, 'pt') ) {
+      // Don't set image original size if "%" branch was 0 or size not given.
+      // Otherwise aspect changed on %/auto combination for width/height
+      // Resample according to px per inch
+      // See also List_Bullet_Image_Frame_Decorator::__construct
+      $height = $style->length_in_pt($height);
+    }
+
+    if ($width == 0 || $height == 0) {
+      // Determine the image's size. Time consuming. Only when really needed!
+      list($img_width, $img_height) = dompdf_getimagesize($this->_frame->get_image_url());
+      
+      // don't treat 0 as error. Can be downscaled or can be catched elsewhere if image not readable.
+      // Resample according to px per inch
+      // See also List_Bullet_Image_Frame_Decorator::__construct
+      if ($width == 0 && $height == 0) {
+        $dpi = $this->_frame->get_dompdf()->get_option("dpi");
+        $width = (float)($img_width * 72) / $dpi;
+        $height = (float)($img_height * 72) / $dpi;
+        $width_forced = false;
+        $height_forced = false;
+      } elseif ($height == 0 && $width != 0) {
+        $height_forced = false;
+        $height = ($width / $img_width) * $img_height; //keep aspect ratio
+      } elseif ($width == 0 && $height != 0) {
+        $width_forced = false;
+        $width = ($height / $img_height) * $img_width; //keep aspect ratio
+      }
+    }
+    
+    // Handle min/max width/height
+    if ( $style->min_width  !== "none" || 
+         $style->max_width  !== "none" || 
+         $style->min_height !== "none" || 
+         $style->max_height !== "none" ) {
+           
+      list(/*$x*/, /*$y*/, $w, $h) = $this->_frame->get_containing_block();
+      
+      $min_width = $style->length_in_pt($style->min_width, $w);
+      $max_width = $style->length_in_pt($style->max_width, $w);
+      $min_height = $style->length_in_pt($style->min_height, $h);
+      $max_height = $style->length_in_pt($style->max_height, $h);
+  
+      if ( $max_width !== "none" && $width > $max_width ) {
+        if ( !$height_forced ) {
+          $height *= $max_width / $width;
+        }
+        
+        $width = $max_width;
+      }
+  
+      if ( $min_width !== "none" && $width < $min_width ) {
+        if ( !$height_forced ) {
+          $height *= $min_width / $width;
+        }
+        
+        $width = $min_width;
+      }
+      
+      if ( $max_height !== "none" && $height > $max_height ) {
+        if ( !$width_forced ) {
+          $width *= $max_height / $height;
+        }
+        
+        $height = $max_height;
+      }
+      
+      if ( $min_height !== "none" && $height < $min_height ) {
+        if ( !$width_forced ) {
+          $width *= $min_height / $height;
+        }
+        
+        $height = $min_height;
+      }
+    }
+    
+    if (DEBUGPNG) print $width.' '.$height.';';
+
+    $style->width = $width . "pt";
+    $style->height = $height . "pt";
+    
+    $style->min_width = "none";
+    $style->max_width = "none";
+    $style->min_height = "none";
+    $style->max_height = "none";
+
+    return array( $width, $width, "min" => $width, "max" => $width);
+    
+  }
+}

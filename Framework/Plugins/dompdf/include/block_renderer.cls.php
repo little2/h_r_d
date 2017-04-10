@@ -1,167 +1,230 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Renders block frames
+ *
+ * @access private
+ * @package dompdf
+ */
+class Block_Renderer extends Abstract_Renderer {
+
+  //........................................................................
+
+  function render(Frame $frame) {
+    $style = $frame->get_style();
+    $node = $frame->get_node();
+
+    list($x, $y, $w, $h) = $frame->get_border_box();
+    
+    $this->_set_opacity( $frame->get_opacity( $style->opacity ) );
+
+    if ( $node->nodeName === "body" ) {
+      $h = $frame->get_containing_block("h") - $style->length_in_pt(array(
+        $style->margin_top,
+        $style->border_top_width,
+        $style->border_bottom_width,
+        $style->margin_bottom),
+      $style->width);
+    }
+
+    // Handle anchors & links
+    if ( $node->nodeName === "a" && $href = $node->getAttribute("href") ) {
+      $this->_canvas->add_link($href, $x, $y, $w, $h);
+    }
+    
+    // Draw our background, border and content
+    list($tl, $tr, $br, $bl) = $style->get_computed_border_radius($w, $h);
+    
+    if ( $tl + $tr + $br + $bl > 0 ) {
+      $this->_canvas->clipping_roundrectangle( $x, $y, $w, $h, $tl, $tr, $br, $bl );
+    }
+      
+    if ( ($bg = $style->background_color) !== "transparent" ) {
+      $this->_canvas->filled_rectangle( $x, $y, $w, $h, $bg );
+    }
+
+    if ( ($url = $style->background_image) && $url !== "none" ) {
+      $this->_background_image($url, $x, $y, $w, $h, $style);
+    }
+    
+    if ( $tl + $tr + $br + $bl > 0 ) {
+      $this->_canvas->clipping_end();
+    }
+
+    $border_box = array($x, $y, $w, $h);
+    $this->_render_border($frame, $border_box);
+    $this->_render_outline($frame, $border_box);
+    
+    if (DEBUG_LAYOUT && DEBUG_LAYOUT_BLOCKS) {
+      $this->_debug_layout($frame->get_border_box(), "red");
+      if (DEBUG_LAYOUT_PADDINGBOX) {
+        $this->_debug_layout($frame->get_padding_box(), "red", array(0.5, 0.5));
+      }
+    }
+    
+    if (DEBUG_LAYOUT && DEBUG_LAYOUT_LINES && $frame->get_decorator()) {
+      foreach ($frame->get_decorator()->get_line_boxes() as $line) {
+        $frame->_debug_layout(array($line->x, $line->y, $line->w, $line->h), "orange");
+      }
+    }
+  }
+
+  protected function _render_border(Frame_Decorator $frame, $border_box = null, $corner_style = "bevel") {
+    $style = $frame->get_style();
+    $bp = $style->get_border_properties();
+
+    if ( empty($border_box) ) {
+      $border_box = $frame->get_border_box();
+    }
+    
+    // find the radius
+    $radius = $style->get_computed_border_radius($border_box[2], $border_box[3]); // w, h
+
+    // Short-cut: If all the borders are "solid" with the same color and style, and no radius, we'd better draw a rectangle
+    if (
+        in_array($bp["top"]["style"], array("solid", "dashed", "dotted")) && 
+        $bp["top"]    == $bp["right"] &&
+        $bp["right"]  == $bp["bottom"] &&
+        $bp["bottom"] == $bp["left"] &&
+        array_sum($radius) == 0
+    ) {
+      $props = $bp["top"];
+      if ( $props["color"] === "transparent" || $props["width"] <= 0 ) return;
+      
+      list($x, $y, $w, $h) = $border_box;
+      $width = $style->length_in_pt($props["width"]);
+      $pattern = $this->_get_dash_pattern($props["style"], $width);
+      $this->_canvas->rectangle($x + $width / 2, $y + $width / 2, $w - $width, $h - $width, $props["color"], $width, $pattern);
+      return;
+    }
+
+    // Do it the long way
+    $widths = array($style->length_in_pt($bp["top"]["width"]),
+                    $style->length_in_pt($bp["right"]["width"]),
+                    $style->length_in_pt($bp["bottom"]["width"]),
+                    $style->length_in_pt($bp["left"]["width"]));
+    
+    foreach ($bp as $side => $props) {
+      list($x, $y, $w, $h) = $border_box;
+      $length = 0;
+      $r1 = 0;
+      $r2 = 0;
+
+      if ( !$props["style"] || 
+            $props["style"] === "none" || 
+            $props["width"] <= 0 || 
+            $props["color"] == "transparent" )
+        continue;
+
+      switch($side) {
+      case "top":
+        $length = $w;
+        $r1 = $radius["top-left"];
+        $r2 = $radius["top-right"];
+        break;
+
+      case "bottom":
+        $length = $w;
+        $y += $h;
+        $r1 = $radius["bottom-left"];
+        $r2 = $radius["bottom-right"];
+        break;
+
+      case "left":
+        $length = $h;
+        $r1 = $radius["top-left"];
+        $r2 = $radius["bottom-left"];
+        break;
+
+      case "right":
+        $length = $h;
+        $x += $w;
+        $r1 = $radius["top-right"];
+        $r2 = $radius["bottom-right"];
+        break;
+      default:
+        break;
+      }
+      $method = "_border_" . $props["style"];
+    
+      // draw rounded corners
+      $this->$method($x, $y, $length, $props["color"], $widths, $side, $corner_style, $r1, $r2);
+    }
+  }
+
+  protected function _render_outline(Frame_Decorator $frame, $border_box = null, $corner_style = "bevel") {
+    $style = $frame->get_style();
+    
+    $props = array(
+      "width" => $style->outline_width,
+      "style" => $style->outline_style,
+      "color" => $style->outline_color,
+    );
+    
+    if ( !$props["style"] || $props["style"] === "none" || $props["width"] <= 0 )
+      return;
+
+    if ( empty($border_box) ) {
+      $border_box = $frame->get_border_box();
+    }
+
+    $offset = $style->length_in_pt($props["width"]);
+    $pattern = $this->_get_dash_pattern($props["style"], $offset);
+
+    // If the outline style is "solid" we'd better draw a rectangle
+    if ( in_array($props["style"], array("solid", "dashed", "dotted")) ) {
+      $border_box[0] -= $offset / 2;
+      $border_box[1] -= $offset / 2;
+      $border_box[2] += $offset;
+      $border_box[3] += $offset;
+    
+      list($x, $y, $w, $h) = $border_box;
+      $this->_canvas->rectangle($x, $y, $w, $h, $props["color"], $offset, $pattern);
+      return;
+    }
+
+    $border_box[0] -= $offset;
+    $border_box[1] -= $offset;
+    $border_box[2] += $offset * 2;
+    $border_box[3] += $offset * 2;
+    
+    $method = "_border_" . $props["style"];
+    $widths = array_fill(0, 4, $props["width"]);
+    $sides = array("top", "right", "left", "bottom");
+    $length = 0;
+    
+    foreach ($sides as $side) {
+      list($x, $y, $w, $h) = $border_box;
+
+      switch($side) {
+      case "top":
+        $length = $w;
+        break;
+
+      case "bottom":
+        $length = $w;
+        $y += $h;
+        break;
+
+      case "left":
+        $length = $h;
+        break;
+
+      case "right":
+        $length = $h;
+        $x += $w;
+        break;
+      default:
+        break;
+      }
+
+      $this->$method($x, $y, $length, $props["color"], $widths, $side, $corner_style);
+    }
+  }
+}

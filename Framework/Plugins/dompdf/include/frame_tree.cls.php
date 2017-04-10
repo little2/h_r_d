@@ -1,94 +1,241 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Represents an entire document as a tree of frames
+ *
+ * The Frame_Tree consists of {@link Frame} objects each tied to specific
+ * DOMNode objects in a specific DomDocument.  The Frame_Tree has the same
+ * structure as the DomDocument, but adds additional capabalities for
+ * styling and layout.
+ *
+ * @package dompdf
+ * @access protected
+ */
+class Frame_Tree {
+    
+  /**
+   * Tags to ignore while parsing the tree
+   *
+   * @var array
+   */
+  static protected $_HIDDEN_TAGS = array("area", "base", "basefont", "head", "style",
+                                         "meta", "title", "colgroup",
+                                         "noembed", "noscript", "param", "#comment");  
+  /**
+   * The main DomDocument
+   *
+   * @see http://ca2.php.net/manual/en/ref.dom.php
+   * @var DomDocument
+   */
+  protected $_dom;
+
+  /**
+   * The root node of the FrameTree.
+   *
+   * @var Frame
+   */
+  protected $_root;
+
+  /**
+   * Subtrees of absolutely positioned elements
+   *
+   * @var array of Frames
+   */
+  protected $_absolute_frames;
+
+  /**
+   * A mapping of {@link Frame} objects to DOMNode objects
+   *
+   * @var array
+   */
+  protected $_registry;
+  
+
+  /**
+   * Class constructor
+   *
+   * @param DomDocument $dom the main DomDocument object representing the current html document
+   */
+  function __construct(DomDocument $dom) {
+    $this->_dom = $dom;
+    $this->_root = null;
+    $this->_registry = array();
+  }
+  
+  function __destruct() {
+    clear_object($this);
+  }
+
+  /**
+   * Returns the DomDocument object representing the curent html document
+   *
+   * @return DOMDocument
+   */
+  function get_dom() {
+    return $this->_dom;
+  }
+
+  /**
+   * Returns the root frame of the tree
+   * 
+   * @return Page_Frame_Decorator
+   */
+  function get_root() {
+    return $this->_root;
+  }
+
+  /**
+   * Returns a specific frame given its id
+   *
+   * @param string $id
+   * @return Frame
+   */
+  function get_frame($id) {
+    return isset($this->_registry[$id]) ? $this->_registry[$id] : null;
+  }
+
+  /**
+   * Returns a post-order iterator for all frames in the tree
+   *
+   * @return FrameTreeList|Frame[]
+   */
+  function get_frames() {
+    return new FrameTreeList($this->_root);
+  }
+      
+  /**
+   * Builds the tree
+   */
+  function build_tree() {
+    $html = $this->_dom->getElementsByTagName("html")->item(0);
+    if ( is_null($html) ) {
+      $html = $this->_dom->firstChild;
+    }
+
+    if ( is_null($html) ) {
+      throw new DOMPDF_Exception("Requested HTML document contains no data.");
+    }
+
+    $this->fix_tables();
+    
+    $this->_root = $this->_build_tree_r($html);
+  }
+  
+  /**
+   * Adds missing TBODYs around TR
+   */
+  protected function fix_tables(){
+    $xp = new DOMXPath($this->_dom);
+    
+    // Move table caption before the table
+    // FIXME find a better way to deal with it...
+    $captions = $xp->query("//table/caption");
+    foreach($captions as $caption) {
+      $table = $caption->parentNode;
+      $table->parentNode->insertBefore($caption, $table);
+    }
+    
+    $rows = $xp->query("//table/tr");
+    foreach($rows as $row) {
+      $tbody = $this->_dom->createElement("tbody");
+      $tbody = $row->parentNode->insertBefore($tbody, $row);
+      $tbody->appendChild($row);
+    }
+  }
+
+  /**
+   * Recursively adds {@link Frame} objects to the tree
+   *
+   * Recursively build a tree of Frame objects based on a dom tree.
+   * No layout information is calculated at this time, although the
+   * tree may be adjusted (i.e. nodes and frames for generated content
+   * and images may be created).
+   *
+   * @param DOMNode $node the current DOMNode being considered
+   * @return Frame
+   */
+  protected function _build_tree_r(DOMNode $node) {
+    
+    $frame = new Frame($node);
+    $id = $frame->get_id();
+    $this->_registry[ $id ] = $frame;
+    
+    if ( !$node->hasChildNodes() ) {
+      return $frame;
+    }
+
+    // Fixes 'cannot access undefined property for object with
+    // overloaded access', fix by Stefan radulian
+    // <stefan.radulian@symbion.at>    
+    //foreach ($node->childNodes as $child) {
+
+    // Store the children in an array so that the tree can be modified
+    $children = array();
+    for ($i = 0; $i < $node->childNodes->length; $i++) {
+      $children[] = $node->childNodes->item($i);
+    }
+
+    foreach ($children as $child) {
+      $node_name = mb_strtolower($child->nodeName);
+      
+      // Skip non-displaying nodes
+      if ( in_array($node_name, self::$_HIDDEN_TAGS) )  {
+        if ( $node_name !== "head" && $node_name !== "style" ) {
+          $child->parentNode->removeChild($child);
+        }
+        
+        continue;
+      }
+
+      // Skip empty text nodes
+      if ( $node_name === "#text" && $child->nodeValue == "" ) {
+        $child->parentNode->removeChild($child);
+        continue;
+      }
+
+      // Skip empty image nodes
+      if ( $node_name === "img" && $child->getAttribute("src") == "" ) {
+        $child->parentNode->removeChild($child);
+        continue;
+      }
+      
+      $frame->append_child($this->_build_tree_r($child), false);
+    }
+    
+    return $frame;
+  }
+  
+  public function insert_node(DOMNode $node, DOMNode $new_node, $pos) {
+    if ( $pos === "after" || !$node->firstChild ) {
+      $node->appendChild($new_node);
+    }
+    else {
+      $node->insertBefore($new_node, $node->firstChild);
+    }
+    
+    $this->_build_tree_r($new_node);
+    
+    $frame_id = $new_node->getAttribute("frame_id");
+    $frame = $this->get_frame($frame_id);
+    
+    $parent_id = $node->getAttribute("frame_id");
+    $parent = $this->get_frame($parent_id);
+    
+    if ( $parent ) {
+      if ( $pos === "before" ) {
+        $parent->prepend_child($frame, false);
+      }
+      else {
+        $parent->append_child($frame, false);
+      }
+    }
+    
+    return $frame_id;
+  }
+}

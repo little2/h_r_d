@@ -1,209 +1,449 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Reflows text frames.
+ *
+ * @access private
+ * @package dompdf
+ */
+class Text_Frame_Reflower extends Frame_Reflower {
+
+  /**
+   * @var Block_Frame_Decorator
+   */
+  protected $_block_parent; // Nearest block-level ancestor
+  
+  /**
+   * @var Text_Frame_Decorator
+   */
+  protected $_frame;
+  
+  public static $_whitespace_pattern = "/[ \t\r\n\f]+/u";
+
+  function __construct(Text_Frame_Decorator $frame) { parent::__construct($frame); }
+
+  //........................................................................
+
+  protected function _collapse_white_space($text) {
+    //$text = $this->_frame->get_text();
+//     if ( $this->_block_parent->get_current_line_box->w == 0 )
+//       $text = ltrim($text, " \n\r\t");
+    return preg_replace(self::$_whitespace_pattern, " ", $text);
+  }
+
+  //........................................................................
+
+  protected function _line_break($text) {
+    $style = $this->_frame->get_style();
+    $size = $style->font_size;
+    $font = $style->font_family;
+    $current_line = $this->_block_parent->get_current_line_box();
+    
+    // Determine the available width
+    $line_width = $this->_frame->get_containing_block("w");
+    $current_line_width = $current_line->left + $current_line->w + $current_line->right;
+    
+    $available_width = $line_width - $current_line_width;
+
+    // Account for word-spacing
+    $word_spacing = $style->length_in_pt($style->word_spacing);
+    $char_spacing = $style->length_in_pt($style->letter_spacing);
+
+    // Determine the frame width including margin, padding & border
+    $text_width = Font_Metrics::get_text_width($text, $font, $size, $word_spacing, $char_spacing);
+    $mbp_width =
+      $style->length_in_pt( array( $style->margin_left,
+                                   $style->border_left_width,
+                                   $style->padding_left,
+                                   $style->padding_right,
+                                   $style->border_right_width,
+                                   $style->margin_right), $line_width );
+                                   
+    $frame_width = $text_width + $mbp_width;
+
+// Debugging:
+//    pre_r("Text: '" . htmlspecialchars($text). "'");
+//    pre_r("width: " .$frame_width);
+//    pre_r("textwidth + delta: $text_width + $mbp_width");
+//    pre_r("font-size: $size");
+//    pre_r("cb[w]: " .$line_width);
+//    pre_r("available width: " . $available_width);
+//    pre_r("current line width: " . $current_line_width);
+
+//     pre_r($words);
+
+    if ( $frame_width <= $available_width )
+      return false;
+
+    // split the text into words
+    /*
+    $words = preg_split('/([\s-]+)/u', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+    $wc = count($words);
+  */
+
+ 
+    //解决中文换行
+    preg_match_all('/./u', $text, $array);
+    $words = $array[0];
+    $wc = count($words);
+   
+    // Determine the split point
+    $width = 0;
+    $str = "";
+    reset($words);
+
+    // @todo support <shy>, <wbr>
+    for ($i = 0; $i < $wc; $i += 2) {
+      $word = $words[$i] . (isset($words[$i+1]) ? $words[$i+1] : "");
+      $word_width = Font_Metrics::get_text_width($word, $font, $size, $word_spacing, $char_spacing);
+      if ( $width + $word_width + $mbp_width > $available_width )
+        break;
+
+      $width += $word_width;
+      $str .= $word;
+    }
+
+    $break_word = ($style->word_wrap === "break-word");
+    
+    // The first word has overflowed.   Force it onto the line
+    if ( $current_line_width == 0 && $width == 0 ) {
+      
+      $s = "";
+      $last_width = 0;
+        
+      if ( $break_word ) {
+        for ( $j = 0; $j < strlen($word); $j++ ) {
+          $s .= $word[$j];
+          $_width = Font_Metrics::get_text_width($s, $font, $size, $word_spacing, $char_spacing);
+          if ($_width > $available_width) {
+            break;
+          }
+          
+          $last_width = $_width;
+        }
+      }
+      
+      if ( $break_word && $last_width > 0 ) {
+        $width += $last_width;
+        $str .= substr($s, 0, -1);
+      }
+      else {
+        $width += $word_width;
+        $str .= $word;
+      }
+    }
+
+    $offset = mb_strlen($str);
+
+// More debugging:
+//     pre_var_dump($str);
+//     pre_r("Width: ". $width);
+//     pre_r("Offset: " . $offset);
+
+    return $offset;
+
+  }
+
+  //........................................................................
+
+  protected function _newline_break($text) {
+
+    if ( ($i = mb_strpos($text, "\n")) === false)
+      return false;
+
+    return $i+1;
+
+  }
+
+  //........................................................................
+
+  protected function _layout_line() {
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    $text = $frame->get_text();
+    $size = $style->font_size;
+    $font = $style->font_family;
+
+    // Determine the text height
+    $style->height = Font_Metrics::get_font_height( $font, $size );
+
+    $split = false;
+    $add_line = false;
+
+    // Handle text transform:
+    // http://www.w3.org/TR/CSS21/text.html#propdef-text-transform
+    switch (strtolower($style->text_transform)) {
+      default: break;
+      case "capitalize": $text = mb_convert_case($text, MB_CASE_TITLE); break;
+      case "uppercase":  $text = mb_convert_case($text, MB_CASE_UPPER); break;
+      case "lowercase":  $text = mb_convert_case($text, MB_CASE_LOWER); break;
+    }
+    
+    // Handle white-space property:
+    // http://www.w3.org/TR/CSS21/text.html#propdef-white-space
+    switch ($style->white_space) {
+
+    default:
+    case "normal":
+      $frame->set_text( $text = $this->_collapse_white_space($text) );
+      if ( $text == "" )
+        break;
+
+      $split = $this->_line_break($text);
+      break;
+
+    case "pre":
+      $split = $this->_newline_break($text);
+      $add_line = $split !== false;
+      break;
+
+    case "nowrap":
+      $frame->set_text( $text = $this->_collapse_white_space($text) );
+      break;
+
+    case "pre-wrap":
+      $split = $this->_newline_break($text);
+
+      if ( ($tmp = $this->_line_break($text)) !== false ) {
+        $add_line = $split < $tmp;
+        $split = min($tmp, $split);
+      } else
+        $add_line = true;
+
+      break;
+
+    case "pre-line":
+      // Collapse white-space except for \n
+      $frame->set_text( $text = preg_replace( "/[ \t]+/u", " ", $text ) );
+
+      if ( $text == "" )
+        break;
+
+      $split = $this->_newline_break($text);
+
+      if ( ($tmp = $this->_line_break($text)) !== false ) {
+        $add_line = $split < $tmp;
+        $split = min($tmp, $split);
+      } else
+        $add_line = true;
+
+      break;
+
+    }
+
+    // Handle degenerate case
+    if ( $text === "" )
+      return;
+
+    if ( $split !== false) {
+
+      // Handle edge cases
+      if ( $split == 0 && $text === " " ) {
+        $frame->set_text("");
+        return;
+      }
+
+      if ( $split == 0 ) {
+
+        // Trim newlines from the beginning of the line
+        //$this->_frame->set_text(ltrim($text, "\n\r"));
+
+        $this->_block_parent->add_line();
+        $frame->position();
+
+        // Layout the new line
+        $this->_layout_line();
+
+      } 
+      
+      else if ( $split < mb_strlen($frame->get_text()) ) {
+        // split the line if required
+        $frame->split_text($split);
+
+        $t = $frame->get_text();
+        
+        // Remove any trailing newlines
+        if ( $split > 1 && $t[$split-1] === "\n" && !$frame->is_pre() )
+          $frame->set_text( mb_substr($t, 0, -1) );
+
+        // Do we need to trim spaces on wrapped lines? This might be desired, however, we 
+        // can't trim the lines here or the layout will be affected if trimming the line 
+        // leaves enough space to fit the next word in the text stream (because pdf layout  
+        // is performed elsewhere).
+        /*if (!$this->_frame->get_prev_sibling() && !$this->_frame->get_next_sibling()) {
+          $t = $this->_frame->get_text();
+          $this->_frame->set_text( trim($t) );
+        }*/
+      }
+
+      if ( $add_line ) {
+        $this->_block_parent->add_line();
+        $frame->position();
+      }
+
+    } else {
+
+      // Remove empty space from start and end of line, but only where there isn't an inline sibling
+      // and the parent node isn't an inline element with siblings
+      // FIXME: Include non-breaking spaces?
+      $t = $frame->get_text();
+      $parent = $frame->get_parent();
+      $is_inline_frame = get_class($parent) === 'Inline_Frame_Decorator';
+      
+      if ((!$is_inline_frame && !$frame->get_next_sibling())/* ||
+          ( $is_inline_frame && !$parent->get_next_sibling())*/) { // fails <b>BOLD <u>UNDERLINED</u></b> becomes <b>BOLD<u>UNDERLINED</u></b>
+        $t = rtrim($t);
+      }
+      
+      if ((!$is_inline_frame && !$frame->get_prev_sibling())/* || 
+          ( $is_inline_frame && !$parent->get_prev_sibling())*/) { //  <span><span>A<span>B</span> C</span></span> fails (the whitespace is removed)
+        $t = ltrim($t);
+      }
+      
+      $frame->set_text( $t );
+      
+    }
+
+    // Set our new width
+    $width = $frame->recalculate_width();
+  }
+
+  //........................................................................
+
+  function reflow(Block_Frame_Decorator $block = null) {
+    $frame = $this->_frame;
+    $page = $frame->get_root();
+    $page->check_forced_page_break($this->_frame);
+    
+    if ( $page->is_full() )
+      return;
+
+    $this->_block_parent = /*isset($block) ? $block : */$frame->find_block_parent();
+
+    // Left trim the text if this is the first text on the line and we're
+    // collapsing white space
+//     if ( $this->_block_parent->get_current_line()->w == 0 &&
+//          ($frame->get_style()->white_space !== "pre" ||
+//           $frame->get_style()->white_space !== "pre-wrap") ) {
+//       $frame->set_text( ltrim( $frame->get_text() ) );
+//     }
+    
+    $frame->position();
+
+    $this->_layout_line();
+    
+    if ( $block ) {
+      $block->add_frame_to_line($frame);
+    }
+  }
+
+  //........................................................................
+
+  // Returns an array(0 => min, 1 => max, "min" => min, "max" => max) of the
+  // minimum and maximum widths of this frame
+  function get_min_max_width() {
+    /*if ( !is_null($this->_min_max_cache)  )
+      return $this->_min_max_cache;*/
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    $this->_block_parent = $frame->find_block_parent();
+    $line_width = $frame->get_containing_block("w");
+
+    $str = $text = $frame->get_text();
+    $size = $style->font_size;
+    $font = $style->font_family;
+
+    $word_spacing = $style->length_in_pt($style->word_spacing);
+    $char_spacing = $style->length_in_pt($style->letter_spacing);
+
+    switch($style->white_space) {
+
+    default:
+    case "normal":
+      $str = preg_replace(self::$_whitespace_pattern," ", $str);
+    case "pre-wrap":
+    case "pre-line":
+
+      // Find the longest word (i.e. minimum length)
+
+      // This technique (using arrays & an anonymous function) is actually
+      // faster than doing a single-pass character by character scan.  Heh,
+      // yes I took the time to bench it ;)
+      $words = array_flip(preg_split("/[\s-]+/u",$str, -1, PREG_SPLIT_DELIM_CAPTURE));
+      /*foreach($words as &$word) {
+        $word = Font_Metrics::get_text_width($word, $font, $size, $word_spacing, $char_spacing);
+      }*/
+      array_walk($words, create_function('&$val,$str',
+                                         '$val = Font_Metrics::get_text_width($str, "'.addslashes($font).'", '.$size.', '.$word_spacing.', '.$char_spacing.');'));
+      arsort($words);
+      $min = reset($words);
+      break;
+
+    case "pre":
+      $lines = array_flip(preg_split("/\n/u", $str));
+      /*foreach($words as &$word) {
+        $word = Font_Metrics::get_text_width($word, $font, $size, $word_spacing, $char_spacing);
+      }*/
+      array_walk($lines, create_function('&$val,$str',
+                                         '$val = Font_Metrics::get_text_width($str, "'.addslashes($font).'", '.$size.', '.$word_spacing.', '.$char_spacing.');'));
+
+      arsort($lines);
+      $min = reset($lines);
+      break;
+
+    case "nowrap":
+      $min = Font_Metrics::get_text_width($this->_collapse_white_space($str), $font, $size, $word_spacing, $char_spacing);
+      break;
+
+    }
+
+    switch ($style->white_space) {
+
+    default:
+    case "normal":
+    case "nowrap":
+      $str = preg_replace(self::$_whitespace_pattern," ", $text);
+      break;
+
+    case "pre-line":
+      //XXX: Is this correct?
+      $str = preg_replace( "/[ \t]+/u", " ", $text);
+
+    case "pre-wrap":
+      // Find the longest word (i.e. minimum length)
+      $lines = array_flip(preg_split("/\n/", $text));
+      /*foreach($words as &$word) {
+        $word = Font_Metrics::get_text_width($word, $font, $size, $word_spacing, $char_spacing);
+      }*/
+      array_walk($lines, create_function('&$val,$str',
+                                         '$val = Font_Metrics::get_text_width($str, "'.$font.'", '.$size.', '.$word_spacing.', '.$char_spacing.');'));
+      arsort($lines);
+      reset($lines);
+      $str = key($lines);
+      break;
+
+    }
+
+    $max = Font_Metrics::get_text_width($str, $font, $size, $word_spacing, $char_spacing);
+    
+    $delta = $style->length_in_pt(array($style->margin_left,
+                                        $style->border_left_width,
+                                        $style->padding_left,
+                                        $style->padding_right,
+                                        $style->border_right_width,
+                                        $style->margin_right), $line_width);
+    $min += $delta;
+    $max += $delta;
+
+    return $this->_min_max_cache = array($min, $max, "min" => $min, "max" => $max);
+
+  }
+
+}

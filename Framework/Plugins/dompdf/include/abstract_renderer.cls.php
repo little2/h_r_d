@@ -1,443 +1,759 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Base renderer class
+ *
+ * @access private
+ * @package dompdf
+ */
+abstract class Abstract_Renderer {
+
+  /**
+   * Rendering backend
+   *
+   * @var Canvas
+   */
+  protected $_canvas;
+
+  /**
+   * Current dompdf instance
+   *
+   * @var DOMPDF
+   */
+  protected $_dompdf;
+  
+  /**
+   * Class constructor
+   *
+   * @param DOMPDF $dompdf The current dompdf instance
+   */
+  function __construct(DOMPDF $dompdf) {
+    $this->_dompdf = $dompdf;
+    $this->_canvas = $dompdf->get_canvas();
+  }
+  
+  /**
+   * Render a frame.
+   *
+   * Specialized in child classes
+   *
+   * @param Frame $frame The frame to render
+   */
+  abstract function render(Frame $frame);
+
+  //........................................................................
+
+  /**
+   * Render a background image over a rectangular area
+   *
+   * @param string $url      The background image to load
+   * @param float  $x        The left edge of the rectangular area
+   * @param float  $y        The top edge of the rectangular area
+   * @param float  $width    The width of the rectangular area
+   * @param float  $height   The height of the rectangular area
+   * @param Style  $style    The associated Style object
+   *
+   * @throws Exception
+   */
+  protected function _background_image($url, $x, $y, $width, $height, $style) {
+    if ( !function_exists("imagecreatetruecolor") ) {
+      throw new Exception("The PHP GD extension is required, but is not installed.");
+    }
+
+    $sheet = $style->get_stylesheet();
+
+    // Skip degenerate cases
+    if ( $width == 0 || $height == 0 ) {
+      return;
+    }
+    
+    $box_width = $width;
+    $box_height = $height;
+
+    //debugpng
+    if (DEBUGPNG) print '[_background_image '.$url.']';
+
+    list($img, $type, /*$msg*/) = Image_Cache::resolve_url(
+      $url,
+      $sheet->get_protocol(),
+      $sheet->get_host(),
+      $sheet->get_base_path(),
+      $this->_dompdf
+    );
+
+    // Bail if the image is no good
+    if ( Image_Cache::is_broken($img) ) {
+      return;
+    }
+
+    //Try to optimize away reading and composing of same background multiple times
+    //Postponing read with imagecreatefrom   ...()
+    //final composition parameters and name not known yet
+    //Therefore read dimension directly from file, instead of creating gd object first.
+    //$img_w = imagesx($src); $img_h = imagesy($src);
+
+    list($img_w, $img_h) = dompdf_getimagesize($img);
+    if (!isset($img_w) || $img_w == 0 || !isset($img_h) || $img_h == 0) {
+      return;
+    }
+
+    $repeat = $style->background_repeat;
+    $dpi = $this->_dompdf->get_option("dpi");
+
+    //Increase background resolution and dependent box size according to image resolution to be placed in
+    //Then image can be copied in without resize
+    $bg_width = round((float)($width * $dpi) / 72);
+    $bg_height = round((float)($height * $dpi) / 72);
+
+    //Need %bg_x, $bg_y as background pos, where img starts, converted to pixel
+
+    list($bg_x, $bg_y) = $style->background_position;
+
+    if ( is_percent($bg_x) ) {
+      // The point $bg_x % from the left edge of the image is placed
+      // $bg_x % from the left edge of the background rectangle
+      $p = ((float)$bg_x)/100.0;
+      $x1 = $p * $img_w;
+      $x2 = $p * $bg_width;
+
+      $bg_x = $x2 - $x1;
+    }
+    else {
+      $bg_x = (float)($style->length_in_pt($bg_x)*$dpi) / 72;
+    }
+    
+    $bg_x = round($bg_x + $style->length_in_pt($style->border_left_width)*$dpi / 72);
+
+    if ( is_percent($bg_y) ) {
+      // The point $bg_y % from the left edge of the image is placed
+      // $bg_y % from the left edge of the background rectangle
+      $p = ((float)$bg_y)/100.0;
+      $y1 = $p * $img_h;
+      $y2 = $p * $bg_height;
+
+      $bg_y = $y2 - $y1;
+    }
+    else {
+      $bg_y = (float)($style->length_in_pt($bg_y)*$dpi) / 72;
+    }
+    
+    $bg_y = round($bg_y + $style->length_in_pt($style->border_top_width)*$dpi / 72);
+
+    //clip background to the image area on partial repeat. Nothing to do if img off area
+    //On repeat, normalize start position to the tile at immediate left/top or 0/0 of area
+    //On no repeat with positive offset: move size/start to have offset==0
+    //Handle x/y Dimensions separately
+
+    if ( $repeat !== "repeat" && $repeat !== "repeat-x" ) {
+      //No repeat x
+      if ($bg_x < 0) {
+        $bg_width = $img_w + $bg_x;
+      }
+      else {
+        $x += ($bg_x * 72)/$dpi;
+        $bg_width = $bg_width - $bg_x;
+        if ($bg_width > $img_w) {
+          $bg_width = $img_w;
+        }
+        $bg_x = 0;
+      }
+      
+      if ($bg_width <= 0) {
+        return;
+      }
+      
+      $width = (float)($bg_width * 72)/$dpi;
+    }
+    else {
+      //repeat x
+      if ($bg_x < 0) {
+        $bg_x = - ((-$bg_x) % $img_w);
+      }
+      else {
+        $bg_x = $bg_x % $img_w;
+        if ($bg_x > 0) {
+          $bg_x -= $img_w;
+        }
+      }
+    }
+
+    if ( $repeat !== "repeat" && $repeat !== "repeat-y" ) {
+      //no repeat y
+      if ($bg_y < 0) {
+        $bg_height = $img_h + $bg_y;
+      }
+      else {
+        $y += ($bg_y * 72)/$dpi;
+        $bg_height = $bg_height - $bg_y;
+        if ($bg_height > $img_h) {
+          $bg_height = $img_h;
+        }
+        $bg_y = 0;
+      }
+      if ($bg_height <= 0) {
+        return;
+      }
+      $height = (float)($bg_height * 72)/$dpi;
+    }
+    else {
+      //repeat y
+      if ($bg_y < 0) {
+        $bg_y = - ((-$bg_y) % $img_h);
+      }
+      else {
+        $bg_y = $bg_y % $img_h;
+        if ($bg_y > 0) {
+          $bg_y -= $img_h;
+        }
+      }
+    }
+
+    //Optimization, if repeat has no effect
+    if ( $repeat === "repeat" && $bg_y <= 0 && $img_h+$bg_y >= $bg_height ) {
+      $repeat = "repeat-x";
+    }
+    
+    if ( $repeat === "repeat" && $bg_x <= 0 && $img_w+$bg_x >= $bg_width ) {
+      $repeat = "repeat-y";
+    }
+    
+    if ( ($repeat === "repeat-x" && $bg_x <= 0 && $img_w+$bg_x >= $bg_width) ||
+         ($repeat === "repeat-y" && $bg_y <= 0 && $img_h+$bg_y >= $bg_height) ) {
+      $repeat = "no-repeat";
+    }
+
+    //Use filename as indicator only
+    //different names for different variants to have different copies in the pdf
+    //This is not dependent of background color of box! .'_'.(is_array($bg_color) ? $bg_color["hex"] : $bg_color)
+    //Note: Here, bg_* are the start values, not end values after going through the tile loops!
+
+    $filedummy = $img;
+    
+    $is_png = false;
+    $filedummy .= '_'.$bg_width.'_'.$bg_height.'_'.$bg_x.'_'.$bg_y.'_'.$repeat;
+
+    //Optimization to avoid multiple times rendering the same image.
+    //If check functions are existing and identical image already cached,
+    //then skip creation of duplicate, because it is not needed by addImagePng
+    if ( $this->_canvas instanceof CPDF_Adapter &&
+         $this->_canvas->get_cpdf()->image_iscached($filedummy) ) {
+      $bg = null;
+    }
+    
+    else {
+  
+      // Create a new image to fit over the background rectangle
+      $bg = imagecreatetruecolor($bg_width, $bg_height);
+      
+      switch (strtolower($type)) {
+        case IMAGETYPE_PNG:
+          $is_png = true;
+          imagesavealpha($bg, true);
+          imagealphablending($bg, false);
+          $src = imagecreatefrompng($img);
+          break;
+    
+        case IMAGETYPE_JPEG:
+          $src = imagecreatefromjpeg($img);
+          break;
+    
+        case IMAGETYPE_GIF:
+          $src = imagecreatefromgif($img);
+          break;
+          
+        case IMAGETYPE_BMP:
+          $src = imagecreatefrombmp($img);
+          break;
+    
+        default:
+          return; // Unsupported image type
+      }
+  
+      if ( $src == null ) {
+        return;
+      }
+  
+      //Background color if box is not relevant here
+      //Non transparent image: box clipped to real size. Background non relevant.
+      //Transparent image: The image controls the transparency and lets shine through whatever background.
+      //However on transparent image preset the composed image with the transparency color,
+      //to keep the transparency when copying over the non transparent parts of the tiles.
+      $ti = imagecolortransparent($src);
+      
+      if ( $ti >= 0 ) {
+        $tc = imagecolorsforindex($src, $ti);
+        $ti = imagecolorallocate($bg, $tc['red'], $tc['green'], $tc['blue']);
+        imagefill($bg, 0, 0, $ti);
+        imagecolortransparent($bg, $ti);
+      }
+  
+      //This has only an effect for the non repeatable dimension.
+      //compute start of src and dest coordinates of the single copy
+      if ( $bg_x < 0 ) {
+        $dst_x = 0;
+        $src_x = -$bg_x;
+      }
+      else {
+        $src_x = 0;
+        $dst_x = $bg_x;
+      }
+  
+      if ( $bg_y < 0 ) {
+        $dst_y = 0;
+        $src_y = -$bg_y;
+      }
+      else {
+        $src_y = 0;
+        $dst_y = $bg_y;
+      }
+  
+      //For historical reasons exchange meanings of variables:
+      //start_* will be the start values, while bg_* will be the temporary start values in the loops
+      $start_x = $bg_x;
+      $start_y = $bg_y;
+  
+      // Copy regions from the source image to the background
+      if ( $repeat === "no-repeat" ) {
+  
+        // Simply place the image on the background
+        imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $img_h);
+  
+      }
+      else if ( $repeat === "repeat-x" ) {
+  
+        for ( $bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w ) {
+          if ( $bg_x < 0 ) {
+            $dst_x = 0;
+            $src_x = -$bg_x;
+            $w = $img_w + $bg_x;
+          }
+          else {
+            $dst_x = $bg_x;
+            $src_x = 0;
+            $w = $img_w;
+          }
+          imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $img_h);
+        }
+  
+      }
+      else if ( $repeat === "repeat-y" ) {
+  
+        for ( $bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h ) {
+          if ( $bg_y < 0 ) {
+            $dst_y = 0;
+            $src_y = -$bg_y;
+            $h = $img_h + $bg_y;
+          }
+          else {
+            $dst_y = $bg_y;
+            $src_y = 0;
+            $h = $img_h;
+          }
+          imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $h);
+  
+        }
+  
+      }
+      else if ( $repeat === "repeat" ) {
+  
+        for ( $bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h ) {
+          for ( $bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w ) {
+  
+            if ( $bg_x < 0 ) {
+              $dst_x = 0;
+              $src_x = -$bg_x;
+              $w = $img_w + $bg_x;
+            }
+            else {
+              $dst_x = $bg_x;
+              $src_x = 0;
+              $w = $img_w;
+            }
+  
+            if ( $bg_y < 0 ) {
+              $dst_y = 0;
+              $src_y = -$bg_y;
+              $h = $img_h + $bg_y;
+            }
+            else {
+              $dst_y = $bg_y;
+              $src_y = 0;
+              $h = $img_h;
+            }
+            imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $h);
+          }
+        }
+      }
+      
+      else {
+        print 'Unknown repeat!';
+      }
+      
+      imagedestroy($src);
+
+    } /* End optimize away creation of duplicates */
+
+    $this->_canvas->clipping_rectangle($x, $y, $box_width, $box_height);
+    
+    //img: image url string
+    //img_w, img_h: original image size in px
+    //width, height: box size in pt
+    //bg_width, bg_height: box size in px
+    //x, y: left/top edge of box on page in pt
+    //start_x, start_y: placement of image relative to pattern
+    //$repeat: repeat mode
+    //$bg: GD object of result image
+    //$src: GD object of original image
+    //When using cpdf and optimization to direct png creation from gd object is available,
+    //don't create temp file, but place gd object directly into the pdf
+    if ( !$is_png && $this->_canvas instanceof CPDF_Adapter ) {
+      // Note: CPDF_Adapter image converts y position
+      $this->_canvas->get_cpdf()->addImagePng($filedummy, $x, $this->_canvas->get_height() - $y - $height, $width, $height, $bg);
+    } 
+    
+    else {
+      $tmp_dir = $this->_dompdf->get_option("temp_dir");
+      $tmp_name = tempnam($tmp_dir, "bg_dompdf_img_");
+      @unlink($tmp_name);
+      $tmp_file = "$tmp_name.png";
+      
+      //debugpng
+      if (DEBUGPNG) print '[_background_image '.$tmp_file.']';
+
+      imagepng($bg, $tmp_file);
+      $this->_canvas->image($tmp_file, $x, $y, $width, $height);
+      imagedestroy($bg);
+
+      //debugpng
+      if (DEBUGPNG) print '[_background_image unlink '.$tmp_file.']';
+
+      if (!DEBUGKEEPTEMP) {
+        unlink($tmp_file);
+      }
+    }
+    
+    $this->_canvas->clipping_end();
+  }
+  
+  protected function _get_dash_pattern($style, $width) {
+    $pattern = array();
+    
+    switch ($style) {
+      default:
+      /*case "solid":
+      case "double":
+      case "groove":
+      case "inset":
+      case "outset":
+      case "ridge":*/
+      case "none": break;
+      
+      case "dotted": 
+        if ( $width <= 1 )
+          $pattern = array($width, $width*2);
+        else
+          $pattern = array($width);
+      break;
+      
+      case "dashed": 
+        $pattern = array(3 * $width);
+      break;
+    }
+    
+    return $pattern;
+  }
+
+  protected function _border_none($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    return;
+  }
+  
+  protected function _border_hidden($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    return;
+  }
+  
+  // Border rendering functions
+
+  protected function _border_dotted($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    $this->_border_line($x, $y, $length, $color, $widths, $side, $corner_style, "dotted", $r1, $r2);
+  }
+
+
+  protected function _border_dashed($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    $this->_border_line($x, $y, $length, $color, $widths, $side, $corner_style, "dashed", $r1, $r2);
+  }
+
+
+  protected function _border_solid($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    // TODO: Solve rendering where one corner is beveled (radius == 0), one corner isn't.
+    if ( $corner_style !== "bevel" || $r1 > 0 || $r2 > 0 ) {
+      // do it the simple way
+      $this->_border_line($x, $y, $length, $color, $widths, $side, $corner_style, "solid", $r1, $r2);
+      return;
+    }
+
+    list($top, $right, $bottom, $left) = $widths;
+
+    // All this polygon business is for beveled corners...
+    switch ($side) {
+      case "top":
+        $points = array($x, $y,
+                        $x + $length, $y,
+                        $x + $length - $right, $y + $top,
+                        $x + $left, $y + $top);
+        $this->_canvas->polygon($points, $color, null, null, true);
+        break;
+  
+      case "bottom":
+        $points = array($x, $y,
+                        $x + $length, $y,
+                        $x + $length - $right, $y - $bottom,
+                        $x + $left, $y - $bottom);
+        $this->_canvas->polygon($points, $color, null, null, true);
+        break;
+  
+      case "left":
+        $points = array($x, $y,
+                        $x, $y + $length,
+                        $x + $left, $y + $length - $bottom,
+                        $x + $left, $y + $top);
+        $this->_canvas->polygon($points, $color, null, null, true);
+        break;
+  
+      case "right":
+        $points = array($x, $y,
+                        $x, $y + $length,
+                        $x - $right, $y + $length - $bottom,
+                        $x - $right, $y + $top);
+        $this->_canvas->polygon($points, $color, null, null, true);
+        break;
+  
+      default:
+        return;
+    }
+  }
+
+  protected function _apply_ratio($side, $ratio, $top, $right, $bottom, $left, &$x, &$y, &$length, &$r1, &$r2) {
+    switch ($side) {
+
+    case "top":
+      $r1 -= $left * $ratio;
+      $r2 -= $right * $ratio;
+      $x += $left * $ratio;
+      $y += $top * $ratio;
+      $length -= $left * $ratio + $right * $ratio;
+      break;
+
+    case "bottom":
+      $r1 -= $right * $ratio;
+      $r2 -= $left * $ratio;
+      $x += $left * $ratio;
+      $y -= $bottom * $ratio;
+      $length -= $left * $ratio + $right * $ratio;
+      break;
+
+    case "left":
+      $r1 -= $top * $ratio;
+      $r2 -= $bottom * $ratio;
+      $x += $left * $ratio;
+      $y += $top * $ratio;
+      $length -= $top * $ratio + $bottom * $ratio;
+      break;
+
+    case "right":
+      $r1 -= $bottom * $ratio;
+      $r2 -= $top * $ratio;
+      $x -= $right * $ratio;
+      $y += $top * $ratio;
+      $length -= $top * $ratio + $bottom * $ratio;
+      break;
+
+    default:
+      return;
+
+    }
+  }
+
+  protected function _border_double($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    list($top, $right, $bottom, $left) = $widths;
+
+    $third_widths = array($top / 3, $right / 3, $bottom / 3, $left / 3);
+
+    // draw the outer border
+    $this->_border_solid($x, $y, $length, $color, $third_widths, $side, $corner_style, $r1, $r2);
+
+    $this->_apply_ratio($side, 2/3, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
+
+    $this->_border_solid($x, $y, $length, $color, $third_widths, $side, $corner_style, $r1, $r2);
+  }
+
+  protected function _border_groove($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    list($top, $right, $bottom, $left) = $widths;
+
+    $half_widths = array($top / 2, $right / 2, $bottom / 2, $left / 2);
+
+    $this->_border_inset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
+    
+    $this->_apply_ratio($side, 0.5, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
+
+    $this->_border_outset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
+
+  }
+
+  protected function _border_ridge($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    list($top, $right, $bottom, $left) = $widths;
+
+    $half_widths = array($top / 2, $right / 2, $bottom / 2, $left / 2);
+
+    $this->_border_outset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
+    
+    $this->_apply_ratio($side, 0.5, $top, $right, $bottom, $left, $x, $y, $length, $r1, $r2);
+
+    $this->_border_inset($x, $y, $length, $color, $half_widths, $side, $corner_style, $r1, $r2);
+
+  }
+
+  protected function _tint($c) {
+    if ( !is_numeric($c) )
+      return $c;
+
+    return min(1, $c + 0.16);
+  }
+
+  protected function _shade($c) {
+    if ( !is_numeric($c) )
+      return $c;
+
+    return max(0, $c - 0.33);
+  }
+
+  protected function _border_inset($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    switch ($side) {
+      case "top":
+      case "left":
+        $shade = array_map(array($this, "_shade"), $color);
+        $this->_border_solid($x, $y, $length, $shade, $widths, $side, $corner_style, $r1, $r2);
+        break;
+  
+      case "bottom":
+      case "right":
+        $tint = array_map(array($this, "_tint"), $color);
+        $this->_border_solid($x, $y, $length, $tint, $widths, $side, $corner_style, $r1, $r2);
+        break;
+  
+      default:
+        return;
+    }
+  }
+
+  protected function _border_outset($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $r1 = 0, $r2 = 0) {
+    switch ($side) {
+      case "top":
+      case "left":
+        $tint = array_map(array($this, "_tint"), $color);
+        $this->_border_solid($x, $y, $length, $tint, $widths, $side, $corner_style, $r1, $r2);
+        break;
+  
+      case "bottom":
+      case "right":
+        $shade = array_map(array($this, "_shade"), $color);
+        $this->_border_solid($x, $y, $length, $shade, $widths, $side, $corner_style, $r1, $r2);
+        break;
+  
+      default:
+        return;
+    }
+  }
+  // Draws a solid, dotted, or dashed line, observing the border radius
+  protected function _border_line($x, $y, $length, $color, $widths, $side, $corner_style = "bevel", $pattern_name, $r1 = 0, $r2 = 0) {
+    list($top, $right, $bottom, $left) = $widths;
+    
+    $width = $$side;
+    $pattern = $this->_get_dash_pattern($pattern_name, $width);
+
+    $half_width = $width/2;
+    $r1 -= $half_width;
+    $r2 -= $half_width;
+    $adjust = $r1/80;
+    $length -= $width; 
+    
+    switch ($side) {
+      case "top":
+        $x += $half_width; 
+        $y += $half_width;
+  
+        if ( $r1 > 0 ) {
+          $this->_canvas->arc($x + $r1, $y + $r1, $r1, $r1, 90-$adjust, 135+$adjust, $color, $width, $pattern);
+        }
+  
+        $this->_canvas->line($x + $r1, $y, $x + $length - $r2, $y, $color, $width, $pattern);
+  
+        if ( $r2 > 0 ) {
+          $this->_canvas->arc($x + $length - $r2, $y + $r2, $r2, $r2, 45-$adjust, 90+$adjust, $color, $width, $pattern);
+        }
+        break;
+        
+      case "bottom":
+        $x += $half_width; 
+        $y -= $half_width;
+        
+        if ( $r1 > 0 ) {
+          $this->_canvas->arc($x + $r1, $y - $r1, $r1, $r1, 225-$adjust, 270+$adjust, $color, $width, $pattern);
+        }
+        
+        $this->_canvas->line($x + $r1, $y, $x + $length - $r2, $y, $color, $width, $pattern);
+        
+        if ( $r2 > 0 ) {
+          $this->_canvas->arc($x + $length - $r2, $y - $r2, $r2, $r2, 270-$adjust, 315+$adjust, $color, $width, $pattern);
+        }
+        break;
+        
+      case "left":
+        $y += $half_width; 
+        $x += $half_width;
+        
+        if ( $r1 > 0 ) {
+          $this->_canvas->arc($x + $r1, $y + $r1, $r1, $r1, 135-$adjust, 180+$adjust, $color, $width, $pattern);
+        }
+        
+        $this->_canvas->line($x, $y + $r1, $x, $y + $length - $r2, $color, $width, $pattern);
+        
+        if ( $r2 > 0 ) {
+          $this->_canvas->arc($x + $r2, $y + $length - $r2, $r2, $r2, 180-$adjust, 225+$adjust, $color, $width, $pattern);
+        }
+        break;
+        
+      case "right":
+        $y += $half_width; 
+        $x -= $half_width;
+        
+        if ( $r1 > 0 ) {
+          $this->_canvas->arc($x - $r1, $y + $r1, $r1, $r1, 0-$adjust, 45+$adjust, $color, $width, $pattern);
+        }
+        
+        $this->_canvas->line($x, $y + $r1, $x, $y + $length - $r2, $color, $width, $pattern);
+        
+        if ( $r2 > 0 ) {
+          $this->_canvas->arc($x - $r2, $y + $length - $r2, $r2, $r2, 315-$adjust, 360+$adjust, $color, $width, $pattern);
+        }
+        break;
+    }
+  }
+
+  protected function _set_opacity($opacity) {
+    if ( is_numeric($opacity) && $opacity <= 1.0 && $opacity >= 0.0 ) {
+      $this->_canvas->set_opacity( $opacity );
+    }
+  }
+
+  protected function _debug_layout($box, $color = "red", $style = array()) {
+    $this->_canvas->rectangle($box[0], $box[1], $box[2], $box[3], CSS_Color::parse($color), 0.1, $style);
+  }
+}

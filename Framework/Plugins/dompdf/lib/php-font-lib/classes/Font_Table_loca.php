@@ -1,46 +1,73 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * `loca` font table.
+ * 
+ * @package php-font-lib
+ */
+class Font_Table_loca extends Font_Table {
+  protected function _parse(){
+    $font = $this->getFont();
+    $offset = $font->pos();
+    
+    $indexToLocFormat = $font->getData("head", "indexToLocFormat");
+    $numGlyphs = $font->getData("maxp", "numGlyphs");
+    
+    $font->seek($offset);
+    
+    $data = array();
+    
+    // 2 bytes
+    if ($indexToLocFormat == 0) {
+      $d = $font->read(($numGlyphs + 1) * 2);
+      $loc = unpack("n*", $d);
+      
+      for ($i = 0; $i <= $numGlyphs; $i++) {
+        $data[] = $loc[$i+1] * 2;
+      }
+    }
+    
+    // 4 bytes
+    else if ($indexToLocFormat == 1) {
+      $d = $font->read(($numGlyphs + 1) * 4);
+      $loc = unpack("N*", $d);
+      
+      for ($i = 0; $i <= $numGlyphs; $i++) {
+        $data[] = $loc[$i+1];
+      }
+    }
+    
+    $this->data = $data;
+  }
+  
+  function _encode(){
+    $font = $this->getFont();
+    $data = $this->data;
+    
+    $indexToLocFormat = $font->getData("head", "indexToLocFormat");
+    $numGlyphs = $font->getData("maxp", "numGlyphs");
+    $length = 0;
+    
+    // 2 bytes
+    if ($indexToLocFormat == 0) {
+      for ($i = 0; $i <= $numGlyphs; $i++) {
+        $length += $font->writeUInt16($data[$i] / 2);
+      }
+    }
+    
+    // 4 bytes
+    else if ($indexToLocFormat == 1) {
+      for ($i = 0; $i <= $numGlyphs; $i++) {
+        $length += $font->writeUInt32($data[$i]);
+      }
+    }
+    
+    return $length;
+  }
+}

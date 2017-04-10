@@ -1,54 +1,102 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-nHtJLQgqIHp80W==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates table cells for layout
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Cell_Frame_Decorator extends Block_Frame_Decorator {
+  
+  protected $_resolved_borders;
+  protected $_content_height;
+  
+  //........................................................................
+
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    parent::__construct($frame, $dompdf);
+    $this->_resolved_borders = array();
+    $this->_content_height = 0;    
+  }
+
+  //........................................................................
+
+  function reset() {
+    parent::reset();
+    $this->_resolved_borders = array();
+    $this->_content_height = 0;
+    $this->_frame->reset();    
+  }
+  
+  function get_content_height() {
+    return $this->_content_height;
+  }
+
+  function set_content_height($height) {
+    $this->_content_height = $height;
+  }
+  
+  function set_cell_height($height) {
+    $style = $this->get_style();
+    $v_space = $style->length_in_pt(array($style->margin_top,
+                                          $style->padding_top,
+                                          $style->border_top_width,
+                                          $style->border_bottom_width,
+                                          $style->padding_bottom,
+                                          $style->margin_bottom),
+                                    $style->width);
+
+    $new_height = $height - $v_space;    
+    $style->height = $new_height;
+
+    if ( $new_height > $this->_content_height ) {
+      $y_offset = 0;
+      
+      // Adjust our vertical alignment
+      switch ($style->vertical_align) {
+        default:
+        case "baseline":
+          // FIXME: this isn't right
+          
+        case "top":
+          // Don't need to do anything
+          return;
+  
+        case "middle":
+          $y_offset = ($new_height - $this->_content_height) / 2;
+          break;
+  
+        case "bottom":
+          $y_offset = $new_height - $this->_content_height;
+          break;
+      }
+   
+      if ( $y_offset ) {
+        // Move our children
+        foreach ( $this->get_line_boxes() as $line ) {
+          foreach ( $line->get_frames() as $frame )
+            $frame->move( 0, $y_offset );
+        }
+      }
+   }
+        
+  }
+
+  function set_resolved_border($side, $border_spec) {    
+    $this->_resolved_borders[$side] = $border_spec;
+  }
+
+  //........................................................................
+
+  function get_resolved_border($side) {
+    return $this->_resolved_borders[$side];
+  }
+
+  function get_resolved_borders() { return $this->_resolved_borders; }
+}

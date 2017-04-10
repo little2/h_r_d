@@ -1,42 +1,114 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-OlZQG95n6mHX0EsVsaj4KxzXHzQHnAo9rN09
+<?php
+
+// warning: this file is encoded in UTF-8!
+
+class HTML5_Data
+{
+
+    // at some point this should be moved to a .ser file. Another
+    // possible optimization is to give UTF-8 bytes, not Unicode
+    // codepoints
+    // XXX: Not quite sure why it's named this; this is
+    // actually the numeric entity dereference table.
+    protected static $realCodepointTable = array(
+        0x00 => 0xFFFD, // REPLACEMENT CHARACTER
+        0x0D => 0x000A, // LINE FEED (LF)
+        0x80 => 0x20AC, // EURO SIGN ('€')
+        0x81 => 0x0081, // <control>
+        0x82 => 0x201A, // SINGLE LOW-9 QUOTATION MARK ('‚')
+        0x83 => 0x0192, // LATIN SMALL LETTER F WITH HOOK ('ƒ')
+        0x84 => 0x201E, // DOUBLE LOW-9 QUOTATION MARK ('„')
+        0x85 => 0x2026, // HORIZONTAL ELLIPSIS ('…')
+        0x86 => 0x2020, // DAGGER ('†')
+        0x87 => 0x2021, // DOUBLE DAGGER ('‡')
+        0x88 => 0x02C6, // MODIFIER LETTER CIRCUMFLEX ACCENT ('ˆ')
+        0x89 => 0x2030, // PER MILLE SIGN ('‰')
+        0x8A => 0x0160, // LATIN CAPITAL LETTER S WITH CARON ('Š')
+        0x8B => 0x2039, // SINGLE LEFT-POINTING ANGLE QUOTATION MARK ('‹')
+        0x8C => 0x0152, // LATIN CAPITAL LIGATURE OE ('Œ')
+        0x8D => 0x008D, // <control>
+        0x8E => 0x017D, // LATIN CAPITAL LETTER Z WITH CARON ('Ž')
+        0x8F => 0x008F, // <control>
+        0x90 => 0x0090, // <control>
+        0x91 => 0x2018, // LEFT SINGLE QUOTATION MARK ('‘')
+        0x92 => 0x2019, // RIGHT SINGLE QUOTATION MARK ('’')
+        0x93 => 0x201C, // LEFT DOUBLE QUOTATION MARK ('“')
+        0x94 => 0x201D, // RIGHT DOUBLE QUOTATION MARK ('”')
+        0x95 => 0x2022, // BULLET ('•')
+        0x96 => 0x2013, // EN DASH ('–')
+        0x97 => 0x2014, // EM DASH ('—')
+        0x98 => 0x02DC, // SMALL TILDE ('˜')
+        0x99 => 0x2122, // TRADE MARK SIGN ('™')
+        0x9A => 0x0161, // LATIN SMALL LETTER S WITH CARON ('š')
+        0x9B => 0x203A, // SINGLE RIGHT-POINTING ANGLE QUOTATION MARK ('›')
+        0x9C => 0x0153, // LATIN SMALL LIGATURE OE ('œ')
+        0x9D => 0x009D, // <control>
+        0x9E => 0x017E, // LATIN SMALL LETTER Z WITH CARON ('ž')
+        0x9F => 0x0178, // LATIN CAPITAL LETTER Y WITH DIAERESIS ('Ÿ')
+    );
+
+    protected static $namedCharacterReferences;
+
+    protected static $namedCharacterReferenceMaxLength;
+
+    /**
+     * Returns the "real" Unicode codepoint of a malformed character
+     * reference.
+     */
+    public static function getRealCodepoint($ref) {
+        if (!isset(self::$realCodepointTable[$ref])) return false;
+        else return self::$realCodepointTable[$ref];
+    }
+
+    public static function getNamedCharacterReferences() {
+        if (!self::$namedCharacterReferences) {
+            self::$namedCharacterReferences = unserialize(
+                file_get_contents(dirname(__FILE__) . '/named-character-references.ser'));
+        }
+        return self::$namedCharacterReferences;
+    }
+
+    /**
+     * Converts a Unicode codepoint to sequence of UTF-8 bytes.
+     * @note Shamelessly stolen from HTML Purifier, which is also
+     *       shamelessly stolen from Feyd (which is in public domain).
+     */
+    public static function utf8chr($code) {
+        /* We don't care: we live dangerously
+         * if($code > 0x10FFFF or $code < 0x0 or
+          ($code >= 0xD800 and $code <= 0xDFFF) ) {
+            // bits are set outside the "valid" range as defined
+            // by UNICODE 4.1.0
+            return "\xEF\xBF\xBD";
+          }*/
+
+        $x = $y = $z = $w = 0;
+        if ($code < 0x80) {
+            // regular ASCII character
+            $x = $code;
+        } else {
+            // set up bits for UTF-8
+            $x = ($code & 0x3F) | 0x80;
+            if ($code < 0x800) {
+               $y = (($code & 0x7FF) >> 6) | 0xC0;
+            } else {
+                $y = (($code & 0xFC0) >> 6) | 0x80;
+                if($code < 0x10000) {
+                    $z = (($code >> 12) & 0x0F) | 0xE0;
+                } else {
+                    $z = (($code >> 12) & 0x3F) | 0x80;
+                    $w = (($code >> 18) & 0x07) | 0xF0;
+                }
+            }
+        }
+        // set up the actual character
+        $ret = '';
+        if($w) $ret .= chr($w);
+        if($z) $ret .= chr($z);
+        if($y) $ret .= chr($y);
+        $ret .= chr($x);
+
+        return $ret;
+    }
+
+}

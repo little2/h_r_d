@@ -1,33 +1,73 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-52uP7pREx0lVPM+KlUJNKZa=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Positions list bullets
+ *
+ * @access private
+ * @package dompdf
+ */
+class List_Bullet_Positioner extends Positioner {
+
+  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
+  
+  //........................................................................
+
+  function position() {
+    
+    // Bullets & friends are positioned an absolute distance to the left of
+    // the content edge of their parent element
+    $cb = $this->_frame->get_containing_block();
+    
+    // Note: this differs from most frames in that we must position
+    // ourselves after determining our width
+    $x = $cb["x"] - $this->_frame->get_width();
+
+    $p = $this->_frame->find_block_parent();
+
+    $y = $p->get_current_line_box()->y;
+
+    // This is a bit of a hack...
+    $n = $this->_frame->get_next_sibling();
+    if ( $n ) {
+      $style = $n->get_style();
+      $line_height = $style->length_in_pt($style->line_height, $style->get_font_size());
+      $offset = $style->length_in_pt($line_height, $n->get_containing_block("h")) - $this->_frame->get_height();             
+      $y += $offset / 2;
+    }
+
+  // Now the position is the left top of the block which should be marked with the bullet.
+  // We tried to find out the y of the start of the first text character within the block.
+  // But the top margin/padding does not fit, neither from this nor from the next sibling
+  // The "bit of a hack" above does not work also.
+  
+  // Instead let's position the bullet vertically centered to the block which should be marked.
+  // But for get_next_sibling() the get_containing_block is all zero, and for find_block_parent()
+  // the get_containing_block is paper width and the entire list as height.
+  
+    // if ($p) {
+    //   //$cb = $n->get_containing_block();
+    //   $cb = $p->get_containing_block();
+    //   $y += $cb["h"]/2;
+    // print 'cb:'.$cb["x"].':'.$cb["y"].':'.$cb["w"].':'.$cb["h"].':';
+    // }   
+
+  // Todo:
+  // For now give up on the above. Use Guesswork with font y-pos in the middle of the line spacing
+
+    /*$style = $p->get_style();
+    $font_size = $style->get_font_size();
+    $line_height = $style->length_in_pt($style->line_height, $font_size);
+    $y += ($line_height - $font_size) / 2;    */
+   
+    //Position is x-end y-top of character position of the bullet.    
+    $this->_frame->set_position($x, $y);
+    
+  }
+}

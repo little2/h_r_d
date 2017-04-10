@@ -1,96 +1,152 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-PRJHOG==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Renders text frames
+ *
+ * @access private
+ * @package dompdf
+ */
+class Text_Renderer extends Abstract_Renderer {
+  
+  const DECO_THICKNESS = 0.02;     // Thickness of underline. Screen: 0.08, print: better less, e.g. 0.04
+
+  //Tweaking if $base and $descent are not accurate.
+  //Check method_exists( $this->_canvas, "get_cpdf" )
+  //- For cpdf these can and must stay 0, because font metrics are used directly.
+  //- For other renderers, if different values are wanted, separate the parameter sets.
+  //  But $size and $size-$height seem to be accurate enough
+  const UNDERLINE_OFFSET = 0.0;    // Relative to bottom of text, as fraction of height.
+  const OVERLINE_OFFSET = 0.0;    // Relative to top of text
+  const LINETHROUGH_OFFSET = 0.0; // Relative to centre of text.
+  const DECO_EXTENSION = 0.0;     // How far to extend lines past either end, in pt
+    
+  //........................................................................
+
+  /**
+   * @param Text_Frame_Decorator $frame
+   */
+  function render(Frame $frame) {
+    $text = $frame->get_text();
+    if ( trim($text) === "" )
+      return;
+      
+    $style = $frame->get_style();
+    list($x, $y) = $frame->get_position();
+    $cb = $frame->get_containing_block();
+
+    if ( ($ml = $style->margin_left) === "auto" || $ml === "none" )
+      $ml = 0;
+
+    if ( ($pl = $style->padding_left) === "auto" || $pl === "none" )
+      $pl = 0;
+
+    if ( ($bl = $style->border_left_width) === "auto" || $bl === "none" )
+      $bl = 0;
+
+    $x += $style->length_in_pt( array($ml, $pl, $bl), $cb["w"] );
+
+    $font = $style->font_family;
+    $size = $frame_font_size = $style->font_size;
+    $height = $style->height;
+    $word_spacing = $frame->get_text_spacing() + $style->length_in_pt($style->word_spacing);
+    $char_spacing = $style->length_in_pt($style->letter_spacing);
+    $width = $style->width;
+
+    /*$text = str_replace(
+      array("{PAGE_NUM}"),
+      array($this->_canvas->get_page_number()), 
+      $text
+    );*/
+    
+    $this->_canvas->text($x, $y, $text,
+                         $font, $size,
+                         $style->color, $word_spacing, $char_spacing);
+    
+    $line = $frame->get_containing_line();
+    
+    // FIXME Instead of using the tallest frame to position,
+    // the decoration, the text should be well placed
+    if ( false && $line->tallest_frame ) {
+      $base_frame = $line->tallest_frame;
+      $style = $base_frame->get_style();
+      $size = $style->font_size;
+      $height = $line->h * ($size / $style->line_height);
+    }
+    
+    $line_thickness      = $size * self::DECO_THICKNESS;
+    $underline_offset    = $size * self::UNDERLINE_OFFSET;
+    $overline_offset     = $size * self::OVERLINE_OFFSET;
+    $linethrough_offset  = $size * self::LINETHROUGH_OFFSET;
+    $underline_position  = -0.08;
+    
+    if ( $this->_canvas instanceof CPDF_Adapter ) {
+      $cpdf_font = $this->_canvas->get_cpdf()->fonts[$style->font_family];
+      
+      if (isset($cpdf_font["UnderlinePosition"])) {
+        $underline_position = $cpdf_font["UnderlinePosition"]/1000;
+      }
+      
+      if (isset($cpdf_font["UnderlineThickness"])) {
+        $line_thickness = $size * ($cpdf_font["UnderlineThickness"]/1000);
+      }
+    }
+      
+    $descent = $size * $underline_position;
+    $base    = $size;
+    
+    // Handle text decoration:
+    // http://www.w3.org/TR/CSS21/text.html#propdef-text-decoration
+    
+    // Draw all applicable text-decorations.  Start with the root and work our way down.
+    $p = $frame;
+    $stack = array();
+    while ( $p = $p->get_parent() )
+      $stack[] = $p;
+    
+    while ( isset($stack[0]) ) {
+      $f = array_pop($stack);
+
+      if ( ($text_deco = $f->get_style()->text_decoration) === "none" )
+        continue;
+        
+      $deco_y = $y; //$line->y;
+      $color = $f->get_style()->color;
+
+      switch ($text_deco) {
+
+      default:
+        continue;
+
+      case "underline":
+        $deco_y += $base - $descent + $underline_offset + $line_thickness/2;
+        break;
+
+      case "overline":
+        $deco_y += $overline_offset + $line_thickness/2;
+        break;
+
+      case "line-through":
+        $deco_y += $base * 0.7 + $linethrough_offset;
+        break;
+      }
+
+      $dx = 0;
+      $x1 = $x - self::DECO_EXTENSION;
+      $x2 = $x + $width + $dx + self::DECO_EXTENSION;
+      $this->_canvas->line($x1, $deco_y, $x2, $deco_y, $color, $line_thickness);
+    }
+    
+    if (DEBUG_LAYOUT && DEBUG_LAYOUT_LINES) {
+      $text_width = Font_Metrics::get_text_width($text, $font, $frame_font_size);
+      $this->_debug_layout(array($x, $y, $text_width+($line->wc-1)*$word_spacing, $frame_font_size), "orange", array(0.5, 0.5));
+    }
+  }
+}

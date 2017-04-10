@@ -1,68 +1,124 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Generic Font table directory entry.
+ * 
+ * @package php-font-lib
+ */
+class Font_Table_Directory_Entry extends Font_Binary_Stream {
+  /**
+   * @var Font_TrueType
+   */
+  protected $font;
+  
+  /**
+   * @var Font_Table
+   */
+  protected $font_table;
+  
+  public $entryLength = 4;
+  
+  public $tag;
+  public $checksum;
+  public $offset;
+  public $length;
+  
+  protected $origF;
+  
+  static function computeChecksum($data){
+    $len = strlen($data);
+    $mod = $len % 4;
+    
+    if ($mod) { 
+      $data = str_pad($data, $len + (4 - $mod), "\0");
+    }
+    
+    $len = strlen($data);
+    
+    $hi = 0x0000;
+    $lo = 0x0000;
+    
+    for ($i = 0; $i < $len; $i += 4) {
+      $hi += (ord($data[$i]  ) << 8) + ord($data[$i+1]);
+      $lo += (ord($data[$i+2]) << 8) + ord($data[$i+3]);
+      $hi += $lo >> 16;
+      $lo = $lo & 0xFFFF;
+      $hi = $hi & 0xFFFF;
+    }
+    
+    return ($hi << 8) + $lo;
+  }
+  
+  function __construct(Font_TrueType $font) {
+    $this->font = $font;
+    $this->f = $font->f;
+  }
+  
+  function parse() {
+    $this->tag = $this->font->read(4);
+  }
+  
+  function open($filename, $mode = self::modeRead) {
+    // void
+  }
+  
+  function setTable(Font_Table $font_table) {
+    $this->font_table = $font_table;
+  }
+  
+  function encode($entry_offset){
+    Font::d("\n==== $this->tag ====");
+    //Font::d("Entry offset  = $entry_offset");
+    
+    $data = $this->font_table;
+    $font = $this->font;
+    
+    $table_offset = $font->pos();
+    $this->offset = $table_offset;
+    $table_length = $data->encode();
+    
+    $font->seek($table_offset);
+    $table_data = $font->read($table_length);
+    
+    $font->seek($entry_offset);
+    
+    $font->write($this->tag, 4);
+    $font->writeUInt32(self::computeChecksum($table_data));
+    $font->writeUInt32($table_offset);
+    $font->writeUInt32($table_length);
+    
+    Font::d("Bytes written = $table_length");
+    
+    $font->seek($table_offset + $table_length);
+  }
+  
+  /**
+   * @return Font_TrueType
+   */
+  function getFont() {
+    return $this->font;
+  }
+  
+  function startRead() {
+    $this->font->seek($this->offset);
+  }
+  
+  function endRead() {
+    //
+  }
+  
+  function startWrite() {
+    $this->font->seek($this->offset);
+  }
+  
+  function endWrite() {
+    //
+  }
+}
+

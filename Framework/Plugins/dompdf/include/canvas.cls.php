@@ -1,85 +1,385 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-Zdwp
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Main rendering interface
+ *
+ * Currently {@link CPDF_Adapter}, {@link PDFLib_Adapter}, {@link TCPDF_Adapter}, and {@link GD_Adapter}
+ * implement this interface.
+ *
+ * Implementations should measure x and y increasing to the left and down,
+ * respectively, with the origin in the top left corner.  Implementations
+ * are free to use a unit other than points for length, but I can't
+ * guarantee that the results will look any good.
+ *
+ * @package dompdf
+ */
+interface Canvas {
+  function __construct($paper = "letter", $orientation = "portrait", DOMPDF $dompdf);
+
+  /**
+   * @return DOMPDF
+   */
+  function get_dompdf();
+
+  /**
+   * Returns the current page number
+   *
+   * @return int
+   */
+  function get_page_number();
+
+  /**
+   * Returns the total number of pages
+   *
+   * @return int
+   */
+  function get_page_count();
+
+  /**
+   * Sets the total number of pages
+   *
+   * @param int $count
+   */
+  function set_page_count($count);
+
+  /**
+   * Draws a line from x1,y1 to x2,y2
+   *
+   * See {@link Style::munge_color()} for the format of the color array.
+   * See {@link Cpdf::setLineStyle()} for a description of the format of the
+   * $style parameter (aka dash).
+   *
+   * @param float $x1
+   * @param float $y1
+   * @param float $x2
+   * @param float $y2
+   * @param array $color
+   * @param float $width
+   * @param array $style
+   */
+  function line($x1, $y1, $x2, $y2, $color, $width, $style = null);
+
+  /**
+   * Draws a rectangle at x1,y1 with width w and height h
+   *
+   * See {@link Style::munge_color()} for the format of the color array.
+   * See {@link Cpdf::setLineStyle()} for a description of the $style
+   * parameter (aka dash)
+   *
+   * @param float $x1
+   * @param float $y1
+   * @param float $w
+   * @param float $h
+   * @param array $color
+   * @param float $width
+   * @param array $style
+   */   
+  function rectangle($x1, $y1, $w, $h, $color, $width, $style = null);
+
+  /**
+   * Draws a filled rectangle at x1,y1 with width w and height h
+   *
+   * See {@link Style::munge_color()} for the format of the color array.
+   *
+   * @param float $x1
+   * @param float $y1
+   * @param float $w
+   * @param float $h
+   * @param array $color
+   */   
+  function filled_rectangle($x1, $y1, $w, $h, $color);
+
+  /**
+   * Starts a clipping rectangle at x1,y1 with width w and height h
+   *
+   * @param float $x1
+   * @param float $y1
+   * @param float $w
+   * @param float $h
+   */   
+  function clipping_rectangle($x1, $y1, $w, $h);
+
+  /**
+   * Starts a rounded clipping rectangle at x1,y1 with width w and height h
+   *
+   * @param float $x1
+   * @param float $y1
+   * @param float $w
+   * @param float $h
+   * @param float $tl
+   * @param float $tr
+   * @param float $br
+   * @param float $bl
+   *
+   * @return
+   */
+  function clipping_roundrectangle($x1, $y1, $w, $h, $tl, $tr, $br, $bl);
+  
+  /**
+   * Ends the last clipping shape
+   */  
+  function clipping_end();
+  
+  /**
+   * Save current state
+   */
+  function save();
+  
+  /**
+   * Restore last state
+   */
+  function restore();
+  
+  /**
+   * Rotate
+   */
+  function rotate($angle, $x, $y);
+  
+  /**
+   * Skew
+   */
+  function skew($angle_x, $angle_y, $x, $y);
+  
+  /**
+   * Scale
+   */
+  function scale($s_x, $s_y, $x, $y);
+  
+  /**
+   * Translate
+   */
+  function translate($t_x, $t_y);
+  
+  /**
+   * Transform
+   */
+  function transform($a, $b, $c, $d, $e, $f);
+  
+  /**
+   * Draws a polygon
+   *
+   * The polygon is formed by joining all the points stored in the $points
+   * array.  $points has the following structure:
+   * <code>
+   * array(0 => x1,
+   *       1 => y1,
+   *       2 => x2,
+   *       3 => y2,
+   *       ...
+   *       );
+   * </code>
+   *
+   * See {@link Style::munge_color()} for the format of the color array.
+   * See {@link Cpdf::setLineStyle()} for a description of the $style
+   * parameter (aka dash)   
+   *
+   * @param array $points
+   * @param array $color
+   * @param float $width
+   * @param array $style
+   * @param bool  $fill  Fills the polygon if true
+   */
+  function polygon($points, $color, $width = null, $style = null, $fill = false);
+
+  /**
+   * Draws a circle at $x,$y with radius $r
+   *
+   * See {@link Style::munge_color()} for the format of the color array.
+   * See {@link Cpdf::setLineStyle()} for a description of the $style
+   * parameter (aka dash)
+   *
+   * @param float $x
+   * @param float $y
+   * @param float $r
+   * @param array $color
+   * @param float $width
+   * @param array $style
+   * @param bool $fill Fills the circle if true   
+   */   
+  function circle($x, $y, $r, $color, $width = null, $style = null, $fill = false);
+
+  /**
+   * Add an image to the pdf.
+   *
+   * The image is placed at the specified x and y coordinates with the
+   * given width and height.
+   *
+   * @param string $img_url the path to the image
+   * @param float $x x position
+   * @param float $y y position
+   * @param int $w width (in pixels)
+   * @param int $h height (in pixels)
+   * @param string $resolution The resolution of the image
+   */
+  function image($img_url, $x, $y, $w, $h, $resolution = "normal");
+
+  /**
+   * Add an arc to the PDF
+   * See {@link Style::munge_color()} for the format of the color array.
+   *
+   * @param float $x      X coordinate of the arc
+   * @param float $y      Y coordinate of the arc
+   * @param float $r1     Radius 1
+   * @param float $r2     Radius 2
+   * @param float $astart Start angle in degrees
+   * @param float $aend   End angle in degrees
+   * @param array $color  Color
+   * @param float $width
+   * @param array $style
+   *
+   * @return void
+   */
+  function arc($x, $y, $r1, $r2, $astart, $aend, $color, $width, $style = array());
+
+  /**
+   * Writes text at the specified x and y coordinates
+   * See {@link Style::munge_color()} for the format of the color array.
+   *
+   * @param float  $x
+   * @param float  $y
+   * @param string $text       the text to write
+   * @param string $font       the font file to use
+   * @param float  $size       the font size, in points
+   * @param array  $color
+   * @param float  $word_space word spacing adjustment
+   * @param float  $char_space char spacing adjustment
+   * @param float  $angle      angle
+   *
+   * @return void
+   */
+  function text($x, $y, $text, $font, $size, $color = array(0,0,0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0);
+
+  /**
+   * Add a named destination (similar to <a name="foo">...</a> in html)
+   *
+   * @param string $anchorname The name of the named destination
+   */
+  function add_named_dest($anchorname);
+
+  /**
+   * Add a link to the pdf
+   *
+   * @param string $url    The url to link to
+   * @param float  $x      The x position of the link
+   * @param float  $y      The y position of the link
+   * @param float  $width  The width of the link
+   * @param float  $height The height of the link
+   *
+   * @return void
+   */
+  function add_link($url, $x, $y, $width, $height);
+
+  /**
+   * Add meta information to the pdf
+   *
+   * @param string $name  Label of the value (Creator, Producer, etc.)
+   * @param string $value The text to set
+   */
+  function add_info($name, $value);
+  
+  /**
+   * Calculates text size, in points
+   *
+   * @param string $text the text to be sized
+   * @param string $font the desired font
+   * @param float  $size the desired font size
+   * @param float  $word_spacing word spacing, if any
+   * @param float  $char_spacing
+   *
+   * @return float
+   */
+  function get_text_width($text, $font, $size, $word_spacing = 0.0, $char_spacing = 0.0);
+
+  /**
+   * Calculates font height, in points
+   *
+   * @param string $font
+   * @param float  $size
+   *
+   * @return float
+   */
+  function get_font_height($font, $size);
+
+  /**
+   * Calculates font baseline, in points
+   *
+   * @param string $font
+   * @param float  $size
+   *
+   * @return float
+   */
+  function get_font_baseline($font, $size);
+  
+  /**
+   * Returns the font x-height, in points
+   *
+   * @param string $font
+   * @param float  $size
+   *
+   * @return float
+   */
+  //function get_font_x_height($font, $size);
+  
+  /**
+   * Sets the opacity
+   *
+   * @param float  $opacity
+   * @param string $mode
+   */
+  function set_opacity($opacity, $mode = "Normal");
+
+  /**
+   * Sets the default view
+   *
+   * @param string $view
+   * 'XYZ'  left, top, zoom
+   * 'Fit'
+   * 'FitH' top
+   * 'FitV' left
+   * 'FitR' left,bottom,right
+   * 'FitB'
+   * 'FitBH' top
+   * 'FitBV' left
+   * @param array  $options
+   *
+   * @return void
+   */
+  function set_default_view($view, $options = array());
+
+  /**
+   * @param string $script
+   *
+   * @return void
+   */
+  function javascript($script);
+
+  /**
+   * Starts a new page
+   *
+   * Subsequent drawing operations will appear on the new page.
+   */
+  function new_page();
+
+  /**
+   * Streams the PDF directly to the browser
+   *
+   * @param string $filename the name of the PDF file
+   * @param array  $options associative array, 'Attachment' => 0 or 1, 'compress' => 1 or 0
+   */
+  function stream($filename, $options = null);
+
+  /**
+   * Returns the PDF as a string
+   *
+   * @param array  $options associative array: 'compress' => 1 or 0
+   * @return string
+   */
+  function output($options = null);
+}

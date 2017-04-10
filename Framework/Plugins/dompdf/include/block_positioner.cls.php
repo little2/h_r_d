@@ -1,37 +1,57 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-HR+cPpkgJrpiTBIJ/HhQVzNusXp03ypBBGc8Egmx8BYF0KcPCPXWkzy9ukTFJun8iTdElZdDB23O
-RyCZ3zSkQzhfnudPcxOvM9p7N/qF1lVmPnWCJcofKiJJ0SR2Dq1zSoMTksq9PUUXn4jLtQ8qBRDi
-8NMIsl/DPCJ+xRc97MEU85axLTwbaTk6i3g/XLbYIjjeGaVD8s+HNVtsc7lSrMVQn6mHvaXm7xjV
-4CkLA6Ao2zdFa1+csRnTYHCBdgWBwuEv48bmam5rrH1vAJNfJsVPl5L0AYsuyFgrE2AXBNB/oYxw
-ju6GSglp5mbqEKdMHQsUDjhKFPSvuWN2rfw/MPCrf85X4yM3gmkGHkwpujv+3Lnlqb8msL4jLvhT
-2JkHQ8JGGfj8uyJ1VFJZGYY0Idw7S+ycECfY1xl8gwNGvkV1QrqwN9xSiwAfq03KFQ/9fdpl5JtC
-wYyO5okQNCLZIDwfn83Mpsc4+/M60A9oxfPZNWkXJcWsGQV7qygiCr4Py87sgJ0q2XHgXHtpTj2B
-oGy9AEAlOo+RgghIc9ZNsZjtkrOSgHguQpkbqLfLQDzVTnrHzBjzRlS/5AHDgkGm7atHHW4S/hgo
-5Ms6+zaBtcvjbBzU4RMksA1GHp610K1zGlzQ/D+46dWx+QG6f+yNgLhOPLO4Q1OXMt/nrm/c6MVw
-xq2NriJ8PJsVrx3z3/eXaZ4z+ncf46PuRmPxAOMjU+583VYFbXJLEv4iL5Do0upLH+l7IYkqqQgK
-93dYHUojVNKWs8fzr2YvAbROaSV56OxGBZO9/oYXbl5gSAz9xMof5cJQb45Z+6YbG2W9ZQqdbhr1
-j+k80NVo3hObIGSIvk7fptf2MSmQ/sj2y5E4oSyeC+MjikaqOtbr0+KJrHo6TKnNm596ukkFqVs+
-2z42HJkv6HYEIL8RP0gx7ykI/YsMg1Vm9tCvhBzn2dC8+ksswpyRJnlmhMtZxKRelmyx46iC1/Li
-mzs01N6CPIJt1FdHjKa4h/3ie3NRMJCq3uZFIqe0CYg+xytXnioWP3H37oz7yjnzj/hm3Z/2OAwL
-yTUi3jM4tVLfuYar2yUVvZFRSdQOWpkBCBXkiqitBQz5/1nGLqSnnYWOw0e1ad2T6Ox4a6EP2XxE
-b04QvumKqKhzbyHB6qce7JzeL2ShWRz40AiHKYy2jEZhJs2LQj+yWMuWJNOgZY/kxv0CzGpGgkbJ
-y2cMpnu+mZRGuITqIHsONM+hCi0EqXjLaDyaAKzlByr5iT92en/sKFHUA14nsHE3jmTQto/Fr05B
-kmy+GTngHJATeUZVEY0JgCz8qfVt7VuECCn3o0kvqKHJS37dbEiTb+krsYlaJFzQ8xeo/bRVqlIn
-gqm7tWWHB3sJUWx5zs/9FW8ZEpxRDR+rpYzSovUowOZj7+joM3i2NfJX+WKMHSpOZQoPY/LMJQgV
-5w640x9NseQyB3cmDWwkPS3HjMBr7p7oIdY3+k/pKuvP2FhvfMU1mHOnubtOA94LOerjOPiaXqMB
-gs0do4YifVoWtdMc5vcr2ugMuvyOlMmaVb6Q5hfeIVySJTRnOWs/52SmG92Brbn5BSlQKIgrGHA5
-JqiI8cjDYP8Wz/9lSAUbs+Q5QkXJCa4wmmIVxxoiW7jSX5hKR5+Za6axE5wBOxNgNCTiY6nZAK8C
-JGYjUe/YuNXSxRMG/+SEPkMonsG92z9cwL+8J+48sumS+4J8AA4orjSuMgfOLDsGgwTaqIvofOBh
-DoIlsDMuK2zkN/tHB8pnNB2boWkymwjF/DJUnW2ulLmuc9G1Kuvx6kjS0fTTT3tMIGBHy3V3kdyz
-dkfEvhPzeK2houYgaoIhvl7RVaB575S+F+LFFen40S53JfhEN6/Hm8XUarUc1qhYA0jm5QEBNzr1
-Ol6qOkl1BFOeo0uSszFXihmjeaC2RwFP50esdMTyC40n4tX8ADmAfa1iJupU1FFDwseAvSPDbXgt
-UtKKCp5YVuqY6v77w/bZrGxavpTCSmR81Bw6BUVvmT8xEH8Xigoaz4kZU13BytoQGZIplBdoOJ96
-AZtvWcL+mrcx4jQtmOLtQ8gZMdALxSPtbqj9vJLfuGwaO8xDzSWjD3aeJLDS3LNRyoYaMRXmyTxv
-8rokjM1KxvD7f0thSEWn5ricJu/EJ3BovAFMlU7O9VuImRmJX/b6SsqIrai3MiLigdP0J8Teucfl
-Jm3E5EX5gNXYr96wk4YK6ODSXsTy+x6NJqWVGDSCHLFmhB1GRjWBvrLz9ZQ1CnTCZ/OpMq3hjte1
-Eg3NsD5kkd/AwKkeLq4UjuzkIVgtPLvr8mz7UkjKfQdOXfJOwaWK8MIWpCvGfsMBxCRVPIYYtCS4
-kDljNO3bjh88C4cHSqQ1tQZd7JJoLj7uuvmtzJrP7OtyacipDVuZlId1GhDExx6UnEzhFruTZWbO
-Hd2aS2R3L9f9q98ML6xuatIqQmSDXUiM60UPV7fFN+xia2uSr9lsYtXmaP/iGLguZWjI4cHqtp1a
-bvuqf0R9OkxaEfoFTEZ58HDIIIqAtcuGZgq8yK2REoGC+0rCFu1rfFFYSAaSJUVe
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Positions block frames
+ *
+ * @access private
+ * @package dompdf
+ */
+class Block_Positioner extends Positioner {
+
+
+  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
+  
+  //........................................................................
+
+  function position() {
+    $frame = $this->_frame;
+    $style = $frame->get_style();
+    $cb = $frame->get_containing_block();
+    $p = $frame->find_block_parent();
+    
+    if ( $p ) {
+      $float = $style->float;
+
+      $enable_css_float = $frame->get_dompdf()->get_option("enable_css_float");
+      if ( !$enable_css_float || !$float || $float === "none" ) {
+        $p->add_line(true);
+      }
+      $y = $p->get_current_line_box()->y;
+      
+    }
+    else {
+      $y = $cb["y"];
+    }
+
+    $x = $cb["x"];
+
+    // Relative positionning
+    if ( $style->position === "relative" ) {
+      $top =    $style->length_in_pt($style->top,    $cb["h"]);
+      //$right =  $style->length_in_pt($style->right,  $cb["w"]);
+      //$bottom = $style->length_in_pt($style->bottom, $cb["h"]);
+      $left =   $style->length_in_pt($style->left,   $cb["w"]);
+      
+      $x += $left;
+      $y += $top;
+    }
+    
+    $frame->set_position($x, $y);
+  }
+}

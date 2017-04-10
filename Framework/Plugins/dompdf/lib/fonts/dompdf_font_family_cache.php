@@ -1,57 +1,129 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php return array (
+  'sans-serif' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Helvetica',
+    'bold' => DOMPDF_FONT_DIR . 'Helvetica-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Helvetica-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Helvetica-BoldOblique',
+  ),
+  'times' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Times-Roman',
+    'bold' => DOMPDF_FONT_DIR . 'Times-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Times-Italic',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Times-BoldItalic',
+  ),
+  'times-roman' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Times-Roman',
+    'bold' => DOMPDF_FONT_DIR . 'Times-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Times-Italic',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Times-BoldItalic',
+  ),
+  'courier' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Courier',
+    'bold' => DOMPDF_FONT_DIR . 'Courier-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Courier-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Courier-BoldOblique',
+  ),
+  'helvetica' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Helvetica',
+    'bold' => DOMPDF_FONT_DIR . 'Helvetica-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Helvetica-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Helvetica-BoldOblique',
+  ),
+  'zapfdingbats' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'ZapfDingbats',
+    'bold' => DOMPDF_FONT_DIR . 'ZapfDingbats',
+    'italic' => DOMPDF_FONT_DIR . 'ZapfDingbats',
+    'bold_italic' => DOMPDF_FONT_DIR . 'ZapfDingbats',
+  ),
+  'symbol' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Symbol',
+    'bold' => DOMPDF_FONT_DIR . 'Symbol',
+    'italic' => DOMPDF_FONT_DIR . 'Symbol',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Symbol',
+  ),
+  'serif' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Times-Roman',
+    'bold' => DOMPDF_FONT_DIR . 'Times-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Times-Italic',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Times-BoldItalic',
+  ),
+  'monospace' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Courier',
+    'bold' => DOMPDF_FONT_DIR . 'Courier-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Courier-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Courier-BoldOblique',
+  ),
+  'fixed' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'Courier',
+    'bold' => DOMPDF_FONT_DIR . 'Courier-Bold',
+    'italic' => DOMPDF_FONT_DIR . 'Courier-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR . 'Courier-BoldOblique',
+  ),
+  'dejavu sans' => 
+  array (
+    'bold' => DOMPDF_FONT_DIR . 'DejaVuSans-Bold',
+    'bold_italic' => DOMPDF_FONT_DIR . 'DejaVuSans-BoldOblique',
+    'italic' => DOMPDF_FONT_DIR . 'DejaVuSans-Oblique',
+    'normal' => DOMPDF_FONT_DIR . 'DejaVuSans',
+  ),
+  'dejavu sans light' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'DejaVuSans-ExtraLight',
+  ),
+  'dejavu sans condensed' => 
+  array (
+    'bold' => DOMPDF_FONT_DIR . 'DejaVuSansCondensed-Bold',
+    'bold_italic' => DOMPDF_FONT_DIR . 'DejaVuSansCondensed-BoldOblique',
+    'italic' => DOMPDF_FONT_DIR . 'DejaVuSansCondensed-Oblique',
+    'normal' => DOMPDF_FONT_DIR . 'DejaVuSansCondensed',
+  ),
+  'dejavu sans mono' => 
+  array (
+    'bold' => DOMPDF_FONT_DIR . 'DejaVuSansMono-Bold',
+    'bold_italic' => DOMPDF_FONT_DIR . 'DejaVuSansMono-BoldOblique',
+    'italic' => DOMPDF_FONT_DIR . 'DejaVuSansMono-Oblique',
+    'normal' => DOMPDF_FONT_DIR . 'DejaVuSansMono',
+  ),
+  'dejavu serif' => 
+  array (
+    'bold' => DOMPDF_FONT_DIR . 'DejaVuSerif-Bold',
+    'bold_italic' => DOMPDF_FONT_DIR . 'DejaVuSerif-BoldItalic',
+    'italic' => DOMPDF_FONT_DIR . 'DejaVuSerif-Italic',
+    'normal' => DOMPDF_FONT_DIR . 'DejaVuSerif',
+  ),
+  'dejavu serif condensed' => 
+  array (
+    'bold' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed-Bold',
+    'bold_italic' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed-BoldItalic',
+    'italic' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed-Italic',
+    'normal' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed',
+  ),
+  'droidsansfallback' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . '63301749df521b85884e42c0415d33ec',
+    'bold' => DOMPDF_FONT_DIR . 'be5ae1815629d58943274ee5b281790a',
+    'bold_italic' => DOMPDF_FONT_DIR . 'e9c780ff558429c5550afb6285bdc244',
+  ),
+  'give you glory' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'c35207cc592262a3ba1c06d96d21b5bc',
+  ),
+  'wallpoet' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . '919ed39848d3b9a4931f925812ad470d',
+  ),
+  'love ya like a sister' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . 'e0e10f4d66986d8795161c55f8deb1a3',
+  ),
+) ?>

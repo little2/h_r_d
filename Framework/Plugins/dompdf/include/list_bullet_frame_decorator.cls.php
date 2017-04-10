@@ -1,32 +1,65 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-8EGWnCjM5hzkgR6jiHYh2rK=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates frames for list bullet rendering
+ *
+ * @access private
+ * @package dompdf 
+ */
+class List_Bullet_Frame_Decorator extends Frame_Decorator {
+
+  const BULLET_PADDING = 1; // Distance from bullet to text in pt
+  // As fraction of font size (including descent). See also DECO_THICKNESS.
+  const BULLET_THICKNESS = 0.04;   // Thickness of bullet outline. Screen: 0.08, print: better less, e.g. 0.04
+  const BULLET_DESCENT = 0.3;  //descent of font below baseline. Todo: Guessed for now.
+  const BULLET_SIZE = 0.35;   // bullet diameter. For now 0.5 of font_size without descent.
+  
+  static $BULLET_TYPES = array("disc", "circle", "square");
+  
+  //........................................................................
+
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    parent::__construct($frame, $dompdf);
+  }
+  
+  function get_margin_width() {
+    $style = $this->_frame->get_style();
+    
+    // Small hack to prevent extra indenting of list text on list_style_position === "inside"
+    // and on suppressed bullet
+    if ( $style->list_style_position === "outside" ||
+         $style->list_style_type === "none" ) {
+      return 0;
+    }
+    
+    return $style->get_font_size() * self::BULLET_SIZE + 2 * self::BULLET_PADDING;
+  }
+
+  //hits only on "inset" lists items, to increase height of box
+  function get_margin_height() {
+    $style = $this->_frame->get_style();
+    
+    if ( $style->list_style_type === "none" ) {
+      return 0;
+    }
+    
+    return $style->get_font_size() * self::BULLET_SIZE + 2 * self::BULLET_PADDING;
+  }
+
+  function get_width() {
+    return $this->get_margin_height();
+  }
+  
+  function get_height() {
+    return $this->get_margin_height();
+  }
+  
+  //........................................................................
+}

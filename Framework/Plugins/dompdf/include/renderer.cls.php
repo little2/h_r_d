@@ -1,141 +1,290 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-C2QxawnylVoW
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Concrete renderer
+ *
+ * Instantiates several specific renderers in order to render any given
+ * frame.
+ *
+ * @access private
+ * @package dompdf
+ */
+class Renderer extends Abstract_Renderer {
+
+  /**
+   * Array of renderers for specific frame types
+   *
+   * @var Abstract_Renderer[]
+   */
+  protected $_renderers;
+    
+  /**
+   * Cache of the callbacks array
+   * 
+   * @var array
+   */
+  private $_callbacks;
+  
+  /**
+   * Class destructor
+   */
+  function __destruct() {
+    clear_object($this);
+  }
+  
+  /**
+   * Advance the canvas to the next page
+   */  
+  function new_page() {
+    $this->_canvas->new_page();
+  }
+
+  /**
+   * Render frames recursively
+   *
+   * @param Frame $frame the frame to render
+   */
+  function render(Frame $frame) {
+    global $_dompdf_debug;
+
+    if ( $_dompdf_debug ) {
+      echo $frame;
+      flush();
+    }
+    
+    $style = $frame->get_style();
+    
+    if ( in_array($style->visibility, array("hidden", "collapse")) ) {
+      return;
+    }
+    
+    $display = $style->display;
+    
+    // Starts the CSS transformation
+    if ( $style->transform && is_array($style->transform) ) {
+      $this->_canvas->save();
+      list($x, $y) = $frame->get_padding_box();
+      $origin = $style->transform_origin;
+      
+      foreach($style->transform as $transform) {
+        list($function, $values) = $transform;
+        if ( $function === "matrix" ) {
+          $function = "transform";
+        }
+        
+        $values = array_map("floatval", $values);
+        $values[] = $x + $style->length_in_pt($origin[0], $style->width);
+        $values[] = $y + $style->length_in_pt($origin[1], $style->height);
+        
+        call_user_func_array(array($this->_canvas, $function), $values);
+      }
+    }
+    
+    switch ($display) {
+      
+    case "block":
+    case "list-item":
+    case "inline-block":
+    case "table":
+    case "inline-table":
+      $this->_render_frame("block", $frame);
+      break;
+
+    case "inline":
+      if ( $frame->is_text_node() )
+        $this->_render_frame("text", $frame);
+      else
+        $this->_render_frame("inline", $frame);
+      break;
+
+    case "table-cell":
+      $this->_render_frame("table-cell", $frame);
+      break;
+
+    case "table-row-group":
+    case "table-header-group":
+    case "table-footer-group":
+      $this->_render_frame("table-row-group", $frame);
+      break;
+
+    case "-dompdf-list-bullet":
+      $this->_render_frame("list-bullet", $frame);
+      break;
+
+    case "-dompdf-image":
+      $this->_render_frame("image", $frame);
+      break;
+      
+    case "none":
+      $node = $frame->get_node();
+          
+      if ( $node->nodeName === "script" ) {
+        if ( $node->getAttribute("type") === "text/php" ||
+             $node->getAttribute("language") === "php" ) {
+          // Evaluate embedded php scripts
+          $this->_render_frame("php", $frame);
+        }
+        
+        elseif ( $node->getAttribute("type") === "text/javascript" ||
+             $node->getAttribute("language") === "javascript" ) {
+          // Insert JavaScript
+          $this->_render_frame("javascript", $frame);
+        }
+      }
+
+      // Don't render children, so skip to next iter
+      return;
+      
+    default:
+      break;
+
+    }
+
+    // Starts the overflow: hidden box
+    if ( $style->overflow === "hidden" ) {
+      list($x, $y, $w, $h) = $frame->get_padding_box();
+      
+      // get border radii
+      $style = $frame->get_style();
+      list($tl, $tr, $br, $bl) = $style->get_computed_border_radius($w, $h);
+      
+      if ( $tl + $tr + $br + $bl > 0 ) {
+        $this->_canvas->clipping_roundrectangle($x, $y, $w, $h, $tl, $tr, $br, $bl);
+      }
+      else {
+        $this->_canvas->clipping_rectangle($x, $y, $w, $h);
+      }
+    }
+
+    $stack = array();
+    
+    foreach ($frame->get_children() as $child) {
+      // < 0 : nagative z-index
+      // = 0 : no z-index, no stacking context
+      // = 1 : stacking context without z-index
+      // > 1 : z-index
+      $child_style = $child->get_style();
+      $child_z_index = $child_style->z_index;
+      $z_index = 0;
+      
+      if ( $child_z_index !== "auto" ) {
+        $z_index = intval($child_z_index) + 1;
+      } 
+      elseif ( $child_style->float !== "none" || $child->is_positionned()) {
+        $z_index = 1;
+      }
+      
+      $stack[$z_index][] = $child;
+    }
+    
+    ksort($stack);
+    
+    foreach ($stack as $by_index) {
+      foreach($by_index as $child) {
+        $this->render($child);
+      }
+    }
+     
+    // Ends the overflow: hidden box
+    if ( $style->overflow === "hidden" ) {
+      $this->_canvas->clipping_end();
+    }
+
+    if ( $style->transform && is_array($style->transform) ) {
+      $this->_canvas->restore();
+    }
+
+    // Check for end frame callback
+    $this->_check_callbacks("end_frame", $frame);
+  }
+  
+  /**
+   * Check for callbacks that need to be performed when a given event
+   * gets triggered on a frame
+   *
+   * @param string $event the type of event
+   * @param Frame $frame the frame that event is triggered on
+   */
+  protected function _check_callbacks($event, $frame) {
+    if (!isset($this->_callbacks)) {
+      $this->_callbacks = $this->_dompdf->get_callbacks();
+    }
+    
+    if (is_array($this->_callbacks) && isset($this->_callbacks[$event])) {
+      $info = array(0 => $this->_canvas, "canvas" => $this->_canvas,
+                    1 => $frame, "frame" => $frame);
+      $fs = $this->_callbacks[$event];
+      foreach ($fs as $f) {
+        if (is_callable($f)) {
+          if (is_array($f)) {
+            $f[0]->$f[1]($info);
+          } else {
+            $f($info);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Render a single frame
+   *
+   * Creates Renderer objects on demand
+   *
+   * @param string $type type of renderer to use
+   * @param Frame $frame the frame to render
+   */
+  protected function _render_frame($type, $frame) {
+
+    if ( !isset($this->_renderers[$type]) ) {
+      
+      switch ($type) {
+      case "block":
+        $this->_renderers[$type] = new Block_Renderer($this->_dompdf);
+        break;
+
+      case "inline":
+        $this->_renderers[$type] = new Inline_Renderer($this->_dompdf);
+        break;
+
+      case "text":
+        $this->_renderers[$type] = new Text_Renderer($this->_dompdf);
+        break;
+
+      case "image":
+        $this->_renderers[$type] = new Image_Renderer($this->_dompdf);
+        break;
+      
+      case "table-cell":
+        $this->_renderers[$type] = new Table_Cell_Renderer($this->_dompdf);
+        break;
+      
+      case "table-row-group":
+        $this->_renderers[$type] = new Table_Row_Group_Renderer($this->_dompdf);
+        break;
+
+      case "list-bullet":
+        $this->_renderers[$type] = new List_Bullet_Renderer($this->_dompdf);
+        break;
+
+      case "php":
+        $this->_renderers[$type] = new PHP_Evaluator($this->_canvas);
+        break;
+
+      case "javascript":
+        $this->_renderers[$type] = new Javascript_Embedder($this->_dompdf);
+        break;
+        
+      }
+    }
+    
+    $this->_renderers[$type]->render($frame);
+
+  }
+}

@@ -1,41 +1,80 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-EAl1yG==
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates frames for image layout and rendering
+ *
+ * @access private
+ * @package dompdf
+ */
+class Image_Frame_Decorator extends Frame_Decorator {
+
+  /**
+   * The path to the image file (note that remote images are
+   * downloaded locally to DOMPDF_TEMP_DIR).
+   *
+   * @var string
+   */
+  protected $_image_url;
+  
+  /**
+   * The image's file error message
+   *
+   * @var string
+   */
+  protected $_image_msg;
+
+  /**
+   * Class constructor
+   *
+   * @param Frame $frame the frame to decorate
+   * @param DOMPDF $dompdf the document's dompdf object (required to resolve relative & remote urls)
+   */
+  function __construct(Frame $frame, DOMPDF $dompdf) {
+    parent::__construct($frame, $dompdf);
+    $url = $frame->get_node()->getAttribute("src");
+
+    $debug_png = $dompdf->get_option("debug_png");
+    if ($debug_png) print '[__construct '.$url.']';
+
+    list($this->_image_url, /*$type*/, $this->_image_msg) = Image_Cache::resolve_url(
+      $url,
+      $dompdf->get_protocol(),
+      $dompdf->get_host(),
+      $dompdf->get_base_path(),
+      $dompdf
+    );
+
+    if ( Image_Cache::is_broken($this->_image_url) &&
+         $alt = $frame->get_node()->getAttribute("alt") ) {
+      $style = $frame->get_style();
+      $style->width  = (4/3)*Font_Metrics::get_text_width($alt, $style->font_family, $style->font_size, $style->word_spacing);
+      $style->height = Font_Metrics::get_font_height($style->font_family, $style->font_size);
+    }
+  }
+
+  /**
+   * Return the image's url
+   *
+   * @return string The url of this image
+   */
+  function get_image_url() {
+    return $this->_image_url;
+  }
+
+  /**
+   * Return the image's error message
+   *
+   * @return string The image's error message
+   */
+  function get_image_msg() {
+    return $this->_image_msg;
+  }
+  
+}

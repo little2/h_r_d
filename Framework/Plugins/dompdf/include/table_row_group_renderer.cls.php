@@ -1,32 +1,40 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-HR+cPwTXmSAaopdrfTTKuGS6ScgIHKgHpqpAOyKqvucW1y1vE637mmpE/fG75TS3MIb0A63g3Rl9
-XmRj1RehVuSTK7kOKD046l23cd87FqywfwztvLI67ovhqqx85hnMh7crXErFhsENDBODkaXXR3ED
-ZlcmKo3DZoI4kcItYoKM7W1Voo0WV/mZ4C5qVb1QzqBXgrLLpuB87v+VK5DAs13WT7LQRoBH3xOl
-4GOUEx1ckEA4EfwMDqHfHWlhWxaGYN2J0NNL47afDUadM/N2OLhUu1lELBGuvo7DK6p7j5UhL4I6
-kDZ0X20hQPViOyaT+T6tSX6T4SdX6wSjmCDeBJKPewWm0c2g1ZD3OJs1jhUsC2YuFf/RzBFcuDAU
-y2qciDYX3/hFE+KaDuoPO7MDZuewAeBwfJRFdI4JP/P8NC7jo4PoXky3Pk+Gt5+It/Ib4izez6+G
-x2Ab+dtxEh39IjZwU0dS6ioVsGp3w/TK7M4kN7l294Q5WiIVpZUlkEwCoFD6R84CvC3xi8La0u3H
-Z2KvtVbEC9gLCBfpKuPaNR3R0O2wlhlB8KgC9Bw8IbFhfMCkUlxOIao80fEJ2KWW0TGl+X7/gJ/6
-kmP3/6pDc29kA0Z8Lz+0y3cnPSDYj1fiUm6swjtxuu12Qx+Re0x4WCD4QMsxyBxktG+YDLNzJ4r7
-ORKGXiN0Vbl7VDk9Lad33SS0DBIHXbhlpESfKVV58ax27BRojft8m7xrU/pSWNoXf0GB5qf10Olp
-RGldT31kGxixGX8s0PfJCe4b3ESMPy/R4icDJ8/xO0Llx8pGCOCxgOiG26oq0jqWcstNuH1C6qi/
-hbmw/EBeb6b3rNS6bGcDqcGYfU/n1J/DCefVIJjV+gHCB03SHpH2QBVBkgLUUaUiiYKKKBnUraZ3
-oM0RPp/C807uip2agevPAeiDCh/TDVoAxXPfegBuUxLwC6/EDdCmtYHJX+w4rZXhZMYR4oN6odJ/
-jPxHRB1tRqJhHtLhQAfqEPg572Xhi8WNFiguMkClTXZX0Q5t+CaTwtcOy1VLWnuMPZqbXu+8Eq6B
-wdFIEC1C9FYdl5a/zG18fTtmUZgDnbuurwVuAH5Piz6Zbdtva8ObpS5HtmRQH2EBvJiUU/hb/K0X
-OaySpoeCnGcOTzXbN0vAiMN7yeXMMcFNZfph1nP8rwExa0AYdvHMmzbXV9+TiweI2/QbfOQ51AHk
-p9RYCrd5QRFRyJrBe5K/Ea2/HT39zxSzU0hi8R4ciuGkOiIydFkukShfSUC1S+2EEWLR2w4x/RN0
-W+9aGe4gsrfj3I9ixR9tGpKB2BWgZ+mvielIAVzRYDM1g49AuTZiCBE0qD20H3K3oxPH98Onfmc1
-9m2DH5nFPIC9f9JjowEHAsnQPrvggv0jmy24Y7naQoT0h/QIuJqxyG9Qm0JiG0R0TEL70eJwqRms
-N/U4o8gzzndFJHBzTHX/pPjOLKoa/ho9DqRCxe8EeMRjSJ2q6bOT5fTm2pejZZyMbiIN6Ph7I28s
-PZAOilot8/p98bo65MEioe4ee5tbKUHXdILg+Jy3Xf/FC0faOWKBC5Xpxv6/OvxFpUz/nwKqnL+n
-FXAnXilXrSmkZe6PsB5dJAdEETyi/vtgLnOerGA06lF0Jovluttufq4BU9Ldqx7od5FcQlbS185Y
-NOtINULe/R9G1ubtE6JoB6RjyThBEtY4uJCBvZjk/F8/W6vRubm8G+JYye9p5E1qW2xBoFClBcDJ
-3yNao5CcSNXztQEcr+ScfGXvtVgbz/trNouDgQ0aWyFW9pT9yeBy62byl2mi0YiJA1KQn1IaQEdR
-N3HlMHXlwbXc21qGQ7d1onEoY4d6dZ6+4vZTBNV+uNMnjvgCIQCB2OO0Rylry6ioxs5T49aAmrH3
-PmfToTKtrl7/95SSuu+U6fE9Z0HPu4G2BQn7xZXqOxgDT4EP0C9/Q7mSV/NUPfjBbFle0g/POzrN
-HhVjxSkM2I1H2rYmWchkbE1WPqil75s16ZBntjN81MFnj2f4qNVEpy+vCcuOSH+48FiJimcVIrkS
-Hf/xQm7zuGbdMQArBHQwnGkl09EYD8sD479OY0/bmJtMLjHeovHkTs1OUm4PNw+AdNGI94+a93Tt
-m00qgquinM8VMS/EhU2oJre=
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Renders block frames
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Row_Group_Renderer extends Block_Renderer {
+
+  //........................................................................
+
+  function render(Frame $frame) {
+    $style = $frame->get_style(); 
+    
+    $this->_set_opacity( $frame->get_opacity( $style->opacity ) );
+
+    $this->_render_border($frame);
+    $this->_render_outline($frame);
+    
+    if (DEBUG_LAYOUT && DEBUG_LAYOUT_BLOCKS) {
+      $this->_debug_layout($frame->get_border_box(), "red");
+      if (DEBUG_LAYOUT_PADDINGBOX) {
+        $this->_debug_layout($frame->get_padding_box(), "red", array(0.5, 0.5));
+      }
+    }
+    
+    if (DEBUG_LAYOUT && DEBUG_LAYOUT_LINES && $frame->get_decorator()) {
+      foreach ($frame->get_decorator()->get_line_boxes() as $line) {
+        $frame->_debug_layout(array($line->x, $line->y, $line->w, $line->h), "orange");
+      }
+    }
+  }
+}

@@ -1,51 +1,81 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+require_once dirname(__FILE__) . "/Font_TrueType.php";
+require_once dirname(__FILE__) . "/Font_WOFF_Table_Directory_Entry.php";
+require_once dirname(__FILE__) . "/Font_WOFF_Header.php";
+
+/**
+ * WOFF font file.
+ * 
+ * @package php-font-lib
+ *
+ * @property Font_WOFF_Table_Directory_Entry[] $directory
+ */
+class Font_WOFF extends Font_TrueType {
+  function parseHeader(){
+    if (!empty($this->header)) {
+      return;
+    }
+    
+    $this->header = new Font_WOFF_Header($this);
+    $this->header->parse();
+  }
+  
+  public function load($file) {
+    parent::load($file);
+    
+    $this->parseTableEntries();
+    $dataOffset = $this->pos() + count($this->directory) * 20;
+    
+    $fw = $this->getTempFile(false);
+    $fr = $this->f;
+    
+    $this->f = $fw;
+    $offset = $this->header->encode();
+    
+    foreach($this->directory as $entry) {
+      // Read ...
+      $this->f = $fr;
+      $this->seek($entry->offset);
+      $data = $this->read($entry->length);
+
+      if ($entry->length < $entry->origLength) {
+        $data = gzuncompress($data);
+      }
+      
+      // Prepare data ...
+      $length = strlen($data);
+      $entry->length = $entry->origLength = $length;
+      $entry->offset = $dataOffset;
+
+      // Write ...
+      $this->f = $fw;
+      
+      // Woff Entry 
+      $this->seek($offset);
+      $offset += $this->write($entry->tag, 4);    // tag
+      $offset += $this->writeUInt32($dataOffset); // offset
+      $offset += $this->writeUInt32($length);     // length
+      $offset += $this->writeUInt32($length);     // origLength
+      $offset += $this->writeUInt32(Font_Table_Directory_Entry::computeChecksum($data)); // checksum
+      
+      // Data
+      $this->seek($dataOffset);
+      $dataOffset += $this->write($data, $length);
+    }
+    
+    $this->f = $fw;
+    $this->seek(0);
+    
+    // Need to re-parse this, don't know why
+    $this->header = null;
+    $this->directory = array();
+    $this->parseTableEntries();
+  }
+}

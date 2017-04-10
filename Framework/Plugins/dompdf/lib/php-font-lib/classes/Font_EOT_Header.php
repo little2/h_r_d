@@ -1,64 +1,110 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+require_once dirname(__FILE__) . "/Font_Header.php";
+
+/**
+ * TrueType font file header.
+ * 
+ * @package php-font-lib
+ *
+ * @property Font_EOT $font
+ */
+class Font_EOT_Header extends Font_Header {
+  protected $def = array(
+    "format"        => self::uint32,
+    "numTables"     => self::uint16,
+    "searchRange"   => self::uint16,
+    "entrySelector" => self::uint16,
+    "rangeShift"    => self::uint16,
+  );
+
+  public function parse(){
+    $font = $this->font;
+
+    $this->data = $font->unpack(array(
+      "EOTSize"        => self::uint32,
+      "FontDataSize"   => self::uint32,
+      "Version"        => self::uint32,
+      "Flags"          => self::uint32,
+      "FontPANOSE"     => array(self::uint8, 10),
+      "Charset"        => self::uint8,
+      "Italic"         => self::uint8,
+      "Weight"         => self::uint32,
+      "fsType"         => self::uint16,
+      "MagicNumber"    => self::uint16,
+      "UnicodeRange1"  => self::uint32,
+      "UnicodeRange2"  => self::uint32,
+      "UnicodeRange3"  => self::uint32,
+      "UnicodeRange4"  => self::uint32,
+      "CodePageRange1" => self::uint32,
+      "CodePageRange2" => self::uint32,
+      "CheckSumAdjustment" => self::uint32,
+      "Reserved1"      => self::uint32,
+      "Reserved2"      => self::uint32,
+      "Reserved3"      => self::uint32,
+      "Reserved4"      => self::uint32,
+    ));
+
+    $this->data["Padding1"] = $font->readUInt16();
+    $this->readString("FamilyName");
+
+    $this->data["Padding2"] = $font->readUInt16();
+    $this->readString("StyleName");
+
+    $this->data["Padding3"] = $font->readUInt16();
+    $this->readString("VersionName");
+
+    $this->data["Padding4"] = $font->readUInt16();
+    $this->readString("FullName");
+
+    switch ($this->data["Version"]) {
+      default:
+        throw new Exception("Unknown EOT version ".$this->data["Version"]);
+
+      case 0x00010000:
+        // Nothing to do more
+        break;
+
+      case 0x00020001:
+        $this->data["Padding5"] = $font->readUInt16();
+        $this->readString("RootString");
+        break;
+
+      case 0x00020002:
+        $this->data["Padding5"] = $font->readUInt16();
+        $this->readString("RootString");
+
+        $this->data["RootStringCheckSum"] = $font->readUInt32();
+        $this->data["EUDCCodePage"] = $font->readUInt32();
+
+        $this->data["Padding6"] = $font->readUInt16();
+        $this->readString("Signature");
+
+        $this->data["EUDCFlags"] = $font->readUInt32();
+        $this->data["EUDCFontSize"] = $font->readUInt32();
+        break;
+    }
+
+    if (!empty($this->data["RootString"])) {
+      $this->data["RootString"] = explode("\0", $this->data["RootString"]);
+    }
+  }
+
+  private function readString($name) {
+    $font = $this->font;
+    $size = $font->readUInt16();
+
+    $this->data["{$name}Size"] = $size;
+    $this->data[$name] = Font::UTF16ToUTF8($font->read($size));
+  }
+
+  public function encode(){
+    //return $this->font->pack($this->def, $this->data);
+  }
+}

@@ -1,39 +1,61 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-yBXMV1i0
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Reflows table rows
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Row_Frame_Reflower extends Frame_Reflower {
+
+
+  function __construct(Table_Row_Frame_Decorator $frame) {
+    parent::__construct($frame);
+  }
+
+  //........................................................................
+
+  function reflow(Block_Frame_Decorator $block = null) {
+    $page = $this->_frame->get_root();
+
+    if ( $page->is_full() )
+      return;
+
+    $this->_frame->position();
+    $style = $this->_frame->get_style();
+    $cb = $this->_frame->get_containing_block();
+
+    foreach ($this->_frame->get_children() as $child) {
+
+      if ( $page->is_full() )
+        return;
+
+      $child->set_containing_block($cb);
+      $child->reflow();
+
+    }
+
+    if ( $page->is_full() )
+      return;
+
+    $table = Table_Frame_Decorator::find_parent_table($this->_frame);
+    $cellmap = $table->get_cellmap();
+    $style->width = $cellmap->get_frame_width($this->_frame);
+    $style->height = $cellmap->get_frame_height($this->_frame);
+
+    $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
+
+  }
+
+  //........................................................................
+
+  function get_min_max_width() {
+    throw new DOMPDF_Exception("Min/max width is undefined for table rows");
+  }
+}

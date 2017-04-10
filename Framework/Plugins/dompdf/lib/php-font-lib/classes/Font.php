@@ -1,37 +1,75 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-tlAqfyz9TwK=
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Generic font file.
+ * 
+ * @package php-font-lib
+ */
+class Font {
+  static $debug = false;
+  
+  /**
+   * @param string $file The font file
+   * @return Font_TrueType|null $file
+   */
+  public static function load($file) {
+    $header = file_get_contents($file, false, null, null, 4);
+    $class = null;
+    
+    switch($header) {
+      case "\x00\x01\x00\x00": 
+      case "true": 
+      case "typ1": 
+        $class = "Font_TrueType"; break;
+      
+      case "OTTO":
+        $class = "Font_OpenType"; break;
+      
+      case "wOFF":
+        $class = "Font_WOFF"; break;
+        
+      case "ttcf":
+        $class = "Font_TrueType_Collection"; break;
+        
+      // Unknown type or EOT
+      default: 
+        $magicNumber = file_get_contents($file, false, null, 34, 2);
+        
+        if ($magicNumber === "LP") {
+          $class = "Font_EOT";
+        }
+    }
+    
+    if ($class) {
+      /** @noinspection PhpIncludeInspection */
+      require_once dirname(__FILE__)."/$class.php";
+
+      /** @var Font_TrueType $obj */
+      $obj = new $class;
+      $obj->load($file);
+      
+      return $obj;
+    }
+
+    return null;
+  }
+  
+  static function d($str) {
+    if (!self::$debug) return;
+    echo "$str\n";
+  }
+  
+  static function UTF16ToUTF8($str) {
+    return mb_convert_encoding($str, "utf-8", "utf-16");
+  }
+  
+  static function UTF8ToUTF16($str) {
+    return mb_convert_encoding($str, "utf-16", "utf-8");
+  }
+}

@@ -1,50 +1,74 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @author  Helmut Tischer <htischer@weihenstephan.org>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Decorates frames for inline layout
+ *
+ * @access private
+ * @package dompdf
+ */
+class Inline_Frame_Decorator extends Frame_Decorator {
+  
+  function __construct(Frame $frame, DOMPDF $dompdf) { parent::__construct($frame, $dompdf); }
+
+  function split(Frame $frame = null, $force_pagebreak = false) {
+
+    if ( is_null($frame) ) {
+      $this->get_parent()->split($this, $force_pagebreak);
+      return;
+    }
+
+    if ( $frame->get_parent() !== $this )
+      throw new DOMPDF_Exception("Unable to split: frame is not a child of this one.");
+        
+    $split = $this->copy( $this->_frame->get_node()->cloneNode() ); 
+    $this->get_parent()->insert_child_after($split, $this);
+
+    // Unset the current node's right style properties
+    $style = $this->_frame->get_style();
+    $style->margin_right = 0;
+    $style->padding_right = 0;
+    $style->border_right_width = 0;
+
+    // Unset the split node's left style properties since we don't want them
+    // to propagate
+    $style = $split->get_style();
+    $style->margin_left = 0;
+    $style->padding_left = 0;
+    $style->border_left_width = 0;
+
+    //On continuation of inline element on next line,
+    //don't repeat non-vertically repeatble background images
+    //See e.g. in testcase image_variants, long desriptions
+    if ( ($url = $style->background_image) && $url !== "none"
+         && ($repeat = $style->background_repeat) && $repeat !== "repeat" &&  $repeat !== "repeat-y"
+       ) {
+      $style->background_image = "none";
+    }           
+
+    // Add $frame and all following siblings to the new split node
+    $iter = $frame;
+    while ($iter) {
+      $frame = $iter;      
+      $iter = $iter->get_next_sibling();
+      $frame->reset();
+      $split->append_child($frame);
+    }
+    
+    $page_breaks = array("always", "left", "right");
+    $frame_style = $frame->get_style();
+    if( $force_pagebreak ||
+      in_array($frame_style->page_break_before, $page_breaks) ||
+      in_array($frame_style->page_break_after, $page_breaks) ) {
+
+      $this->get_parent()->split($split, true);
+    }
+  }
+  
+} 

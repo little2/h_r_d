@@ -1,37 +1,72 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * `kern` font table.
+ * 
+ * @package php-font-lib
+ */
+class Font_Table_kern extends Font_Table {
+  protected function _parse(){
+    $font = $this->getFont();
+    
+    $data = $font->unpack(array(
+      "version"    => self::uint16,
+      "nTables"    => self::uint16,
+    
+      // only the first subtable will be parsed
+      "subtableVersion" => self::uint16,
+      "length"     => self::uint16,
+      "coverage"   => self::uint16,
+    ));
+    
+    $data["format"] = ($data["coverage"] >> 8);
+    
+    $subtable = array();
+    
+    switch($data["format"]) {
+      case 0:
+      $subtable = $font->unpack(array(
+        "nPairs"        => self::uint16,
+        "searchRange"   => self::uint16,
+        "entrySelector" => self::uint16,
+        "rangeShift"    => self::uint16,
+      ));
+      
+      $pairs = array();
+      $tree = array();
+       
+      for ($i = 0; $i < $subtable["nPairs"]; $i++) {
+        $left  = $font->readUInt16();
+        $right = $font->readUInt16();
+        $value = $font->readInt16();
+        
+        $pairs[] = array(
+          "left"  => $left,
+          "right" => $right,
+          "value" => $value,
+        );
+        
+        $tree[$left][$right] = $value;
+      }
+      
+      //$subtable["pairs"] = $pairs;
+      $subtable["tree"] = $tree;
+      break;
+      
+      case 1:
+      case 2:
+      case 3:
+      break;
+    }
+    
+    $data["subtable"] = $subtable;
+    
+    $this->data = $data;
+  }
+}

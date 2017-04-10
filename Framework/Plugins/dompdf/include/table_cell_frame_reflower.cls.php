@@ -1,80 +1,119 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
+<?php
+/**
+ * @package dompdf
+ * @link    http://dompdf.github.com/
+ * @author  Benj Carson <benjcarson@digitaljunkies.ca>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * Reflows table cells
+ *
+ * @access private
+ * @package dompdf
+ */
+class Table_Cell_Frame_Reflower extends Block_Frame_Reflower {
+
+  //........................................................................
+
+  function __construct(Block_Frame_Decorator $frame) {
+    parent::__construct($frame);
+  }
+
+  //........................................................................
+
+  function reflow(Block_Frame_Decorator $block = null) {
+
+    $style = $this->_frame->get_style();
+
+    $table = Table_Frame_Decorator::find_parent_table($this->_frame);
+    $cellmap = $table->get_cellmap();
+
+    list($x, $y) = $cellmap->get_frame_position($this->_frame);
+    $this->_frame->set_position($x, $y);
+
+    $cells = $cellmap->get_spanned_cells($this->_frame);
+
+    $w = 0;
+    foreach ( $cells["columns"] as $i ) {
+      $col = $cellmap->get_column( $i );
+      $w += $col["used-width"];
+    }
+
+    //FIXME?
+    $h = $this->_frame->get_containing_block("h");
+
+    $left_space = $style->length_in_pt(array($style->margin_left,
+                                             $style->padding_left,
+                                             $style->border_left_width),
+                                       $w);
+
+    $right_space = $style->length_in_pt(array($style->padding_right,
+                                              $style->margin_right,
+                                              $style->border_right_width),
+                                        $w);
+
+    $top_space = $style->length_in_pt(array($style->margin_top,
+                                            $style->padding_top,
+                                            $style->border_top_width),
+                                      $h);
+    $bottom_space = $style->length_in_pt(array($style->margin_bottom,
+                                               $style->padding_bottom,
+                                               $style->border_bottom_width),
+                                      $h);
+
+    $style->width = $cb_w = $w - $left_space - $right_space;
+
+    $content_x = $x + $left_space;
+    $content_y = $line_y = $y + $top_space;
+
+    // Adjust the first line based on the text-indent property
+    $indent = $style->length_in_pt($style->text_indent, $w);
+    $this->_frame->increase_line_width($indent);
+
+    $page = $this->_frame->get_root();
+    
+    // Set the y position of the first line in the cell
+    $line_box = $this->_frame->get_current_line_box();
+    $line_box->y = $line_y;
+    
+    // Set the containing blocks and reflow each child
+    foreach ( $this->_frame->get_children() as $child ) {
+      
+      if ( $page->is_full() )
+        break;
+    
+      $child->set_containing_block($content_x, $content_y, $cb_w, $h);
+      
+      $this->process_clear($child);
+      
+      $child->reflow($this->_frame);
+    
+      $this->process_float($child, $x + $left_space, $w - $right_space - $left_space);
+    }
+
+    // Determine our height
+    $style_height = $style->length_in_pt($style->height, $h);
+
+    $this->_frame->set_content_height($this->_calculate_content_height());
+
+    $height = max($style_height, $this->_frame->get_content_height());
+
+    // Let the cellmap know our height
+    $cell_height = $height / count($cells["rows"]);
+
+    if ($style_height <= $height)
+      $cell_height += $top_space + $bottom_space;
+
+    foreach ($cells["rows"] as $i)
+      $cellmap->set_row_height($i, $cell_height);
+
+    $style->height = $height;
+
+    $this->_text_align();
+
+    $this->vertical_align();
+
+  }
+
+}

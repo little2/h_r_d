@@ -1,47 +1,141 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
-?>
-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
-IY7tRTlXgMLsM6U2DJ107h2/TfJL
+<?php
+/**
+ * @package php-font-lib
+ * @link    https://github.com/PhenX/php-font-lib
+ * @author  Fabien Ménager <fabien.menager@gmail.com>
+ * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
+
+/**
+ * `post` font table.
+ * 
+ * @package php-font-lib
+ */
+class Font_Table_post extends Font_Table {
+  protected $def = array(
+    "format"             => self::Fixed,
+    "italicAngle"        => self::Fixed,
+    "underlinePosition"  => self::FWord,
+    "underlineThickness" => self::FWord,
+    "isFixedPitch"       => self::uint32,
+    "minMemType42"       => self::uint32,
+    "maxMemType42"       => self::uint32,
+    "minMemType1"        => self::uint32,
+    "maxMemType1"        => self::uint32,
+  );
+  
+  protected function _parse(){
+    $font = $this->getFont();
+    $data = $font->unpack($this->def);
+    
+    $names = array();
+    
+    switch($data["format"]) {
+      case 1:
+        $names = Font_TrueType::$macCharNames;
+      break;
+      
+      case 2:
+        $data["numberOfGlyphs"] = $font->readUInt16();
+        
+        $glyphNameIndex = array();
+        for($i = 0; $i < $data["numberOfGlyphs"]; $i++) {
+          $glyphNameIndex[] = $font->readUInt16();
+        }
+        
+        $data["glyphNameIndex"] = $glyphNameIndex;
+        
+        $namesPascal = array();
+        for($i = 0; $i < $data["numberOfGlyphs"]; $i++) {
+          $len = $font->readUInt8();
+          $namesPascal[] = $font->read($len);
+        }
+        
+        foreach($glyphNameIndex as $g => $index) {
+          if ($index < 258) {
+            $names[$g] = Font_TrueType::$macCharNames[$index];
+          }
+          else {
+            $names[$g] = $namesPascal[$index - 258];
+          }
+        }
+        
+      break;
+      
+      case 2.5:
+        // TODO
+      break;
+      
+      case 3:
+        // nothing
+      break;
+      
+      case 4:
+        // TODO
+      break;
+    }
+    
+    $data["names"] = $names;
+    
+    $this->data = $data;
+  }
+  
+  function _encode(){
+    $font = $this->getFont();
+    $data = $this->data;
+    $data["format"] = 3;
+    
+    $length = $font->pack($this->def, $data);
+    
+    return $length;
+
+    /*
+    $subset = $font->getSubset();
+    
+    switch($data["format"]) {
+      case 1:
+        // nothing to do
+      break;
+      
+      case 2:
+        $old_names = $data["names"];
+        
+        $glyphNameIndex = range(0, count($subset));
+        
+        $names = array();
+        foreach($subset as $gid) {
+          $names[] = $data["names"][$data["glyphNameIndex"][$gid]];
+        }
+    
+        $numberOfGlyphs = count($names);
+        $length += $font->writeUInt16($numberOfGlyphs);
+        
+        foreach($glyphNameIndex as $gni) {
+          $length += $font->writeUInt16($gni);
+        }
+        
+        //$names = array_slice($names, 257);
+        foreach($names as $name) {
+          $len = strlen($name);
+          $length += $font->writeUInt8($len);
+          $length += $font->write($name, $len);
+        }
+        
+      break;
+      
+      case 2.5:
+        // TODO
+      break;
+      
+      case 3:
+        // nothing
+      break;
+      
+      case 4:
+        // TODO
+      break;
+    }
+    
+    return $length;*/
+  }
+}
