@@ -66,11 +66,11 @@
 				}
 				else
 				{
-					location.href='index.php'	
-				}	
-					
-				
-				}, 			
+					location.href='index.php'
+				}
+
+
+				},
 			error : function(data) {
 				//$.unblockUI();
 				alert("Error");
@@ -78,12 +78,12 @@
 			statusCode : { //狀態碼處理
 				404 : function() {
 					//$.unblockUI();
-					alert ("page not found");        				
+					alert ("page not found");
 				}
 			}
-		});	 
-		
-		
+		});
+
+
 	}
 
 	function reloadImages(url) {
@@ -96,7 +96,7 @@
 	<form method="post" id="login" action="">
 		<div class="loginframe">
 			<div class="loginframetop">
-				<img height='44' src="Framework/Themes/images/login/clogo.jpg">
+				<img height='44' src="Framework/Themes/images/login/clogo.jpg" onerror="this.src='Framework/Themes/images/login/clogo_default.jpg'">
 			</div>
 			<div class="loginframebody">
 				<div class="loginframeleft">
@@ -151,7 +151,7 @@
 									value="">
 								</TD>
 								<TD width="125">
-									<img border="0"  src="/hrd/Include/capcha/image.php"  id="images" 
+									<img border="0"  src="/hrd/Include/capcha/image.php"  id="images"
 												style="cursor: hand;" title="看不清,请点击" name="images" onclick="reloadImages(this.src);" alt="loading"></TD>
 							</TR>
 							<TR>
