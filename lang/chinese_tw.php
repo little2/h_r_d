@@ -1,52 +1,94 @@
-<?php //0046a
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo('Site error: the file <b>'.__FILE__.'</b> requires the ionCube PHP Loader '.basename($__ln).' to be installed by the website operator. If you are the website operator please use the <a href="http://www.ioncube.com/lw/">ionCube Loader Wizard</a> to assist with installation.');exit(199);
+<?php
+/**
+ * 語系庫
+ *
+ * 繁體中文語系庫
+ * 命名規則:頭字大寫,不使用_
+ *.
+ * @author Ryan Chiu <[email]ryan@inetar.net[/email]>
+ * @version 1.0
+ * @date 2009-5-6 10:10:47
+ */
+
+$l="chinese_tw";
+$lang_type[$l]='正體中文';
+#從以下開始修改
+$w=$lang[language];
+
+// f_ 代表是有格式的訊息 format
+// m_ 代表是訊息
+
+# 通用辭語
+$w['bhrsp']='台灣緯任數位科技股份有限公司';
+$w['CopyRight']='版權所有';
+$w['JustNow']='剛剛';
+$w['f_MinuteAgo']='%s分鐘前';
+$w['f_HourAgo']='%s小時前';
+$w['f_DayAgo']='%s天前';
+$w['ExpireSoon']='即將到期';
+$w['f_AfterMinute']='%s分鐘後';
+$w['f_AfterHour']='%s小時後';
+$w['f_AfterDay']='%s天後';
+
+$w['TradChinese']='正體中文';
+$w['SimChinese']='简体中文';
+$w['English']='English';
+
+$w['Title']='主旨';
+
+$w['Information']='資訊';
+$w['Count']='數量';
+
+$w['Progress']='進度';
+
+$w['Filter']='篩選';
+$w['PickUp']='挑選';
+$w['Save']='保存';
+
+$w['Code']='代碼';
+
+$w['UpdateDate']='更新日期';
+$w['DueDate']='截止日期';
+$w['Maintainer']='維護者';
+
+$w['Keyword']='關鍵字';
+$w['Role']='角色';
+
+$w['Active']='啟用';
+$w['Disabled']='失效';
+
+$w['Modifiable']='有修改權限';
+
+$w['View']='查閱';
+$w['Export']='匯出';
+$w['Validate']='驗証';
+#從以上開始修改
+
+
+$save_path=getcwd().'/';
+$target_file= "/lang/".$l.".php";
+while(!file_exists($save_path.$target_file))
+{
+	$save_path.='../';
+}
+
+$parl="module_main_".$l;
+$parl_len=strlen($parl);
+$save_path.='lang/';
+$dir=opendir($save_path);
+
+while(($file=readdir($dir))!==false){
+	if(!($file=='.'||$file=='..'))
+	{
+		if(substr($file,0,($parl_len))==$parl)
+		{
+			include_once($save_path.'/'.$file);
+
+		}
+	}
+}
+
+$lang[$l]=$w;
+unset($w);
+
 ?>
-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
