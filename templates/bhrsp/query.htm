@@ -1,6 +1,12 @@
 <!-- 输出查询页面 conditionList-->
 
-<form method="post" id="formQueryPost" >
+<form method="post" name="formQueryPost" id="formQueryPost" >
+
+<!-- BEGIN GETLIST -->
+<input type='hidden' name='{GETLIST.name}' id='{GETLIST.name}' value='{GETLIST.value}' />
+<!-- END GETLIST -->
+
+
 <table id="queryTbl" class="contb">
 	<!-- BEGIN CONDITIONLIST -->
 	<tr>
@@ -13,7 +19,7 @@
 			<input type="hidden" name="conditionList[{CONDITIONLIST.index}].columnType" value="STRING" id="conditionList_[{CONDITIONLIST.index}]__columnType"/>
 			{CONDITIONLIST.columnTitle}:
 		</td>
-		<td align="right">			
+		<td align="right">
 				<select name="conditionType[{CONDITIONLIST.index}]" id="conditionType[{CONDITIONLIST.index}]" class="context">
 					<option value="EQ" selected="selected">等於</option>
 					<option value="IN">批量等於</option>
@@ -25,24 +31,24 @@
 		</td>
 	</tr>
 	<!-- END CONDITIONLIST -->
-	
+
 	<!-- BEGIN SEL -->
 	<tr>
 		<td align="right">
-			<input type="hidden" name="targetColumn[{SEL.index}]"  id="targetColumn[{SEL.index}]"  value="{SEL.targetColumn}" id="conditionList_[{SEL.index}]__targetColumn"/>
+			<input type="hidden" name="targetColumn[{SEL.index}]"  id="targetColumn[{SEL.index}]" id="conditionList_[{SEL.index}]__targetColumn" value="{SEL.targetColumn}" />
 			<input type="hidden" name="conditionList[{SEL.index}].columnSub2" value="" id="conditionList_[{SEL.index}]__columnSub2"/>
 			<input type="hidden" name="conditionList[{SEL.index}].columnSub1" value="" id="conditionList_[{SEL.index}]__columnSub1"/>
 			<input type="hidden" name="conditionList[{SEL.index}].subTbl" value="" id="conditionList_[{SEL.index}]__subTbl"/>
 			<input type="hidden" name="conditionList[{SEL.index}].subTblSql" value="" id="conditionList_[{SEL.index}]__subTblSql"/>
 			<input type="hidden" name="conditionList[{SEL.index}].columnType" value="STRING" id="conditionList_[{SEL.index}]__columnType"/>
 			{SEL.columnTitle}:
-		</td>	
+		</td>
 		<td align="left">
 			<select name="conditionValues[{SEL.index}]" >
 			<!-- BEGIN OPTION -->
-				<option value="{SEL.OPTION.value}">{SEL.OPTION.title}</option>				
+				<option value="{SEL.OPTION.value}">{SEL.OPTION.title}</option>
 			<!-- END OPTION -->
-			</select>					
+			</select>
 		</td>
 	</tr>
 	<!-- END SEL -->
